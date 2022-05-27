@@ -1,0 +1,51 @@
+This is BibTeX, Version 0.99d
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: Paramter_fitting.aux
+Reallocating 'name_of_file' (item size: 1) to 9 items.
+The style file: unsrtnat.bst
+Reallocating 'name_of_file' (item size: 1) to 10 items.
+Database file #1: mybibfile.bib
+Warning--entry type for "Himmelblau1970" isn't style-file defined
+--line 384 of file mybibfile.bib
+You've used 14 entries,
+            2481 wiz_defined-function locations,
+            682 strings with 7707 characters,
+and the built_in function-call counts, 5671 in all, are:
+= -- 520
+> -- 244
+< -- 8
++ -- 98
+- -- 70
+* -- 494
+:= -- 899
+add.period$ -- 55
+call.type$ -- 14
+change.case$ -- 28
+chr.to.int$ -- 14
+cite$ -- 14
+duplicate$ -- 260
+empty$ -- 520
+format.name$ -- 92
+if$ -- 1184
+int.to.chr$ -- 1
+int.to.str$ -- 15
+missing$ -- 13
+newline$ -- 91
+num.names$ -- 42
+pop$ -- 91
+preamble$ -- 1
+purify$ -- 14
+quote$ -- 0
+skip$ -- 142
+stack$ -- 0
+substring$ -- 343
+swap$ -- 40
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 98
+warning$ -- 0
+while$ -- 52
+width$ -- 0
+write$ -- 214
+(There was 1 warning)
