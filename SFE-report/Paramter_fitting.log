@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.11.2)  27 MAY 2022 02:05
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.11.2)  28 MAY 2022 11:32
 entering extended mode
 **./Paramter_fitting.tex
 (Paramter_fitting.tex
@@ -990,7 +990,7 @@ Overfull \hbox (123.62721pt too wide) detected at line 101
  []
 
 (Paramter_fitting.abs)
-<thumbnails/cas-email.jpeg, id=71, 225.84375pt x 225.84375pt>
+<thumbnails/cas-email.jpeg, id=75, 225.84375pt x 225.84375pt>
 File: thumbnails/cas-email.jpeg Graphic file (type jpg)
 <use thumbnails/cas-email.jpeg>
 Package pdftex.def Info: thumbnails/cas-email.jpeg  used on input line 101.
@@ -1093,7 +1093,7 @@ Overfull \hbox (13.65553pt too wide) in paragraph at lines 144--145
 
 pdfTeX warning: pdflatex.exe (file ./Figures/SFE_PFD.pdf): PDF inclusion: found
  PDF version <1.7>, but at most version <1.5> allowed
-<Figures/SFE_PFD.pdf, id=112, 844.65562pt x 596.98032pt>
+<Figures/SFE_PFD.pdf, id=116, 844.65562pt x 596.98032pt>
 File: Figures/SFE_PFD.pdf Graphic file (type pdf)
 <use Figures/SFE_PFD.pdf>
 Package pdftex.def Info: Figures/SFE_PFD.pdf  used on input line 152.
@@ -1108,7 +1108,7 @@ Overfull \hbox (23.48555pt too wide) in paragraph at lines 159--166
 
 pdfTeX warning: pdflatex.exe (file ./Figures/SFE_draft.pdf): PDF inclusion: fou
 nd PDF version <1.7>, but at most version <1.5> allowed
-<Figures/SFE_draft.pdf, id=145, 963.6pt x 542.025pt>
+<Figures/SFE_draft.pdf, id=149, 963.6pt x 542.025pt>
 File: Figures/SFE_draft.pdf Graphic file (type pdf)
 <use Figures/SFE_draft.pdf>
 Package pdftex.def Info: Figures/SFE_draft.pdf  used on input line 213.
@@ -1175,37 +1175,23 @@ LaTeX Warning: Reference `discretization' on page 6 undefined on input line 329
 .
 
 [6] [7] [8]
-Overfull \hbox (18.33948pt too wide) in paragraph at lines 543--544
-[]\T1/stix/m/n/10 The pos-te-rior prob-a-bil-ity den-sity $\LS1/stix/m/it/10 p\
-LS1/stix/m/n/10 .\LS1/stix/m/it/10 ; y[]\LS2/stixex/m/n/10 ð\LS1/stix/m/it/10 
-y\LS1/stix/m/n/10 .1/\LS1/stix/m/it/10 ; y\LS1/stix/m/n/10 .2/\LS1/stix/m/it/10
- ; :::; y\LS1/stix/m/n/10 .\LS1/stix/m/it/10 t[]\LS1/stix/m/n/10 //$
- []
-
-
-Overfull \hbox (20.67603pt too wide) detected at line 561
- $\LS1/stix/m/it/10 p [] \LS1/stix/m/n/10 = \LS1/stix/m/it/10 p [] [] p []$  
- []
-
-
-Overfull \hbox (11.73781pt too wide) detected at line 604
+Overfull \hbox (10.93782pt too wide) detected at line 604
 []
  []
 
 
-Overfull \hbox (60.70209pt too wide) detected at line 630
+Overfull \hbox (58.40211pt too wide) detected at line 630
 []
  []
 
 
-Overfull \hbox (12.53725pt too wide) detected at line 646
+Overfull \hbox (11.33727pt too wide) detected at line 646
 []
  []
 
 [9]
-Overfull \hbox (8.51611pt too wide) detected at line 672
- []$[]\LS1/stix/m/it/10 []\LS1/stix/m/n/10 .2\LS1/stix/m/it/10 \LS1/stix/m/n/
-10 /[] [] []$ []  
+Overfull \hbox (27.88104pt too wide) detected at line 708
+ $[][]$  
  []
 
 [10] (Paramter_fitting.bbl
@@ -1227,17 +1213,17 @@ File: ts1stix.fd 2015/04/17 v1.1.2-latex STIX TS1 font definitions
 ] [13]
 (Paramter_fitting.aux)
 Package rerunfilecheck Info: File `Paramter_fitting.out' has not changed.
-(rerunfilecheck)             Checksum: 622EE65D8EECDD7FAE77254C5DE2464C;1117.
+(rerunfilecheck)             Checksum: 938A9E77894D64A80F5AD640F73A1AB8;1198.
 
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 16697 strings out of 479799
- 247661 string characters out of 2880107
- 632190 words of memory out of 3000000
- 33201 multiletter control sequences out of 15000+200000
+ 16702 strings out of 479799
+ 247729 string characters out of 2880107
+ 632250 words of memory out of 3000000
+ 33203 multiletter control sequences out of 15000+200000
  648386 words of font info for 162 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  80i,26n,128p,1696b,488s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1254,12 +1240,13 @@ fb><D:/slicz/Documents/Tex/fonts/type1/public/stix/stix-mathbb.pfb><D:/slicz/Do
 cuments/Tex/fonts/type1/public/stix/stix-mathcal.pfb><D:/slicz/Documents/Tex/fo
 nts/type1/public/stix/stix-mathex.pfb><D:/slicz/Documents/Tex/fonts/type1/publi
 c/stix/stix-mathit-bold.pfb><D:/slicz/Documents/Tex/fonts/type1/public/stix/sti
-x-mathit.pfb><D:/slicz/Documents/Tex/fonts/type1/public/stix/stix-mathrm.pfb><D
-:/slicz/Documents/Tex/fonts/type1/public/stix/stix-mathscr.pfb><D:/slicz/Docume
-nts/Tex/fonts/type1/public/stix/stix-mathsf.pfb>
-Output written on Paramter_fitting.pdf (13 pages, 483693 bytes).
+x-mathit.pfb><D:/slicz/Documents/Tex/fonts/type1/public/stix/stix-mathrm-bold.p
+fb><D:/slicz/Documents/Tex/fonts/type1/public/stix/stix-mathrm.pfb><D:/slicz/Do
+cuments/Tex/fonts/type1/public/stix/stix-mathscr.pfb><D:/slicz/Documents/Tex/fo
+nts/type1/public/stix/stix-mathsf.pfb>
+Output written on Paramter_fitting.pdf (13 pages, 490452 bytes).
 PDF statistics:
- 471 PDF objects out of 1000 (max. 8388607)
- 116 named destinations out of 1000 (max. 500000)
- 164 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 482 PDF objects out of 1000 (max. 8388607)
+ 119 named destinations out of 1000 (max. 500000)
+ 172 words of extra memory for PDF output out of 10000 (max. 10000000)
 

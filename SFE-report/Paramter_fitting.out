@@ -12,6 +12,7 @@
 \BOOKMARK [1][-]{section.4}{Parameter estimation}{}% 12
 \BOOKMARK [2][-]{subsection.4.1}{Least squares estimation}{section.4}% 13
 \BOOKMARK [2][-]{subsection.4.2}{Maximum likelihood estimation}{section.4}% 14
-\BOOKMARK [1][-]{section.5}{Results}{}% 15
-\BOOKMARK [1][-]{section.6}{Conclusions}{}% 16
-\BOOKMARK [1][-]{appendix.A}{Appendix}{}% 17
+\BOOKMARK [2][-]{subsection.4.3}{Maximum a posteriori estimation}{section.4}% 15
+\BOOKMARK [1][-]{section.5}{Results}{}% 16
+\BOOKMARK [1][-]{section.6}{Conclusions}{}% 17
+\BOOKMARK [1][-]{appendix.A}{Appendix}{}% 18
