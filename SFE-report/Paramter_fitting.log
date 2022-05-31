@@ -1,17 +1,17 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.11.2)  28 MAY 2022 11:32
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2021.11.8)  31 MAY 2022 18:20
 entering extended mode
 **./Paramter_fitting.tex
 (Paramter_fitting.tex
-LaTeX2e <2020-10-01> patch level 2
-L3 programming layer <2020-10-27> xparse <2020-03-03>
-(D:\slicz\Documents\Tex\tex/latex/els-cas-templates\cas-dc.cls
-Document Class: cas-dc 2021/05/11, 2.3: Formatting class for CAS double column 
+LaTeX2e <2021-06-01> patch level 1
+L3 programming layer <2021-10-18>
+(C:\PROGRAMS\MiKTeX\MiKTeX_2.9\tex/latex/els-cas-templates\cas-dc.cls
+Document Class: cas-dc 2020/03/14, 2.1: Formatting class for CAS double column 
 articles
-\c@blind=\count175
+\c@blind=\count182
 \@bls=\dimen138
-(D:\slicz\Documents\Tex\tex/latex/base\article.cls
-Document Class: article 2020/04/10 v1.4m Standard LaTeX document class
-(D:\slicz\Documents\Tex\tex/latex/base\fleqn.clo
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
+Document Class: article 2021/02/12 v1.4n Standard LaTeX document class
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/base\fleqn.clo
 File: fleqn.clo 2016/12/29 v1.2b Standard LaTeX option (flush left equations)
 \mathindent=\skip47
 Applying: [2015/01/01] Make \[ robust on input line 50.
@@ -21,104 +21,107 @@ Applying: [2015/01/01] Make \] robust on input line 74.
 LaTeX Info: Redefining \] on input line 75.
 Already applied: [0000/00/00] Make \] robust on input line 83.
 )
-(D:\slicz\Documents\Tex\tex/latex/base\size10.clo
-File: size10.clo 2020/04/10 v1.4m Standard LaTeX file (size option)
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/base\size10.clo
+File: size10.clo 2021/02/12 v1.4n Standard LaTeX file (size option)
 )
-\c@part=\count176
-\c@section=\count177
-\c@subsection=\count178
-\c@subsubsection=\count179
-\c@paragraph=\count180
-\c@subparagraph=\count181
-\c@figure=\count182
-\c@table=\count183
+\c@part=\count183
+\c@section=\count184
+\c@subsection=\count185
+\c@subsubsection=\count186
+\c@paragraph=\count187
+\c@subparagraph=\count188
+\c@figure=\count189
+\c@table=\count190
 \abovecaptionskip=\skip48
 \belowcaptionskip=\skip49
 \bibindent=\dimen139
 )
-(D:\slicz\Documents\Tex\tex/latex/graphics\graphicx.sty
-Package: graphicx 2020/09/09 v1.2b Enhanced LaTeX Graphics (DPC,SPQR)
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.st
+y
+Package: graphicx 2020/12/05 v1.2c Enhanced LaTeX Graphics (DPC,SPQR)
 
-(D:\slicz\Documents\Tex\tex/latex/graphics\keyval.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
-\KV@toks@=\toks15
+\KV@toks@=\toks16
 )
-(D:\slicz\Documents\Tex\tex/latex/graphics\graphics.sty
-Package: graphics 2020/08/30 v1.4c Standard LaTeX Graphics (DPC,SPQR)
-
-(D:\slicz\Documents\Tex\tex/latex/graphics\trig.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.st
+y
+Package: graphics 2021/03/04 v1.4d Standard LaTeX Graphics (DPC,SPQR)
+ (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.sty
 Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 )
-(D:\slicz\Documents\Tex\tex/latex/graphics-cfg\graphics.cfg
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\graphic
+s.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
-Package graphics Info: Driver file: pdftex.def on input line 105.
+Package graphics Info: Driver file: pdftex.def on input line 107.
 
-(D:\slicz\Documents\Tex\tex/latex/graphics-def\pdftex.def
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\pdftex.
+def
 File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
 ))
 \Gin@req@height=\dimen140
 \Gin@req@width=\dimen141
 )
-(D:\slicz\Documents\Tex\tex/latex/amsmath\amsmath.sty
-Package: amsmath 2020/09/23 v2.17i AMS math features
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsmath.sty
+Package: amsmath 2021/04/20 v2.17j AMS math features
 \@mathmargin=\skip50
 
 For additional information on amsmath, use the `?' option.
-(D:\slicz\Documents\Tex\tex/latex/amsmath\amstext.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amstext.sty
 Package: amstext 2000/06/29 v2.01 AMS text
 
-(D:\slicz\Documents\Tex\tex/latex/amsmath\amsgen.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
-\@emptytoks=\toks16
+\@emptytoks=\toks17
 \ex@=\dimen142
-))
-(D:\slicz\Documents\Tex\tex/latex/amsmath\amsbsy.sty
+)) (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsbsy.st
+y
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 \pmbraise@=\dimen143
-)
-(D:\slicz\Documents\Tex\tex/latex/amsmath\amsopn.sty
+) (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsopn.sty
 Package: amsopn 2016/03/08 v2.02 operator names
 )
-\inf@bad=\count184
+\inf@bad=\count191
 LaTeX Info: Redefining \frac on input line 234.
-\uproot@=\count185
-\leftroot@=\count186
+\uproot@=\count192
+\leftroot@=\count193
 LaTeX Info: Redefining \overline on input line 399.
-\classnum@=\count187
-\DOTSCASE@=\count188
+\classnum@=\count194
+\DOTSCASE@=\count195
 LaTeX Info: Redefining \ldots on input line 496.
 LaTeX Info: Redefining \dots on input line 499.
 LaTeX Info: Redefining \cdots on input line 620.
-\Mathstrutbox@=\box47
-\strutbox@=\box48
+\Mathstrutbox@=\box50
+\strutbox@=\box51
 \big@size=\dimen144
 LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
-\macc@depth=\count189
-\c@MaxMatrixCols=\count190
+\macc@depth=\count196
+\c@MaxMatrixCols=\count197
 \dotsspace@=\muskip16
-\c@parentequation=\count191
-\dspbrk@lvl=\count192
-\tag@help=\toks17
-\row@=\count193
-\column@=\count194
-\maxfields@=\count195
-\andhelp@=\toks18
+\c@parentequation=\count198
+\dspbrk@lvl=\count199
+\tag@help=\toks18
+\row@=\count266
+\column@=\count267
+\maxfields@=\count268
+\andhelp@=\toks19
 \eqnshift@=\dimen145
 \alignsep@=\dimen146
 \tagshift@=\dimen147
 \tagwidth@=\dimen148
 \totwidth@=\dimen149
 \lineht@=\dimen150
-\@envbody=\toks19
+\@envbody=\toks20
 \multlinegap=\skip51
 \multlinetaggap=\skip52
-\mathdisplay@stack=\toks20
+\mathdisplay@stack=\toks21
 LaTeX Info: Redefining \[ on input line 2923.
 LaTeX Info: Redefining \] on input line 2924.
 )
-(D:\slicz\Documents\Tex\tex/latex/amsfonts\amsfonts.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amsfonts.st
+y
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \symAMSa=\mathgroup4
 \symAMSb=\mathgroup5
@@ -126,30 +129,32 @@ LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 )
-(D:\slicz\Documents\Tex\tex/latex/amsfonts\amssymb.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
-)
-(D:\slicz\Documents\Tex\tex/latex/l3kernel\expl3.sty
-Package: expl3 2020-10-27 L3 programming layer (loader) 
+) (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/l3kernel\expl3.sty
+Package: expl3 2021-10-18 L3 programming layer (loader) 
 
-(D:\slicz\Documents\Tex\tex/latex/l3backend\l3backend-pdftex.def
-File: l3backend-pdftex.def 2020-09-24 L3 backend support: PDF output (pdfTeX)
-\l__kernel_color_stack_int=\count196
-\l__pdf_internal_box=\box49
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-
+pdftex.def
+File: l3backend-pdftex.def 2021-10-18 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count269
+\l__pdf_internal_box=\box52
 ))
-(D:\slicz\Documents\Tex\tex/latex/l3packages/xparse\xparse.sty
-Package: xparse 2020-10-27 L3 Experimental document command parser
-
-(D:\slicz\Documents\Tex\tex/latex/l3packages/xparse\xparse-generic.tex))
-(D:\slicz\Documents\Tex\tex/latex/etoolbox\etoolbox.sty
-Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count197
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/xparse\xp
+arse.sty
+Package: xparse 2021-08-27 L3 Experimental document command parser
 )
-(D:\slicz\Documents\Tex\tex/latex/preprint\balance.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etoolbox.st
+y
+Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count270
+)
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/preprint\balance.sty
 Package: balance 1999/02/23 4.3 (PWD)
 \oldvsize=\dimen151
 )
-(D:\slicz\Documents\Tex\tex/latex/booktabs\booktabs.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/booktabs\booktabs.st
+y
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \heavyrulewidth=\dimen152
 \lightrulewidth=\dimen153
@@ -161,76 +166,79 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \cmidrulesep=\dimen159
 \cmidrulekern=\dimen160
 \defaultaddspace=\dimen161
-\@cmidla=\count198
-\@cmidlb=\count199
+\@cmidla=\count271
+\@cmidlb=\count272
 \@aboverulesep=\dimen162
 \@belowrulesep=\dimen163
-\@thisruleclass=\count266
-\@lastruleclass=\count267
+\@thisruleclass=\count273
+\@lastruleclass=\count274
 \@thisrulewidth=\dimen164
 )
-(D:\slicz\Documents\Tex\tex/latex/makecell\makecell.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/makecell\makecell.st
+y
 Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
-
-(D:\slicz\Documents\Tex\tex/latex/tools\array.sty
-Package: array 2019/08/31 v2.4l Tabular extension package (FMi)
+ (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/tools\array.sty
+Package: array 2021/04/20 v2.5e Tabular extension package (FMi)
 \col@sep=\dimen165
-\ar@mcellbox=\box50
+\ar@mcellbox=\box53
 \extrarowheight=\dimen166
-\NC@list=\toks21
+\NC@list=\toks22
 \extratabsurround=\skip53
 \backup@length=\skip54
-\ar@cellbox=\box51
+\ar@cellbox=\box54
 )
 \rotheadsize=\dimen167
-\c@nlinenum=\count268
-\TeXr@lab=\toks22
+\c@nlinenum=\count275
+\TeXr@lab=\toks23
 )
-(D:\slicz\Documents\Tex\tex/latex/multirow\multirow.sty
-Package: multirow 2019/05/31 v2.5 Span multiple rows of a table
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/multirow\multirow.st
+y
+Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
 \multirow@colwidth=\skip55
-\multirow@cntb=\count269
+\multirow@cntb=\count276
 \multirow@dima=\skip56
 \bigstrutjot=\dimen168
 )
-(D:\slicz\Documents\Tex\tex/latex/colortbl\colortbl.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/colortbl\colortbl.st
+y
 Package: colortbl 2020/01/04 v1.0e Color table columns (DPC)
-
-(D:\slicz\Documents\Tex\tex/latex/graphics\color.sty
+ (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/graphics\color.sty
 Package: color 2020/02/24 v1.2b Standard LaTeX Color (DPC)
 
-(D:\slicz\Documents\Tex\tex/latex/graphics-cfg\color.cfg
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\color.c
+fg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
-Package color Info: Driver file: pdftex.def on input line 147.
+Package color Info: Driver file: pdftex.def on input line 149.
 )
-\everycr=\toks23
+\everycr=\toks24
 \minrowclearance=\skip57
 )
-(D:\slicz\Documents\Tex\tex/latex/tools\dcolumn.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/tools\dcolumn.sty
 Package: dcolumn 2014/10/28 v1.06 decimal alignment package (DPC)
 )
-(D:\slicz\Documents\Tex\tex/latex/sttools\stfloats.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/sttools\stfloats.sty
 Package: stfloats 2017/03/27 v3.3 Improve float mechanism and baselineskip sett
 ings
-\@dblbotnum=\count270
-\c@dblbotnumber=\count271
-)
-(D:\slicz\Documents\Tex\tex/latex/tools\xspace.sty
+\@dblbotnum=\count277
+\c@dblbotnumber=\count278
+) (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/tools\xspace.sty
 Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
 )
-(D:\slicz\Documents\Tex\tex/latex/xstring\xstring.sty
-(D:\slicz\Documents\Tex\tex/generic/xstring\xstring.tex
-\integerpart=\count272
-\decimalpart=\count273
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/xstring\xstring.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/generic/xstring\xstring.te
+x
+\integerpart=\count279
+\decimalpart=\count280
 )
-Package: xstring 2019/02/06 v1.83 String manipulations (CT)
+Package: xstring 2021/07/21 v1.84 String manipulations (CT)
 )
-(D:\slicz\Documents\Tex\tex/latex/footmisc\footmisc.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/footmisc\footmisc.st
+y
 Package: footmisc 2011/06/06 v5.5b a miscellany of footnote facilities
-\FN@temptoken=\toks24
+\FN@temptoken=\toks25
 \footnotemargin=\dimen169
-\c@pp@next@reset=\count274
+\c@pp@next@reset=\count281
 Package footmisc Info: Declaring symbol style bringhurst on input line 855.
 Package footmisc Info: Declaring symbol style chicago on input line 863.
 Package footmisc Info: Declaring symbol style wiley on input line 872.
@@ -239,151 +247,176 @@ Package footmisc Info: Declaring symbol style lamport-robust on input line 883.
 Package footmisc Info: Declaring symbol style lamport* on input line 903.
 Package footmisc Info: Declaring symbol style lamport*-robust on input line 924
 .
-)
-(D:\slicz\Documents\Tex\tex/latex/xcolor\xcolor.sty
-Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
+) (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/xcolor\xcolor.sty
+Package: xcolor 2021/10/31 v2.13 LaTeX color extensions (UK)
 
-(D:\slicz\Documents\Tex\tex/latex/graphics-cfg\color.cfg
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\color.c
+fg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
-Package xcolor Info: Driver file: pdftex.def on input line 225.
-LaTeX Info: Redefining \color on input line 709.
-Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
-Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1352.
-Package xcolor Info: Model `RGB' extended on input line 1364.
-Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
-Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
-Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
-Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
-Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
-Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
+Package xcolor Info: Driver file: pdftex.def on input line 227.
+LaTeX Info: Redefining \color on input line 711.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1352.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1356.
+Package xcolor Info: Model `RGB' extended on input line 1368.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1370.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1371.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1372.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1373.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1374.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1375.
 
-(D:\slicz\Documents\Tex\tex/latex/graphics\dvipsnam.def
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/graphics\dvipsnam.de
+f
 File: dvipsnam.def 2016/06/17 v3.0m Driver-dependent file (DPC,SPQR)
-)
-(D:\slicz\Documents\Tex\tex/latex/xcolor\svgnam.def
-File: svgnam.def 2016/05/11 v2.12 Predefined colors according to SVG 1.1 (UK)
+) (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/xcolor\svgnam.def
+File: svgnam.def 2021/10/31 v2.13 Predefined colors according to SVG 1.1 (UK)
 ))
-(D:\slicz\Documents\Tex\tex/latex/hyperref\hyperref.sty
-Package: hyperref 2020-05-15 v7.00e Hypertext links for LaTeX
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref.st
+y
+Package: hyperref 2021-06-07 v7.00m Hypertext links for LaTeX
 
-(D:\slicz\Documents\Tex\tex/generic/ltxcmds\ltxcmds.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/generic/ltxcmds\ltxcmds.st
+y
 Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
-)
-(D:\slicz\Documents\Tex\tex/generic/iftex\iftex.sty
+) (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty
 Package: iftex 2020/03/06 v1.0d TeX engine tests
 )
-(D:\slicz\Documents\Tex\tex/generic/pdftexcmds\pdftexcmds.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/generic/pdftexcmds\pdftexc
+mds.sty
 Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
 )
 
-(D:\slicz\Documents\Tex\tex/generic/infwarerr\infwarerr.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/generic/infwarerr\infwarer
+r.sty
 Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
 )
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
 )
-(D:\slicz\Documents\Tex\tex/generic/kvsetkeys\kvsetkeys.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/generic/kvsetkeys\kvsetkey
+s.sty
 Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
 )
-(D:\slicz\Documents\Tex\tex/generic/kvdefinekeys\kvdefinekeys.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/generic/kvdefinekeys\kvdef
+inekeys.sty
 Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
 )
-(D:\slicz\Documents\Tex\tex/generic/pdfescape\pdfescape.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/generic/pdfescape\pdfescap
+e.sty
 Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
 )
-(D:\slicz\Documents\Tex\tex/latex/hycolor\hycolor.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/hycolor\hycolor.sty
 Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
 )
-(D:\slicz\Documents\Tex\tex/latex/letltxmacro\letltxmacro.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/letltxmacro\letltxma
+cro.sty
 Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
 )
-(D:\slicz\Documents\Tex\tex/latex/auxhook\auxhook.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/auxhook\auxhook.sty
 Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
 )
-(D:\slicz\Documents\Tex\tex/latex/kvoptions\kvoptions.sty
-Package: kvoptions 2019/11/29 v3.13 Key value format for package options (HO)
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/kvoptions\kvoptions.
+sty
+Package: kvoptions 2020-10-07 v3.14 Key value format for package options (HO)
 )
 \@linkdim=\dimen170
-\Hy@linkcounter=\count275
-\Hy@pagecounter=\count276
+\Hy@linkcounter=\count282
+\Hy@pagecounter=\count283
 
-(D:\slicz\Documents\Tex\tex/latex/hyperref\pd1enc.def
-File: pd1enc.def 2020-05-15 v7.00e Hyperref: PDFDocEncoding definition (HO)
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pd1enc.def
+File: pd1enc.def 2021-06-07 v7.00m Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
 )
-(D:\slicz\Documents\Tex\tex/generic/intcalc\intcalc.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref-la
+ngpatches.def
+File: hyperref-langpatches.def 2021-06-07 v7.00m Hyperref: patches for babel la
+nguages
+)
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/generic/intcalc\intcalc.st
+y
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
-(D:\slicz\Documents\Tex\tex/generic/etexcmds\etexcmds.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/generic/etexcmds\etexcmds.
+sty
 Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 )
-\Hy@SavedSpaceFactor=\count277
-Package hyperref Info: Option `colorlinks' set `true' on input line 4338.
-Package hyperref Info: Hyper figures OFF on input line 4464.
-Package hyperref Info: Link nesting OFF on input line 4469.
-Package hyperref Info: Hyper index ON on input line 4472.
-Package hyperref Info: Plain pages OFF on input line 4479.
-Package hyperref Info: Backreferencing OFF on input line 4484.
-Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
-Package hyperref Info: Bookmarks ON on input line 4717.
-\c@Hy@tempcnt=\count278
+\Hy@SavedSpaceFactor=\count284
 
-(D:\slicz\Documents\Tex\tex/latex/url\url.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\puenc.def
+File: puenc.def 2021-06-07 v7.00m Hyperref: PDF Unicode definition (HO)
+Now handling font encoding PU ...
+... no UTF-8 mapping file for font encoding PU
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 4073.
+Package hyperref Info: Hyper figures OFF on input line 4192.
+Package hyperref Info: Link nesting OFF on input line 4197.
+Package hyperref Info: Hyper index ON on input line 4200.
+Package hyperref Info: Plain pages OFF on input line 4207.
+Package hyperref Info: Backreferencing OFF on input line 4212.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4445.
+\c@Hy@tempcnt=\count285
+
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty
 \Urlmuskip=\muskip17
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-LaTeX Info: Redefining \url on input line 5076.
+LaTeX Info: Redefining \url on input line 4804.
 \XeTeXLinkMargin=\dimen171
 
-(D:\slicz\Documents\Tex\tex/generic/bitset\bitset.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/generic/bitset\bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 
-(D:\slicz\Documents\Tex\tex/generic/bigintcalc\bigintcalc.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/generic/bigintcalc\bigintc
+alc.sty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
-\Fld@menulength=\count279
+\Fld@menulength=\count286
 \Field@Width=\dimen172
 \Fld@charsize=\dimen173
-Package hyperref Info: Hyper figures OFF on input line 6347.
-Package hyperref Info: Link nesting OFF on input line 6352.
-Package hyperref Info: Hyper index ON on input line 6355.
-Package hyperref Info: backreferencing OFF on input line 6362.
-Package hyperref Info: Link coloring ON on input line 6365.
-Package hyperref Info: Link coloring with OCG OFF on input line 6372.
-Package hyperref Info: PDF/A mode OFF on input line 6377.
-LaTeX Info: Redefining \ref on input line 6417.
-LaTeX Info: Redefining \pageref on input line 6421.
+Package hyperref Info: Hyper figures OFF on input line 6076.
+Package hyperref Info: Link nesting OFF on input line 6081.
+Package hyperref Info: Hyper index ON on input line 6084.
+Package hyperref Info: backreferencing OFF on input line 6091.
+Package hyperref Info: Link coloring ON on input line 6094.
+Package hyperref Info: Link coloring with OCG OFF on input line 6101.
+Package hyperref Info: PDF/A mode OFF on input line 6106.
+LaTeX Info: Redefining \ref on input line 6146.
+LaTeX Info: Redefining \pageref on input line 6150.
 
-(D:\slicz\Documents\Tex\tex/latex/base\atbegshi-ltx.sty
-Package: atbegshi-ltx 2020/08/17 v1.0a Emulation of the original atbegshi packa
-ge
-with kernel methods
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/base\atbegshi-ltx.st
+y
+Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
+package with kernel methods
 )
-\Hy@abspage=\count280
-\c@Item=\count281
-\c@Hfootnote=\count282
+\Hy@abspage=\count287
+\c@Item=\count288
+\c@Hfootnote=\count289
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
 
-(D:\slicz\Documents\Tex\tex/latex/hyperref\hpdftex.def
-File: hpdftex.def 2020-05-15 v7.00e Hyperref driver for pdfTeX
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hpdftex.def
+File: hpdftex.def 2021-06-07 v7.00m Hyperref driver for pdfTeX
 
-(D:\slicz\Documents\Tex\tex/latex/base\atveryend-ltx.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/base\atveryend-ltx.s
+ty
 Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atvery packag
 e
 with kernel methods
 )
-\Fld@listcount=\count283
-\c@bookmark@seq@number=\count284
+\Fld@listcount=\count290
+\c@bookmark@seq@number=\count291
 
-(D:\slicz\Documents\Tex\tex/latex/rerunfilecheck\rerunfilecheck.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/rerunfilecheck\rerun
+filecheck.sty
 Package: rerunfilecheck 2019/12/05 v1.9 Rerun checks for auxiliary files (HO)
 
-(D:\slicz\Documents\Tex\tex/generic/uniquecounter\uniquecounter.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/generic/uniquecounter\uniq
+uecounter.sty
 Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 )
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
@@ -391,60 +424,56 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip58
 )
-(D:\slicz\Documents\Tex\tex/latex/els-cas-templates\cas-common.sty
+(C:\PROGRAMS\MiKTeX\MiKTeX_2.9\tex/latex/els-cas-templates\cas-common.sty
 \l_stm_title_before_dim=\dimen174
 \l_stm_title_after_dim=\dimen175
-\g_ead_int=\count285
-\g_uad_int=\count286
-\@eadauthor=\toks25
-\g_stm_tnote_int=\count287
-\g_stm_fnote_int=\count288
-\g_stm_cor_int=\count289
-\g_stm_au_int=\count290
-\g_stm_aau_int=\count291
-\l_autype_int=\count292
+\g_ead_int=\count292
+\g_uad_int=\count293
+\@eadauthor=\toks26
+\g_stm_tnote_int=\count294
+\g_stm_fnote_int=\count295
+\g_stm_cor_int=\count296
+\g_stm_au_int=\count297
+\g_stm_aau_int=\count298
+\l_autype_int=\count299
 \l_stm_augroup_before_dim=\dimen176
 \l_stm_augroup_after_dim=\dimen177
 \l_stm_augroup_lskip_tl=\dimen178
 \l_stm_augroup_rskip_tl=\dimen179
-\g_stm_aff_int=\count293
-\g_stm_aff_ext_int=\count294
-\g_stm_aff_int_int=\count295
-\g_stm_fn_aff_ext_int=\count296
-\g_stm_fn_aff_int_int=\count297
+\g_stm_aff_int=\count300
 \l_stm_aff_before_dim=\dimen180
 \l_stm_aff_after_dim=\dimen181
 \l_stm_aff_lskip_dim=\dimen182
 \l_stm_aff_rskip_dim=\dimen183
-\g_stm_augr_int=\count298
-\g_stm_aaugr_int=\count299
+\g_stm_augr_int=\count301
+\g_stm_aaugr_int=\count302
 
-(D:\slicz\Documents\Tex\tex/latex/moreverb\moreverb.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/moreverb\moreverb.st
+y
 Package: moreverb 2008/06/03 v2.3a `more' verbatim facilities
-
-(D:\slicz\Documents\Tex\tex/latex/tools\verbatim.sty
-Package: verbatim 2019/11/10 v1.5r LaTeX2e package for verbatim enhancements
-\every@verbatim=\toks26
-\verbatim@line=\toks27
+ (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/tools\verbatim.sty
+Package: verbatim 2020-07-07 v1.5u LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks27
+\verbatim@line=\toks28
 \verbatim@in@stream=\read2
 )
-\tab@position=\count300
-\tab@size=\count301
-\listing@line=\count302
+\tab@position=\count303
+\tab@size=\count304
+\listing@line=\count305
 )
-\g_stm_abs_box=\box52
-\casgrabsbox=\box53
-\casauhlbox=\box54
-\g_stm_key_box=\box55
-\g_stm_jtype_int=\count303
-\g_stm_blind_int=\count304
-\c@au=\count305
-\c@cnote=\count306
-\c@tnote=\count307
-\c@fnote=\count308
-\c@aff=\count309
-\g_stm_notes_box=\box56
-\g_stm_front_box=\box57
+\g_stm_abs_box=\box55
+\casgrabsbox=\box56
+\casauhlbox=\box57
+\g_stm_key_box=\box58
+\g_stm_jtype_int=\count306
+\g_stm_blind_int=\count307
+\c@au=\count308
+\c@cnote=\count309
+\c@tnote=\count310
+\c@fnote=\count311
+\c@aff=\count312
+\g_stm_notes_box=\box59
+\g_stm_front_box=\box60
 \paraindent=\dimen184
 \subparaindent=\dimen185
 \FullWidth=\dimen186
@@ -454,18 +483,17 @@ Package: verbatim 2019/11/10 v1.5r LaTeX2e package for verbatim enhancements
 \l_tbl_abovetbl_skip=\skip61
 \l_tbl_belowtbl_skip=\skip62
 \l_fig_width_dim=\dimen188
-\cascaptionbox=\box58
 \l_fig_abovecap_skip=\skip63
 \l_fig_belowcap_skip=\skip64
 \l_fig_abovefig_skip=\skip65
 \l_fig_belowfig_skip=\skip66
 
-(D:\slicz\Documents\Tex\tex/latex/wrapfig\wrapfig.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/wrapfig\wrapfig.sty
 \wrapoverhang=\dimen189
 \WF@size=\dimen190
-\c@WF@wrappedlines=\count310
-\WF@box=\box59
-\WF@everypar=\toks28
+\c@WF@wrappedlines=\count313
+\WF@box=\box61
+\WF@everypar=\toks29
 Package: wrapfig 2003/01/31  v 3.6
 )
 \l_wrap_figwidth_dim=\dimen191
@@ -474,25 +502,24 @@ Package: wrapfig 2003/01/31  v 3.6
 \l_wrap_fighcorr_dim=\dimen194
 \l_wrap_figvcorr_dim=\dimen195
 \l_above_bio_dim=\dimen196
-\l_wrap_figlcorr_int=\count311
-\l_wrap_figlines_int=\count312
-\l_bio_text_box=\box60
-\c@ca_biography_ctr=\count313
-\l_ca_temp_inta=\count314
+\l_wrap_figlcorr_int=\count314
+\l_wrap_figlines_int=\count315
+\l_bio_text_box=\box62
+\c@ca_biography_ctr=\count316
+\l_ca_temp_inta=\count317
 \leftMargin=\dimen197
-\@enLab=\toks29
+\@enLab=\toks30
 \@sep=\skip67
 \@@sep=\skip68
+) (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty
+Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
 )
-(D:\slicz\Documents\Tex\tex/latex/base\fontenc.sty
-Package: fontenc 2020/08/10 v2.0s Standard LaTeX package
-)
-(D:\slicz\Documents\Tex\tex/latex/stix\stix.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\stix.sty
 Package: stix 2018/04/17 v1.1.3-latex STIX fonts support package
 
-(D:\slicz\Documents\Tex\tex/latex/base\textcomp.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/base\textcomp.sty
 Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
-LaTeX Font Info:    Changing ? sub-encoding to TS1/0 on input line 75.
+LaTeX Font Info:    Changing ? sub-encoding to TS1/0 on input line 78.
 )
 Now handling font encoding LS1 ...
 ... no UTF-8 mapping file for font encoding LS1
@@ -594,32 +621,35 @@ LaTeX Info: Redefining \cdots on input line 1522.
 LaTeX Font Info:    Redeclaring math symbol \mathsterling on input line 1978.
 LaTeX Info: Redefining \not on input line 2144.
 )
-(D:\slicz\Documents\Tex\tex/latex/inconsolata\inconsolata.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/inconsolata\inconsol
+ata.sty
 Package: inconsolata 2019/05/17 v1.12
 
 `inconsolata-zi4' v1.12, 2019/05/17 Text macros for Inconsolata (msharpe)
-(D:\slicz\Documents\Tex\tex/latex/xkeyval\xkeyval.sty
-Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/xkeyval\xkeyval.sty
+Package: xkeyval 2020/11/20 v2.8 package option processing (HA)
 
-(D:\slicz\Documents\Tex\tex/generic/xkeyval\xkeyval.tex
-(D:\slicz\Documents\Tex\tex/generic/xkeyval\xkvutils.tex
-\XKV@toks=\toks30
-\XKV@tempa@toks=\toks31
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/generic/xkeyval\xkeyval.te
+x
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/generic/xkeyval\xkvutils.t
+ex
+\XKV@toks=\toks31
+\XKV@tempa@toks=\toks32
 )
-\XKV@depth=\count315
+\XKV@depth=\count318
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 ))
-\zifour@ocount=\count316
+\zifour@ocount=\count319
 )
-(D:\slicz\Documents\Tex\tex/latex/geometry\geometry.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.st
+y
 Package: geometry 2020/01/02 v5.9 Page Geometry
-
-(D:\slicz\Documents\Tex\tex/generic/iftex\ifvtex.sty
+ (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 )
-\Gm@cnth=\count317
-\Gm@cntv=\count318
-\c@Gm@tempcnt=\count319
+\Gm@cnth=\count320
+\Gm@cntv=\count321
+\c@Gm@tempcnt=\count322
 \Gm@bindingoffset=\dimen198
 \Gm@wd@mp=\dimen199
 \Gm@odd@mp=\dimen256
@@ -628,30 +658,34 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 \Gm@layoutheight=\dimen259
 \Gm@layouthoffset=\dimen260
 \Gm@layoutvoffset=\dimen261
-\Gm@dimlist=\toks32
+\Gm@dimlist=\toks33
 
-(D:\slicz\Documents\Tex\tex/latex/geometry\geometry.cfg)))
-(D:\slicz\Documents\Tex\tex/latex/float\float.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cf
+g))) (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/float\float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count320
-\float@exts=\toks33
-\float@box=\box61
-\@float@everytoks=\toks34
-\@floatcapt=\box62
+\c@float@type=\count323
+\float@exts=\toks34
+\float@box=\box63
+\@float@everytoks=\toks35
+\@floatcapt=\box64
 )
-(D:\slicz\Documents\Tex\tex/latex/adjustbox\adjustbox.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/adjustbox\adjustbox.
+sty
 Package: adjustbox 2020/08/19 v1.3 Adjusting TeX boxes (trim, clip, ...)
 
-(D:\slicz\Documents\Tex\tex/latex/adjustbox\adjcalc.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/adjustbox\adjcalc.st
+y
 Package: adjcalc 2012/05/16 v1.1 Provides advanced setlength with multiple back
 -ends (calc, etex, pgfmath)
 )
-(D:\slicz\Documents\Tex\tex/latex/adjustbox\trimclip.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/adjustbox\trimclip.s
+ty
 Package: trimclip 2020/08/19 v1.2 Trim and clip general TeX material
 
-(D:\slicz\Documents\Tex\tex/latex/collectbox\collectbox.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/collectbox\collectbo
+x.sty
 Package: collectbox 2012/05/17 v0.4b Collect macro arguments as boxes
-\collectedbox=\box63
+\collectedbox=\box65
 )
 \tc@llx=\dimen262
 \tc@lly=\dimen263
@@ -659,7 +693,8 @@ Package: collectbox 2012/05/17 v0.4b Collect macro arguments as boxes
 \tc@ury=\dimen265
 Package trimclip Info: Using driver 'tc-pdftex.def'.
 
-(D:\slicz\Documents\Tex\tex/latex/adjustbox\tc-pdftex.def
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/adjustbox\tc-pdftex.
+def
 File: tc-pdftex.def 2019/01/04 v2.2 Clipping driver for pdftex
 ))
 \adjbox@Width=\dimen266
@@ -671,32 +706,33 @@ File: tc-pdftex.def 2019/01/04 v2.2 Clipping driver for pdftex
 \adjbox@pdepth=\dimen272
 \adjbox@ptotalheight=\dimen273
 
-(D:\slicz\Documents\Tex\tex/latex/ifoddpage\ifoddpage.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/ifoddpage\ifoddpage.
+sty
 Package: ifoddpage 2016/04/23 v1.1 Conditionals for odd/even page detection
-\c@checkoddpage=\count321
+\c@checkoddpage=\count324
 )
-(D:\slicz\Documents\Tex\tex/latex/varwidth\varwidth.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/varwidth\varwidth.st
+y
 Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
-\@vwid@box=\box64
-\sift@deathcycles=\count322
+\@vwid@box=\box66
+\sift@deathcycles=\count325
 \@vwid@loff=\dimen274
 \@vwid@roff=\dimen275
-))
-(D:\slicz\Documents\Tex\tex/latex/base\fontenc.sty
-Package: fontenc 2020/08/10 v2.0s Standard LaTeX package
+)) (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty
+Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
 LaTeX Font Info:    Trying to load font information for T1+stix on input line 1
 12.
-
-(D:\slicz\Documents\Tex\tex/latex/stix\t1stix.fd
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\t1stix.fd
 File: t1stix.fd 2015/04/17 v1.1.2-latex STIX T1 font definitions
 ))
-(D:\slicz\Documents\Tex\tex/latex/caption\subcaption.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/caption\subcaption.s
+ty
 Package: subcaption 2020/10/07 v1.3j Sub-captions (AR)
 
-(D:\slicz\Documents\Tex\tex/latex/caption\caption.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption.sty
 Package: caption 2020/10/26 v3.5g Customizing captions (AR)
 
-(D:\slicz\Documents\Tex\tex/latex/caption\caption3.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption3.sty
 Package: caption3 2020/10/21 v2.2e caption3 kernel (AR)
 \captionmargin=\dimen276
 \captionmargin@=\dimen277
@@ -707,81 +743,85 @@ Package: caption3 2020/10/21 v2.2e caption3 kernel (AR)
 \caption@hangindent=\dimen282
 Package caption Info: Standard document class detected.
 )
-\c@caption@flags=\count323
-\c@continuedfloat=\count324
+\c@caption@flags=\count326
+\c@continuedfloat=\count327
 Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: wrapfig package is loaded.
 )
-\c@subfigure=\count325
-\c@subtable=\count326
+\c@subfigure=\count328
+\c@subtable=\count329
 )
-(D:\slicz\Documents\Tex\tex/latex/natbib\natbib.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/natbib\natbib.sty
 Package: natbib 2010/09/13 8.31b (PWD, AO)
 \bibhang=\skip69
 \bibsep=\skip70
 LaTeX Info: Redefining \cite on input line 694.
-\c@NAT@ctr=\count327
+\c@NAT@ctr=\count330
 )
-(D:\slicz\Documents\Tex\tex/latex/setspace\setspace.sty
+(C:\PROGRAMS\MiKTeX\MiKTeX_2.9\tex/latex/setspace\setspace.sty
 Package: setspace 2011/12/19 v6.7a set line spacing
 )
-(D:\slicz\Documents\Tex\tex/latex/amscls\amsthm.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/amscls\amsthm.sty
 Package: amsthm 2020/05/29 v2.20.6
-\thm@style=\toks35
-\thm@bodyfont=\toks36
-\thm@headfont=\toks37
-\thm@notefont=\toks38
-\thm@headpunct=\toks39
+\thm@style=\toks36
+\thm@bodyfont=\toks37
+\thm@headfont=\toks38
+\thm@notefont=\toks39
+\thm@headpunct=\toks40
 \thm@preskip=\skip71
 \thm@postskip=\skip72
 \thm@headsep=\skip73
-\dth@everypar=\toks40
+\dth@everypar=\toks41
 LaTeX Info: Redefining \qed on input line 273.
 )
-(D:\slicz\Documents\Tex\tex/latex/tools\bm.sty
-Package: bm 2019/07/24 v1.2d Bold Symbol Support (DPC/FMi)
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/tools\bm.sty
+Package: bm 2021/04/25 v1.2e Bold Symbol Support (DPC/FMi)
 \symboldoperators=\mathgroup14
 \symboldletters=\mathgroup15
-LaTeX Info: Redefining \bm on input line 209.
+Package bm Info: No bold for \U/msa/m/n, using \pmb.
+Package bm Info: No bold for \U/msb/m/n, using \pmb.
+Package bm Info: No bold for \LS1/stix/b/n, using \pmb.
 )
-(D:\slicz\Documents\Tex\tex/latex/ncctools\nccmath.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/ncctools\nccmath.sty
 Package: nccmath 2006/01/20 v1.3 Additional Math Commands (NCC)
 \NCC@fracrulewidth=\dimen283
 )
-(D:\slicz\Documents\Tex\tex/generic/mathdots\mathdots.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/generic/mathdots\mathdots.
+sty
 Package: mathdots 2014/06/11 v0.9 Improve and add various macros for dots in ma
 th.
 \MDo@unit=\dimen284
-\MDo@dotsbox=\box65
+\MDo@dotsbox=\box67
 \MDoprekern=\muskip18
 \MDopostkern=\muskip19
 \MDodotkern=\muskip20
 )
-(D:\slicz\Documents\Tex\tex/latex/mathtools\mathtools.sty
-Package: mathtools 2021/03/18 v1.25 mathematical typesetting tools
-
-(D:\slicz\Documents\Tex\tex/latex/tools\calc.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/mathtools\mathtools.
+sty
+Package: mathtools 2021/04/12 v1.27 mathematical typesetting tools
+ (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/tools\calc.sty
 Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count328
-\calc@Bcount=\count329
+\calc@Acount=\count331
+\calc@Bcount=\count332
 \calc@Adimen=\dimen285
 \calc@Bdimen=\dimen286
 \calc@Askip=\skip74
 \calc@Bskip=\skip75
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count330
+\calc@Ccount=\count333
 \calc@Cskip=\skip76
 )
-(D:\slicz\Documents\Tex\tex/latex/mathtools\mhsetup.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/mathtools\mhsetup.st
+y
 Package: mhsetup 2021/03/18 v1.4 programming setup (MH)
 )
 LaTeX Info: Thecontrolsequence`\('isalreadyrobust on input line 130.
 LaTeX Info: Thecontrolsequence`\)'isalreadyrobust on input line 130.
 LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 130.
 LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 130.
-\g_MT_multlinerow_int=\count331
+\g_MT_multlinerow_int=\count334
 \l_MT_multwidth_dim=\dimen287
 \origjot=\skip77
 \l_MT_shortvdotswithinadjustabove_dim=\dimen288
@@ -790,25 +830,25 @@ LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 130.
 \l_MT_below_intertext_sep=\dimen291
 \l_MT_above_shortintertext_sep=\dimen292
 \l_MT_below_shortintertext_sep=\dimen293
-\xmathstrut@box=\box66
+\xmathstrut@box=\box68
 \xmathstrut@dim=\dimen294
 )
-(D:\slicz\Documents\Tex\tex/latex/bigints\bigints.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/bigints\bigints.sty
 Package: bigints 2010/02/15 Writing big integrals
 Package bigints Info: This is Bigints by Merciadri Luca. on input line 5.
-)
-(D:\slicz\Documents\Tex\tex/latex/ulem\ulem.sty
-\UL@box=\box67
-\UL@hyphenbox=\box68
+) (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/ulem\ulem.sty
+\UL@box=\box69
+\UL@hyphenbox=\box70
 \UL@skip=\skip78
-\UL@hook=\toks41
+\UL@hook=\toks42
 \UL@height=\dimen295
-\UL@pe=\count332
+\UL@pe=\count335
 \UL@pixel=\dimen296
-\ULC@box=\box69
+\ULC@box=\box71
 Package: ulem 2019/11/18
 \ULdepth=\dimen297
-) (Paramter_fitting.aux)
+)
+(Paramter_fitting.aux)
 \openout1 = `Paramter_fitting.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 59.
@@ -827,11 +867,13 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 59.
 LaTeX Font Info:    ... okay on input line 59.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 59.
 LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
 LaTeX Font Info:    Checking defaults for LS1/stix/m/n on input line 59.
 LaTeX Font Info:    Trying to load font information for LS1+stix on input line 
 59.
 
-(D:\slicz\Documents\Tex\tex/latex/stix\ls1stix.fd
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls1stix.fd
 File: ls1stix.fd 2015/04/17 v1.1.2-latex STIX LS1 font definitions
 )
 LaTeX Font Info:    ... okay on input line 59.
@@ -839,52 +881,60 @@ LaTeX Font Info:    Checking defaults for LS2/stix/m/n on input line 59.
 LaTeX Font Info:    Trying to load font information for LS2+stix on input line 
 59.
 
-(D:\slicz\Documents\Tex\tex/latex/stix\ls2stix.fd
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls2stix.fd
 File: ls2stix.fd 2015/04/17 v1.1.2-latex STIX LS2 font definitions
 )
 LaTeX Font Info:    ... okay on input line 59.
 
-(D:\slicz\Documents\Tex\tex/context/base/mkii\supp-pdf.mkii
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf
+.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count333
+\scratchcounter=\count336
 \scratchdimen=\dimen298
-\scratchbox=\box70
-\nofMPsegments=\count334
-\nofMParguments=\count335
-\everyMPshowfont=\toks42
-\MPscratchCnt=\count336
+\scratchbox=\box72
+\nofMPsegments=\count337
+\nofMParguments=\count338
+\everyMPshowfont=\toks43
+\MPscratchCnt=\count339
 \MPscratchDim=\dimen299
-\MPnumerator=\count337
-\makeMPintoPDFobject=\count338
-\everyMPtoPDFconversion=\toks43
-) (D:\slicz\Documents\Tex\tex/latex/epstopdf-pkg\epstopdf-base.sty
+\MPnumerator=\count340
+\makeMPintoPDFobject=\count341
+\everyMPtoPDFconversion=\toks44
+)
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopd
+f-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 85.
-)
+
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sy
+s.cfg
+File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
+))
 Package hyperref Info: Link coloring ON on input line 59.
 
-(D:\slicz\Documents\Tex\tex/latex/hyperref\nameref.sty
-Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
+Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
 
-(D:\slicz\Documents\Tex\tex/latex/refcount\refcount.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/refcount\refcount.st
+y
 Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 )
-(D:\slicz\Documents\Tex\tex/generic/gettitlestring\gettitlestring.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/generic/gettitlestring\get
+titlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count339
+\c@section@level=\count342
 )
 LaTeX Info: Redefining \ref on input line 59.
 LaTeX Info: Redefining \pageref on input line 59.
 LaTeX Info: Redefining \nameref on input line 59.
-
-(Paramter_fitting.out) (Paramter_fitting.out)
+ (Paramter_fitting.out) (Paramter_fitting.out)
 \@outlinefile=\write3
 \openout3 = `Paramter_fitting.out'.
 
 
-(D:\slicz\Documents\Tex\tex/latex/upquote\upquote.sty
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/upquote\upquote.sty
 Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
 tim
 )
@@ -929,59 +979,58 @@ Package caption Info: End \AtBeginDocument code.
 
 LaTeX Font Info:    Trying to load font information for LS1+stixscr on input li
 ne 101.
-(D:\slicz\Documents\Tex\tex/latex/stix\ls1stixscr.fd
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls1stixscr.fd
 File: ls1stixscr.fd 2015/04/17 v1.1.2-latex STIX script LS1 font definitions
 )
 LaTeX Font Info:    Trying to load font information for LS2+stixex on input lin
 e 101.
 
-(D:\slicz\Documents\Tex\tex/latex/stix\ls2stixex.fd
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls2stixex.fd
 File: ls2stixex.fd 2015/04/17 v1.1.2-latex STIX extentions LS2 font definitions
 
 )
 LaTeX Font Info:    Trying to load font information for U+msa on input line 101
 .
 
-(D:\slicz\Documents\Tex\tex/latex/amsfonts\umsa.fd
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Trying to load font information for U+msb on input line 101
 .
 
-(D:\slicz\Documents\Tex\tex/latex/amsfonts\umsb.fd
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Trying to load font information for LS1+stixfrak on input l
 ine 101.
 
-(D:\slicz\Documents\Tex\tex/latex/stix\ls1stixfrak.fd
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls1stixfrak.fd
 File: ls1stixfrak.fd 2015/04/17 v1.1.2-latex STIX fraktur LS1 font definitions
 )
 LaTeX Font Info:    Trying to load font information for LS1+stixbb on input lin
 e 101.
-
-(D:\slicz\Documents\Tex\tex/latex/stix\ls1stixbb.fd
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls1stixbb.fd
 File: ls1stixbb.fd 2015/04/17 v1.1.2-latex STIX blackboard LS1 font definitions
 
 )
 LaTeX Font Info:    Trying to load font information for LS2+stixcal on input li
 ne 101.
 
-(D:\slicz\Documents\Tex\tex/latex/stix\ls2stixcal.fd
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls2stixcal.fd
 File: ls2stixcal.fd 2015/04/17 v1.1.2-latex STIX calligraphic LS2 font definiti
 ons
 )
 LaTeX Font Info:    Trying to load font information for LS1+stixsf on input lin
 e 101.
 
-(D:\slicz\Documents\Tex\tex/latex/stix\ls1stixsf.fd
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls1stixsf.fd
 File: ls1stixsf.fd 2015/04/17 v1.1.2-latex STIX sans-serif LS1 font definitions
 
 )
 LaTeX Font Info:    Trying to load font information for LS2+stixtt on input lin
 e 101.
 
-(D:\slicz\Documents\Tex\tex/latex/stix\ls2stixtt.fd
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls2stixtt.fd
 File: ls2stixtt.fd 2015/04/17 v1.1.2-latex STIX typewriter LS2 font definitions
 
 )
@@ -990,14 +1039,15 @@ Overfull \hbox (123.62721pt too wide) detected at line 101
  []
 
 (Paramter_fitting.abs)
-<thumbnails/cas-email.jpeg, id=75, 225.84375pt x 225.84375pt>
+<thumbnails/cas-email.jpeg, id=79, 225.84375pt x 225.84375pt>
 File: thumbnails/cas-email.jpeg Graphic file (type jpg)
 <use thumbnails/cas-email.jpeg>
 Package pdftex.def Info: thumbnails/cas-email.jpeg  used on input line 101.
 (pdftex.def)             Requested size: 7.99838pt x 8.0pt.
 LaTeX Font Info:    Trying to load font information for T1+zi4 on input line 10
 1.
- (D:\slicz\Documents\Tex\tex/latex/inconsolata\t1zi4.fd
+
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/inconsolata\t1zi4.fd
 File: t1zi4.fd 2018/01/14 T1/zi4 (Inconsolata)
 )
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
@@ -1008,13 +1058,18 @@ Overfull \hbox (37.68553pt too wide) in paragraph at lines 112--114
  []
 
 
-Overfull \hbox (4.50636pt too wide) in paragraph at lines 112--114
+Overfull \hbox (4.67152pt too wide) in paragraph at lines 112--114
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
   |   []   |   []
  []
 
 
-Underfull \hbox (badness 1406) in paragraph at lines 112--114
+Overfull \hbox (7.72554pt too wide) in paragraph at lines 112--114
+|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
+ []
+
+
+Overfull \hbox (1.76552pt too wide) in paragraph at lines 112--114
 |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
@@ -1024,67 +1079,72 @@ Overfull \hbox (0.50551pt too wide) in paragraph at lines 119--123
  []
 
 
-Overfull \hbox (44.18718pt too wide) in paragraph at lines 119--123
+Overfull \hbox (44.5175pt too wide) in paragraph at lines 119--123
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 
-Overfull \hbox (4.57047pt too wide) in paragraph at lines 119--123
+Overfull \hbox (5.94885pt too wide) in paragraph at lines 119--123
 |   []   |   []   |   []   |   []   |   []   |   [] []\T1/stix/m/n/10 pre-sente
 d the Broken-
  []
 
 
-Underfull \hbox (badness 1478) in paragraph at lines 119--123
-\T1/stix/m/n/10 in-ter-rupted. The so-lute from the bro-ken cells is eas-ily
- []
-
-
-Underfull \hbox (badness 1521) in paragraph at lines 125--131
-\T1/stix/m/n/10 know-ing mul-ti-ple pa-ram-e-ter val-ues. One way to bet-ter
- []
-
-
-Overfull \hbox (5.3105pt too wide) in paragraph at lines 125--131
-|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
- []
-
-
-Underfull \hbox (badness 1189) in paragraph at lines 125--131
-\T1/stix/m/n/10 a large num-ber of pa-ram-e-ters, non-sensitive pa-ram-e-ters
- []
-
-LaTeX Font Info:    Trying to load font information for T1+cmss on input line 1
-31.
-(D:\slicz\Documents\Tex\tex/latex/base\t1cmss.fd
-File: t1cmss.fd 2019/12/16 v2.5j Standard LaTeX font definitions
-) [1{C:/Users/slicz/AppData/Local/MiKTeX/pdftex/config/pdftex.map}
-
-
- <./thumbnails/cas-email.jpeg>]
-Underfull \hbox (badness 1715) in paragraph at lines 140--142
-|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
- []
-
-
-Underfull \hbox (badness 1325) in paragraph at lines 140--142
-\T1/stix/m/n/10 The pro-cess model con-sists of three par-tial dif-fer-en-tial
- []
-
-
-Underfull \hbox (badness 1137) in paragraph at lines 144--145
-[]|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [
-]
- []
-
-
-Overfull \hbox (2.84552pt too wide) in paragraph at lines 144--145
+Overfull \hbox (2.33482pt too wide) in paragraph at lines 125--131
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
   |   []
  []
 
 
-Overfull \hbox (13.65553pt too wide) in paragraph at lines 144--145
+Overfull \hbox (10.78552pt too wide) in paragraph at lines 125--131
+|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
+  |   []
+ []
+
+
+Overfull \hbox (18.93555pt too wide) in paragraph at lines 125--131
+|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
+ []
+
+
+Overfull \hbox (8.14883pt too wide) in paragraph at lines 125--131
+|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
+  |   []
+ []
+
+
+Overfull \hbox (6.68889pt too wide) in paragraph at lines 125--131
+|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
+ []
+
+LaTeX Font Info:    Trying to load font information for T1+cmss on input line 1
+31.
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/base\t1cmss.fd
+File: t1cmss.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
+[1{C:/Users/sliczno1/AppData/Local/MiKTeX/pdftex/config/pdftex.map}
+
+
+ <./thumbnails/cas-email.jpeg>]
+Overfull \hbox (14.69797pt too wide) in paragraph at lines 140--142
+|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
+  |   []   |   []   |   []
+ []
+
+
+Overfull \hbox (7.50888pt too wide) in paragraph at lines 140--142
+|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
+  |   []
+ []
+
+
+Overfull \hbox (38.62555pt too wide) in paragraph at lines 144--145
+[]|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [
+]   |   []
+ []
+
+
+Overfull \hbox (6.94545pt too wide) in paragraph at lines 144--145
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
   |   []   |   []
  []
@@ -1093,7 +1153,7 @@ Overfull \hbox (13.65553pt too wide) in paragraph at lines 144--145
 
 pdfTeX warning: pdflatex.exe (file ./Figures/SFE_PFD.pdf): PDF inclusion: found
  PDF version <1.7>, but at most version <1.5> allowed
-<Figures/SFE_PFD.pdf, id=116, 844.65562pt x 596.98032pt>
+<Figures/SFE_PFD.pdf, id=120, 844.65562pt x 596.98032pt>
 File: Figures/SFE_PFD.pdf Graphic file (type pdf)
 <use Figures/SFE_PFD.pdf>
 Package pdftex.def Info: Figures/SFE_PFD.pdf  used on input line 152.
@@ -1104,23 +1164,88 @@ Overfull \hbox (23.48555pt too wide) in paragraph at lines 159--166
 ]
  []
 
+
+Overfull \hbox (2.04553pt too wide) in paragraph at lines 159--166
+|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
+ []
+
+
+Overfull \hbox (2.2849pt too wide) in paragraph at lines 159--166
+|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
+  |   []   |   []
+ []
+
+
+Overfull \hbox (22.75487pt too wide) in paragraph at lines 159--166
+|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
+  |   []
+ []
+
+
+Overfull \hbox (48.36885pt too wide) in paragraph at lines 159--166
+|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
+  |   []   |   []   |   []   |   []
+ []
+
+
+Overfull \hbox (4.96886pt too wide) in paragraph at lines 159--166
+|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
+ []
+
+
+Overfull \hbox (2.24069pt too wide) in paragraph at lines 167--168
+[]\T1/stix/m/n/10 A distributed-parameter model, based on Rever-chon [][][],
+ []
+
+
+Overfull \hbox (7.31554pt too wide) in paragraph at lines 169--170
+[]\T1/stix/m/n/10 The move-ment of the mo-bile pseudo-homogeneous phase
+ []
+
+
+Overfull \hbox (2.19806pt too wide) in paragraph at lines 173--174
+\T1/stix/m/n/10 which acts as a driv-ing force for the pro-cess. A sin-gle pseu
+do-
+ []
+
 [3 <./Figures/SFE_PFD.pdf>]
+Overfull \hbox (2.4789pt too wide) in paragraph at lines 208--209
+\T1/stix/m/n/10 at |   []   |   [] []the open-ing[] of the pore. The so-lute di
+f-fuses through
+ []
+
+
 
 pdfTeX warning: pdflatex.exe (file ./Figures/SFE_draft.pdf): PDF inclusion: fou
 nd PDF version <1.7>, but at most version <1.5> allowed
-<Figures/SFE_draft.pdf, id=149, 963.6pt x 542.025pt>
+<Figures/SFE_draft.pdf, id=153, 963.6pt x 542.025pt>
 File: Figures/SFE_draft.pdf Graphic file (type pdf)
 <use Figures/SFE_draft.pdf>
 Package pdftex.def Info: Figures/SFE_draft.pdf  used on input line 213.
 (pdftex.def)             Requested size: 238.25444pt x 185.16783pt.
 
-Overfull \hbox (10.73552pt too wide) in paragraph at lines 222--223
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Overfull \hbox (14.16551pt too wide) in paragraph at lines 222--223
+|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
+ []
+
+
+Overfull \hbox (2.33153pt too wide) in paragraph at lines 222--223
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 [4 <./Figures/SFE_draft.pdf>]
-Underfull \hbox (badness 1590) in paragraph at lines 242--244
-\T1/stix/m/n/10 be-haves as an equi-lib-rium con-stant be-tween the so-lute
+Overfull \hbox (1.02621pt too wide) in paragraph at lines 242--244
+[]\T1/stix/m/n/10 The vol-u-met-ric par-ti-tion co-ef-fi-cient $[][]\LS1/stix/m
+/n/10 .[][].\LS1/stix/m/it/10 t; z\LS1/stix/m/n/10 /\LS1/stix/m/it/10 ; [][]\LS
+1/stix/m/n/10 .\LS1/stix/m/it/10 t\LS1/stix/m/n/10 //$ \T1/stix/m/n/10 be-
+ []
+
+
+Overfull \hbox (6.47714pt too wide) in paragraph at lines 242--244
+|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 
@@ -1129,13 +1254,36 @@ Overfull \hbox (4.86801pt too wide) detected at line 256
  []
 
 
-Underfull \hbox (badness 1184) in paragraph at lines 259--261
-[]|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
+Overfull \hbox (15.20491pt too wide) in paragraph at lines 259--261
+[]|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [
+]
  []
 
 
-Underfull \hbox (badness 1117) in paragraph at lines 262--264
-\T1/stix/m/n/10 which prop-er-ties are the mean be-tween fluid and solid
+Overfull \hbox (12.36154pt too wide) in paragraph at lines 259--261
+|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
+ []
+
+
+Overfull \hbox (3.16153pt too wide) in paragraph at lines 259--261
+|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
+  |   []   |   []   |   []
+ []
+
+
+Overfull \hbox (43.10886pt too wide) in paragraph at lines 259--261
+|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
+ []
+
+
+Overfull \hbox (15.65955pt too wide) in paragraph at lines 259--261
+|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
+ []
+
+
+Overfull \hbox (1.80554pt too wide) in paragraph at lines 262--264
+\T1/stix/m/n/10 which prop-er-ties are the mean be-tween fluid and solid phases
+.
  []
 
 
@@ -1144,14 +1292,52 @@ Overfull \hbox (1.37814pt too wide) detected at line 272
  []
 
 
-Overfull \hbox (12.06865pt too wide) in paragraph at lines 274--275
+Overfull \hbox (12.23381pt too wide) in paragraph at lines 274--275
 [][]$ \T1/stix/m/n/10 is the spe-cific heat of the solid phase, $[][]\LS1/stix/
 m/n/10 .[][].\LS1/stix/m/it/10 t; z\LS1/stix/m/n/10 /\LS1/stix/m/it/10 ; [][]\L
 S1/stix/m/n/10 .\LS1/stix/m/it/10 t\LS1/stix/m/n/10 /\LS1/stix/m/it/10 ; [][]\L
 S1/stix/m/n/10 .\LS1/stix/m/it/10 t\LS1/stix/m/n/10 //$
  []
 
-[5]
+
+Overfull \hbox (0.22551pt too wide) in paragraph at lines 277--280
+|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
+  |   []   |   []
+ []
+
+
+Overfull \hbox (10.97878pt too wide) in paragraph at lines 277--280
+|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
+  |   []
+ []
+
+
+Overfull \hbox (2.41553pt too wide) in paragraph at lines 291--292
+\T1/stix/m/n/10 cor-re-spond-ing mean val-ues be-tween the fluid and solid phas
+e.
+ []
+
+
+Overfull \hbox (2.06155pt too wide) in paragraph at lines 293--294
+[]\T1/stix/m/n/10 In the pro-cess model, prop-er-ties of the su-per-crit-i-cal 
+fluid
+ []
+
+
+Overfull \hbox (31.59541pt too wide) in paragraph at lines 293--294
+\T1/stix/m/n/10 such as the den-sity $[][]\LS1/stix/m/n/10 .[][].\LS1/stix/m/it
+/10 t; z\LS1/stix/m/n/10 /\LS1/stix/m/it/10 ; [][]\LS1/stix/m/n/10 .\LS1/stix/m
+/it/10 t\LS1/stix/m/n/10 //$\T1/stix/m/n/10 , the spe-cific heat $[][]\LS1/stix
+/m/n/10 .[][].\LS1/stix/m/it/10 t; z\LS1/stix/m/n/10 /\LS1/stix/m/it/10 ; [][]\
+LS1/stix/m/n/10 .\LS1/stix/m/it/10 t\LS1/stix/m/n/10 //$\T1/stix/m/n/10 ,
+ []
+
+
+Overfull \hbox (5.68887pt too wide) in paragraph at lines 293--294
+\T1/stix/m/n/10 tures along the fixed bed and the pres-sure. The Peng-Robinson
+ []
+
+
 Overfull \hbox (25.1578pt too wide) in paragraph at lines 295--297
 []\T1/stix/m/n/10 The inter-particle dif-fu-sion co-ef-fi-cient $[][]\LS1/stix/
 m/n/10 .[][].\LS1/stix/m/it/10 t; z\LS1/stix/m/n/10 /\LS1/stix/m/it/10 ; [][]\L
@@ -1160,12 +1346,14 @@ S1/stix/m/n/10 .\LS1/stix/m/it/10 t\LS1/stix/m/n/10 //$
  []
 
 
-Underfull \hbox (badness 1325) in paragraph at lines 295--297
-[][]\LS1/stix/m/n/10 .[][].\LS1/stix/m/it/10 t; z\LS1/stix/m/n/10 //$ \T1/stix/
-m/n/10 come from the lab-o-ra-tory ex-per-i-ments. The
+Overfull \hbox (6.36282pt too wide) in paragraph at lines 295--297
+\T1/stix/m/n/10 of the Reynolds num-ber $[][]\LS1/stix/m/n/10 .[][].\LS1/stix/m
+/it/10 t; z\LS1/stix/m/n/10 /\LS1/stix/m/it/10 ; [][]\LS1/stix/m/n/10 .\LS1/sti
+x/m/it/10 t\LS1/stix/m/n/10 /\LS1/stix/m/it/10 ; [][]\LS1/stix/m/n/10 .\LS1/sti
+x/m/it/10 t\LS1/stix/m/n/10 //$ \T1/stix/m/n/10 and the Peclet's
  []
 
-
+[5]
 Overfull \hbox (0.9626pt too wide) detected at line 325
 []
  []
@@ -1174,79 +1362,139 @@ Overfull \hbox (0.9626pt too wide) detected at line 325
 LaTeX Warning: Reference `discretization' on page 6 undefined on input line 329
 .
 
-[6] [7] [8]
-Overfull \hbox (10.93782pt too wide) detected at line 604
+[6]
+Overfull \hbox (20.99129pt too wide) in paragraph at lines 390--391
+\T1/stix/m/n/10 ad-di-tional ev-i-dence $\LS1/stix/m/it/10 B$ \T1/stix/m/n/10 p
+er-ti-nent ot the hy-poth-e-sis. $\LS1/stix/m/it/10 P\LS1/stix/m/n/10 ^\LS1/sti
+x/m/it/10 A[]\LS2/stixex/m/n/10 ð\LS1/stix/m/it/10 B\LS1/stix/m/n/10 `$
+ []
+
+
+Overfull \hbox (0.41553pt too wide) in paragraph at lines 425--426
+[]\T1/stix/m/n/10 In the ap-pli-ca-tion of tests and the de-sign of ex-per-i-me
+nts,
+ []
+
+
+Overfull \hbox (6.32553pt too wide) in paragraph at lines 425--426
+\T1/stix/m/n/10 cer-tain def-i-ni-tions and rules con-cern-ing prob-a-bil-ity a
+re needed
+ []
+
+[7]
+Overfull \hbox (8.2755pt too wide) in paragraph at lines 536--537
+\T1/stix/m/n/10 that the un-ob-serv-able er-ror is added to the de-ter-min-is-t
+ic deriva-
+ []
+
+
+Overfull \hbox (1.5655pt too wide) in paragraph at lines 561--562
+[]\T1/stix/m/n/10 One char-ac-ter-is-tic fea-ture of cer-tain spe-cial ex-per-i
+-ments
+ []
+
+[8]
+Overfull \hbox (10.96146pt too wide) detected at line 571
 []
  []
 
 
-Overfull \hbox (58.40211pt too wide) detected at line 630
+Overfull \hbox (33.76486pt too wide) in paragraph at lines 575--576
+\T1/stix/m/n/10 hood func-tion) $\LS1/stix/m/it/10 p\LS1/stix/m/n/10 .\LS1/stix
+/m/it/10 ; y[]\LS2/stixex/m/n/10 ð\LS1/stix/m/it/10 y\LS1/stix/m/n/10 /$ \T1/s
+tix/m/n/10 for ran-dom sam-ple $\LS1/stix/m/it/10 y \LS1/stix/m/n/10 = \LS1/sti
+x/m/it/10 y\LS1/stix/m/n/10 .\LS1/stix/m/it/10 t[]\LS1/stix/m/n/10 /\LS1/stix/m
+/it/10 ; y\LS1/stix/m/n/10 .\LS1/stix/m/it/10 t[]\LS1/stix/m/n/10 /\LS1/stix/m/
+it/10 ; :::; y\LS1/stix/m/n/10 .\LS1/stix/m/it/10 t[]\LS1/stix/m/n/10 /$\T1/sti
+x/m/n/10 ,
+ []
+
+
+Overfull \hbox (10.93782pt too wide) detected at line 644
 []
  []
 
 
-Overfull \hbox (11.33727pt too wide) detected at line 646
+Overfull \hbox (58.40211pt too wide) detected at line 670
 []
  []
 
 [9]
-Overfull \hbox (27.88104pt too wide) detected at line 708
+Overfull \hbox (11.33727pt too wide) detected at line 686
+[]
+ []
+
+
+Overfull \hbox (6.78152pt too wide) in paragraph at lines 694--695
+[]\T1/stix/m/n/10 For some mod-els, these equa-tions can be ex-plic-itly solved
+
+ []
+
+
+Overfull \hbox (27.88104pt too wide) detected at line 748
  $[][]$  
  []
 
-[10] (Paramter_fitting.bbl
-Underfull \hbox (badness 1320) in paragraph at lines 44--51
-\T1/stix/m/n/8 sen-si-tiv-ity in earth and en-vi-ron-men-tal sys-tems mod-els. 
- |   []
+[10] [11
+
+] (Paramter_fitting.bbl
+Underfull \hbox (badness 1112) in paragraph at lines 44--51
+\T1/stix/m/n/8 global sen-si-tiv-ity in earth and en-vi-ron-men-tal sys-tems 
+mod-els.
  []
 
 LaTeX Font Info:    Trying to load font information for TS1+stix on input line 
 91.
-(D:\slicz\Documents\Tex\tex/latex/stix\ts1stix.fd
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ts1stix.fd
 File: ts1stix.fd 2015/04/17 v1.1.2-latex STIX TS1 font definitions
-)) [11
+))
+[12
 
 
-] [12
+] [13
 
 
-] [13]
-(Paramter_fitting.aux)
-Package rerunfilecheck Info: File `Paramter_fitting.out' has not changed.
-(rerunfilecheck)             Checksum: 938A9E77894D64A80F5AD640F73A1AB8;1198.
-
+] [14] (Paramter_fitting.aux)
 
 LaTeX Warning: There were undefined references.
 
+Package rerunfilecheck Info: File `Paramter_fitting.out' has not changed.
+(rerunfilecheck)             Checksum: 2A8B2C9E7A9F2A2A220E5FB40A26F2C1;2892.
  ) 
 Here is how much of TeX's memory you used:
- 16702 strings out of 479799
- 247729 string characters out of 2880107
- 632250 words of memory out of 3000000
- 33203 multiletter control sequences out of 15000+200000
- 648386 words of font info for 162 fonts, out of 3000000 for 9000
+ 19534 strings out of 478873
+ 294956 string characters out of 2849149
+ 785565 words of memory out of 3000000
+ 36927 multiletter control sequences out of 15000+600000
+ 522186 words of font info for 162 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 80i,26n,128p,1696b,488s stack positions out of 5000i,500n,10000p,200000b,50000s
-{D:/slicz/Documents/Tex/fonts/enc/dvips/stix/stix-ts1.enc}{D:/slicz/Documents
-/Tex/fonts/enc/dvips/stix/stix-t1.enc} <C:\Users\slicz\AppData\Local\MiKTeX\fon
-ts/pk/ljfour/jknappen/ec/dpi600\ecsx0900.pk> <C:\Users\slicz\AppData\Local\MiKT
-eX\fonts/pk/ljfour/jknappen/ec/dpi600\ecss0900.pk>{D:/slicz/Documents/Tex/fonts
-/enc/dvips/inconsolata/i4-t1-0.enc}<D:/slicz/Documents/Tex/fonts/type1/public/i
-nconsolata/Inconsolata-zi4r.pfb><D:/slicz/Documents/Tex/fonts/type1/public/stix
-/STIXGeneral-Bold.pfb><D:/slicz/Documents/Tex/fonts/type1/public/stix/STIXGener
-al-BoldItalic.pfb><D:/slicz/Documents/Tex/fonts/type1/public/stix/STIXGeneral-I
-talic.pfb><D:/slicz/Documents/Tex/fonts/type1/public/stix/STIXGeneral-Regular.p
-fb><D:/slicz/Documents/Tex/fonts/type1/public/stix/stix-mathbb.pfb><D:/slicz/Do
-cuments/Tex/fonts/type1/public/stix/stix-mathcal.pfb><D:/slicz/Documents/Tex/fo
-nts/type1/public/stix/stix-mathex.pfb><D:/slicz/Documents/Tex/fonts/type1/publi
-c/stix/stix-mathit-bold.pfb><D:/slicz/Documents/Tex/fonts/type1/public/stix/sti
-x-mathit.pfb><D:/slicz/Documents/Tex/fonts/type1/public/stix/stix-mathrm-bold.p
-fb><D:/slicz/Documents/Tex/fonts/type1/public/stix/stix-mathrm.pfb><D:/slicz/Do
-cuments/Tex/fonts/type1/public/stix/stix-mathscr.pfb><D:/slicz/Documents/Tex/fo
-nts/type1/public/stix/stix-mathsf.pfb>
-Output written on Paramter_fitting.pdf (13 pages, 490452 bytes).
+ 83i,26n,131p,1696b,510s stack positions out of 5000i,500n,10000p,200000b,80000s
+{C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/stix/stix-ts
+1.enc}{C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/stix/sti
+x-t1.enc}{C:/PROGRAMS/MiKTeX/MiKTeX_2.9/fonts/enc/dvips/cm-super/cm-super-t1.en
+c}{C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/inconsolata/
+i4-t1-0.enc}<C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public
+/inconsolata/Inconsolata-zi4r.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiK
+TeX/fonts/type1/public/stix/STIXGeneral-Bold.pfb><C:/Users/sliczno1/AppData/Loc
+al/Programs/MiKTeX/fonts/type1/public/stix/STIXGeneral-BoldItalic.pfb><C:/Users
+/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix/STIXGeneral-Ita
+lic.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/sti
+x/STIXGeneral-Regular.pfb><C:/PROGRAMS/MiKTeX/MiKTeX_2.9/fonts/type1/public/cm-
+super/sfss0900.pfb><C:/PROGRAMS/MiKTeX/MiKTeX_2.9/fonts/type1/public/cm-super/s
+fsx0900.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public
+/stix/stix-mathbb.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/ty
+pe1/public/stix/stix-mathcal.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKT
+eX/fonts/type1/public/stix/stix-mathex.pfb><C:/Users/sliczno1/AppData/Local/Pro
+grams/MiKTeX/fonts/type1/public/stix/stix-mathit-bold.pfb><C:/Users/sliczno1/Ap
+pData/Local/Programs/MiKTeX/fonts/type1/public/stix/stix-mathit.pfb><C:/Users/s
+liczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix/stix-mathrm-bold.
+pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix/st
+ix-mathrm.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/publ
+ic/stix/stix-mathscr.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts
+/type1/public/stix/stix-mathsf.pfb>
+Output written on Paramter_fitting.pdf (14 pages, 525329 bytes).
 PDF statistics:
- 482 PDF objects out of 1000 (max. 8388607)
- 119 named destinations out of 1000 (max. 500000)
- 172 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 445 PDF objects out of 1000 (max. 8388607)
+ 122 named destinations out of 1000 (max. 500000)
+ 180 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -117,7 +117,7 @@ F = buildIntegrator_ParameterEstimation(f, [Nx,Nu,Nk] , timeStep_in_sec);
 
 %% dummy parameters
 RHO = [];
-k0 = [1;50;1;1;1;1;1;1];
+k0 = [1;1;50;1;1;1;1];
 %k0 = [1.323481573; 1.898586519; 1.586621029; 0.903271233];
 KOUT = k0;
 
@@ -143,7 +143,7 @@ for i = 1:numel(DATA)
 
     uu = [feedTemp', feedPress', feedFlow'];
 
-    data2 = diff(data);
+    data2 = data;
 
     %%
     OCP = struct('Nx', Nx, 'Nu', Nu, 'Nk', Nk, 'Ny', Ny, 'N', length(Time_in_sec), ...
@@ -210,6 +210,9 @@ for i = 1:numel(DATA)
     %CI = [1.282, 1.440, 1.645, 1.960, 2.576, 2.807, 3.291];
     subplot(2,2,i)
 
+    ax = gca;
+    ax.FontSize = 8;
+
     set(gcf,'Units','inches');
     screenposition = get(gcf,'Position');
     set(gcf,...
@@ -232,17 +235,17 @@ for i = 1:numel(DATA)
         CI = CI + 1.96/50;
     end
     plot(Time, yy_out_D, 'color', 'k', 'LineWidth',1);
-    plot(Time(1:N_Sample:end), data, 'o','Color','k','MarkerSize',2)
+    plot(Time(1:N_Sample:end), data, 'o','Color','k','LineWidth',1)
     hold off
     xlim([0,Time(end)])
     ylim([-10,110])
     %set(hl, 'color', 'r', 'marker', 'x');
     %set(gcf,'renderer','OpenGL');
 
-    caption1 = sprintf('T = %g [K], P = %g [bar]\n EA_{Di} = %g, D^0_{Di} = %g, EA_{km} = %g, D^0_{km} = %g\na = %g, b = %g, c = %g, \\sigma = %g', T0homog, feedPress(1),KOUT(:,i)');
-    %caption1 = sprintf('T = %g [K], P = %g [bar]\n km = %g, EA_{Di} = %g, D^0_{Di} = %g\na = %g, b = %g, c = %g, \\sigma = %g', T0homog, feedPress(1), KOUT(:,i)');
+    %caption1 = sprintf('T = %g [K], P = %g [bar]\n EA_{Di} = %g, D^0_{Di} = %g, EA_{km} = %g, D^0_{km} = %g\na = %g, b = %g, c = %g, \\sigma = %g', T0homog, feedPress(1), kout');
+    caption1 = sprintf('T = %g [K], P = %g [bar]\n km = %g, EA_{Di} = %g, D^0_{Di} = %g\na = %g, b = %g, c = %g, \\sigma = %g', T0homog, feedPress(1), KOUT(:,i)');
     %caption1 = sprintf('T = %g [K], P = %g [bar]\n km = %g, Di = %g, Dx = %g, \\sigma = %g', T0homog, feedPress(1), KOUT(:,i)');
-    title(caption1, 'Interpreter','tex','FontSize', 4);
+    title(caption1, 'Interpreter','tex');
 
     xlabel('Time [min]')
     ylabel('Yield [%]')
@@ -252,11 +255,10 @@ for i = 1:numel(DATA)
     %print(gcf, Name,'-dpdf','-r700');
 
 end
-%h = gcf;
-%set(h, 'PaperPositionMode', 'auto');         
-%set(h, 'PaperOrientation', 'landscape');
-
-print(gcf, '3_RHO_diff_generalFitting','-dpdf', '-bestfit','-r700');
+h = gcf;
+set(h, 'PaperPositionMode', 'auto');         
+set(h, 'PaperOrientation', 'landscape');
+print(gcf, '3_generalFitting','-dpdf', '-bestfit','-r700');
 %%
 figure()
 [EA_Di_new, betah_Di_new] = Arrhenius_Di(RHO,KOUT(1,:),R);

@@ -55,7 +55,7 @@ function xdot = modelSFE_SS(x, u, k, parameters,which_parameter)
     %DIFFUSION     = zeros(nstages_index,1);
     %DIFFUSION     = Dx*ones(nstages_index,1)*1e-4;
 
-    DIofT         = Di_of_T(x(2*nstages_index+1:3*nstages_index), parameters);
+    DIofT         = Di_of_T(RHO, parameters);
     %DIofT         = Di*ones(nstages_index,1)*1e-12;
 
     KM           = km_of_T(RHO, parameters);

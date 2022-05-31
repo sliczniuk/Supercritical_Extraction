@@ -396,4 +396,17 @@
   year      = {1970},
 }
 
+@Article{Mandel1957,
+  author    = {John Mandel},
+  journal   = {Journal of the American Statistical Association},
+  title     = {Fitting a Straight Line to Certain Types of Cumulative Data},
+  year      = {1957},
+  month     = {dec},
+  number    = {280},
+  pages     = {552--566},
+  volume    = {52},
+  doi       = {10.1080/01621459.1957.10501413},
+  publisher = {Informa {UK} Limited},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}

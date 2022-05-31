@@ -4,7 +4,7 @@ clear all
 addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-windows-matlabR2016a-v3.5.1');
 import casadi.*
 
-DATA = {'Data_40_200.mat', 'Data_50_200.mat', 'Data_40_300.mat', 'Data_50_300.mat'};
+DATA = {'Data_40_200.mat', 'Data_50_200.mat', 'Data_50_300.mat', 'Data_40_300.mat'};
 
 %% Parameters
 nstages = 5;                                                   %
@@ -71,16 +71,15 @@ A8_visc = -3.567559E-1;
 A9_visc =  3.180473E-2;
 
 sigma   = 1;
-sigma_km = 5;
+sigma_km = 2;
 mu_km    = 1;
-Di_slack = 7e-12;
+Di = 7e-12;
 Dx = 0.0001;
 
 %                 1        2    3    4    5  6     7   8   9   10  11  12   13   14   15      16       17    18    19    20    21    22      23        24      25        26       27      28       29        30        31       32       33       34      35       36        37      38       39       40      41        42       43      44   45   46
-parameters = {nstages, C0solid, V, epsi, dp, L, rho_s, km, mi, Tc, Pc, R, kappa, MW, EA_Di, betah_Di, CP_0, CP_A, CP_B, CP_C, CP_D, EA_km, betah_km, cpSolid, a_axial, b_axial, c_axial, A1_cond, A2_cond, A3_cond, A4_cond, A5_cond, A6_cond, A7_cond, A1_visc, A2_visc, A3_visc, A4_visc, A5_visc, A6_visc, A7_visc, A8_visc, A9_visc, Di_slack, Dx ,sigma };
+parameters = {nstages, C0solid, V, epsi, dp, L, rho_s, km, mi, Tc, Pc, R, kappa, MW, EA_Di, betah_Di, CP_0, CP_A, CP_B, CP_C, CP_D, EA_km, betah_km, cpSolid, a_axial, b_axial, c_axial, A1_cond, A2_cond, A3_cond, A4_cond, A5_cond, A6_cond, A7_cond, A1_visc, A2_visc, A3_visc, A4_visc, A5_visc, A6_visc, A7_visc, A8_visc, A9_visc, Di, Dx ,sigma };
 which_parameter= {15, 16, 22, 23, 25, 26, 27, 46};
 theta = parameters;
-close all
 
 %% Time
 simulationTime       = 150;                                                 % Minutes
@@ -118,14 +117,116 @@ F = buildIntegrator_ParameterEstimation(f, [Nx,Nu,Nk] , timeStep_in_sec);
 %% dummy parameters
 RHO = [];
 k0 = [1;50;1;1;1;1;1;1];
-%k0 = [1.323481573; 1.898586519; 1.586621029; 0.903271233];
-KOUT = k0;
 
- %%
-for i = 1:numel(DATA)
-    load(DATA{i});
+%%
+OCP_solver = casadi.Opti();
 
-    %T0homog   = 50 + 273.15;                             % Extractor initial temperature (pseudo-homogeneous)
+% http://www.diva-portal.se/smash/get/diva2:956377/FULLTEXT01.pdf
+nlp_opts = struct;
+nlp_opts.ipopt.max_iter = 100;
+%nlp_opts.ipopt.acceptable_iter = 50;
+%nlp_opts.ipopt.acceptable_tol = 1e-6;
+%nlp_opts.ipopt.tol = 1e-7;
+
+ocp_opts = {'nlp_opts', nlp_opts};
+OCP_solver.solver('ipopt',nlp_opts)
+
+K = OCP_solver.variable(numel(which_parameter));
+
+Cost = 0;
+
+%%   
+for l = 1:1%numel(DATA)
+    l
+    load(DATA{l});
+
+    feedTemp  = T0homog      * ones(1,length(Time_in_sec));  % Kelvin
+    feedPress = feedPress(1) * ones(1,length(Time_in_sec));  % Bars
+
+    Z = Compressibility(T0homog, feedPress(1), parameters);
+    rho = full(rhoPB_Comp(T0homog, feedPress(1), Z, parameters));
+    RHO = [RHO, rho];
+
+    feedFlow  = 0.4 * rho * 1e-3 / 60 * ones(1,length(Time_in_sec));  % l/min -> kg/min -> Kg / sec
+
+    %% Inital values
+    x0 = [C0fluid*ones(nstages,1);
+        C0solid*ones(nstages,1);
+        T0homog*ones(nstages,1);
+        0];
+
+    uu = [feedTemp', feedPress', feedFlow'];
+
+    data2 = diff(data);
+    
+
+    %%
+    OCP = struct('Nx', Nx, 'Nu', Nu, 'Nk', Nk, 'Ny', Ny, 'N', length(Time_in_sec), ...
+        'x_lu', [],  ...                % 0*ones(Nx,1) inf*ones(Nx,1)
+        'k_lu', [],  ...                % 0*ones(Nk,1) [1.5;inf;inf]; 0*ones(Nk,1) inf*ones(Nk,1)
+        'x_eq', [], ...
+        'k_eq', [], ...
+        'N_Sample', N_Sample,...
+        'N_Delay', N_Delay,...
+        'F'   , F, ...
+        'L'   , [], ...       %
+        'LS'  , @(x) sum( (x-data2) .^2 ),...
+        'MSE', @(x,sigma_MSE) -(-length(data2)/2*log(2*pi*sigma_MSE^2) - 1/(2*sigma_MSE^2) * sum( (x-data2) .^2 )), ...                 %'Lf'  , @(x,yd) sum( (g(x)-yd).^2 )   );   % 0.5*( sum(g(x)-yd) )'*( sum(g(x)-yd) ) %'Lf'  , @(x,yd) sum( (g(x)-yd).^2 )   );   % 0.5*( sum(g(x)-yd) )'*( sum(g(x)-yd) )
+        'MAP', @(x,km,sigma_MSE) -( -length(data2)/2*log(2*pi*sigma_MSE^2) - 1/(2*sigma_MSE^2) * sum( (x-data2) .^2 ) - 1/2*log(2*pi*sigma_km^2) - 1/(2*sigma_km^2) * sum( (km-mu_km) .^2 )  ) );
+
+
+    %% Solve LSE
+    [J] = singleShooting_ParameterEstimation(OCP, x0, uu',  K,  parameters);
+    
+    Cost = Cost + J;
+
+end
+
+% state constraints
+if ~isempty(OCP.x_lu)
+    for nx=1:OCP.Nx
+        OCP_solver.subject_to(OCP.x_lu(nx,1)<=X(nx,:)<= OCP.x_lu(nx,2));
+    end
+end
+
+% parameter constraints
+if ~isempty(OCP.k_lu)
+    for nk=1:OCP.Nk
+        OCP_solver.subject_to(OCP.k_lu(nk,1)<=K(nk,:)<= OCP.k_lu(nk,2));
+    end
+end
+
+OCP_solver.minimize(Cost);
+OCP_solver.set_initial(K, k0);
+
+try
+    sol = OCP_solver.solve();
+    kout = sol.value(K);
+catch
+    kout = OCP_solver.debug.value(K);
+end
+
+%% Substitute the initial parameters with their estimates
+    if ~isempty(which_parameter)
+        for i=1:length(which_parameter)
+            theta{which_parameter{i}} = kout(i);
+        end
+    end
+
+    %
+%     fprintf('\n-------------------------------------------------\n')
+%     fprintf('           | EA_Di | beath_Di |  Di   |  km  \n')
+%     fprintf('-------------------------------------------------\n')
+%     fprintf(' Vargas    | %-2.0d |  %-2.0d   | %-2.0d | %-2.0d\n', EA_Di, betah_Di,  Di_of_T(T0homog, parameters), km )
+%     fprintf(' Estiamted | %-2.0d |  %-2.0d   | %-2.0d | %-2.0d\n', kout(2), kout(3) , Di_of_T(T0homog, theta), kout(1) )
+%     fprintf('-------------------------------------------------\n')
+
+%%
+
+for l = 1:1%numel(DATA)
+    %% Load data
+    load(DATA{l});
+
     feedTemp  = T0homog      * ones(1,length(Time_in_sec));  % Kelvin
     feedPress = feedPress(1) * ones(1,length(Time_in_sec));  % Bars
 
@@ -145,70 +246,15 @@ for i = 1:numel(DATA)
 
     data2 = diff(data);
 
-    %%
-    OCP = struct('Nx', Nx, 'Nu', Nu, 'Nk', Nk, 'Ny', Ny, 'N', length(Time_in_sec), ...
-        'x_lu', [],  ...                % 0*ones(Nx,1) inf*ones(Nx,1)
-        'k_lu', [],  ...                % 0*ones(Nk,1) [1.5;inf;inf]; 0*ones(Nk,1) inf*ones(Nk,1)
-        'x_eq', [], ...
-        'k_eq', [], ...
-        'N_Sample', N_Sample,...
-        'N_Delay', N_Delay,...
-        'F'   , F, ...
-        'L'   , [], ...       %
-        'LS'  , @(x) sum( (x-data2) .^2 ),...
-        'MSE', @(x,sigma_MSE) -(-length(data2)/2*log(2*pi*sigma_MSE^2) - 1/(2*sigma_MSE^2) * sum( (x-data2) .^2 )), ...                 %'Lf'  , @(x,yd) sum( (g(x)-yd).^2 )   );   % 0.5*( sum(g(x)-yd) )'*( sum(g(x)-yd) ) %'Lf'  , @(x,yd) sum( (g(x)-yd).^2 )   );   % 0.5*( sum(g(x)-yd) )'*( sum(g(x)-yd) )
-        'MAP', @(x,km,sigma_MSE) -( -length(data2)/2*log(2*pi*sigma_MSE^2) - 1/(2*sigma_MSE^2) * sum( (x-data2) .^2 ) - 1/2*log(2*pi*sigma_km^2) - 1/(2*sigma_km^2) * sum( (km-mu_km) .^2 )  ) ...
-        );
-
-
-    %% Solve LSE
-    [~, kout] = singleShooting_ParameterEstimation(OCP, x0, uu',  KOUT(:,end),  parameters);
-    KOUT = [KOUT, kout];
-end
-KOUT = KOUT(:,2:end);
-
-%%
-for i = 1:numel(DATA)
-    load(DATA{i});
-
-    %T0homog   = 50 + 273.15;                             % Extractor initial temperature (pseudo-homogeneous)
-    feedTemp  = T0homog      * ones(1,length(Time_in_sec));  % Kelvin
-    feedPress = feedPress(1) * ones(1,length(Time_in_sec));  % Bars
-
-    feedFlow  = 0.4 * RHO(i) * 1e-3 / 60 * ones(1,length(Time_in_sec));  % l/min -> kg/min -> Kg / sec
-
-    %% Inital values
-    x0 = [C0fluid*ones(nstages,1);
-        C0solid*ones(nstages,1);
-        T0homog*ones(nstages,1);
-        0];
-
-    uu = [feedTemp', feedPress', feedFlow'];
-
-    %% Substitute the initial parameters with their estimates
-    if ~isempty(which_parameter)
-        for j=1:length(which_parameter)
-            theta{which_parameter{j}} = kout(j);
-        end
-    end
-
-    %%
-%     fprintf('\n-------------------------------------------------\n')
-%     fprintf('           | EA_Di | beath_Di |  Di   |  km  \n')
-%     fprintf('-------------------------------------------------\n')
-%     fprintf(' Vargas    | %-2.0d |  %-2.0d   | %-2.0d | %-2.0d\n', EA_Di, betah_Di,  Di_of_T(T0homog, parameters), km )
-%     fprintf(' Estiamted | %-2.0d |  %-2.0d   | %-2.0d | %-2.0d\n', kout(2), kout(3) , Di_of_T(T0homog, theta), kout(1) )
-%     fprintf('-------------------------------------------------\n')
-
     %% Simulate system with estiamted parameter
-    [yy_out, tt_out, xx_out] = simulateSystem_ParameterEstimation(F, g, x0, uu, KOUT(:,i));
-    
+    [yy_out, tt_out, xx_out] = simulateSystem_ParameterEstimation(F, g, x0, uu, kout);
+
     %% Confidence interval
     % Confidence 80   | 85    | 90    | 95    | 99    | 99.5  | 99.9
     % Interval  1,282 | 1,440 | 1,645 | 1,960 | 2,576 | 2,807 | 3,291
 
     %CI = [1.282, 1.440, 1.645, 1.960, 2.576, 2.807, 3.291];
-    subplot(2,2,i)
+    %figure()
 
     set(gcf,'Units','inches');
     screenposition = get(gcf,'Position');
@@ -232,32 +278,25 @@ for i = 1:numel(DATA)
         CI = CI + 1.96/50;
     end
     plot(Time, yy_out_D, 'color', 'k', 'LineWidth',1);
-    plot(Time(1:N_Sample:end), data, 'o','Color','k','MarkerSize',2)
+    plot(Time(1:N_Sample:end), data, 'o','Color','k','LineWidth',1)
     hold off
     xlim([0,Time(end)])
     ylim([-10,110])
     %set(hl, 'color', 'r', 'marker', 'x');
     %set(gcf,'renderer','OpenGL');
 
-    caption1 = sprintf('T = %g [K], P = %g [bar]\n EA_{Di} = %g, D^0_{Di} = %g, EA_{km} = %g, D^0_{km} = %g\na = %g, b = %g, c = %g, \\sigma = %g', T0homog, feedPress(1),KOUT(:,i)');
-    %caption1 = sprintf('T = %g [K], P = %g [bar]\n km = %g, EA_{Di} = %g, D^0_{Di} = %g\na = %g, b = %g, c = %g, \\sigma = %g', T0homog, feedPress(1), KOUT(:,i)');
-    %caption1 = sprintf('T = %g [K], P = %g [bar]\n km = %g, Di = %g, Dx = %g, \\sigma = %g', T0homog, feedPress(1), KOUT(:,i)');
-    title(caption1, 'Interpreter','tex','FontSize', 4);
+    %caption1 = sprintf('T = %g [K], P = %g [bar]\n EA_{Di} = %g, D^0_{Di} = %g, EA_{km} = %g, D^0_{km} = %g\na = %g, b = %g, c = %g, \\sigma = %g', T0homog, feedPress(1), kout');
+    %caption1 = sprintf('T = %g [K], P = %g [bar]\n km = %g, EA_{Di} = %g, D^0_{Di} = %g\na = %g, b = %g, c = %g, \\sigma = %g', T0homog, feedPress(1), kout');
+    caption1 = sprintf('T = %g [K], P = %g [bar]\n km = %g, EA_{Di} = %g, D^0_{Di} = %g, \\sigma = %g', T0homog, feedPress(1), kout');
+    title(caption1, 'Interpreter','tex');
 
     xlabel('Time [min]')
     ylabel('Yield [%]')
 
-    %Name = strcat('General_Fitting_T_',string(T0homog-273.15),'_P_',string(feedPress(1)),'.pdf');
+    Name = strcat('MegaFitting_T_',string(T0homog-273.15),'_P_',string(feedPress(1)),'.pdf');
 
     %print(gcf, Name,'-dpdf','-r700');
 
 end
-%h = gcf;
-%set(h, 'PaperPositionMode', 'auto');         
-%set(h, 'PaperOrientation', 'landscape');
-
-print(gcf, '3_RHO_diff_generalFitting','-dpdf', '-bestfit','-r700');
 %%
-figure()
-[EA_Di_new, betah_Di_new] = Arrhenius_Di(RHO,KOUT(1,:),R);
-%[EA_km, betah_km] = Arrhenius_km(T_kp,dkp,R,rho_s);
+%}

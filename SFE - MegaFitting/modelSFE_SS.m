@@ -1,4 +1,4 @@
-function xdot = modelSFE_SS(x, u, k, parameters)
+function xdot = modelSFE_SS(x, u, k, parameters,which_parameter)
     % (t, x, u, parameters)
     % Model with (F)luid, (S)olid, (T)emperature
     % Di is a function of temperature (T), the function works with numbers,
@@ -8,6 +8,19 @@ function xdot = modelSFE_SS(x, u, k, parameters)
     %% parameters is the vector of model parameters
     % parameters = [nstages, C0solid, V, epsi, dp, L, rho_s, km, mi, Tc, Pc, R, kappa];
     %          1        2        3  4     5   6  7      8   9   10  11  12 13
+
+    %% Substitute parameters to estimate with symbolic variables k
+    if ~isempty(which_parameter)
+        fprintf(['The following parameters will be estimated:'])
+        for i=1:length(which_parameter)
+            parameters{which_parameter{i}} = k(i);
+            formatSpec = ' %d,';
+            fprintf(formatSpec, which_parameter{i})
+        end
+    else
+        fprintf(['None of the parameters has been selected\n' ...
+            '-------------------------------------------------\n'])
+    end
     
     %% TODO: T_bottom (N+1) - boundary conditions
 
@@ -21,11 +34,15 @@ function xdot = modelSFE_SS(x, u, k, parameters)
     rho_s         = parameters{7};     %
     km            = parameters{8};
     mi            = parameters{9};
+
+    Di            = parameters{44};
+    Dx            = parameters{45};
     
     T_u           = u(1);
     P_u           = u(2);
     F_u           = u(3);   
     
+    Ms0            = C0solid * V * (1-epsi);
     
     A             = V / L;        % Cross-section of the extractor (m^2)
     rp            = dp / 2;
@@ -33,11 +50,17 @@ function xdot = modelSFE_SS(x, u, k, parameters)
 
     Z             = Compressibility(x(2*nstages_index+1:3*nstages_index),P_u,parameters);
     RHO           = rhoPB_Comp(x(2*nstages_index+1:3*nstages_index),P_u,Z,parameters);
+    
     DIFFUSION     = axial_diffusion(x(2*nstages_index+1:3*nstages_index),P_u,F_u,RHO,parameters);
     %DIFFUSION     = zeros(nstages_index,1);
-    DIofT         = Di_of_T(x(2*nstages_index+1:3*nstages_index), parameters,k);
-    KM            = km_of_T(x(2*nstages_index+1:3*nstages_index), parameters,k);
+    %DIFFUSION     = Dx*ones(nstages_index,1)*1e-4;
+
+    DIofT         = Di_of_T(RHO, parameters);
+    %DIofT         = Di*ones(nstages_index,1)*1e-12;
+
+    KM           = km_of_T(RHO, parameters);
     %KM            = km*ones(nstages_index,1);
+
     CP            = SpecificHeatComp(x(2*nstages_index+1:3*nstages_index), P_u, Z,RHO, parameters);
     CPRHOCP       = cpRHOcp_Comp(x(2*nstages_index+1:3*nstages_index),P_u,Z,RHO,CP,parameters);
     KRHOCP        = kRHOcp_Comp(x(2*nstages_index+1:3*nstages_index),P_u,Z,RHO,CP,parameters);
@@ -82,6 +105,9 @@ function xdot = modelSFE_SS(x, u, k, parameters)
     % N = Nstage
     - F_u /epsi / A * (1 / L * nstages) .* CPRHOCP(nstages_index) .* (x(3*nstages_index) - x(3*nstages_index-1)) + ...
     KRHOCP(nstages_index) .* ((1/L*nstages)^2) .* ( x(3*nstages_index-1) -2*x(3*nstages_index) + x(3*nstages_index) ); %!
+
+    % 3*nstage+1 = output equation
+    F_u/RHO(nstages_index)/Ms0 * x(nstages_index) * 100;
     
     ];
 end

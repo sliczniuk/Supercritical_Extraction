@@ -371,15 +371,17 @@ As discussed by \citet{Himmelblau1970}, The Bayesian approach to estimation make
 
 Consider a set of events or outcomes, $A_1,A_2,...,A_n$, and some other event $B$. Bayes' theorem states that the probability that event $A_i$ will occur, given that event $B$ has already occured, which will denoted by $P\{A_i|B\}$, is equal to the product of the probability that $A_i$ will occur regardless of whether $B$ will take place and the probability that $B$ will occur, given that $A_i$  has already taken place, divided by the probability of the occurrence of $B$:
 
+{\footnotesize
 \begin{equation}
 	P\{A_i|B\} = \cfrac{P\{B|A_i\}P\{A_i\}}{P\{B\}}
-\end{equation}
+\end{equation} }
 
 Further, if al events comprising the set $\{A_i\}$ are included in $A_1,A_2,...,A_n$, then
 
+{\footnotesize
 \begin{equation} \label{EQ: Bayes_discrit}
 	P\{A_i|B\} = \cfrac{P\{B|A_i\}P\{A_i\}}{ \sum_{i=1}^{n} P\{B|A_i\} P\{A_i\} }
-\end{equation}
+\end{equation} }
 
 We can interpret these symbols as follows:
 
@@ -391,9 +393,10 @@ We can interpret these symbols as follows:
 
 For continuous variable, Bayes' theorem can be more conveniently expressed in terms of the probability density function rather than the probabilities themselves. Equation \ref{EQ: Bayes_discrit} can be expressed in terms of a set of observed values of the random variable $X$, \textbf{x} and unknown parameter $(s)\theta$ as
 
+{\footnotesize
 \begin{equation} \label{EQ: Bayes_continous}
 	p\left( \theta|X=\textbf{x} \right) = p\left( \theta|\textbf{x} \right) = \cfrac{L\left( \theta|\textbf{x} \right) p(\theta)}{\int_{-\infty}^{+\infty} L\left( \theta|\textbf{x} \right) p(\theta) d\theta}
-\end{equation}
+\end{equation} }
 
 where
 
@@ -405,15 +408,17 @@ $L\left( \theta|\textbf{x} \right) = p\left( \textbf{x}|\theta \right) = ~$ the 
 
 The denominator in Equation \ref{EQ: Bayes_continous} is a normalizing factor chosen so that the integration of the posterior distribution is unit, i.e., $\int_{-\infty}^{+\infty} p\left( \theta|\textbf{x} \right) = 1$. By taking into account the law of total probability, the denominator can be written as
 
+{\footnotesize
 \begin{equation}
 	\int_{-\infty}^{+\infty} p\left( \textbf{x}|\theta \right) p(\theta) d\theta = p(\textbf{x})
-\end{equation}
+\end{equation} }
 
 If the prior distribution is a uniform distribution, that is the prior distribution is a constant, the \ref{EQ: Bayes_continous} reduces to 
 
+{\footnotesize
 \begin{equation}
 	p\left( \theta|\textbf{x} \right) = \cfrac{L\left( \theta|\textbf{x} \right)}{\int_{-\infty}^{+\infty} L\left( \theta|\textbf{x}\right) d\theta}
-\end{equation}
+\end{equation} }
 
 If the prior knowledge concerning a postulated event or hypothesis is poor, the posterior probability is largely or entirely determined by the likelihood function, that is, by the additional accumulated evidence for which the likelihood function acts as a mathematical expression. If prior knowledge outweighs recent evidence, however, then the posterior probability is determined almost solely by the prior probability.
 
@@ -425,69 +430,80 @@ In the application of tests and the design of experiments, certain definitions a
 	\item \textbf{Addition Rule}
 	If $A_1,A_2,...,A_n$ are mutually exclusive events, i.e., cannot occur at the same time, the probability of occurrence of just one of the events is equal to the sum of the probabilities of each $A_i$:
 	
+	{\footnotesize
 	\begin{equation}
 		P\left( A_1, \text{or~} A_2,..., \text{or~} A_n \right) = \sum_{i=1}^{n} P\left( A_i \right)
-	\end{equation}
+	\end{equation} }
 
 	Very often we let
+	
+	{\footnotesize
 	\begin{equation}
 		\sum_{i=1}^{n} P\left( A_i \right) = 1
-	\end{equation}
+	\end{equation} }
 	
 	Also, if each event is equi-probable so that $P(A_i) = q$,
 	
+	{\footnotesize
 	\begin{equation}
 		\sum_{i=1}^{n} q = nq = 1 \qquad \text{or} \qquad  q=\cfrac{1}{n} = P\left( A_i \right)
-	\end{equation}
+	\end{equation} }
 	
 	In set theory, mutually exclusive event have no points in common. The union of the sets which represents the set of all elements that belong to
 	
+	{\footnotesize
 	\begin{equation}
 		P\left( A_1 \cup A_2 \cup ... \cup A_n \right) = P(A_1) + P(A_2) + ... + P(A_n)
-	\end{equation}
+	\end{equation} }
 
 	\item \textbf{Multiplication Rule}
 	If $A$ and $B$ are \textit{independent} event
 	
+	{\footnotesize
 	\begin{equation}
 		P\left( A \text{~and~} B\right) = P(A)P(B)
-	\end{equation}
+	\end{equation} }
 	
 	In set theory the intersection of $A$ and $B$ is the set of all elements that belong to $A$ and $B$:
 
+	{\footnotesize
 	\begin{equation} \label{EQ: Probabiltiy_independet_a}
 		P\left( A \cap B  \right) = P(A)P(B)
-	\end{equation}
+	\end{equation} }
 
 	If the $A$ and $B$ are \textit{dependet} events,
 	
+	{\footnotesize
 	\begin{equation} \label{EQ: Probabiltiy_independet_b}
 		P\left(A|B\right) = \cfrac{P\left( A \cap B \right)}{P(B)}
-	\end{equation}
+	\end{equation} }
 
 	where the symbol $P(A|B)$ means "probability of $A$ given $B$". As a corollary,
 	
+	{\footnotesize
 	 \begin{subequations}
 		\begin{alignat}{2}
 			P\left( A \cap B \right) &= P(B) P(A|B) \label{EQ: Probabiltiy_dependet_a} \\
 			&= P(A)P(B|A) \label{EQ: Probabiltiy_dependet_b}
 		\end{alignat}
-	\end{subequations}
+	\end{subequations} }
 	
 	Two kind of probabilities enter Equation \ref{EQ: Probabiltiy_dependet_a} (or Equation \ref{EQ: Probabiltiy_dependet_b}): the absolute probability of event $B$ (or $A$) irrespective of whether or not $A$ (or $B$) has occurred, and that the conditional probability of event $A$ (or $B$) computed on the assumption that $B$ (or $B$) has occurred. Equation \ref{EQ: Probabiltiy_independet_a} or \ref{EQ: Probabiltiy_independet_b} is special case of Equation \ref{EQ: Probabiltiy_dependet_a} or \ref{EQ: Probabiltiy_dependet_b}, because if the event are independent $P(A|B)=P(A)$.
 	For the case of many event, Equation \ref{EQ: Probabiltiy_independet_a} can be expanded to 
 	
+	{\footnotesize
 	\begin{equation}
 		\begin{split}
 			P(A_1 \text{~and~} A_2 \text{~and~} ... \text{~and~} A_n) &= P(A_1)\cdot P(A_2) \cdot  ...\cdot P(A_n) \\ &= \prod_{i=1}^{n} P(A_i)
 		\end{split}
-	\end{equation}
+	\end{equation} }
 
 	\item Another useful relationship for event which are not mutually exclusive is 
 	
+	{\footnotesize
 	\begin{equation}
 		P(A) + P(B) - P(A \cap B) = P(A \cup B)
-	\end{equation}
+	\end{equation} }
 		
 \end{enumerate}
 
@@ -496,90 +512,114 @@ In the application of tests and the design of experiments, certain definitions a
 
 Conceptually, in the measurement equation the unobservable $\epsilon(t)$ is added to $y(t)$ to give the observable dependent variable $Y(t)$ defined as:
 
+{\footnotesize
 \begin{equation}
 	Y(t) = y(t) + \epsilon(t)
-\end{equation}
+\end{equation} }
 
 If the estimated parameter $\hat{\theta}$ replaces the model parameter $\theta$, the residue error is $\textbf{E} = Y(t) - \hat{Y}(t)$. The objective in parameter estimation is to obtain the "best" estimate of $\theta$ based on the continuous observations $Y(t)$ or the discrete observations $Y(t_i)$. 
 
 We assume that $x(t)$ is given \textit{a priori} but the $\textbf{y}_0$ and $\theta$ are to be estimated over the time interval $0 \leq t \leq t_n$ from discrete observation described by the following relation:
 
+{\footnotesize
 \begin{equation}
 	\textbf{Y}(t_i) = h(t_i)y(t_i) + \epsilon(t_i) \qquad 1 \leq i \leq n
-\end{equation}
-
+\end{equation} }
 where $\textbf{Y}(t_i)$ is an $n \times 1$ column vector, $h(t_i)$ is an $n \times v$ matrix given \textit{a priori}, and $\epsilon (t_i)$ is an $x \times 1$ column vector ("noise" vector) whose elements are the unobservable errors. The above equation can be written in general form as:
 
+{\footnotesize
 \begin{equation} \label{EQ: Measurment_noise}
 	\textbf{Y}(t_i) = \Psi(\theta, y_0, t_i) + \epsilon(t_i)
-\end{equation}
+\end{equation}}
 where $\Psi$ is the matrix of functions.
 
 Because of the difficulty of obtaining analytical solutions to the deterministic process model, experiments have been arranged wherby the vector of derivatives $d\textbf{Y}/dy$ is measured rather than \textbf{Y} itself. In such cases, it is assumed that the unobservable error is added to the deterministic derivative $dy/dt$ as follows:
 
+{\footnotesize
 \begin{equation}
 	\cfrac{d\textbf{Y}}{dt} = \cfrac{dy}{dt} + \epsilon
-\end{equation}
+\end{equation} }
 
 \subsection{Least squares estimation}
 A least squares parameter estimation does not require prior knowledge of the distribution of unobservable errors, yield  unbiased estimates, that is, $ \mathbb{E}\{\hat{Y}(t) = y(t) \} $, and results in the minimum variance among all linear unbiased estimators. If the observations $\textbf{Y}$ for the model responses are continuous functions of time from $t = 0$ to $t = t_f$, the Markov (or "rigorous least squares") criterion is to minimize:
 
+{\footnotesize
 \begin{equation}
 	\phi =  \cfrac{1}{2} \int_{0}^{t_f}  \left[ \textbf{Y} - \Psi \right]^T \Gamma^{-1} \left[ \textbf{Y} - \Psi \right] dt
-\end{equation}
-
+\end{equation} }
 where $\Gamma$ is the covariance matrix (or perhaps a matrix of appropriate weights), and $\phi$ is the time integrated value of the error squared ("integral squared error"). If the observations are made at discrete instants of time, $t_i$, $i = 1,2,...,n$, the Markov criterion is to minimize:
 
+{\footnotesize
 \begin{equation}
 	\phi = \cfrac{1}{2} \sum_{i=1}^{n} \left[ \textbf{Y}(t_i) - \Psi(t_i) \right]^T \Gamma^{-1} \left[ \textbf{Y}(t_i) - \Psi(t_i) \right] 
-\end{equation}
+\end{equation} }
 
 If $\Gamma$ is a diagonal matrix, $\phi$  becomes a "weighted least squares" criterion; if $\Gamma = \sigma^2 \textbf{I}$ where $\sigma$ is a standard deviation, $\phi$ is the "ordinary least squares" criterion.
 
+\subsection{Cumulative data}
+
+One characteristic feature of certain special experiments is the use of the same batch of materials for the entire series of measurements. If unobservable error in the first observation is designated as $\epsilon_1$, the second error observation $\epsilon_2'$ includes $\epsilon_1$ plus a random component introduced side from $\epsilon_1$, or $\epsilon_2' = \epsilon_1 + \epsilon_2$. The error in the third observation is $\epsilon_3' = \epsilon_1 + \epsilon_2 + \epsilon_3$, and so forth. \citet{Mandel1957} distinguished between the usually assumed type of independent measuring error in the dependent variable and a 'cumulative' or interval error in which each new observation includes the error of the previous observations. Cumulative errors, arising because of the fluctuations as a function of time in the process itself due to small changes in operating, are not independent - only the differences in measurment from one period to the next are independent. Thus, if we consider two model:
+
+{\footnotesize
+\begin{flalign*}
+	&\text{Model A - independent error:} &&\nonumber \\
+	Y_i &= \Psi(\theta, y_0, t_i) + \epsilon_i \qquad i = 1,2,...,n&& \\
+	&\text{Model B - cumulative data:}&& \nonumber \\
+	Y_j - Y_{j-1} &= \Psi(\theta, y_0, t_j) - \Psi(\theta, y_0, t_{j-1}) + \epsilon_j, \quad j = 1,2,...,n&& \\
+	&\text{or}&& \nonumber \\
+	Y_i = \sum_{j=1}^{i} &\left( Y_j - Y_{j-1} \right) = \sum_{j=1}^{i} \left( \Psi(\theta, y_0, t_j) - \Psi(\theta, y_0, t_{j-1}) \right) + \sum_{j=1}^{i} \epsilon_j &&
+\end{flalign*} }
+	
 \subsection{Maximum likelihood estimation}
 
 Maximum likelihood estimation (MLE) is a method of estimating the parameters of an assumed probability distribution, given some observed data. This is achieved by maximizing a likelihood function so that, under the assumed statistical model, the observed data is most probable. The MLE has the desirable characteristics of asymptotic efficiency and normality. Each time it has been associated with the (joint) normal distribution because of mathematical convenience. Consider the joint probability density function (the likelihood function) $p(\theta, y_0|y)$ for random sample $y = y(t_1),y(t_2),...,y(t_n)$, parameter $\theta$ and initial condition $y_0$ if a maximum of this function over all choices of $y_0$ and $\theta$ can be found, the estimates so obtained are maximum likelihood estimates. The conditions at the maximum can be evolved incorporating prior information as follows.
 
 The posterior probability density $p(\theta,y_0|y)$ can be expressed as the ratio of two probability densities if we make use of the analog for continuous variables of Equation \ref{EQ: Probabiltiy_independet_b}:
 
+{\footnotesize
 \begin{equation} \label{EQ: Posterior_distribution}
 	p\left( \theta,y_0|y \right) = \cfrac{p\left( \theta, y_0, y \right)}{p\left( y \right)}
-\end{equation}
+\end{equation} }
 
 The numerator of the right-hand side od Equation \ref{EQ: Posterior_distribution} using Equation \ref{EQ: Probabiltiy_dependet_a} becomes 
 
+{\footnotesize
 \begin{equation}
 	\begin{split}
 		p\left( \theta,y_0,y \right) &= p\left( y(t_n)|\theta,y_0,y(t_{n-1}),...,y(t_1) \right) \\ &\cdot p\left( \theta,y_0,y(t_{n-1}),...,y(t_1) \right)
 	\end{split}
-\end{equation}
+\end{equation} }
 
 These operations can be continued repetitively until we get
 
+{\footnotesize
 \begin{equation}
 	p\left( \theta,y_0,y \right) = p\left( \theta,y_0 \right) \prod_{i=1}^{n} p\left( \theta,y_0|y \right)
-\end{equation}
+\end{equation} }
 
 Examination of Equation \ref{EQ: Measurment_noise} shows that $\textbf{Y}(t_i)$ depends only on $t_i$, $y_0$, $\theta$ and $\epsilon(t_i)$ and is not conditioned by any previous measurement. Consequently, we can write 
 
+{\footnotesize
 \begin{equation}
 	p\left( y(t_i)|\theta,y_0, y(t_{i-1}),...,y(t_1) \right) = p\left( y(t_i)|\theta,y_0 \right)
-\end{equation}
+\end{equation} }
 
 provided Equation \ref{EQ: Measurment_noise} is observed as a constraint. The desired joint conditional probability function is thus
 
+{\footnotesize
 \begin{equation}
 	p\left( \theta,y_0|y \right) = \cfrac{p\left( \theta,y_0 \right) \prod_{i=1}^{n} p\left( y(t_i)|\theta,y_0 \right) }{p\left( y \right)}
-\end{equation}
+\end{equation} }
 
 The function to be maximized will be the logarithm of the likelihood function $L = p\left( \theta,y_0| y(t_n),...,y(t_1) \right)$ constrained by equation \ref{EQ: Measurment_noise}, which can be written as $\ln(L)$ plus the Lagrangian multipliers $\lambda(t_k)$ times the constraint function, or
 
+{\footnotesize
 \begin{equation} \label{EQ: MLE_Lagrangian}
 	\begin{split}
 		L^* \equiv \ln p\left( \theta,y_0 \right) + \sum_{i=1}^{n} \left\{ \ln p(y(t_i)|\theta,y_0) \right. \\
 		\left. + \lambda^T \cdot \left[ y(t_i) - \Psi\left( \theta,y_0,t_i \right) - \epsilon(t_i) \right] \right\} \\ - \ln \left[ p\left( y \right) \right]
 	\end{split}
-\end{equation}
+\end{equation}}
 
 By assumption of the relation of Equation \ref{EQ: Measurment_noise}
 
