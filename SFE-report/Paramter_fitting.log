@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2021.11.8)  31 MAY 2022 18:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2021.11.8)  13 JUN 2022 14:44
 entering extended mode
 **./Paramter_fitting.tex
 (Paramter_fitting.tex
@@ -848,58 +848,67 @@ Package bigints Info: This is Bigints by Merciadri Luca. on input line 5.
 Package: ulem 2019/11/18
 \ULdepth=\dimen297
 )
+(C:\PROGRAMS\MiKTeX\MiKTeX_2.9\tex/latex/enumitem\enumitem.sty
+Package: enumitem 2019/06/20 v3.9 Customized lists
+\labelindent=\skip79
+\enit@outerparindent=\dimen298
+\enit@toks=\toks43
+\enit@inbox=\box72
+\enit@count@id=\count336
+\enitdp@description=\count337
+)
 (Paramter_fitting.aux)
 \openout1 = `Paramter_fitting.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for LS1/stix/m/n on input line 59.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 60.
+LaTeX Font Info:    ... okay on input line 60.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 60.
+LaTeX Font Info:    ... okay on input line 60.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 60.
+LaTeX Font Info:    ... okay on input line 60.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 60.
+LaTeX Font Info:    ... okay on input line 60.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 60.
+LaTeX Font Info:    ... okay on input line 60.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 60.
+LaTeX Font Info:    ... okay on input line 60.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 60.
+LaTeX Font Info:    ... okay on input line 60.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 60.
+LaTeX Font Info:    ... okay on input line 60.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 60.
+LaTeX Font Info:    ... okay on input line 60.
+LaTeX Font Info:    Checking defaults for LS1/stix/m/n on input line 60.
 LaTeX Font Info:    Trying to load font information for LS1+stix on input line 
-59.
+60.
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls1stix.fd
 File: ls1stix.fd 2015/04/17 v1.1.2-latex STIX LS1 font definitions
 )
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for LS2/stix/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 60.
+LaTeX Font Info:    Checking defaults for LS2/stix/m/n on input line 60.
 LaTeX Font Info:    Trying to load font information for LS2+stix on input line 
-59.
+60.
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls2stix.fd
 File: ls2stix.fd 2015/04/17 v1.1.2-latex STIX LS2 font definitions
 )
-LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    ... okay on input line 60.
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf
 .mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count336
-\scratchdimen=\dimen298
-\scratchbox=\box72
-\nofMPsegments=\count337
-\nofMParguments=\count338
-\everyMPshowfont=\toks43
-\MPscratchCnt=\count339
-\MPscratchDim=\dimen299
-\MPnumerator=\count340
-\makeMPintoPDFobject=\count341
-\everyMPtoPDFconversion=\toks44
+\scratchcounter=\count338
+\scratchdimen=\dimen299
+\scratchbox=\box73
+\nofMPsegments=\count339
+\nofMParguments=\count340
+\everyMPshowfont=\toks44
+\MPscratchCnt=\count341
+\MPscratchDim=\dimen300
+\MPnumerator=\count342
+\makeMPintoPDFobject=\count343
+\everyMPtoPDFconversion=\toks45
 )
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopd
 f-base.sty
@@ -911,7 +920,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 s.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-Package hyperref Info: Link coloring ON on input line 59.
+Package hyperref Info: Link coloring ON on input line 60.
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
@@ -924,11 +933,11 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 titlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count342
+\c@section@level=\count344
 )
-LaTeX Info: Redefining \ref on input line 59.
-LaTeX Info: Redefining \pageref on input line 59.
-LaTeX Info: Redefining \nameref on input line 59.
+LaTeX Info: Redefining \ref on input line 60.
+LaTeX Info: Redefining \pageref on input line 60.
+LaTeX Info: Redefining \nameref on input line 60.
  (Paramter_fitting.out) (Paramter_fitting.out)
 \@outlinefile=\write3
 \openout3 = `Paramter_fitting.out'.
@@ -978,147 +987,147 @@ Package caption Info: End \AtBeginDocument code.
 \openout4 = `Paramter_fitting.abs'.
 
 LaTeX Font Info:    Trying to load font information for LS1+stixscr on input li
-ne 101.
+ne 102.
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls1stixscr.fd
 File: ls1stixscr.fd 2015/04/17 v1.1.2-latex STIX script LS1 font definitions
 )
 LaTeX Font Info:    Trying to load font information for LS2+stixex on input lin
-e 101.
+e 102.
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls2stixex.fd
 File: ls2stixex.fd 2015/04/17 v1.1.2-latex STIX extentions LS2 font definitions
 
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 101
+LaTeX Font Info:    Trying to load font information for U+msa on input line 102
 .
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 101
+LaTeX Font Info:    Trying to load font information for U+msb on input line 102
 .
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Trying to load font information for LS1+stixfrak on input l
-ine 101.
+ine 102.
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls1stixfrak.fd
 File: ls1stixfrak.fd 2015/04/17 v1.1.2-latex STIX fraktur LS1 font definitions
 )
 LaTeX Font Info:    Trying to load font information for LS1+stixbb on input lin
-e 101.
+e 102.
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls1stixbb.fd
 File: ls1stixbb.fd 2015/04/17 v1.1.2-latex STIX blackboard LS1 font definitions
 
 )
 LaTeX Font Info:    Trying to load font information for LS2+stixcal on input li
-ne 101.
+ne 102.
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls2stixcal.fd
 File: ls2stixcal.fd 2015/04/17 v1.1.2-latex STIX calligraphic LS2 font definiti
 ons
 )
 LaTeX Font Info:    Trying to load font information for LS1+stixsf on input lin
-e 101.
+e 102.
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls1stixsf.fd
 File: ls1stixsf.fd 2015/04/17 v1.1.2-latex STIX sans-serif LS1 font definitions
 
 )
 LaTeX Font Info:    Trying to load font information for LS2+stixtt on input lin
-e 101.
+e 102.
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls2stixtt.fd
 File: ls2stixtt.fd 2015/04/17 v1.1.2-latex STIX typewriter LS2 font definitions
 
 )
-Overfull \hbox (123.62721pt too wide) detected at line 101
+Overfull \hbox (123.62721pt too wide) detected at line 102
 []
  []
 
 (Paramter_fitting.abs)
-<thumbnails/cas-email.jpeg, id=79, 225.84375pt x 225.84375pt>
+<thumbnails/cas-email.jpeg, id=75, 225.84375pt x 225.84375pt>
 File: thumbnails/cas-email.jpeg Graphic file (type jpg)
 <use thumbnails/cas-email.jpeg>
-Package pdftex.def Info: thumbnails/cas-email.jpeg  used on input line 101.
+Package pdftex.def Info: thumbnails/cas-email.jpeg  used on input line 102.
 (pdftex.def)             Requested size: 7.99838pt x 8.0pt.
 LaTeX Font Info:    Trying to load font information for T1+zi4 on input line 10
-1.
+2.
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/inconsolata\t1zi4.fd
 File: t1zi4.fd 2018/01/14 T1/zi4 (Inconsolata)
 )
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 6.80005pt on input line 101.
+(Font)              scaled to size 6.80005pt on input line 102.
 
-Overfull \hbox (37.68553pt too wide) in paragraph at lines 112--114
+Overfull \hbox (37.68553pt too wide) in paragraph at lines 113--115
 []|   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 
-Overfull \hbox (4.67152pt too wide) in paragraph at lines 112--114
+Overfull \hbox (4.67152pt too wide) in paragraph at lines 113--115
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
   |   []   |   []
  []
 
 
-Overfull \hbox (7.72554pt too wide) in paragraph at lines 112--114
+Overfull \hbox (7.72554pt too wide) in paragraph at lines 113--115
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 
-Overfull \hbox (1.76552pt too wide) in paragraph at lines 112--114
+Overfull \hbox (1.76552pt too wide) in paragraph at lines 113--115
 |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 
-Overfull \hbox (0.50551pt too wide) in paragraph at lines 119--123
+Overfull \hbox (0.50551pt too wide) in paragraph at lines 120--124
 []\T1/stix/m/n/10 Sovova [][][] |   []   |   []   |   []   |   []   |   []
  []
 
 
-Overfull \hbox (44.5175pt too wide) in paragraph at lines 119--123
+Overfull \hbox (44.5175pt too wide) in paragraph at lines 120--124
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 
-Overfull \hbox (5.94885pt too wide) in paragraph at lines 119--123
+Overfull \hbox (5.94885pt too wide) in paragraph at lines 120--124
 |   []   |   []   |   []   |   []   |   []   |   [] []\T1/stix/m/n/10 pre-sente
 d the Broken-
  []
 
 
-Overfull \hbox (2.33482pt too wide) in paragraph at lines 125--131
+Overfull \hbox (2.33482pt too wide) in paragraph at lines 126--132
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
   |   []
  []
 
 
-Overfull \hbox (10.78552pt too wide) in paragraph at lines 125--131
+Overfull \hbox (10.78552pt too wide) in paragraph at lines 126--132
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
   |   []
  []
 
 
-Overfull \hbox (18.93555pt too wide) in paragraph at lines 125--131
+Overfull \hbox (18.93555pt too wide) in paragraph at lines 126--132
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 
-Overfull \hbox (8.14883pt too wide) in paragraph at lines 125--131
+Overfull \hbox (8.14883pt too wide) in paragraph at lines 126--132
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
   |   []
  []
 
 
-Overfull \hbox (6.68889pt too wide) in paragraph at lines 125--131
+Overfull \hbox (6.68889pt too wide) in paragraph at lines 126--132
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 LaTeX Font Info:    Trying to load font information for T1+cmss on input line 1
-31.
+32.
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/base\t1cmss.fd
 File: t1cmss.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
@@ -1126,25 +1135,25 @@ File: t1cmss.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 
 
  <./thumbnails/cas-email.jpeg>]
-Overfull \hbox (14.69797pt too wide) in paragraph at lines 140--142
+Overfull \hbox (14.69797pt too wide) in paragraph at lines 141--143
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
   |   []   |   []   |   []
  []
 
 
-Overfull \hbox (7.50888pt too wide) in paragraph at lines 140--142
+Overfull \hbox (7.50888pt too wide) in paragraph at lines 141--143
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
   |   []
  []
 
 
-Overfull \hbox (38.62555pt too wide) in paragraph at lines 144--145
+Overfull \hbox (38.62555pt too wide) in paragraph at lines 145--146
 []|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [
 ]   |   []
  []
 
 
-Overfull \hbox (6.94545pt too wide) in paragraph at lines 144--145
+Overfull \hbox (6.94545pt too wide) in paragraph at lines 145--146
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
   |   []   |   []
  []
@@ -1153,63 +1162,63 @@ Overfull \hbox (6.94545pt too wide) in paragraph at lines 144--145
 
 pdfTeX warning: pdflatex.exe (file ./Figures/SFE_PFD.pdf): PDF inclusion: found
  PDF version <1.7>, but at most version <1.5> allowed
-<Figures/SFE_PFD.pdf, id=120, 844.65562pt x 596.98032pt>
+<Figures/SFE_PFD.pdf, id=116, 844.65562pt x 596.98032pt>
 File: Figures/SFE_PFD.pdf Graphic file (type pdf)
 <use Figures/SFE_PFD.pdf>
-Package pdftex.def Info: Figures/SFE_PFD.pdf  used on input line 152.
+Package pdftex.def Info: Figures/SFE_PFD.pdf  used on input line 153.
 (pdftex.def)             Requested size: 238.25444pt x 113.63483pt.
 
-Overfull \hbox (23.48555pt too wide) in paragraph at lines 159--166
+Overfull \hbox (23.48555pt too wide) in paragraph at lines 160--167
 []|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [
 ]
  []
 
 
-Overfull \hbox (2.04553pt too wide) in paragraph at lines 159--166
+Overfull \hbox (2.04553pt too wide) in paragraph at lines 160--167
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 
-Overfull \hbox (2.2849pt too wide) in paragraph at lines 159--166
+Overfull \hbox (2.2849pt too wide) in paragraph at lines 160--167
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
   |   []   |   []
  []
 
 
-Overfull \hbox (22.75487pt too wide) in paragraph at lines 159--166
+Overfull \hbox (22.75487pt too wide) in paragraph at lines 160--167
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
   |   []
  []
 
 
-Overfull \hbox (48.36885pt too wide) in paragraph at lines 159--166
+Overfull \hbox (48.36885pt too wide) in paragraph at lines 160--167
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
   |   []   |   []   |   []   |   []
  []
 
 
-Overfull \hbox (4.96886pt too wide) in paragraph at lines 159--166
+Overfull \hbox (4.96886pt too wide) in paragraph at lines 160--167
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 
-Overfull \hbox (2.24069pt too wide) in paragraph at lines 167--168
+Overfull \hbox (2.24069pt too wide) in paragraph at lines 168--169
 []\T1/stix/m/n/10 A distributed-parameter model, based on Rever-chon [][][],
  []
 
 
-Overfull \hbox (7.31554pt too wide) in paragraph at lines 169--170
+Overfull \hbox (7.31554pt too wide) in paragraph at lines 170--171
 []\T1/stix/m/n/10 The move-ment of the mo-bile pseudo-homogeneous phase
  []
 
 
-Overfull \hbox (2.19806pt too wide) in paragraph at lines 173--174
+Overfull \hbox (2.19806pt too wide) in paragraph at lines 174--175
 \T1/stix/m/n/10 which acts as a driv-ing force for the pro-cess. A sin-gle pseu
 do-
  []
 
 [3 <./Figures/SFE_PFD.pdf>]
-Overfull \hbox (2.4789pt too wide) in paragraph at lines 208--209
+Overfull \hbox (2.4789pt too wide) in paragraph at lines 209--210
 \T1/stix/m/n/10 at |   []   |   [] []the open-ing[] of the pore. The so-lute di
 f-fuses through
  []
@@ -1218,81 +1227,81 @@ f-fuses through
 
 pdfTeX warning: pdflatex.exe (file ./Figures/SFE_draft.pdf): PDF inclusion: fou
 nd PDF version <1.7>, but at most version <1.5> allowed
-<Figures/SFE_draft.pdf, id=153, 963.6pt x 542.025pt>
+<Figures/SFE_draft.pdf, id=149, 963.6pt x 542.025pt>
 File: Figures/SFE_draft.pdf Graphic file (type pdf)
 <use Figures/SFE_draft.pdf>
-Package pdftex.def Info: Figures/SFE_draft.pdf  used on input line 213.
+Package pdftex.def Info: Figures/SFE_draft.pdf  used on input line 214.
 (pdftex.def)             Requested size: 238.25444pt x 185.16783pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Overfull \hbox (14.16551pt too wide) in paragraph at lines 222--223
+Overfull \hbox (14.16551pt too wide) in paragraph at lines 223--224
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 
-Overfull \hbox (2.33153pt too wide) in paragraph at lines 222--223
+Overfull \hbox (2.33153pt too wide) in paragraph at lines 223--224
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 [4 <./Figures/SFE_draft.pdf>]
-Overfull \hbox (1.02621pt too wide) in paragraph at lines 242--244
+Overfull \hbox (1.02621pt too wide) in paragraph at lines 243--245
 []\T1/stix/m/n/10 The vol-u-met-ric par-ti-tion co-ef-fi-cient $[][]\LS1/stix/m
 /n/10 .[][].\LS1/stix/m/it/10 t; z\LS1/stix/m/n/10 /\LS1/stix/m/it/10 ; [][]\LS
 1/stix/m/n/10 .\LS1/stix/m/it/10 t\LS1/stix/m/n/10 //$ \T1/stix/m/n/10 be-
  []
 
 
-Overfull \hbox (6.47714pt too wide) in paragraph at lines 242--244
+Overfull \hbox (6.47714pt too wide) in paragraph at lines 243--245
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 
-Overfull \hbox (4.86801pt too wide) detected at line 256
+Overfull \hbox (4.86801pt too wide) detected at line 257
 []
  []
 
 
-Overfull \hbox (15.20491pt too wide) in paragraph at lines 259--261
+Overfull \hbox (15.20491pt too wide) in paragraph at lines 260--262
 []|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [
 ]
  []
 
 
-Overfull \hbox (12.36154pt too wide) in paragraph at lines 259--261
+Overfull \hbox (12.36154pt too wide) in paragraph at lines 260--262
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 
-Overfull \hbox (3.16153pt too wide) in paragraph at lines 259--261
+Overfull \hbox (3.16153pt too wide) in paragraph at lines 260--262
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
   |   []   |   []   |   []
  []
 
 
-Overfull \hbox (43.10886pt too wide) in paragraph at lines 259--261
+Overfull \hbox (43.10886pt too wide) in paragraph at lines 260--262
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 
-Overfull \hbox (15.65955pt too wide) in paragraph at lines 259--261
+Overfull \hbox (15.65955pt too wide) in paragraph at lines 260--262
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 
-Overfull \hbox (1.80554pt too wide) in paragraph at lines 262--264
+Overfull \hbox (1.80554pt too wide) in paragraph at lines 263--265
 \T1/stix/m/n/10 which prop-er-ties are the mean be-tween fluid and solid phases
 .
  []
 
 
-Overfull \hbox (1.37814pt too wide) detected at line 272
+Overfull \hbox (1.37814pt too wide) detected at line 273
  $[][]$  
  []
 
 
-Overfull \hbox (12.23381pt too wide) in paragraph at lines 274--275
+Overfull \hbox (12.23381pt too wide) in paragraph at lines 275--276
 [][]$ \T1/stix/m/n/10 is the spe-cific heat of the solid phase, $[][]\LS1/stix/
 m/n/10 .[][].\LS1/stix/m/it/10 t; z\LS1/stix/m/n/10 /\LS1/stix/m/it/10 ; [][]\L
 S1/stix/m/n/10 .\LS1/stix/m/it/10 t\LS1/stix/m/n/10 /\LS1/stix/m/it/10 ; [][]\L
@@ -1300,31 +1309,31 @@ S1/stix/m/n/10 .\LS1/stix/m/it/10 t\LS1/stix/m/n/10 //$
  []
 
 
-Overfull \hbox (0.22551pt too wide) in paragraph at lines 277--280
+Overfull \hbox (0.22551pt too wide) in paragraph at lines 278--281
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
   |   []   |   []
  []
 
 
-Overfull \hbox (10.97878pt too wide) in paragraph at lines 277--280
+Overfull \hbox (10.97878pt too wide) in paragraph at lines 278--281
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
   |   []
  []
 
 
-Overfull \hbox (2.41553pt too wide) in paragraph at lines 291--292
+Overfull \hbox (2.41553pt too wide) in paragraph at lines 292--293
 \T1/stix/m/n/10 cor-re-spond-ing mean val-ues be-tween the fluid and solid phas
 e.
  []
 
 
-Overfull \hbox (2.06155pt too wide) in paragraph at lines 293--294
+Overfull \hbox (2.06155pt too wide) in paragraph at lines 294--295
 []\T1/stix/m/n/10 In the pro-cess model, prop-er-ties of the su-per-crit-i-cal 
 fluid
  []
 
 
-Overfull \hbox (31.59541pt too wide) in paragraph at lines 293--294
+Overfull \hbox (31.59541pt too wide) in paragraph at lines 294--295
 \T1/stix/m/n/10 such as the den-sity $[][]\LS1/stix/m/n/10 .[][].\LS1/stix/m/it
 /10 t; z\LS1/stix/m/n/10 /\LS1/stix/m/it/10 ; [][]\LS1/stix/m/n/10 .\LS1/stix/m
 /it/10 t\LS1/stix/m/n/10 //$\T1/stix/m/n/10 , the spe-cific heat $[][]\LS1/stix
@@ -1333,12 +1342,12 @@ LS1/stix/m/n/10 .\LS1/stix/m/it/10 t\LS1/stix/m/n/10 //$\T1/stix/m/n/10 ,
  []
 
 
-Overfull \hbox (5.68887pt too wide) in paragraph at lines 293--294
+Overfull \hbox (5.68887pt too wide) in paragraph at lines 294--295
 \T1/stix/m/n/10 tures along the fixed bed and the pres-sure. The Peng-Robinson
  []
 
 
-Overfull \hbox (25.1578pt too wide) in paragraph at lines 295--297
+Overfull \hbox (25.1578pt too wide) in paragraph at lines 296--298
 []\T1/stix/m/n/10 The inter-particle dif-fu-sion co-ef-fi-cient $[][]\LS1/stix/
 m/n/10 .[][].\LS1/stix/m/it/10 t; z\LS1/stix/m/n/10 /\LS1/stix/m/it/10 ; [][]\L
 S1/stix/m/n/10 .\LS1/stix/m/it/10 t\LS1/stix/m/n/10 /\LS1/stix/m/it/10 ; [][]\L
@@ -1346,7 +1355,7 @@ S1/stix/m/n/10 .\LS1/stix/m/it/10 t\LS1/stix/m/n/10 //$
  []
 
 
-Overfull \hbox (6.36282pt too wide) in paragraph at lines 295--297
+Overfull \hbox (6.36282pt too wide) in paragraph at lines 296--298
 \T1/stix/m/n/10 of the Reynolds num-ber $[][]\LS1/stix/m/n/10 .[][].\LS1/stix/m
 /it/10 t; z\LS1/stix/m/n/10 /\LS1/stix/m/it/10 ; [][]\LS1/stix/m/n/10 .\LS1/sti
 x/m/it/10 t\LS1/stix/m/n/10 /\LS1/stix/m/it/10 ; [][]\LS1/stix/m/n/10 .\LS1/sti
@@ -1354,52 +1363,121 @@ x/m/it/10 t\LS1/stix/m/n/10 //$ \T1/stix/m/n/10 and the Peclet's
  []
 
 [5]
-Overfull \hbox (0.9626pt too wide) detected at line 325
+Overfull \hbox (0.9626pt too wide) detected at line 326
 []
  []
 
 
-LaTeX Warning: Reference `discretization' on page 6 undefined on input line 329
+LaTeX Warning: Reference `discretization' on page 6 undefined on input line 330
 .
 
 [6]
-Overfull \hbox (20.99129pt too wide) in paragraph at lines 390--391
+Overfull \hbox (21.0513pt too wide) in paragraph at lines 391--392
 \T1/stix/m/n/10 ad-di-tional ev-i-dence $\LS1/stix/m/it/10 B$ \T1/stix/m/n/10 p
-er-ti-nent ot the hy-poth-e-sis. $\LS1/stix/m/it/10 P\LS1/stix/m/n/10 ^\LS1/sti
+er-ti-nent to the hy-poth-e-sis. $\LS1/stix/m/it/10 P\LS1/stix/m/n/10 ^\LS1/sti
 x/m/it/10 A[]\LS2/stixex/m/n/10 ð\LS1/stix/m/it/10 B\LS1/stix/m/n/10 `$
  []
 
 
-Overfull \hbox (0.41553pt too wide) in paragraph at lines 425--426
+Overfull \hbox (0.41553pt too wide) in paragraph at lines 426--427
 []\T1/stix/m/n/10 In the ap-pli-ca-tion of tests and the de-sign of ex-per-i-me
 nts,
  []
 
 
-Overfull \hbox (6.32553pt too wide) in paragraph at lines 425--426
+Overfull \hbox (6.32553pt too wide) in paragraph at lines 426--427
 \T1/stix/m/n/10 cer-tain def-i-ni-tions and rules con-cern-ing prob-a-bil-ity a
 re needed
  []
 
 [7]
-Overfull \hbox (8.2755pt too wide) in paragraph at lines 536--537
+Overfull \hbox (8.2755pt too wide) in paragraph at lines 543--544
 \T1/stix/m/n/10 that the un-ob-serv-able er-ror is added to the de-ter-min-is-t
 ic deriva-
  []
 
 
-Overfull \hbox (1.5655pt too wide) in paragraph at lines 561--562
+Overfull \hbox (1.5655pt too wide) in paragraph at lines 568--569
 []\T1/stix/m/n/10 One char-ac-ter-is-tic fea-ture of cer-tain spe-cial ex-per-i
 -ments
  []
 
 [8]
-Overfull \hbox (10.96146pt too wide) detected at line 571
+
+LaTeX Font Warning: Command \normalsize invalid in math mode on input line 578.
+
+
+
+LaTeX Font Warning: Command \normalsize invalid in math mode on input line 578.
+
+
+
+LaTeX Font Warning: Command \normalsize invalid in math mode on input line 578.
+
+
+
+LaTeX Font Warning: Command \normalsize invalid in math mode on input line 578.
+
+
+
+LaTeX Font Warning: Command \normalsize invalid in math mode on input line 578.
+
+
+
+LaTeX Font Warning: Command \normalsize invalid in math mode on input line 578.
+
+
+
+Overfull \hbox (10.96146pt too wide) detected at line 578
 []
  []
 
 
-Overfull \hbox (33.76486pt too wide) in paragraph at lines 575--576
+Overfull \hbox (2.80048pt too wide) in paragraph at lines 580--581
+[]\T1/stix/m/n/10 in which $\LS1/stix/m/it/10 []$ \T1/stix/m/n/10 are in-de-pe
+n-dent ran-dom vari-ables with $\LS1/stixbb/m/n/10 E\LS1/stix/m/n/10 ^\LS1/stix
+/m/it/10 []\LS1/stix/m/n/10 `$
+ []
+
+
+Overfull \hbox (6.40552pt too wide) in paragraph at lines 590--591
+\T1/stix/m/n/10 car-ried out) is that of max-i-mum like-li-hood which leads asy
+mp-
+ []
+
+
+Overfull \hbox (7.01205pt too wide) in paragraph at lines 592--593
+[]\T1/stix/m/n/10 Suppose that $\LS1/stix/m/it/10 p\LS1/stix/m/n/10 .\LS1/stix/
+m/it/10 x\LS1/stix/m/n/10 ; \LS1/stix/m/it/10 []; []; :::; \LS1/stix/m/n/10 /
+$ \T1/stix/m/n/10 is a prob-a-bil-ity den-sity func-
+ []
+
+
+Overfull \hbox (3.04874pt too wide) in paragraph at lines 592--593
+\T1/stix/m/n/10 pose that we do not know what the val-ues of $\LS1/stix/m/it/10
+ []; []; :::$ \T1/stix/m/n/10 are.How
+ []
+
+
+Overfull \hbox (6.91878pt too wide) in paragraph at lines 592--593
+\T1/stix/m/n/10 hood func-tion $\LS1/stix/m/it/10 L []$\T1/stix/m/n/10 , a func
+-tion de-scribed
+ []
+
+
+Overfull \hbox (2.6421pt too wide) in paragraph at lines 624--625
+[]\LS1/stix/m/it/10 ; []; :::$\T1/stix/m/n/10 . (Of-ten it-er-a-tive rather tha
+n an-a-lyt-i-cal meth-ods must
+ []
+
+[9]
+Overfull \hbox (4.32399pt too wide) in paragraph at lines 642--643
+[]\T1/stix/m/n/10 By as-sum-ing that the con-di-tional dis-tri-bu-tion of $[]$,
+ given
+ []
+
+
+Overfull \hbox (33.76486pt too wide) in paragraph at lines 677--678
 \T1/stix/m/n/10 hood func-tion) $\LS1/stix/m/it/10 p\LS1/stix/m/n/10 .\LS1/stix
 /m/it/10 ; y[]\LS2/stixex/m/n/10 ð\LS1/stix/m/it/10 y\LS1/stix/m/n/10 /$ \T1/s
 tix/m/n/10 for ran-dom sam-ple $\LS1/stix/m/it/10 y \LS1/stix/m/n/10 = \LS1/sti
@@ -1410,32 +1488,16 @@ x/m/n/10 ,
  []
 
 
-Overfull \hbox (10.93782pt too wide) detected at line 644
+Overfull \hbox (5.75581pt too wide) detected at line 778
 []
  []
 
-
-Overfull \hbox (58.40211pt too wide) detected at line 670
+[10]
+Overfull \hbox (51.67346pt too wide) detected at line 794
 []
  []
 
-[9]
-Overfull \hbox (11.33727pt too wide) detected at line 686
-[]
- []
-
-
-Overfull \hbox (6.78152pt too wide) in paragraph at lines 694--695
-[]\T1/stix/m/n/10 For some mod-els, these equa-tions can be ex-plic-itly solved
-
- []
-
-
-Overfull \hbox (27.88104pt too wide) detected at line 748
- $[][]$  
- []
-
-[10] [11
+[11
 
 ] (Paramter_fitting.bbl
 Underfull \hbox (badness 1112) in paragraph at lines 44--51
@@ -1459,16 +1521,16 @@ File: ts1stix.fd 2015/04/17 v1.1.2-latex STIX TS1 font definitions
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `Paramter_fitting.out' has not changed.
-(rerunfilecheck)             Checksum: 2A8B2C9E7A9F2A2A220E5FB40A26F2C1;2892.
+(rerunfilecheck)             Checksum: 8AED2DB40C0E695A253F73EA34563DCC;2815.
  ) 
 Here is how much of TeX's memory you used:
- 19534 strings out of 478873
- 294956 string characters out of 2849149
- 785565 words of memory out of 3000000
- 36927 multiletter control sequences out of 15000+600000
+ 19862 strings out of 478873
+ 300493 string characters out of 2849149
+ 793159 words of memory out of 3000000
+ 37246 multiletter control sequences out of 15000+600000
  522186 words of font info for 162 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 83i,26n,131p,1696b,510s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 83i,26n,131p,1696b,531s stack positions out of 5000i,500n,10000p,200000b,80000s
 {C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/stix/stix-ts
 1.enc}{C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/stix/sti
 x-t1.enc}{C:/PROGRAMS/MiKTeX/MiKTeX_2.9/fonts/enc/dvips/cm-super/cm-super-t1.en
@@ -1487,14 +1549,13 @@ pe1/public/stix/stix-mathcal.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKT
 eX/fonts/type1/public/stix/stix-mathex.pfb><C:/Users/sliczno1/AppData/Local/Pro
 grams/MiKTeX/fonts/type1/public/stix/stix-mathit-bold.pfb><C:/Users/sliczno1/Ap
 pData/Local/Programs/MiKTeX/fonts/type1/public/stix/stix-mathit.pfb><C:/Users/s
-liczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix/stix-mathrm-bold.
-pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix/st
-ix-mathrm.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/publ
-ic/stix/stix-mathscr.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts
-/type1/public/stix/stix-mathsf.pfb>
-Output written on Paramter_fitting.pdf (14 pages, 525329 bytes).
+liczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix/stix-mathrm.pfb><
+C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix/stix-ma
+thscr.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/s
+tix/stix-mathsf.pfb>
+Output written on Paramter_fitting.pdf (14 pages, 527782 bytes).
 PDF statistics:
- 445 PDF objects out of 1000 (max. 8388607)
- 122 named destinations out of 1000 (max. 500000)
- 180 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 446 PDF objects out of 1000 (max. 8388607)
+ 127 named destinations out of 1000 (max. 500000)
+ 172 words of extra memory for PDF output out of 10000 (max. 10000000)
 

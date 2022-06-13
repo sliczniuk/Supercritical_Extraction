@@ -35,6 +35,7 @@
 
 % --------------------------------------------------------------------
 % Packages Configurations
+\usepackage{enumitem}
 % --------------------------------------------------------------------
 % (General) General configurations and fixes
 \AtBeginDocument{\setlength{\FullWidth}{\textwidth}}	% Solves els-cas caption positioning issue
@@ -387,11 +388,11 @@ We can interpret these symbols as follows:
 
 \begin{enumerate}
 	\item $P\{A_i\}$ is a measure of our degree of belief that event $A_i$ will occur or that hypothesis $A_i$ is true prior to the acquisition of additional evidence that may alter the measure. $P\{A_i\}$ is denoted the \textit{prior probability}.
-	\item $P\{A_i|B\}$ is a measure of our degree of belief that event $A_i$ will occur or that hypothesis $A_i$ is true, given additional evidence $B$ pertinent ot the hypothesis. $P\{A_i|B\}$ is termed the \textit{posterior probability}.
+	\item $P\{A_i|B\}$ is a measure of our degree of belief that event $A_i$ will occur or that hypothesis $A_i$ is true, given additional evidence $B$ pertinent to the hypothesis. $P\{A_i|B\}$ is termed the \textit{posterior probability}.
 	\item $P\{B|A_i\}$ denotes the likelihood that event $B$ will occur, given that event $A_i$ is true. $P\{B|A_i\}$ is a conditional probability, interpreted in the Bayesian framework as a likelihood, $L(A_i|B)$.
 \end{enumerate}
 
-For continuous variable, Bayes' theorem can be more conveniently expressed in terms of the probability density function rather than the probabilities themselves. Equation \ref{EQ: Bayes_discrit} can be expressed in terms of a set of observed values of the random variable $X$, \textbf{x} and unknown parameter $(s)\theta$ as
+For continuous variable, Bayes' theorem can be more conveniently expressed in terms of the probability density function rather than the probabilities themselves. Equation \ref{EQ: Bayes_discrit} can be expressed in terms of a set of observed values of the random variable $X$, the experimental data \textbf{x} and unknown parameter $\theta$ as
 
 {\footnotesize
 \begin{equation} \label{EQ: Bayes_continous}
@@ -413,7 +414,7 @@ The denominator in Equation \ref{EQ: Bayes_continous} is a normalizing factor ch
 	\int_{-\infty}^{+\infty} p\left( \textbf{x}|\theta \right) p(\theta) d\theta = p(\textbf{x})
 \end{equation} }
 
-If the prior distribution is a uniform distribution, that is the prior distribution is a constant, the \ref{EQ: Bayes_continous} reduces to 
+If the prior distribution is a uniform distribution, that is the prior distribution is a constant, the Equation \ref{EQ: Bayes_continous} reduces to 
 
 {\footnotesize
 \begin{equation}
@@ -510,22 +511,28 @@ In the application of tests and the design of experiments, certain definitions a
 \newpage
 \section{Parameter estimation} \label{CH: Parameter_estimation}
 
-Conceptually, in the measurement equation the unobservable $\epsilon(t)$ is added to $y(t)$ to give the observable dependent variable $Y(t)$ defined as:
+Conceptually, the unobservable $\epsilon(t)$ is added to $y(t)$ to give the observable dependent variable $Y(t)$. For discrete observations:
+
+{\footnotesize
+	\begin{equation}
+		Y(t_i) = y(t_i) + \epsilon(t_i)
+\end{equation} }
+and for continuos variables:
 
 {\footnotesize
 \begin{equation}
 	Y(t) = y(t) + \epsilon(t)
 \end{equation} }
 
-If the estimated parameter $\hat{\theta}$ replaces the model parameter $\theta$, the residue error is $\textbf{E} = Y(t) - \hat{Y}(t)$. The objective in parameter estimation is to obtain the "best" estimate of $\theta$ based on the continuous observations $Y(t)$ or the discrete observations $Y(t_i)$. 
+If the estimated parameter $\hat{\theta}$ replaces the model parameter $\theta$, the residue error is $\textbf{E} = Y(t) - \hat{Y}(t)$, where $\hat{Y}(t)$ is the predicted value of $Y_i$ at $x_i$. The objective in parameter estimation is to obtain the "best" estimate of $\theta$ based on the continuous observations $Y(t)$ or the discrete observations $Y(t_i)$. 
 
 We assume that $x(t)$ is given \textit{a priori} but the $\textbf{y}_0$ and $\theta$ are to be estimated over the time interval $0 \leq t \leq t_n$ from discrete observation described by the following relation:
 
 {\footnotesize
 \begin{equation}
-	\textbf{Y}(t_i) = h(t_i)y(t_i) + \epsilon(t_i) \qquad 1 \leq i \leq n
+	\textbf{Y}(t_i) = \textbf{h}(t_i)y(t_i) + \boldsymbol{\epsilon}(t_i) \qquad 1 \leq i \leq n
 \end{equation} }
-where $\textbf{Y}(t_i)$ is an $n \times 1$ column vector, $h(t_i)$ is an $n \times v$ matrix given \textit{a priori}, and $\epsilon (t_i)$ is an $x \times 1$ column vector ("noise" vector) whose elements are the unobservable errors. The above equation can be written in general form as:
+where $\textbf{Y}(t_i)$ is an $n \times 1$ column vector, $\textbf{h}(t_i)$ is an $n \times v$ matrix given \textit{a priori}, and $ \boldsymbol{\epsilon} (t_i)$ is an $n \times 1$ column vector ("noise" vector) whose elements are the unobservable errors. The above equation can be written in general form as:
 
 {\footnotesize
 \begin{equation} \label{EQ: Measurment_noise}
@@ -556,30 +563,125 @@ where $\Gamma$ is the covariance matrix (or perhaps a matrix of appropriate weig
 
 If $\Gamma$ is a diagonal matrix, $\phi$  becomes a "weighted least squares" criterion; if $\Gamma = \sigma^2 \textbf{I}$ where $\sigma$ is a standard deviation, $\phi$ is the "ordinary least squares" criterion.
 
-\subsection{Cumulative data}
+\subsection{Weighted sum of squares - Cumulative data}
 
-One characteristic feature of certain special experiments is the use of the same batch of materials for the entire series of measurements. If unobservable error in the first observation is designated as $\epsilon_1$, the second error observation $\epsilon_2'$ includes $\epsilon_1$ plus a random component introduced side from $\epsilon_1$, or $\epsilon_2' = \epsilon_1 + \epsilon_2$. The error in the third observation is $\epsilon_3' = \epsilon_1 + \epsilon_2 + \epsilon_3$, and so forth. \citet{Mandel1957} distinguished between the usually assumed type of independent measuring error in the dependent variable and a 'cumulative' or interval error in which each new observation includes the error of the previous observations. Cumulative errors, arising because of the fluctuations as a function of time in the process itself due to small changes in operating, are not independent - only the differences in measurment from one period to the next are independent. Thus, if we consider two model:
+One characteristic feature of certain special experiments is the use of the same batch of materials for the entire series of measurements. If unobservable error in the first observation is designated as $\epsilon_1$, the second error observation $\epsilon_2'$ includes $\epsilon_1$ plus a random component introduced side from $\epsilon_1$, or $\epsilon_2' = \epsilon_1 + \epsilon_2$. The error in the third observation is $\epsilon_3' = \epsilon_1 + \epsilon_2 + \epsilon_3$, and so forth. \citet{Mandel1957} distinguished between the usually assumed type of independent measuring error in the dependent variable and a 'cumulative' or interval error in which each new observation includes the error of the previous observations. Cumulative errors, arising because of the fluctuations as a function of time in the process itself due to small changes in operating, are not independent - only the differences in measurement from one period to the next are independent. Thus, if we consider two model:
 
 {\footnotesize
 \begin{flalign*}
-	&\text{Model A - independent error:} &&\nonumber \\
+	&{\normalsize \text{Model A - independent error:} } &&\nonumber \\
 	Y_i &= \Psi(\theta, y_0, t_i) + \epsilon_i \qquad i = 1,2,...,n&& \\
-	&\text{Model B - cumulative data:}&& \nonumber \\
+	&{\normalsize \text{Model B - cumulative data:}} && \nonumber \\
 	Y_j - Y_{j-1} &= \Psi(\theta, y_0, t_j) - \Psi(\theta, y_0, t_{j-1}) + \epsilon_j, \quad j = 1,2,...,n&& \\
-	&\text{or}&& \nonumber \\
+	&{\normalsize \text{or}} && \nonumber \\
 	Y_i = \sum_{j=1}^{i} &\left( Y_j - Y_{j-1} \right) = \sum_{j=1}^{i} \left( \Psi(\theta, y_0, t_j) - \Psi(\theta, y_0, t_{j-1}) \right) + \sum_{j=1}^{i} \epsilon_j &&
 \end{flalign*} }
+
+in which $\epsilon_i$ are independent random variables with $\mathbb{E}\{\epsilon_i\}$ and Var$\{\epsilon_i\} = \sigma_1^2$, a constant. The $\epsilon_j$ are also random independent variables because they represent differences such as $\epsilon_3' - \epsilon_2' = \left( \epsilon_1 + \epsilon_2 + \epsilon_3 \right) - \left( \epsilon_1 + \epsilon_2 \right) = \epsilon_3$. We assume that $\mathbb{E}\{\epsilon_j\}$ and Var$\{\epsilon_i\} = \sigma_1^2\left(x_j - x_{j-1}\right)$; i.e., the variance of $\epsilon_j$ can be a function of the test interval. The experimental point tend to stay on one side of the regression line of the best fit for Model B. 
+
+The best unbiased estimate of the Model B is obtained by minimizing the weighted sum of squares:
+
+{\footnotesize
+\begin{equation*}
+	\sum_{j=1}^{n} \left( \cfrac{1}{x_j - x_{j-1}} \right) \left[ \left( Y_j - Y_{j-1} \right) - \left( \Psi(\theta, y_0, t_j) - \Psi(\theta, y_0, t_{j-1}) \right) \right]^2 
+\end{equation*} }
 	
 \subsection{Maximum likelihood estimation}
+A well-know and desirable procedure (when it can be carried out) is that of maximum likelihood which leads asymptotically to estimates with the greatest efficiency but not necessarily unbiased. A desirable feature of the maximum likelihood methods is that, under certain conditions (which are not ntoo rigorous), the estimated parameters are normally distributed for large samples. 
+
+Suppose that $p(x; \theta_1, \theta_2,...,)$ is a probability density function of \textit{known} form for the random variable $X$, a function which contains one or more parameters $\theta_1, \theta_2,...$. Also, suppose that we do not know what the values of $\theta_1, \theta_2, ...$ are.How can the most suitable values of $\theta_1, \theta_2, ...$ be estimated? One way is to collect a random sample of values of the random variable $X$, $\{x_1,x_2,...x_n\}$ and select the values of $\theta_1, \theta_2, ...$ now regarded random variables, that maximize the likelihood function $L\left( \theta_1, \theta_2, ... | x_1,x_2,...,x_n \right)$, a function described in chapter \ref{CH: Bayes} in connection with Bayes' theorem. Such estimators, $\hat{\theta}_1,\hat{\theta}_2, ...$ are known as maximum likelihood estimators. In effect, the methods selects those values of $\theta_1, \theta_2, ...$ that are at least as likely to generate the observed sample as any other set of values of the parameters if the probability density of values of the parameters if the probability density of the random variable $X$ were to be extensively simulated through use if the probability density $p\left( x|\theta_1, \theta_2, ... \right)$. In making a maximum likelihood estimate, we assume that the form of the probability density is connect (only the $\theta$'s need be determined) and that all possible values of $\theta_i$ are equally likely before experimentation.
+
+The likelihood function for the parameters given one observation is just the probability density in which the observation is regarded as a fixed number and the parameters as the variables:
+
+{\footnotesize
+\begin{equation}
+	L\left( \theta_1, \theta_2,...|x_1 \right) = p\left( x_1; \theta_1, \theta_2, ... \right)
+\end{equation} }
+where the lower case $x$'s and the number subscripts designate the value of the respective observation that is inserted into the probability density function. The likelihood function for the parameters based on several observations is the product of the individual functions if the observations are independent:
+
+{\footnotesize 
+\begin{multline}
+	L\left( \theta_1, \theta_2,...|x_1, x_2, ..., x_n \right) = \prod_{i=1}^{n} L\left( \theta_1, \theta_2,...|x_1 \right) \\
+	= p\left( x_1; \theta_1, \theta_2, ... \right)p\left( x_2; \theta_1, \theta_2, ... \right)\cdots p\left( x_n; \theta_1, \theta_2, ... \right)
+\end{multline} }
+
+In choosing as estimates of $\theta_i$ the values that maximize $L$ for the given values $\left( x_1, x_2, ..., x_n \right)$, it turns out that it is more convenient to work with the $\ln L$ than with $L$ itself:
+
+{\footnotesize 
+\begin{align}
+	\ln L &= \ln p \left( x_1; \theta_1, \theta_2, ... \right) + \ln p\left( x_3; \theta_1, \theta_2, ... \right) + ... \nonumber \\
+	&= \sum_{i=1}^{n} \ln p\left( x_i; \theta_1, \theta_2, ... \right)
+\end{align} }
+
+The $\ln L$ can be maximized with respect to the vector $\theta$ by equating to zero the partial derivatives of $\ln L$ with respect to each of the parameters:
+
+{\footnotesize
+\begin{align}\label{EQ: MLE_Basic_Solution}
+	\cfrac{\partial \ln L}{\partial \theta_1} &= \cfrac{\partial \sum_{i=1}^{n} \ln p\left( x_1; \theta_1, \theta_2, ... \right) }{\partial \theta_1} = 0 \nonumber \\
+	\cfrac{\partial \ln L}{\partial \theta_2} &= \cfrac{\partial \sum_{i=1}^{n} \ln p\left( x_1; \theta_1, \theta_2, ... \right) }{\partial \theta_2} = 0
+\end{align} }
+
+Solution of Equations \ref{EQ: MLE_Basic_Solution} yield the desired estimates $\hat{\theta}_1, \hat{\theta}_2, ...$. (Often iterative rather than analytical methods must be employed to obtain vector \boldsymbol{$\hat{\theta}$}). By carrying out this operation, under fairly unrestrictive conditions, it can be shown that as $n$ approaches infinity the maximum likelihood estimates have the desirable asymptotic properties:
+
+\begin{enumerate}[label=(\arabic*)]
+	\item {\footnotesize $\lim\limits_{n \rightarrow \infty} \mathbb{E}\{\hat{\theta_i}\} = \theta_i$ }
+	\item {\footnotesize $\left[ \sqrt{n}\left( \hat{\theta_i} - \theta_i \right) \right]$ } is normally distributed
+\end{enumerate}
+and for the case of two parameters:
+
+\begin{enumerate}[resume,label=(\arabic*)]
+	\item {\footnotesize $\lim\limits_{n \rightarrow \infty} \text{Var}\{\hat{\theta_i}\} = \cfrac{1}{n} \left[ \mathbb{E} \left\{ \left( \cfrac{\partial \ln p}{\partial \theta_i} \right)^2 \right\} \right]^{-1} \cfrac{1}{1-\rho^2_{\hat{\theta_1}, \hat{\theta_2}}} $ } \label{Assumption_MLE}
+\end{enumerate}
+
+where $\rho^2_{\hat{\theta_1}, \hat{\theta_2}}$ is the coefficient of correlation of the two $\hat{\theta}$'s. Extension of \ref{Assumption_MLE} to more than two parameters requires the use od matrix notation and will not be shown here.
+
+Maximum likelihood estimates are not necessarily unbiased. Maximum likelihood estimates, however are efficient and, hence, consistent estimates. Furthermore, where a sufficient estimate can be obtained, the maximum likelihood method will obtain it. Finally, if $\hat{\theta}$ is a maximum likelihood estimator of $\theta$, the $f\left( \theta \right)$ is a maximum likelihood estimator of $f\left( \theta \right)$, a function of $\theta$.
+
+\hrule
+
+By assuming that the conditional distribution of $\bar{Y}_i$, given $x_i$, is normal about $\eta_i = \mathbb{E}\left\{ \bar{Y}_i | x_i \right\}$, then we form the likelihood function based on the probability density:
+
+{\footnotesize
+\begin{align} \label{EQ: MLE_Norm}
+	p\left( y | x; \theta, \sigma^2_{\bar{Y}_i} \right) &= \cfrac{1}{\sqrt{2 \pi} \sigma^2_{\bar{Y}_i} } \exp \left[ \cfrac{1}{2  \sigma_{\bar{Y}_i} } \left( Y - \Psi(\theta_i) \right)^2 p_i \right] \nonumber \\
+	L\left( \theta, \sigma_{\bar{Y}_i} | y,x \right) &\equiv L = \prod_{i=1}^{n} \cfrac{1}{\sqrt{2 \pi} \sigma^2_{\bar{Y}_i} } \exp \left[ \cfrac{1}{2  \sigma_{\bar{Y}_i} } \left( Y - \Psi(\theta_i) \right)^2 p_i \right]
+\end{align}}
+
+In Equation \ref{EQ: MLE_Norm} the parameters are the variables, and the values of $Y$ and $x$ are given. Then
+
+{\footnotesize
+	\begin{equation}
+		\ln L = -n \ln \sqrt{2 \pi} - \cfrac{n}{2} \ln \sigma_{\bar{Y}_i}
+		- \cfrac{ \sum_{i=1}^{n} p \left\{ \left[  \bar{Y}_i - \Psi(\theta_i) \right]^2 \right\} }{2 \sigma^2_{\bar{Y}_i}}
+	\end{equation}
+	}
+
+To obtain the maximum likelihood estimates, we place
+
+{\footnotesize
+	\begin{equation}
+		\cfrac{\partial \ln L}{\partial \theta} = \cfrac{\partial \ln L}{\partial \left( \sigma_{\bar{Y}^2_i} \right)} = 0
+	\end{equation}
+}
+
+or iteratively solve 
+
+{\footnotesize
+	\begin{equation}
+		\hat{\theta}_{MLE} = \arg \max_{\theta \in \Theta} L = \arg \max_{\theta \in \Theta} p(\theta|y)
+	\end{equation}
+}
+
+\hrule
 
 Maximum likelihood estimation (MLE) is a method of estimating the parameters of an assumed probability distribution, given some observed data. This is achieved by maximizing a likelihood function so that, under the assumed statistical model, the observed data is most probable. The MLE has the desirable characteristics of asymptotic efficiency and normality. Each time it has been associated with the (joint) normal distribution because of mathematical convenience. Consider the joint probability density function (the likelihood function) $p(\theta, y_0|y)$ for random sample $y = y(t_1),y(t_2),...,y(t_n)$, parameter $\theta$ and initial condition $y_0$ if a maximum of this function over all choices of $y_0$ and $\theta$ can be found, the estimates so obtained are maximum likelihood estimates. The conditions at the maximum can be evolved incorporating prior information as follows.
 
-The posterior probability density $p(\theta,y_0|y)$ can be expressed as the ratio of two probability densities if we make use of the analog for continuous variables of Equation \ref{EQ: Probabiltiy_independet_b}:
+The posterior probability density $p(\theta,y_0|y)$ can be expressed as the ratio of two probability densities if we make use of the analogue for continuous variables of Equation \ref{EQ: Probabiltiy_independet_b}:
 
 {\footnotesize
-\begin{equation} \label{EQ: Posterior_distribution}
+\begin{align} \label{EQ: Posterior_distribution}
 	p\left( \theta,y_0|y \right) = \cfrac{p\left( \theta, y_0, y \right)}{p\left( y \right)}
-\end{equation} }
+\end{align} }
 
 The numerator of the right-hand side od Equation \ref{EQ: Posterior_distribution} using Equation \ref{EQ: Probabiltiy_dependet_a} becomes 
 
@@ -623,131 +725,143 @@ The function to be maximized will be the logarithm of the likelihood function $L
 
 By assumption of the relation of Equation \ref{EQ: Measurment_noise}
 
+{\footnotesize
 \begin{equation} \label{EQ: Noise_prob}
 	p\left( y(t_i) | \theta,y_0 \right) = p\left( \epsilon(t_i) \right)
-\end{equation}
+\end{equation} }
 
 and specially
 
+{\footnotesize
 \begin{equation} \label{EQ: Noise_prob_norm}
 	p\left( \epsilon(t_i) \right) = \cfrac{1}{ (2\pi)^{v/2} |\Gamma(t_i)|^{1/2} } \exp \left[ -\cfrac{1}{2}\epsilon^T(t_i) \left( \Gamma(t_i) \right)^{-1} \epsilon(t_i) \right]
-\end{equation}
+\end{equation} }
 where $|\Gamma|$ is the det$~\Gamma$, and $\Gamma$ is the covariance matrix of $\epsilon$, i.e., of the response.
 
 After Equation \ref{EQ: Noise_prob} is substituted into Equation \ref{EQ: MLE_Lagrangian}, and $L^*$ is differentiated with respect to each of the estimated and $\epsilon(t_i)$, and the resulting expression is equated to zero, we get
 
+{\footnotesize
  \begin{subequations} \label{EQ: MLE_Lag_diff}
 	\begin{alignat}{2}
 		\cfrac{\partial L^*}{\partial y_0} &= \cfrac{\partial}{\partial y_0} \ln p(\theta,y_0) - \sum_{i=1}^{n} \lambda^T(t_i) \cfrac{\partial}{\partial y_0} \Psi(\theta, y_0,t_i) = 0^T \\
 		\cfrac{\partial L^*}{\partial \theta} &= \cfrac{\partial}{\partial \theta} \ln p(\theta,y_0) - \sum_{i=1}^{n} \lambda^T(t_i) \cfrac{\partial}{\partial \theta} \Psi(\theta, y_0,t_i) =0 \\
 		\cfrac{\partial L^*}{\partial \epsilon(t_i)} &= \cfrac{\partial}{\partial \epsilon^T(t_i)} \ln p(\epsilon(t_i)) - \lambda^T(t_i) = 0^T
 	\end{alignat}
- \end{subequations}
+ \end{subequations} }
 
 Substitution of Equation \ref{EQ: Noise_prob_norm} into the last Equation of \ref{EQ: MLE_Lag_diff} makes it possible to solve for $\lambda(t_i)$:
 
+{\footnotesize
 \begin{align}
 	\lambda(t_i) &= -\left( \Gamma(t_i) \right)^{-1} \epsilon(t_i) \nonumber \\
 	&= -\left( \Gamma(t_i) \right)^{-1} \left[ \textbf{Y}(t_i) - \Psi(\theta,y_0,t_i) \right]
-\end{align}
+\end{align} }
 
 and to eliminate $\lambda(t_i)$ from the first two equations of \ref{EQ: MLE_Lag_diff}.
 
 For convenience we shall define a new column vector $\theta^*$ in which all the elements of $\theta$ are arranged as follows:
 
+{\footnotesize
 \begin{equation}
 	\theta^* = \begin{bmatrix}
 		\theta_{1,1} & \theta_{1,2} & \cdots & \theta_{1,v} & \theta_{2,1} & \cdots & \theta_{2,v} & \cdots & \theta_{v,v}
 	\end{bmatrix}^T	
-\end{equation}
+\end{equation} }
 
 Finally, we assume that $y_0$ and $\theta^*$ are distributed by a joint normal distribution and that the prior distribution are, respectively
 
+{\footnotesize
 \begin{subequations} \label{EQ: MLE_Priors}
 	\begin{align}
 		&p\left( \theta^* \right) = \cfrac{1}{ (2\pi)^{v/2} |\Omega_{\theta^*}|^{1/2} } \exp \left[ -\cfrac{1}{2} \left( \theta^* - \theta^{*(0)} \right)^T \Omega_{\theta^*}^{-1} \left( \theta^* - \theta^{*(0)} \right) \right] \\
 		&p\left( y_0 \right) = \cfrac{1}{ (2\pi)^{v/2} |\Omega_{y_0}|^{1/2} } \exp \left[ -\cfrac{1}{2} \left( y_0 - y_0^{(0)} \right)^T \Omega_{y_0}^{-1} \left( y_0 - y_0^{(0)} \right) \right] 
 	\end{align}
-\end{subequations}
+\end{subequations} }
 where $\Omega$'s are the respective covariance matrices for $\theta^*$ and $y_0$, and the subscript $(0)$ designates the prior estimated of $\theta^*$ and $y_0$. If we assume that $\theta^*$ and $y_0$ are independent
 
+{\footnotesize
 \begin{equation}
 	\ln p(\theta^*,y_0) = \ln p(\theta^*) + \ln p(y_0)
-\end{equation}
+\end{equation} }
 
 Introduction of the prior distributions, Equations \ref{EQ: MLE_Priors}, plus the expression for $\lambda(t_i)$ into the first two equations of \ref{EQ: MLE_Lag_diff} gives the final equations from which the estimators of $\theta^*$ and $y_0$ can be obtained:
 
+{\footnotesize
 \begin{subequations} 
-	\begin{align}
-	-\left( \hat{y}_0 - y_0^{(0)} \right)^T \Omega_{y_0}^{-1} &+ \sum_{i=1}^{n}\left[ \textbf{Y}(t_i) - \Psi\left( \hat{\theta}, \hat{y}, t_i \right) \right]^T \Gamma^{-1}(t_i) \nonumber \\ 
-	&\cdot \cfrac{\partial}{\partial y_0} \Psi\left( \hat{\theta}, \hat{y}, t_i \right) = 0^T \\
-	-\left( \hat{\theta}^* - \theta^{*(0)} \right)^T \Omega_{\theta^*}^{-1} &+ \sum_{i=1}^{n}\left[ \textbf{Y}(t_i) - \Psi\left( \hat{\theta}, \hat{y}, t_i \right) \right]^T \Gamma^{-1}(t_i) \nonumber \\ 
-	&\cdot \cfrac{\partial}{\partial \theta^*} \Psi\left( \hat{\theta}, \hat{y}, t_i \right) = 0^T \nonumber \\
-	\end{align}
-\end{subequations}
+	\begin{flalign}
+	&-\left( \hat{y}_0 - y_0^{(0)} \right)^T \Omega_{y_0}^{-1} + \sum_{i=1}^{n}\left[ \textbf{Y}(t_i) - \Psi\left( \hat{\theta}, \hat{y}, t_i \right) \right]^T \Gamma^{-1}(t_i) \cdot \cfrac{\partial}{\partial y_0} \Psi\left( \hat{\theta}, \hat{y}, t_i \right) = 0^T  &&\\
+	&-\left( \hat{\theta}^* - \theta^{*(0)} \right)^T \Omega_{\theta^*}^{-1} + \sum_{i=1}^{n}\left[ \textbf{Y}(t_i) - \Psi\left( \hat{\theta}, \hat{y}, t_i \right) \right]^T \Gamma^{-1}(t_i) \cdot \cfrac{\partial}{\partial \theta^*} \Psi\left( \hat{\theta}, \hat{y}, t_i \right) = 0^T &&
+	\end{flalign}
+\end{subequations} }
 where the overlay caret denotes estimated parameters.
 
-Note that under the assumption that the elements of $\Omega$ are essentially infinite (prior knowledge is diffuse), the elements of $\Omega^-1$ are zero, the equations for the maximum likelihood estimates coincide with those for the least squares estimates, and the same calculations for precision in the estimates apply.
+Note that under the assumption that the elements of $\Omega$ are essentially infinite (prior knowledge is diffuse), the elements of $\Omega^{-1}$ are zero, the equations for the maximum likelihood estimates coincide with those for the least squares estimates, and the same calculations for precision in the estimates apply.
 
-\hrule
 
-For some models, these equations can be explicitly solved for $\hat{\theta}^*$ and $\hat{y}$ but in general no closed-form solution to the maximization problem is known or available, and an MLE can only be found via numerical optimization. Under the assumption of normality, the lack of prior knowledge about the parameters $\theta^{(0)}$ and known initial conditions $y_0$, the optimization problem is defined as follow:
+%For some models, these equations can be explicitly solved for $\hat{\theta}^*$ and $\hat{y}$ but in general no closed-form solution to the maximization problem is known or available, and an MLE can only be found via numerical optimization. Under the assumption of normality, the lack of prior knowledge about the parameters $\theta^{(0)}$ and known initial conditions $y_0$, the optimization problem is defined as follow:
+%
+%{\footnotesize
+%\begin{equation}
+%	\hat{\theta}_{MLE} = \arg \max_{\theta \in \Theta} L = \arg \max_{\theta \in \Theta} p(\theta|y)
+%\end{equation} }
+%
+%Intuitively, this selects the parameter values that make the observed data most probable. The specific value $\hat{\theta}$ that maximizes the likelihood function $L$ is called the maximum likelihood estimate. Further, if the function $\hat{\theta}:\mathbb{R}\rightarrow\Theta$ so defined is measurable, then it is called the maximum likelihood estimator.
+%
+%If the random samples $y(t_1)$, $y(t_2)$,...,$y(t_n)$ come from a normal distribution with unknown mean $\hat{\theta}$ and variance $\sigma^2$, then the joint probability function can be written as 
+%
+%{\footnotesize
+%\begin{equation}
+%	p(\theta|y(t_i)) = \cfrac{1}{\sqrt{2\pi\sigma}}\exp\left[-\cfrac{ \left( \textbf{Y}(t_i) - \Psi\left( \hat{\theta}, t_i \right) \right)^2}{2\sigma}\right]
+%\end{equation} }
+%
+%Then the likelihood function is defined as follow:
+%
+%{\footnotesize
+%\begin{equation} 
+%	L =\prod\limits_{i=1}^n p(\theta|y(t_i)) = (2\pi\sigma)^{-n/2}\exp\left[-\cfrac{1}{2\sigma}\sum\limits_{i=1}^n \left( \textbf{Y}(t_i) - \Psi\left( \hat{\theta}, t_i \right) \right)^2\right]
+%\end{equation} }
+%
+%By taking the ln of the likelihood function, the final form of the cost function is obtained:
+%
+%{\footnotesize
+%\begin{equation} 
+%	\ln L=-\cfrac{n}{2}\ln\sigma-\cfrac{n}{2}\ln(2\pi)-\cfrac{\sum\limits_{i=1}^n \left( \textbf{Y}(t_i) - \Psi\left( \hat{\theta}, t_i \right) \right)^2}{2\sigma}
+%\end{equation} }
+%
+%\subsection{Maximum a posteriori estimation}
+%
+%As already discussed, the prior information about the estimated parameters can be incorporated in to the maximum likelihood estimator to form a maximum a posteriori probability (MAP) estimate. MAP can be used to obtain a point estimate of an unobserved quantity on the basis of empirical data. MAP estimation can therefore be seen as a regularization of maximum likelihood estimation. MLE and MAP can be connected by Bayes' rule:
+%
+%{\footnotesize
+%\begin{equation} 
+%	\begin{split}
+%		{\bf \hat{\theta}_{\text{MAP}}} &= \arg\max_{\bf \theta} p(\theta | y) \\
+%		&= \arg\max_{\bf \theta} \frac{p(y | \theta) p(\theta)}{p(y)} \\
+%		&= \arg\max_{\bf \theta} p(y | \theta) p(\theta) \\
+%		&= \arg\max_{\bf \theta} \ln(p(y | \theta) p(\theta)) \\
+%		&= \arg\max_{\bf \theta} \ln p(y | \theta) + \ln p(\theta)
+%	\end{split}
+%\end{equation} }
+%
+%Notice that we can get rid of the evidence term $P(y)$ because it's constant with respect to the maximization and also take the ln of the inner function because it's monotonically increasing.
+%
+%We assume the normal distribution of random samples, with identical variance and the prior distribution of $\theta$ given by $\mathcal{N}(\theta^{(0)},\,\sigma_\theta^{2})$. The likelihood function to be maximized can be written as
+%
+%{\footnotesize
+%\begin{equation} \label{EQ: MAP_L2}
+%	\begin{split}
+%	&\arg\max_{\bf \theta} \left[ \ln \prod_{i=1}^{n} \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{ \left( \textbf{Y}(t_i) - \Psi\left( \hat{\theta}, t_i \right) \right)^2 }{2\sigma^2}}
+%	+ \ln \prod_{j=0}^{p} \frac{1}{\sigma_\theta\sqrt{2\pi}}e^{-\frac{ \left( \hat{\theta} - \theta^{(0)} \right)^2}{2\sigma_\theta^2}} \right]  \\
+%	&= \arg\max_{\bf \theta} \left[- \sum_{i=1}^{n} {\frac{\left( \textbf{Y}(t_i) - \Psi\left( \hat{\theta}, t_i \right) \right)^2}{2\sigma^2}}
+%	- \sum_{j=0}^{p} {\frac{\left( \hat{\theta} - \theta^{(0)} \right)^2}{2\sigma_\theta^2}} \right]\\
+%	&= \arg\min_{\bf \theta} \frac{1}{2\sigma^2} \left[ \sum_{i=1}^{n} \left( \textbf{Y}(t_i) - \Psi\left( \hat{\theta}, t_i \right) \right)^2
+%	+ \frac{\sigma^2}{\sigma_\theta^2} \sum_{j=0}^{p} \left( \hat{\theta} - \theta^{(0)} \right)^2 \right] \\
+%	&= \arg\min_{\bf \theta} \left[ \sum_{i=1}^{n} \left( \textbf{Y}(t_i) - \Psi\left( \hat{\theta}, t_i \right) \right)^2 + \lambda_{L2} \sum_{j=0}^{p} \left( \hat{\theta} - \theta^{(0)} \right)^2 \right]
+%	\end{split}
+%\end{equation} }
+%
+%Notice that we dropped some of the constants (with respect to $\theta$) and factored to simplify the expression. You can see this is the same expression as Equation \ref{EQ: MAP_L2} (L2 Regularization) with $\lambda_{L2}$. We can adjust the amount of regularization we want by changing $\lambda_{L2}$. Equivalently, we can adjust how much we want to weight the priors carry on the coefficients ($\theta$). If we have a very small variance (large $\lambda_{L2}$) then the coefficients will be very close to 0; if we have a large variance (small $\lambda_{L2}$) then the coefficients will not be affected much (similar to as if we didn't have any regularization).
 
-\begin{equation}
-	\hat{\theta}_{MLE} = \arg \max_{\theta \in \Theta} L = \arg \max_{\theta \in \Theta} p(\theta|y)
-\end{equation}
-
-Intuitively, this selects the parameter values that make the observed data most probable. The specific value $\hat{\theta}$ that maximizes the likelihood function $L$ is called the maximum likelihood estimate. Further, if the function $\hat{\theta}:\mathbb{R}\rightarrow\Theta$ so defined is measurable, then it is called the maximum likelihood estimator.
-
-If the random samples $y(t_1)$, $y(t_2)$,...,$y(t_n)$ come from a normal distribution with unknown mean $\hat{\theta}$ and variance $\sigma^2$, then the joint probability function can be written as 
-
-\begin{equation}
-	p(\theta|y(t_i)) = \cfrac{1}{\sqrt{2\pi\sigma}}\exp\left[-\cfrac{ \left( \textbf{Y}(t_i) - \Psi\left( \hat{\theta}, t_i \right) \right)^2}{2\sigma}\right]
-\end{equation}
-
-Then the likelihood function is defined as follow:
-
-\begin{multline} 
-	L =\prod\limits_{i=1}^n p(\theta|y(t_i)) = \\ (2\pi\sigma)^{-n/2}\exp\left[-\cfrac{1}{2\sigma}\sum\limits_{i=1}^n \left( \textbf{Y}(t_i) - \Psi\left( \hat{\theta}, t_i \right) \right)^2\right]
-\end{multline}
-
-By taking the ln of the likelihood function, the final form of the cost function is obtained:
-
-\begin{equation} 
-	\ln L=-\cfrac{n}{2}\ln\sigma-\cfrac{n}{2}\ln(2\pi)-\cfrac{\sum\limits_{i=1}^n \left( \textbf{Y}(t_i) - \Psi\left( \hat{\theta}, t_i \right) \right)^2}{2\sigma}
-\end{equation}
-
-\subsection{Maximum a posteriori estimation}
-
-As already discussed, the prior information about the estimated parameters can be incorporated in to the maximum likelihood estimator to form a maximum a posteriori probability (MAP) estimate. MAP can be used to obtain a point estimate of an unobserved quantity on the basis of empirical data. MAP estimation can therefore be seen as a regularization of maximum likelihood estimation. MLE and MAP can be connected by Bayes' rule:
-
-\begin{equation} 
-	\begin{split}
-		{\bf \hat{\theta}_{\text{MAP}}} &= \arg\max_{\bf \theta} p(\theta | y) \\
-		&= \arg\max_{\bf \theta} \frac{p(y | \theta) p(\theta)}{p(y)} \\
-		&= \arg\max_{\bf \theta} p(y | \theta) p(\theta) \\
-		&= \arg\max_{\bf \theta} \ln(p(y | \theta) p(\theta)) \\
-		&= \arg\max_{\bf \theta} \ln p(y | \theta) + \ln p(\theta)
-	\end{split}
-\end{equation}
-
-Notice that we can get rid of the evidence term $P(y)$ because it's constant with respect to the maximization and also take the ln of the inner function because it's monotonically increasing.
-
-We assume the normal distribution of random samples, with identical variance and the prior distribution of $\theta$ given by $\mathcal{N}(\theta^{(0)},\,\sigma_\theta^{2})$. The likelihood function to be maximized can be written as
-
-\begin{equation} \label{EQ: MAP_L2}
-	\begin{split}
-	&\arg\max_{\bf \theta} \left[ \ln \prod_{i=1}^{n} \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{ \left( \textbf{Y}(t_i) - \Psi\left( \hat{\theta}, t_i \right) \right)^2 }{2\sigma^2}}
-	+ \ln \prod_{j=0}^{p} \frac{1}{\sigma_\theta\sqrt{2\pi}}e^{-\frac{ \left( \hat{\theta} - \theta^{(0)} \right)^2}{2\sigma_\theta^2}} \right]  \\
-	&= \arg\max_{\bf \theta} \left[- \sum_{i=1}^{n} {\frac{\left( \textbf{Y}(t_i) - \Psi\left( \hat{\theta}, t_i \right) \right)^2}{2\sigma^2}}
-	- \sum_{j=0}^{p} {\frac{\left( \hat{\theta} - \theta^{(0)} \right)^2}{2\sigma_\theta^2}} \right]\\
-	&= \arg\min_{\bf \theta} \frac{1}{2\sigma^2} \left[ \sum_{i=1}^{n} \left( \textbf{Y}(t_i) - \Psi\left( \hat{\theta}, t_i \right) \right)^2
-	+ \frac{\sigma^2}{\sigma_\theta^2} \sum_{j=0}^{p} \left( \hat{\theta} - \theta^{(0)} \right)^2 \right] \\
-	&= \arg\min_{\bf \theta} \left[ \sum_{i=1}^{n} \left( \textbf{Y}(t_i) - \Psi\left( \hat{\theta}, t_i \right) \right)^2 + \lambda_{L2} \sum_{j=0}^{p} \left( \hat{\theta} - \theta^{(0)} \right)^2 \right]
-	\end{split}
-\end{equation}
-
-Notice that we dropped some of the constants (with respect to $\theta$) and factored to simplify the expression. You can see this is the same expression as Equation \ref{EQ: MAP_L2} (L2 Regularization) with $\lambda_{L2}$. We can adjust the amount of regularization we want by changing $\lambda_{L2}$. Equivalently, we can adjust how much we want to weight the priors carry on the coefficients ($\theta$). If we have a very small variance (large $\lambda_{L2}$) then the coefficients will be very close to 0; if we have a large variance (small $\lambda_{L2}$) then the coefficients will not be affected much (similar to as if we didn't have any regularization).
 
 \section{Results} \label{CH: Results}
 
