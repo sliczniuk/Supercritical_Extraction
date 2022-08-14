@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2021.11.8)  13 JUN 2022 14:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2021.11.8)  6 JUL 2022 18:55
 entering extended mode
 **./Paramter_fitting.tex
 (Paramter_fitting.tex
@@ -1390,114 +1390,104 @@ Overfull \hbox (6.32553pt too wide) in paragraph at lines 426--427
 re needed
  []
 
-[7]
-Overfull \hbox (8.2755pt too wide) in paragraph at lines 543--544
-\T1/stix/m/n/10 that the un-ob-serv-able er-ror is added to the de-ter-min-is-t
-ic deriva-
- []
+[7] [8
 
-
-Overfull \hbox (1.5655pt too wide) in paragraph at lines 568--569
+]
+Overfull \hbox (1.5655pt too wide) in paragraph at lines 573--574
 []\T1/stix/m/n/10 One char-ac-ter-is-tic fea-ture of cer-tain spe-cial ex-per-i
 -ments
  []
 
-[8]
 
-LaTeX Font Warning: Command \normalsize invalid in math mode on input line 578.
-
-
-
-LaTeX Font Warning: Command \normalsize invalid in math mode on input line 578.
+LaTeX Font Warning: Command \normalsize invalid in math mode on input line 583.
 
 
 
-LaTeX Font Warning: Command \normalsize invalid in math mode on input line 578.
+LaTeX Font Warning: Command \normalsize invalid in math mode on input line 583.
 
 
 
-LaTeX Font Warning: Command \normalsize invalid in math mode on input line 578.
+LaTeX Font Warning: Command \normalsize invalid in math mode on input line 583.
 
 
 
-LaTeX Font Warning: Command \normalsize invalid in math mode on input line 578.
+LaTeX Font Warning: Command \normalsize invalid in math mode on input line 583.
 
 
 
-LaTeX Font Warning: Command \normalsize invalid in math mode on input line 578.
+LaTeX Font Warning: Command \normalsize invalid in math mode on input line 583.
 
 
 
-Overfull \hbox (10.96146pt too wide) detected at line 578
+LaTeX Font Warning: Command \normalsize invalid in math mode on input line 583.
+
+
+
+Overfull \hbox (23.08676pt too wide) detected at line 583
 []
  []
 
 
-Overfull \hbox (2.80048pt too wide) in paragraph at lines 580--581
+Overfull \hbox (2.80048pt too wide) in paragraph at lines 585--586
 []\T1/stix/m/n/10 in which $\LS1/stix/m/it/10 []$ \T1/stix/m/n/10 are in-de-pe
 n-dent ran-dom vari-ables with $\LS1/stixbb/m/n/10 E\LS1/stix/m/n/10 ^\LS1/stix
 /m/it/10 []\LS1/stix/m/n/10 `$
  []
 
 
-Overfull \hbox (6.40552pt too wide) in paragraph at lines 590--591
-\T1/stix/m/n/10 car-ried out) is that of max-i-mum like-li-hood which leads asy
-mp-
+Overfull \hbox (20.38824pt too wide) in paragraph at lines 596--597
+\T1/stix/m/n/10 hood func-tion) $\LS1/stix/m/it/10 p\LS1/stix/m/n/10 .\LS1/stix
+/m/it/10 \LS2/stixex/m/n/10 ð\LS1/stix/m/it/10 y\LS1/stix/m/n/10 /$ \T1/stix/m
+/n/10 for ran-dom sam-ple $\LS1/stix/m/it/10 y \LS1/stix/m/n/10 = \LS1/stix/m/i
+t/10 y\LS1/stix/m/n/10 .\LS1/stix/m/it/10 t[]\LS1/stix/m/n/10 /\LS1/stix/m/it/1
+0 ; y\LS1/stix/m/n/10 .\LS1/stix/m/it/10 t[]\LS1/stix/m/n/10 /\LS1/stix/m/it/10
+ ; :::; y\LS1/stix/m/n/10 .\LS1/stix/m/it/10 t[]\LS1/stix/m/n/10 /$\T1/stix/m/n
+/10 ,
  []
 
 
-Overfull \hbox (7.01205pt too wide) in paragraph at lines 592--593
-[]\T1/stix/m/n/10 Suppose that $\LS1/stix/m/it/10 p\LS1/stix/m/n/10 .\LS1/stix/
-m/it/10 x\LS1/stix/m/n/10 ; \LS1/stix/m/it/10 []; []; :::; \LS1/stix/m/n/10 /
-$ \T1/stix/m/n/10 is a prob-a-bil-ity den-sity func-
+Overfull \hbox (4.83551pt too wide) in paragraph at lines 598--599
+[]\T1/stix/m/n/10 The pos-te-rior prob-a-bil-ity den-sity $\LS1/stix/m/it/10 p\
+LS1/stix/m/n/10 .\LS1/stix/m/it/10 \LS2/stixex/m/n/10 ð\LS1/stix/m/it/10 y\LS1
+/stix/m/n/10 /$ \T1/stix/m/n/10 can be ex-pressed
+ []
+
+[9
+
+]
+Overfull \hbox (2.16887pt too wide) in paragraph at lines 635--636
+\T1/stix/m/n/10 be-cause it's con-stant with re-spect to the max-i-miza-tion. M
+ore-
  []
 
 
-Overfull \hbox (3.04874pt too wide) in paragraph at lines 592--593
-\T1/stix/m/n/10 pose that we do not know what the val-ues of $\LS1/stix/m/it/10
- []; []; :::$ \T1/stix/m/n/10 are.How
+Overfull \hbox (0.77554pt too wide) in paragraph at lines 651--652
+[]\T1/stix/m/n/10 The like-li-hood func-tion for the pa-ram-e-ters based on sev
+-
  []
 
 
-Overfull \hbox (6.91878pt too wide) in paragraph at lines 592--593
-\T1/stix/m/n/10 hood func-tion $\LS1/stix/m/it/10 L []$\T1/stix/m/n/10 , a func
--tion de-scribed
- []
-
-
-Overfull \hbox (2.6421pt too wide) in paragraph at lines 624--625
-[]\LS1/stix/m/it/10 ; []; :::$\T1/stix/m/n/10 . (Of-ten it-er-a-tive rather tha
-n an-a-lyt-i-cal meth-ods must
- []
-
-[9]
-Overfull \hbox (4.32399pt too wide) in paragraph at lines 642--643
+Overfull \hbox (4.32399pt too wide) in paragraph at lines 666--667
 []\T1/stix/m/n/10 By as-sum-ing that the con-di-tional dis-tri-bu-tion of $[]$,
  given
  []
 
 
-Overfull \hbox (33.76486pt too wide) in paragraph at lines 677--678
-\T1/stix/m/n/10 hood func-tion) $\LS1/stix/m/it/10 p\LS1/stix/m/n/10 .\LS1/stix
-/m/it/10 ; y[]\LS2/stixex/m/n/10 ð\LS1/stix/m/it/10 y\LS1/stix/m/n/10 /$ \T1/s
-tix/m/n/10 for ran-dom sam-ple $\LS1/stix/m/it/10 y \LS1/stix/m/n/10 = \LS1/sti
-x/m/it/10 y\LS1/stix/m/n/10 .\LS1/stix/m/it/10 t[]\LS1/stix/m/n/10 /\LS1/stix/m
-/it/10 ; y\LS1/stix/m/n/10 .\LS1/stix/m/it/10 t[]\LS1/stix/m/n/10 /\LS1/stix/m/
-it/10 ; :::; y\LS1/stix/m/n/10 .\LS1/stix/m/it/10 t[]\LS1/stix/m/n/10 /$\T1/sti
-x/m/n/10 ,
- []
-
-
-Overfull \hbox (5.75581pt too wide) detected at line 778
-[]
+Overfull \hbox (0.35149pt too wide) in paragraph at lines 707--709
+[]|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 [10]
-Overfull \hbox (51.67346pt too wide) detected at line 794
+Overfull \hbox (5.75581pt too wide) detected at line 851
 []
  []
 
-[11
+[11]
+Overfull \hbox (33.17479pt too wide) detected at line 867
+[]
+ []
+
+[12
 
 ] (Paramter_fitting.bbl
 Underfull \hbox (badness 1112) in paragraph at lines 44--51
@@ -1510,13 +1500,13 @@ LaTeX Font Info:    Trying to load font information for TS1+stix on input line
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ts1stix.fd
 File: ts1stix.fd 2015/04/17 v1.1.2-latex STIX TS1 font definitions
 ))
-[12
+[13
 
 
-] [13
+] [14
 
 
-] [14] (Paramter_fitting.aux)
+] [15] (Paramter_fitting.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -1524,10 +1514,10 @@ Package rerunfilecheck Info: File `Paramter_fitting.out' has not changed.
 (rerunfilecheck)             Checksum: 8AED2DB40C0E695A253F73EA34563DCC;2815.
  ) 
 Here is how much of TeX's memory you used:
- 19862 strings out of 478873
- 300493 string characters out of 2849149
+ 19867 strings out of 478873
+ 300555 string characters out of 2849149
  793159 words of memory out of 3000000
- 37246 multiletter control sequences out of 15000+600000
+ 37249 multiletter control sequences out of 15000+600000
  522186 words of font info for 162 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  83i,26n,131p,1696b,531s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1549,13 +1539,14 @@ pe1/public/stix/stix-mathcal.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKT
 eX/fonts/type1/public/stix/stix-mathex.pfb><C:/Users/sliczno1/AppData/Local/Pro
 grams/MiKTeX/fonts/type1/public/stix/stix-mathit-bold.pfb><C:/Users/sliczno1/Ap
 pData/Local/Programs/MiKTeX/fonts/type1/public/stix/stix-mathit.pfb><C:/Users/s
-liczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix/stix-mathrm.pfb><
-C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix/stix-ma
-thscr.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/s
-tix/stix-mathsf.pfb>
-Output written on Paramter_fitting.pdf (14 pages, 527782 bytes).
+liczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix/stix-mathrm-bold.
+pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix/st
+ix-mathrm.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/publ
+ic/stix/stix-mathscr.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts
+/type1/public/stix/stix-mathsf.pfb>
+Output written on Paramter_fitting.pdf (15 pages, 535881 bytes).
 PDF statistics:
- 446 PDF objects out of 1000 (max. 8388607)
- 127 named destinations out of 1000 (max. 500000)
+ 459 PDF objects out of 1000 (max. 8388607)
+ 129 named destinations out of 1000 (max. 500000)
  172 words of extra memory for PDF output out of 10000 (max. 10000000)
 
