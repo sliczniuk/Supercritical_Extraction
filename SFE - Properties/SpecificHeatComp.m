@@ -9,7 +9,7 @@ function Cp = SpecificHeatComp(T, P, Z, RHO, theta)
     %% Parameters
     Tc      = theta{10};         % Critical temperature [K]
     Pc      = theta{11};         % Critical pressure [bar]
-    R       = theta{12}*10^6;    % Universal gas constant, [m3-bar/K-mol]
+    R       = theta{12};    % Universal gas constant, [m3-bar/K-mol]
     kappa   = theta{13};
     MW      = theta{14};         % Molar mass [g/mol]       
     CP_0    = theta{17};     
@@ -17,6 +17,8 @@ function Cp = SpecificHeatComp(T, P, Z, RHO, theta)
     CP_B    = theta{19};       
     CP_C    = theta{20};       
     CP_D    = theta{21};
+
+    RHO = RHO*1e-3;       %  kg/m3 -> g/cm3
     
     %% Recalculate the Peng Robinson parameters
     Tr = T ./ Tc;
@@ -28,7 +30,7 @@ function Cp = SpecificHeatComp(T, P, Z, RHO, theta)
     A = a .* alpha .* P ./ R.^2 ./ T.^2;
     B = b .* P ./ R ./ T;
 
-    v = 1./RHO*MW*1e6;
+    v = 1./RHO*MW;
     
     %% Derivatives
     
@@ -74,7 +76,10 @@ function Cp = SpecificHeatComp(T, P, Z, RHO, theta)
     Cp_corr = Cv_corr + T.*dPdT.*dVdT/10 - R/10;
 
     %% Heat Capacity - Real gas
-    Cv = (Cv_Ideal + Cv_corr)/MW;               %[kJ/kg/K]
-    Cp = (Cp_Ideal + Cp_corr)/MW;               %[kJ/kg/K]
+    Cv_mol = Cv_Ideal + Cv_corr;               %[J/mol/K]
+    Cp_mol = Cp_Ideal + Cp_corr;               %[J/mol/K]
+
+    Cv = Cv_mol/MW;                            %[J/g/K] = [kJ/kg/K]
+    Cp = Cp_mol/MW;                            %[J/g/K] = [kJ/kg/K]
 
 end

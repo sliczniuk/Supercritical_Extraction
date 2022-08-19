@@ -1,7 +1,7 @@
 clc, close all
 clear all
-addpath('C:\dev\casadi-windows-matlabR2016a-v3.5.2');
-%addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-windows-matlabR2016a-v3.5.1');
+%addpath('C:\dev\casadi-windows-matlabR2016a-v3.5.2');
+addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-windows-matlabR2016a-v3.5.1');
 import casadi.*
 
 %% Parameters
@@ -23,23 +23,23 @@ T_kp    = [313.15, 323.15, 333.15, 343.15];
 dkp     = [8.13E-01 6.94E-01 1.04E-01 6.67E-02];
 
 
-Tc      = 304.1;                                        % Critical temperature [K]
-Pc      = 73.8;                                         % Critical pressure [bar]
-omega   = 0.228;                                        % Acentric factor [-]
-R       = 8.314e-5;                                     % Universal gas constant, [m3-bar/K-mol]
+Tc      = 304.2;                                        % Critical temperature [K]
+Pc      = 73.765;                                       % Critical pressure [bar]
+omega   = 0.225;                                        % Acentric factor [-]
+R       = 83.14;                                        % Universal gas constant, [cm3-bar/mol-K]
 
-kappa   = 0.37464 + 1.54226 * omega - 0.26992 * omega^2;
+kappa   = 0.37464 + 1.5422 * omega - 0.2699 * omega^2;
 
-MW      = 44e-3;                                        % Molar weight of CO2 [Kg/mol]
+MW      = 44.01;                                        % Molar weight of CO2 [Kg/mol]
 
 [EA_Di, betah_Di] = Arrhenius_Di(Ti,Di,R);
 [EA_km, betah_km] = Arrhenius_km(T_kp,dkp,R,rho_s);
 
-CP_0 =   4.18686;
-CP_A =  19.80;        %4.5980;
-CP_B =   7.344E-2;    %0.0125;
-CP_C = - 5.602E-5;    %2.86E-06;
-CP_D =   1.715E-8;    %-2.70E-09;
+CP_0 =  4.1868;
+CP_A =  4.7280;        %4.5980;
+CP_B =  0.0175;    %0.0125;
+CP_C = -1.34E-05;    %2.86E-06;
+CP_D =  4.10E-09;    %-2.70E-09;
 
 cpSolid = 1.5E3;      % J / K / Kg
 
@@ -75,31 +75,31 @@ parameters = {nstages, C0solid, V, epsi, dp, L, rho_s, km, mi, Tc, Pc, R, kappa,
 %% dummy parameters
 clc
 
-correlation_viscosity    = {'Amooey', 'Fenghour'};
+correlation_viscosity    = {'Amooey', 'Fenghour', 'Laesecke'};
 correlation_conductivity = {'Amooey', 'Bahadori', 'Jarrahian', 'Rostami', 'Rostamian'};
 
-T_check = 1*Tc:0.1:1.2*Tc;
-P_check = 1*Pc:0.1:3*Pc;
-%T_check = 313.15:523.15;
-%P_check = 60:90;
+%T_check = 0.9*Tc:0.1:1.5*Tc;
+%P_check = 1:0.1:4*Pc;
+T_check = 50+273;
+P_check = 90;
 
 
-Z   = nan(numel(T_check), numel(P_check), 3 );
-RHO = nan(numel(T_check), numel(P_check), 3 );
-CP  = nan(numel(T_check), numel(P_check), 3 );
-MU  = nan(numel(T_check), numel(P_check), 3, numel(correlation_viscosity) );
-KT  = nan(numel(T_check), numel(P_check), 3, numel(correlation_conductivity) );
+Z   = nan(numel(P_check), numel(T_check), 3 );
+RHO = nan(numel(P_check), numel(T_check), 3 );
+CP  = nan(numel(P_check), numel(T_check), 3 );
+MU  = nan(numel(P_check), numel(T_check), 3, numel(correlation_viscosity) );
+KT  = nan(numel(P_check), numel(T_check), 3, numel(correlation_conductivity) );
 
-for i = 1:numel(T_check)
-    if mod(i,round(numel(T_check)/100)) == 0
+for i = 1:numel(P_check)
+    if mod(i,round(numel(P_check)/100)) == 0
         clc
-        fprintf('%f4.2 %%\n',i/numel(T_check)*100)
+        fprintf('%f4.2 %%\n',i/numel(P_check)*100)
     end
 
-    for j = 1:numel(P_check)
+    for j = 1:numel(T_check)
 
-        T = T_check(i);
-        P = P_check(j);
+        T = T_check(j);
+        P = P_check(i);
         
         Tr      = T ./ Tc;
         a       = 0.4572350 .* R.^2 .* Tc.^2 ./ Pc;
@@ -121,7 +121,8 @@ for i = 1:numel(T_check)
             Z(i,j,3) = min(z); 
         end
         
-        rho = full(rhoPB_Comp(T, P, z, parameters));
+        rho = full(rhoPB_Comp(T, P, z, parameters)) ;
+
         if numel(z) == 1
             RHO(i,j,1) = rho;
         else
@@ -155,6 +156,7 @@ for i = 1:numel(T_check)
                 KT(i,j,3, k) = HeatConductivity_Comp(T, P, min(z), min(rho), parameters, correlation_heat);
             end
         end
+
     end
 end
 
@@ -165,26 +167,32 @@ end
 
 figure(1);
 set(gcf,'PaperOrientation','landscape', 'visible','off')
-subplot(1,3,1); contourf(P_check,T_check,squeeze(Z(:,:,1)), 50, 'EdgeColor', 'none'); colormap jet; axis square tight; 
+subplot(1,3,1); contourf(T_check,P_check,squeeze(Z(:,:,1)), 50, 'EdgeColor', 'none'); colormap jet; axis square tight; 
+xline(Tc,':','color','w')
+yline(Pc,':','color','w')
 hcb=colorbar;
 title(hcb,'Z');
 title('Compressibility 1-phase region',' ')
-xlabel('Pressure [bar]')
-ylabel('Temperature [K]')
+ylabel('Pressure [bar]')
+xlabel('Temperature [K]')
 
-subplot(1,3,2); contourf(P_check,T_check,squeeze(Z(:,:,2)), 50, 'EdgeColor', 'none'); colormap jet; axis square tight; 
+subplot(1,3,2); contourf(T_check,P_check,squeeze(Z(:,:,2)), 50, 'EdgeColor', 'none'); colormap jet; axis square tight; 
+xline(Tc,':','color','w')
+yline(Pc,':','color','w')
 hcb=colorbar;
 title(hcb,'Z');
 title('Compressibility 2-phase region:','the biggest root')
-xlabel('Pressure [bar]')
-ylabel('Temperature [K]')
+ylabel('Pressure [bar]')
+xlabel('Temperature [K]')
 
-subplot(1,3,3); contourf(P_check,T_check,squeeze(Z(:,:,3)), 50, 'EdgeColor', 'none'); colormap jet; axis square tight; 
+subplot(1,3,3); contourf(T_check,P_check,squeeze(Z(:,:,3)), 50, 'EdgeColor', 'none'); colormap jet; axis square tight; 
+xline(Tc,':','color','w')
+yline(Pc,':','color','w')
 hcb=colorbar;
 title(hcb,'Z');
 title('Compressibility 2-phase region:','the smallest root')
-xlabel('Pressure [bar]')
-ylabel('Temperature [K]')
+ylabel('Pressure [bar]')
+xlabel('Temperature [K]')
 
 print(gcf, '-dpdf', '-fillpage', 'Compressibility.pdf'); close all
 
@@ -192,26 +200,32 @@ print(gcf, '-dpdf', '-fillpage', 'Compressibility.pdf'); close all
 
 figure(2)
 set(gcf,'PaperOrientation','landscape', 'visible','off')
-subplot(1,3,1); contourf(P_check,T_check,squeeze(RHO(:,:,1)), 50, 'EdgeColor', 'none'); colormap jet; axis square tight; 
+subplot(1,3,1); contourf(T_check,P_check,squeeze(RHO(:,:,1)), 50, 'EdgeColor', 'none'); colormap jet; axis square tight; 
+xline(Tc,':','color','w')
+yline(Pc,':','color','w')
 hcb=colorbar;
-title(hcb,'\rho_{CO_2}');
+title(hcb,'\rho_{CO_2} [kg/m^3]');
 title('Density 1-phase region',' ')
-xlabel('Pressure [bar]')
-ylabel('Temperature [K]')
+ylabel('Pressure [bar]')
+xlabel('Temperature [K]')
 
-subplot(1,3,2); contourf(P_check,T_check,squeeze(RHO(:,:,2)), 50, 'EdgeColor', 'none'); colormap jet; axis square tight; 
+subplot(1,3,2); contourf(T_check,P_check,squeeze(RHO(:,:,2)), 50, 'EdgeColor', 'none'); colormap jet; axis square tight; 
+xline(Tc,':','color','w')
+yline(Pc,':','color','w')
 hcb=colorbar;
-title(hcb,'\rho_{CO_2}');
+title(hcb,'\rho_{CO_2} [kg/m^3]');
 title('Density 2-phase region:','the biggest root')
-xlabel('Pressure [bar]')
-ylabel('Temperature [K]')
+ylabel('Pressure [bar]')
+xlabel('Temperature [K]')
 
-subplot(1,3,3); contourf(P_check,T_check,squeeze(RHO(:,:,3)), 50, 'EdgeColor', 'none'); colormap jet; axis square tight; 
+subplot(1,3,3); contourf(T_check,P_check,squeeze(RHO(:,:,3)), 50, 'EdgeColor', 'none'); colormap jet; axis square tight; 
+xline(Tc,':','color','w')
+yline(Pc,':','color','w')
 hcb=colorbar;
-title(hcb,'\rho_{CO_2}');
+title(hcb,'\rho_{CO_2} [kg/m^3]');
 title('Density 2-phase region:','the smallest root')
-xlabel('Pressure [bar]')
-ylabel('Temperature [K]')
+ylabel('Pressure [bar]')
+xlabel('Temperature [K]')
 
 print(gcf, '-dpdf', '-fillpage', 'RHO.pdf'); close all
 
@@ -220,26 +234,32 @@ print(gcf, '-dpdf', '-fillpage', 'RHO.pdf'); close all
 figure(3)
 mCP = log10(CP);
 set(gcf,'PaperOrientation','landscape', 'visible','off')
-subplot(1,3,1); contourf(P_check,T_check,squeeze(mCP(:,:,1)), 50, 'EdgeColor', 'none'); colormap jet; axis square tight; 
+subplot(1,3,1); contourf(T_check,P_check,squeeze(mCP(:,:,1)), 50, 'EdgeColor', 'none'); colormap jet; axis square tight; 
+xline(Tc,':','color','w')
+yline(Pc,':','color','w')
 hcb=colorbar;
 title(hcb,'log_{10}(CP)');
 title('Specific heat 1-phase region:',' ')
-xlabel('Pressure [bar]')
-ylabel('Temperature [K]')
+ylabel('Pressure [bar]')
+xlabel('Temperature [K]')
 
-subplot(1,3,2); contourf(P_check,T_check,squeeze(mCP(:,:,2)), 50, 'EdgeColor', 'none'); colormap jet; axis square tight; 
+subplot(1,3,2); contourf(T_check,P_check,squeeze(mCP(:,:,2)), 50, 'EdgeColor', 'none'); colormap jet; axis square tight; 
+xline(Tc,':','color','w')
+yline(Pc,':','color','w')
 hcb=colorbar;
 title(hcb,'log_{10}(CP)');
 title('Specific heat 2-phase region:','the biggest root')
-xlabel('Pressure [bar]')
-ylabel('Temperature [K]')
+ylabel('Pressure [bar]')
+xlabel('Temperature [K]')
 
-subplot(1,3,3); contourf(P_check,T_check,squeeze(mCP(:,:,3)), 50, 'EdgeColor', 'none'); colormap jet; axis square tight; 
+subplot(1,3,3); contourf(T_check,P_check,squeeze(mCP(:,:,3)), 50, 'EdgeColor', 'none'); colormap jet; axis square tight; 
+xline(Tc,':','color','w')
+yline(Pc,':','color','w')
 hcb=colorbar;
 title(hcb,'log_{10}(CP)');
 title('Specific heat 2-phase region:','the smallest root')
-xlabel('Pressure [bar]')
-ylabel('Temperature [K]')
+ylabel('Pressure [bar]')
+xlabel('Temperature [K]')
 
 print(gcf, '-dpdf', '-fillpage', 'CP.pdf'); close all
 
@@ -247,29 +267,36 @@ print(gcf, '-dpdf', '-fillpage', 'CP.pdf'); close all
 %}
 
 figure(4)
-%set(gcf,'PaperOrientation','landscape', 'visible','off')
+set(gcf, 'visible','off')
 
 for i=0:numel(correlation_viscosity)-1
-    subplot(numel(correlation_viscosity),3,3*i+1); contourf(P_check,T_check,squeeze(MU(:,:,1,i+1)), 50, 'EdgeColor', 'none'); colormap jet; axis square tight; 
+    subplot(numel(correlation_viscosity),3,3*i+1); contourf(T_check,P_check,squeeze(MU(:,:,1,i+1)), 50, 'EdgeColor', 'none'); colormap jet; axis square tight; 
+    xline(Tc,':','color','w')
+    yline(Pc,':','color','w')
     hcb=colorbar;
     title(hcb,'\mu[Pa \times s]');
     title('Viscosity 1-phase region:',' ')
-    xlabel('Pressure [bar]')
-    ylabel({correlation_viscosity{i+1};'Temperature [K]'})
     
-    subplot(numel(correlation_viscosity),3,3*i+2); contourf(P_check,T_check,squeeze(MU(:,:,2,i+1)), 50, 'EdgeColor', 'none'); colormap jet; axis square tight; 
+    ylabel({correlation_viscosity{i+1};'Pressure [bar]'})
+    xlabel('Temperature [K]')
+    
+    subplot(numel(correlation_viscosity),3,3*i+2); contourf(T_check,P_check,squeeze(MU(:,:,2,i+1)), 50, 'EdgeColor', 'none'); colormap jet; axis square tight; 
+    xline(Tc,':','color','w')
+    yline(Pc,':','color','w')
     hcb=colorbar;
     title(hcb,'\mu[Pa \times s]');
     title('Viscosity 2-phase region:','the biggest root')
-    xlabel('Pressure [bar]')
-    ylabel('Temperature [K]')
+    ylabel('Pressure [bar]')
+    xlabel('Temperature [K]')
     
-    subplot(numel(correlation_viscosity),3,3*i+3); contourf(P_check,T_check,squeeze(MU(:,:,3,i+1)), 50, 'EdgeColor', 'none'); colormap jet; axis square tight; 
+    subplot(numel(correlation_viscosity),3,3*i+3); contourf(T_check,P_check,squeeze(MU(:,:,3,i+1)), 50, 'EdgeColor', 'none'); colormap jet; axis square tight; 
+    xline(Tc,':','color','w')
+    yline(Pc,':','color','w')
     hcb=colorbar;
     title(hcb,'\mu[Pa \times s]');
     title('Viscosity 2-phase region:','the smallest root')
-    xlabel('Pressure [bar]')
-    ylabel('Temperature [K]')
+    ylabel('Pressure [bar]')
+    xlabel('Temperature [K]')
 end
 print(gcf, '-dpdf', '-fillpage', 'MU.pdf'); close all
 
@@ -277,29 +304,35 @@ print(gcf, '-dpdf', '-fillpage', 'MU.pdf'); close all
 % kt
 
 figure(5)
-%set(gcf,'PaperOrientation','landscape', 'visible','off')
+set(gcf, 'visible','off')
 
 for i=0:numel(correlation_conductivity)-1
-    subplot(numel(correlation_conductivity),3,3*i+1); contourf(P_check,T_check,squeeze(KT(:,:,1,i+1)), 50, 'EdgeColor', 'none'); colormap jet; axis square tight; 
+    subplot(numel(correlation_conductivity),3,3*i+1); contourf(T_check,P_check,squeeze(KT(:,:,1,i+1)), 50, 'EdgeColor', 'none'); colormap jet; axis square tight; 
+    xline(Tc,':','color','w')
+    yline(Pc,':','color','w')
     hcb=colorbar;
     title(hcb,'kt');
     title('Conductivity 1-phase region:',' ')
-    xlabel('Pressure [bar]')
-    ylabel({correlation_conductivity{i+1};'Temperature [K]'})
+    ylabel({correlation_conductivity{i+1};'Pressure [bar]'})
+    xlabel('Temperature [K]')
     
-    subplot(numel(correlation_conductivity),3,3*i+2); contourf(P_check,T_check,squeeze(KT(:,:,2,i+1)), 50, 'EdgeColor', 'none'); colormap jet; axis square tight; 
+    subplot(numel(correlation_conductivity),3,3*i+2); contourf(T_check,P_check,squeeze(KT(:,:,2,i+1)), 50, 'EdgeColor', 'none'); colormap jet; axis square tight; 
+    xline(Tc,':','color','w')
+    yline(Pc,':','color','w')
     hcb=colorbar;
     title(hcb,'kt');
     title('Conductivity 2-phase region:','the biggest root')
-    xlabel('Pressure [bar]')
-    ylabel('Temperature [K]')
+    ylabel('Pressure [bar]')
+    xlabel('Temperature [K]')
     
-    subplot(numel(correlation_conductivity),3,3*i+3); contourf(P_check,T_check,squeeze(KT(:,:,3,i+1)), 50, 'EdgeColor', 'none'); colormap jet; axis square tight; 
+    subplot(numel(correlation_conductivity),3,3*i+3); contourf(T_check,P_check,squeeze(KT(:,:,3,i+1)), 50, 'EdgeColor', 'none'); colormap jet; axis square tight; 
+    xline(Tc,':','color','w')
+    yline(Pc,':','color','w')
     hcb=colorbar;
     title(hcb,'kt');
     title('Conductivity 2-phase region:','the smallest root')
-    xlabel('Pressure [bar]')
-    ylabel('Temperature [K]')
+    ylabel('Pressure [bar]')
+    xlabel('Temperature [K]')
 end
 print(gcf, '-dpdf', '-fillpage', 'KT.pdf'); close all
 
