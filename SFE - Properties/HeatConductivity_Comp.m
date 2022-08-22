@@ -58,7 +58,32 @@ function k = HeatConductivity_Comp(T,P,Z,rho, theta, correlation)
             A10 =   60.9547298940653e+009;
     
             k = ( A1 + A2/T + A3/(T^2.5) + A4*rho + A5*(rho^2.5)*(T^2.5) + A6*(rho^3) ) / ( 1 + A7/T + A8/(T^2.5) + A9/(T^3) + A10*sqrt(rho*T) );
-    
+
+        case 'Huber'
+            Tc =  304.1282;
+            rho_c = 467.6;
+
+            Tr = T/Tc;
+
+            Lk = [1.51874307e-2, 2.80674040e-2, 2.28564190e-2, -7.41624210e-3];
+
+            B1 = [1.00128e-2, 5.60488e-2, -8.11620e-2, 6.24337e-2, -2.06336e-2,  2.53248e-3];
+            B2 = [4.30829e-3, -3.58563e-2, 6.71480e-2, -5.22855e-2, 1.74571e-2,  -1.96414e-3];
+
+            Delta_Tc = Tr - 1;
+            Delta_rho_c = rho/rho_c - 1;
+
+            k0 = sqrt(Tr) / ( Lk(1)/(Tr^0) + Lk(2)/(Tr^1) + Lk(3)/(Tr^2) + Lk(4)/(Tr^3) );
+
+            Delta_k = 0;
+            for i=1:6
+                Delta_k = (B1(i) + B2(i)*Tr) * (rho/rho_c)^i;
+            end
+
+            Delta_k_c = (-17.47-44.99 * Delta_Tc) / ( 0.8563 - exp(8.865*Delta_Tc + 4.16*Delta_rho_c^2 + 2.302*Delta_Tc*Delta_rho_c - Delta_rho_c^3) - 0.4503*Delta_rho_c - 7.197*Delta_Tc );
+
+            k = k0 + Delta_k + Delta_k_c;
+
         otherwise
             disp('No such a correlation')
             

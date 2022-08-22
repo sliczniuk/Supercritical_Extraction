@@ -1,7 +1,7 @@
 clc, close all
 clear all
-%addpath('C:\dev\casadi-windows-matlabR2016a-v3.5.2');
-addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-windows-matlabR2016a-v3.5.1');
+addpath('C:\dev\casadi-windows-matlabR2016a-v3.5.5');
+%addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-windows-matlabR2016a-v3.5.1');
 import casadi.*
 
 %% Parameters
@@ -68,7 +68,7 @@ A7_visc =  6.519333E-6;
 A8_visc = -3.567559E-1;
 A9_visc =  3.180473E-2;
 
-%                 1        2    3    4    5  6     7   8   9   10  11  12   13   14   15      16       17    18    19    20    21    22      23        24      25        26       27      28       29        30        31       32       33       34      35       36        37      38       39       40      41        42       43   
+%                 1        2    3    4    5  6     7   8   9   10  11  12   13   14   15      16       17    18    19    20    21    22      23        24      25        26       27      28       29        30        31       32       33       34      35       36        37      38       39       40      41        42       43
 parameters = {nstages, C0solid, V, epsi, dp, L, rho_s, km, mi, Tc, Pc, R, kappa, MW, EA_Di, betah_Di, CP_0, CP_A, CP_B, CP_C, CP_D, EA_km, betah_km, cpSolid, a_axial, b_axial, c_axial, A1_cond, A2_cond, A3_cond, A4_cond, A5_cond, A6_cond, A7_cond, A1_visc, A2_visc, A3_visc, A4_visc, A5_visc, A6_visc, A7_visc, A8_visc, A9_visc};
 
 
@@ -76,12 +76,12 @@ parameters = {nstages, C0solid, V, epsi, dp, L, rho_s, km, mi, Tc, Pc, R, kappa,
 clc
 
 correlation_viscosity    = {'Amooey', 'Fenghour', 'Laesecke'};
-correlation_conductivity = {'Amooey', 'Bahadori', 'Jarrahian', 'Rostami', 'Rostamian'};
+correlation_conductivity = {'Amooey', 'Bahadori', 'Jarrahian', 'Rostami', 'Rostamian', 'Huber'};
 
-%T_check = 0.9*Tc:0.1:1.5*Tc;
-%P_check = 1:0.1:4*Pc;
-T_check = 50+273;
-P_check = 90;
+T_check = linspace(Tc,1.1*Tc,100);
+P_check = linspace(Pc,1.5*Pc,100);
+%T_check = 50+273;
+%P_check = 90;
 
 
 Z   = nan(numel(P_check), numel(T_check), 3 );
@@ -93,14 +93,14 @@ KT  = nan(numel(P_check), numel(T_check), 3, numel(correlation_conductivity) );
 for i = 1:numel(P_check)
     if mod(i,round(numel(P_check)/100)) == 0
         clc
-        fprintf('%f4.2 %%\n',i/numel(P_check)*100)
+        fprintf('%f %%\n',i/numel(P_check)*100)
     end
 
     for j = 1:numel(T_check)
 
         T = T_check(j);
         P = P_check(i);
-        
+
         Tr      = T ./ Tc;
         a       = 0.4572350 .* R.^2 .* Tc.^2 ./ Pc;
         b       = 0.0777961 .* R    .* Tc    ./ Pc;
@@ -117,27 +117,27 @@ for i = 1:numel(P_check)
         if numel(z) == 1
             Z(i,j,1) = z;
         else
-            Z(i,j,2) = max(z);
-            Z(i,j,3) = min(z); 
+            Z(i,j,1) = max(z);
+            Z(i,j,3) = min(z);
         end
-        
+
         rho = full(rhoPB_Comp(T, P, z, parameters)) ;
 
         if numel(z) == 1
             RHO(i,j,1) = rho;
         else
-            RHO(i,j,2) = max(rho);
+            RHO(i,j,1) = max(rho);
             RHO(i,j,3) = min(rho);
         end
 
         if numel(z) == 1
             CP(i,j,1) = SpecificHeatComp(T, P, z, rho, parameters);
         else
-            CP(i,j,2) = SpecificHeatComp(T, P, max(z), max(rho), parameters);
+            CP(i,j,1) = SpecificHeatComp(T, P, max(z), max(rho), parameters);
             CP(i,j,3) = SpecificHeatComp(T, P, min(z), min(rho), parameters);
         end
 
-         for k=1:numel(correlation_viscosity)
+        for k=1:numel(correlation_viscosity)
             correlation_mass  = correlation_viscosity{k};
             if numel(z) == 1
                 MU(i,j,1,k) = Viscosity(T,P,rho,parameters,correlation_mass);
@@ -145,7 +145,7 @@ for i = 1:numel(P_check)
                 MU(i,j,2,k) = Viscosity(T,P,max(rho),parameters,correlation_mass);
                 MU(i,j,3,k) = Viscosity(T,P,min(rho),parameters,correlation_mass);
             end
-         end
+        end
 
         for k=1:numel(correlation_conductivity)
             correlation_heat = correlation_conductivity{k};
@@ -162,6 +162,7 @@ end
 
 %% Plotting
 
+%{
 
 % Compressibility
 
@@ -264,7 +265,6 @@ xlabel('Temperature [K]')
 print(gcf, '-dpdf', '-fillpage', 'CP.pdf'); close all
 
 % mu
-%}
 
 figure(4)
 set(gcf, 'visible','off')
@@ -336,34 +336,239 @@ for i=0:numel(correlation_conductivity)-1
 end
 print(gcf, '-dpdf', '-fillpage', 'KT.pdf'); close all
 
-
-
-
-
 %}
 
+%% Test RBF - one value
 
+%{
+Data = Z(:,:,1);
 
+testpoint_P = 5;
+testpoint_T = 5;
 
+P_RBF = P_check(1:testpoint_P:end)/Pc;
+T_RBF = T_check(1:testpoint_T:end)/Tc;
 
+MU_RBF = [1e-3, 1e-2, 2e-2, 5e-2, 1e-1, 5e-1, 1e0];
+APP = nan(numel(P_check), numel(T_check));
 
+[X,Y] = meshgrid(P_RBF,T_RBF);
+centers = [X(:), Y(:)];
+distance = pdist2(centers,centers);
 
+% Kernel Function
+mu = MU_RBF(k);
 
+GramMatrix = exp( - distance / mu );
 
+% Weights
+observations = Data(1:testpoint_P:end, 1:testpoint_T:end);
+observations = reshape(observations.',[],1);
 
+% Evaluate weights
+%Weights = (GramMatrix'*GramMatrix)^(-1) * GramMatrix' * observations ;
+Weights = GramMatrix \ observations ;
 
+%% Evaluate the function at all the point
 
+for i = 1:numel(P_check)
+    for j = 1:numel(T_check)
+        P = P_check(i)/Pc;
+        T = T_check(j)/Tc;
+        APP(i,j) = sum(Weights.*exp(- pdist2([P T], centers) / mu)');
+    end
+end
+%}
 
+%% Test RBF - loop over multiple values of mu
 
+%{
+Data = Z(:,:,1);
 
+testpoint_P = 5;
+testpoint_T = 5;
 
+P_RBF = P_check(1:testpoint_P:end)/Pc;
+T_RBF = T_check(1:testpoint_T:end)/Tc;
 
+MU_RBF = [1e-3, 1e-2, 2e-2, 5e-2, 1e-1, 5e-1, 1e0];
+APP = nan(numel(P_check), numel(T_check), numel(MU_RBF));
 
+[X,Y] = meshgrid(P_RBF,T_RBF);
+centers = [X(:), Y(:)];
+distance = pdist2(centers,centers);
 
+for k=1:numel(MU_RBF)
 
+    if mod(k,round(numel(MU_RBF)/100)) == 0
+        clc
+        fprintf('%f %%\n',k/numel(MU_RBF)*100)
+    end
 
+    % Kernel Function
+    mu = MU_RBF(k);
 
+    GramMatrix = exp( - distance / mu );
 
+    % Weights
+    observations = Data(1:testpoint_P:end, 1:testpoint_T:end);
+    observations = reshape(observations.',[],1);
 
+    % Evaluate weights
+    %Weights = (GramMatrix'*GramMatrix)^(-1) * GramMatrix' * observations ;
+    Weights = GramMatrix \ observations ;
 
+    %% Evaluate the function at all the point
 
+    for i = 1:numel(P_check)
+
+        for j = 1:numel(T_check)
+
+            P = P_check(i)/Pc;
+            T = T_check(j)/Tc;
+
+            APP(i,j,k) = sum(Weights.*exp(- pdist2([P T], centers) / mu)');
+
+        end
+
+    end
+
+    %max(max(abs(Data-APP)))
+
+end
+
+%%
+for i=0:numel(MU_RBF)-1
+    subplot(numel(MU_RBF),3,3*i+1);
+    contourf(T_check,P_check,Data, 50, 'EdgeColor', 'none'); colormap jet; axis square tight; colorbar
+    title('Original function')
+    ylabel({['mu=',mat2str(MU_RBF(i+1))];'Pressure [bar]'})
+    xlabel('Temperature [K]')
+
+    subplot(numel(MU_RBF),3,3*i+2);
+    hold on
+    contourf(T_check,P_check,APP(:,:,i+1), 50, 'EdgeColor', 'none'); colormap jet; axis square tight; colorbar
+    scatter(Y*Tc, X*Pc, 'k','SizeData',0.1)
+    hold off
+    title('RBF')
+    ylabel('Pressure [bar]')
+    xlabel('Temperature [K]')
+
+    subplot(numel(MU_RBF),3,3*i+3);
+    hold on
+    contourf(T_check,P_check,Data-APP(:,:,i+1), 50, 'EdgeColor', 'none'); colormap jet; axis square tight; colorbar
+    scatter(Y*Tc, X*Pc, 'k','SizeData',0.1)
+    hold off
+    title('Difference')
+    ylabel('Pressure [bar]')
+    xlabel('Temperature [K]')
+end
+%}
+
+%% Test RBF - optimze mu
+
+mu = MX.sym('mu');
+
+Data = RHO(:,:,1);
+
+testpoint_P = 10;
+testpoint_T = 10;
+
+P_RBF = P_check(1:testpoint_P:end)/Pc;
+T_RBF = T_check(1:testpoint_T:end)/Tc;
+
+APP = MX(numel(P_check), numel(T_check));
+
+[X,Y] = meshgrid(P_RBF,T_RBF);
+centers = [X(:), Y(:)];
+distance = pdist2(centers,centers);
+
+% Kernel Function
+GramMatrix = exp( - distance / mu );
+
+% Weights
+observations = Data(1:testpoint_P:end, 1:testpoint_T:end);
+observations = reshape(observations.',[],1);
+
+% Evaluate weights
+disp(['Find the symbolic weights'])
+%Weights = (GramMatrix'*GramMatrix)^(-1) * GramMatrix' * observations ;
+tic
+Weights = GramMatrix \ observations ;
+toc
+
+%% Evaluate the function at all the point
+
+disp(['Create the matrix of data'])
+for i = 1:numel(P_check)
+    for j = 1:numel(T_check)
+        P = P_check(i)/Pc;
+        T = T_check(j)/Tc;
+        APP(i,j) = sum(Weights.*exp(- pdist2([P T], centers) / mu)');
+    end
+end
+
+%% Set the optimzation problem to find mu
+disp(['Set the structure of the NLP'])
+nlp = struct;            % NLP declaration
+nlp.x = mu;              % decision vars
+
+D = (Data-APP).^2;
+MSE = sum(D(:))/numel(Data);
+%MSE = norm(Data-APP,'fro')^2/numel(Data);
+nlp.f = MSE;               % objective - mean squared error
+
+disp(['Create the solver'])
+% Create solver instance
+F = nlpsol('F','ipopt',nlp);
+
+disp(['Solve NLP'])
+% Solve the problem using a guess
+tic
+res = F('x0',[1e-4]);
+toc
+
+%% Evaluate opt mu and corresponding weights
+APP_opt = nan(numel(P_check), numel(T_check));
+
+mu = full(res.x);
+disp(['The optimal value of mu is ',num2str(mu)])
+
+GramMatrix = exp( - distance / mu );
+tic
+Weights = GramMatrix \ observations ;
+toc
+
+%% Approximate the dataset
+for i = 1:numel(P_check)
+    for j = 1:numel(T_check)
+        P = P_check(i)/Pc;
+        T = T_check(j)/Tc;
+        APP_opt(i,j) = sum(Weights.*exp(- pdist2([P T], centers) / mu)');
+    end
+end
+
+%% Plot the results with opt mu and compare to the original data
+subplot(1,3,1);
+contourf(T_check,P_check, Data, 50, 'EdgeColor', 'none'); colormap jet; axis square tight; colorbar
+title('Original function')
+ylabel('Pressure [bar]')
+xlabel('Temperature [K]')
+
+subplot(1,3,2);
+hold on
+contourf(T_check,P_check,APP_opt, 50, 'EdgeColor', 'none'); colormap jet; axis square tight; colorbar
+scatter(Y*Tc, X*Pc, 'k')
+hold off
+title('RBF')
+ylabel('Pressure [bar]')
+xlabel('Temperature [K]')
+
+subplot(1,3,3);
+hold on
+contourf(T_check,P_check,Data-APP_opt, 50, 'EdgeColor', 'none'); colormap jet; axis square tight; colorbar
+scatter(Y*Tc, X*Pc, 'k')
+hold off
+title('Difference')
+ylabel('Pressure [bar]')
+xlabel('Temperature [K]')
