@@ -78,8 +78,8 @@ clc
 correlation_viscosity    = {'Amooey', 'Fenghour', 'Laesecke'};
 correlation_conductivity = {'Amooey', 'Bahadori', 'Jarrahian', 'Rostami', 'Rostamian', 'Huber'};
 
-T_check = linspace(Tc,1.1*Tc,100);
-P_check = linspace(Pc,1.5*Pc,100);
+T_check = linspace(Tc,1.1*Tc,20);
+P_check = linspace(Pc,1.5*Pc,20);
 %T_check = 50+273;
 %P_check = 90;
 
@@ -467,6 +467,7 @@ end
 
 %% Test RBF - optimze mu
 
+%{
 mu = MX.sym('mu');
 
 Data = RHO(:,:,1);
@@ -572,3 +573,213 @@ hold off
 title('Difference')
 ylabel('Pressure [bar]')
 xlabel('Temperature [K]')
+
+%}
+
+%% Test RBF - optimze mu and weights
+
+%{
+mu = MX.sym('mu');
+
+Data = RHO(:,:,1);
+
+trainpoint_P = 5;
+trainpoint_T = 5;
+
+P_RBF = P_check(1:trainpoint_P:end)/Pc;
+T_RBF = T_check(1:trainpoint_T:end)/Tc;
+
+w = MX.sym('w', numel(P_RBF)*numel(T_RBF) );
+
+APP = MX(numel(P_check), numel(T_check));
+
+[X,Y] = meshgrid(P_RBF,T_RBF);
+centers = [X(:), Y(:)];
+%distance = pdist2(centers,centers);
+
+%% Evaluate the function at all the point
+
+disp(['Create the matrix of data'])
+for i = 1:numel(P_check)
+    for j = 1:numel(T_check)
+        P = P_check(i)/Pc;
+        T = T_check(j)/Tc;
+        APP(i,j) = sum(w.*exp(- pdist2([P T], centers) / mu)');
+    end
+end
+
+%% Set the optimzation problem to find mu
+disp(['Set the structure of the NLP'])
+nlp = struct;            % NLP declaration
+nlp.x = [mu; w];              % decision vars
+
+D = (Data-APP).^2;
+MSE = sum(D(:))/numel(Data);
+%MSE = norm(Data-APP,'fro')^2/numel(Data);
+nlp.f = MSE;               % objective - mean squared error
+
+disp(['Create the solver'])
+% Create solver instance
+F = nlpsol('F','ipopt',nlp);
+
+disp(['Solve NLP'])
+% Solve the problem using a guess
+tic
+res = F('x0',[1; ones(numel(w),1)],'ubx',inf ,'lbx',[ 0; -inf*ones(numel(w),1) ] );
+toc
+
+%% Extract the solution
+solution = full(res.x);
+
+mu_opt  = solution(1);
+Weights_opt = solution(2:numel(w)+1);
+
+%% Evaluate opt mu and corresponding weights
+
+APP_opt = nan(numel(P_check), numel(T_check));
+
+%mu = full(res.x);
+%disp(['The optimal value of mu is ',num2str(mu)])
+
+%% Approximate the dataset
+for i = 1:numel(P_check)
+    for j = 1:numel(T_check)
+        P = P_check(i)/Pc;
+        T = T_check(j)/Tc;
+        APP_opt(i,j) = sum(Weights_opt.*exp(- pdist2([P T], centers) / mu_opt)');
+    end
+end
+
+%% Plot the results with opt mu and compare to the original data
+subplot(1,3,1);
+contourf(T_check,P_check, Data, 50, 'EdgeColor', 'none'); colormap jet; axis square tight; colorbar
+title('Original function')
+ylabel('Pressure [bar]')
+xlabel('Temperature [K]')
+
+subplot(1,3,2);
+hold on
+contourf(T_check,P_check,APP_opt, 50, 'EdgeColor', 'none'); colormap jet; axis square tight; colorbar
+scatter(Y*Tc, X*Pc, 'k')
+hold off
+title('RBF')
+ylabel('Pressure [bar]')
+xlabel('Temperature [K]')
+
+subplot(1,3,3);
+hold on
+contourf(T_check,P_check,Data-APP_opt, 50, 'EdgeColor', 'none'); colormap jet; axis square tight; colorbar
+scatter(Y*Tc, X*Pc, 'k')
+hold off
+title('Difference')
+ylabel('Pressure [bar]')
+xlabel('Temperature [K]')
+
+%}
+
+%% Test RBF - optimze mu, weights and the location
+
+mu = MX.sym('mu');
+
+Data = RHO(:,:,1);
+
+RBF = 5;
+
+P_RBF = MX.sym('P_RBF', RBF );
+T_RBF = MX.sym('T_RBF', RBF );
+
+w = MX.sym('w', numel(P_RBF)*numel(T_RBF) );
+
+APP = MX(numel(P_check), numel(T_check));
+
+[X,Y] = meshgrid(P_RBF,T_RBF);
+centers = [X(:), Y(:)];
+
+%% Evaluate the function at all the point
+
+disp(['Create the matrix of data'])
+for i = 1:numel(P_check)
+    for j = 1:numel(T_check)
+        P = P_check(i)/Pc;
+        T = T_check(j)/Tc;
+        distance = sqrt(( centers(:,1)-P).^2 + (centers(:,2)-T).^2);
+        APP(i,j) = sum(w.*exp(- distance / mu));
+    end
+end
+
+%% Set the optimzation problem to find mu
+disp(['Set the structure of the NLP'])
+nlp = struct;            % NLP declaration
+nlp.x = [mu; w; P_RBF; T_RBF];              % decision vars
+
+D = (Data-APP).^2;
+MSE = sum(D(:))/numel(Data);
+%MSE = norm(Data-APP,'fro')^2/numel(Data);
+nlp.f = MSE;               % objective - mean squared error
+
+disp(['Create the solver'])
+% Create solver instance
+F = nlpsol('F','ipopt',nlp);
+
+disp(['Solve NLP'])
+% Solve the problem using a guess
+tic
+res = F('x0',[1; ones(RBF*RBF,1)*1e2; ones(2*RBF,1) ] ,'ubx',[inf; inf*ones(RBF*RBF,1); P_check(end)*ones(RBF,1)/Pc; T_check(end)*ones(RBF,1)/Tc] ,'lbx',[ 0; -inf*ones(RBF*RBF,1); P_check(1)*ones(RBF,1)/Pc; T_check(1)*ones(RBF,1)/Tc ] );
+toc
+
+%% Extract the solution
+solution = full(res.x);
+
+mu_opt  = solution(1);
+Weights_opt = solution(2:numel(w)+1);
+
+P_RBF_opt = solution(1+end-RBF-RBF:end-RBF);
+T_RBF_opt = solution(1+end-RBF:end);
+
+[X_opt,Y_opt] = meshgrid(P_RBF_opt,T_RBF_opt);
+centers_opt = [X_opt(:), Y_opt(:)];
+distance_opt = pdist2(centers_opt,centers_opt);
+
+%% Evaluate opt mu and corresponding weights
+
+APP_opt = nan(numel(P_check), numel(T_check));
+
+%mu = full(res.x);
+%disp(['The optimal value of mu is ',num2str(mu)])
+
+%% Approximate the dataset
+for i = 1:numel(P_check)
+    for j = 1:numel(T_check)
+        P = P_check(i)/Pc;
+        T = T_check(j)/Tc;
+        
+        APP_opt(i,j) = sum(Weights_opt.*exp(- pdist2([P T], centers_opt) / mu_opt)');
+    end
+end
+
+%% Plot the results with opt mu and compare to the original data
+subplot(1,3,1);
+contourf(T_check,P_check, Data, 50, 'EdgeColor', 'none'); colormap jet; axis square tight; colorbar
+title('Original function')
+ylabel('Pressure [bar]')
+xlabel('Temperature [K]')
+
+subplot(1,3,2);
+hold on
+contourf(T_check,P_check,APP_opt, 50, 'EdgeColor', 'none'); colormap jet; axis square tight; colorbar
+scatter(Y_opt*Tc, X_opt*Pc, 'k')
+hold off
+title('RBF')
+ylabel('Pressure [bar]')
+xlabel('Temperature [K]')
+
+subplot(1,3,3);
+hold on
+contourf(T_check,P_check,Data-APP_opt, 50, 'EdgeColor', 'none'); colormap jet; axis square tight; colorbar
+scatter(Y_opt*Tc, X_opt*Pc, 'k')
+hold off
+title('Difference')
+ylabel('Pressure [bar]')
+xlabel('Temperature [K]')
+
+%}
