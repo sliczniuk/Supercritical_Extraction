@@ -811,7 +811,7 @@ for i = 1:RBF
     mu = centers_opt(i,:);
     Sigma =  [mu_opt(1) 1 ; 1 mu_opt(1)];
     %[X,Y] = meshgrid( T_min(1):.1:T_max(1) , P_min(1):.1:P_max(1) );
-    [X,Y] = meshgrid( -10:.1:10 , -10:.1:10 );
+    [X,Y] = meshgrid( -5:.1:5 , -5:.1:5 );
     p = mvnpdf([X(:) Y(:)],mu,Sigma);
     p = reshape(p,size(X));
     contour(X,Y,p)
