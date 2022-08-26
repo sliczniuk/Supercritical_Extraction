@@ -78,12 +78,13 @@ clc
 correlation_viscosity    = {'Amooey', 'Fenghour', 'Laesecke'};
 correlation_conductivity = {'Amooey', 'Bahadori', 'Jarrahian', 'Rostami', 'Rostamian', 'Huber'};
 
-T_check = linspace(Tc,1.1*Tc,20);
-P_check = linspace(Pc,1.5*Pc,20);
-%T_check = 50+273;
-%P_check = 90;
+%T_check = linspace(Tc,1.1*Tc,20);
+%P_check = linspace(Pc,1.5*Pc,20);
+T_check = [0.9*Tc, 0.95*Tc,0.99*Tc, Tc, 1.01*Tc, 1.05*Tc];
+P_check = [0.1*Pc, 0.5*Pc,0.75*Pc, Pc, 1.10*Pc];
 
-
+N_polynomial = linspace(0,1,100);
+pol = nan(numel(P_check), numel(T_check), numel(N_polynomial) );
 Z   = nan(numel(P_check), numel(T_check), 3 );
 RHO = nan(numel(P_check), numel(T_check), 3 );
 CP  = nan(numel(P_check), numel(T_check), 3 );
@@ -114,10 +115,13 @@ for i = 1:numel(P_check)
 
         z = z(real(z)>0&imag(z)==0);
 
+        f = @(z) z.^3 - (1 - B)*z.^2 + (A - 2.*B - 3.*B.^2).*z + - ( A .* B - B.^2 - B.^3);
+        pol(i,j,:) = f(N_polynomial);
+
         if numel(z) == 1
             Z(i,j,1) = z;
         else
-            Z(i,j,1) = max(z);
+            Z(i,j,2) = max(z);
             Z(i,j,3) = min(z);
         end
 
@@ -126,14 +130,14 @@ for i = 1:numel(P_check)
         if numel(z) == 1
             RHO(i,j,1) = rho;
         else
-            RHO(i,j,1) = max(rho);
+            RHO(i,j,2) = max(rho);
             RHO(i,j,3) = min(rho);
         end
 
         if numel(z) == 1
             CP(i,j,1) = SpecificHeatComp(T, P, z, rho, parameters);
         else
-            CP(i,j,1) = SpecificHeatComp(T, P, max(z), max(rho), parameters);
+            CP(i,j,2) = SpecificHeatComp(T, P, max(z), max(rho), parameters);
             CP(i,j,3) = SpecificHeatComp(T, P, min(z), min(rho), parameters);
         end
 
@@ -159,6 +163,7 @@ for i = 1:numel(P_check)
 
     end
 end
+
 
 %% Plotting
 
@@ -337,6 +342,38 @@ end
 print(gcf, '-dpdf', '-fillpage', 'KT.pdf'); close all
 
 %}
+
+%% Plot polynomial
+
+set(gcf,'PaperOrientation','landscape', 'visible','off')
+
+count = numel(P_check)-1;
+
+for i = 1:numel(P_check)
+    if mod(i,round(numel(P_check)/100)) == 0
+        clc
+        fprintf('%f %%\n',i/numel(P_check)*100)
+    end
+
+    for j = 1:numel(T_check)
+        
+        T = T_check(j);
+        P = P_check(i);
+        subplot(numel(P_check), numel(T_check), count*numel(T_check) + j )
+        axis square tight; 
+        title([num2str(T-273.15),'[C],',num2str(P),'[bar]'],'FontSize',8)
+        hold on
+        scatter(Z(i,j,1),0,'k','o')
+        scatter(Z(i,j,2),0,'k','o')
+        scatter(Z(i,j,3),0,'k','o')
+        yline(0)
+        plot(N_polynomial, squeeze( pol(i,j,:) ))
+        hold off
+
+    end
+    count = count - 1;
+end
+print(gcf, '-dpdf', '-fillpage', 'Polynomials.pdf'); close all
 
 %% Test RBF - one value
 
@@ -678,7 +715,7 @@ xlabel('Temperature [K]')
 %}
 
 %% Test RBF - optimze mu, weights and the location
-
+%{
 Data = Z(:,:,1);
 
 RBF = 15;
@@ -799,7 +836,6 @@ title('Difference')
 ylabel('Pressure [bar]')
 xlabel('Temperature [K]')
 
-%}
 
 %%
 
@@ -820,3 +856,5 @@ end
 yline(1)
 xline(1)
 hold off
+
+%}
