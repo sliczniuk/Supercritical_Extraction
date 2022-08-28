@@ -1,7 +1,7 @@
 clc, close all
 clear all
-%addpath('C:\dev\casadi-windows-matlabR2016a-v3.5.5');
-addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-windows-matlabR2016a-v3.5.1');
+addpath('C:\dev\casadi-windows-matlabR2016a-v3.5.5');
+%addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-windows-matlabR2016a-v3.5.1');
 import casadi.*
 
 %% Parameters
@@ -80,8 +80,10 @@ correlation_conductivity = {'Amooey', 'Bahadori', 'Jarrahian', 'Rostami', 'Rosta
 
 %T_check = linspace(Tc,1.1*Tc,20);
 %P_check = linspace(Pc,1.5*Pc,20);
-T_check = [0.9*Tc, 0.95*Tc,0.99*Tc, Tc, 1.01*Tc, 1.05*Tc];
-P_check = [0.1*Pc, 0.5*Pc,0.75*Pc, Pc, 1.10*Pc];
+T_check = 290:0.1:350;
+P_check = [73.733, 80, 85, 90];
+%T_check = [0.9*Tc, 0.95*Tc,0.99*Tc, Tc, 1.01*Tc, 1.05*Tc];
+%P_check = [0.1*Pc, 0.5*Pc,0.75*Pc, Pc, 1.10*Pc];
 
 N_polynomial = linspace(0,1,100);
 pol = nan(numel(P_check), numel(T_check), numel(N_polynomial) );
@@ -166,7 +168,23 @@ end
 
 
 %% Plotting
+clc
 
+rho_check = 1:1000;
+T_check = [305, 308, 315, 323.15, 348.15];
+
+KT  = nan(numel(rho_check), numel(T_check));
+
+for i = 1:numel(T_check)
+    for j = 1:numel(rho_check)
+
+        T = T_check(i);
+        rho = rho_check(j);
+
+        KT(j,i) = HeatConductivity_Comp(T, Pc, 0.53, rho, parameters, correlation_conductivity{6});
+    end
+end
+plot(rho_check, KT)
 %{
 
 % Compressibility
@@ -305,11 +323,13 @@ for i=0:numel(correlation_viscosity)-1
 end
 print(gcf, '-dpdf', '-fillpage', 'MU.pdf'); close all
 
+%}
 
+%{
 % kt
 
 figure(5)
-set(gcf, 'visible','off')
+set(gcf, 'visible','on')
 
 for i=0:numel(correlation_conductivity)-1
     subplot(numel(correlation_conductivity),3,3*i+1); contourf(T_check,P_check,squeeze(KT(:,:,1,i+1)), 50, 'EdgeColor', 'none'); colormap jet; axis square tight; 
@@ -339,12 +359,14 @@ for i=0:numel(correlation_conductivity)-1
     ylabel('Pressure [bar]')
     xlabel('Temperature [K]')
 end
-print(gcf, '-dpdf', '-fillpage', 'KT.pdf'); close all
+
+%print(gcf, '-dpdf', '-fillpage', 'KT.pdf'); close all
 
 %}
 
 %% Plot polynomial
 
+%{
 set(gcf,'PaperOrientation','landscape', 'visible','off')
 
 count = numel(P_check)-1;
@@ -374,6 +396,7 @@ for i = 1:numel(P_check)
     count = count - 1;
 end
 print(gcf, '-dpdf', '-fillpage', 'Polynomials.pdf'); close all
+%}
 
 %% Test RBF - one value
 

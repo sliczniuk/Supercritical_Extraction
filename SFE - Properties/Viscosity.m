@@ -50,7 +50,6 @@ switch correlation
 
         mu         = mu_zero + mu_excess; % /* uPa.s*/
 
-        %mu         = mu*1.e-6 ;           % /* Pa.s*/
 
     case 'Laesecke'
 
