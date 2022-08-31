@@ -1,4 +1,4 @@
-function Cp = SpecificHeatComp(T, P, Z, RHO, theta)
+function [Cp, Cv] = SpecificHeatComp(T, P, Z, RHO, theta)
 
     % Specific heat equations
     % https://cheguide.com/specific_heat_ratio.html
@@ -9,7 +9,7 @@ function Cp = SpecificHeatComp(T, P, Z, RHO, theta)
     %% Parameters
     Tc      = theta{10};         % Critical temperature [K]
     Pc      = theta{11};         % Critical pressure [bar]
-    R       = theta{12};    % Universal gas constant, [m3-bar/K-mol]
+    R       = theta{12};    % Universal gas constant, [cm3-bar/K-mol]
     kappa   = theta{13};
     MW      = theta{14};         % Molar mass [g/mol]       
     CP_0    = theta{17};     

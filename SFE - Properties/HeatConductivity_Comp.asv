@@ -115,7 +115,7 @@ function k = HeatConductivity_Comp(T,P,Z,rho, mu, theta, correlation)
 
             Delta_k_c_1 = (-17.47 - 44.88 * Delta_Tc) / ( 0.8563 - exp(8.865*Delta_Tc + 4.16*Delta_rho_c^2 + 2.302*Delta_Tc*Delta_rho_c - Delta_rho_c^3) - 0.4503*Delta_rho_c - 7.197*Delta_Tc );
 
-            k = k0 + Delta_k + Delta_k_c_1;
+            k = [k0, Delta_k, Delta_k_c_1];
             %k = Delta_k;
 
         otherwise
