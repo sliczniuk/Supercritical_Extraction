@@ -133,7 +133,7 @@ disp(['Solve NLP'])
 % Solve the problem 
 
 tic
-res = F('x0',[ones(numel(mu),1); ones(numel(w),1); P_0; T_0 ] ,'ubx',inf,'lbx',[ 0.1*ones(numel(mu),1); 0*ones(numel(w),1); T_min(1)*ones(RBF,1); P_min(1)*ones(RBF,1) ] );
+res = F('x0',[ones(numel(mu),1); ones(numel(w),1); P_0; T_0 ] ,'ubx',[ inf*ones(numel(mu),1); inf*ones(numel(w),1); T_max(1)*ones(RBF,1); P_max(1)*ones(RBF,1) ],'lbx',[ 0.1*ones(numel(mu),1); 0*ones(numel(w),1); T_min(1)*ones(RBF,1); P_min(1)*ones(RBF,1) ] );
 toc
 
 %% Extract the solution
@@ -165,8 +165,8 @@ xlabel('Number of points')
 
 %% 
 
-T_check   = linspace(T_min(1),T_max(1),400)/Tc;
-P_check   = linspace(P_min(1),P_max(1),500)/Pc;
+T_check   = linspace(T_min(1),T_max(1),400);
+P_check   = linspace(P_min(1),P_max(1),500);
 
 MU_test   = nan(numel(P_check), numel(T_check));
 
@@ -210,7 +210,7 @@ scatter(T_train,P_train,Data,'MarkerEdgeColor',[0 .5 .5],...
 plot( [T_RBF_opt T_0 ]' , [P_RBF_opt P_0]' ,'--w' )
 
 hold off
-ylabel('Density [kg/m3]')
+ylabel('Pressure [bar]')
 xlabel('Temperature [K]')
 
 %%
@@ -228,7 +228,7 @@ P_check = linspace(0.1, 200,500);
 Z       = nan(numel(P_check), numel(T_check), 3 );
 RHO     = nan(numel(P_check), numel(T_check), 3 );
 MU      = nan(numel(P_check), numel(T_check), 3, numel(correlation_viscosity) );
-MU_RBF  = nan(numel(P_check), numel(T_check), 3 );
+MU_RBF  = nan(numel(P_check), numel(T_check));
 
 for i = 1:numel(P_check)
 
@@ -281,16 +281,9 @@ for i = 1:numel(P_check)
             end
         end
 
-        if numel(z) == 1
-            distance_opt = sqrt(( centers_opt(:,1)-rho/rho_c).^2 + (centers_opt(:,2)-T/Tc).^2);
-            MU_RBF(i,j,1)   = sum(Weights_opt.*exp(- distance_opt ./ mu_opt));
-        else
-            distance_opt = sqrt(( centers_opt(:,1)-max(rho)/rho_c).^2 + (centers_opt(:,2)-T/Tc).^2);
-            MU_RBF(i,j,2)   = sum(Weights_opt.*exp(- distance_opt ./ mu_opt));
+        distance_opt = sqrt(( centers_opt(:,1)-P/Pc).^2 + (centers_opt(:,2)-T/Tc).^2);
+        MU_RBF(i,j)   = sum(Weights_opt.*exp(- distance_opt ./ mu_opt));
 
-            distance_opt = sqrt(( centers_opt(:,1)-min(rho)/rho_c).^2 + (centers_opt(:,2)-T/Tc).^2);
-            MU_RBF(i,j,3)   = sum(Weights_opt.*exp(- distance_opt ./ mu_opt));
-        end
     end
 end
 

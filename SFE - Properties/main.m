@@ -1,7 +1,7 @@
 clc, close all
 clear all
-addpath('C:\dev\casadi-windows-matlabR2016a-v3.5.5');
-%addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-windows-matlabR2016a-v3.5.1');
+%addpath('C:\dev\casadi-windows-matlabR2016a-v3.5.5');
+addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-windows-matlabR2016a-v3.5.1');
 import casadi.*
 
 %% Parameters
@@ -78,10 +78,10 @@ clc
 correlation_viscosity    = {'Amooey', 'Fenghour', 'Laesecke'};
 correlation_conductivity = {'Amooey', 'Bahadori', 'Jarrahian', 'Rostami', 'Rostamian', 'Huber'};
 
-%T_check = linspace(250,800,200);
-%P_check = linspace(1,100,250);
-T_check = Tc;
-P_check = Pc;
+T_check = linspace(Tc,350,50);
+P_check = linspace(Pc,100,50);
+%T_check = Tc;
+%P_check = Pc;
 %T_check = [0.85*Tc, 0.95*Tc, 0.99*Tc,     Tc,  1.01*Tc, 1.05*Tc, ];
 %P_check = [0.01*Pc, 0.10*Pc, 0.25*Pc, 0.50*Pc, 0.75*Pc,      Pc, 1.10*Pc, 1.5*Pc];
 
@@ -169,7 +169,7 @@ end
 
 %% Plotting
 clc
-
+%{
 rho_check = 1:1200;
 T_check = 303:0.01:306;
 
@@ -754,7 +754,7 @@ xlabel('Temperature [K]')
 %}
 
 %% Test RBF - optimze mu, weights and the location
-%{
+
 Data = Z(:,:,1);
 
 RBF = 15;
@@ -793,7 +793,7 @@ for i = 1:numel(P_check)
 end
 
 %% Set the optimzation problem to find mu
-disp(['Set the structure of the NLP'])
+
 nlp = struct;            % NLP declaration
 nlp.x = [mu; w; P_RBF; T_RBF];              % decision vars
 
@@ -802,16 +802,13 @@ MSE = sum(D(:))/numel(Data);
 %MSE = norm(Data-APP,'fro')^2/numel(Data);
 nlp.f = MSE;               % objective - mean squared error
 
-disp(['Create the solver'])
 % Create solver instance
 F = nlpsol('F','ipopt',nlp);
 
 
-disp(['Solve NLP'])
 % Solve the problem 
-
 tic
-res = F('x0',[ones(numel(mu),1); ones(numel(w),1); P_0; T_0 ] ,'ubx',[inf*ones(numel(mu),1); inf*ones(numel(w),1); P_max; T_max] ,'lbx',[ zeros(numel(mu),1); -inf*ones(numel(w),1); P_min; T_min ] );
+res = F('x0',[ones(numel(mu),1); ones(numel(w),1); P_0; T_0 ] ,'ubx',[inf*ones(numel(mu),1); inf*ones(numel(w),1); 1.05*P_max; 1.05*T_max] ,'lbx',[ zeros(numel(mu),1); -inf*ones(numel(w),1); 0.95*P_min; 0.95*T_min ] );
 toc
 
 %% Extract the solution
@@ -877,7 +874,7 @@ xlabel('Temperature [K]')
 
 
 %%
-
+%{
 figure(2)
 axis square tight
 
