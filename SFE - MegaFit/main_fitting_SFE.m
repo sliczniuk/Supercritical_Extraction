@@ -75,11 +75,11 @@ sigma_km = 0.3;
 mu_km    = 0.1;
 Di_slack = 1;
 
-%                 1        2    3    4    5  6     7   8   9   10  11  12   13   14   15      16       17    18    19    20    21    22      23        24      25        26       27      28       29        30        31       32       33       34      35       36        37      38       39       40      41        42       43      44        45   
+%                 1        2    3    4    5  6     7   8   9   10  11  12   13   14   15      16       17    18    19    20    21    22      23        24      25        26       27      28       29        30        31       32       33       34      35       36        37      38       39       40      41        42       43      44        45
 parameters = {nstages, C0solid, V, epsi, dp, L, rho_s, km, mi, Tc, Pc, R, kappa, MW, EA_Di, betah_Di, CP_0, CP_A, CP_B, CP_C, CP_D, EA_km, betah_km, cpSolid, a_axial, b_axial, c_axial, A1_cond, A2_cond, A3_cond, A4_cond, A5_cond, A6_cond, A7_cond, A1_visc, A2_visc, A3_visc, A4_visc, A5_visc, A6_visc, A7_visc, A8_visc, A9_visc, Di_slack, sigma };
-which_parameter= {8,44,45};
-theta = parameters;
-close all
+%which_parameter= {8,44,45};
+%theta = parameters;
+%close all
 
 %% Time
 simulationTime       = 150;                                                 % Minutes
@@ -97,40 +97,73 @@ N_Delay              = delayTime / timeStep;
 % Create symbolic variables
 u  = MX.sym('u', 3);
 x  = MX.sym('x', 3*nstages+1);
-k  = MX.sym('k', length(which_parameter));
+k  = MX.sym('k', 7);
 
 %Variables
-Nx = 3*nstages+1;
-Nu = 3;
-Nk = length(which_parameter);
+Nx = numel(x);
+Nu = numel(u);
+Nk = numel(k);
 Ny = 1;
 
 %% Model
 % Model Equations
-f = @(x, u, k) modelSFE_SS(x, u, k, parameters, which_parameter);
+%f = @(x, u, k) modelSFE_SS(x, u, k, parameters, which_parameter);
+f = @(x, u, k) modelSFE_SS(x, u, k, parameters);
 %g = @(x) modelSFE_out(x, parameters);
-g = @(x, u, y_old) modelSFE_out2(x, u, y_old, parameters, timeStep_in_sec);
+%g = @(x, u, y_old) modelSFE_out2(x, u, y_old, parameters, timeStep_in_sec);
 
 % Integrator
 F = buildIntegrator_ParameterEstimation(f, [Nx,Nu,Nk] , timeStep_in_sec);
 
 %% dummy parameters
 RHO = [];
-k0 = [0.1;1;1];
-KOUT = k0;
+%k0 = [74.1;-0.2531;0.1135;-2.0254;0.006775;0.0005716;1];
+k0 = [ -0.7228; 0.0023; 0.0001; -1.3880; -0.1570; 0.2527; 0.0031]*1e3;
+%k0= ones(1,numel(k));
+%k0 = [ 0.9966; -0.0958; 0.1803; 1.0000; 0.9997;  7.6407];
 
-Operating_Conditions_experiments = nan(2,numel(DATA));
+OCP_solver = casadi.Opti();
 
- %%
+% http://www.diva-portal.se/smash/get/diva2:956377/FULLTEXT01.pdf
+nlp_opts = struct;
+nlp_opts.ipopt.max_iter = 100;
+%nlp_opts.ipopt.acceptable_iter = 50;
+%nlp_opts.ipopt.acceptable_tol = 1e-6;
+%nlp_opts.ipopt.tol = 1e-7;
+
+ocp_opts = {'nlp_opts', nlp_opts};
+OCP_solver.solver('ipopt',nlp_opts)
+J = 0;
+
+%%
+OCP = struct('Nx', Nx, 'Nu', Nu, 'Nk', Nk, 'Ny', Ny, 'N', length(Time_in_sec), ...
+    'x_lu', [],  ...                % 0*ones(Nx,1) inf*ones(Nx,1)
+    'k_lu', [],  ...                % 0*ones(Nk,1) [1.5;inf;inf]; 0*ones(Nk,1) inf*ones(Nk,1); 0*ones(Nk,1) inf*ones(Nk,1) 
+    'x_eq', [], ...
+    'k_eq', [], ...
+    'N_Sample', N_Sample,...
+    'N_Delay', N_Delay,...
+    'F'   , F, ...
+    'L'   , [], ...       %
+    'LS'  , @(x) sum( (x-data2) .^2 ),...
+    'MSE', @(x,sigma_MSE, data2) -(-length(data2)/2*log(2*pi*sigma_MSE^2) - 1/(2*sigma_MSE^2) * sum( (x-data2) .^2 )), ...                 %'Lf'  , @(x,yd) sum( (g(x)-yd).^2 )   );   % 0.5*( sum(g(x)-yd) )'*( sum(g(x)-yd) ) %'Lf'  , @(x,yd) sum( (g(x)-yd).^2 )   );   % 0.5*( sum(g(x)-yd) )'*( sum(g(x)-yd) )
+    'MAP', @(x,km,sigma_MSE, data2) -( -length(data2)/2*log(2*pi*sigma_MSE^2) - 1/(2*sigma_MSE^2) * sum( (x-data2) .^2 ) - 1/2*log(2*pi*sigma_km^2) - 1/(2*sigma_km^2) * sum( (km-mu_km) .^2 )  ) ...
+    );
+
+K = OCP_solver.variable(OCP.Nk);
+
+%X = MX(OCP.Nx,OCP.N+1,2);
+
+%%
 for i = 1:numel(DATA)
+    
     load(DATA{i});
-    Operating_Conditions_experiments(:,i) = [T0homog;feedPress(1)];
 
     %T0homog   = 50 + 273.15;                             % Extractor initial temperature (pseudo-homogeneous)
     feedTemp  = T0homog      * ones(1,length(Time_in_sec));  % Kelvin
     feedPress = feedPress(1) * ones(1,length(Time_in_sec));  % Bars
 
-    Z = Compressibility(T0homog, feedPress(1), parameters);
+    Z   = Compressibility(T0homog, feedPress(1), parameters);
     rho = full(rhoPB_Comp(T0homog, feedPress(1), Z, parameters));
     RHO = [RHO, rho];
 
@@ -144,36 +177,60 @@ for i = 1:numel(DATA)
 
     uu = [feedTemp', feedPress', feedFlow'];
 
-    data2 = data;
+    X = [MX(x0) zeros(OCP.Nx,OCP.N)];
 
-    %%
-    OCP = struct('Nx', Nx, 'Nu', Nu, 'Nk', Nk, 'Ny', Ny, 'N', length(Time_in_sec), ...
-        'x_lu', [],  ...                % 0*ones(Nx,1) inf*ones(Nx,1)
-        'k_lu', [0*ones(Nk,1) inf*ones(Nk,1) ],  ...                % 0*ones(Nk,1) [1.5;inf;inf]; 0*ones(Nk,1) inf*ones(Nk,1)
-        'x_eq', [], ...
-        'k_eq', [], ...
-        'N_Sample', N_Sample,...
-        'N_Delay', N_Delay,...
-        'F'   , F, ...
-        'L'   , [], ...       %
-        'LS'  , @(x) sum( (x-data2) .^2 ),...
-        'MSE', @(x,sigma_MSE) -(-length(data2)/2*log(2*pi*sigma_MSE^2) - 1/(2*sigma_MSE^2) * sum( (x-data2) .^2 )), ...                 %'Lf'  , @(x,yd) sum( (g(x)-yd).^2 )   );   % 0.5*( sum(g(x)-yd) )'*( sum(g(x)-yd) ) %'Lf'  , @(x,yd) sum( (g(x)-yd).^2 )   );   % 0.5*( sum(g(x)-yd) )'*( sum(g(x)-yd) )
-        'MAP', @(x,km,sigma_MSE) -( -length(data2)/2*log(2*pi*sigma_MSE^2) - 1/(2*sigma_MSE^2) * sum( (x-data2) .^2 ) - 1/2*log(2*pi*sigma_km^2) - 1/(2*sigma_km^2) * sum( (km-mu_km) .^2 )  ) ...
-        );
+    yout = MX(zeros(OCP.Ny,OCP.N+1));
 
+    %g = @(x, u, y_old) modelSFE_out2(x, u, y_old, parameters, timeStep_in_sec);
 
-    %% Solve optimization problem
-    [~, kout] = singleShooting_ParameterEstimation(OCP, x0, uu',  KOUT(:,1),  parameters);
-    KOUT = [KOUT, kout];
-    
+    for j=1:OCP.N
+        %J=J+OCP.L(U(:,j));
+        X(:,j+1)=OCP.F(X(:,j),uu(j,:),K);
+        %yout(:,j+1) = g(X(:,j+1), u(:,j), yout(:,j));
+    end
+
+    %data = yy(1:N_Sample:end);
+    sol = X(3*nstages+1,:);
+    sol = [zeros(1,OCP.N_Delay) sol(1:end-OCP.N_Delay)];
+    sol = sol(1:OCP.N_Sample:end);
+
+    %J = J + OCP.LS(data);
+    J = J + OCP.MSE(sol,K(end),data);
+    %J = J + OCP.MAP(sol,K(1),K(end),data);
+
 end
-KOUT = KOUT(:,2:end);
+
+% parameter constraints
+if ~isempty(OCP.k_lu)
+    for nk=1:OCP.Nk
+        OCP_solver.subject_to(OCP.k_lu(nk,1)<=K(nk,:)<= OCP.k_lu(nk,2));
+    end
+end
+
+OCP_solver.minimize(J);
+OCP_solver.set_initial(K, k0);
+
+try
+    sol = OCP_solver.solve();
+    kout = sol.value(K);
+catch
+    kout = OCP_solver.debug.value(K);
+end
+
+%%
+
+%Di = @(T,P) kout(1) + kout(2).*T + kout(3).*P ;
+
+%[~, kout] = singleShooting_ParameterEstimation(OCP, x0, uu',  KOUT(:,1),  parameters);
+%KOUT = [KOUT, kout];
+
+%KOUT = KOUT(:,2:end);
 
 %% plot the parameter fitting
-plot_fitting(DATA, Time_in_sec, RHO, F, g, x0, KOUT, which_parameter, N_Delay, N_Sample, theta, 'print_of');
+%plot_fitting(DATA, Time_in_sec, RHO, F, g, x0, KOUT, which_parameter, N_Delay, N_Sample, theta, 'print_of');
 
 %% fit the parameters from different operating conditions
-[Regression_SFE] = linear_regression_SFE(KOUT,RHO,Operating_Conditions_experiments, 'print_of');
+%[Regression_SFE] = linear_regression_SFE(KOUT,RHO,Operating_Conditions_experiments, 'print_of');
 
 %% Model with regression
 %regression_fitting_results(DATA, Time_in_sec, nstages, RHO, x, u, k, F, g, x0, KOUT, which_parameter, N_Delay, N_Sample, theta, Regression_SFE, 'print_off')
