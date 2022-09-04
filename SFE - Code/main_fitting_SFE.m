@@ -70,26 +70,25 @@ A7_visc =  6.519333E-6;
 A8_visc = -3.567559E-1;
 A9_visc =  3.180473E-2;
 
-sigma   = 1;
-sigma_km = 5;
-mu_km    = 1;
-Di_slack = 7e-12;
-Dx = 0.0001;
+sigma    = 1;
+sigma_km = 0.3;
+mu_km    = 0.1;
+Di_slack = 1;
 
-%                 1        2    3    4    5  6     7   8   9   10  11  12   13   14   15      16       17    18    19    20    21    22      23        24      25        26       27      28       29        30        31       32       33       34      35       36        37      38       39       40      41        42       43      44   45   46
-parameters = {nstages, C0solid, V, epsi, dp, L, rho_s, km, mi, Tc, Pc, R, kappa, MW, EA_Di, betah_Di, CP_0, CP_A, CP_B, CP_C, CP_D, EA_km, betah_km, cpSolid, a_axial, b_axial, c_axial, A1_cond, A2_cond, A3_cond, A4_cond, A5_cond, A6_cond, A7_cond, A1_visc, A2_visc, A3_visc, A4_visc, A5_visc, A6_visc, A7_visc, A8_visc, A9_visc, Di_slack, Dx ,sigma };
-which_parameter= {8,44,45,46};
+%                 1        2    3    4    5  6     7   8   9   10  11  12   13   14   15      16       17    18    19    20    21    22      23        24      25        26       27      28       29        30        31       32       33       34      35       36        37      38       39       40      41        42       43      44        45   
+parameters = {nstages, C0solid, V, epsi, dp, L, rho_s, km, mi, Tc, Pc, R, kappa, MW, EA_Di, betah_Di, CP_0, CP_A, CP_B, CP_C, CP_D, EA_km, betah_km, cpSolid, a_axial, b_axial, c_axial, A1_cond, A2_cond, A3_cond, A4_cond, A5_cond, A6_cond, A7_cond, A1_visc, A2_visc, A3_visc, A4_visc, A5_visc, A6_visc, A7_visc, A8_visc, A9_visc, Di_slack, sigma };
+which_parameter= {8,44,45};
 theta = parameters;
 close all
 
 %% Time
 simulationTime       = 150;                                                 % Minutes
 delayTime            = 2;                                                   % Minutes
-timeStep             = 1;                                                 % Minutes
+timeStep             = 1;                                                   % Minutes
 timeStep_in_sec      = timeStep *60;                                        % Seconds
-Time_in_sec          = (timeStep:timeStep:simulationTime)*60;          % Seconds
-Time                 = [0 Time_in_sec/60];                                   % Minutes
-SamplingTime         = 5;                                                  % Minutes
+Time_in_sec          = (timeStep:timeStep:simulationTime)*60;               % Seconds
+Time                 = [0 Time_in_sec/60];                                  % Minutes
+SamplingTime         = 5;                                                   % Minutes
 N_Sample             = find(abs(Time-SamplingTime) < timeStep/10)-1;
 N_Delay              = delayTime / timeStep;
 
@@ -117,7 +116,7 @@ F = buildIntegrator_ParameterEstimation(f, [Nx,Nu,Nk] , timeStep_in_sec);
 
 %% dummy parameters
 RHO = [];
-k0 = [1;1;1;1];
+k0 = [0.1;1;1];
 KOUT = k0;
 
 Operating_Conditions_experiments = nan(2,numel(DATA));
@@ -150,7 +149,7 @@ for i = 1:numel(DATA)
     %%
     OCP = struct('Nx', Nx, 'Nu', Nu, 'Nk', Nk, 'Ny', Ny, 'N', length(Time_in_sec), ...
         'x_lu', [],  ...                % 0*ones(Nx,1) inf*ones(Nx,1)
-        'k_lu', [0*ones(Nk,1) inf*ones(Nk,1)],  ...                % 0*ones(Nk,1) [1.5;inf;inf]; 0*ones(Nk,1) inf*ones(Nk,1)
+        'k_lu', [0*ones(Nk,1) inf*ones(Nk,1) ],  ...                % 0*ones(Nk,1) [1.5;inf;inf]; 0*ones(Nk,1) inf*ones(Nk,1)
         'x_eq', [], ...
         'k_eq', [], ...
         'N_Sample', N_Sample,...
@@ -166,14 +165,15 @@ for i = 1:numel(DATA)
     %% Solve optimization problem
     [~, kout] = singleShooting_ParameterEstimation(OCP, x0, uu',  KOUT(:,1),  parameters);
     KOUT = [KOUT, kout];
+    
 end
 KOUT = KOUT(:,2:end);
 
 %% plot the parameter fitting
-plot_fitting(DATA, Time_in_sec, RHO, F, g, x0, KOUT, which_parameter, N_Delay, N_Sample, theta, 'print_on');
+plot_fitting(DATA, Time_in_sec, RHO, F, g, x0, KOUT, which_parameter, N_Delay, N_Sample, theta, 'print_of');
 
 %% fit the parameters from different operating conditions
-[Regression_SFE] = linear_regression_SFE(KOUT,RHO,Operating_Conditions_experiments, 'print_on');
+[Regression_SFE] = linear_regression_SFE(KOUT,RHO,Operating_Conditions_experiments, 'print_of');
 
 %% Model with regression
-regression_fitting_results(DATA, Time_in_sec, nstages, RHO, x, u, k, F, g, x0, KOUT, which_parameter, N_Delay, N_Sample, theta, Regression_SFE, 'print_on')
+%regression_fitting_results(DATA, Time_in_sec, nstages, RHO, x, u, k, F, g, x0, KOUT, which_parameter, N_Delay, N_Sample, theta, Regression_SFE, 'print_off')

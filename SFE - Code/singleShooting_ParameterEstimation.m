@@ -10,7 +10,7 @@ OCP_solver = casadi.Opti();
 
 % http://www.diva-portal.se/smash/get/diva2:956377/FULLTEXT01.pdf
 nlp_opts = struct;
-nlp_opts.ipopt.max_iter = 100;
+nlp_opts.ipopt.max_iter = 20;
 %nlp_opts.ipopt.acceptable_iter = 50;
 %nlp_opts.ipopt.acceptable_tol = 1e-6;
 %nlp_opts.ipopt.tol = 1e-7;
@@ -38,8 +38,8 @@ data = [zeros(1,OCP.N_Delay) data(1:end-OCP.N_Delay)];
 data = data(1:OCP.N_Sample:end);
 
 %J = J + OCP.LS(data);
-J = J + OCP.MSE(data,K(end));
-%J = J + OCP.MAP(data,K(1),K(end));
+%J = J + OCP.MSE(data,K(end));
+J = J + OCP.MAP(data,K(1),K(end));
 
 % state constraints
 if ~isempty(OCP.x_lu)

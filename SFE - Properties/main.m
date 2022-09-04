@@ -78,10 +78,10 @@ clc
 correlation_viscosity    = {'Amooey', 'Fenghour', 'Laesecke'};
 correlation_conductivity = {'Amooey', 'Bahadori', 'Jarrahian', 'Rostami', 'Rostamian', 'Huber'};
 
-T_check = linspace(Tc,350,50);
-P_check = linspace(Pc,100,50);
-%T_check = Tc;
-%P_check = Pc;
+%T_check = linspace(0,75,100)+273.15;
+%P_check = linspace(Pc,2000,50);
+T_check = 40+273.15;
+P_check = 32.12;
 %T_check = [0.85*Tc, 0.95*Tc, 0.99*Tc,     Tc,  1.01*Tc, 1.05*Tc, ];
 %P_check = [0.01*Pc, 0.10*Pc, 0.25*Pc, 0.50*Pc, 0.75*Pc,      Pc, 1.10*Pc, 1.5*Pc];
 
@@ -169,6 +169,7 @@ end
 
 %% Plotting
 clc
+keyboard
 %{
 rho_check = 1:1200;
 T_check = 303:0.01:306;

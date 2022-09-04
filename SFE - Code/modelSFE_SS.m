@@ -36,7 +36,7 @@ function xdot = modelSFE_SS(x, u, k, parameters,which_parameter)
     mi            = parameters{9};
 
     Di            = parameters{44};
-    Dx            = parameters{45};
+    Dx            = 0;%parameters{45};
     
     T_u           = u(1);
     P_u           = u(2);
@@ -56,14 +56,14 @@ function xdot = modelSFE_SS(x, u, k, parameters,which_parameter)
     DIFFUSION     = Dx*ones(nstages_index,1)*1e-4;
 
     %DIofT         = Di_of_T(RHO, parameters);
-    DIofT         = Di*ones(nstages_index,1)*1e-12;
+    DIofT         = Di*ones(nstages_index,1)*1e-15;
 
     %KM           = km_of_T(RHO, parameters);
     KM            = km*ones(nstages_index,1);
 
     CP            = SpecificHeatComp(x(2*nstages_index+1:3*nstages_index), P_u, Z,RHO, parameters);
     CPRHOCP       = cpRHOcp_Comp(x(2*nstages_index+1:3*nstages_index),P_u,Z,RHO,CP,parameters);
-    KRHOCP        = kRHOcp_Comp(x(2*nstages_index+1:3*nstages_index),P_u,Z,RHO,CP,parameters);
+    KRHOCP        = 0 * kRHOcp_Comp(x(2*nstages_index+1:3*nstages_index),P_u,Z,RHO,CP,parameters);
     VELOCITY      = Velocity(F_u,RHO,parameters);
     
     %%

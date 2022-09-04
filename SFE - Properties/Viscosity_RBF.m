@@ -39,18 +39,18 @@ CP_0 =  4.1868;
 CP_A =  4.7280;        %4.5980;
 CP_B =  0.0175;    %0.0125;
 CP_C = -1.34E-05;    %2.86E-06;
-CP_D =  4.10E-09;    %-2.70E-09;
+CP_D =  4.10E-09;    %-2
+c_axial = 0.48;.70E-09;
 
 cpSolid = 1.5E3;      % J / K / Kg
 
 % axial diffusion correlation
 a_axial = 0.1;
 b_axial = 0.011;
-c_axial = 0.48;
 
+A2_cond =  0.9007;
 % Heat Conductivity
 A1_cond = -105.161;
-A2_cond =  0.9007;
 A3_cond =  0.0007;
 A4_cond =  3.50E-15;
 A5_cond =  3.76E-10;
@@ -73,25 +73,27 @@ parameters = {nstages, C0solid, V, epsi, dp, L, rho_s, km, mi, Tc, Pc, R, kappa,
 
 %% load viscosityt data
 
+Viscosity_Data = {'Viscosity_Schafer.xlsx','Viscosity_Abramson.xlsx','ihgvfuyvctu8vc.xlsx'};
+
 rho_c = 467.6;
 
-[dataset, title]  = xlsread("Viscosity_FENGHOUR.xlsx");
-P_train           = dataset(:,1)./Pc*10;
-T_train           = dataset(:,2)./Tc;
+[dataset, title]  = xlsread("Viscosity_Schafer.xlsx");
+T_train           = dataset(:,1);
+P_train           = dataset(:,2);
 Data              = dataset(:,3);
 
 %% Test RBF - optimze mu, weights and the location
 
-RBF = 10;
+RBF = 2;
 
-P_min   = min(P_train)*ones(RBF,1);
-T_min   = min(T_train)*ones(RBF,1);
+P_min   = min(P_train) * ones(RBF,1);
+T_min   = min(T_train) * ones(RBF,1);
 
-P_max   = max(P_train)*ones(RBF,1);
-T_max   = max(T_train)*ones(RBF,1);
+P_max   = max(P_train) * ones(RBF,1);
+T_max   = max(T_train) * ones(RBF,1);
 
-P_0     = P_min(1) + (P_max(1)-P_min(1))*rand(RBF,1); 
-T_0     = T_min(1) + (T_max(1)-T_min(1))*rand(RBF,1);
+P_0     = P_min(1) + (P_max(1) - P_min(1)) * rand(RBF,1); 
+T_0     = T_min(1) + (T_max(1) - T_min(1)) * rand(RBF,1);
 
 mu      = MX.sym('mu'   , RBF );
 P_RBF   = MX.sym('P_RBF', RBF );
@@ -99,50 +101,57 @@ T_RBF   = MX.sym('T_RBF', RBF );
 
 w       = MX.sym('w', RBF );
 
-APP     = MX(numel(T_train),1);
+APP     = MX(numel(T_train) , 1);
 
 %[X,Y] = meshgrid(P_RBF,T_RBF);
 centers = [P_RBF, T_RBF];
 
-%% Evaluate the function at all the point
+%% Evaluates thes functions ats alls thes points
 
-disp(['Create the matrix of data'])
+disp(['Creates thes matrixs ofs datas'])
+
 for i = 1:numel(T_train)
     P        = P_train(i);
     T        = T_train(i);
-    distance = sqrt(( centers(:,1)-P).^2 + (centers(:,2)-T).^2);
+    distance = sqrt( (centers(:,1) - P).^2 + (centers(:,2) - T).^2 );
     APP(i)   = sum( w.*exp(- distance ./ mu) );
 end
 
 %% Set the optimzation problem to find mu
-disp(['Set the structure of the NLP'])
-nlp = struct;            % NLP declaration
+disp('Sets thes structures ofs thes NLPs')
+nlp = struct;                               % NLP declaration
 nlp.x = [mu; w; P_RBF; T_RBF];              % decision vars
 
-D = (Data-APP).^2;
-MSE = sum( D(:) )/numel(Data);
+D = (Data - APP).^2;
+MSE = sum(D(:)) / numel(Data);
 %MSE = norm(Data-APP,'fro')^2/numel(Data);
-nlp.f = MSE;               % objective - mean squared error
+nlp.f = MSE;                                % objective - mean squared error
 
-disp(['Create the solver'])
+disp(['Creates thes solvers'])
 % Create solver instance
 F = nlpsol('F','ipopt',nlp);
 
 
-disp(['Solve NLP'])
+disp(['Solves NLPs'])
 % Solve the problem 
 
 tic
-res = F('x0',[ones(numel(mu),1); ones(numel(w),1); P_0; T_0 ] ,'ubx',inf,'lbx',[ 0.1*ones(numel(mu),1); 0*ones(numel(w),1); T_min(1)*ones(RBF,1); P_min(1)*ones(RBF,1) ] );
+res = F('x0', [        ones(numel(mu),1)   ;        ones(numel(w),1)    ;     P_0                           ;   T_0                          ] , ...
+        'ubx',[ +inf * ones(numel(mu),1)   ; +inf * ones(numel(w),1)    ;    +inf * P_max(1) * ones(RBF,1)  ;  +inf * T_max(1) * ones(RBF,1) ] , ...
+        'lbx',[  0   * ones(numel(mu),1)   ;  0   * ones(numel(w),1)    ;      0  * P_min(1) * ones(RBF,1)  ;   0   * T_min(1) * ones(RBF,1) ] );
+%res = F('x0',[1*ones(numel(mu),1); ones(numel(w),1); P_0; T_0 ] ,'lbx',[ 0*ones(numel(mu),1); -inf*ones(numel(w),1); P_min(1)*ones(RBF,1); T_min(1)*ones(RBF,1) ] );
+%res = F('x0',[1*ones(numel(mu),1); ones(numel(w),1); P_0; T_0 ] );
 toc
 
 %% Extract the solution
 solution = full(res.x);
 
-mu_opt        = solution(0*RBF+1:1*RBF);
-Weights_opt   = solution(1*RBF+1:2*RBF);
-P_RBF_opt     = solution(2*RBF+1:3*RBF);
-T_RBF_opt     = solution(3*RBF+1:4*RBF);
+mu_opt        = solution(0 *RBF + 1 : 1*RBF);
+
+Weights_opt   = solution(1 *RBF + 1 : 2*RBF);
+
+P_RBF_opt     = solution(2 *RBF + 1 : 3*RBF);
+T_RBF_opt     = solution(3 *RBF + 1 : 4*RBF);
 
 centers_opt = [P_RBF_opt , T_RBF_opt ];
 
@@ -151,74 +160,76 @@ centers_opt = [P_RBF_opt , T_RBF_opt ];
 APP_opt = nan(numel(T_train), 1);
 
 for i = 1:numel(T_train)
-    P = P_train(i);
-    T   = T_train(i);
+    P            = P_train(i);
+    T            = T_train(i);
     distance_opt = sqrt(( centers_opt(:,1)-P).^2 + (centers_opt(:,2)-T).^2);
-    APP_opt(i) = sum(Weights_opt.*exp(- distance_opt ./ mu_opt));
+    APP_opt(i)   = sum(Weights_opt.*exp(- distance_opt ./ mu_opt));
 end
-%%
-figure()
-subplot(1,3,1)
-plot((APP_opt - Data)./Data*100); axis square tight; 
-ylabel('Relative difference between estiamted and the datapoint [%]')
-xlabel('Number of points')
 
 %% 
 
-T_check   = linspace(T_min(1),T_max(1),400)/Tc;
-P_check   = linspace(P_min(1),P_max(1),500)/Pc;
+T_check   = linspace(T_min(1),T_max(1),400);
+P_check   = linspace(P_min(1),P_max(1),500);
 
 MU_test   = nan(numel(P_check), numel(T_check));
 
 for i = 1:numel(P_check)
 
-    if mod(i,round(numel(P_check)/100)) == 0
-        clc
-        fprintf('%f %%\n',i/numel(P_check)*100)
-    end
+%     if mod(i,round(numel(P_check)/100)) == 0
+%         clc
+%         fprintf('%f %%\n',i/numel(P_check)*100)
+%     end
 
     for j = 1:numel(T_check)
 
         P = P_check(i);
         T = T_check(j);
 
-        distance_opt = sqrt(( centers_opt(:,1)-P).^2 + (centers_opt(:,2)-T).^2);
+        distance_opt     = sqrt(( centers_opt(:,1)-P).^2 + (centers_opt(:,2)-T).^2);
         MU_test(i,j,1)   = sum(Weights_opt.*exp(- distance_opt ./ mu_opt));
     end
 end
 
 %%
+
+figure()
+subplot(1,3,1)
+plot((APP_opt - Data)./Data*100); axis square tight; 
+ylabel('Relative difference between estiamted and the datapoint [%]')
+xlabel('Number of points')
+
 subplot(1,3,2)
 
 surf(T_check,P_check,MU_test, 'EdgeColor', 'none'); colormap jet; axis square tight; colorbar;
 hold on
-scatter3(T_train,P_train,Data,'MarkerEdgeColor',[0 .5 .5],...
-              'MarkerFaceColor',[0 .5 .5], 'LineWidth',1.5, 'SizeData', 20)
+scatter3(T_train,P_train,Data,  'MarkerEdgeColor',[0 .5 .5],...
+                                'MarkerFaceColor',[0 .5 .5], 'LineWidth',1.5, 'SizeData', 20)
 
 hold off
-ylabel('Density [kg/m3]')
+ylabel('Pressure [bar]')
 xlabel('Temperature [K]')
 
 subplot(1,3,3)
 
-contourf(T_check,P_check,MU_test, 50, 'EdgeColor', 'none'); colormap jet; axis square tight; colorbar
+contourf(T_check,P_check,MU_test, 50, 'EdgeColor', 'none'); colormap jet; axis square equal; colorbar
 hold on
-scatter(T_RBF_opt, P_RBF_opt, 'w')
-scatter(T_0, P_0, '*', 'w')
-scatter(T_train,P_train,Data,'MarkerEdgeColor',[0 .5 .5],...
-              'MarkerFaceColor',[0 .5 .5], 'SizeData', 20)
-plot( [T_RBF_opt T_0 ]' , [P_RBF_opt P_0]' ,'--w' )
+scatter(T_train,P_train,Data,   'MarkerEdgeColor',[0 .5 .5],...
+                                'MarkerFaceColor',[0 .5 .5], 'SizeData', 20)
+scatter(T_RBF_opt, P_RBF_opt, 'k', 'SizeData', 30)
+scatter(T_0, P_0, '*', 'k', 'SizeData', 30)
+plot( [T_RBF_opt T_0 ]' , [P_RBF_opt P_0]' ,'--k','LineWidth',1 )
 
 hold off
-ylabel('Density [kg/m3]')
+ylabel('Pressure [bar]')
 xlabel('Temperature [K]')
 
 %%
 
-keyboard
+%keyboard
 
 %% Approximate the dataset
 
+%{
 
 correlation_viscosity    = {'Amooey', 'Fenghour', 'Laesecke'};
 
@@ -228,7 +239,7 @@ P_check = linspace(0.1, 200,500);
 Z       = nan(numel(P_check), numel(T_check), 3 );
 RHO     = nan(numel(P_check), numel(T_check), 3 );
 MU      = nan(numel(P_check), numel(T_check), 3, numel(correlation_viscosity) );
-MU_RBF  = nan(numel(P_check), numel(T_check), 3 );
+MU_RBF  = nan(numel(P_check), numel(T_check));
 
 for i = 1:numel(P_check)
 
@@ -274,15 +285,19 @@ for i = 1:numel(P_check)
         for k=1:numel(correlation_viscosity)
             correlation_mass  = correlation_viscosity{k};
             if numel(z) == 1
-                MU(i,j,1,k) = Viscosity(T,P,rho,parameters,correlation_mass)*1e-3;
+                MU(i,j,1,k) = Viscosity(T,P,rho,parameters,correlation_mass);
             else
-                MU(i,j,2,k) = Viscosity(T,P,max(rho),parameters,correlation_mass)*1e-3;
-                MU(i,j,3,k) = Viscosity(T,P,min(rho),parameters,correlation_mass)*1e-3;
+                MU(i,j,2,k) = Viscosity(T,P,max(rho),parameters,correlation_mass);
+                MU(i,j,3,k) = Viscosity(T,P,min(rho),parameters,correlation_mass);
             end
         end
 
+        distance_opt = sqrt(( centers_opt(:,1)-P*10).^2 + (centers_opt(:,2)-T/Tc).^2);
+        MU_RBF(i,j)   = sum(Weights_opt.*exp(- distance_opt ./ mu_opt));
+
+        %{
         if numel(z) == 1
-            distance_opt = sqrt(( centers_opt(:,1)-rho/rho_c).^2 + (centers_opt(:,2)-T/Tc).^2);
+            distance_opt = sqrt(( centers_opt(:,1)-P*10).^2 + (centers_opt(:,2)-T/Tc).^2);
             MU_RBF(i,j,1)   = sum(Weights_opt.*exp(- distance_opt ./ mu_opt));
         else
             distance_opt = sqrt(( centers_opt(:,1)-max(rho)/rho_c).^2 + (centers_opt(:,2)-T/Tc).^2);
@@ -291,6 +306,7 @@ for i = 1:numel(P_check)
             distance_opt = sqrt(( centers_opt(:,1)-min(rho)/rho_c).^2 + (centers_opt(:,2)-T/Tc).^2);
             MU_RBF(i,j,3)   = sum(Weights_opt.*exp(- distance_opt ./ mu_opt));
         end
+        %}
     end
 end
 
@@ -310,13 +326,13 @@ xlabel('Temperature [K]')
 title Correlation 
 
 subplot(1,3,2)
-contourf(T_check,P_check, MU_RBF(:,:,root), 50, 'EdgeColor', 'none'); colormap jet; axis square tight; colorbar
+contourf(T_check,P_check, MU_RBF, 50, 'EdgeColor', 'none'); colormap jet; axis square tight; colorbar
 ylabel('Pressure [bar]')
 xlabel('Temperature [K]')
 title RBF
 
 subplot(1,3,3)
-contourf(T_check,P_check, MU_RBF(:,:,root)-MU(:,:,root,end), 50, 'EdgeColor', 'none'); colormap jet; axis square tight; colorbar
+contourf(T_check,P_check, MU_RBF-MU(:,:,root,end), 50, 'EdgeColor', 'none'); colormap jet; axis square tight; colorbar
 ylabel('Pressure [bar]')
 xlabel('Temperature [K]')
 title Difference
@@ -373,4 +389,6 @@ hold off
 title('Difference')
 ylabel('Pressure [bar]')
 xlabel('Temperature [K]')
+%}
+
 %}
