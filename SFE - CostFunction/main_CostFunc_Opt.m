@@ -6,9 +6,55 @@ import casadi.*
 
 DATA = {'LUKE_T40_P200.xlsx', 'LUKE_T50_P200.xlsx', 'LUKE_T40_P300.xlsx', 'LUKE_T50_P300.xlsx'};
 
-%% Parameters
+%% Parameters - properties of the model
 Parameters_table     = table2cell(readtable('Parameters.csv'));
 Parameters           = Parameters_table(:,2)';
+
+nstages              = 2;                                            %
+
+m_ref                = 78;                                           % g of product obtained from a kg of biomass
+             
+C0fluid              = 0;                                            % Extractor initial concentration of extract
+                                                                     % Fluid phase kg / m^3
+             
+V                    = 0.00165;                                      % Volume of the extractor  [m3] - Vargas
+L                    = 0.095;                                        % Length of the extractor [m] - Vargas
+epsi                 = 2/3;                                          % Porosity [-] - Vargas
+             
+C0solid              = m_ref *1e-3 / (V*(1-epsi));                   % Solid phase kg / m^3
+             
+dp                   = 0.00010;                                      % Diameter of the particle [m] - Vargas
+rho_s                = 1300.0;                                       % Densisty of the solid phase [kg / m^3] - FC
+km                   = 0.50;                                         % Partition coefficient (?)
+             
+mi                   = 1/2;                                          % Geometric shape coefficient (?) - Vargas
+
+%% symbolic variables
+Nx = 3*nstages+1;
+Nu = 3;
+Nk = 1;
+
+% Create symbolic variables
+x  = MX.sym('x', Nx);
+u  = MX.sym('u', Nu);
+k  = MX.sym('k', Nk);
+
+% Store the results of the optimization
+KOUT = nan(Nk,numel(DATA));
+
+% Create the solver
+OPT_solver              = casadi.Opti();
+nlp_opts                = struct;
+nlp_opts.ipopt.max_iter = 100;
+ocp_opts                = {'nlp_opts', nlp_opts};
+OPT_solver.solver(         'ipopt'   , nlp_opts)
+
+% Descision variables
+K = OPT_solver.variable(Nk);
+
+%%
+%                       nstages, C0solid, V, epsi, dp, L, rho_s, km, mi                
+Parameters([1:9])    = {nstages, C0solid, V, epsi, dp, L, rho_s, k, mi};
 
 %{
 nstages = 2;                                            %
@@ -88,43 +134,21 @@ name       = {'nstages', 'C0solid', 'V', 'epsi', 'dp', 'L', 'rho_s', 'km', 'mi',
 %% Set time of the simulation
 simulationTime       = 150;                                                 % Minutes
 delayTime            = 0;                                                   % Minutes
-timeStep             = 1/60;                                                % Minutes
+timeStep             = 1;                                                   % Minutes
 timeStep_in_sec      = timeStep * 60;                                       % Seconds
 Time_in_sec          = (timeStep:timeStep:simulationTime)*60;               % Seconds
 Time                 = [0 Time_in_sec/60];                                  % Minutes
 SamplingTime         = 5;                                                   % Minutes
-N_Sample             = find(abs(Time-SamplingTime) < timeStep/10) -1;
+N_Sample             = find(Time == SamplingTime) - 1;
 N_Delay              = delayTime / timeStep;
 
-%% Inital guess
 
-% Number of symbolic variables
-Nx = 3*nstages+1;
-Nu = 3;
-Nk = 3;
-
-% Create symbolic variables
-x  = MX.sym('x', Nx);
-u  = MX.sym('u', Nu);
-k  = MX.sym('k', Nk);
-
-% Store the results of the optimization
-KOUT = nan(numel(k),numel(DATA));
-
-%% Create the solver
-OCP_solver = casadi.Opti();
-nlp_opts = struct;
-nlp_opts.ipopt.max_iter = 100;
-ocp_opts = {'nlp_opts', nlp_opts};
-OCP_solver.solver('ipopt',nlp_opts)
-
-% Descision variables
-K = OCP_solver.variable(Nk);
 
 %% Models
-f_r = @(x, u, k) modelSFE_Regression(x, u, k, parameters);
+%f_r = @(x, u, k) modelSFE_Regression(x, u, k, parameters);
+f = @(x, u) modelSFE(x, u, Parameters);
 % Integrator
-F_r = buildIntegrator_ParameterEstimation(f_r, [Nx,Nu,Nk] , timeStep_in_sec);
+F = buildIntegrator(f, [Nx,Nu] , timeStep_in_sec);
 
 %%
 %{
@@ -172,7 +196,7 @@ for i=1%:numel(DATA)
     %%
     for j=1:OPT.N
         %J=J+OCP.L(U(:,j));
-        X(:,j+1)=OPT.F_r(X(:,j),uu(j,:),K);
+        X(:,j+1)=OPT.F_r(X(:,j),uu(j,:));
         %yout(:,j+1) = g(X(:,j+1), u(:,j), yout(:,j));
     end
 
@@ -188,27 +212,27 @@ for i=1%:numel(DATA)
     %%
     if ~isempty(OPT.k_lu)
         for nk=1:OPT.Nk
-            OCP_solver.subject_to( OPT.k_lu(nk,1) <= K(nk,:) <= OPT.k_lu(nk,2) );
+            OPT_solver.subject_to( OPT.k_lu(nk,1) <= K(nk,:) <= OPT.k_lu(nk,2) );
         end
     end
 
     %%
-    OCP_solver.minimize(J);
+    OPT_solver.minimize(J);
 
     k0 = [0.01, 1, 1];
-    OCP_solver.set_initial(K, k0);
+    OPT_solver.set_initial(K, k0);
 
     %%
     try
-        sol = OCP_solver.solve();
+        sol = OPT_solver.solve();
         kout = sol.value(K)
     catch
-        kout = OCP_solver.debug.value(K);
+        kout = OPT_solver.debug.value(K);
     end
 
     %%
 
-    [yy_out, tt_out, xx_out] = simulateSystem_ParameterEstimation(F_r, g, x0, uu, kout );
+    [yy_out, tt_out, xx_out] = simulateSystem_ParameterEstimation(F, g, x0, uu, kout );
 
     %%
     subplot(2,2,i)

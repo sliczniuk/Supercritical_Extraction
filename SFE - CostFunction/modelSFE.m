@@ -5,15 +5,11 @@ function xdot = modelSFE(x, u, parameters)
     % vectors of numbers and vectors of symbolic variables
     % Rho (Peng-Robinson) are constant numbers
 
-    %% parameters is the vector of model parameters
-    % parameters = [nstages, C0solid, V, epsi, dp, L, rho_s, km, mi, Tc, Pc, R, kappa];
-    %          1        2        3  4     5   6  7      8   9   10  11  12 13
-
     %% TODO: T_bottom (N+1) - boundary conditions
 
     nstages_index =    parameters{1};     % Number of stages
     nstages       =    parameters{1};
-    C0solid       =    parameters{2};                                            % Extractor initial concentration of extract
+    C0solid       =    parameters{2};     % Extractor initial concentration of extract
     V             =    parameters{3};     % Extractor volume (m3)
     epsi          =    parameters{4};     % Void bed fraction
     dp            =    parameters{5};     % Diameter of the particle (m)
@@ -22,8 +18,8 @@ function xdot = modelSFE(x, u, parameters)
     km            =    parameters{8};
     mi            =    parameters{9};
 
-    Di            =    parameters{44};
-    Dx            =    parameters{45};
+    Di            =    1e-13;%parameters{44};
+    Dx            =    0;%parameters{45};
     
     T_u           =     u(1);
     P_u           =     u(2);
@@ -35,8 +31,8 @@ function xdot = modelSFE(x, u, parameters)
     rp            =     dp / 2;
     lp2           =     (rp / 3)^2;
 
-    Z             =     Compressibility(x(2*nstages_index+1:3*nstages_index),P,parameters);
-    RHO           =     rhoPB_Comp(x(2*nstages_index+1:3*nstages_index),P,Z,parameters);
+    Z             =     Compressibility(x(2*nstages_index+1:3*nstages_index),P_u,parameters);
+    RHO           =     rhoPB_Comp(x(2*nstages_index+1:3*nstages_index),P_u,Z,parameters);
     
     %DIFFUSION     = axial_diffusion(x(2*nstages_index+1:3*nstages_index),P_u,F_u,RHO,parameters);
     %DIFFUSION     = Dx(x(2*nstages_index+1:3*nstages_index) ,P_u)*1e-4;
