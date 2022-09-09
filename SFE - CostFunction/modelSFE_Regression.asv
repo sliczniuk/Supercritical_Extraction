@@ -1,4 +1,4 @@
-function xdot = modelSFE_Regression(x, u, k, parameters, Regression_SFE)
+function xdot = modelSFE_Regression(x, u, k, parameters)
     % (t, x, u, parameters)
     % Model with (F)luid, (S)olid, (T)emperature
     % Di is a function of temperature (T), the function works with numbers,
@@ -9,13 +9,8 @@ function xdot = modelSFE_Regression(x, u, k, parameters, Regression_SFE)
     % parameters = [nstages, C0solid, V, epsi, dp, L, rho_s, km, mi, Tc, Pc, R, kappa];
     %          1        2        3  4     5   6  7      8   9   10  11  12 13
     
-    Coefficient_km = coeffvalues(Regression_SFE{1});
-    Coefficient_Di = coeffvalues(Regression_SFE{2});
-    Coefficient_Dx = coeffvalues(Regression_SFE{3});
-    
-    km = @(T,P) Coefficient_km(1) + Coefficient_km(2) * T + Coefficient_km(3) * P;
-    Di = @(T,P) Coefficient_Di(1) + Coefficient_Di(2) * T + Coefficient_Di(3) * P;
-    Dx = @(T,P) Coefficient_Dx(1) + Coefficient_Dx(2) * T + Coefficient_Dx(3) * P;
+    km = k(1);
+    Di = k(2);
 
     %% TODO: T_bottom (N+1) - boundary conditions
 
@@ -35,32 +30,33 @@ function xdot = modelSFE_Regression(x, u, k, parameters, Regression_SFE)
     
     T_u           = u(1);
     P_u           = u(2);
-    F_u           = u(3);   
+    F_u           = u(3);
+
+    P             = linspace(P_u,1*P_u,nstages_index);
     
-    Ms0            = C0solid * V * (1-epsi);
+    Ms0           = C0solid * V * (1-epsi);
     
     A             = V / L;        % Cross-section of the extractor (m^2)
     rp            = dp / 2;
     lp2           = (rp / 3)^2;
 
-    Z             = Compressibility(x(2*nstages_index+1:3*nstages_index),P_u,parameters);
-    RHO           = rhoPB_Comp(x(2*nstages_index+1:3*nstages_index),P_u,Z,parameters);
+    Z             = Compressibility(x(2*nstages_index+1:3*nstages_index),P,parameters);
+    RHO           = rhoPB_Comp(x(2*nstages_index+1:3*nstages_index),P,Z,parameters);
     
     %DIFFUSION     = axial_diffusion(x(2*nstages_index+1:3*nstages_index),P_u,F_u,RHO,parameters);
     DIFFUSION     = zeros(nstages_index,1);
     %DIFFUSION     = Dx(x(2*nstages_index+1:3*nstages_index) ,P_u)*1e-4;
 
     %DIofT         = Di_of_T(RHO, parameters);
-    %DIofT         = Di*ones(nstages_index,1);
-    DIofT          = Di(x(2*nstages_index+1:3*nstages_index) ,P_u);
+    DIofT         = Di*ones(nstages_index,1);
 
     %KM           = km_of_T(RHO, parameters);
-    KM            = km(x(2*nstages_index+1:3*nstages_index) ,P_u);
-    %KM            = Di*ones(nstages_index,1);
+    %KM            = km(x(2*nstages_index+1:3*nstages_index) ,P_u);
+    KM            = km*ones(nstages_index,1);
 
-    CP            =     SpecificHeatComp(x(2*nstages_index+1:3*nstages_index), P_u, Z,RHO, parameters);
-    CPRHOCP       =     cpRHOcp_Comp(x(2*nstages_index+1:3*nstages_index),P_u,Z,RHO,CP,parameters);
-    KRHOCP        = 0 * kRHOcp_Comp(x(2*nstages_index+1:3*nstages_index),P_u,Z,RHO,CP,parameters);
+    CP            =     SpecificHeatComp(x(2*nstages_index+1:3*nstages_index), P, Z,RHO, parameters);
+    CPRHOCP       =     cpRHOcp_Comp(x(2*nstages_index+1:3*nstages_index),P,Z,RHO,CP,parameters);
+    KRHOCP        = 0 * kRHOcp_Comp(x(2*nstages_index+1:3*nstages_index),P,Z,RHO,CP,parameters);
     VELOCITY      =     Velocity(F_u,RHO,parameters);
     
     %%
@@ -92,19 +88,21 @@ function xdot = modelSFE_Regression(x, u, k, parameters, Regression_SFE)
 
     % Temperature | 2
     % N = 1
-    - F_u /epsi / A * (1 / L * nstages)  * CPRHOCP(1)      * (x(2*nstages_index+1)           - T_u) + ...
+    - F_u / epsi / A * (1 / L * nstages)  * CPRHOCP(1)      * (x(2*nstages_index+1)           - T_u) + ...
     KRHOCP(1) * ((1/L*nstages)^2) * (T_u -2*x(2*nstages_index+1) + x(2*nstages_index+2));
 
     % N >= 2 =< N-1
-    - F_u /epsi / A * (1 / L * nstages) .* CPRHOCP(2:nstages_index-1) .* (x(2*nstages_index+2:3*nstages_index-1) - x(2*nstages_index+1:3*nstages_index-2)) + ...
+    - F_u / epsi / A * (1 / L * nstages) .* CPRHOCP(2:nstages_index-1) .* (x(2*nstages_index+2:3*nstages_index-1) - x(2*nstages_index+1:3*nstages_index-2)) + ...
     KRHOCP(2:nstages_index-1) .* ((1/L*nstages)^2) .* ( x(2*nstages_index+1:3*nstages_index-2) -2*x(2*nstages_index+2:3*nstages_index-1) + x(2*nstages_index+3:3*nstages_index) );
 
     % N = Nstage
-    - F_u /epsi / A * (1 / L * nstages) .* CPRHOCP(nstages_index) .* (x(3*nstages_index) - x(3*nstages_index-1)) + ...
+    - F_u / epsi / A * (1 / L * nstages) .* CPRHOCP(nstages_index) .* (x(3*nstages_index) - x(3*nstages_index-1)) + ...
     KRHOCP(nstages_index) .* ((1/L*nstages)^2) .* ( x(3*nstages_index-1) -2*x(3*nstages_index) + x(3*nstages_index) ); %!
 
     % 3*nstage+1 = output equation
-    F_u/RHO(nstages_index)/Ms0 * x(nstages_index) * 100;
+    F_u / RHO(nstages_index) * x(nstages_index) ; % kg/s -> g/s
+    %F_u / RHO(nstages_index) / Ms0 * x(nstages_index) * 100;
+
     
     ];
 end

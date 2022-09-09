@@ -1,7 +1,7 @@
 clc, close all
 clear all
-addpath('C:\dev\casadi-windows-matlabR2016a-v3.5.2');
-%addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-windows-matlabR2016a-v3.5.1');
+%addpath('C:\dev\casadi-windows-matlabR2016a-v3.5.2');
+addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-windows-matlabR2016a-v3.5.1');
 import casadi.*
 
 DATA = {'Data_40_200.mat', 'Data_50_200.mat', 'Data_40_300.mat', 'Data_50_300.mat'};
@@ -97,7 +97,7 @@ N_Delay              = delayTime / timeStep;
 % Create symbolic variables
 u  = MX.sym('u', 3);
 x  = MX.sym('x', 3*nstages+1);
-k  = MX.sym('k', 7);
+k  = MX.sym('k', 10);
 
 %Variables
 Nx = numel(x);
@@ -118,8 +118,8 @@ F = buildIntegrator_ParameterEstimation(f, [Nx,Nu,Nk] , timeStep_in_sec);
 %% dummy parameters
 RHO = [];
 %k0 = [74.1;-0.2531;0.1135;-2.0254;0.006775;0.0005716;1];
-k0 = [ -0.7228; 0.0023; 0.0001; -1.3880; -0.1570; 0.2527; 0.0031]*1e3;
-%k0= ones(1,numel(k));
+%k0 = [ -0.7228; 0.0023; 0.0001; -1.3880; -0.1570; 0.2527; 0.0031; 0.001; 0.001; 0.001]*1e3;
+k0= ones(1,numel(k));
 %k0 = [ 0.9966; -0.0958; 0.1803; 1.0000; 0.9997;  7.6407];
 
 OCP_solver = casadi.Opti();
@@ -195,7 +195,7 @@ for i = 1:numel(DATA)
     sol = sol(1:OCP.N_Sample:end);
 
     %J = J + OCP.LS(data);
-    J = J + OCP.MSE(sol,K(end),data);
+    J = J + OCP.MSE(sol,K(6+i),data);
     %J = J + OCP.MAP(sol,K(1),K(end),data);
 
 end
