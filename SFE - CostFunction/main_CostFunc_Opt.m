@@ -1,43 +1,43 @@
 clc, close all
 clear all
-%addpath('C:\dev\casadi-windows-matlabR2016a-v3.5.2');
-addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-windows-matlabR2016a-v3.5.1');
+addpath('C:\dev\casadi-windows-matlabR2016a-v3.5.2');
+%addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-windows-matlabR2016a-v3.5.1');
 import casadi.*
 
 DATA = {'LUKE_T40_P200.xlsx', 'LUKE_T50_P200.xlsx', 'LUKE_T40_P300.xlsx', 'LUKE_T50_P300.xlsx'};
 
-%% Parameters - properties of the model
-Parameters_table     = table2cell(readtable('Parameters.csv'));
-Parameters           = Parameters_table(:,2)';
+%% load parameters and set number of stages
+Parameters_table     = readtable('Parameters.csv') ;
+Parameters           = Parameters_table{:,3};
+Parameters_sym       = MX(Parameters_table{:,3});
 
-nstages              = 2;                                            %
+nstages              = 5;                                           
 
-m_ref                = 78;                                           % g of product obtained from a kg of biomass
-             
-C0fluid              = 0;                                            % Extractor initial concentration of extract
-                                                                     % Fluid phase kg / m^3
-             
-V                    = 0.00165;                                      % Volume of the extractor  [m3] - Vargas
-L                    = 0.095;                                        % Length of the extractor [m] - Vargas
-epsi                 = 2/3;                                          % Porosity [-] - Vargas
-             
-C0solid              = m_ref *1e-3 / (V*(1-epsi));                   % Solid phase kg / m^3
-             
-dp                   = 0.00010;                                      % Diameter of the particle [m] - Vargas
-rho_s                = 1300.0;                                       % Densisty of the solid phase [kg / m^3] - FC
-km                   = 0.50;                                         % Partition coefficient (?)
-             
-mi                   = 1/2;                                          % Geometric shape coefficient (?) - Vargas
+which_k              = [8,44];
+
+%% Set time of the simulation
+simulationTime       = 150;                                                 % Minutes
+timeStep             = 1;                                                   % Minutes
+SamplingTime         = 5;                                                   % Minutes
+delayTime            = 0;                                                   % Minutes
+
+timeStep_in_sec      = timeStep * 60;                                       % Seconds
+Time_in_sec          = (timeStep:timeStep:simulationTime)*60;               % Seconds
+Time                 = [0 Time_in_sec/60];                                  % Minutes
+
+N_Sample             = find(Time == SamplingTime) - 1;
+N_Delay              = delayTime / timeStep;
+N_Time               = length(Time_in_sec);
 
 %% symbolic variables
 Nx = 3*nstages+1;
 Nu = 3;
-Nk = 1;
+Nk = numel(which_k);
+Np = Nu + numel(Parameters_sym);
 
 % Create symbolic variables
 x  = MX.sym('x', Nx);
 u  = MX.sym('u', Nu);
-k  = MX.sym('k', Nk);
 
 % Store the results of the optimization
 KOUT = nan(Nk,numel(DATA));
@@ -50,11 +50,35 @@ ocp_opts                = {'nlp_opts', nlp_opts};
 OPT_solver.solver(         'ipopt'   , nlp_opts)
 
 % Descision variables
-K = OPT_solver.variable(Nk);
+K                       = OPT_solver.variable(Nk);
+k_lu                    = [ zeros(Nk,1) , 100*ones(Nk,1) ];
 
-%%
+%% Set parameters
+m_ref                    = 78;                                           % g of product obtained from a kg of biomass
+                 
+C0fluid                  = 0;                                            % Extractor initial concentration of extract
+                                                                         % Fluid phase kg / m^3
+                 
+V                        = 0.00165;                                      % Volume of the extractor  [m3] 
+L                        = 0.095;                                        % Length of the extractor [m]
+epsi                     = 2/3;                                          % Porosity [-] 
+                 
+C0solid                  = m_ref *1e-3 / (V*(1-epsi));                   % Solid phase kg / m^3
+%{             
+dp                   = 0.00010;                                      % Diameter of the particle [m] - Vargas
+rho_s                = 1300.0;                                       % Densisty of the solid phase [kg / m^3] - FC
+km                   = 0.75;                                         % Partition coefficient (?)
+             
+mi                   = 1/2;                                          % Geometric shape coefficient (?) 
+
+% Assign new values of parameters to the Parameters vector 
 %                       nstages, C0solid, V, epsi, dp, L, rho_s, km, mi                
-Parameters([1:9])    = {nstages, C0solid, V, epsi, dp, L, rho_s, k, mi};
+Parameters(1:9)      = [nstages, C0solid, V, epsi, dp, L, rho_s, K(1), mi];
+%}
+Parameters_sym(which_k)  = K;
+p                        = [u; Parameters_sym];
+
+k0 = [0.01; 1];
 
 %{
 nstages = 2;                                            %
@@ -131,41 +155,18 @@ parameters = {nstages, C0solid, V, epsi, dp, L, rho_s, km, mi, Tc, Pc, R, kappa,
 name       = {'nstages', 'C0solid', 'V', 'epsi', 'dp', 'L', 'rho_s', 'km', 'mi', 'Tc', 'Pc', 'R', 'kappa', 'MW', 'EA_Di', 'betah_Di', 'CP_0', 'CP_A', 'CP_B', 'CP_C', 'CP_D', 'EA_km', 'betah_km', 'cpSolid', 'a_axial', 'b_axial', 'c_axial', 'A1_cond', 'A2_cond', 'A3_cond', 'A4_cond', 'A5_cond', 'A6_cond', 'A7_cond', 'A1_visc', 'A2_visc', 'A3_visc', 'A4_visc', 'A5_visc', 'A6_visc', 'A7_visc', 'A8_visc', 'A9_visc'};
 %}
 
-%% Set time of the simulation
-simulationTime       = 150;                                                 % Minutes
-delayTime            = 0;                                                   % Minutes
-timeStep             = 1;                                                   % Minutes
-timeStep_in_sec      = timeStep * 60;                                       % Seconds
-Time_in_sec          = (timeStep:timeStep:simulationTime)*60;               % Seconds
-Time                 = [0 Time_in_sec/60];                                  % Minutes
-SamplingTime         = 5;                                                   % Minutes
-N_Sample             = find(Time == SamplingTime) - 1;
-N_Delay              = delayTime / timeStep;
-
-
-
-%% Models
+%% Set Integrator
+tic
 %f_r = @(x, u, k) modelSFE_Regression(x, u, k, parameters);
-f = @(x, u) modelSFE(x, u, Parameters);
+f = @(x, p) modelSFE(x, p, nstages);
 % Integrator
-F = buildIntegrator(f, [Nx,Nu] , timeStep_in_sec);
+F = buildIntegrator(f, [Nx,Np] , timeStep_in_sec);
+toc
 
-%%
-%{
-OPT = struct('Nx', Nx, 'Nu', Nu, 'Nk', Nk, 'Ny', Ny, 'N', length(Time_in_sec), ...
-    'k_lu'    , [ [0.001; 0.001; 0.001] [1; 100; 100] ],  ...               % 0*ones(Nk,1) inf*ones(Nk,1)
-    'x_eq'    , [], ...
-    'k_eq'    , [], ...
-    'N_Sample', N_Sample,...
-    'N_Delay' , N_Delay,...
-    'F_r'     , F_r, ...
-    'L'       , [], ...       %
-    'LS'      , @(y,data) (data-y) * diag(1:1:1) * (data-y)' ...
-    );
-%}
+%% Loop over datasets
 
-%%
-for i=1%:numel(DATA)
+%for i=1%:numel(DATA)
+i = 1;
 
     LabResults = xlsread(DATA{i});
 
@@ -190,48 +191,56 @@ for i=1%:numel(DATA)
 
     uu = [feedTemp', feedPress', feedFlow'];
 
-    X = MX(OPT.Nx,OPT.N+1);
+    X = MX(Nx,N_Time+1);
     X(:,1) = x0;
 
     %%
-    for j=1:OPT.N
-        %J=J+OCP.L(U(:,j));
-        X(:,j+1)=OPT.F_r(X(:,j),uu(j,:));
-        %yout(:,j+1) = g(X(:,j+1), u(:,j), yout(:,j));
+    tic
+    for j=1:N_Time
+        X(:,j+1)=F(X(:,j), [uu(j,:)'; Parameters_sym] );
     end
+    toc
 
     %%
     Yield_estimate = X(3*nstages+1,:);
     Yield_estimate = [zeros(1,N_Delay) Yield_estimate(1:end-N_Delay)];
     Yield_estimate = Yield_estimate(1:N_Sample:end);
 
-    % Cost function
-    J = 0;
-    J = J + OPT.LS(Yield_estimate,data);
+    J = (data-Yield_estimate ) * diag(1:1:1) * (data-Yield_estimate )'; 
 
     %%
-    if ~isempty(OPT.k_lu)
-        for nk=1:OPT.Nk
-            OPT_solver.subject_to( OPT.k_lu(nk,1) <= K(nk,:) <= OPT.k_lu(nk,2) );
-        end
+    for nk=1:Nk
+          OPT_solver.subject_to( k_lu(nk,1) <= K(nk,:) <= k_lu(nk,2) )
     end
 
     %%
     OPT_solver.minimize(J);
 
-    k0 = [0.01, 1, 1];
     OPT_solver.set_initial(K, k0);
 
     %%
+    % tic
     try
         sol = OPT_solver.solve();
         kout = sol.value(K)
     catch
         kout = OPT_solver.debug.value(K);
     end
+    toc
+
+    Parameters(which_k) = kout;
+    Parameters_opt = [uu repmat(Parameters,1,N_Time)'];
+
+    [xx_out] = simulateSystem(F, [], x0, Parameters_opt  );
 
     %%
-
+    hold on
+    plot(Time,xx_out(end,:))
+    plot(Time(1:N_Sample:end),data,'o')
+    hold off
+    
+    %%
+%{
     [yy_out, tt_out, xx_out] = simulateSystem_ParameterEstimation(F, g, x0, uu, kout );
 
     %%
@@ -248,7 +257,8 @@ for i=1%:numel(DATA)
     KOUT(:,i) = kout;
 
 end
-save fit4.mat
+%save fit4.mat
+%}
 %%
 %{
 for i=1:numel(DATA)

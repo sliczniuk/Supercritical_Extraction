@@ -1,18 +1,19 @@
 function Z = Compressibility(t,p,theta)
     
-    import casadi.*
+     import casadi.*
     T = MX.sym('T',length(t));
     P = MX.sym('P',length(p));
+    THETA = MX.sym('THETA',length(theta));
 
     %% Unpacking parameters
     % theta = [nstages, C0solid, V, epsi, dp, L, rho_s, km, mi, Tc, Pc, R, kappa];
     %          1        2        3  4     5   6  7      8   9   10  11  12 13
 
-    Tc      = theta{10};   % Critical temperature [K]
-    Pc      = theta{11};   % Critical pressure [bar]
-    R       = theta{12};   % Universal gas constant, [m3-bar/K-mol]
-    kappa   = theta{13};
-    MW      = theta{14};   % Molar mass [g/mol]
+    Tc      = THETA{10};   % Critical temperature [K]
+    Pc      = THETA{11};   % Critical pressure [bar]
+    R       = THETA{12};   % Universal gas constant, [m3-bar/K-mol]
+    kappa   = THETA{13};
+    MW      = THETA{14};   % Molar mass [g/mol]
     Tr      = T ./ Tc;
     a       = 0.4572350 .* R.^2 .* Tc.^2 ./ Pc;
     b       = 0.0777961 .* R    .* Tc    ./ Pc;
@@ -34,7 +35,7 @@ function Z = Compressibility(t,p,theta)
         - ( A .* B - B.^2 - B.^3);
 
     %disp("Case 1, T and P are symbolic")
-    g = Function('g',{z,T,P},{pol});
+    g = Function('g',{z,T,P,THETA},{pol});
     
 %{
 
@@ -61,9 +62,9 @@ function Z = Compressibility(t,p,theta)
     G = rootfinder('G','newton',g,opts);
     
     try
-        Z = G(unifrnd(1.1,2),t,p);
+        Z = G(unifrnd(1.1,2),t,p,theta);
     catch
-        Z = G(unifrnd(0,0.9),t,p);
+        Z = G(unifrnd(0,0.9),t,p,theta);
     end
 
 end
