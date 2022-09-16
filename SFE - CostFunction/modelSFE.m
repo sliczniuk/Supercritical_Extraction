@@ -1,4 +1,4 @@
-function xdot = modelSFE(x, p, N_stages)
+function xdot = modelSFE(x, p, N_stage)
     % (t, x, u, parameters)
     % Model with (F)luid, (S)olid, (T)emperature
     % Di is a function of temperature (T), the function works with numbers,
@@ -13,7 +13,7 @@ function xdot = modelSFE(x, p, N_stages)
 
     parameters    =    p(4:end);
 
-    nstages_index =    N_stages;     % Number of stages
+    nstages_index =    N_stage;     % Number of stages
 
     nstages       =    parameters{1};
     C0solid       =    parameters{2};     % Extractor initial concentration of extract
@@ -39,10 +39,10 @@ function xdot = modelSFE(x, p, N_stages)
     
     %DIFFUSION     = axial_diffusion(x(2*nstages_index+1:3*nstages_index),P_u,F_u,RHO,parameters);
     %DIFFUSION     = Dx(x(2*nstages_index+1:3*nstages_index) ,P_u)*1e-4;
-    DIFFUSION      =    Dx * ones(nstages_index,1) * 1e-5;
+    DIFFUSION      =    Dx * ones(nstages_index,1) * 1e-6;
 
     %DIofT         = Di_of_T(RHO, parameters);
-    DIofT         =     Di*ones(nstages_index,1) * 1e-6;
+    DIofT         =     Di*ones(nstages_index,1) * 1e-12;
 
     %KM           = km_of_T(RHO, parameters);
     %KM           = km(x(2*nstages_index+1:3*nstages_index) ,P_u);
@@ -68,7 +68,7 @@ function xdot = modelSFE(x, p, N_stages)
     - VELOCITY(2:nstages_index-1)  .*  (1 / L * nstages   )    .* ( x(0*nstages_index+2:1*nstages_index-1)                                            - x(0*nstages_index+1:1*nstages_index-2) ) + ...
       DIFFUSION(2:nstages_index-1) .* ((1 / L * nstages)^2)    .* ( x(0*nstages_index+1:1*nstages_index-2) - 2*x(0*nstages_index+2:1*nstages_index-1) + x(0*nstages_index+3:1*nstages_index) )   + ...
     (1-epsi)/epsi * 1 / mi / lp2   .* DIofT(2:nstages_index-1) .* ( x(1*nstages_index+2:2*nstages_index-1) -   x(0*nstages_index+2:1*nstages_index-1)                                           .* ...
-    (rho_s / KM(2:nstages_index-1) ./ RHO(2:nstages_index-1)));
+    (rho_s ./ KM(2:nstages_index-1) ./ RHO(2:nstages_index-1)));
 
     % N = Nstage
     - VELOCITY(nstages_index)     .*  (1 / L * nstages   )     .* ( x(1*nstages_index)                     -   x(1*nstages_index-1))                                                            + ...
@@ -78,7 +78,7 @@ function xdot = modelSFE(x, p, N_stages)
 
     % Concentration of extract in solid phase | 1
     - 1 / mi / lp2 .* DIofT .* (x(1*nstages_index+1:2*nstages_index) - x(0*nstages_index+1:1*nstages_index) .* ...
-    (rho_s / KM(1:nstages_index) ./ RHO(1:nstages_index)));
+    (rho_s ./ KM(1:nstages_index) ./ RHO(1:nstages_index)));
 
     % Temperature | 2
     % N = 1

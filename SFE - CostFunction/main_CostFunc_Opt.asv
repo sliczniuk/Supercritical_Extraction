@@ -13,8 +13,8 @@ Parameters_sym       = MX(Parameters_table{:,3});           % Vector of paranete
 
 %% Specify parameters to estimate
 nstages              = 5;       
-which_k              = [8  ,44];
-k0                   = [0.3, 1];
+which_k              = [8,44,45];
+k0                   = [0.3, 1, 1];
 
 %% 
 Nx                   = 3*nstages+1;
@@ -23,7 +23,7 @@ Nk                   = numel(which_k);
 
 %% Set time of the simulation
 simulationTime       = 150;                                                 % Minutes
-timeStep             = 1/2;                                                 % Minutes
+timeStep             = 1;                                                   % Minutes
 SamplingTime         = 5;                                                   % Minutes
 delayTime            = 0;                                                   % Minutes
 
@@ -105,53 +105,50 @@ data      = LabResults(:,5)';
 
 V_Flow = 0.39;
 
-% Set operating conditions
+%%
 feedTemp  = T0homog   * ones(1,length(Time_in_sec));  % Kelvin
 feedPress = feedPress * ones(1,length(Time_in_sec));  % Bars
 
 feedFlow  = V_Flow * rho * 1e-3 / 60 * ones(1,length(Time_in_sec));  % l/min -> kg/min -> Kg / sec
 
-uu = [feedTemp', feedPress', feedFlow'];
-
-% Inital conditions
+%% Inital conditions
 x0 = [C0fluid*ones(nstages,1);
     C0solid*ones(nstages,1);
     T0homog*ones(nstages,1);
     0];
 
-% Store symbolic results of the simulation
+uu = [feedTemp', feedPress', feedFlow'];
+
 X = MX(Nx,N_Time+1);
 X(:,1) = x0;
 
 
-%% Symbolic integration
+%%
 tic
 for j=1:N_Time
     X(:,j+1)=F(X(:,j), [uu(j,:)'; Parameters_sym] );
 end
 toc
 
-%% Find the measurment from the simulation
+%%
 Yield_estimate = X(3*nstages+1,:);
 Yield_estimate = [zeros(1,N_Delay) Yield_estimate(1:end-N_Delay)];
 Yield_estimate = Yield_estimate(1:N_Sample:end);
 
-%% Create the cost function
 J = (data-Yield_estimate ) * diag(1:1:1) * (data-Yield_estimate )';
-fJ = Function('fJ', {k}, {J} );
 
-%% Constraints
+%%
 for nk=1:Nk
     OPT_solver.subject_to( k_lu(nk,1) <= k(nk,:) <= k_lu(nk,2) )
 end
 
-%% Set opt and inital guess
+%%
 OPT_solver.minimize(J);
 
 OPT_solver.set_initial(k, k0);
 
-%% Solve the opt
-tic
+%%
+% tic
 try
     sol = OPT_solver.solve();
     kout = sol.value(k)
@@ -160,7 +157,7 @@ catch
 end
 toc
 
-%% Simulate system with obtained parameters
+%%
 Parameters(which_k) = kout;
 Parameters_opt = [uu repmat(Parameters,1,N_Time)'];
 

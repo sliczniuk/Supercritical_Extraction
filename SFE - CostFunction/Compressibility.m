@@ -1,5 +1,5 @@
 function Z = Compressibility(t,p,theta)
-    
+    %{
      import casadi.*
     T = MX.sym('T',length(t));
     P = MX.sym('P',length(p));
@@ -66,5 +66,6 @@ function Z = Compressibility(t,p,theta)
     catch
         Z = G(unifrnd(0,0.9),t,p,theta);
     end
-
+    %}
+    Z = 0.5644;
 end
