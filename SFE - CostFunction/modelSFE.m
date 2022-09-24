@@ -94,7 +94,7 @@ function xdot = modelSFE(x, p, N_stage)
     KRHOCP(nstages_index) .* ((1/L*nstages)^2) .* ( x(3*nstages_index-1) -2*x(3*nstages_index) + x(3*nstages_index) ); %!
 
     % 3*nstage+1 = output equation
-    F_u / RHO(nstages_index) * x(nstages_index) *1e3 ;   %kg/s - > g/s
+    F_u / RHO(nstages_index) * x(nstages_index) * 1e3 ;   %kg/s - > g/s
     %F_u / RHO(nstages_index) / Ms0 * x(nstages_index) * 100;
 
     

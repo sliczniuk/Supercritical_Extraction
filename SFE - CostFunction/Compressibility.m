@@ -67,5 +67,6 @@ function Z = Compressibility(t,p,theta)
         Z = G(unifrnd(0,0.9),t,p,theta);
     end
     %}
-    Z = 0.5644;
+    %Z = theta(end);
+    Z = Cardaon(t,p,theta);
 end
