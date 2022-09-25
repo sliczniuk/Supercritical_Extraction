@@ -1,8 +1,9 @@
-function y = modelSFE_out2(x, u, y_old, theta, timeStep_in_sec)
+function y = modelSFE_out2(x, nstages, rho, F_u, timeStep_in_sec)
+%function y = modelSFE_out2(x, u, y_old, theta, timeStep_in_sec)
 
 % theta = [nstages, C0solid, V, epsi, dp, L, rho_s, km, mi];
 %          1        2        3  4     5   6  7      8   9
-    
+    %{
     nstages       = theta{1};
     C0solid       = theta{2};                                            % Extractor initial concentration of extract
     V             = theta{3};     % Extractor volume (m3)
@@ -25,5 +26,9 @@ function y = modelSFE_out2(x, u, y_old, theta, timeStep_in_sec)
     Mf = x(nstages,:) * F_u / RHO * timeStep_in_sec;
 
     y = y_old + full( ( cumsum(Mf) / Ms0 )  * 100 );
+    %}
+    Mf = x(nstages,:) * F_u *1e3 / rho * timeStep_in_sec;
+
+    y = cumsum(Mf) ;
     
 end    

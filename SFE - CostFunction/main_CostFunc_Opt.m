@@ -1,7 +1,7 @@
 clc, close all
 clear all
-%addpath('C:\dev\casadi-windows-matlabR2016a-v3.5.2');
-addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-windows-matlabR2016a-v3.5.1');
+addpath('C:\dev\casadi-windows-matlabR2016a-v3.5.2');
+%addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-windows-matlabR2016a-v3.5.1');
 import casadi.*
 
 DATA = {'LUKE_T40_P200.xlsx', 'LUKE_T50_P200.xlsx', 'LUKE_T40_P300.xlsx', 'LUKE_T50_P300.xlsx'};
@@ -12,8 +12,8 @@ Parameters           = Parameters_table{:,3};               %
 Parameters_sym       = MX(Parameters_table{:,3});           % Vector of paraneters in the form casadi vector
 
 %% Specify parameters to estimate
-nstages              = 10;       
-which_k              = [8  ,44];
+nstages              = 100;       
+which_k              = [8  ,44, 45];
 %k0                   = [0.2, 1];
 
 %% 
@@ -23,7 +23,7 @@ Nk                   = numel(which_k);
 
 %% Set time of the simulation
 simulationTime       = 150;                                                 % Minutes
-timeStep             = 1/2;                                                % Minutes
+timeStep             = 1/4;                                                % Minutes
 SamplingTime         = 5;                                                   % Minutes
 delayTime            = 0;                                                   % Minutes
 
@@ -49,7 +49,7 @@ KOUT                    = nan(Nk,numel(DATA));
 % Create the solver
 OPT_solver              = casadi.Opti();
 nlp_opts                = struct;
-nlp_opts.ipopt.max_iter = 50;
+%nlp_opts.ipopt.max_iter = 50;
 ocp_opts                = {'nlp_opts', nlp_opts};
 OPT_solver.solver(         'ipopt'   , nlp_opts)
 
@@ -62,7 +62,7 @@ for nk=1:Nk
 end
 
 %% Set parameters
-m_ref                   = 78;                                           % g of product obtained from a kg of biomass
+m_ref                   = 80;                                           % g of product obtained from a kg of biomass
                      
 C0fluid                 = 0;                                            % Extractor initial concentration of extract
                                                                          % Fluid phase kg / m^3
@@ -99,14 +99,14 @@ toc
 
 %% Loop over datasets
 
-km_range = linspace(0.001, 0.6, 108);
-Di_range = linspace(0.001, 2, 108);
+km_range = linspace(0.01, 100, 200);
+Di_range = linspace(0.01, 100, 252);
 cJ       = nan(numel(km_range),numel(Di_range),4);
 KOUT     = nan(Nk,4);
 
-for i=3%numel(DATA)
+%for i=3%numel(DATA)
     clc
-    i
+    i = 4;
     
     Parameters(end)         = [COMPRESS(i)];
     Parameters_sym(end)     = [COMPRESS(i)];
@@ -134,7 +134,31 @@ for i=3%numel(DATA)
         C0solid*ones(nstages,1);
         T0homog*ones(nstages,1);
         0];
+
+    %%
+
+    Parameters(which_k) = [0.1, 0.05, 0];
+    Parameters_opt = [uu repmat(Parameters,1,N_Time)'];
     
+    [xx_out] = simulateSystem(F, [], x0, Parameters_opt  );
+
+    subplot(1,3,1)
+    hold on
+    plot(Time,xx_out(end,:))
+    plot(Time(1:N_Sample:end),data,'o')
+    hold off
+    axis square tight
+
+    subplot(1,3,2)
+    imagesc(xx_out(1:nstages,:)); colorbar
+    axis square tight
+
+    subplot(1,3,3)
+    imagesc(xx_out(1+nstages:2*nstages,:)); colorbar
+    axis square tight
+
+    %{
+       
     % Store symbolic results of the simulation
     X = MX(Nx,N_Time+1);
     X(:,1) = x0;
@@ -148,6 +172,8 @@ for i=3%numel(DATA)
     
     %% Find the measurment from the simulation
     Yield_estimate = X(3*nstages+1,:);
+    %Yield_estimate = modelSFE_out2(X, nstages, rho, feedFlow(1), timeStep_in_sec);
+
     Yield_estimate = [zeros(1,N_Delay) Yield_estimate(1:end-N_Delay)];
     Yield_estimate = Yield_estimate(1:N_Sample:end);
     
@@ -156,6 +182,7 @@ for i=3%numel(DATA)
     fJ = Function('fJ', {k}, {J} );
 
     %%
+   
     for kk = 1:numel(km_range)
         tic
         parfor dd = 1:numel(Di_range)
@@ -170,6 +197,39 @@ for i=3%numel(DATA)
     % find min value in the matrix
     cJi = cJ(:,:,i);
     [r,c] = find(cJi == min( cJi(:) ));
+
+    %%
+    %{
+    figure(i)
+    subplot(1,2,1)
+    surf(Di_range,km_range,cJi,'EdgeColor','none'); colorbar
+    hold on
+    scatter(Di_range(c),km_range(r),cJi(r,c),'filled','k')
+    hold off
+    axis square tight
+    view(2); 
+    
+    subplot(1,2,2)
+    hold on
+    plot(km_range,cJi)
+    plot(km_range(r),cJi(r,c),'ok')
+    hold off
+    axis square tight
+
+    %%
+    Parameters_opt = Parameters;
+    Parameters_opt(which_k) = [km_range(r), Di_range(c)];
+    Parameters_opt = [uu repmat(Parameters_opt,1,N_Time)'];
+    [xx_out] = simulateSystem(F, [], x0, Parameters_opt  );
+    y_estimate = [zeros(1,N_Delay) xx_out(end,1:end-N_Delay)];
+
+    figure()
+    hold on
+    plot(Time, y_estimate)
+    plot(Time(1:N_Sample:end),data,'o')
+    hold off
+    %}
+    
     k0 = [km_range(r), Di_range(c)];
     
     %% Set opt and inital guess
@@ -190,13 +250,13 @@ for i=3%numel(DATA)
     KOUT(:,i) = kout;
 
     %% Simulate system with obtained parameters
-    Parameters(which_k) = kout;
+    Parameters(which_k) = [1,1];
     Parameters_opt = [uu repmat(Parameters,1,N_Time)'];
     
     [xx_out] = simulateSystem(F, [], x0, Parameters_opt  );
-    
+
     %%
-        
+    
     figure(i)
     subplot(1,3,1)
     surf(Di_range,km_range,cJi,'EdgeColor','none'); colorbar
@@ -221,6 +281,6 @@ for i=3%numel(DATA)
     plot(Time(1:N_Sample:end),data,'o')
     hold off
     axis square tight
-end
+%end
 %%
 %}
