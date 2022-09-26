@@ -1,7 +1,7 @@
 clc, close all
 clear all
-%addpath('C:\dev\casadi-windows-matlabR2016a-v3.5.2');
-addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-windows-matlabR2016a-v3.5.1');
+addpath('C:\dev\casadi-windows-matlabR2016a-v3.5.2');
+%addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-windows-matlabR2016a-v3.5.1');
 import casadi.*
 
 DATA = {'LUKE_T40_P200.xlsx', 'LUKE_T50_P200.xlsx', 'LUKE_T40_P300.xlsx', 'LUKE_T50_P300.xlsx'};
@@ -22,7 +22,7 @@ Nu                   = 3 + numel(Parameters);
 Nk                   = numel(which_k);
 
 %% Set time of the simulation
-simulationTime       = 30;                                                 % Minutes
+simulationTime       = 150;                                                 % Minutes
 timeStep             = 1/2;                                                % Minutes
 SamplingTime         = 5;                                                   % Minutes
 delayTime            = 0;                                                   % Minutes
@@ -62,12 +62,13 @@ for nk=1:Nk
 end
 
 %% Set parameters
-m_ref                   = 80;                                           % g of product obtained from a kg of biomass
+m_ref                   = 76;                                           % g of product obtained from a kg of biomass
                      
 C0fluid                 = 0;                                            % Extractor initial concentration of extract
                                                                          % Fluid phase kg / m^3
-                     
-V                       = 0.00165;                                      % Volume of the extractor  [m3] 
+
+%V                       = 0.00165;                                      % Volume of the extractor  [m3]                                                                          
+V                       = 0.0165;                                      % Volume of the extractor  [m3] - changed
 L                       = 0.095;                                        % Length of the extractor [m]
 epsi                    = 2/3;                                          % Porosity [-] 
                  
@@ -106,7 +107,7 @@ toc
 
 %for i=3%numel(DATA)
     clc
-    i = 4;
+    i = 1;
     
     Parameters(end)         = [COMPRESS(i)];
     Parameters_sym(end)     = [COMPRESS(i)];
@@ -136,7 +137,7 @@ toc
         T0homog*ones(nstages,1);
         0];
 
-    k0 = [0.1, 0.05];
+    k0 = [1, 0.1];
 
     %%    
     Parameters(which_k) = k0;
@@ -163,7 +164,7 @@ toc
     Yield_estimate = Yield_estimate(1:N_Sample:end);
     
     %% Create the cost function
-    J = (data-Yield_estimate ) * diag(5*numel(data):-5:1) * (data-Yield_estimate )';
+    J = (data-Yield_estimate ) * diag(1:1:1) * (data-Yield_estimate )';
     fJ = Function('fJ', {k}, {J} );
 
     %%
