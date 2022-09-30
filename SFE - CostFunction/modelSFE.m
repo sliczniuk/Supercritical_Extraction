@@ -59,9 +59,9 @@ function xdot = modelSFE(x, p, N_stage)
 
     % Concentration of extract in fluid phase | 0
     % N = 1
-    - VELOCITY(1)                  * (1 / L * nstages)          * ( x(0*nstages_index+1)                   - 0 )                                                                                + ...
-      DIFFUSION(1)                 * ((1 / L * nstages)^2)      * ( 0                                      - 2*x(0*nstages_index+1)                   + x(0*nstages_index+2) )                  + ...
-    (1-epsi)/epsi                  * 1 / mi / lp2  * DIofT(1)   * ( x(1*nstages_index+1)                   - x(0*nstages_index+1)                                                               * ...
+    - VELOCITY(1)                  * (1 / L * nstages)          * ( x(0*nstages_index+1)                   -     0 )                                                                            + ...
+      DIFFUSION(1)                 * ((1 / L * nstages)^2)      * ( x(0*nstages_index+1)                   - 2*x(0*nstages_index+1)                   + x(0*nstages_index+2) )                  + ...
+    (1-epsi)/epsi                  * 1 / mi / lp2  * DIofT(1)   * ( x(1*nstages_index+1)                   -   x(0*nstages_index+1)                                                             * ...
     (rho_s / KM(1)  ./ RHO(1) ));
 
     % N >= 2 =< N-1
@@ -96,7 +96,6 @@ function xdot = modelSFE(x, p, N_stage)
     % 3*nstage+1 = output equation
     F_u / RHO(nstages_index) * x(nstages_index) * 1e3 ;   %kg/s - > g/s
     %F_u / RHO(nstages_index) / Ms0 * x(nstages_index) * 100;
-
     
     ];
 end

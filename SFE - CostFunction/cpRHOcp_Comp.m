@@ -2,7 +2,7 @@ function cprhocp = cpRHOcp_Comp(T,P,Z,RHO,CP,theta)
 
     epsi     = theta{4};     % Void bed fraction    
     rhoSolid = theta{7};     % Density of solid
-    cpSolid = theta{24};
+    cpSolid  = theta{24};
     
     cpFluid = CP;
     
