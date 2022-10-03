@@ -5,8 +5,7 @@ function xdot = modelSFE(x, p, N_stage)
     % vectors of numbers and vectors of symbolic variables
     % Rho (Peng-Robinson) are constant numbers
 
-    %% TODO: T_bottom (N+1) - boundary conditions
-
+    %% Load Paramters
     T_u           =    p(1);
     P_u           =    p(2);
     F_u           =    p(3);
@@ -28,6 +27,7 @@ function xdot = modelSFE(x, p, N_stage)
     Di            =    parameters{44};
     Dx            =    parameters{45};
     
+    %% Properties 
     Ms0           =     C0solid * V * (1-epsi);
     
     A             =     V / L;        % Cross-section of the extractor (m^2)
@@ -36,7 +36,11 @@ function xdot = modelSFE(x, p, N_stage)
 
     Z             =     Compressibility(x(2*nstages_index+1:3*nstages_index),P_u,parameters);
     RHO           =     rhoPB_Comp(x(2*nstages_index+1:3*nstages_index),P_u,Z,parameters);
+
+    VELOCITY      =     Velocity(F_u,RHO,parameters);
+    %VELOCITY_EMPTY=     Velocity(F_u,RHO,parameters)*epsi;
     
+    %% Extraction Kinetic
     %DIFFUSION     = axial_diffusion(x(2*nstages_index+1:3*nstages_index),P_u,F_u,RHO,parameters);
     %DIFFUSION     = Dx(x(2*nstages_index+1:3*nstages_index) ,P_u)*1e-4;
     DIFFUSION      =    Dx * ones(nstages_index,1) * 1e-6;
@@ -48,10 +52,10 @@ function xdot = modelSFE(x, p, N_stage)
     %KM           = km(x(2*nstages_index+1:3*nstages_index) ,P_u);
     KM            =     km*ones(nstages_index,1);
 
+    %% Thermal Properties
     CP            =     SpecificHeatComp(x(2*nstages_index+1:3*nstages_index), P_u, Z,RHO, parameters);
     CPRHOCP       =     cpRHOcp_Comp(x(2*nstages_index+1:3*nstages_index),P_u,Z,RHO,CP,parameters);
     KRHOCP        =     kRHOcp_Comp(x(2*nstages_index+1:3*nstages_index),P_u,Z,RHO,CP,parameters);
-    VELOCITY      =     Velocity(F_u,RHO,parameters);
     
     %%
 
@@ -59,7 +63,7 @@ function xdot = modelSFE(x, p, N_stage)
 
     % Concentration of extract in fluid phase | 0
     % N = 1
-    - VELOCITY(1)                  * (1 / L * nstages)          * ( x(0*nstages_index+1)                   -     0 )                                                                            + ...
+    - VELOCITY(1)                  * (1 / L * nstages)          * ( x(0*nstages_index+1)                                                              - 0                    )                  + ...
       DIFFUSION(1)                 * ((1 / L * nstages)^2)      * ( x(0*nstages_index+1)                   - 2*x(0*nstages_index+1)                   + x(0*nstages_index+2) )                  + ...
     (1-epsi)/epsi                  * 1 / mi / lp2  * DIofT(1)   * ( x(1*nstages_index+1)                   -   x(0*nstages_index+1)                                                             * ...
     (rho_s / KM(1)  ./ RHO(1) ));
@@ -71,9 +75,9 @@ function xdot = modelSFE(x, p, N_stage)
     (rho_s ./ KM(2:nstages_index-1) ./ RHO(2:nstages_index-1)));
 
     % N = Nstage
-    - VELOCITY(nstages_index)     .*  (1 / L * nstages   )     .* ( x(1*nstages_index)                     -   x(1*nstages_index-1))                                                            + ...
-      DIFFUSION(nstages_index)    .* ((1 / L * nstages)^2)     .* ( x(1*nstages_index-1)                   - 2*x(1*nstages_index)                     + x(1*nstages_index) )                    + ...     
-    (1-epsi)/epsi * 1 / mi / lp2  .* DIofT(nstages_index)      .* ( x(2*nstages_index)                     -   x(1*nstages_index)                                                              .* ...
+    - VELOCITY(nstages_index)     .*  (1 / L * nstages   )     .* ( x(1*nstages_index)                                                                - x(1*nstages_index-1))                    + ...
+      DIFFUSION(nstages_index)    .* ((1 / L * nstages)^2)     .* ( x(1*nstages_index-1)                   - 2*x(1*nstages_index)                     + x(1*nstages_index)  )                    + ...     
+    (1-epsi)/epsi * 1 / mi / lp2  .* DIofT(nstages_index)      .* ( x(2*nstages_index)                     -   x(1*nstages_index)                                                               .* ...
     (rho_s / KM(nstages_index)    ./ RHO(nstages_index)));
 
     % Concentration of extract in solid phase | 1
@@ -93,7 +97,21 @@ function xdot = modelSFE(x, p, N_stage)
     - F_u / epsi / A * (1 / L * nstages) .* CPRHOCP(nstages_index) .* (x(3*nstages_index) - x(3*nstages_index-1)) + ...
     KRHOCP(nstages_index) .* ((1/L*nstages)^2) .* ( x(3*nstages_index-1) -2*x(3*nstages_index) + x(3*nstages_index) ); %!
 
-    % 3*nstage+1 = output equation
+    % The concentration in the fluid above the fixed bed
+    %{
+    % N = 1
+    - VELOCITY_EMPTY(1)                   *  (1 / (L) * nstages)         * ( x(3*nstages_index+1)                                                              - x(1*nstages_index) )                    + ...
+      DIFFUSION(1)                        * ((1 / (L) * nstages)^2)      * ( x(1*nstages_index)                     - 2*x(3*nstages_index+1)                   + x(3*nstages_index+2) )                  ;
+
+    % N >= 2 =< N-1
+    - VELOCITY_EMPTY(2:nstages_index-1)  .*  (1 / (L) * nstages   )    .* ( x(3*nstages_index+2:4*nstages_index-1)                                            - x(3*nstages_index+1:4*nstages_index-2) ) + ...
+      DIFFUSION(2:nstages_index-1)       .* ((1 / (L) * nstages)^2)    .* ( x(3*nstages_index+1:4*nstages_index-2) - 2*x(3*nstages_index+2:4*nstages_index-1) + x(3*nstages_index+3:4*nstages_index) )        ;
+
+    % N = Nstage
+    - VELOCITY_EMPTY(nstages_index)      .*  (1 / (L) * nstages   )     .* ( x(4*nstages_index)                                                                - x(4*nstages_index-1))                   + ...
+      DIFFUSION(nstages_index)           .* ((1 / (L) * nstages)^2)     .* ( x(4*nstages_index-1)                   - 2*x(4*nstages_index)                     + x(4*nstages_index) )                    ;
+    %}
+    % 4*nstage+1 = output equation
     F_u / RHO(nstages_index) * x(nstages_index) * 1e3 ;   %kg/s - > g/s
     %F_u / RHO(nstages_index) / Ms0 * x(nstages_index) * 100;
     

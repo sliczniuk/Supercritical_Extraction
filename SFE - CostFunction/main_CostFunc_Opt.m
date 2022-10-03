@@ -1,11 +1,11 @@
 clc, close all
 clear all
-%addpath('C:\dev\casadi-windows-matlabR2016a-v3.5.2');
-addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-windows-matlabR2016a-v3.5.1');
+addpath('C:\dev\casadi-windows-matlabR2016a-v3.5.2');
+%addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-windows-matlabR2016a-v3.5.1');
 import casadi.*
 
 DATA = {'LUKE_T40_P200.xlsx', 'LUKE_T50_P200.xlsx', 'LUKE_T40_P300.xlsx', 'LUKE_T50_P300.xlsx'};
-DATA_to_check = [3];
+DATA_to_check = [1];
 
 %% load parameters and set number of stages
 Parameters_table     = readtable('Parameters.csv') ;        % Fulle table with prameters
@@ -15,7 +15,7 @@ Parameters_sym       = MX(Parameters_table{:,3});           % Vector of paranete
 %% Specify parameters to estimate
 nstages              = 50;       
 which_k              = [8, 44, 45];
-k0                   = [0.5, 1, 0];
+k0                   = [0.01, 1, 1];
 %Dx_0                 = 0;
 
 %% 
@@ -51,7 +51,7 @@ u                       = MX.sym('u', Nu);
 % Create the solver
 OPT_solver              = casadi.Opti();
 nlp_opts                = struct;
-%nlp_opts.ipopt.max_iter = 50;
+nlp_opts.ipopt.max_iter = 50;
 ocp_opts                = {'nlp_opts', nlp_opts};
 OPT_solver.solver(         'ipopt'   , nlp_opts)
 
@@ -69,8 +69,8 @@ m_ref                   = 80;                                           % g of p
 C0fluid                 = 0;                                            % Extractor initial concentration of extract
                                                                          % Fluid phase kg / m^3
 
-%V                       = 0.00165;                                      % Volume of the extractor  [m3]                                                                          
-V                       = 0.0165;                                      % Volume of the extractor  [m3] - changed
+V                       = 0.00165;                                      % Volume of the extractor  [m3]                                                                          
+%V                       = 0.0165;                                      % Volume of the extractor  [m3] - changed
 L                       = 0.095;                                        % Length of the extractor [m]
 epsi                    = 2/3;                                          % Porosity [-] 
                  
@@ -121,7 +121,7 @@ for i=DATA_to_check
     feedPress = LabResults(1,2);
     rho       = LabResults(1,3);
     data      = LabResults(:,5)';
-    data      = data(1:(N_Time-N_Preparation)/N_Sample+1);
+    data      = diff(data(1:(N_Time-N_Preparation)/N_Sample+1));
         
     % Set operating conditions
     feedTemp  = T0homog   * ones(1,length(Time_in_sec));  % Kelvin
@@ -139,21 +139,6 @@ for i=DATA_to_check
         0;
         ];
 
-    Parameters(which_k) = k0;
-    Parameters_opt = [uu repmat(Parameters,1,N_Time)'];
-
-    [xx_0] = simulateSystem(F, [], x0, Parameters_opt  );
-
-end
-
-%%
-hold on
-plot(xx_0(end,:))
-plot(xx_0(end-1,:))
-hold off
-
-    %{
-
     % Store symbolic results of the simulation
     X = MX(Nx,N_Time+1);
     X(:,1) = x0;
@@ -169,7 +154,7 @@ hold off
     Yield_estimate = X(3*nstages+1,N_Preparation+1:end);
     %Yield_estimate = modelSFE_out2(X, nstages, rho, feedFlow(1), timeStep_in_sec);
 
-    Yield_estimate = Yield_estimate(1:N_Sample:end);
+    Yield_estimate = diff(Yield_estimate(1:N_Sample:end))   ;
     
     % Create the cost function
     J = (data-Yield_estimate ) * diag(1:1:1) * (data-Yield_estimate )';
@@ -245,7 +230,6 @@ for i = DATA_to_check
     feedPress = LabResults(1,2);
     rho       = LabResults(1,3);
     data      = LabResults(:,5)';
-    %data      = data(1:N_Time/N_Sample+1);
     
     % Set operating conditions
     feedTemp  = T0homog   * ones(1,length(Time_in_sec));  % Kelvin
@@ -260,7 +244,6 @@ for i = DATA_to_check
     x0 = [C0fluid*ones(nstages,1);
         C0solid*ones(nstages,1);
         T0homog*ones(nstages,1);
-        0;
         0];
 
 
@@ -283,7 +266,7 @@ for i = DATA_to_check
 
     %
     subplot(numel(DATA_to_check),3,id)
-    imagesc(Time,1:nstages,xx_0(1:nstages,:)); colorbar
+    imagesc(Time,1:nstages,xx_out(1:nstages,:)); colorbar
     xlabel('Time [min]')
     ylabel('Stages')
     title('Fluid Concentration')
@@ -291,7 +274,7 @@ for i = DATA_to_check
     axis tight
 
     subplot(numel(DATA_to_check),3,id+1)
-    imagesc(Time,1:nstages,xx_0(nstages+1:2*nstages,:)); colorbar
+    imagesc(Time,1:nstages,xx_out(1*nstages+1:2*nstages,:)); colorbar
     xlabel('Time [min]')
     ylabel('Stages')
     title('Solid Concentration')
@@ -309,6 +292,14 @@ for i = DATA_to_check
     xlabel('Di')
     ylabel('km')
     view(2);
+    
+
+    subplot(numel(DATA_to_check),4,id+2)
+    imagesc(Time,1:nstages,xx_out(3*nstages+1:4*nstages,:)); colorbar
+    xlabel('Time [min]')
+    ylabel('Stages')
+    title('Fluid above the fixed bed')
+    axis tight
     %}
 
     subplot(numel(DATA_to_check),3,id+2)
