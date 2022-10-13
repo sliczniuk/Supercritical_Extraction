@@ -28,9 +28,7 @@ function F = buildIntegrator(varargin)
     DAE = struct('x', x, 'p', p, 'ode', f(x,u));
     args = {x,u};
     args_str = {'x','u'};
-    
-    %options.nonlinear_solver_iteration = 'functional';
-    %options.newton_scheme = 'tfqmr';
+
     
     F = integrator('F', method, DAE, options);
     F_res = F('x0', x, 'p', p);
