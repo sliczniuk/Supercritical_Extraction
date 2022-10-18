@@ -5,6 +5,7 @@ addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-windows-matlabR2016a
 import casadi.*
 
 DATA = {'LUKE_T40_P200.xlsx', 'LUKE_T50_P200.xlsx', 'LUKE_T40_P300.xlsx', 'LUKE_T50_P300.xlsx'};
+%DATA = {'LUKE_T50_P200.xlsx'};
 
 Parameters_table     = readtable('Parameters.csv') ;        % Fulle table with prameters
 
@@ -32,21 +33,21 @@ end
 N_Time               = length(Time_in_sec);
 
 %% Specify parameters to estimate
-nstages              = 50;
+nstages              = 10;
 which_k              = [8, 44];
 
 %% Set parameters
 m_ref                = 78;                                           % g of product obtained from a kg of biomass
 
-C0fluid              = 0;                                            % Extractor initial concentration of extract - Fluid phase kg / m^3
+V                    = 0.010;                                    % Volume of the extractor  [m3]
+L                    = 0.6;                                       % Length of the extractor [m]
+epsi                 = 0.90;                                      % Porosity [-]
 
-V                    = 0.00165;                                      % Volume of the extractor  [m3]
-L                    = 0.095;                                        % Length of the extractor [m]
-epsi                 = 2/3;                                          % Porosity [-]
+a=1;
+C0solid              =a*m_ref *1e-3 / (V*(1-epsi));            % Solid phase kg / m^3
+C0fluid              =(1-a)*m_ref *1e-3 / (V*(epsi));            % Extractor initial concentration of extract - Fluid phase kg / m^3
 
-C0solid              = m_ref *1e-3 / (V*(1-epsi));                   % Solid phase kg / m^3
-
-dp                   = 0.00010;                                      % Diameter of the particle [m] - Vargas
+dp                   = 0.00010;                                      % Diameter of the particle [m]
 rho_s                = 1250.0;                                       % Densisty of the solid phase [kg / m^3] - FC
 km                   = 0.29;                                         % Partition coefficient (?)
 
@@ -54,14 +55,17 @@ mi                   = 1/2;                                          % Geometric
 
 V_Flow               = 0.39;
 
+Parameters = Parameters_table{:,3};
+Parameters(1:9)     = [nstages, C0solid, V, epsi, dp, L, rho_s, km, mi];
+
 %% Loop over datasets
 
-kp_Set = [0.01, 0.1, 0.5, 1, 5, 10];
-Di_Set = [0.01, 0.1, 0.5, 1, 5];
+kp_Set = [0.03]; %[0.01, 0.1, 0.5, 1, 2];
+Di_Set = [0.2]; %[0.01, 0.1, 1, 2];
 
-KOU      = nan( numel(which_k),numel(kp_Set),numel(Di_Set),4);
-JJ       = nan( numel(kp_Set) ,numel(Di_Set),4);
-J_STATUS = cell(numel(kp_Set) ,numel(Di_Set),4);
+KOU      = nan( numel(which_k), numel(kp_Set), numel(Di_Set), numel(DATA) );
+JJ       = nan(                 numel(kp_Set), numel(Di_Set), numel(DATA) );
+J_STATUS = cell(                numel(kp_Set), numel(Di_Set), numel(DATA) );
 
 %%
 Nx                   = 3*nstages+1;
@@ -82,53 +86,51 @@ F = buildIntegrator(f, [Nx,Nu] , timeStep_in_sec);
 
 %%
 
-for i=1:numel(DATA)
-
-     % load dataset
-     LabResults = xlsread(DATA{i});
-
-     T0homog   = LabResults(1,1)+273.15;
-     feedPress = LabResults(1,2);
-     rho       = LabResults(1,3);
-     data      = LabResults(:,5)';
-     data      = diff(data);
-
-     % Set operating conditions
-     feedTemp  = T0homog   * ones(1,length(Time_in_sec));  % Kelvin
-     feedPress = feedPress * ones(1,length(Time_in_sec));  % Bars
-
-     feedFlow  = V_Flow * rho * 1e-3 / 60 * ones(1,length(Time_in_sec));  % l/min -> kg/min -> Kg / sec
-
-     uu = [feedTemp', feedPress', feedFlow'];
-
-     % Inital conditions
-     x0 = [C0fluid*ones(nstages,1);
-         C0solid*ones(nstages,1);
-         T0homog*ones(nstages,1);
-         0;
-         ];
-
     for d=1:numel(Di_Set)
 
-        clc; [i,d]
+        %clc; [i, d]
 
-        parfor kp=1:numel(kp_Set)
-            
+        for kp=1:numel(kp_Set)
 
-            k0 = [kp_Set(kp), Di_Set(d)];
+            parfor id=1:numel(DATA)
+        
+             % load dataset
+             LabResults = xlsread(DATA{id});
+        
+             T0homog   = LabResults(1,1)+273.15;
+             feedPress = LabResults(1,2);
+             rho       = LabResults(1,3);
+             data      = LabResults(:,5)';
+             data      = diff(data);
+        
+             % Set operating conditions
+             feedTemp  = T0homog   * ones(1,length(Time_in_sec));  % Kelvin
+             feedPress = feedPress * ones(1,length(Time_in_sec));  % Bars
+        
+             feedFlow  = V_Flow * rho * 1e-3 / 60 * ones(1,length(Time_in_sec));  % l/min -> kg/min -> Kg / sec
+        
+             uu = [feedTemp', feedPress', feedFlow'];
+        
+             % Inital conditions
+             x0 = [C0fluid*ones(nstages,1);
+                 C0solid*ones(nstages,1);
+                 T0homog*ones(nstages,1);
+                 0;
+                 ];
+        
+            k0 = [kp_Set(kp), Di_Set(d)]
             
             %% load parameters and set number of stages
-            
-            Parameters           = Parameters_table{:,3};               %
             Parameters_sym       = MX(Parameters_table{:,3});           % Vector of paraneters in the form casadi vector
 
             % Create the solver
-            OPT_solver              = casadi.Opti();
+            OPT_solver                  = casadi.Opti();
             
-            nlp_opts                = struct;
-            nlp_opts.ipopt.max_iter = 5;
-            ocp_opts                = {'nlp_opts', nlp_opts};
-            OPT_solver.solver(         'ipopt'   , nlp_opts)
+            nlp_opts                    = struct;
+            nlp_opts.ipopt.max_iter     = 10;
+            %nlp_opts.ipopt.max_cpu_time = 300;
+            ocp_opts                    = {'nlp_opts', nlp_opts};
+            OPT_solver.solver(             'ipopt'   , nlp_opts)
 
             % Descision variables
             k                       = OPT_solver.variable(Nk);
@@ -140,7 +142,6 @@ for i=1:numel(DATA)
 
             %% Assign new values of parameters to the Parameters vector
             %                       nstages, C0solid, V, epsi, dp, L, rho_s, km, mi
-            Parameters(1:9)         = [nstages, C0solid, V, epsi, dp, L, rho_s, km, mi];
             Parameters_sym(1:9)     = [nstages, C0solid, V, epsi, dp, L, rho_s, km, mi];
 
             % Decide which parameters are decision variabales
@@ -148,15 +149,14 @@ for i=1:numel(DATA)
             Parameters_sym(which_k) = k;
 
             % Store symbolic results of the simulation
-
-            X = MX(Nx,N_Time+1);    
+            X = MX(Nx,N_Time+1);
             X(:,1) = x0;
 
             % Symbolic integration
             for j=1:N_Time
                 X(:,j+1)=F(X(:,j), [uu(j,:)'; Parameters_sym] );
             end
-            
+
             %% Find the measurment from the simulation
             Yield_estimate = diff(X(3*nstages+1,N_Sample));
 
@@ -176,18 +176,22 @@ for i=1:numel(DATA)
             catch
                 kout = OPT_solver.debug.value(k);
             end
-           
+
             % store the results
-            KOUT(:,kp,d,i) = kout;
-            JJ(kp,d,i) = full(fJ(kout));
-            J_STATUS{kp,d,i} = OPT_solver.return_status;
+            KOUT(:,kp,d,id) = kout;
+            JJ(kp,d,id) = full(fJ(kout));
+            J_STATUS{kp,d,id} = OPT_solver.return_status;
+
+            %clc
+
+            end
 
         end
-        save Fit_Di_km.mat
-        clc
-        disp('Saved')
+
+        %save Fit_Di_km_Data2.mat
+
     end
-end
+
 
 %% Set time of the simulation
 %{
@@ -214,13 +218,9 @@ toc
 %}
 
 %% Simulate system with obtained parameters
-%{
-for v=1:numel(kp_Set)
-
-    k0 = [kp_Set(v), 1];
 
     id = 1;
-    for i = DATA_to_check
+    for i = 1:numel(DATA)
     
         % load dataset
         LabResults = xlsread(DATA{i});
@@ -244,7 +244,9 @@ for v=1:numel(kp_Set)
             T0homog*ones(nstages,1);
             0];
     
-        kout  = KOUT(:,v,i);
+        kout  = KOUT(:,1,1,i);
+
+        k0 = [0.03, 0.2]; 
     
         %
         Parameters(which_k) = k0;
@@ -258,10 +260,10 @@ for v=1:numel(kp_Set)
         [xx_out] = simulateSystem(F, [], x0, Parameters_opt  );
     
         %
-        figure(v)
+        %figure(i)
         set(gcf,'PaperOrientation','landscape')
 
-        subplot(numel(DATA_to_check),3,id)
+        subplot(numel(DATA),3,id)
         imagesc(Time,1:nstages,xx_out(1:nstages,:)); colorbar
         xlabel('Time [min]')
         ylabel('Stages')
@@ -269,14 +271,14 @@ for v=1:numel(kp_Set)
         ylabel(['T=',mat2str(T0homog),', P=',mat2str(feedPress(1))])
         axis tight
     
-        subplot(numel(DATA_to_check),3,id+1)
+        subplot(numel(DATA),3,id+1)
         imagesc(Time,1:nstages,xx_out(1*nstages+1:2*nstages,:)); colorbar
         xlabel('Time [min]')
         ylabel('Stages')
         title('Solid Concentration')
         axis tight
     
-        subplot(numel(DATA_to_check),3,id+2)
+        subplot(numel(DATA),3,id+2)
     
         hold on
         plot(Time,xx_out(end,:))
@@ -288,18 +290,17 @@ for v=1:numel(kp_Set)
         legend off
         xlabel('Time [min]')
         ylabel('Mass of the extract [g]')
-        title(['k=',sprintf('%0.3g, %0.3g, %0.3g, Cost Function=%0.3g, \n STATUS=%s',kout, JJ(v,i), J_STATUS{v,i} )  ])
+        %title(['k=',sprintf('%0.3g, %0.3g, %0.3g, Cost Function=%0.3g, \n STATUS=%s',kout, JJ(v,i), J_STATUS{v,i} )  ])
         axis tight
         ylim([0, m_ref+2])
 
-        print(gcf, ['Bounded_Fit_V_',mat2str(V),'_Kp_k0_',mat2str(k0),'.pdf'], '-dpdf','-r700','-fillpage')
+        %print(gcf, ['Bounded_Fit_V_',mat2str(V),'_Kp_k0_',mat2str(k0),'.pdf'], '-dpdf','-r700','-fillpage')
     
         id = id + 3;
     
     end
 
-end
 %%
-save Bounded_Fit_Kp.mat
+
 %%
 %}

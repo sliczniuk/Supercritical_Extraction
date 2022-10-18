@@ -24,13 +24,12 @@ function Cp = SpecificHeatComp(T, P, Z, RHO, theta)
     %alpha = (1 + kappa .* (1 - sqrt(Tr))).^2;
     
     m     = 0.37464 + 1.54226*kappa - 0.26992 * kappa^2;
-    alpha = ( 1 + m .* ( 1 - Tr.^0.5 ) ).^2;
+    alpha = ( 1 + m * ( 1 - Tr^0.5 ) )^2;
 
     a = 0.45724 .* R.^2 .* Tc.^2 *alpha ./ Pc;
     b = 0.0777961 .* R    .* Tc           ./ Pc;
 
-    %A = a .* alpha .* P ./ R.^2 ./ T.^2;
-    A = 0.45723553.*alpha.*Pr./Tr.^2;
+    A = a .* alpha .* P ./ R.^2 ./ T.^2;
     B = b .* P ./ R ./ T;
 
     v = 1./RHO*MW*1e6;
@@ -42,7 +41,7 @@ function Cp = SpecificHeatComp(T, P, Z, RHO, theta)
     
     %  (δa/ δT)_V = -kappa/[ ((T*Tc)^0.5) (1 + kappa( 1 - (T/Tc)^0.5))]
     %dadT = -kappa.*a./( sqrt(T*Tc).*(1 + kappa.*( 1 - sqrt(Tr))) );
-    dadT = -m.*a./( sqrt(T*Tc).*(1 + m.*( 1 - sqrt(Tr))) );
+    dadT = -m.*kappa.*a./( sqrt(T*Tc).*(1 + m.*( 1 - sqrt(Tr))) );
     
     %  (δA/δT)_P = (P/(RT)²)(a' - 2a/T)
     dAdT = (P./(R.*T).^2).*(dadT - 2*a./T);
@@ -64,7 +63,7 @@ function Cp = SpecificHeatComp(T, P, Z, RHO, theta)
     dVdT = (R./P) .* (T.*dZdT + Z);
     
     %  a" = a kappa (1 + kappa)(Tc/T)^0.5 / (2*T*Tc)
-    d2adT2 = a*m*(1+m).*sqrt(Tc./T)./(2.*T.*Tc);
+    d2adT2 = a.*kappa.*(1+kappa).*sqrt(Tc./T)./(2.*T.*Tc);
 
     %% Heat Capacity - Ideal gas
     Cp_Ideal = CP_0 * (CP_A + CP_B.*T + CP_C.*T.^2 + CP_D.*T.^3);

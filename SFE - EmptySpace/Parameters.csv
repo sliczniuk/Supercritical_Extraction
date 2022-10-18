@@ -11,18 +11,18 @@ Numer,Name,Value,Unit,Description
 10,Tc,304.1,K,Critical temperature
 11,Pc,73.8,bar,Critical pressure
 12,R,0.0000831,[m3-bar/K-mol],Gas constant
-13,kappa,0.712243759,[-],Acentric factor
+13,kappa,0.225,[-],Acentric factor
 14,MW,0.044,Kg/mol,Molar mass
 15,EA_Di,0.738266579,[-],
 16,betah_Di,51.24432282,[-],
 17,CP_0,4.18686,,Ideal gas CP for CO2
-18,CP_A,19.8,,
-19,CP_B,0.07344,,
-20,CP_C,-0.000056,,
-21,CP_D,1.72E-08,,
+18,CP_A,4.728,,
+19,CP_B,0.0175,,
+20,CP_C,-1.34E-05,,
+21,CP_D,4.10E-09,,
 22,EA_km,-1.078261986,,
 23,betah_km,3.63E-19,,
-24,cpSolid,1500,J/K/Kg,
+24,cpSolid,1.5,kJ/K/Kg,
 25,a_axial,0.1,,
 26,b_axial,0.011,,
 27,c_axial,0.48,,

@@ -1,4 +1,4 @@
-function k = HeatConductivity_Comp(T, P, Z, rho, theta)
+function k = HeatConductivity_Comp(t, P, Z, RHO, theta)
 
 import casadi.*
 
@@ -14,6 +14,9 @@ A7 = theta{34}; % 0.0017;
 
 k = ( A1 + A2.*rho + A3.*(rho.^2) + A4.*(rho.^3).*(T.^3) + A5.*(rho.^4) + A6.*T + A7.*(T.^2) ) ./ (T.^(1/2));
 %}
+
+    T   = MX.sym('T'  ,numel(t)  );
+    rho = MX.sym('rho',numel(RHO));
 
     Tc    = 304.1282;
     Pc    = 73.7650;
@@ -71,6 +74,11 @@ k = ( A1 + A2.*rho + A3.*(rho.^2) + A4.*(rho.^3).*(T.^3) + A5.*(rho.^4) + A6.*T 
     Delta_k_c_1 = (-17.47 - 44.88 .* Delta_Tc) ./ ( 0.8563 - exp(8.865.*Delta_Tc + 4.16.*Delta_rho_c.^2 + 2.302.*Delta_Tc.*Delta_rho_c - Delta_rho_c.^3) - 0.4503.*Delta_rho_c - 7.197*Delta_Tc );
     
     k = k0 + Delta_k' + Delta_k_c_1;
+
+    fk = Function('fk',{T,rho}, {k});
+
+    k = fk(t,RHO);
+
     %k = Delta_k;
 
     % Units [ 10^-3 (W / m * K) ]

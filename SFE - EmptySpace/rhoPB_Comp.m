@@ -1,4 +1,4 @@
-function [rho] = rhoPB_Comp(t,p, Z, theta)
+function [rho] = rhoPB_Comp(t, p, Z, theta)
 
     R  = theta{12};
     MW = theta{14};

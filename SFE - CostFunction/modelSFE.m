@@ -90,7 +90,7 @@ function xdot = modelSFE(x, p, N_stage)
     (rho_s / KM(nstages_index)    ./ RHO(nstages_index)));
 
     % Concentration of extract in solid phase | 1
-    - 1 / mi / lp2 .* DIofT .* ( SOLID - FLUID .* (rho_s ./ KM ./ RHO ) );
+    - 1 / mi / lp2 .* DIofT .* ( SOLID - FLUID .* (rho_s ./ KM ./ RHO ) ) *;
 
     % Temperature | 2
     % N = 1
