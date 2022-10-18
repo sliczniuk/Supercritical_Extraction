@@ -9,11 +9,11 @@ function [Z] = Cardaon(T, P, THETA)
     % theta = [nstages, C0solid, V, epsi, dp, L, rho_s, km, mi, Tc, Pc, R, kappa];
     %          1        2        3  4     5   6  7      8   9   10  11  12 13
 
-    Tc      = THETA(10);   % Critical temperature [K]
-    Pc      = THETA(11);   % Critical pressure [bar]
-    R       = THETA(12);   % Universal gas constant, [m3-bar/K-mol]
-    kappa   = THETA(13);
-    MW      = THETA(14);   % Molar mass [g/mol]
+    Tc      = THETA{10};   % Critical temperature [K]
+    Pc      = THETA{11};   % Critical pressure [bar]
+    R       = THETA{12};   % Universal gas constant, [m3-bar/K-mol]
+    kappa   = THETA{13};
+    MW      = THETA{14};   % Molar mass [g/mol]
     Tr      = T ./ Tc;
     a       = 0.4572350 .* R.^2 .* Tc.^2 ./ Pc;
     b       = 0.0777961 .* R    .* Tc    ./ Pc;

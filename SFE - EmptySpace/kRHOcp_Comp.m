@@ -8,7 +8,7 @@ function krhocp = kRHOcp_Comp(T, P, Z, RHO, CP, epsi, theta)
 
     k_solid  = 0.18;         % thermal conductivity of solid particles W/m/K - Some engineering and thermal properties of black cumin(Nigella sativaL.) seeds | 10.1111/j.1365-2621.2007.01561.x
     
-    k_fluid = HeatConductivity_Comp(T, P, Z, RHO, theta) * 10^-3;        % mili W/m/K -> W/m/K
+    k_fluid = HeatConductivity_Comp(T, RHO) * 10^-3;        % mili W/m/K -> W/m/K
     cpFluid = CP;                % [kJ/kg/K]
     
     krhocp = ( (1-epsi) .* k_fluid + epsi .* k_solid ) ./ (cpFluid .* (1-epsi) .* RHO + cpSolid .* epsi .* rhoSolid);

@@ -1,7 +1,7 @@
 clc, close all
 clear all
-%addpath('C:\dev\casadi-windows-matlabR2016a-v3.5.2');
-addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-windows-matlabR2016a-v3.5.1');
+addpath('C:\dev\casadi-windows-matlabR2016a-v3.5.2');
+%addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-windows-matlabR2016a-v3.5.1');
 import casadi.*
 
 %DATA = {'LUKE_T40_P200.xlsx', 'LUKE_T50_P200.xlsx', 'LUKE_T40_P300.xlsx', 'LUKE_T50_P300.xlsx'};
@@ -10,10 +10,10 @@ DATA = {'LUKE_T40_P300.xlsx'};
 Parameters_table        = readtable('Parameters.csv') ;        % Fulle table with prameters
 
 %% Set time of the simulation
-simulationTime          = 1;                                                 % Minutes
+simulationTime          = 1000;                                                 % Minutes
 SamplingTime            = 5;                                                   % Minutes
 
-timeStep                = 1/60;                                                 % Minutes
+timeStep                = 1/4;                                                 % Minutes
 
 timeStep_in_sec         = timeStep * 60;                                       % Seconds
 Time_in_sec             = (timeStep:timeStep:simulationTime)*60;               % Seconds
@@ -34,7 +34,7 @@ end
 N_Time                  = length(Time_in_sec);
 
 %% Specify parameters to estimate
-nstages                 = 3;
+nstages                 = 100;
 
 before  = 0.35;         nstagesbefore   = 1:floor(before*nstages);
 bed     = 0.35;         nstagesbed      = nstagesbefore(end)+1 : nstagesbefore(end) + floor(bed*nstages);
@@ -48,8 +48,8 @@ bed_mask(nstagesafter)  = 0;
 which_k                 = [8, 44, 45];
 
 %% Set parameters
-mSOL_s                   = 0;                                           % g of product in biomass
-mSOL_f                   = 1;                                           % g of biomass in fluid
+mSOL_s                   = 1;                                           % g of product in biomass
+mSOL_f                   = 0;                                           % g of biomass in fluid
 
 %C0fluid                 = 1;                                           % Extractor initial concentration of extract - Fluid phase kg / m^3
 
@@ -128,14 +128,14 @@ for i=1:numel(DATA)
      T0homog    = LabResults(1,1)+273.15;
      feedPress  = LabResults(1,2) ;
      %rho        = LabResults(1,3) ;
-     rho        = rhoPB_Comp(T0homog, feedPress, Compressibility(T0homog,feedPress,Parameters_table{:,3}), table2cell(Parameters_table(:,3)));
+     rho        = rhoPB_Comp(T0homog, feedPress, Compressibility(T0homog,feedPress,table2cell(Parameters_table(:,3))), table2cell(Parameters_table(:,3)));
 
      data_org   = LabResults(:,5)';
      data       = diff(data_org);
 
      % Set operating conditions
      feedTemp   = T0homog   * ones(1,length(Time_in_sec));  % Kelvin
-     feedTemp   = feedTemp + 50;
+     feedTemp   = feedTemp + 50 ;
 
      feedPress  = feedPress * ones(1,length(Time_in_sec));  % Bars
 
@@ -156,7 +156,7 @@ for i=1:numel(DATA)
 
         for kp=1:numel(kp_Set)
 
-            k0 = [kp_Set(kp), Di_Set(d), 0];
+            k0 = [kp_Set(kp), Di_Set(d), 1];
             
             Parameters          = Parameters_table{:,3};
             Parameters(1:9)     = [nstages, C0solid, r, epsi, dp, L, rho_s, km, mi];
@@ -178,7 +178,7 @@ for i=1:numel(DATA)
             %plot(SAMPLE,data_org,'o')
             hold off
 
-            [xx_0(end,end)]
+            xx_0(end,end)
 
             %{
             

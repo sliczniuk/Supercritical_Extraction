@@ -1,9 +1,9 @@
-function k = HeatConductivity_Comp(t, P, Z, RHO, theta)
+function k = HeatConductivity_Comp(t, RHO)
 
 import casadi.*
 
 %{
-
+function k = HeatConductivity_Comp(t, P, Z, RHO, theta)
 A1 = theta{28}; % -105.161;
 A2 = theta{29}; % 0.9007;
 A3 = theta{30}; % 0.0007;
