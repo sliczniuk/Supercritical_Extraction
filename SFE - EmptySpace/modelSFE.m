@@ -40,7 +40,7 @@ function xdot = modelSFE(x, p, mask)
     Z             =     Compressibility(TEMP, P_u,   parameters);
     RHO           =     rhoPB_Comp(     TEMP, P_u, Z,parameters);
 
-    VELOCITY      =     Velocity(F_u, RHO, parameters) ;
+    VELOCITY      =     Velocity(F_u, RHO, parameters);
     
     %% Extraction Kinetic
     %DIFFUSION     = axial_diffusion(x(2*nstages_index+1:3*nstages_index),P_u,F_u,RHO,parameters);

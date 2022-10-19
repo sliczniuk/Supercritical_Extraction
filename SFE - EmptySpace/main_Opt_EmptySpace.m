@@ -1,7 +1,7 @@
 clc, close all
 clear all
-addpath('C:\dev\casadi-windows-matlabR2016a-v3.5.2');
-%addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-windows-matlabR2016a-v3.5.1');
+%addpath('C:\dev\casadi-windows-matlabR2016a-v3.5.2');
+addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-windows-matlabR2016a-v3.5.1');
 import casadi.*
 
 %DATA = {'LUKE_T40_P200.xlsx', 'LUKE_T50_P200.xlsx', 'LUKE_T40_P300.xlsx', 'LUKE_T50_P300.xlsx'};
@@ -10,7 +10,7 @@ DATA = {'LUKE_T40_P300.xlsx'};
 Parameters_table        = readtable('Parameters.csv') ;        % Fulle table with prameters
 
 %% Set time of the simulation
-simulationTime          = 1000;                                                 % Minutes
+simulationTime          = 150;                                                 % Minutes
 SamplingTime            = 5;                                                   % Minutes
 
 timeStep                = 1/4;                                                 % Minutes
@@ -36,8 +36,8 @@ N_Time                  = length(Time_in_sec);
 %% Specify parameters to estimate
 nstages                 = 100;
 
-before  = 0.35;         nstagesbefore   = 1:floor(before*nstages);
-bed     = 0.35;         nstagesbed      = nstagesbefore(end)+1 : nstagesbefore(end) + floor(bed*nstages);
+before  = 0.04;         nstagesbefore   = 1:floor(before*nstages);
+bed     = 0.16;         nstagesbed      = nstagesbefore(end)+1 : nstagesbefore(end) + floor(bed*nstages);
                         nstagesafter    = nstagesbed(end)+1:nstages;
 
 bed_mask                = nan(nstages,1);
@@ -45,10 +45,10 @@ bed_mask(nstagesbefore) = 0;
 bed_mask(nstagesbed)    = 1;
 bed_mask(nstagesafter)  = 0;
 
-which_k                 = [8, 44, 45];
+which_k                 = [8, 44];
 
 %% Set parameters
-mSOL_s                   = 1;                                           % g of product in biomass
+mSOL_s                   = 78;                                           % g of product in biomass
 mSOL_f                   = 0;                                           % g of biomass in fluid
 
 %C0fluid                 = 1;                                           % Extractor initial concentration of extract - Fluid phase kg / m^3
@@ -91,8 +91,6 @@ m0fluid(nstagesbefore) = C0fluid * V_before / numel(nstagesbefore);
 m0fluid(nstagesbed)    = C0fluid * (V_bed * (1 - epsi)) / numel(nstagesbed);
 m0fluid(nstagesafter)  = C0fluid * V_after / numel(nstagesafter);
 
-V_Flow                 = 0.39;
-
 %% Loop over datasets
 
 kp_Set                  = [0.1];
@@ -125,6 +123,8 @@ for i=1:numel(DATA)
      % load dataset
      LabResults = xlsread(DATA{i});
 
+     V_Flow     = 0.39;
+
      T0homog    = LabResults(1,1)+273.15;
      feedPress  = LabResults(1,2) ;
      %rho        = LabResults(1,3) ;
@@ -135,7 +135,7 @@ for i=1:numel(DATA)
 
      % Set operating conditions
      feedTemp   = T0homog   * ones(1,length(Time_in_sec));  % Kelvin
-     feedTemp   = feedTemp + 50 ;
+     feedTemp   = feedTemp;
 
      feedPress  = feedPress * ones(1,length(Time_in_sec));  % Bars
 
@@ -156,7 +156,7 @@ for i=1:numel(DATA)
 
         for kp=1:numel(kp_Set)
 
-            k0 = [kp_Set(kp), Di_Set(d), 1];
+            k0 = [kp_Set(kp), Di_Set(d)];
             
             Parameters          = Parameters_table{:,3};
             Parameters(1:9)     = [nstages, C0solid, r, epsi, dp, L, rho_s, km, mi];
@@ -166,19 +166,21 @@ for i=1:numel(DATA)
     
             [xx_0] = simulateSystem(F, [], x0, Parameters_opt  );
 
+            %%
+            ind = 1:numel(Time); 
             subplot(2,2,1)
-            imagesc(Time,1:nstages,xx_0(1*nstages+1:2*nstages,:)); 
+            imagesc(Time,1:nstages,xx_0(1*nstages+1:2*nstages,:)); colorbar
             subplot(2,2,2)
-            imagesc(Time,1:nstages,xx_0(0*nstages+1:1*nstages,:)); 
+            imagesc(Time,1:nstages,xx_0(0*nstages+1:1*nstages,:)); colorbar
             subplot(2,2,3)
             imagesc(Time,1:nstages,xx_0(2*nstages+1:3*nstages,:)); colorbar;
             subplot(2,2,4)
-            hold on
-            plot(Time,xx_0(end,:))
-            %plot(SAMPLE,data_org,'o')
-            hold off
-
+            plotyy(Time, xx_0(end,:), Time, 1e3 * (sum(xx_0(0*nstages+1:1*nstages,ind) .* V_fluid) + sum(xx_0(1*nstages+1:2*nstages,ind) .* V_solid)) + xx_0(3*nstages+1,ind))
+            
+            %%
             xx_0(end,end)
+
+            % ind = numel(Time); 1e3 * (sum(xx_0(0*nstages+1:1*nstages,ind) .* V_fluid) + sum(xx_0(1*nstages+1:2*nstages,ind) .* V_solid)) + xx_0(3*nstages+1,ind)
 
             %{
             
