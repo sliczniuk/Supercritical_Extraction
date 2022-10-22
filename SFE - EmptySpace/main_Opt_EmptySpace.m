@@ -1,7 +1,7 @@
 clc, close all
 clear all
-%addpath('C:\dev\casadi-windows-matlabR2016a-v3.5.2');
-addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-windows-matlabR2016a-v3.5.1');
+addpath('C:\dev\casadi-windows-matlabR2016a-v3.5.2');
+%addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-windows-matlabR2016a-v3.5.1');
 import casadi.*
 
 %DATA = {'LUKE_T40_P200.xlsx', 'LUKE_T50_P200.xlsx', 'LUKE_T40_P300.xlsx', 'LUKE_T50_P300.xlsx'};
@@ -36,9 +36,9 @@ N_Time                  = length(Time_in_sec);
 %% Specify parameters to estimate
 nstages                 = 100;
 
-before  = 0.04;         nstagesbefore   = 1:floor(before*nstages);
+before  = 0.14;         nstagesbefore   = 1:floor(before*nstages);
 bed     = 0.16;         nstagesbed      = nstagesbefore(end)+1 : nstagesbefore(end) + floor(bed*nstages);
-                        nstagesafter    = nstagesbed(end)+1:nstages;
+nstagesafter    = nstagesbed(end)+1:nstages;
 
 bed_mask                = nan(nstages,1);
 bed_mask(nstagesbefore) = 0;
@@ -48,7 +48,7 @@ bed_mask(nstagesafter)  = 0;
 which_k                 = [8, 44];
 
 %% Set parameters
-mSOL_s                   = 78;                                           % g of product in biomass
+mSOL_s                   = 100;                                           % g of product in biomass
 mSOL_f                   = 0;                                           % g of biomass in fluid
 
 %C0fluid                 = 1;                                           % Extractor initial concentration of extract - Fluid phase kg / m^3
@@ -60,7 +60,7 @@ epsi                    = 1/3;                                          % Fullne
 
 %--------------------------------------------------------------------
 V_slice                 = (L/nstages) * pi * r^2;
-V_before                = V_slice * numel(nstagesbefore); 
+V_before                = V_slice * numel(nstagesbefore);
 V_after                 = V_slice * numel(nstagesafter);
 V_bed                   = V_slice * numel(nstagesbed);                  % Volume of the fixed bed [m3]
 
@@ -94,14 +94,14 @@ m0fluid(nstagesafter)  = C0fluid * V_after / numel(nstagesafter);
 %% Loop over datasets
 
 kp_Set                  = [0.1];
-Di_Set                  = [0.05];
+Di_Set                  = [0.5];
 
 KOU                     =  nan( numel(which_k), numel(kp_Set), numel(Di_Set), numel(DATA));
 JJ                      =  nan(                 numel(kp_Set), numel(Di_Set), numel(DATA));
 J_STATUS                = cell(                 numel(kp_Set), numel(Di_Set), numel(DATA));
 
 %%
-Nx                      = 3*nstages+1;
+Nx                      = 4*nstages+1;
 Nu                      = 3 + numel( Parameters_table{:,3} );
 Nk                      = numel(which_k);
 
@@ -117,10 +117,94 @@ f                       = @(x, u) modelSFE(x, u, bed_mask);
 F                       = buildIntegrator(f, [Nx,Nu] , timeStep_in_sec);
 
 %%
+V_Flow     = 0.39;
 
+T0homog    = 40+273.15;
+feedPress  = 300 ;
+k0         = [0.1, 0.5];
+
+%%
+rho        = rhoPB_Comp(T0homog, feedPress, Compressibility(T0homog,feedPress,table2cell(Parameters_table(:,3))), table2cell(Parameters_table(:,3)));
+
+% Set operating conditions
+feedTemp   = T0homog   * ones(1,length(Time_in_sec));  % Kelvin
+feedTemp(round(numel(Time)/4):round(numel(Time)/2))   = feedTemp(1) + 50;
+
+feedPress  = feedPress * ones(1,length(Time_in_sec));  % Bars
+%feedPress(round(numel(Time)/3):round(2*numel(Time)/3))   = feedPress(1) + 50;
+
+feedFlow   = V_Flow * rho * 1e-3 / 60 * ones(1,length(Time_in_sec));  % l/min -> kg/min -> Kg / sec
+%feedFlow(round(numel(Time)/3):round(2*numel(Time)/3))   = 2*feedFlow(1) ;
+
+uu         = [feedTemp', feedPress', feedFlow'];
+
+% Initial conditions
+x0         = [C0fluid * ones(nstages,1);
+    C0solid * bed_mask;
+    T0homog*ones(nstages,1);
+    zeros(nstages,1);
+    0;
+    ];
+
+Parameters          = Parameters_table{:,3};
+Parameters(1:9)     = [nstages, C0solid, r, epsi, dp, L, rho_s, km, mi];
+
+Parameters(which_k) = k0;
+Parameters_opt = [uu repmat(Parameters,1,N_Time)'];
+
+[xx_0] = simulateSystem(F, [], x0, Parameters_opt  );
+
+%%
+ind = 1:numel(Time);
+
+figure(1)
+subplot(2,2,1)
+imagesc(Time,1:nstages,xx_0(1*nstages+1:2*nstages,:)); colorbar
+hold on
+yline(nstagesbed(1),'w')
+yline(nstagesbed(end),'w')
+hold off
+title('C_s')
+
+subplot(2,2,2)
+imagesc(Time,1:nstages,xx_0(0*nstages+1:1*nstages,:)); colorbar
+hold on
+yline(nstagesbed(1),'w')
+yline(nstagesbed(end),'w')
+hold off
+title('C_f')
+
+subplot(2,2,3)
+imagesc(Time,1:nstages,xx_0(2*nstages+1:3*nstages,:)); colorbar;
+hold on
+yline(nstagesbed(1),'w')
+yline(nstagesbed(end),'w')
+hold off
+title('T')
+
+subplot(2,2,4)
+imagesc(Time,1:nstages,xx_0(3*nstages+1:4*nstages,:)); colorbar;
+hold on
+yline(nstagesbed(1),'w')
+yline(nstagesbed(end),'w')
+hold off
+title('Continuity ')
+
+figure(2)
+plotyy(Time, xx_0(end,:), Time, 1e3 * (sum(xx_0(0*nstages+1:1*nstages,ind) .* V_fluid) + sum(xx_0(1*nstages+1:2*nstages,ind) .* V_solid)) + xx_0(4*nstages+1,ind))
+
+%%
+xx_0(end,end)
+
+%{
 for i=1:numel(DATA)
+    for d=1:numel(Di_Set)
 
-     % load dataset
+        clc; [i,d]
+
+        for kp=1:numel(kp_Set)
+
+% load dataset
      LabResults = xlsread(DATA{i});
 
      V_Flow     = 0.39;
@@ -135,11 +219,13 @@ for i=1:numel(DATA)
 
      % Set operating conditions
      feedTemp   = T0homog   * ones(1,length(Time_in_sec));  % Kelvin
-     feedTemp   = feedTemp;
+     feedTemp(round(numel(Time)/4):round(numel(Time)/2))   = feedTemp(1) + 50;
 
      feedPress  = feedPress * ones(1,length(Time_in_sec));  % Bars
-
+     %feedPress(round(numel(Time)/3):round(2*numel(Time)/3))   = feedPress(1) + 50;
+     
      feedFlow   = V_Flow * rho * 1e-3 / 60 * ones(1,length(Time_in_sec));  % l/min -> kg/min -> Kg / sec
+     %feedFlow(round(numel(Time)/3):round(2*numel(Time)/3))   = 2*feedFlow(1) ;
 
      uu         = [feedTemp', feedPress', feedFlow'];
 
@@ -147,42 +233,14 @@ for i=1:numel(DATA)
      x0         = [C0fluid * ones(nstages,1);
                   C0solid * bed_mask;
                   T0homog*ones(nstages,1);
+                  zeros(nstages,1);
                   0;
                   ];
 
-    for d=1:numel(Di_Set)
 
-        clc; [i,d]
-
-        for kp=1:numel(kp_Set)
-
-            k0 = [kp_Set(kp), Di_Set(d)];
-            
-            Parameters          = Parameters_table{:,3};
-            Parameters(1:9)     = [nstages, C0solid, r, epsi, dp, L, rho_s, km, mi];
-
-            Parameters(which_k) = k0;
-            Parameters_opt = [uu repmat(Parameters,1,N_Time)'];
-    
-            [xx_0] = simulateSystem(F, [], x0, Parameters_opt  );
-
-            %%
-            ind = 1:numel(Time); 
-            subplot(2,2,1)
-            imagesc(Time,1:nstages,xx_0(1*nstages+1:2*nstages,:)); colorbar
-            subplot(2,2,2)
-            imagesc(Time,1:nstages,xx_0(0*nstages+1:1*nstages,:)); colorbar
-            subplot(2,2,3)
-            imagesc(Time,1:nstages,xx_0(2*nstages+1:3*nstages,:)); colorbar;
-            subplot(2,2,4)
-            plotyy(Time, xx_0(end,:), Time, 1e3 * (sum(xx_0(0*nstages+1:1*nstages,ind) .* V_fluid) + sum(xx_0(1*nstages+1:2*nstages,ind) .* V_solid)) + xx_0(3*nstages+1,ind))
-            
-            %%
-            xx_0(end,end)
 
             % ind = numel(Time); 1e3 * (sum(xx_0(0*nstages+1:1*nstages,ind) .* V_fluid) + sum(xx_0(1*nstages+1:2*nstages,ind) .* V_solid)) + xx_0(3*nstages+1,ind)
 
-            %{
             
             %% Create the solver
             OPT_solver              = casadi.Opti();
@@ -249,12 +307,12 @@ for i=1:numel(DATA)
             KOUT(:,kp,d,i) = kout;
             JJ(kp,d,i) = full(fJ(kout));
             J_STATUS{kp,d,i} = OPT_solver.return_status;
-            %}
-        end
-        %save Fit_Di_km.mat
-        %clc
-        %disp('Saved')
-    end
+
+end
+%save Fit_Di_km.mat
+%clc
+%disp('Saved')
+end
 end
 
 %% Set time of the simulation
@@ -370,4 +428,5 @@ end
 %%
 save Bounded_Fit_Kp.mat
 %%
+%}
 %}
