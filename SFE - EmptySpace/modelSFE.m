@@ -30,7 +30,13 @@ function xdot = modelSFE(x, p, mask)
     FLUID         =    x(0*nstages_index+1:1*nstages_index);
     SOLID         =    x(1*nstages_index+1:2*nstages_index);
     TEMP          =    x(2*nstages_index+1:3*nstages_index);
-    
+    RHO_NS        =    x(3*nstages_index+1:4*nstages_index);
+    VELOCITY_NS   =    x(4*nstages_index+1:5*nstages_index);
+
+    PRESSURE      =    P_u * ones(nstages_index,1);
+    %PRESSURE      =    linspace(P_u, 0.99.*P_u, nstages_index )';
+    %PRESSURE     =    Pressure_PR(TEMP,RHO_NS,parameters);
+
     %% Properties 
     A             =     pi*r^2 ;       % Cross-section of the extractor (m^2)
     rp            =     dp / 2;
@@ -38,27 +44,26 @@ function xdot = modelSFE(x, p, mask)
 
     % Properties of the fluid at the inlet
     Z_0           =     Compressibility(T_u, P_u,     parameters);
-    rho_0         =     rhoPB_Comp(     T_u, P_u, Z_0,parameters);
+    rho_0         =     rhoPB_Comp(     T_u, P_u, Z_0, parameters);
 
     v_0           =     Velocity(F_u, rho_0, parameters);
 
     %Properties of the fluid in the extractor
-    Z             =     Compressibility(TEMP, P_u,   parameters);
-    RHO           =     rhoPB_Comp(     TEMP, P_u, Z,parameters);
-
-    VELOCITY      =     Velocity(F_u, RHO, parameters);
+    Z             =     Compressibility(TEMP, PRESSURE,   parameters);
     
-    %% Extraction Kinetic
-    %DIFFUSION      =    Dx * ones(nstages_index,1) * 1e-6;
+    %RHO           =     rhoPB_Comp(     TEMP, PRESSURE, Z,parameters);
+    RHO           =     RHO_NS;
+    %rho_0           =     RHO(1); 
 
-    %DIofT         =     Di*ones(nstages_index,1) * 1e-12;
-
-    %KM            =     km*ones(nstages_index,1);
-
+    
+    %VELOCITY      =     Velocity(F_u, RHO, parameters);
+    VELOCITY      =     VELOCITY_NS; 
+    %v_0           =     VELOCITY_NS(1); 
+    
     %% Thermal Properties
-    CP            =     SpecificHeatComp(TEMP, P_u, Z, RHO,                 parameters);            % [kJ/kg/K]
-    CPRHOCP       =     cpRHOcp_Comp(    TEMP, P_u, Z, RHO, CP, epsi.*mask, parameters);
-    KRHOCP        =     kRHOcp_Comp(     TEMP, P_u, Z, RHO, CP, epsi.*mask, parameters) .* 0 ;
+    CP            =     SpecificHeatComp(TEMP, PRESSURE, Z, RHO,                 parameters);            % [kJ/kg/K]
+    CPRHOCP       =     cpRHOcp_Comp(    TEMP, PRESSURE, Z, RHO, CP, epsi.*mask, parameters);
+    KRHOCP        =     kRHOcp_Comp(     TEMP, PRESSURE, Z, RHO, CP, epsi.*mask, parameters);
     %KRHOCP        =     ones(nstages_index,1);
 
     %%
@@ -68,54 +73,63 @@ function xdot = modelSFE(x, p, mask)
     %--------------------------------------------------------------------
     % Concentration of extract in fluid phase | 0
     % N = 1
-    - VELOCITY(1)                   ./  ( 1 - epsi .* mask(1) )                 .*  (1 / L * nstages)       .* ( FLUID(1)                                               - 0                        ) + ...
-      Dx                            ./  ( 1 - epsi .* mask(1) )                 .* ((1 / L * nstages)^2)    .* ( FLUID(1)                 - 2*FLUID(1)                  + FLUID(2)                 ) + ...
-    (epsi.*mask(1))                 ./  ( 1 - epsi .* mask(1) )                 .* 1 / mi / lp2  * Di       .* ( SOLID(1)                                               - FLUID(1)                   * ...
+    - VELOCITY(1)                   ./  ( 1 - epsi .* mask(1) )                                             .*  (1 / L * nstages)       .* ( FLUID(1)                                               - 0                        ) + ...
+      Dx                            ./  ( 1 - epsi .* mask(1) )                                             .* ((1 / L * nstages)^2)    .* ( FLUID(1)                 - 2*FLUID(1)                  + FLUID(2)                 ) + ...
+    (epsi.*mask(1))                 ./  ( 1 - epsi .* mask(1) )                                             .* 1 / mi / lp2  * Di       .* ( SOLID(1)                                               - FLUID(1)                   * ...
     (rho_s / km ./ RHO(1) ));
 
     % N >= 2 =< N-1
-    - VELOCITY(2:nstages_index-1)   ./  ( 1 - epsi .* mask(2:nstages_index-1) ) .*  (1 / L * nstages   )    .* ( FLUID(2:nstages_index-1)                               - FLUID(1:nstages_index-2) ) + ...
-      Dx                            ./  ( 1 - epsi .* mask(2:nstages_index-1) ) .* ((1 / L * nstages)^2)    .* ( FLUID(1:nstages_index-2) - 2*FLUID(2:nstages_index-1)  + FLUID(3:nstages_index  ) ) + ...
-    (epsi.*mask(2:nstages_index-1)) ./  ( 1 - epsi .* mask(2:nstages_index-1) ) .* 1 ./ mi ./ lp2 .* Di     .* ( SOLID(2:nstages_index-1)                               - FLUID(2:nstages_index-1)  .* ...
-    (rho_s ./ km ./ RHO(2:nstages_index-1)));
+    - VELOCITY(2:nstages_index-1)   ./  ( 1 - epsi .* mask(2:nstages_index-1) )                             .*  (1 / L * nstages   )    .* ( FLUID(2:nstages_index-1)                               - FLUID(1:nstages_index-2) ) + ...
+      Dx                            ./  ( 1 - epsi .* mask(2:nstages_index-1) )                             .* ((1 / L * nstages)^2)    .* ( FLUID(1:nstages_index-2) - 2*FLUID(2:nstages_index-1)  + FLUID(3:nstages_index  ) ) + ...
+    (epsi.*mask(2:nstages_index-1)) ./  ( 1 - epsi .* mask(2:nstages_index-1) )                             .* 1 ./ mi ./ lp2 .* Di     .* ( SOLID(2:nstages_index-1)                               - FLUID(2:nstages_index-1)  .* ...
+    (rho_s ./ km ./ RHO(2:nstages_index-1)));                            
 
     % N = Nstage
-    - VELOCITY(nstages_index)       ./  ( 1 - epsi .* mask(nstages_index) )     .*  (1 / L * nstages   )    .* ( FLUID(nstages_index)                                   - FLUID(nstages_index-1)   ) + ...
-      Dx                            ./  ( 1 - epsi .* mask(nstages_index) )     .* ((1 / L * nstages)^2)    .* ( FLUID(nstages_index-1)   - 2*FLUID(nstages_index)      + FLUID(nstages_index)     ) + ...     
-    (epsi.*mask(nstages_index))     ./  ( 1 - epsi .* mask(nstages_index) )     .* 1 ./ mi ./ lp2 .* Di     .* ( SOLID(nstages_index)                                   - FLUID(nstages_index  )    .* ...
+    - VELOCITY(nstages_index)       ./  ( 1 - epsi .* mask(nstages_index) )                                 .*  (1 / L * nstages   )    .* ( FLUID(nstages_index)                                   - FLUID(nstages_index-1)   ) + ...
+      Dx                            ./  ( 1 - epsi .* mask(nstages_index) )                                 .* ((1 / L * nstages)^2)    .* ( FLUID(nstages_index-1)   - 2*FLUID(nstages_index)      + FLUID(nstages_index)     ) + ...     
+    (epsi.*mask(nstages_index))     ./  ( 1 - epsi .* mask(nstages_index) )                                 .* 1 ./ mi ./ lp2 .* Di     .* ( SOLID(nstages_index)                                   - FLUID(nstages_index  )    .* ...
     (rho_s / km ./ RHO(nstages_index)));
 
     %--------------------------------------------------------------------
     % Concentration of extract in solid phase | 1
-     - mask                                                                     .* 1 ./ mi ./ lp2 .* Di              .* ( SOLID - FLUID .* (rho_s ./ km ./ RHO ) );
+     -  mask                                                                                                .* 1 ./ mi ./ lp2 .* Di     .* ( SOLID                                                  - FLUID .* (rho_s ./ km ./ RHO ) );
 
-     %--------------------------------------------------------------------
+    %--------------------------------------------------------------------
     % Temperature | 2
     % N = 1
-    - F_u ./ A                      .* ( 1 - epsi.*mask(1))                 .* CPRHOCP(1)                       .*  (1 / L * nstages)       .* ( TEMP(1)                                                - T_u                      )  + ...
-      KRHOCP(1)                                                                                                 .* ((1 / L * nstages)^2)    .* ( T_u                     -2*TEMP(1)                     + TEMP(2)                  );
+    - VELOCITY(1)                   ./ ( 1 - epsi.*mask(1))                 .* CPRHOCP(1)                   .*  (1 / L * nstages)       .* ( TEMP(1)                                                - T_u                      )  + ...
+                                                                                KRHOCP(1)                   .* ((1 / L * nstages)^2)    .* ( T_u                     -2*TEMP(1)                     + TEMP(2)                  );
 
     % N >= 2 =< N-1
-    - F_u ./ A                      .* ( 1 - epsi.*mask(2:nstages_index-1)) .* CPRHOCP(2:nstages_index-1)       .*  (1 / L * nstages)       .* ( TEMP(2:nstages_index-1)                                - TEMP(1:nstages_index-2)  )   + ...
-      KRHOCP(2:nstages_index-1)                                                                                 .* ((1 / L * nstages)^2)    .* ( TEMP(1:nstages_index-2) - 2*TEMP(2:nstages_index-1)    + TEMP(3:nstages_index  )  );
+    - VELOCITY(2:nstages_index-1)   ./ ( 1 - epsi.*mask(2:nstages_index-1)) .* CPRHOCP(2:nstages_index-1)   .*  (1 / L * nstages)       .* ( TEMP(2:nstages_index-1)                                - TEMP(1:nstages_index-2)  )   + ...
+                                                                                KRHOCP(2:nstages_index-1)   .* ((1 / L * nstages)^2)    .* ( TEMP(1:nstages_index-2) - 2*TEMP(2:nstages_index-1)    + TEMP(3:nstages_index  )  );
 
     % N = Nstage
-   -  F_u ./ A                       .* ( 1 - epsi.*mask(nstages_index))    .* CPRHOCP(nstages_index)           .*  (1 / L * nstages)       .* ( TEMP(nstages_index)                                    - TEMP(nstages_index-1)    ) + ...
-      KRHOCP(nstages_index)                                                                                     .* ((1 / L * nstages)^2)    .* ( TEMP(nstages_index-1)   - 2*TEMP(nstages_index)        + TEMP(nstages_index)      ); %!
+   -  VELOCITY(nstages_index)       ./ ( 1 - epsi.*mask(nstages_index))     .* CPRHOCP(nstages_index)       .*  (1 / L * nstages)       .* ( TEMP(nstages_index)                                    - TEMP(nstages_index-1)    ) + ...
+                                                                                KRHOCP(nstages_index)       .* ((1 / L * nstages)^2)    .* ( TEMP(nstages_index-1)   - 2*TEMP(nstages_index)        + TEMP(nstages_index)      ); %!
 
-      %--------------------------------------------------------------------
+    %--------------------------------------------------------------------
     % Continuity - 3
     % N = 1
-    - VELOCITY(1)                   ./  ( 1 - epsi .* mask(1) )                                                 .*  (1 / L * nstages)       .* ( RHO(1)                                               - rho_0                      ) + ...
-    - RHO(1)                                                                                                    .*  (1 / L * nstages)       .* ( VELOCITY(1)                                          - v_0                        ) ;
+    - 1 ./  ( 1 - epsi .* mask(1) )               .* ( VELOCITY(1)                                          .*  (1 / L * nstages)       .* ( RHO(1)                                                 - rho_0                      ) + ...
+                                                       RHO(1)                                               .*  (1 / L * nstages)       .* ( VELOCITY(1)                                            - v_0                        ) ) ;
                                     
     % N = 2:Nstage                                    
-    - VELOCITY(2:nstages_index)     ./  ( 1 - epsi .* mask(1) )                                                 .*  (1 / L * nstages)       .* ( RHO(2:nstages_index)                                 - RHO(1:nstages_index-1)     ) + ...
-    - RHO(2:nstages_index)                                                                                      .*  (1 / L * nstages)       .* ( VELOCITY(2:nstages_index)                            - VELOCITY(1:nstages_index-1)) ;
+    - 1 ./  ( 1 - epsi .* mask(2:nstages_index) ) .* ( VELOCITY(2:nstages_index)                            .*  (1 / L * nstages)       .* ( RHO(2:nstages_index)                                   - RHO(1:nstages_index-1)     ) + ...
+                                                       RHO(2:nstages_index)                                 .*  (1 / L * nstages)       .* ( VELOCITY(2:nstages_index)                              - VELOCITY(1:nstages_index-1)) ) ;
+
+    %--------------------------------------------------------------------
+    % Momentum - 4
+    % N = 1
+    -  ( VELOCITY(1)                                ./ ( 1 - epsi .* mask(1) )                              .*  (1 / L * nstages)       .* ( VELOCITY(1)                                            - v_0                           ) + ...
+       ( 1 - epsi .* mask(1) )                      ./ RHO(1)                                               .*  (1 / L * nstages)       .* ( PRESSURE(1)                                            - P_u                           ) );
+
+    -  ( VELOCITY(2:nstages_index)                  ./ ( 1 - epsi .* mask(2:nstages_index) )                .*  (1 / L * nstages)       .* ( VELOCITY(2:nstages_index)                              - VELOCITY(1:nstages_index-1)   ) + ...
+       ( 1 - epsi .* mask(2:nstages_index) )        ./ RHO(2:nstages_index)                                 .*  (1 / L * nstages)       .* ( PRESSURE(2:nstages_index)                              - PRESSURE(1:nstages_index-1)   ) );
     
     %--------------------------------------------------------------------
-    % 4*nstage+1 = output equation
-    F_u / RHO(nstages_index) * FLUID(nstages_index) * 1e3 ;   %kg/s - > g/s
+    % 5*nstage+1 = output equation
+    VELOCITY(nstages_index) * A * FLUID(nstages_index) * 1e3 ;   %kg/s - > g/s
     
     ];
 

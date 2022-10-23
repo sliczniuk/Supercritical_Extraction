@@ -36,8 +36,8 @@ N_Time                  = length(Time_in_sec);
 %% Specify parameters to estimate
 nstages                 = 100;
 
-before  = 0.14;         nstagesbefore   = 1:floor(before*nstages);
-bed     = 0.16;         nstagesbed      = nstagesbefore(end)+1 : nstagesbefore(end) + floor(bed*nstages);
+before  = 0.01;         nstagesbefore   = 1:floor(before*nstages);
+bed     = 0.99;         nstagesbed      = nstagesbefore(end)+1 : nstagesbefore(end) + floor(bed*nstages);
 nstagesafter    = nstagesbed(end)+1:nstages;
 
 bed_mask                = nan(nstages,1);
@@ -53,7 +53,7 @@ mSOL_f                   = 0;                                           % g of b
 
 %C0fluid                 = 1;                                           % Extractor initial concentration of extract - Fluid phase kg / m^3
 
-V                       = 0.01;                                         %
+V                       = 0.00165;                                         %
 r                       = 0.075;                                        % Radius of the extractor  [m3]
 L                       = V / pi / r^2;                                 % Total length of the extractor [m]
 epsi                    = 1/3;                                          % Fullness [-]
@@ -92,7 +92,7 @@ m0fluid(nstagesbed)    = C0fluid * (V_bed * (1 - epsi)) / numel(nstagesbed);
 m0fluid(nstagesafter)  = C0fluid * V_after / numel(nstagesafter);
 
 %%
-Nx                      = 5*nstages+1;
+Nx                      = 4*nstages+1;
 Nu                      = 3 + numel( Parameters_table{:,3} );
 Nk                      = numel(which_k);
 
@@ -118,7 +118,7 @@ rho        = rhoPB_Comp(T0homog, feedPress, Compressibility(T0homog,feedPress,ta
 
 % Set operating conditions
 feedTemp   = T0homog   * ones(1,length(Time_in_sec))  ;  % Kelvin
-feedTemp(round(numel(Time)/4):round(numel(Time)/2))   = feedTemp(1) + 0;
+feedTemp(1:round(numel(Time)/5))   = feedTemp(1) + 10;
 
 feedPress  = feedPress * ones(1,length(Time_in_sec));  % Bars
 %feedPress(round(numel(Time)/3):round(2*numel(Time)/3))   = feedPress(1) + 50;
@@ -132,8 +132,8 @@ uu         = [feedTemp', feedPress', feedFlow'];
 x0         = [C0fluid * ones(nstages,1);
     C0solid * bed_mask;
     T0homog*ones(nstages,1);
-    rho*ones(nstages,1);                                                                                           % rho*ones(nstages,1);
-    Velocity(feedFlow(1), rho(1), table2cell(Parameters_table(:,3)) ) * ones(nstages,1);                           % Velocity(feedFlow(1), rho(1), table2cell(Parameters_table(:,3)) ) * ones(nstages,1)
+    rho*ones(nstages,1);    
+    
     0;
     ];
 
@@ -148,9 +148,9 @@ Parameters_opt = [uu repmat(Parameters,1,N_Time)'];
 %%
 ind = 1:numel(Time);
 
-NAME = {'C_f','C_s','T','Continuity','Momentum'};
+NAME = {'C_f','C_s','T','P'};
 
-for i=0:4
+for i=0:3
 
     subplot(2,3,i+1)
     imagesc(Time,1:nstages,xx_0(i*nstages+1:(i+1)*nstages,:)); colorbar
@@ -162,7 +162,7 @@ for i=0:4
     
     end
 
-subplot(2,3,6)
+subplot(2,3,5)
 plotyy(Time, xx_0(end,:), Time, 1e3 * (sum(xx_0(0*nstages+1:1*nstages,ind) .* V_fluid) + sum(xx_0(1*nstages+1:2*nstages,ind) .* V_solid)) + xx_0(Nx,ind))
 
 %%
