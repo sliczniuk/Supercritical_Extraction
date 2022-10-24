@@ -30,26 +30,39 @@ function xdot = modelSFE(x, p, mask)
     FLUID         =    x(0*nstages_index+1:1*nstages_index);
     SOLID         =    x(1*nstages_index+1:2*nstages_index);
     TEMP          =    x(2*nstages_index+1:3*nstages_index);
+    RHO_NS        =    x(3*nstages_index+1:4*nstages_index);
+    VELOCITY_NS   =    x(4*nstages_index+1:5*nstages_index);
 
+    PRESSURE      =    P_u * ones(nstages_index,1);
+    %PRESSURE      =    linspace(P_u, 0.99.*P_u, nstages_index )';
+    %PRESSURE     =    Pressure_PR(TEMP,RHO_NS,parameters);
 
     %% Properties 
     A             =     pi*r^2 ;       % Cross-section of the extractor (m^2)
     rp            =     dp / 2;
     lp2           =     (rp / 3)^2;
 
+    % Properties of the fluid at the inlet
+    Z_0           =     Compressibility(T_u, P_u,     parameters);
+    rho_0         =     rhoPB_Comp(     T_u, P_u, Z_0, parameters);
+    v_0           =     Velocity(F_u, rho_0, parameters);
+
     %Properties of the fluid in the extractor
-    Z             =     Compressibility(TEMP, P_u,   parameters);
+    Z             =     Compressibility(TEMP, PRESSURE,   parameters);
     
-    RHO           =     rhoPB_Comp(     TEMP, P_u, Z,parameters);
+    %RHO           =     rhoPB_Comp(     TEMP, PRESSURE, Z,parameters);
+    RHO           =     RHO_NS;
+    %rho_0           =     RHO(1); 
     
-    VELOCITY      =     Velocity(F_u, RHO, parameters);
+    %VELOCITY      =     Velocity(F_u, RHO, parameters);
+    VELOCITY      =     VELOCITY_NS; 
+    %v_0           =     VELOCITY_NS(1); 
     
     %% Thermal Properties
-    CP            =     SpecificHeatComp(TEMP, P_u, Z, RHO,                 parameters);            % [kJ/kg/K]
-    CPRHOCP       =     cpRHOcp_Comp(    TEMP, P_u, Z, RHO, CP, epsi.*mask, parameters);
-    KRHOCP        =     kRHOcp_Comp(     TEMP, P_u, Z, RHO, CP, epsi.*mask, parameters);
+    CP            =     SpecificHeatComp(TEMP, PRESSURE, Z, RHO,                 parameters);            % [kJ/kg/K]
+    CPRHOCP       =     cpRHOcp_Comp(    TEMP, PRESSURE, Z, RHO, CP, epsi.*mask, parameters);
+    KRHOCP        =     kRHOcp_Comp(     TEMP, PRESSURE, Z, RHO, CP, epsi.*mask, parameters);
     
-
     %%
 
     xdot = [
@@ -91,7 +104,24 @@ function xdot = modelSFE(x, p, mask)
     % N = Nstage
    -  VELOCITY(nstages_index)       ./ ( 1 - epsi.*mask(nstages_index))     .* CPRHOCP(nstages_index)       .*  (1 / L * nstages)       .* ( TEMP(nstages_index)                                    - TEMP(nstages_index-1)    ) + ...
                                                                                 KRHOCP(nstages_index)       .* ((1 / L * nstages)^2)    .* ( TEMP(nstages_index-1)   - 2*TEMP(nstages_index)        + TEMP(nstages_index)      ); %!
-    
+    %--------------------------------------------------------------------
+    % Continuity - 3
+    % N = 1
+    - 1 ./  ( 1 - epsi .* mask(1) )               .* ( VELOCITY(1)                                          .*  (1 / L * nstages)       .* ( RHO(1)                                                 - rho_0                      ) + ...
+                                                       RHO(1)                                               .*  (1 / L * nstages)       .* ( VELOCITY(1)                                            - v_0                        ) ) ;
+                                    
+    % N = 2:Nstage                                    
+    - 1 ./  ( 1 - epsi .* mask(2:nstages_index) ) .* ( VELOCITY(2:nstages_index)                            .*  (1 / L * nstages)       .* ( RHO(2:nstages_index)                                   - RHO(1:nstages_index-1)     ) + ...
+                                                       RHO(2:nstages_index)                                 .*  (1 / L * nstages)       .* ( VELOCITY(2:nstages_index)                              - VELOCITY(1:nstages_index-1)) ) ;
+                                                       
+    %--------------------------------------------------------------------
+    % Momentum - 4
+    % N = 1
+    -  ( VELOCITY(1)                                ./ ( 1 - epsi .* mask(1) )                              .*  (1 / L * nstages)       .* ( VELOCITY(1)                                            - v_0                           ) + ...
+       ( 1 - epsi .* mask(1) )                      ./ RHO(1)                                               .*  (1 / L * nstages)       .* ( PRESSURE(1)                                            - P_u                           ) );
+    -  ( VELOCITY(2:nstages_index)                  ./ ( 1 - epsi .* mask(2:nstages_index) )                .*  (1 / L * nstages)       .* ( VELOCITY(2:nstages_index)                              - VELOCITY(1:nstages_index-1)   ) + ...
+       ( 1 - epsi .* mask(2:nstages_index) )        ./ RHO(2:nstages_index)                                 .*  (1 / L * nstages)       .* ( PRESSURE(2:nstages_index)                              - PRESSURE(1:nstages_index-1)   ) );
+
     %--------------------------------------------------------------------
     % 5*nstage+1 = output equation
     VELOCITY(nstages_index) * A * FLUID(nstages_index) * 1e3 ;   %kg/s - > g/s

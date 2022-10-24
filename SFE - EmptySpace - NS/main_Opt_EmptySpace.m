@@ -4,10 +4,13 @@ clear all
 addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-windows-matlabR2016a-v3.5.1');
 import casadi.*
 
+%DATA = {'LUKE_T40_P200.xlsx', 'LUKE_T50_P200.xlsx', 'LUKE_T40_P300.xlsx', 'LUKE_T50_P300.xlsx'};
+%DATA = {'LUKE_T40_P300.xlsx'};
+
 Parameters_table        = readtable('Parameters.csv') ;        % Fulle table with prameters
 
 %% Set time of the simulation
-simulationTime          = 150;                                                 % Minutes
+simulationTime          = 250;                                                 % Minutes
 SamplingTime            = 5;                                                   % Minutes
 
 timeStep                = 1/4;                                                 % Minutes
@@ -15,6 +18,18 @@ timeStep                = 1/4;                                                 %
 timeStep_in_sec         = timeStep * 60;                                       % Seconds
 Time_in_sec             = (timeStep:timeStep:simulationTime)*60;               % Seconds
 Time                    = [0 Time_in_sec/60];                                  % Minutes
+%--------------------------------------------------------------------
+SAMPLE                  = [0:SamplingTime:150];
+SAMPLE(1)               = 0;
+%{
+N_Sample = [];
+for i = 1:numel(SAMPLE)
+    N_Sample = [N_Sample ; find(Time == SAMPLE(i))];
+end
+if numel(N_Sample) ~= numel(SAMPLE)
+    keyboard
+end
+%}
 
 N_Time                  = length(Time_in_sec);
 
@@ -41,7 +56,6 @@ mSOL_f                   = 0;                                           % g of b
 V                       = 0.01;                                         %
 r                       = 0.075;                                        % Radius of the extractor  [m3]
 L                       = V / pi / r^2;                                 % Total length of the extractor [m]
-A                       = pi*r^2;                                       % Extractor cross-section
 epsi                    = 1/3;                                          % Fullness [-]
 
 %--------------------------------------------------------------------
@@ -103,8 +117,8 @@ k0         = [0.1, 0.5];
 rho        = rhoPB_Comp(T0homog, feedPress, Compressibility(T0homog,feedPress,table2cell(Parameters_table(:,3))), table2cell(Parameters_table(:,3)));
 
 % Set operating conditions
-feedTemp   = T0homog   * ones(1,length(Time_in_sec)) + 50 ;  % Kelvin
-%feedTemp(round(numel(Time)/5):round(numel(Time)/2))   = feedTemp(1) + 50;
+feedTemp   = T0homog   * ones(1,length(Time_in_sec))  ;  % Kelvin
+feedTemp(round(numel(Time)/4):round(numel(Time)/2))   = feedTemp(1) + 10;
 
 feedPress  = feedPress * ones(1,length(Time_in_sec));  % Bars
 %feedPress(round(numel(Time)/3):round(2*numel(Time)/3))   = feedPress(1) + 50;
@@ -118,8 +132,8 @@ uu         = [feedTemp', feedPress', feedFlow'];
 x0         = [C0fluid * ones(nstages,1);
             C0solid * bed_mask;
             T0homog*ones(nstages,1);
-            rho*ones(nstages,1);        
-            (V_Flow/A * 1e-3 / 60)*ones(nstages,1);
+            rho*ones(nstages,1);                                                                                           % rho*ones(nstages,1);
+            Velocity(feedFlow(1), rho(1), table2cell(Parameters_table(:,3)) ) * ones(nstages,1);                           % Velocity(feedFlow(1), rho(1), table2cell(Parameters_table(:,3)) ) * ones(nstages,1)
             0;
             ];
 
@@ -129,7 +143,6 @@ Parameters(1:9)     = [nstages, C0solid, r, epsi, dp, L, rho_s, km, mi];
 Parameters(which_k) = k0;
 Parameters_opt = [uu repmat(Parameters,1,N_Time)'];
 
-%% Simulate system
 [xx_0] = simulateSystem(F, [], x0, Parameters_opt  );
 
 %%
@@ -146,11 +159,11 @@ for i=0:numel(NAME)-1
     yline(nstagesbed(end),'w')
     hold off
     title(NAME{i+1})
+    
+    end
 
-end
-
-subplot(2,3,numel(NAME)+1)
-plotyy(Time, xx_0(Nx,:), Time, 1e3 * (sum(xx_0(0*nstages+1:1*nstages,ind) .* V_fluid) + sum(xx_0(1*nstages+1:2*nstages,ind) .* V_solid)) + xx_0(Nx,ind))
+subplot(2,3,6)
+plotyy(Time, xx_0(end,:), Time, 1e3 * (sum(xx_0(0*nstages+1:1*nstages,ind) .* V_fluid) + sum(xx_0(1*nstages+1:2*nstages,ind) .* V_solid)) + xx_0(Nx,ind))
 
 %%
 xx_0(end,end)

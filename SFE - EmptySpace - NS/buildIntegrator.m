@@ -18,7 +18,7 @@ function F = buildIntegrator(varargin)
     if(numel(varargin) > 3)
         method = varargin{4};     
     else                    
-        method = 'cvodes';     
+        method = 'rk';     
     end
     
     x = MX.sym('x',d(1));

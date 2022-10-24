@@ -30,25 +30,37 @@ function xdot = modelSFE(x, p, mask)
     FLUID         =    x(0*nstages_index+1:1*nstages_index);
     SOLID         =    x(1*nstages_index+1:2*nstages_index);
     TEMP          =    x(2*nstages_index+1:3*nstages_index);
-
-
+    RHO_NS        =    x(3*nstages_index+1:4*nstages_index);
+    VELOCITY_NS   =    x(4*nstages_index+1:5*nstages_index);
+    
+    PRESSURE      =    P_u * ones(nstages_index,1);
+    
     %% Properties 
     A             =     pi*r^2 ;       % Cross-section of the extractor (m^2)
     rp            =     dp / 2;
     lp2           =     (rp / 3)^2;
 
+    % Properties of the fluid at the inlet
+    Z_0           =     Compressibility(T_u, P_u,     parameters);
+    rho_0         =     rhoPB_Comp(     T_u, P_u, Z_0, parameters);
+    epsi_0        =     0;
+
+    v_0           =     Velocity(F_u, rho_0, parameters);
+
     %Properties of the fluid in the extractor
-    Z             =     Compressibility(TEMP, P_u,   parameters);
-    
-    RHO           =     rhoPB_Comp(     TEMP, P_u, Z,parameters);
-    
+    Z             =     Compressibility(TEMP, PRESSURE,   parameters);
+
+    RHO           =     rhoPB_Comp(     TEMP, PRESSURE, Z,parameters);
+    %RHO           = RHO_NS;
+
     VELOCITY      =     Velocity(F_u, RHO, parameters);
+
+    MU            = zeros(nstages_index,1);
     
     %% Thermal Properties
-    CP            =     SpecificHeatComp(TEMP, P_u, Z, RHO,                 parameters);            % [kJ/kg/K]
-    CPRHOCP       =     cpRHOcp_Comp(    TEMP, P_u, Z, RHO, CP, epsi.*mask, parameters);
-    KRHOCP        =     kRHOcp_Comp(     TEMP, P_u, Z, RHO, CP, epsi.*mask, parameters);
-    
+    CP            =     SpecificHeatComp(TEMP, PRESSURE, Z, RHO,                 parameters);            % [kJ/kg/K]
+    CPRHOCP       =     cpRHOcp_Comp(    TEMP, PRESSURE, Z, RHO, CP, epsi.*mask, parameters);
+    KRHOCP        =     kRHOcp_Comp(     TEMP, PRESSURE, Z, RHO, CP, epsi.*mask, parameters);
 
     %%
 
@@ -91,6 +103,41 @@ function xdot = modelSFE(x, p, mask)
     % N = Nstage
    -  VELOCITY(nstages_index)       ./ ( 1 - epsi.*mask(nstages_index))     .* CPRHOCP(nstages_index)       .*  (1 / L * nstages)       .* ( TEMP(nstages_index)                                    - TEMP(nstages_index-1)    ) + ...
                                                                                 KRHOCP(nstages_index)       .* ((1 / L * nstages)^2)    .* ( TEMP(nstages_index-1)   - 2*TEMP(nstages_index)        + TEMP(nstages_index)      ); %!
+
+    %--------------------------------------------------------------------
+    % Continuity - 3
+    % N = 1
+    - VELOCITY(1)                   ./  ( 1 - epsi.*mask(1))                                                .* (1 / L * nstages)        .* (RHO(1)                                                  - rho_0)                                    +...
+    - RHO(1)                        ./  ( 1 - epsi.*mask(1))                                                .* (1 / L * nstages)        .* (VELOCITY(1)                                             - v_0)                                      +...
+    - RHO(1)                        .*  VELOCITY(1)                                                         .* (1 / L * nstages)        .* ( (1 - epsi.*mask(1)).^(-1)                              - (1 - epsi_0).^(-1)                        );
+                                                                                
+    % N = 2:Nstage
+    - VELOCITY(2:nstages_index)     ./  ( 1 - epsi.*mask(2:nstages_index))                                  .* (1 / L * nstages)        .* (RHO(2:nstages_index)                                    - RHO(1:nstages_index-1))                   +...
+    - RHO(2:nstages_index)          ./  ( 1 - epsi.*mask(2:nstages_index))                                  .* (1 / L * nstages)        .* (VELOCITY(2:nstages_index)                               - VELOCITY(1:nstages_index-1))              +...
+    - RHO(2:nstages_index)          .*  VELOCITY(2:nstages_index)                                           .* (1 / L * nstages)        .* ( (1 - epsi.*mask(2:nstages_index)).^(-1)                - (1 - epsi.*mask(1:nstages_index-1)).^(-1) );
+                
+    %--------------------------------------------------------------------
+    % Momentum - 4
+    % N = 1
+    ( 1 - epsi.*mask(1) ) ./ RHO(1) .*...
+    ( - (1 / L * nstages) .* ( PRESSURE(1) - P_u ) -...
+    ( VELOCITY(1)./(1 - epsi.*mask(1)) ) .* ( ( 1./(1 - epsi.*mask(1)) ) .* (1 / L * nstages)   .* ( VELOCITY(1)               - v_0                )   +...
+                                                             VELOCITY(1) .* (1 / L * nstages)   .* ( (1 - epsi.*mask(1)).^(-1) - (1 - epsi_0).^(-1) ) ) +...
+    4/3*MU(1) );
+
+    % N >= 2 =< N-1
+    ( 1 - epsi.*mask(2:nstages_index-1) ) ./ RHO(2:nstages_index-1) .*...
+    ( - (1 / L * nstages) .* ( PRESSURE(2:nstages_index-1) - PRESSURE(1:nstages_index-2) ) -...
+    ( VELOCITY(2:nstages_index-1)./(1 - epsi.*mask(2:nstages_index-1)) ) .* ( ( 1./(1 - epsi.*mask(2:nstages_index-1)) )    .* (1 / L * nstages)   .* ( VELOCITY(2:nstages_index-1)               - VELOCITY(1:nstages_index-2)                )   +...
+                                                                                        VELOCITY(2:nstages_index-1)         .* (1 / L * nstages)   .* ( (1 - epsi.*mask(2:nstages_index-1)).^(-1) - (1 - epsi.*mask(1:nstages_index-2)).^(-1) ) ) +...
+    4/3*MU(2:nstages_index-1) );
+
+    % N = Nstage
+    ( 1 - epsi.*mask(nstages_index) ) ./ RHO(nstages_index) .*...
+    ( - (1 / L * nstages) .* ( PRESSURE(nstages_index) - PRESSURE(nstages_index-1) ) -...
+    ( VELOCITY(nstages_index)./(1 - epsi.*mask(nstages_index)) ) .* ( ( 1./(1 - epsi.*mask(nstages_index)) ) .* (1 / L * nstages)   .* ( VELOCITY(nstages_index)               - VELOCITY(nstages_index-1)                )   +...
+                                                             VELOCITY(nstages_index) .* (1 / L * nstages)   .* ( (1 - epsi.*mask(nstages_index)).^(-1) - (1 - epsi.*mask(1)).^(-1) ) ) +...
+    4/3*MU(1) );
     
     %--------------------------------------------------------------------
     % 5*nstage+1 = output equation
