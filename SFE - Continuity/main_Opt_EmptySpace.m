@@ -7,10 +7,10 @@ import casadi.*
 Parameters_table        = readtable('Parameters.csv') ;        % Fulle table with prameters
 
 %% Set time of the simulation
-simulationTime          = 150;                                                 % Minutes
+simulationTime          = 7/10000;                                                 % Minutes
 SamplingTime            = 5;                                                   % Minutes
 
-timeStep                = 1/4;                                                 % Minutes
+timeStep                = simulationTime/1000;                                                 % Minutes
 
 timeStep_in_sec         = timeStep * 60;                                       % Seconds
 Time_in_sec             = (timeStep:timeStep:simulationTime)*60;               % Seconds
@@ -22,7 +22,7 @@ N_Time                  = length(Time_in_sec);
 nstages                 = 100;
 
 before  = 0.14;         nstagesbefore   = 1:floor(before*nstages);
-bed     = 0.16;         nstagesbed      = nstagesbefore(end)+1 : nstagesbefore(end) + floor(bed*nstages);
+bed     = 0.165;         nstagesbed      = nstagesbefore(end)+1 : nstagesbefore(end) + floor(bed*nstages);
 nstagesafter    = nstagesbed(end)+1:nstages;
 
 bed_mask                = nan(nstages,1);
@@ -33,7 +33,7 @@ bed_mask(nstagesafter)  = 0;
 which_k                 = [8, 44];
 
 %% Set parameters
-mSOL_s                   = 100;                                           % g of product in biomass
+mSOL_s                   = 1;                                           % g of product in biomass
 mSOL_f                   = 0;                                           % g of biomass in fluid
 
 %C0fluid                 = 1;                                           % Extractor initial concentration of extract - Fluid phase kg / m^3
@@ -42,7 +42,7 @@ V                       = 0.01;                                         %
 r                       = 0.075;                                        % Radius of the extractor  [m3]
 L                       = V / pi / r^2;                                 % Total length of the extractor [m]
 A                       = pi*r^2;                                       % Extractor cross-section
-epsi                    = 1/3;                                          % Fullness [-]
+epsi                    = 0.0;                                          % Fullness [-]
 
 %--------------------------------------------------------------------
 V_slice                 = (L/nstages) * pi * r^2;
@@ -103,10 +103,10 @@ k0         = [0.1, 0.5];
 rho        = rhoPB_Comp(T0homog, feedPress, Compressibility(T0homog,feedPress,table2cell(Parameters_table(:,3))), table2cell(Parameters_table(:,3)));
 
 % Set operating conditions
-feedTemp   = T0homog   * ones(1,length(Time_in_sec)) + 50 ;  % Kelvin
+feedTemp   = T0homog   * ones(1,length(Time_in_sec)) + 1 ;  % Kelvin
 %feedTemp(round(numel(Time)/5):round(numel(Time)/2))   = feedTemp(1) + 50;
 
-feedPress  = feedPress * ones(1,length(Time_in_sec));  % Bars
+feedPress  = feedPress * ones(1,length(Time_in_sec)) + 0;  % Bars
 %feedPress(round(numel(Time)/3):round(2*numel(Time)/3))   = feedPress(1) + 50;
 
 feedFlow   = V_Flow * rho * 1e-3 / 60 * ones(1,length(Time_in_sec));  % l/min -> kg/min -> Kg / sec
@@ -115,7 +115,8 @@ feedFlow   = V_Flow * rho * 1e-3 / 60 * ones(1,length(Time_in_sec));  % l/min ->
 uu         = [feedTemp', feedPress', feedFlow'];
 
 % Initial conditions
-x0         = [C0fluid * ones(nstages,1);
+x0         = [
+            C0fluid * ones(nstages,1);
             C0solid * bed_mask;
             T0homog*ones(nstages,1);
             rho*ones(nstages,1);        
@@ -133,6 +134,12 @@ Parameters_opt = [uu repmat(Parameters,1,N_Time)'];
 [xx_0] = simulateSystem(F, [], x0, Parameters_opt  );
 
 %%
+T_NS   = xx_0(2*nstages+1:3*nstages,:);
+rho_NS = xx_0(3*nstages+1:4*nstages,:);
+clc;
+P_NS   = Pressure_PR( T_NS, rho_NS, num2cell(Parameters) );
+
+%%
 ind = 1:numel(Time);
 
 NAME = {'C_f','C_s','T','Continuity','Momentum'};
@@ -140,7 +147,7 @@ NAME = {'C_f','C_s','T','Continuity','Momentum'};
 for i=0:numel(NAME)-1
 
     subplot(2,3,i+1)
-    imagesc(Time,1:nstages,xx_0(i*nstages+1:(i+1)*nstages,:)); colorbar
+    imagesc(Time,1:nstages,xx_0(i*nstages+1:(i+1)*nstages,:)); colorbar; colormap jet
     hold on
     yline(nstagesbed(1),'w')
     yline(nstagesbed(end),'w')
@@ -150,7 +157,8 @@ for i=0:numel(NAME)-1
 end
 
 subplot(2,3,numel(NAME)+1)
-plotyy(Time, xx_0(Nx,:), Time, 1e3 * (sum(xx_0(0*nstages+1:1*nstages,ind) .* V_fluid) + sum(xx_0(1*nstages+1:2*nstages,ind) .* V_solid)) + xx_0(Nx,ind))
+imagesc(Time,1:nstages,P_NS); colorbar; colormap jet
+%plotyy(Time, xx_0(Nx,:), Time, 1e3 * (sum(xx_0(0*nstages+1:1*nstages,ind) .* V_fluid) + sum(xx_0(1*nstages+1:2*nstages,ind) .* V_solid)) + xx_0(Nx,ind))
 
 %%
 xx_0(end,end)
