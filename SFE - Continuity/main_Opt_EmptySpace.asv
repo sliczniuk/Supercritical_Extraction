@@ -94,7 +94,7 @@ f                       = @(x, u) modelSFE(x, u, bed_mask);
 F                       = buildIntegrator(f, [Nx,Nu] , timeStep_in_sec);
 
 %%
-V_Flow     = 0;
+V_Flow     = 0.39;
 T0homog    = 40+273.15;
 feedPress  = 300 ;
 k0         = [0.1, 0.5];
