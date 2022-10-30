@@ -1,8 +1,9 @@
-function mu = Viscosity(T,P,rho,theta)
+function mu = Viscosity(T,rho)
 
     % The temperature ranges of the dataare 310–900K and the pressure from 7.5MPa to 101.5MPa.
     % T[K], P[bar]
     %{
+    function mu = Viscosity(T,P,rho,theta)
     A1 = theta{35}; % -1.146067E-1;
     A2 = theta{36}; %  6.978380E-7;
     A3 = theta{37}; %  3.976765E-10;
@@ -35,24 +36,24 @@ function mu = Viscosity(T,P,rho,theta)
     gamma  = 8.06282737481277;
     c      = [0.360603235428487, 0.121550806591497 ];
     
-    mu_0   = 1.0055*sqrt(T) / ( a(1) + a(2)*T.^(1/6) + a(3)*exp(a(4)*T.^(1/3)) + ( (a(5) + a(6)*T.^(1/3) ) /exp(T.^(1/3)) ) + a(7)*sqrt(T) );
+    mu_0   = 1.0055.*sqrt(T) ./ ( a(1) + a(2)*T.^(1/6) + a(3).*exp(a(4)*T.^(1/3)) + ( (a(5) + a(6)*T.^(1/3) ) ./exp(T.^(1/3)) ) + a(7).*sqrt(T) );
     
     B      = 0;
     for i=1:8
-        B = B + b(i+1) / (T_star^t(i));
+        B = B + b(i+1) ./ (T_star.^t(i));
     end
     B = b(1) + B;
     
-    mu_l   = mu_0 * B * sigma^3 * Na / M;
+    mu_l   = mu_0 .* B .* sigma^3 .* Na ./ M;
     
     mu_tl  = 0.09436; % rho_tl^(2/3) * sqrt(kB*Tt)/( (M/Na)^(1/6) );
     
-    mu_r   = mu_tl *(  c(1)*Tr*(rho_r^3) + (rho_r^2 + rho_r^gamma)/(Tr - c(2)) );
+    mu_r   = mu_tl .*(  c(1).*Tr.*(rho_r.^3) + (rho_r.^2 + rho_r.^gamma)./(Tr - c(2)) );
     
-    mu = mu_0 + rho*mu_l + mu_r;
+    mu = mu_0 + rho.*mu_l + mu_r;
     
-    mu = mu*1e3;
+    % Units are mPa*s -> 1e-3 * Pa*s
 
-    error('Double check units')
+    mu = mu.*1e-3;
 
 end

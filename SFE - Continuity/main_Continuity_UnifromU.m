@@ -7,10 +7,9 @@ import casadi.*
 Parameters_table        = readtable('Parameters.csv') ;        % Fulle table with prameters
 
 %% Set time of the simulation
-simulationTime          = 3000/60/1000;                                        % Minutes
-SamplingTime            = 5;                                                % Minutes
+simulationTime          = 150;                                        % Minutes
 
-timeStep                = simulationTime/3000;                               % Minutes
+timeStep                = simulationTime/1000;                               % Minutes
 
 timeStep_in_sec         = timeStep * 60;                                       % Seconds
 Time_in_sec             = (timeStep:timeStep:simulationTime)*60;               % Seconds
@@ -19,7 +18,7 @@ Time                    = [0 Time_in_sec/60];                                  %
 N_Time                  = length(Time_in_sec);
 
 %% Specify parameters to estimate
-nstages                 = 1000;
+nstages                 = 100;
 
 before  = 0.14;         nstagesbefore   = 1:floor(before*nstages);
 bed     = 0.165;        nstagesbed      = nstagesbefore(end)+1 : nstagesbefore(end) + floor(bed*nstages);
@@ -33,7 +32,7 @@ bed_mask(nstagesafter)  = 0;
 which_k                 = [8, 44];
 
 %% Set parameters
-mSOL_s                   = 1;                                           % g of product in biomass
+mSOL_s                   = 100;                                           % g of product in biomass
 mSOL_f                   = 0;                                           % g of biomass in fluid
 
 %C0fluid                 = 1;                                           % Extractor initial concentration of extract - Fluid phase kg / m^3
@@ -42,7 +41,7 @@ V                       = 0.01;                                         %
 r                       = 0.075;                                        % Radius of the extractor  [m3]
 L                       = V / pi / r^2;                                 % Total length of the extractor [m]
 A                       = pi*r^2;                                       % Extractor cross-section
-epsi                    = 0.001;                                          % Fullness [-]
+epsi                    = 0.5  ;                                          % Fullness [-]
 
 %--------------------------------------------------------------------
 V_slice                 = (L/nstages) * pi * r^2;
@@ -88,13 +87,13 @@ x                       = MX.sym('x', Nx);
 u                       = MX.sym('u', Nu);
 
 %% Set Integrator
-f                       = @(x, u) modelSFE(x, u, bed_mask);
+f                       = @(x, u) modelSFE_uniform_U(x, u, bed_mask);
 
 % Integrator
 F                       = buildIntegrator(f, [Nx,Nu] , timeStep_in_sec);
 
 %%
-V_Flow     = 0;
+V_Flow     = 0.39;
 T0homog    = 40+273.15;
 feedPress  = 300 ;
 k0         = [0.1, 0.5];
@@ -103,14 +102,14 @@ k0         = [0.1, 0.5];
 rho        = rhoPB_Comp(T0homog, feedPress, Compressibility(T0homog,feedPress,table2cell(Parameters_table(:,3))), table2cell(Parameters_table(:,3)));
 
 % Set operating conditions
-feedTemp   = T0homog   * ones(1,length(Time_in_sec)) + 0 ;  % Kelvin
-%feedTemp(round(numel(Time)/5):round(numel(Time)/2))   = feedTemp(1) + 50;
+feedTemp   = T0homog   * ones(1,length(Time_in_sec)) + 50 ;  % Kelvin
+%feedTemp( round(numel(Time)/2) : end )   = feedTemp(1) - 20;
 
-feedPress  = feedPress * ones(1,length(Time_in_sec)) + 0;  % Bars
-%feedPress(round(numel(Time)/3):round(2*numel(Time)/3))   = feedPress(1) + 50;
+feedPress  = feedPress * ones(1,length(Time_in_sec)) + 0 ;  % Bars
+feedPress(round(numel(Time)/2):round(2*numel(Time)/3))   = feedPress(1) - 10;
 
-feedFlow   = V_Flow * rho * 1e-3 / 60 * ones(1,length(Time_in_sec));  % l/min -> kg/min -> Kg / sec
-%feedFlow(round(numel(Time)/3):round(2*numel(Time)/3))   = 2*feedFlow(1) ;
+feedFlow   = V_Flow * 1e-3 / 60 * ones(1,length(Time_in_sec));  % l/min -> kg/min -> Kg / sec
+%feedFlow(round(numel(Time)/10):round(2*numel(Time)/3))   = 0.5*feedFlow(1) ;
 
 uu         = [feedTemp', feedPress', feedFlow'];
 
@@ -119,8 +118,8 @@ x0         = [
             C0fluid * ones(nstages,1);
             C0solid * bed_mask;
             T0homog*ones(nstages,1);
-            rho*ones(nstages,1);        
-            0*(V_Flow/A * 1e-3 / 60)*ones(nstages,1);
+            rho * ones(nstages,1);        
+            (V_Flow/A * 1e-3 / 60)*ones(nstages,1);
             0;
             ];
 

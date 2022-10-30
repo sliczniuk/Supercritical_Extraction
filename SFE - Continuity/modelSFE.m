@@ -37,30 +37,32 @@ function xdot = modelSFE(x, p, mask)
     FLUID         =    x(0*nstages_index+1:1*nstages_index);
     SOLID         =    x(1*nstages_index+1:2*nstages_index);
     TEMP          =    x(2*nstages_index+1:3*nstages_index);
-    RHO_NS        =    x(3*nstages_index+1:4*nstages_index);
-    VELOCITY_NS   =    x(4*nstages_index+1:5*nstages_index);
+    %RHO_NS        =    x(3*nstages_index+1:4*nstages_index);
+    %VELOCITY_NS   =    x(4*nstages_index+1:5*nstages_index);
     
     E_Inv         = (1 - epsi.*mask).^(-1);
 
     %%
 
-     %PRESSURE      =    P_u * ones(nstages_index,1);
-    PRESSURE      = Pressure_PR(TEMP,RHO_NS,parameters);
+    PRESSURE      =    P_u * ones(nstages_index,1);
+    %PRESSURE      = Pressure_PR(TEMP,RHO_NS,parameters);
       
     %Properties of the fluid in the extractor
     Z             =     Compressibility(TEMP, PRESSURE,   parameters);
 
-    %RHO           =     rhoPB_Comp(     TEMP, PRESSURE, Z,parameters);
-    RHO           = RHO_NS;
+    RHO           =     rhoPB_Comp(     TEMP, PRESSURE, Z,parameters);
+    %RHO           = RHO_NS;
 
-    %VELOCITY      =     Velocity(F_u, RHO, parameters);
-    VELOCITY      =     VELOCITY_NS;
+%    VELOCITY      =  (F_u / A) .* ones(nstages_index,1);
+    VELOCITY      =     Velocity(F_u, RHO, parameters);
+    %VELOCITY      =     VELOCITY_NS;
     
     %% Thermal Properties
     CP            =     SpecificHeatComp(TEMP, PRESSURE, Z, RHO,                 parameters);            % [kJ/kg/K]
     CPRHOCP       =     cpRHOcp_Comp(    TEMP, PRESSURE, Z, RHO, CP, epsi.*mask, parameters);
     KRHOCP        =     kRHOcp_Comp(     TEMP, PRESSURE, Z, RHO, CP, epsi.*mask, parameters);
-    MU            =     3e-3*ones(nstages_index,1);
+    
+    MU            =     Viscosity(TEMP,RHO);
 
     %% BC
     Cf_0   = 0;
@@ -71,14 +73,19 @@ function xdot = modelSFE(x, p, mask)
 
     Z_0    = Compressibility(T_u, P_u,     parameters);
     rho_0  = rhoPB_Comp(     T_u, P_u, Z_0, parameters);
+    %rho_0  = RHO(1);
     rho_B  = RHO(nstages_index);
 
+%    VELOCITY      =     Velocity(F_u, rho_0, parameters)*ones(nstages_index,1);
+
     u_0    = Velocity(F_u, rho_0, parameters);
+    u_0    = -VELOCITY(1);
     u_B    = VELOCITY(nstages_index);
 
-    epsi_0 = ( 1-epsi*mask(1) ) .^(-1) ;
-    epsi_B = ( 1-epsi*mask(nstages_index) ) .^(-1) ;
+    epsi_0 = ( 1-0 ) .^(-1) ;
+    epsi_B = ( 1-0 ) .^(-1) ;
 
+    %P_0    = PRESSURE(1);
     P_0    = P_u;
 
     %% Derivatives
@@ -97,7 +104,8 @@ function xdot = modelSFE(x, p, mask)
     dE_Inv  =         E_Inv                                          - [ epsi_0; E_Inv(1:nstages_index-1)           ];
     d2E_Inv = [epsi_0;E_Inv(1:nstages_index-1)   ]    - 2*E_Inv      + [         E_Inv(2:nstages_index)    ; epsi_B ];
 
-    dP      =         PRESSURE                                       - [ P_0;    PRESSURE(1:nstages_index-1)        ];
+    dP      =         PRESSURE                                       - [ P_0;    PRESSURE(1:nstages_index-1)        ]; 
+    dP      = dP .* 1e5;                                                                                                % bar = 1e5 * Pa; 
 
     dz      = L/nstages_index;
     dz2     = dz^2;
@@ -108,50 +116,47 @@ function xdot = modelSFE(x, p, mask)
     
     %--------------------------------------------------------------------
     % Concentration of extract in fluid phase | 0
-    %{
+    
     - VELOCITY      ./  ( 1 - epsi .* mask ) .* dCf  ./ dz  + ...
       Dx            ./  ( 1 - epsi .* mask ) .* d2Cf ./ dz2 +...
     (epsi.*mask)    ./  ( 1 - epsi .* mask ) .* (1 ./ mi ./ lp2 .* Di)  .* ( SOLID - FLUID .* (rho_s ./ km ./ RHO ) );
-    %}
-    zeros(nstages_index,1);
+    %zeros(nstages_index,1);
 
     %--------------------------------------------------------------------
     % Concentration of extract in solid phase | 1
-    % -  mask                                 .* (1 ./ mi ./ lp2 .* Di)  .* ( SOLID - FLUID .* (rho_s ./ km ./ RHO ) );
-    zeros(nstages_index,1);
+     -  mask                                 .* (1 ./ mi ./ lp2 .* Di)  .* ( SOLID - FLUID .* (rho_s ./ km ./ RHO ) );
+    %zeros(nstages_index,1);
     
     %--------------------------------------------------------------------
     % Temperature | 2
-    %- VELOCITY      ./ ( 1 - epsi .* mask )  .* CPRHOCP   .*   dT ./ dz  +   KRHOCP  .* d2T ./ dz2;
-    zeros(nstages_index,1);
+    - VELOCITY      ./ ( 1 - epsi .* mask )  .* CPRHOCP   .*   dT ./ dz  +   KRHOCP  .* d2T ./ dz2;
+    %zeros(nstages_index,1);
     
     %--------------------------------------------------------------------
-    % Continuity - 3
+    % Continuity - 3 
+    
      - VELOCITY  ./  ( 1 - epsi.*mask)       .* dRho   ./ dz  +...
-     - 0.*RHO       ./  ( 1 - epsi.*mask)       .* du     ./ dz  +...
+     - RHO       ./  ( 1 - epsi.*mask)       .* du     ./ dz  +...
      - RHO       .*  VELOCITY                .* dE_Inv ./ dz;
-% zeros(nstages_index,1);
-
-
+    
+    %zeros(nstages_index,1);
+    
     %--------------------------------------------------------------------
     % Momentum - 4
-    ( 1 - epsi.*mask ) ./ RHO                                        .*...
-    (                                    - dP ./ dz                  -...
-    1 .*      ( VELOCITY ./ (1 - epsi.*mask) )                        .*...
-               ( 1 ./  (1 - epsi.*mask)      .* du ./ dz                  +...
-                    VELOCITY            .* dE_Inv ./ dz                   ...
-                )                                                        +...
-    1 .* 4/3*MU                                                        .*...
-                ( 1./(1-epsi.*mask)     .* d2u ./ dz2                    +...
-                  2                     .* (du ./ dz) .* (dE_Inv ./ dz)  +...
-                 VELOCITY               .* d2E_Inv ./ dz2                 ...
-                 )                                                        ...
-     );
+    %{
+    - VELOCITY ./ (1-epsi.*mask)                           .* du         ./ dz              +...
+    - VELOCITY .* VELOCITY                                 .* dE_Inv     ./ dz              +...
+    - (1-epsi.*mask) ./ RHO                                .* dP         ./ dz              +...
+    +     4/3 .* MU .* (1-epsi.*mask) .*VELOCITY ./ RHO    .* d2E_Inv    ./ dz2             +...
+    + 2 * 4/3 .* MU .* (1-epsi.*mask)            ./ RHO    .* (du ./ dz) .* (dE_Inv ./ dz)  +...
+    +     4/3 .* MU                              ./ RHO    .* d2u        ./ dz2;
+    %}    
+    zeros(nstages_index,1);
 
     %--------------------------------------------------------------------
     % 5*nstage+1 = output equation
     VELOCITY(nstages_index) * A * FLUID(nstages_index) * 1e3 ;   %kg/s - > g/s
-
+    
     ];
 
     %%
