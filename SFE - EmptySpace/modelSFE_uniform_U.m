@@ -44,16 +44,16 @@ function xdot = modelSFE_uniform_U(x, p, mask)
 
     %%
 
-    %PRESSURE      =    P_u * ones(nstages_index,1);
-    PRESSURE      = Pressure_PR(TEMP,RHO_NS,parameters);
+    %PRESSURE      =     P_u * ones(nstages_index,1);
+    PRESSURE      =     Pressure_PR(TEMP,RHO_NS,parameters);
       
     %Properties of the fluid in the extractor
     Z             =     Compressibility(TEMP, PRESSURE,   parameters);
 
-    RHO           =     rhoPB_Comp(     TEMP, PRESSURE, Z,parameters);
-    %RHO           = RHO_NS;
+    %RHO           =     rhoPB_Comp(     TEMP, PRESSURE, Z,parameters);
+    RHO           =     RHO_NS;
 
-    VELOCITY      =  (F_u / A) .* ones(nstages_index,1);
+    %VELOCITY      =  (F_u / A) .* linspace(0.99,0.95,nstages_index)';
     %VELOCITY      =     Velocity(F_u, RHO, parameters);
     %VELOCITY      =     VELOCITY_NS;
     
@@ -62,7 +62,7 @@ function xdot = modelSFE_uniform_U(x, p, mask)
     CPRHOCP       =     cpRHOcp_Comp(    TEMP, PRESSURE, Z, RHO, CP, epsi.*mask, parameters);
     KRHOCP        =     kRHOcp_Comp(     TEMP, PRESSURE, Z, RHO, CP, epsi.*mask, parameters);
 
-    alpha         =     ThermalExpansion(TEMP, PRESSURE, Z, RHO,                 parameters);
+    %alpha         =     ThermalExpansion(TEMP, PRESSURE, Z, RHO,                 parameters);
     
     %MU            =     Viscosity(TEMP,RHO);
 
@@ -73,15 +73,16 @@ function xdot = modelSFE_uniform_U(x, p, mask)
     T_0    = T_u;
     T_B    = TEMP(nstages_index);
 
-    %Z_0    = Compressibility(T_u, P_u,     parameters);
-    %rho_0  = rhoPB_Comp(     T_u, P_u, Z_0, parameters);
+    Z_0    = Compressibility(T_u, P_u,     parameters);
+    rho_0  = rhoPB_Comp(     T_u, P_u, Z_0, parameters);
     %rho_0  = RHO(1);
     %rho_B  = RHO(nstages_index);
 
-%    VELOCITY      =     Velocity(F_u, rho_0, parameters)*ones(nstages_index,1);
+    VELOCITY      =     Velocity(F_u, rho_0, parameters)*ones(nstages_index,1);
 
     %u_0    = Velocity(F_u, rho_0, parameters);
-    %u_0    = -VELOCITY(1);
+    %u_0     = F_u / A;
+    u_0    = VELOCITY(1);
     %u_B    = VELOCITY(nstages_index);
 
     %epsi_0 = ( 1-0 ) .^(-1) ;
@@ -92,15 +93,15 @@ function xdot = modelSFE_uniform_U(x, p, mask)
 
     %% Derivatives
     dCf     =         FLUID                                          - [ Cf_0;   FLUID(1:nstages_index-1)           ];
-    d2Cf    = [Cf_0;  FLUID(1:nstages_index-1)   ]    - 2*FLUID      + [         FLUID(2:nstages_index)    ; Cf_B   ];
+    d2Cf    = [FLUID(1);  FLUID(1:nstages_index-1)   ]    - 2*FLUID      + [         FLUID(2:nstages_index)    ; Cf_B   ];
 
     dT      =         TEMP                                           - [ T_0;    TEMP(1:nstages_index-1)            ];
     d2T     = [T_0;   TEMP(1:nstages_index-1)    ]    - 2*TEMP       + [         TEMP(2:nstages_index)     ; T_B    ];
 
-    %dRho    =         RHO                                            - [ rho_0;  RHO(1:nstages_index-1)             ];
+    dRho    =         RHO                                            - [ rho_0;  RHO(1:nstages_index-1)             ];
     %d2Rho   = [rho_0; RHO(1:nstages_index-1)     ]    - 2*RHO        + [         RHO(2:nstages_index)      ; rho_B  ];
 
-    %du      =         VELOCITY                                       - [ u_0;    VELOCITY(1:nstages_index-1)        ];
+    du      =         VELOCITY                                       - [ u_0;    VELOCITY(1:nstages_index-1)        ];
     %d2u     = [u_0;   VELOCITY(1:nstages_index-1)]    - 2*VELOCITY   + [         VELOCITY(2:nstages_index) ; u_B    ];
 
     %dE_Inv  =         E_Inv                                          - [ epsi_0; E_Inv(1:nstages_index-1)           ];
@@ -137,7 +138,8 @@ function xdot = modelSFE_uniform_U(x, p, mask)
     %--------------------------------------------------------------------
     % Continuity - 3 
     
-    VELOCITY        ./ ( 1 - epsi .* mask ) .* RHO .* alpha .* dT ./ dz;
+    -VELOCITY       ./ ( 1 - epsi .* mask ) .* dRho ./ dz - RHO ./ ( 1 - epsi .* mask ) .* du ./ dz ;
+    %VELOCITY        ./ ( 1 - epsi .* mask ) .* RHO .* alpha .* dT ./ dz;
     
     %{
      - VELOCITY  ./  ( 1 - epsi.*mask)       .* dRho   ./ dz  +...
@@ -156,7 +158,7 @@ function xdot = modelSFE_uniform_U(x, p, mask)
     + 2 * 4/3 .* MU .* (1-epsi.*mask)            ./ RHO    .* (du ./ dz) .* (dE_Inv ./ dz)  +...
     +     4/3 .* MU                              ./ RHO    .* d2u        ./ dz2;
     %}    
-    zeros(nstages_index,1);
+    %zeros(nstages_index,1);
 
     %--------------------------------------------------------------------
     % 5*nstage+1 = output equation

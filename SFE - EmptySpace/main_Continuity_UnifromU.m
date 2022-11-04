@@ -42,7 +42,7 @@ r                       = 0.075;                                        % Radius
 L                       = V / pi / r^2;                                 % Total length of the extractor [m]
 L_stages                = linspace(0, L, nstages);
 A                       = pi*r^2;                                       % Extractor cross-section
-epsi                    = 0 ;                                         % Fullness [-]
+epsi                    = 0.5 ;                                        % Fullness [-]
 
 %--------------------------------------------------------------------
 V_slice                 = (L/nstages) * pi * r^2;
@@ -97,21 +97,21 @@ F                       = buildIntegrator(f, [Nx,Nu] , timeStep_in_sec);
 V_Flow     = 0.39;
 T0homog    = 40+273.15;
 feedPress  = 300 ;
-k0         = [1, 0.1];
+k0         = [0.1, 0.5];
 
 %%
 rho        = rhoPB_Comp(T0homog, feedPress, Compressibility(T0homog,feedPress,table2cell(Parameters_table(:,3))), table2cell(Parameters_table(:,3)));
 
 % Set operating conditions
-feedTemp   = T0homog   * ones(1,N_Time) + 0;  % Kelvin
-%feedTemp( round(numel(Time)/4) : round(numel(Time)/2) )   = T0homog + 1;
-%feedTemp( round(numel(Time)/2)  : end )   = T0homog +20 ;
+feedTemp   = T0homog   * ones(1,N_Time) - 0 ;  % Kelvin
+%feedTemp( round(numel(Time)/10) : round(numel(Time)/2) )   = T0homog - 10;
+%feedTemp( round(numel(Time)/2)  : end )   = T0homog ;
 
 feedPress  = feedPress * ones(1,N_Time) + 0 ;  % Bars
-%feedPress(round(numel(Time)/2):round(3*numel(Time)/4))   = feedPress(1) - 50;
+%feedPress(round(numel(Time)/4):round(numel(Time)/2))   = feedPress(1) - 10;
 
 feedFlow   = V_Flow *rho * 1e-3 / 60 * ones(1,N_Time);  % l/min -> kg/min -> Kg / sec
-feedFlow(round(numel(Time)/4):round(numel(Time)/2))   = 1.01*feedFlow(1) ;
+%feedFlow(round(numel(Time)/10):round(2*numel(Time)/3))   = 0.5*feedFlow(1) ;
 
 uu         = [feedTemp', feedPress', feedFlow'];
 
@@ -121,7 +121,7 @@ x0         = [
             C0solid * bed_mask;
             T0homog*ones(nstages,1);
             rho * ones(nstages,1);        
-            (V_Flow/A * 1e-3 / 60)*ones(nstages,1);
+            0.*(V_Flow/A * 1e-3 / 60)*ones(nstages,1);
             0;
             ];
 
@@ -147,7 +147,7 @@ subplot(3,3,1); title('T')
 hold on
 plot(Time,feedTemp); 
 plot(Time,xx_0(2*nstages+1,:))
-plot(Time,xx_0(3*nstages  ,:))
+plot(Time,xx_0(3*nstages,:))
 hold off
 legend('T_u','First Layer', 'Last Layer')
 
@@ -161,8 +161,6 @@ ylim([0.95*min(feedFlow), 1.05* max(feedFlow)]); title('F_u')
 NAME = {'C_f','C_s','T','Continuity','Momentum'};
 
 for i=0:numel(NAME)-1
-
-
     subplot(3,3,i+4)
     imagesc(Time,1:nstages,xx_0(i*nstages+1:(i+1)*nstages,:)); colorbar; colormap jet
     hold on

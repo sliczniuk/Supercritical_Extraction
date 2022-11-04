@@ -15,14 +15,14 @@ timeStep_in_sec         = timeStep * 60;                                       %
 Time_in_sec             = (timeStep:timeStep:simulationTime)*60;               % Seconds
 Time                    = [0 Time_in_sec/60];                                  % Minutes
 
-N_Time                  = length(Time_in_sec);
+N_Time                  = length(Time);
 
 %% Specify parameters to estimate
 nstages                 = 100;
 
-before  = 0.14;         nstagesbefore   = 1:floor(before*nstages);
+before  = 0.135;        nstagesbefore   = 1:floor(before*nstages);
 bed     = 0.165;        nstagesbed      = nstagesbefore(end)+1 : nstagesbefore(end) + floor(bed*nstages);
-nstagesafter    = nstagesbed(end)+1:nstages;
+                        nstagesafter    = nstagesbed(end)+1:nstages;
 
 bed_mask                = nan(nstages,1);
 bed_mask(nstagesbefore) = 0;
@@ -40,8 +40,9 @@ mSOL_f                   = 0;                                           % g of b
 V                       = 0.01;                                         %
 r                       = 0.075;                                        % Radius of the extractor  [m3]
 L                       = V / pi / r^2;                                 % Total length of the extractor [m]
+L_stages                = linspace(0, L, nstages);
 A                       = pi*r^2;                                       % Extractor cross-section
-epsi                    = 0.5  ;                                          % Fullness [-]
+epsi                    = 1/3 ;                                         % Fullness [-]
 
 %--------------------------------------------------------------------
 V_slice                 = (L/nstages) * pi * r^2;
@@ -77,7 +78,7 @@ m0fluid(nstagesbed)    = C0fluid * (V_bed * (1 - epsi)) / numel(nstagesbed);
 m0fluid(nstagesafter)  = C0fluid * V_after / numel(nstagesafter);
 
 %%
-Nx                      = 5*nstages+1;
+Nx                      = 4*nstages+1;
 Nu                      = 3 + numel( Parameters_table{:,3} );
 Nk                      = numel(which_k);
 
@@ -96,20 +97,21 @@ F                       = buildIntegrator(f, [Nx,Nu] , timeStep_in_sec);
 V_Flow     = 0.39;
 T0homog    = 40+273.15;
 feedPress  = 300 ;
-k0         = [0.1, 0.5];
+k0         = [1, 0.1];
 
 %%
 rho        = rhoPB_Comp(T0homog, feedPress, Compressibility(T0homog,feedPress,table2cell(Parameters_table(:,3))), table2cell(Parameters_table(:,3)));
 
 % Set operating conditions
-feedTemp   = T0homog   * ones(1,length(Time_in_sec)) + 50 ;  % Kelvin
-feedTemp( round(numel(Time)/2) : round(3*numel(Time) )   = feedTemp(1) - 20;
+feedTemp   = T0homog   * ones(1,N_Time) + 0;  % Kelvin
+%feedTemp( round(numel(Time)/4) : round(numel(Time)/2) )   = T0homog + 1;
+%feedTemp( round(numel(Time)/2)  : end )   = T0homog +20 ;
 
-feedPress  = feedPress * ones(1,length(Time_in_sec)) + 0 ;  % Bars
-%feedPress(round(numel(Time)/3):round(2*numel(Time)/3))   = feedPress(1) - 10;
+feedPress  = feedPress * ones(1,N_Time) + 0 ;  % Bars
+%feedPress(round(numel(Time)/2):round(3*numel(Time)/4))   = feedPress(1) - 50;
 
-feedFlow   = V_Flow * 1e-3 / 60 * ones(1,length(Time_in_sec));  % l/min -> kg/min -> Kg / sec
-%feedFlow(round(numel(Time)/10):round(2*numel(Time)/3))   = 0.5*feedFlow(1) ;
+feedFlow   = V_Flow *rho * 1e-3 / 60 * ones(1,N_Time);  % l/min -> kg/min -> Kg / sec
+%feedFlow(round(1*numel(Time)/2):round(2*numel(Time)/3))   = 2*feedFlow(1) ;
 
 uu         = [feedTemp', feedPress', feedFlow'];
 
@@ -119,7 +121,7 @@ x0         = [
             C0solid * bed_mask;
             T0homog*ones(nstages,1);
             rho * ones(nstages,1);        
-            (V_Flow/A * 1e-3 / 60)*ones(nstages,1);
+            %(V_Flow/A * 1e-3 / 60)*ones(nstages,1);
             0;
             ];
 
@@ -127,37 +129,111 @@ Parameters          = Parameters_table{:,3};
 Parameters(1:9)     = [nstages, C0solid, r, epsi, dp, L, rho_s, km, mi];
 
 Parameters(which_k) = k0;
-Parameters_opt = [uu repmat(Parameters,1,N_Time)'];
+Parameters_opt      = [uu repmat(Parameters,1,N_Time)'];
 
 %% Simulate system
 [xx_0] = simulateSystem(F, [], x0, Parameters_opt  );
 
 %%
-T_NS   = xx_0(2*nstages+1:3*nstages,:);
-rho_NS = xx_0(3*nstages+1:4*nstages,:);
-clc;
-P_NS   = Pressure_PR( T_NS, rho_NS, num2cell(Parameters) );
+xdot         = modelSFE_uniform_U(x, u, bed_mask);
+[S,p,Sdot]   = Sensitivity(x, xdot, u, [1] );
 
 %%
-ind = 1:numel(Time);
-
-NAME = {'C_f','C_s','T','Continuity','Momentum'};
-
-for i=0:numel(NAME)-1
-
-    subplot(2,3,i+1)
-    imagesc(Time,1:nstages,xx_0(i*nstages+1:(i+1)*nstages,:)); colorbar; colormap jet
-    hold on
-    yline(nstagesbed(1),'w')
-    yline(nstagesbed(end),'w')
-    hold off
-    title(NAME{i+1})
-
-end
-
-subplot(2,3,numel(NAME)+1)
-imagesc(Time,1:nstages,P_NS); title('P'); colorbar; colormap jet
-%plotyy(Time, xx_0(Nx,:), Time, 1e3 * (sum(xx_0(0*nstages+1:1*nstages,ind) .* V_fluid) + sum(xx_0(1*nstages+1:2*nstages,ind) .* V_solid)) + xx_0(Nx,ind))
+x0_SA         = [
+            C0fluid * ones(nstages,1);
+            C0solid * bed_mask;
+            T0homog*ones(nstages,1);
+            rho * ones(nstages,1);        
+            %(V_Flow/A * 1e-3 / 60)*ones(nstages,1);
+            0;
+            zeros(length(S)-length(xdot),1);
+            ];
 
 %%
-xx_0(end,end)
+f_SA = @(S, p) Sdot(S, p, bed_mask);
+%%
+Results = Integrator_SS(Time*60, x0_SA, S, p, Sdot, Parameters_opt(1,:));
+Res = Results(Nx+1:end,:) ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

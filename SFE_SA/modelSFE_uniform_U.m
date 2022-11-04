@@ -38,7 +38,7 @@ function xdot = modelSFE_uniform_U(x, p, mask)
     SOLID         =    x(1*nstages_index+1:2*nstages_index);
     TEMP          =    x(2*nstages_index+1:3*nstages_index);
     RHO_NS        =    x(3*nstages_index+1:4*nstages_index);
-    VELOCITY_NS   =    x(4*nstages_index+1:5*nstages_index);
+    %VELOCITY_NS   =    x(4*nstages_index+1:5*nstages_index);
     
     %E_Inv         = (1 - epsi.*mask).^(-1);
 
@@ -55,7 +55,7 @@ function xdot = modelSFE_uniform_U(x, p, mask)
 
     %VELOCITY      =  (F_u / A) .* linspace(0.99,0.95,nstages_index)';
     %VELOCITY      =     Velocity(F_u, RHO, parameters);
-    VELOCITY      =     VELOCITY_NS;
+    %VELOCITY      =     VELOCITY_NS;
     
     %% Thermal Properties
     CP            =     SpecificHeatComp(TEMP, PRESSURE, Z, RHO,                 parameters);            % [kJ/kg/K]
@@ -79,11 +79,11 @@ function xdot = modelSFE_uniform_U(x, p, mask)
     %rho_0  = RHO(1);
     %rho_B  = RHO(nstages_index);
 
-    %VELOCITY      =     Velocity(F_u, rho_0, parameters).*linspace(1,1,nstages_index)';
+    VELOCITY      =     Velocity(F_u, rho_0, parameters).*linspace(1,1,nstages_index)';
 
-    u_0    = Velocity(F_u, rho_0, parameters);
+    %u_0    = Velocity(F_u, rho_0, parameters);
     %u_0     = F_u / A;
-    %u_0    = VELOCITY(1);
+    u_0    = VELOCITY(1);
     %u_B    = VELOCITY(nstages_index);
 
     %epsi_0 = ( 1-0 ) .^(-1) ;
@@ -160,8 +160,6 @@ function xdot = modelSFE_uniform_U(x, p, mask)
     +     4/3 .* MU                              ./ RHO    .* d2udz2;
     %}    
     %zeros(nstages_index,1);
-
-    - VELOCITY .* dudz;
    
     %--------------------------------------------------------------------
     % 5*nstage+1 = output equation
