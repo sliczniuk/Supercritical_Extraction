@@ -1,11 +1,13 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2021.11.8)  6 JUL 2022 18:55
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.8) (preloaded format=pdflatex 2022.9.27)  5 NOV 2022 16:25
 entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
 **./Paramter_fitting.tex
 (Paramter_fitting.tex
 LaTeX2e <2021-06-01> patch level 1
 L3 programming layer <2021-10-18>
-(C:\PROGRAMS\MiKTeX\MiKTeX_2.9\tex/latex/els-cas-templates\cas-dc.cls
-Document Class: cas-dc 2020/03/14, 2.1: Formatting class for CAS double column 
+(C:\Program Files\MiKTeX\tex/latex/els-cas-templates\cas-dc.cls
+Document Class: cas-dc 2021/05/11, 2.3: Formatting class for CAS double column 
 articles
 \c@blind=\count182
 \@bls=\dimen138
@@ -424,7 +426,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip58
 )
-(C:\PROGRAMS\MiKTeX\MiKTeX_2.9\tex/latex/els-cas-templates\cas-common.sty
+(C:\Program Files\MiKTeX\tex/latex/els-cas-templates\cas-common.sty
 \l_stm_title_before_dim=\dimen174
 \l_stm_title_after_dim=\dimen175
 \g_ead_int=\count292
@@ -441,12 +443,16 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 \l_stm_augroup_lskip_tl=\dimen178
 \l_stm_augroup_rskip_tl=\dimen179
 \g_stm_aff_int=\count300
+\g_stm_aff_ext_int=\count301
+\g_stm_aff_int_int=\count302
+\g_stm_fn_aff_ext_int=\count303
+\g_stm_fn_aff_int_int=\count304
 \l_stm_aff_before_dim=\dimen180
 \l_stm_aff_after_dim=\dimen181
 \l_stm_aff_lskip_dim=\dimen182
 \l_stm_aff_rskip_dim=\dimen183
-\g_stm_augr_int=\count301
-\g_stm_aaugr_int=\count302
+\g_stm_augr_int=\count305
+\g_stm_aaugr_int=\count306
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/moreverb\moreverb.st
 y
@@ -457,21 +463,21 @@ Package: verbatim 2020-07-07 v1.5u LaTeX2e package for verbatim enhancements
 \verbatim@line=\toks28
 \verbatim@in@stream=\read2
 )
-\tab@position=\count303
-\tab@size=\count304
-\listing@line=\count305
+\tab@position=\count307
+\tab@size=\count308
+\listing@line=\count309
 )
 \g_stm_abs_box=\box55
 \casgrabsbox=\box56
 \casauhlbox=\box57
 \g_stm_key_box=\box58
-\g_stm_jtype_int=\count306
-\g_stm_blind_int=\count307
-\c@au=\count308
-\c@cnote=\count309
-\c@tnote=\count310
-\c@fnote=\count311
-\c@aff=\count312
+\g_stm_jtype_int=\count310
+\g_stm_blind_int=\count311
+\c@au=\count312
+\c@cnote=\count313
+\c@tnote=\count314
+\c@fnote=\count315
+\c@aff=\count316
 \g_stm_notes_box=\box59
 \g_stm_front_box=\box60
 \paraindent=\dimen184
@@ -483,6 +489,7 @@ Package: verbatim 2020-07-07 v1.5u LaTeX2e package for verbatim enhancements
 \l_tbl_abovetbl_skip=\skip61
 \l_tbl_belowtbl_skip=\skip62
 \l_fig_width_dim=\dimen188
+\cascaptionbox=\box61
 \l_fig_abovecap_skip=\skip63
 \l_fig_belowcap_skip=\skip64
 \l_fig_abovefig_skip=\skip65
@@ -491,8 +498,8 @@ Package: verbatim 2020-07-07 v1.5u LaTeX2e package for verbatim enhancements
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/wrapfig\wrapfig.sty
 \wrapoverhang=\dimen189
 \WF@size=\dimen190
-\c@WF@wrappedlines=\count313
-\WF@box=\box61
+\c@WF@wrappedlines=\count317
+\WF@box=\box62
 \WF@everypar=\toks29
 Package: wrapfig 2003/01/31  v 3.6
 )
@@ -502,11 +509,11 @@ Package: wrapfig 2003/01/31  v 3.6
 \l_wrap_fighcorr_dim=\dimen194
 \l_wrap_figvcorr_dim=\dimen195
 \l_above_bio_dim=\dimen196
-\l_wrap_figlcorr_int=\count314
-\l_wrap_figlines_int=\count315
-\l_bio_text_box=\box62
-\c@ca_biography_ctr=\count316
-\l_ca_temp_inta=\count317
+\l_wrap_figlcorr_int=\count318
+\l_wrap_figlines_int=\count319
+\l_bio_text_box=\box63
+\c@ca_biography_ctr=\count320
+\l_ca_temp_inta=\count321
 \leftMargin=\dimen197
 \@enLab=\toks30
 \@sep=\skip67
@@ -636,10 +643,10 @@ ex
 \XKV@toks=\toks31
 \XKV@tempa@toks=\toks32
 )
-\XKV@depth=\count318
+\XKV@depth=\count322
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 ))
-\zifour@ocount=\count319
+\zifour@ocount=\count323
 )
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.st
 y
@@ -647,9 +654,9 @@ Package: geometry 2020/01/02 v5.9 Page Geometry
  (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 )
-\Gm@cnth=\count320
-\Gm@cntv=\count321
-\c@Gm@tempcnt=\count322
+\Gm@cnth=\count324
+\Gm@cntv=\count325
+\c@Gm@tempcnt=\count326
 \Gm@bindingoffset=\dimen198
 \Gm@wd@mp=\dimen199
 \Gm@odd@mp=\dimen256
@@ -663,11 +670,11 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cf
 g))) (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/float\float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count323
+\c@float@type=\count327
 \float@exts=\toks34
-\float@box=\box63
+\float@box=\box64
 \@float@everytoks=\toks35
-\@floatcapt=\box64
+\@floatcapt=\box65
 )
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/adjustbox\adjustbox.
 sty
@@ -685,7 +692,7 @@ Package: trimclip 2020/08/19 v1.2 Trim and clip general TeX material
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/collectbox\collectbo
 x.sty
 Package: collectbox 2012/05/17 v0.4b Collect macro arguments as boxes
-\collectedbox=\box65
+\collectedbox=\box66
 )
 \tc@llx=\dimen262
 \tc@lly=\dimen263
@@ -709,13 +716,13 @@ File: tc-pdftex.def 2019/01/04 v2.2 Clipping driver for pdftex
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/ifoddpage\ifoddpage.
 sty
 Package: ifoddpage 2016/04/23 v1.1 Conditionals for odd/even page detection
-\c@checkoddpage=\count324
+\c@checkoddpage=\count328
 )
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/varwidth\varwidth.st
 y
 Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
-\@vwid@box=\box66
-\sift@deathcycles=\count325
+\@vwid@box=\box67
+\sift@deathcycles=\count329
 \@vwid@loff=\dimen274
 \@vwid@roff=\dimen275
 )) (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty
@@ -743,23 +750,23 @@ Package: caption3 2020/10/21 v2.2e caption3 kernel (AR)
 \caption@hangindent=\dimen282
 Package caption Info: Standard document class detected.
 )
-\c@caption@flags=\count326
-\c@continuedfloat=\count327
+\c@caption@flags=\count330
+\c@continuedfloat=\count331
 Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: wrapfig package is loaded.
 )
-\c@subfigure=\count328
-\c@subtable=\count329
+\c@subfigure=\count332
+\c@subtable=\count333
 )
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/natbib\natbib.sty
 Package: natbib 2010/09/13 8.31b (PWD, AO)
 \bibhang=\skip69
 \bibsep=\skip70
 LaTeX Info: Redefining \cite on input line 694.
-\c@NAT@ctr=\count330
+\c@NAT@ctr=\count334
 )
-(C:\PROGRAMS\MiKTeX\MiKTeX_2.9\tex/latex/setspace\setspace.sty
+(C:\Program Files\MiKTeX\tex/latex/setspace\setspace.sty
 Package: setspace 2011/12/19 v6.7a set line spacing
 )
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/amscls\amsthm.sty
@@ -792,7 +799,7 @@ sty
 Package: mathdots 2014/06/11 v0.9 Improve and add various macros for dots in ma
 th.
 \MDo@unit=\dimen284
-\MDo@dotsbox=\box67
+\MDo@dotsbox=\box68
 \MDoprekern=\muskip18
 \MDopostkern=\muskip19
 \MDodotkern=\muskip20
@@ -802,15 +809,15 @@ sty
 Package: mathtools 2021/04/12 v1.27 mathematical typesetting tools
  (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/tools\calc.sty
 Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count331
-\calc@Bcount=\count332
+\calc@Acount=\count335
+\calc@Bcount=\count336
 \calc@Adimen=\dimen285
 \calc@Bdimen=\dimen286
 \calc@Askip=\skip74
 \calc@Bskip=\skip75
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count333
+\calc@Ccount=\count337
 \calc@Cskip=\skip76
 )
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/mathtools\mhsetup.st
@@ -821,7 +828,7 @@ LaTeX Info: Thecontrolsequence`\('isalreadyrobust on input line 130.
 LaTeX Info: Thecontrolsequence`\)'isalreadyrobust on input line 130.
 LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 130.
 LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 130.
-\g_MT_multlinerow_int=\count334
+\g_MT_multlinerow_int=\count338
 \l_MT_multwidth_dim=\dimen287
 \origjot=\skip77
 \l_MT_shortvdotswithinadjustabove_dim=\dimen288
@@ -830,34 +837,33 @@ LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 130.
 \l_MT_below_intertext_sep=\dimen291
 \l_MT_above_shortintertext_sep=\dimen292
 \l_MT_below_shortintertext_sep=\dimen293
-\xmathstrut@box=\box68
+\xmathstrut@box=\box69
 \xmathstrut@dim=\dimen294
 )
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/bigints\bigints.sty
 Package: bigints 2010/02/15 Writing big integrals
 Package bigints Info: This is Bigints by Merciadri Luca. on input line 5.
 ) (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/ulem\ulem.sty
-\UL@box=\box69
-\UL@hyphenbox=\box70
+\UL@box=\box70
+\UL@hyphenbox=\box71
 \UL@skip=\skip78
 \UL@hook=\toks42
 \UL@height=\dimen295
-\UL@pe=\count335
+\UL@pe=\count339
 \UL@pixel=\dimen296
-\ULC@box=\box71
+\ULC@box=\box72
 Package: ulem 2019/11/18
 \ULdepth=\dimen297
 )
-(C:\PROGRAMS\MiKTeX\MiKTeX_2.9\tex/latex/enumitem\enumitem.sty
+(C:\Program Files\MiKTeX\tex/latex/enumitem\enumitem.sty
 Package: enumitem 2019/06/20 v3.9 Customized lists
 \labelindent=\skip79
 \enit@outerparindent=\dimen298
 \enit@toks=\toks43
-\enit@inbox=\box72
-\enit@count@id=\count336
-\enitdp@description=\count337
-)
-(Paramter_fitting.aux)
+\enit@inbox=\box73
+\enit@count@id=\count340
+\enitdp@description=\count341
+) (Paramter_fitting.aux)
 \openout1 = `Paramter_fitting.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 60.
@@ -881,8 +887,7 @@ LaTeX Font Info:    ... okay on input line 60.
 LaTeX Font Info:    Checking defaults for LS1/stix/m/n on input line 60.
 LaTeX Font Info:    Trying to load font information for LS1+stix on input line 
 60.
-
-(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls1stix.fd
+ (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls1stix.fd
 File: ls1stix.fd 2015/04/17 v1.1.2-latex STIX LS1 font definitions
 )
 LaTeX Font Info:    ... okay on input line 60.
@@ -898,16 +903,16 @@ LaTeX Font Info:    ... okay on input line 60.
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf
 .mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count338
+\scratchcounter=\count342
 \scratchdimen=\dimen299
-\scratchbox=\box73
-\nofMPsegments=\count339
-\nofMParguments=\count340
+\scratchbox=\box74
+\nofMPsegments=\count343
+\nofMParguments=\count344
 \everyMPshowfont=\toks44
-\MPscratchCnt=\count341
+\MPscratchCnt=\count345
 \MPscratchDim=\dimen300
-\MPnumerator=\count342
-\makeMPintoPDFobject=\count343
+\MPnumerator=\count346
+\makeMPintoPDFobject=\count347
 \everyMPtoPDFconversion=\toks45
 )
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopd
@@ -933,7 +938,7 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 titlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count344
+\c@section@level=\count348
 )
 LaTeX Info: Redefining \ref on input line 60.
 LaTeX Info: Redefining \pageref on input line 60.
@@ -1067,18 +1072,13 @@ Overfull \hbox (37.68553pt too wide) in paragraph at lines 113--115
  []
 
 
-Overfull \hbox (4.67152pt too wide) in paragraph at lines 113--115
+Overfull \hbox (4.50636pt too wide) in paragraph at lines 113--115
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
   |   []   |   []
  []
 
 
-Overfull \hbox (7.72554pt too wide) in paragraph at lines 113--115
-|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
- []
-
-
-Overfull \hbox (1.76552pt too wide) in paragraph at lines 113--115
+Underfull \hbox (badness 1406) in paragraph at lines 113--115
 |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
@@ -1088,42 +1088,34 @@ Overfull \hbox (0.50551pt too wide) in paragraph at lines 120--124
  []
 
 
-Overfull \hbox (44.5175pt too wide) in paragraph at lines 120--124
+Overfull \hbox (44.18718pt too wide) in paragraph at lines 120--124
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 
-Overfull \hbox (5.94885pt too wide) in paragraph at lines 120--124
+Overfull \hbox (4.57047pt too wide) in paragraph at lines 120--124
 |   []   |   []   |   []   |   []   |   []   |   [] []\T1/stix/m/n/10 pre-sente
 d the Broken-
  []
 
 
-Overfull \hbox (2.33482pt too wide) in paragraph at lines 126--132
-|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
-  |   []
+Underfull \hbox (badness 1478) in paragraph at lines 120--124
+\T1/stix/m/n/10 in-ter-rupted. The so-lute from the bro-ken cells is eas-ily
  []
 
 
-Overfull \hbox (10.78552pt too wide) in paragraph at lines 126--132
-|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
-  |   []
+Underfull \hbox (badness 1521) in paragraph at lines 126--132
+\T1/stix/m/n/10 know-ing mul-ti-ple pa-ram-e-ter val-ues. One way to bet-ter
  []
 
 
-Overfull \hbox (18.93555pt too wide) in paragraph at lines 126--132
-|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
- []
-
-
-Overfull \hbox (8.14883pt too wide) in paragraph at lines 126--132
-|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
-  |   []
- []
-
-
-Overfull \hbox (6.68889pt too wide) in paragraph at lines 126--132
+Overfull \hbox (5.3105pt too wide) in paragraph at lines 126--132
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
+ []
+
+
+Underfull \hbox (badness 1189) in paragraph at lines 126--132
+\T1/stix/m/n/10 a large num-ber of pa-ram-e-ters, non-sensitive pa-ram-e-ters
  []
 
 LaTeX Font Info:    Trying to load font information for T1+cmss on input line 1
@@ -1131,29 +1123,33 @@ LaTeX Font Info:    Trying to load font information for T1+cmss on input line 1
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/base\t1cmss.fd
 File: t1cmss.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-[1{C:/Users/sliczno1/AppData/Local/MiKTeX/pdftex/config/pdftex.map}
+[1{C:/Users/sliczno1/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}
 
 
  <./thumbnails/cas-email.jpeg>]
-Overfull \hbox (14.69797pt too wide) in paragraph at lines 141--143
-|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
-  |   []   |   []   |   []
+Underfull \hbox (badness 1715) in paragraph at lines 141--143
+|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 
-Overfull \hbox (7.50888pt too wide) in paragraph at lines 141--143
+Underfull \hbox (badness 1325) in paragraph at lines 141--143
+\T1/stix/m/n/10 The pro-cess model con-sists of three par-tial dif-fer-en-tial
+ []
+
+
+Underfull \hbox (badness 1137) in paragraph at lines 145--146
+[]|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [
+]
+ []
+
+
+Overfull \hbox (2.84552pt too wide) in paragraph at lines 145--146
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
   |   []
  []
 
 
-Overfull \hbox (38.62555pt too wide) in paragraph at lines 145--146
-[]|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [
-]   |   []
- []
-
-
-Overfull \hbox (6.94545pt too wide) in paragraph at lines 145--146
+Overfull \hbox (13.65553pt too wide) in paragraph at lines 145--146
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
   |   []   |   []
  []
@@ -1173,57 +1169,7 @@ Overfull \hbox (23.48555pt too wide) in paragraph at lines 160--167
 ]
  []
 
-
-Overfull \hbox (2.04553pt too wide) in paragraph at lines 160--167
-|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
- []
-
-
-Overfull \hbox (2.2849pt too wide) in paragraph at lines 160--167
-|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
-  |   []   |   []
- []
-
-
-Overfull \hbox (22.75487pt too wide) in paragraph at lines 160--167
-|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
-  |   []
- []
-
-
-Overfull \hbox (48.36885pt too wide) in paragraph at lines 160--167
-|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
-  |   []   |   []   |   []   |   []
- []
-
-
-Overfull \hbox (4.96886pt too wide) in paragraph at lines 160--167
-|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
- []
-
-
-Overfull \hbox (2.24069pt too wide) in paragraph at lines 168--169
-[]\T1/stix/m/n/10 A distributed-parameter model, based on Rever-chon [][][],
- []
-
-
-Overfull \hbox (7.31554pt too wide) in paragraph at lines 170--171
-[]\T1/stix/m/n/10 The move-ment of the mo-bile pseudo-homogeneous phase
- []
-
-
-Overfull \hbox (2.19806pt too wide) in paragraph at lines 174--175
-\T1/stix/m/n/10 which acts as a driv-ing force for the pro-cess. A sin-gle pseu
-do-
- []
-
 [3 <./Figures/SFE_PFD.pdf>]
-Overfull \hbox (2.4789pt too wide) in paragraph at lines 209--210
-\T1/stix/m/n/10 at |   []   |   [] []the open-ing[] of the pore. The so-lute di
-f-fuses through
- []
-
-
 
 pdfTeX warning: pdflatex.exe (file ./Figures/SFE_draft.pdf): PDF inclusion: fou
 nd PDF version <1.7>, but at most version <1.5> allowed
@@ -1233,28 +1179,13 @@ File: Figures/SFE_draft.pdf Graphic file (type pdf)
 Package pdftex.def Info: Figures/SFE_draft.pdf  used on input line 214.
 (pdftex.def)             Requested size: 238.25444pt x 185.16783pt.
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-Overfull \hbox (14.16551pt too wide) in paragraph at lines 223--224
-|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
- []
-
-
-Overfull \hbox (2.33153pt too wide) in paragraph at lines 223--224
+Overfull \hbox (10.73552pt too wide) in paragraph at lines 223--224
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 [4 <./Figures/SFE_draft.pdf>]
-Overfull \hbox (1.02621pt too wide) in paragraph at lines 243--245
-[]\T1/stix/m/n/10 The vol-u-met-ric par-ti-tion co-ef-fi-cient $[][]\LS1/stix/m
-/n/10 .[][].\LS1/stix/m/it/10 t; z\LS1/stix/m/n/10 /\LS1/stix/m/it/10 ; [][]\LS
-1/stix/m/n/10 .\LS1/stix/m/it/10 t\LS1/stix/m/n/10 //$ \T1/stix/m/n/10 be-
- []
-
-
-Overfull \hbox (6.47714pt too wide) in paragraph at lines 243--245
-|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
+Underfull \hbox (badness 1590) in paragraph at lines 243--245
+\T1/stix/m/n/10 be-haves as an equi-lib-rium con-stant be-tween the so-lute
  []
 
 
@@ -1263,36 +1194,13 @@ Overfull \hbox (4.86801pt too wide) detected at line 257
  []
 
 
-Overfull \hbox (15.20491pt too wide) in paragraph at lines 260--262
-[]|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [
-]
+Underfull \hbox (badness 1184) in paragraph at lines 260--262
+[]|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 
-Overfull \hbox (12.36154pt too wide) in paragraph at lines 260--262
-|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
- []
-
-
-Overfull \hbox (3.16153pt too wide) in paragraph at lines 260--262
-|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
-  |   []   |   []   |   []
- []
-
-
-Overfull \hbox (43.10886pt too wide) in paragraph at lines 260--262
-|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
- []
-
-
-Overfull \hbox (15.65955pt too wide) in paragraph at lines 260--262
-|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
- []
-
-
-Overfull \hbox (1.80554pt too wide) in paragraph at lines 263--265
-\T1/stix/m/n/10 which prop-er-ties are the mean be-tween fluid and solid phases
-.
+Underfull \hbox (badness 1117) in paragraph at lines 263--265
+\T1/stix/m/n/10 which prop-er-ties are the mean be-tween fluid and solid
  []
 
 
@@ -1301,49 +1209,11 @@ Overfull \hbox (1.37814pt too wide) detected at line 273
  []
 
 
-Overfull \hbox (12.23381pt too wide) in paragraph at lines 275--276
+Overfull \hbox (12.06865pt too wide) in paragraph at lines 275--276
 [][]$ \T1/stix/m/n/10 is the spe-cific heat of the solid phase, $[][]\LS1/stix/
 m/n/10 .[][].\LS1/stix/m/it/10 t; z\LS1/stix/m/n/10 /\LS1/stix/m/it/10 ; [][]\L
 S1/stix/m/n/10 .\LS1/stix/m/it/10 t\LS1/stix/m/n/10 /\LS1/stix/m/it/10 ; [][]\L
 S1/stix/m/n/10 .\LS1/stix/m/it/10 t\LS1/stix/m/n/10 //$
- []
-
-
-Overfull \hbox (0.22551pt too wide) in paragraph at lines 278--281
-|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
-  |   []   |   []
- []
-
-
-Overfull \hbox (10.97878pt too wide) in paragraph at lines 278--281
-|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
-  |   []
- []
-
-
-Overfull \hbox (2.41553pt too wide) in paragraph at lines 292--293
-\T1/stix/m/n/10 cor-re-spond-ing mean val-ues be-tween the fluid and solid phas
-e.
- []
-
-
-Overfull \hbox (2.06155pt too wide) in paragraph at lines 294--295
-[]\T1/stix/m/n/10 In the pro-cess model, prop-er-ties of the su-per-crit-i-cal 
-fluid
- []
-
-
-Overfull \hbox (31.59541pt too wide) in paragraph at lines 294--295
-\T1/stix/m/n/10 such as the den-sity $[][]\LS1/stix/m/n/10 .[][].\LS1/stix/m/it
-/10 t; z\LS1/stix/m/n/10 /\LS1/stix/m/it/10 ; [][]\LS1/stix/m/n/10 .\LS1/stix/m
-/it/10 t\LS1/stix/m/n/10 //$\T1/stix/m/n/10 , the spe-cific heat $[][]\LS1/stix
-/m/n/10 .[][].\LS1/stix/m/it/10 t; z\LS1/stix/m/n/10 /\LS1/stix/m/it/10 ; [][]\
-LS1/stix/m/n/10 .\LS1/stix/m/it/10 t\LS1/stix/m/n/10 //$\T1/stix/m/n/10 ,
- []
-
-
-Overfull \hbox (5.68887pt too wide) in paragraph at lines 294--295
-\T1/stix/m/n/10 tures along the fixed bed and the pres-sure. The Peng-Robinson
  []
 
 
@@ -1355,11 +1225,9 @@ S1/stix/m/n/10 .\LS1/stix/m/it/10 t\LS1/stix/m/n/10 //$
  []
 
 
-Overfull \hbox (6.36282pt too wide) in paragraph at lines 296--298
-\T1/stix/m/n/10 of the Reynolds num-ber $[][]\LS1/stix/m/n/10 .[][].\LS1/stix/m
-/it/10 t; z\LS1/stix/m/n/10 /\LS1/stix/m/it/10 ; [][]\LS1/stix/m/n/10 .\LS1/sti
-x/m/it/10 t\LS1/stix/m/n/10 /\LS1/stix/m/it/10 ; [][]\LS1/stix/m/n/10 .\LS1/sti
-x/m/it/10 t\LS1/stix/m/n/10 //$ \T1/stix/m/n/10 and the Peclet's
+Underfull \hbox (badness 1325) in paragraph at lines 296--298
+[][]\LS1/stix/m/n/10 .[][].\LS1/stix/m/it/10 t; z\LS1/stix/m/n/10 //$ \T1/stix/
+m/n/10 come from the lab-o-ra-tory ex-per-i-ments. The
  []
 
 [5]
@@ -1371,33 +1239,9 @@ Overfull \hbox (0.9626pt too wide) detected at line 326
 LaTeX Warning: Reference `discretization' on page 6 undefined on input line 330
 .
 
-[6]
-Overfull \hbox (21.0513pt too wide) in paragraph at lines 391--392
-\T1/stix/m/n/10 ad-di-tional ev-i-dence $\LS1/stix/m/it/10 B$ \T1/stix/m/n/10 p
-er-ti-nent to the hy-poth-e-sis. $\LS1/stix/m/it/10 P\LS1/stix/m/n/10 ^\LS1/sti
-x/m/it/10 A[]\LS2/stixex/m/n/10 ð\LS1/stix/m/it/10 B\LS1/stix/m/n/10 `$
- []
-
-
-Overfull \hbox (0.41553pt too wide) in paragraph at lines 426--427
-[]\T1/stix/m/n/10 In the ap-pli-ca-tion of tests and the de-sign of ex-per-i-me
-nts,
- []
-
-
-Overfull \hbox (6.32553pt too wide) in paragraph at lines 426--427
-\T1/stix/m/n/10 cer-tain def-i-ni-tions and rules con-cern-ing prob-a-bil-ity a
-re needed
- []
-
-[7] [8
+[6] [7] [8
 
 ]
-Overfull \hbox (1.5655pt too wide) in paragraph at lines 573--574
-[]\T1/stix/m/n/10 One char-ac-ter-is-tic fea-ture of cer-tain spe-cial ex-per-i
--ments
- []
-
 
 LaTeX Font Warning: Command \normalsize invalid in math mode on input line 583.
 
@@ -1427,54 +1271,11 @@ Overfull \hbox (23.08676pt too wide) detected at line 583
 []
  []
 
-
-Overfull \hbox (2.80048pt too wide) in paragraph at lines 585--586
-[]\T1/stix/m/n/10 in which $\LS1/stix/m/it/10 []$ \T1/stix/m/n/10 are in-de-pe
-n-dent ran-dom vari-ables with $\LS1/stixbb/m/n/10 E\LS1/stix/m/n/10 ^\LS1/stix
-/m/it/10 []\LS1/stix/m/n/10 `$
- []
-
-
-Overfull \hbox (20.38824pt too wide) in paragraph at lines 596--597
-\T1/stix/m/n/10 hood func-tion) $\LS1/stix/m/it/10 p\LS1/stix/m/n/10 .\LS1/stix
-/m/it/10 \LS2/stixex/m/n/10 ð\LS1/stix/m/it/10 y\LS1/stix/m/n/10 /$ \T1/stix/m
-/n/10 for ran-dom sam-ple $\LS1/stix/m/it/10 y \LS1/stix/m/n/10 = \LS1/stix/m/i
-t/10 y\LS1/stix/m/n/10 .\LS1/stix/m/it/10 t[]\LS1/stix/m/n/10 /\LS1/stix/m/it/1
-0 ; y\LS1/stix/m/n/10 .\LS1/stix/m/it/10 t[]\LS1/stix/m/n/10 /\LS1/stix/m/it/10
- ; :::; y\LS1/stix/m/n/10 .\LS1/stix/m/it/10 t[]\LS1/stix/m/n/10 /$\T1/stix/m/n
-/10 ,
- []
-
-
-Overfull \hbox (4.83551pt too wide) in paragraph at lines 598--599
-[]\T1/stix/m/n/10 The pos-te-rior prob-a-bil-ity den-sity $\LS1/stix/m/it/10 p\
-LS1/stix/m/n/10 .\LS1/stix/m/it/10 \LS2/stixex/m/n/10 ð\LS1/stix/m/it/10 y\LS1
-/stix/m/n/10 /$ \T1/stix/m/n/10 can be ex-pressed
- []
-
 [9
 
 ]
-Overfull \hbox (2.16887pt too wide) in paragraph at lines 635--636
-\T1/stix/m/n/10 be-cause it's con-stant with re-spect to the max-i-miza-tion. M
-ore-
- []
-
-
-Overfull \hbox (0.77554pt too wide) in paragraph at lines 651--652
-[]\T1/stix/m/n/10 The like-li-hood func-tion for the pa-ram-e-ters based on sev
--
- []
-
-
-Overfull \hbox (4.32399pt too wide) in paragraph at lines 666--667
-[]\T1/stix/m/n/10 By as-sum-ing that the con-di-tional dis-tri-bu-tion of $[]$,
- given
- []
-
-
-Overfull \hbox (0.35149pt too wide) in paragraph at lines 707--709
-[]|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
+Underfull \hbox (badness 1199) in paragraph at lines 635--636
+\T1/stix/m/n/10 be-cause it's con-stant with re-spect to the max-i-miza-tion.
  []
 
 [10]
@@ -1490,9 +1291,9 @@ Overfull \hbox (33.17479pt too wide) detected at line 867
 [12
 
 ] (Paramter_fitting.bbl
-Underfull \hbox (badness 1112) in paragraph at lines 44--51
-\T1/stix/m/n/8 global sen-si-tiv-ity in earth and en-vi-ron-men-tal sys-tems 
-mod-els.
+Underfull \hbox (badness 1320) in paragraph at lines 44--51
+\T1/stix/m/n/8 sen-si-tiv-ity in earth and en-vi-ron-men-tal sys-tems mod-els. 
+ |   []
  []
 
 LaTeX Font Info:    Trying to load font information for TS1+stix on input line 
@@ -1514,37 +1315,37 @@ Package rerunfilecheck Info: File `Paramter_fitting.out' has not changed.
 (rerunfilecheck)             Checksum: 8AED2DB40C0E695A253F73EA34563DCC;2815.
  ) 
 Here is how much of TeX's memory you used:
- 19867 strings out of 478873
- 300555 string characters out of 2849149
- 793159 words of memory out of 3000000
- 37249 multiletter control sequences out of 15000+600000
+ 19954 strings out of 478847
+ 302461 string characters out of 2848486
+ 691929 words of memory out of 3000000
+ 37337 multiletter control sequences out of 15000+600000
  522186 words of font info for 162 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 83i,26n,131p,1696b,531s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 83i,26n,131p,1696b,544s stack positions out of 5000i,500n,10000p,200000b,80000s
 {C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/stix/stix-ts
 1.enc}{C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/stix/sti
-x-t1.enc}{C:/PROGRAMS/MiKTeX/MiKTeX_2.9/fonts/enc/dvips/cm-super/cm-super-t1.en
-c}{C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/inconsolata/
-i4-t1-0.enc}<C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public
-/inconsolata/Inconsolata-zi4r.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiK
-TeX/fonts/type1/public/stix/STIXGeneral-Bold.pfb><C:/Users/sliczno1/AppData/Loc
-al/Programs/MiKTeX/fonts/type1/public/stix/STIXGeneral-BoldItalic.pfb><C:/Users
-/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix/STIXGeneral-Ita
-lic.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/sti
-x/STIXGeneral-Regular.pfb><C:/PROGRAMS/MiKTeX/MiKTeX_2.9/fonts/type1/public/cm-
-super/sfss0900.pfb><C:/PROGRAMS/MiKTeX/MiKTeX_2.9/fonts/type1/public/cm-super/s
-fsx0900.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public
-/stix/stix-mathbb.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/ty
-pe1/public/stix/stix-mathcal.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKT
-eX/fonts/type1/public/stix/stix-mathex.pfb><C:/Users/sliczno1/AppData/Local/Pro
-grams/MiKTeX/fonts/type1/public/stix/stix-mathit-bold.pfb><C:/Users/sliczno1/Ap
-pData/Local/Programs/MiKTeX/fonts/type1/public/stix/stix-mathit.pfb><C:/Users/s
-liczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix/stix-mathrm-bold.
+x-t1.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/cm-super/cm-super-t1.enc}{C:/
+Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/inconsolata/i4-t1-
+0.enc}<C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/incon
+solata/Inconsolata-zi4r.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fo
+nts/type1/public/stix/STIXGeneral-Bold.pfb><C:/Users/sliczno1/AppData/Local/Pro
+grams/MiKTeX/fonts/type1/public/stix/STIXGeneral-BoldItalic.pfb><C:/Users/slicz
+no1/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix/STIXGeneral-Italic.pf
+b><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix/STIX
+General-Regular.pfb><C:/Program Files/MiKTeX/fonts/type1/public/cm-super/sfss09
+00.pfb><C:/Program Files/MiKTeX/fonts/type1/public/cm-super/sfsx0900.pfb><C:/Us
+ers/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix/stix-mathbb.
 pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix/st
-ix-mathrm.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/publ
-ic/stix/stix-mathscr.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts
-/type1/public/stix/stix-mathsf.pfb>
-Output written on Paramter_fitting.pdf (15 pages, 535881 bytes).
+ix-mathcal.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/pub
+lic/stix/stix-mathex.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts
+/type1/public/stix/stix-mathit-bold.pfb><C:/Users/sliczno1/AppData/Local/Progra
+ms/MiKTeX/fonts/type1/public/stix/stix-mathit.pfb><C:/Users/sliczno1/AppData/Lo
+cal/Programs/MiKTeX/fonts/type1/public/stix/stix-mathrm-bold.pfb><C:/Users/slic
+zno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix/stix-mathrm.pfb><C:/
+Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix/stix-maths
+cr.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix
+/stix-mathsf.pfb>
+Output written on Paramter_fitting.pdf (15 pages, 535398 bytes).
 PDF statistics:
  459 PDF objects out of 1000 (max. 8388607)
  129 named destinations out of 1000 (max. 500000)

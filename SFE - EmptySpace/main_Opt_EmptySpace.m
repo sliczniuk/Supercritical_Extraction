@@ -4,7 +4,7 @@ clear all
 addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-windows-matlabR2016a-v3.5.1');
 import casadi.*
 
-DATA = {'LUKE_T40_P300.xlsx'};
+DATA = {'LUKE_T50_P300.xlsx'};
 Parameters_table        = readtable('Parameters.csv') ;        % Fulle table with prameters
 
 %% Set time of the simulation
@@ -39,7 +39,7 @@ N_Sample = SAMPLE/timeStep;
 nstages                 = 100;
 
 before  = 0.1;         nstagesbefore   = 1:floor(before*nstages);
-bed     = 0.2;        nstagesbed      = nstagesbefore(end)+1 : nstagesbefore(end) + floor(bed*nstages);
+bed     = 0.33;        nstagesbed      = nstagesbefore(end)+1 : nstagesbefore(end) + floor(bed*nstages);
                         nstagesafter    = nstagesbed(end)+1:nstages;
 
 bed_mask                = nan(nstages,1);
@@ -50,14 +50,15 @@ bed_mask(nstagesafter)  = 0;
 which_k                 = [8, 44];
 
 %% Set parameters
-mSOL_s                   = 78;                                           % g of product in biomass
-mSOL_f                   = 78-mSOL_s;                                           % g of biomass in fluid
+mSOL_s                   = 78;                                          % g of product in biomass
+mSOL_f                   = 78-mSOL_s;                                   % g of biomass in fluid
 
 %C0fluid                 = 1;                                           % Extractor initial concentration of extract - Fluid phase kg / m^3
 
-V                       = 0.009;                                         %
+V                       = 0.005;                                        %
 r                       = 0.075;                                        % Radius of the extractor  [m3]
 L                       = V / pi / r^2;                                 % Total length of the extractor [m]
+L_nstages               = linspace(0,L,nstages);
 A                       = pi*r^2;                                       % Extractor cross-section
 epsi                    = 2/3;                                          % Fullness [-]
 
@@ -162,7 +163,7 @@ OPT_solver.solver(             'ipopt'   , nlp_opts)
 
 % Descision variables
 k                       = OPT_solver.variable(Nk);
-k_lu                    = [ zeros(Nk,1) , inf*ones(Nk,1) ];
+k_lu                    = [ zeros(Nk,1) , [1;inf] ];
 % Constraints
 for nk=1:Nk
     OPT_solver.subject_to( k_lu(nk,1) <= k(nk,:) <= k_lu(nk,2) );
@@ -207,7 +208,7 @@ end
 k0 = [TEST(a),TEST(b),0]
 %
 %}
-k0 = [0.1, 1];
+k0 = [0.2 , 0.1];
 
 %% Set opt and inital guess
 OPT_solver.minimize(J);
@@ -233,7 +234,7 @@ Parameters_opt = [uu repmat(Parameters,1,N_Time)'];
 [xx_out] = simulateSystem(F, [], x0, Parameters_opt  );
 
 %% Plotting
-
+figure(1)
 subplot(2,1,1)
 hold on 
 plot(Time, xx_0(end,:));
@@ -241,9 +242,54 @@ plot(Time, xx_out(end,:));
 plot(SAMPLE, data_org,'o');
 xline(PreparationTime)
 hold off
+ylabel('y(t)','Interpreter','latex')
+xlabel('Time [min]','Interpreter','latex')
 
 subplot(2,1,2)
 hold on
 plot(Time, 1e3 * (sum(xx_0(  0*nstages+1:1*nstages,:) .* V_fluid) + sum(xx_0(  1*nstages+1:2*nstages,:) .* V_solid)) + xx_0(  Nx,:))
 plot(Time, 1e3 * (sum(xx_out(0*nstages+1:1*nstages,:) .* V_fluid) + sum(xx_out(1*nstages+1:2*nstages,:) .* V_solid)) + xx_out(Nx,:))
 hold off
+ylabel('Total mass of solute [g]','Interpreter','latex')
+xlabel('Time [min]','Interpreter','latex')
+
+%%
+figure(2)
+h = tiledlayout(2,2);
+
+nexttile
+imagesc(Time,L_nstages,xx_out(0*nstages+1:1*nstages,:)); colormap jet; colorbar
+%pbaspect([2 1 1])
+c = colorbar;
+title('$c_f$','Interpreter','latex')
+set(c,'TickLabelInterpreter','latex')
+ylabel('$L [m]$','Interpreter','latex')
+xlabel('Time [min]','Interpreter','latex')
+
+nexttile
+imagesc(Time,L_nstages,xx_out(1*nstages+1:2*nstages,:)); colorbar; colormap jet
+%pbaspect([2 1 1])
+c = colorbar;
+set(c,'TickLabelInterpreter','latex')
+title('$c_s$','Interpreter','latex')
+ylabel('$L [m]$','Interpreter','latex')
+xlabel('Time [min]','Interpreter','latex')
+
+nexttile
+imagesc(Time,L_nstages,xx_out(2*nstages+1:3*nstages,:)); colorbar; colormap jet
+%pbaspect([2 1 1])
+c = colorbar;
+set(c,'TickLabelInterpreter','latex')
+title('$T$','Interpreter','latex')
+ylabel('$L [m]$','Interpreter','latex')
+xlabel('Time [min]','Interpreter','latex')
+
+nexttile
+imagesc(Time,L_nstages,xx_out(3*nstages+1:4*nstages,:)); colorbar; colormap jet
+%pbaspect([2 1 1])
+c = colorbar;
+set(c,'TickLabelInterpreter','latex')
+title('$\rho$','Interpreter','latex')
+ylabel('$L [m]$','Interpreter','latex')
+xlabel('Time [min]','Interpreter','latex')
+

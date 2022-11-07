@@ -116,7 +116,7 @@ feedPress  = feedPress * ones(1,N_Time) + 0 ;  % Bars
 %feedPress(round(numel(Time)/2):round(3*numel(Time)/4))   = feedPress(1) - 10;
 
 feedFlow   = V_Flow * rho * 1e-3 / 60 * ones(1,N_Time);  % l/min -> kg/min -> Kg / sec
-feedFlow(round(numel(Time)/4):round(numel(Time)))   = 2*feedFlow(1) ;
+%feedFlow(round(numel(Time)/4):round(numel(Time)/2))   = 1.01*feedFlow(1) ;
 
 uu         = [feedTemp', feedPress', feedFlow'];
 
@@ -126,7 +126,7 @@ x0         = [
             C0solid * bed_mask;
             T0homog*ones(nstages,1);
             rho * ones(nstages,1);        
-            Velocity(feedFlow(1),rho(1), num2cell(Parameters)) * ones(nstages,1);
+            (V_Flow / rho / A * 1e-3 / 60)*ones(nstages,1);
             0;
             ];
 
@@ -150,7 +150,7 @@ plot(Time,feedTemp);
 plot(Time,xx_0(2*nstages+1,:))
 plot(Time,xx_0(3*nstages  ,:))
 hold off
-legend('T_u','First Layer', 'Last Layer')
+legend('$T_u$','$First Layer$', '$Last Layer$')
 
 subplot(3,3,2)
 plot(Time,feedPress); title('P_u')

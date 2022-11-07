@@ -81,9 +81,10 @@ function xdot = modelSFE_uniform_U(x, p, mask)
 
     VELOCITY      =     Velocity(F_u, rho_0, parameters).*linspace(1,1,nstages_index)';
 
-    %u_0    = Velocity(F_u, rho_0, parameters);
+    u_0    = Velocity(F_u, rho_0, parameters);
+    %VELOCITY = (F_u/A) * ones(nstages_index,1);
     %u_0     = F_u / A;
-    u_0    = VELOCITY(1);
+    %u_0    = VELOCITY(1);
     %u_B    = VELOCITY(nstages_index);
 
     %epsi_0 = ( 1-0 ) .^(-1) ;
@@ -163,7 +164,8 @@ function xdot = modelSFE_uniform_U(x, p, mask)
    
     %--------------------------------------------------------------------
     % 5*nstage+1 = output equation
-    VELOCITY(nstages_index) * A * FLUID(nstages_index) * 1e3 ;   %kg/s - > g/s
+    %VELOCITY(nstages_index) * A * FLUID(nstages_index) * 1e3 ;   %kg/s - > g/s
+    F_u ./ RHO(nstages_index) .* FLUID(nstages_index) * 1e3;
     
     ];
 

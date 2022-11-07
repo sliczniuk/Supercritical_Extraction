@@ -7,21 +7,38 @@ import casadi.*
 Parameters_table        = readtable('Parameters.csv') ;        % Fulle table with prameters
 
 %% Set time of the simulation
-simulationTime          = 150;                                        % Minutes
+PreparationTime         = 0;
+ExtractionTime          = 200;
+simulationTime          = PreparationTime + ExtractionTime;
 
-timeStep                = simulationTime/1000;                               % Minutes
+timeStep                = 1/4;                                                 % Minutes
 
 timeStep_in_sec         = timeStep * 60;                                       % Seconds
 Time_in_sec             = (timeStep:timeStep:simulationTime)*60;               % Seconds
 Time                    = [0 Time_in_sec/60];                                  % Minutes
 
-N_Time                  = length(Time);
+N_Time                  = length(Time_in_sec);
 
+%%
+SamplingTime            = 5;                                                   % Minutes
+
+SAMPLE   = [PreparationTime:SamplingTime:simulationTime];
+
+%{
+N_Sample = [];
+for i = 1:numel(SAMPLE)
+    N_Sample = [N_Sample ; find(Time == SAMPLE(i))];
+end
+if numel(N_Sample) ~= numel(SAMPLE)
+    keyboard
+end
+%}
+N_Sample = SAMPLE/timeStep;
 %% Specify parameters to estimate
-nstages                 = 100;
+nstages                 = 200;
 
-before  = 0.135;        nstagesbefore   = 1:floor(before*nstages);
-bed     = 0.165;        nstagesbed      = nstagesbefore(end)+1 : nstagesbefore(end) + floor(bed*nstages);
+before  = 0.1;         nstagesbefore   = 1:floor(before*nstages);
+bed     = 0.33;        nstagesbed      = nstagesbefore(end)+1 : nstagesbefore(end) + floor(bed*nstages);
                         nstagesafter    = nstagesbed(end)+1:nstages;
 
 bed_mask                = nan(nstages,1);
@@ -32,17 +49,17 @@ bed_mask(nstagesafter)  = 0;
 which_k                 = [8, 44];
 
 %% Set parameters
-mSOL_s                   = 100;                                           % g of product in biomass
-mSOL_f                   = 0;                                           % g of biomass in fluid
+mSOL_s                   = 78;                                          % g of product in biomass
+mSOL_f                   = 78-mSOL_s;                                   % g of biomass in fluid
 
 %C0fluid                 = 1;                                           % Extractor initial concentration of extract - Fluid phase kg / m^3
 
-V                       = 0.01;                                         %
+V                       = 0.005;                                        %
 r                       = 0.075;                                        % Radius of the extractor  [m3]
 L                       = V / pi / r^2;                                 % Total length of the extractor [m]
-L_stages                = linspace(0, L, nstages);
+L_nstages               = linspace(0,L,nstages);
 A                       = pi*r^2;                                       % Extractor cross-section
-epsi                    = 1/3 ;                                         % Fullness [-]
+epsi                    = 2/3;                                          % Fullness [-]
 
 %--------------------------------------------------------------------
 V_slice                 = (L/nstages) * pi * r^2;
@@ -97,7 +114,7 @@ F                       = buildIntegrator(f, [Nx,Nu] , timeStep_in_sec);
 V_Flow     = 0.39;
 T0homog    = 40+273.15;
 feedPress  = 300 ;
-k0         = [1, 0.1];
+k0         = [0.1767, 0.1191];
 
 %%
 rho        = rhoPB_Comp(T0homog, feedPress, Compressibility(T0homog,feedPress,table2cell(Parameters_table(:,3))), table2cell(Parameters_table(:,3)));
@@ -110,7 +127,7 @@ feedTemp   = T0homog   * ones(1,N_Time) + 0;  % Kelvin
 feedPress  = feedPress * ones(1,N_Time) + 0 ;  % Bars
 %feedPress(round(numel(Time)/2):round(3*numel(Time)/4))   = feedPress(1) - 50;
 
-feedFlow   = V_Flow *rho * 1e-3 / 60 * ones(1,N_Time);  % l/min -> kg/min -> Kg / sec
+feedFlow   = V_Flow * rho * 1e-3 / 60 * ones(1,N_Time);  % l/min -> kg/min -> Kg / sec
 %feedFlow(round(1*numel(Time)/2):round(2*numel(Time)/3))   = 2*feedFlow(1) ;
 
 uu         = [feedTemp', feedPress', feedFlow'];
@@ -136,7 +153,7 @@ Parameters_opt      = [uu repmat(Parameters,1,N_Time)'];
 
 %%
 xdot         = modelSFE_uniform_U(x, u, bed_mask);
-[S,p,Sdot]   = Sensitivity(x, xdot, u, [1] );
+[S,p,Sdot]   = Sensitivity(x, xdot, u, [3] );
 
 %%
 x0_SA         = [
@@ -155,26 +172,90 @@ f_SA = @(S, p) Sdot(S, p, bed_mask);
 Results = Integrator_SS(Time*60, x0_SA, S, p, Sdot, Parameters_opt(1,:));
 Res = Results(Nx+1:end,:) ;
 
+%%
+figure(1)
+NAME = {'c_f','c_s','T','\rho'};
 
+h = tiledlayout(2,2);
 
+for i=1:4
+    
+    nexttile
+    imagesc(Time,L_nstages,Results((i-1)*nstages+1:i*nstages,:)); colormap jet; colorbar
+    hold on
+    yline(L_nstages(nstagesbed([1,end])),'w')
+    hold off
+    pbaspect([2 1 1])
+    c = colorbar;
+    title(['$',NAME{i},'$'],'Interpreter','latex')
+    set(c,'TickLabelInterpreter','latex')
+    ylabel('$L [m]$','Interpreter','latex')
+    xlabel('Time [min]','Interpreter','latex')
+    %axis square
 
+end
 
+%set(gcf,'PaperOrientation','landscape'); print(figure(1),'Profiles.pdf','-dpdf','-bestfit'); close all
 
+%%
 
+N_layers = [round(nstages*before),round(2*nstages*before),round(3*nstages*before),round(4*nstages*before),round(5*nstages*before),nstages];
+NAME = {'c_f','c_s'};
 
+figure(2)
+h = tiledlayout(numel(NAME),2);
 
+for i=1:numel(NAME)
 
+    nexttile
+    plot(Time,Res(N_layers+(i-1)*nstages,:)); 
+    pbaspect([2 1 1])
+    ylabel(['$\frac{\partial ',NAME{i},'}{\partial u(t)}$'],'Interpreter','latex')
+    xlabel('Time [min]','Interpreter','latex')
+    
+    nexttile
+    imagesc(Time,L_nstages,Res((i-1)*nstages+1:i*nstages,:)); colormap jet; colorbar
+    hold on
+    yline(L_nstages(N_layers),'w')
+    hold off
+    pbaspect([2 1 1])
+    c = colorbar;
+    title(['$\frac{\partial ',NAME{i},'}{\partial u(t)}$'],'Interpreter','latex')
+    set(c,'TickLabelInterpreter','latex')
+    ylabel('$L [m]$','Interpreter','latex')
+    xlabel('Time [min]','Interpreter','latex')
+    %axis square
 
+end
 
+%set(gcf,'PaperOrientation','landscape'); print(figure(2),'Sensitivity_Di_Profiles.pdf','-dpdf','-bestfit'); close all
 
+%%
+figure(3)
+%{
+h = tiledlayout(1,2);
 
+nexttile
+plot(Time, Results(Nx,:))
+ylabel('$y(t)$','Interpreter','latex')
+xlabel('Time [min]','Interpreter','latex')
+pbaspect([2 1 1])
 
+nexttile
+plot(Time, Res(Nx,:))
+ylabel('$\frac{\partial y(t)}{\partial km}$','Interpreter','latex')
+xlabel('Time [min]','Interpreter','latex')
+pbaspect([2 1 1])
+%}
 
+ax = plotyy(Time, Results(Nx,:),Time, Res(Nx,:));
+pbaspect(ax(1),[2 1 1])
+pbaspect(ax(2),[2 1 1])
+ylabel(ax(1), '$y(t)$','Interpreter','latex');
+ylabel(ax(2), '$\frac{\partial y(t)}{\partial u(t)}$','Interpreter','latex');
+xlabel('Time [min]','Interpreter','latex')
 
-
-
-
-
+%set(gcf,'PaperOrientation','landscape'); print(figure(3),'Sensitivity_u_Yield.pdf','-dpdf','-bestfit'); close all
 
 
 

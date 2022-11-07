@@ -4,12 +4,11 @@ clear all
 addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-windows-matlabR2016a-v3.5.1');
 import casadi.*
 
-DATA = {'LUKE_T40_P300.xlsx'};
 Parameters_table        = readtable('Parameters.csv') ;        % Fulle table with prameters
 
 %% Set time of the simulation
 PreparationTime         = 0;
-ExtractionTime          = 150;
+ExtractionTime          = 200;
 simulationTime          = PreparationTime + ExtractionTime;
 
 timeStep                = 1/4;                                                 % Minutes
@@ -36,10 +35,10 @@ end
 %}
 N_Sample = SAMPLE/timeStep;
 %% Specify parameters to estimate
-nstages                 = 100;
+nstages                 = 200;
 
-before  = 0.05;         nstagesbefore   = 1:floor(before*nstages);
-bed     = 0.165;        nstagesbed      = nstagesbefore(end)+1 : nstagesbefore(end) + floor(bed*nstages);
+before  = 0.1;         nstagesbefore   = 1:floor(before*nstages);
+bed     = 0.33;        nstagesbed      = nstagesbefore(end)+1 : nstagesbefore(end) + floor(bed*nstages);
                         nstagesafter    = nstagesbed(end)+1:nstages;
 
 bed_mask                = nan(nstages,1);
@@ -50,14 +49,15 @@ bed_mask(nstagesafter)  = 0;
 which_k                 = [8, 44];
 
 %% Set parameters
-mSOL_s                   = 74;                                           % g of product in biomass
-mSOL_f                   = 78-mSOL_s;                                           % g of biomass in fluid
+mSOL_s                   = 78;                                          % g of product in biomass
+mSOL_f                   = 78-mSOL_s;                                   % g of biomass in fluid
 
 %C0fluid                 = 1;                                           % Extractor initial concentration of extract - Fluid phase kg / m^3
 
-V                       = 0.01;                                         %
+V                       = 0.005;                                        %
 r                       = 0.075;                                        % Radius of the extractor  [m3]
 L                       = V / pi / r^2;                                 % Total length of the extractor [m]
+L_nstages               = linspace(0,L,nstages);
 A                       = pi*r^2;                                       % Extractor cross-section
 epsi                    = 2/3;                                          % Fullness [-]
 
@@ -112,28 +112,23 @@ F                       = buildIntegrator(f, [Nx,Nu] , timeStep_in_sec);
 
 %%
 V_Flow     = 0.39;
-
-LabResults = xlsread(DATA{1});
-        
-T0homog   = LabResults(1,1)+273.15;
-feedPress = LabResults(1,2);
-
-data_org  = LabResults(:,5)';
-data      = diff(data_org);
+T0homog    = 40+273.15;
+feedPress  = 300 ;
+k0         = [0.1767, 0.1191];
 
 %%
-
 rho        = rhoPB_Comp(T0homog, feedPress, Compressibility(T0homog,feedPress,table2cell(Parameters_table(:,3))), table2cell(Parameters_table(:,3)));
 
 % Set operating conditions
-feedTemp   = T0homog   * ones(1,length(Time_in_sec)) + 0 ;  % Kelvin
-%feedTemp(round(numel(Time)/10):round(numel(Time)/4))   = feedTemp(1) - 20;
+feedTemp   = T0homog   * ones(1,N_Time) + 0;  % Kelvin
+%feedTemp( round(numel(Time)/4) : round(numel(Time)/2) )   = T0homog + 1;
+%feedTemp( round(numel(Time)/2)  : end )   = T0homog +20 ;
 
-feedPress  = feedPress * ones(1,length(Time_in_sec)) + 0 ;  % Bars
-%feedPress(round(numel(Time)/3):round(2*numel(Time)/3))   = feedPress(1) - 10;
+feedPress  = feedPress * ones(1,N_Time) + 0 ;  % Bars
+%feedPress(round(numel(Time)/2):round(3*numel(Time)/4))   = feedPress(1) - 50;
 
-feedFlow   = V_Flow * rho * 1e-3 / 60 * ones(1,length(Time_in_sec));  % l/min -> km3/s
-feedFlow(1:N_Sample(1)) = 0;
+feedFlow   = V_Flow * rho * 1e-3 / 60 * ones(1,N_Time);  % l/min -> kg/min -> Kg / sec
+%feedFlow(round(1*numel(Time)/2):round(2*numel(Time)/3))   = 2*feedFlow(1) ;
 
 uu         = [feedTemp', feedPress', feedFlow'];
 
@@ -142,108 +137,183 @@ x0         = [
             C0fluid * ones(nstages,1);
             C0solid * bed_mask;
             T0homog*ones(nstages,1);
-            rho*ones(nstages,1);
+            rho * ones(nstages,1);        
+            %(V_Flow/A * 1e-3 / 60)*ones(nstages,1);
             0;
             ];
 
 Parameters          = Parameters_table{:,3};
 Parameters(1:9)     = [nstages, C0solid, r, epsi, dp, L, rho_s, km, mi];
 
-%% load parameters and set number of stages
-
-% Create the solver
-OPT_solver                  = casadi.Opti();
-
-nlp_opts                    = struct;
-nlp_opts.ipopt.max_iter     = 20;
-%nlp_opts.ipopt.max_cpu_time = 3600;
-ocp_opts                    = {'nlp_opts', nlp_opts};
-OPT_solver.solver(             'ipopt'   , nlp_opts)
-
-% Descision variables
-k                       = OPT_solver.variable(Nk);
-k_lu                    = [ zeros(Nk,1) , [1;inf] ];
-% Constraints
-for nk=1:Nk
-    OPT_solver.subject_to( k_lu(nk,1) <= k(nk,:) <= k_lu(nk,2) );
-end
-
-%% Assign new values of parameters to the Parameters vector
-%                       nstages, C0solid, V, epsi, dp, L, rho_s, km, mi
-Parameters_sym       = MX(Parameters_table{:,3});           % Vector of paraneters in the form casadi vector
-Parameters_sym(1:9)  = [nstages, C0solid, V, epsi, dp, L, rho_s, km, mi];
-
-% Decide which parameters are decision variabales
-
-Parameters_sym(which_k) = k;
-
-% Store symbolic results of the simulation
-X = MX(Nx,N_Time+1);
-X(:,1) = x0;
-
-% Symbolic integration
-for j=1:N_Time
-    X(:,j+1)=F(X(:,j), [uu(j,:)'; Parameters_sym] );
-end
-
-%% Find the measurment from the simulation
-Yield_estimate = diff(X(Nx,N_Sample));
-
-%% Create the cost function
-J = (data-Yield_estimate ) * diag(1:1:1) * (data-Yield_estimate )';
-fJ = Function('fJ', {k}, {J} );
-
-%%
-%{
-TEST = linspace(0.01,1,10);
-KOUT = nan(numel(TEST),numel(TEST));
-for i =1:numel(TEST)
-    for j=1:numel(TEST)
-        KOUT(i,j) = full( fJ( [TEST(i),TEST(j)] ) );
-    end
-end
-
-[a,b] = find(KOUT == min(KOUT(:)));
-k0 = [TEST(a),TEST(b),0]
-%
-%}
-k0 = [0.01, 1];
-
-%% Set opt and inital guess
-OPT_solver.minimize(J);
-
-OPT_solver.set_initial(k, k0);
-
-%% Solve the opt
-try
-    sol = OPT_solver.solve();
-    kout = full(sol.value(k));
-catch
-    kout = OPT_solver.debug.value(k);
-end
+Parameters(which_k) = k0;
+Parameters_opt      = [uu repmat(Parameters,1,N_Time)'];
 
 %% Simulate system
-Parameters(which_k) = k0;
-Parameters_opt = [uu repmat(Parameters,1,N_Time)'];
 [xx_0] = simulateSystem(F, [], x0, Parameters_opt  );
 
 %%
-Parameters(which_k) = kout;
-Parameters_opt = [uu repmat(Parameters,1,N_Time)'];
-[xx_out] = simulateSystem(F, [], x0, Parameters_opt  );
+xdot         = modelSFE_uniform_U(x, u, bed_mask);
+[S,p,Sdot]   = Sensitivity(x, xdot, u, [3] );
 
-%% Plotting
+%%
+x0_SA         = [
+            C0fluid * ones(nstages,1);
+            C0solid * bed_mask;
+            T0homog*ones(nstages,1);
+            rho * ones(nstages,1);        
+            %(V_Flow/A * 1e-3 / 60)*ones(nstages,1);
+            0;
+            zeros(length(S)-length(xdot),1);
+            ];
 
-subplot(2,1,1)
-hold on 
-plot(Time, xx_0(end,:));
-plot(Time, xx_out(end,:));
-plot(SAMPLE, data_org,'o');
-xline(PreparationTime)
-hold off
+%%
+f_SA = @(S, p) Sdot(S, p, bed_mask);
+%%
+Results = Integrator_SS(Time*60, x0_SA, S, p, Sdot, Parameters_opt(1,:));
+Res = Results(Nx+1:end,:) ;
 
-subplot(2,1,2)
-hold on
-plot(Time, 1e3 * (sum(xx_0(  0*nstages+1:1*nstages,:) .* V_fluid) + sum(xx_0(  1*nstages+1:2*nstages,:) .* V_solid)) + xx_0(  Nx,:))
-plot(Time, 1e3 * (sum(xx_out(0*nstages+1:1*nstages,:) .* V_fluid) + sum(xx_out(1*nstages+1:2*nstages,:) .* V_solid)) + xx_out(Nx,:))
-hold off
+%%
+
+NAME = {'c_f','c_s','T','\rho'};
+
+h = tiledlayout(2,2);
+
+for i=1:4
+    
+    nexttile
+    imagesc(Time,L_nstages,Results((i-1)*nstages+1:i*nstages,:)); colormap jet; colorbar
+    hold on
+    yline(L_nstages(N_layers),'w')
+    hold off
+    pbaspect([2 1 1])
+    c = colorbar;
+    title(['$\frac{\partial ',NAME{i},'}{\partial u(t)}$'],'Interpreter','latex')
+    set(c,'TickLabelInterpreter','latex')
+    ylabel('$L [m]$','Interpreter','latex')
+    xlabel('Time [min]','Interpreter','latex')
+    %axis square
+
+end
+
+
+%%
+
+N_layers = [round(nstages*before),round(2*nstages*before),round(3*nstages*before),round(4*nstages*before),round(5*nstages*before),nstages];
+NAME = {'c_f','c_s'};
+
+figure(2)
+h = tiledlayout(numel(NAME),2);
+
+for i=1:numel(NAME)
+
+    nexttile
+    plot(Time,Res(N_layers+(i-1)*nstages,:)); 
+    pbaspect([2 1 1])
+    ylabel(['$\frac{\partial ',NAME{i},'}{\partial u(t)}$'],'Interpreter','latex')
+    xlabel('Time [min]','Interpreter','latex')
+    
+    nexttile
+    imagesc(Time,L_nstages,Res((i-1)*nstages+1:i*nstages,:)); colormap jet; colorbar
+    hold on
+    yline(L_nstages(N_layers),'w')
+    hold off
+    pbaspect([2 1 1])
+    c = colorbar;
+    title(['$\frac{\partial ',NAME{i},'}{\partial u(t)}$'],'Interpreter','latex')
+    set(c,'TickLabelInterpreter','latex')
+    ylabel('$L [m]$','Interpreter','latex')
+    xlabel('Time [min]','Interpreter','latex')
+    %axis square
+
+end
+
+%set(gcf,'PaperOrientation','landscape'); print(figure(2),'Sensitivity_Di_Profiles.pdf','-dpdf','-bestfit'); close all
+
+%%
+figure(3)
+%{
+h = tiledlayout(1,2);
+
+nexttile
+plot(Time, Results(Nx,:))
+ylabel('$y(t)$','Interpreter','latex')
+xlabel('Time [min]','Interpreter','latex')
+pbaspect([2 1 1])
+
+nexttile
+plot(Time, Res(Nx,:))
+ylabel('$\frac{\partial y(t)}{\partial km}$','Interpreter','latex')
+xlabel('Time [min]','Interpreter','latex')
+pbaspect([2 1 1])
+%}
+
+ax = plotyy(Time, Results(Nx,:),Time, Res(Nx,:));
+pbaspect(ax(1),[2 1 1])
+pbaspect(ax(2),[2 1 1])
+ylabel(ax(1), '$y(t)$','Interpreter','latex');
+ylabel(ax(2), '$\frac{\partial y(t)}{\partial u(t)}$','Interpreter','latex');
+xlabel('Time [min]','Interpreter','latex')
+
+%set(gcf,'PaperOrientation','landscape'); print(figure(3),'Sensitivity_u_Yield.pdf','-dpdf','-bestfit'); close all
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

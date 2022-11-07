@@ -40,7 +40,7 @@ function xdot = modelSFE_uniform_U(x, p, mask)
     RHO_NS        =    x(3*nstages_index+1:4*nstages_index);
     VELOCITY_NS   =    x(4*nstages_index+1:5*nstages_index);
     
-    %E_Inv         = (1 - epsi.*mask).^(-1);
+    E_Inv         = (1 - epsi.*mask).^(-1);
 
     %%
 
@@ -62,10 +62,10 @@ function xdot = modelSFE_uniform_U(x, p, mask)
     CPRHOCP       =     cpRHOcp_Comp(    TEMP, PRESSURE, Z, RHO, CP, epsi.*mask, parameters);
     KRHOCP        =     kRHOcp_Comp(     TEMP, PRESSURE, Z, RHO, CP, epsi.*mask, parameters);
 
-    alpha         =     ThermalExpansion(TEMP, PRESSURE, Z, RHO,                 parameters);
-    beta          =     compressibility_beta(TEMP, PRESSURE, RHO, parameters);
+    %alpha         =     ThermalExpansion(TEMP, PRESSURE, Z, RHO,                 parameters);
+    %beta          =     compressibility_beta(TEMP, PRESSURE, RHO, parameters);
     
-    %MU            =     Viscosity(TEMP,RHO);
+    MU            =     Viscosity(TEMP,RHO);
 
     %% BC
     Cf_0   = 0;
@@ -74,8 +74,8 @@ function xdot = modelSFE_uniform_U(x, p, mask)
     T_0    = T_u;
     T_B    = TEMP(nstages_index);
 
-    Z_0    = Compressibility(T_u, P_u,     parameters);
-    rho_0  = rhoPB_Comp(     T_u, P_u, Z_0, parameters);
+    Z_0    = Compressibility(T_u, P_u*1.01,     parameters);
+    rho_0  = rhoPB_Comp(     T_u, P_u*1.01, Z_0, parameters);
     %rho_0  = RHO(1);
     %rho_B  = RHO(nstages_index);
 
@@ -84,7 +84,7 @@ function xdot = modelSFE_uniform_U(x, p, mask)
     u_0    = Velocity(F_u, rho_0, parameters);
     %u_0     = F_u / A;
     %u_0    = VELOCITY(1);
-    %u_B    = VELOCITY(nstages_index);
+    u_B    = VELOCITY(nstages_index);
 
     %epsi_0 = ( 1-0 ) .^(-1) ;
     %epsi_B = ( 1-0 ) .^(-1) ;
@@ -103,16 +103,16 @@ function xdot = modelSFE_uniform_U(x, p, mask)
     d2Tdz2    = central_diff_2_order(TEMP, T_0, T_B, dz);
     
     dRhodz    = backward_diff_1_order(RHO, rho_0, [], dz);
-    %d2Rhodz2   = central_diff_2_order(RHO, rho_0, rhoB, dz);
+    %d2Rhodz2   = central_diff_2_order(RHO, rho_0, rho_B, dz);
     
     dudz      = backward_diff_1_order(VELOCITY, u_0, [], dz);
-    %d2udz2  = central_diff_2_order(VELOCITY, u_0, u_B, dz);
+    d2udz2  = central_diff_2_order(VELOCITY, u_0, u_B, dz);
 
     %dEdz    = backward_diff_1_order(E_Inv,epsi_0,[],dz);
-    %d2Edz   = central_diff_2_order(E_Inv,epsi_0, epsi_B, dz);
+    %d2Edz2   = central_diff_2_order(E_Inv,epsi_0, epsi_B, dz);
 
-    %dPdz    = backward_diff_1_order(PRESSURE,P_0,[],dz);
-    %dPdz    = dPdz .* 1e-5;                                                                                                % bar = 1e5 * Pa; 
+    dPdz    = forward_diff_1_order(PRESSURE,[],P_u,dz);
+    dPdz    = dPdz .* 1e-5;                                                                                                % bar = 1e5 * Pa; 
    
     %%
 
@@ -158,14 +158,15 @@ function xdot = modelSFE_uniform_U(x, p, mask)
     +     4/3 .* MU .* (1-epsi.*mask) .*VELOCITY ./ RHO    .* d2Edz2             +...
     + 2 * 4/3 .* MU .* (1-epsi.*mask)            ./ RHO    .* dudz .* dEdz  +...
     +     4/3 .* MU                              ./ RHO    .* d2udz2;
-    %}    
+    %}
     %zeros(nstages_index,1);
 
-    - VELOCITY .* dudz;
+    - VELOCITY .* dudz - 1./RHO .* dPdz + 4/3 .* MU ./ RHO .* d2udz2;
    
     %--------------------------------------------------------------------
     % 5*nstage+1 = output equation
-    VELOCITY(nstages_index) * A * FLUID(nstages_index) * 1e3 ;   %kg/s - > g/s
+    F_u / RHO(nstages_index) * FLUID(nstages_index) * 1e3 ;   %kg/s - > g/s
+    %VELOCITY(nstages_index) * A * FLUID(nstages_index) * 1e3 ;   %kg/s - > g/s
     
     ];
 
