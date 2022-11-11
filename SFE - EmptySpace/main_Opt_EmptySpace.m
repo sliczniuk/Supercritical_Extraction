@@ -12,7 +12,7 @@ PreparationTime         = 0;
 ExtractionTime          = 150;
 simulationTime          = PreparationTime + ExtractionTime;
 
-timeStep                = 1/4;                                                 % Minutes
+timeStep                = 1/2;                                                 % Minutes
 
 timeStep_in_sec         = timeStep * 60;                                       % Seconds
 Time_in_sec             = (timeStep:timeStep:simulationTime)*60;               % Seconds
@@ -25,7 +25,7 @@ SamplingTime            = 5;                                                   %
 
 SAMPLE   = [PreparationTime:SamplingTime:simulationTime];
 
-%{
+
 N_Sample = [];
 for i = 1:numel(SAMPLE)
     N_Sample = [N_Sample ; find(Time == SAMPLE(i))];
@@ -33,13 +33,12 @@ end
 if numel(N_Sample) ~= numel(SAMPLE)
     keyboard
 end
-%}
-N_Sample = SAMPLE/timeStep;
+
 %% Specify parameters to estimate
 nstages                 = 100;
 
 before  = 0.1;         nstagesbefore   = 1:floor(before*nstages);
-bed     = 0.33;        nstagesbed      = nstagesbefore(end)+1 : nstagesbefore(end) + floor(bed*nstages);
+bed     = 0.165;        nstagesbed      = nstagesbefore(end)+1 : nstagesbefore(end) + floor(bed*nstages);
                         nstagesafter    = nstagesbed(end)+1:nstages;
 
 bed_mask                = nan(nstages,1);
@@ -47,7 +46,7 @@ bed_mask(nstagesbefore) = 0;
 bed_mask(nstagesbed)    = 1;
 bed_mask(nstagesafter)  = 0;
 
-which_k                 = [8, 44];
+which_k                 = [8, 44, 45];
 
 %% Set parameters
 mSOL_s                   = 78;                                          % g of product in biomass
@@ -55,7 +54,7 @@ mSOL_f                   = 78-mSOL_s;                                   % g of b
 
 %C0fluid                 = 1;                                           % Extractor initial concentration of extract - Fluid phase kg / m^3
 
-V                       = 0.005;                                        %
+V                       = 0.01;                                        %
 r                       = 0.075;                                        % Radius of the extractor  [m3]
 L                       = V / pi / r^2;                                 % Total length of the extractor [m]
 L_nstages               = linspace(0,L,nstages);
@@ -134,7 +133,7 @@ feedPress  = feedPress * ones(1,length(Time_in_sec)) + 0 ;  % Bars
 %feedPress(round(numel(Time)/3):round(2*numel(Time)/3))   = feedPress(1) - 10;
 
 feedFlow   = V_Flow * rho * 1e-3 / 60 * ones(1,length(Time_in_sec));  % l/min -> km3/s
-feedFlow(1:N_Sample(1)) = 0;
+%feedFlow(1:N_Sample(1)) = 0;    
 
 uu         = [feedTemp', feedPress', feedFlow'];
 
@@ -156,14 +155,14 @@ Parameters(1:9)     = [nstages, C0solid, r, epsi, dp, L, rho_s, km, mi];
 OPT_solver                  = casadi.Opti();
 
 nlp_opts                    = struct;
-%nlp_opts.ipopt.max_iter     = 20;
-nlp_opts.ipopt.max_cpu_time = 3600;
+%nlp_opts.ipopt.max_iter     = 10;
+%nlp_opts.ipopt.max_cpu_time = 3600;
 ocp_opts                    = {'nlp_opts', nlp_opts};
 OPT_solver.solver(             'ipopt'   , nlp_opts)
 
 % Descision variables
 k                       = OPT_solver.variable(Nk);
-k_lu                    = [ zeros(Nk,1) , [1;inf] ];
+k_lu                    = [ zeros(Nk,1) , [1;inf;100] ];
 % Constraints
 for nk=1:Nk
     OPT_solver.subject_to( k_lu(nk,1) <= k(nk,:) <= k_lu(nk,2) );
@@ -171,9 +170,7 @@ end
 
 %% Assign new values of parameters to the Parameters vector
 %                       nstages, C0solid, V, epsi, dp, L, rho_s, km, mi
-Parameters_sym       = MX(Parameters_table{:,3});           % Vector of paraneters in the form casadi vector
-Parameters_sym(1:9)  = [nstages, C0solid, V, epsi, dp, L, rho_s, km, mi];
-
+Parameters_sym       = MX(Parameters);           % Vector of paraneters in the form casadi vector
 % Decide which parameters are decision variabales
 
 Parameters_sym(which_k) = k;
@@ -195,20 +192,7 @@ J = (data-Yield_estimate ) * diag(1:1:1) * (data-Yield_estimate )';
 fJ = Function('fJ', {k}, {J} );
 
 %%
-%{
-TEST = linspace(0.01,1,10);
-KOUT = nan(numel(TEST),numel(TEST));
-for i =1:numel(TEST)
-    for j=1:numel(TEST)
-        KOUT(i,j) = full( fJ( [TEST(i),TEST(j)] ) );
-    end
-end
-
-[a,b] = find(KOUT == min(KOUT(:)));
-k0 = [TEST(a),TEST(b),0]
-%
-%}
-k0 = [0.2 , 0.1];
+k0 = [0.1879, 0.3496, 100];
 
 %% Set opt and inital guess
 OPT_solver.minimize(J);
@@ -224,9 +208,9 @@ catch
 end
 
 %% Simulate system
-Parameters(which_k) = k0;
-Parameters_opt = [uu repmat(Parameters,1,N_Time)'];
-[xx_0] = simulateSystem(F, [], x0, Parameters_opt  );
+%Parameters(which_k) = k0;
+%Parameters_opt = [uu repmat(Parameters,1,N_Time)'];
+%[xx_0] = simulateSystem(F, [], x0, Parameters_opt  );
 
 %%
 Parameters(which_k) = kout;
@@ -235,9 +219,13 @@ Parameters_opt = [uu repmat(Parameters,1,N_Time)'];
 
 %% Plotting
 figure(1)
-subplot(2,1,1)
+
+h = tiledlayout(2,1);
+
+nexttile
+%pbaspect([3 1 1])
 hold on 
-plot(Time, xx_0(end,:));
+%plot(Time, xx_0(end,:));
 plot(Time, xx_out(end,:));
 plot(SAMPLE, data_org,'o');
 xline(PreparationTime)
@@ -245,51 +233,108 @@ hold off
 ylabel('y(t)','Interpreter','latex')
 xlabel('Time [min]','Interpreter','latex')
 
-subplot(2,1,2)
+nexttile
+%pbaspect([3 1 1])
 hold on
-plot(Time, 1e3 * (sum(xx_0(  0*nstages+1:1*nstages,:) .* V_fluid) + sum(xx_0(  1*nstages+1:2*nstages,:) .* V_solid)) + xx_0(  Nx,:))
+%plot(Time, 1e3 * (sum(xx_0(  0*nstages+1:1*nstages,:) .* V_fluid) + sum(xx_0(  1*nstages+1:2*nstages,:) .* V_solid)) + xx_0(  Nx,:))
 plot(Time, 1e3 * (sum(xx_out(0*nstages+1:1*nstages,:) .* V_fluid) + sum(xx_out(1*nstages+1:2*nstages,:) .* V_solid)) + xx_out(Nx,:))
 hold off
 ylabel('Total mass of solute [g]','Interpreter','latex')
 xlabel('Time [min]','Interpreter','latex')
 
+set(gcf,'PaperOrientation','landscape'); print(figure(1),'Yield.pdf','-dpdf','-bestfit'); close all
+
 %%
 figure(2)
+NAME = {'c_f','c_s','T','\rho'};
+
 h = tiledlayout(2,2);
 
-nexttile
-imagesc(Time,L_nstages,xx_out(0*nstages+1:1*nstages,:)); colormap jet; colorbar
-%pbaspect([2 1 1])
-c = colorbar;
-title('$c_f$','Interpreter','latex')
-set(c,'TickLabelInterpreter','latex')
-ylabel('$L [m]$','Interpreter','latex')
-xlabel('Time [min]','Interpreter','latex')
+for i=1:4
+    
+    nexttile
+    imagesc(Time,L_nstages./L,xx_out((i-1)*nstages+1:i*nstages,:)); colormap jet; colorbar
+    hold on
+    yline(L_nstages(nstagesbed([1,end]))./L,'w')
+    hold off
+    pbaspect([2 1 1])
+    c = colorbar;
+    title(['$',NAME{i},'$'],'Interpreter','latex')
+    set(c,'TickLabelInterpreter','latex')
+    ylabel('$L [-]$','Interpreter','latex')
+    xlabel('Time [min]','Interpreter','latex')
+    %axis square
+end
 
-nexttile
-imagesc(Time,L_nstages,xx_out(1*nstages+1:2*nstages,:)); colorbar; colormap jet
-%pbaspect([2 1 1])
-c = colorbar;
-set(c,'TickLabelInterpreter','latex')
-title('$c_s$','Interpreter','latex')
-ylabel('$L [m]$','Interpreter','latex')
-xlabel('Time [min]','Interpreter','latex')
+set(gcf,'PaperOrientation','landscape'); print(figure(2),'Profiles.pdf','-dpdf','-bestfit'); close all
 
-nexttile
-imagesc(Time,L_nstages,xx_out(2*nstages+1:3*nstages,:)); colorbar; colormap jet
-%pbaspect([2 1 1])
-c = colorbar;
-set(c,'TickLabelInterpreter','latex')
-title('$T$','Interpreter','latex')
-ylabel('$L [m]$','Interpreter','latex')
-xlabel('Time [min]','Interpreter','latex')
+%%
+xdot         = modelSFE_uniform_U(x, u, bed_mask);
+[S,p,Sdot]   = Sensitivity(x, xdot, u, [3+44] );
 
-nexttile
-imagesc(Time,L_nstages,xx_out(3*nstages+1:4*nstages,:)); colorbar; colormap jet
-%pbaspect([2 1 1])
-c = colorbar;
-set(c,'TickLabelInterpreter','latex')
-title('$\rho$','Interpreter','latex')
-ylabel('$L [m]$','Interpreter','latex')
+%%
+x0_SA         = [
+            C0fluid * ones(nstages,1);
+            C0solid * bed_mask;
+            T0homog*ones(nstages,1);
+            rho * ones(nstages,1);        
+            0;
+            zeros(length(S)-length(xdot),1);
+            ];
+
+%%
+Results = Integrator_SS(Time*60, x0_SA, S, p, Sdot, Parameters_opt );
+Res = Results(Nx+1:end,:) ;
+
+%%
+N_layers = [round(nstages*before),round(1.5*nstages*before),round(2*nstages*before),round(2.5*nstages*before),round(4*nstages*before),nstages];
+L_labels = num2cell(L_nstages(N_layers) ./ L);
+L_labels = strcat(string(L_labels),' [-]');
+
+NAME = {'c_f','c_s'};
+
+figure(3)
+h = tiledlayout(numel(NAME),2);
+
+for i=1:numel(NAME)
+
+    nexttile
+    plot(Time,Res(N_layers+(i-1)*nstages,:)); 
+    pbaspect([2 1 1])
+    ylabel(['$\frac{\partial ',NAME{i},'}{\partial Di}$'],'Interpreter','latex')
+    xlabel('Time [min]','Interpreter','latex')
+    lgd = legend( L_labels', 'location', 'bestoutside', 'Interpreter','latex' , 'box', 'off');
+    lgd.FontSize = 10;
+    
+    nexttile
+    imagesc(Time,L_nstages ./ L,Res((i-1)*nstages+1:i*nstages,:)); colormap jet; colorbar
+    hold on
+    yline(L_nstages(N_layers) ./ L,'w')
+    hold off
+    pbaspect([2 1 1])
+    c = colorbar;
+    title(['$\frac{\partial ',NAME{i},'}{\partial Di}$'],'Interpreter','latex')
+    set(c,'TickLabelInterpreter','latex')
+    ylabel('$L [m]$','Interpreter','latex')
+    xlabel('Time [min]','Interpreter','latex')
+    %axis square
+
+end
+
+set(gcf,'PaperOrientation','landscape'); print(figure(3),'Sensitivity_Di_Profiles.pdf','-dpdf','-bestfit'); close all
+
+%%
+figure(4)
+
+ax = plotyy(Time, Results(Nx,:),Time, Res(Nx,:));
+pbaspect(ax(1),[2 1 1])
+pbaspect(ax(2),[2 1 1])
+ylabel(ax(1), '$y(t)$','Interpreter','latex');
+ylabel(ax(2), '$\frac{\partial y(t)}{\partial Di}$','Interpreter','latex');
 xlabel('Time [min]','Interpreter','latex')
+set(ax,'FontSize',14)
+axis tight
+
+set(gcf,'PaperOrientation','landscape'); print(figure(4),'Sensitivity_Di_Yield.pdf','-dpdf','-bestfit'); close all
+
 

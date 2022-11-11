@@ -8,7 +8,7 @@ function Results = Integrator_SS(Time, x0, S, p, Sdot, parameters)
     
     dae = struct('x', S, 'p', p, 'ode', Sdot);
 
-    MyIntegrator = 'cvodes';
+    MyIntegrator = 'rk';
 
     opts = struct();
     opts.tf = timeStep_in_seconds;
@@ -24,7 +24,7 @@ function Results = Integrator_SS(Time, x0, S, p, Sdot, parameters)
         
         Q = Results(:,i);
 
-        res = I('x0', Q, 'p', parameters);
+        res = I('x0', Q, 'p', parameters(i,:) );
         Results(:,i+1) = full(res.xf.');
 
         if(mod(Time(i)/Time(end),0.2)==0)

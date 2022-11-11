@@ -23,7 +23,7 @@ function xdot = modelSFE_uniform_U(x, p, mask)
     mi            =    parameters{9};
 
     Di            =    parameters{44};      Di = Di * 1e-12;
-    Dx            =    parameters{45};      Dx = Dx * 1e-6;
+    Dx            =    parameters{45};      Dx = Dx * 1e-7;
 
     nstages_index =    numel(mask);
     
@@ -62,8 +62,8 @@ function xdot = modelSFE_uniform_U(x, p, mask)
     CPRHOCP       =     cpRHOcp_Comp(    TEMP, PRESSURE, Z, RHO, CP, epsi.*mask, parameters);
     KRHOCP        =     kRHOcp_Comp(     TEMP, PRESSURE, Z, RHO, CP, epsi.*mask, parameters);
 
-    alpha         =     ThermalExpansion(TEMP, PRESSURE, Z, RHO,                 parameters);
-    beta          =     compressibility_beta(TEMP, PRESSURE, RHO, parameters);
+    %alpha         =     ThermalExpansion(TEMP, PRESSURE, Z, RHO,                 parameters);
+    %beta          =     compressibility_beta(TEMP, PRESSURE, RHO, parameters);
     
     %MU            =     Viscosity(TEMP,RHO);
 
