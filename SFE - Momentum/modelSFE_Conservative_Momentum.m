@@ -1,4 +1,4 @@
-function xdot = modelSFE_uniform_U(x, p, mask, u_in, u_out)
+function xdot = modelSFE_Conservative_Momentum(x, p, mask, u_in, u_out, flag_cons)
     % (t, x, u, parameters)
     % Model with (F)luid, (S)olid, (T)emperature
     % Di is a function of temperature (T), the function works with numbers,
@@ -34,15 +34,27 @@ function xdot = modelSFE_uniform_U(x, p, mask, u_in, u_out)
    
 
     %% States
-    FLUID         =    x(0*nstages_index+1:1*nstages_index);
-    SOLID         =    x(1*nstages_index+1:2*nstages_index);
-    TEMP          =    x(2*nstages_index+1:3*nstages_index);
-    RHO_NS        =    x(3*nstages_index+1:4*nstages_index);
-    %VELOCITY_NS   =    x(4*nstages_index+1:5*nstages_index);
+    FLUID_NS         =    x(0*nstages_index+1:1*nstages_index);
+    SOLID_NS         =    x(1*nstages_index+1:2*nstages_index);
+    TEMP_NS          =    x(2*nstages_index+1:3*nstages_index);
+    RHO_NS           =    x(3*nstages_index+1:4*nstages_index);
+    VELOCITY_NS      =    x(4*nstages_index+1:5*nstages_index);
     
     E_Inv         = (1 - epsi.*mask).^(-1);
 
-    RHO           =     RHO_NS;
+    if isequal(flag_cons,'conservative')
+        FLUID       = FLUID_NS  ./ ( 1 - epsi .* mask );
+        SOLID       = SOLID_NS;
+        TEMP        = TEMP_NS;
+        RHO         = RHO_NS    ./ ( 1 - epsi .* mask );
+        VELOCITY    = VELOCITY_NS ./ RHO;      
+    else
+        FLUID       = FLUID_NS;
+        SOLID       = SOLID_NS;
+        TEMP        = TEMP_NS;
+        RHO         = RHO_NS ;
+        VELOCITY    = VELOCITY_NS;
+    end
 
     %%
 
@@ -54,7 +66,7 @@ function xdot = modelSFE_uniform_U(x, p, mask, u_in, u_out)
 
     %RHO           =     rhoPB_Comp(     TEMP, PRESSURE, Z,parameters);
     
-    VELOCITY      =  (F_u / A) .* linspace( u_in, u_out, nstages_index)';
+    %VELOCITY      =  (F_u / A) .* linspace( u_in, u_out, nstages_index)';
     %VELOCITY      =     Velocity(F_u, RHO, parameters);
     %VELOCITY      =     VELOCITY_NS;
     
@@ -75,7 +87,7 @@ function xdot = modelSFE_uniform_U(x, p, mask, u_in, u_out)
     T_0    = T_u;
     T_B    = TEMP(nstages_index);
 
-    Z_0    = Compressibility(T_u, P_u,     parameters);
+    Z_0    = Compressibility(T_u, P_u,      parameters);
     rho_0  = rhoPB_Comp(     T_u, P_u, Z_0, parameters);
     %rho_0  = RHO(1);
     rho_B  = RHO(nstages_index);
@@ -87,7 +99,7 @@ function xdot = modelSFE_uniform_U(x, p, mask, u_in, u_out)
     %u_0    = VELOCITY(1);
     u_B    = VELOCITY(nstages_index);
 
-    %epsi_0 = ( 1-0 ) .^(-1) ;
+    epsi_0 = ( 1-0 ) .^(-1) ;
     %epsi_B = ( 1-0 ) .^(-1) ;
 
     %P_0    = PRESSURE(1);
@@ -98,10 +110,11 @@ function xdot = modelSFE_uniform_U(x, p, mask, u_in, u_out)
     dz        = L/nstages_index;
     
     dCfdz     = backward_diff_1_order(FLUID,Cf_0, [], dz);
-    %dCfdz     = central_diff_1_order(FLUID,Cf_0, Cf_B, dz);
+    %dCfdz     = central_diff_1_order(FLUID, Cf_0, Cf_B, dz);
     d2Cfdz2   = central_diff_2_order(FLUID, FLUID(1), Cf_B, dz);
     
     dTdz      = backward_diff_1_order(TEMP,T_0, [], dz);
+    %dTdz      = central_diff_1_order(TEMP,T_0, T_B, dz);
     d2Tdz2    = central_diff_2_order(TEMP, T_0, T_B, dz);
     
     dRhodz    = backward_diff_1_order(RHO, rho_0, [], dz);
@@ -112,7 +125,15 @@ function xdot = modelSFE_uniform_U(x, p, mask, u_in, u_out)
     %dudz      = central_diff_1_order(VELOCITY, u_0, u_B, dz);
     %d2udz2  = central_diff_2_order(VELOCITY, u_0, u_B, dz);
 
-    %dEdz    = backward_diff_1_order(E_Inv,epsi_0,[],dz);
+    d_cons_rho_dz      = backward_diff_1_order(VELOCITY .* RHO, u_0 .* rho_0, [], dz);
+    %d_cons_rho_dz     = central_diff_1_order(VELOCITY .* RHO, u_0 .* rho_0, u_B .* rho_B, dz);
+
+    d_cons_Momentum_dz = backward_diff_1_order(RHO .* VELOCITY .* VELOCITY ./ ( 1 - epsi .* mask ), rho_0 .* u_0 .* u_0 ./ 1 , [], dz);
+
+    d_cons_CF_dz      = backward_diff_1_order(VELOCITY .* FLUID, u_0 .* Cf_0, [], dz);
+    %d_cons_CF_dz      = central_diff_1_order(VELOCITY .* FLUID, u_0 .* Cf_0, u_B .* Cf_B, dz);
+
+    dEdz    = backward_diff_1_order(E_Inv,epsi_0,[],dz);
     %d2Edz2   = central_diff_2_order(E_Inv,epsi_0, epsi_B, dz);
 
     %dPdz    = forward_diff_1_order(PRESSURE,[],PRESSURE(end),dz);
@@ -122,40 +143,38 @@ function xdot = modelSFE_uniform_U(x, p, mask, u_in, u_out)
    
     %%
 
-    xdot = [
-    
     %--------------------------------------------------------------------
     % Concentration of extract in fluid phase | 0
-    
-    - VELOCITY      ./  ( 1 - epsi .* mask ) .* dCfdz   + ...
-    - FLUID         ./  ( 1 - epsi .* mask ) .* dudz    +  ...
-      Dx            ./  ( 1 - epsi .* mask ) .* d2Cfdz2 +...
-    (epsi.*mask)    ./  ( 1 - epsi .* mask ) .* (1 ./ mi ./ lp2 .* Di)  .* ( SOLID - FLUID .* (rho_s ./ km ./ RHO ) );
-    %zeros(nstages_index,1);
+    if isequal(flag_cons,'conservative')
+        C_f = - d_cons_CF_dz                                                                                                    + ...
+                Dx            ./  ( 1 - epsi .* mask ) .* d2Cfdz2                                                               + ...
+               (epsi.*mask)   .* (1 ./ mi ./ lp2 .* Di)  .* ( SOLID - FLUID .* (rho_s ./ km ./ RHO ) )                          ;
+    else
+        C_f = - VELOCITY      ./  ( 1 - epsi .* mask ) .* dCfdz                                                                 + ...
+              - FLUID         ./  ( 1 - epsi .* mask ) .* dudz                                                                  + ...
+                Dx            ./  ( 1 - epsi .* mask ) .* d2Cfdz2                                                               + ...
+              (epsi.*mask)    ./  ( 1 - epsi .* mask ) .* (1 ./ mi ./ lp2 .* Di)  .* ( SOLID - FLUID .* (rho_s ./ km ./ RHO ) ) ;
+    end
 
     %--------------------------------------------------------------------
     % Concentration of extract in solid phase | 1
-     -  mask                                 .* (1 ./ mi ./ lp2 .* Di)  .* ( SOLID - FLUID .* (rho_s ./ km ./ RHO ) );
+    C_s  = -  mask             .* (1 ./ mi ./ lp2 .* Di)  .* ( SOLID - FLUID .* (rho_s ./ km ./ RHO ) );
     %zeros(nstages_index,1);
-    
+
     %--------------------------------------------------------------------
     % Temperature | 2
-    - VELOCITY      ./ ( 1 - epsi .* mask )  .* CPRHOCP   .*   dTdz  +   KRHOCP  .* d2Tdz2;
+    Heat = - VELOCITY      ./ ( 1 - epsi .* mask )  .* CPRHOCP   .*   dTdz  +  KRHOCP  .* d2Tdz2;
     %zeros(nstages_index,1);
-    
+
     %--------------------------------------------------------------------
     % Continuity - 3 
-    
-    - VELOCITY      ./ ( 1 - epsi .* mask ) .* dRhodz - RHO ./ ( 1 - epsi .* mask ) .* dudz ;
-    %VELOCITY        ./ ( 1 - epsi .* mask ) .* RHO .* alpha .* dT ./ dz;
-    
-    %{
-     - VELOCITY  ./  ( 1 - epsi.*mask)       .* dRhodz  +...
-     - RHO       ./  ( 1 - epsi.*mask)       .* dudz    +...
-     - RHO       .*  VELOCITY                .* dEdz     ;
-    %}
+    if isequal(flag_cons,'conservative')
+        Continuity = - d_cons_rho_dz                                                                        ;
+    else
+        Continuity = - VELOCITY  ./ ( 1 - epsi .* mask ) .* dRhodz - RHO ./ ( 1 - epsi .* mask ) .* dudz    ;
+    end
     %zeros(nstages_index,1);
-    
+
     %--------------------------------------------------------------------
     % Momentum - 4
     %{
@@ -166,16 +185,23 @@ function xdot = modelSFE_uniform_U(x, p, mask, u_in, u_out)
     + 2 * 4/3 .* MU .* (1-epsi.*mask)            ./ RHO    .* dudz .* dEdz  +...
     +     4/3 .* MU                              ./ RHO    .* d2udz2;
     %}
-    zeros(nstages_index,1);
-
+    if isequal(flag_cons,'conservative')
+        Momentum = zeros(nstages_index,1);
+    else
+        %Momentum = -VELOCITY .* ( 1 - epsi .* mask ) .* dudz - VELOCITY.^2 .* dEdz ;
+        Momentum = zeros(nstages_index,1);
+    end
+    
     %- VELOCITY .* dudz - 1./RHO .* dPdz + 4/3 .* MU ./ RHO .* d2udz2;
-   
+
     %--------------------------------------------------------------------
     % 5*nstage+1 = output equation
     %F_u / RHO(nstages_index) * FLUID(nstages_index) * 1e3 ;   %kg/s - > g/s
     %F_u * FLUID(nstages_index) * 1e3 ;   %m3/s - > g/s
-    VELOCITY(nstages_index) * A * FLUID(nstages_index) * 1e3 ;   %m/s - > g/s
+    yield = VELOCITY(nstages_index) * A * FLUID(nstages_index) * 1e3 ;   %m/s - > g/s
     
-    ];
+
+    %%
+    xdot = [C_f; C_s; Heat; Continuity; Momentum; yield ];
 
 end

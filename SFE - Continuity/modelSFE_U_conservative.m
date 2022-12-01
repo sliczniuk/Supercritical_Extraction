@@ -1,4 +1,4 @@
-function xdot = modelSFE_uniform_U(x, p, mask, u_in, u_out)
+function xdot = modelSFE_U_conservative(x, p, mask, u_in, u_out)
     % (t, x, u, parameters)
     % Model with (F)luid, (S)olid, (T)emperature
     % Di is a function of temperature (T), the function works with numbers,
@@ -34,7 +34,7 @@ function xdot = modelSFE_uniform_U(x, p, mask, u_in, u_out)
    
 
     %% States
-    FLUID         =    x(0*nstages_index+1:1*nstages_index);
+    FLUID         =    x(0*nstages_index+1:1*nstages_index) ./ ( 1 - epsi .* mask );
     SOLID         =    x(1*nstages_index+1:2*nstages_index);
     TEMP          =    x(2*nstages_index+1:3*nstages_index);
     RHO_NS        =    x(3*nstages_index+1:4*nstages_index);
@@ -42,7 +42,7 @@ function xdot = modelSFE_uniform_U(x, p, mask, u_in, u_out)
     
     E_Inv         = (1 - epsi.*mask).^(-1);
 
-    RHO           =     RHO_NS;
+    RHO           =     RHO_NS ./ ( 1 - epsi .* mask );
 
     %%
 
@@ -75,7 +75,7 @@ function xdot = modelSFE_uniform_U(x, p, mask, u_in, u_out)
     T_0    = T_u;
     T_B    = TEMP(nstages_index);
 
-    Z_0    = Compressibility(T_u, P_u,     parameters);
+    Z_0    = Compressibility(T_u, P_u,      parameters);
     rho_0  = rhoPB_Comp(     T_u, P_u, Z_0, parameters);
     %rho_0  = RHO(1);
     rho_B  = RHO(nstages_index);
@@ -98,7 +98,6 @@ function xdot = modelSFE_uniform_U(x, p, mask, u_in, u_out)
     dz        = L/nstages_index;
     
     dCfdz     = backward_diff_1_order(FLUID,Cf_0, [], dz);
-    %dCfdz     = central_diff_1_order(FLUID,Cf_0, Cf_B, dz);
     d2Cfdz2   = central_diff_2_order(FLUID, FLUID(1), Cf_B, dz);
     
     dTdz      = backward_diff_1_order(TEMP,T_0, [], dz);
@@ -111,6 +110,12 @@ function xdot = modelSFE_uniform_U(x, p, mask, u_in, u_out)
     dudz      = backward_diff_1_order(VELOCITY, u_0, [], dz);
     %dudz      = central_diff_1_order(VELOCITY, u_0, u_B, dz);
     %d2udz2  = central_diff_2_order(VELOCITY, u_0, u_B, dz);
+
+    dx1dz      = backward_diff_1_order(VELOCITY .* RHO, u_0 .* rho_0, [], dz);
+    %dx1dz      = central_diff_1_order(VELOCITY .* RHO, u_0 .* rho_0, u_B .* rho_B, dz);
+
+    dx2dz      = backward_diff_1_order(VELOCITY .* FLUID, u_0 .* Cf_0, [], dz);
+    %dx2dz      = central_diff_1_order(VELOCITY .* FLUID, u_0 .* Cf_0, u_B .* Cf_B, dz);
 
     %dEdz    = backward_diff_1_order(E_Inv,epsi_0,[],dz);
     %d2Edz2   = central_diff_2_order(E_Inv,epsi_0, epsi_B, dz);
@@ -127,10 +132,10 @@ function xdot = modelSFE_uniform_U(x, p, mask, u_in, u_out)
     %--------------------------------------------------------------------
     % Concentration of extract in fluid phase | 0
     
-    - VELOCITY      ./  ( 1 - epsi .* mask ) .* dCfdz   + ...
-    - FLUID         ./  ( 1 - epsi .* mask ) .* dudz    +  ...
+    - dx2dz    +  ...
       Dx            ./  ( 1 - epsi .* mask ) .* d2Cfdz2 +...
-    (epsi.*mask)    ./  ( 1 - epsi .* mask ) .* (1 ./ mi ./ lp2 .* Di)  .* ( SOLID - FLUID .* (rho_s ./ km ./ RHO ) );
+    (epsi.*mask)    .* (1 ./ mi ./ lp2 .* Di)  .* ( SOLID - FLUID .* (rho_s ./ km ./ RHO ) );
+
     %zeros(nstages_index,1);
 
     %--------------------------------------------------------------------
@@ -140,20 +145,13 @@ function xdot = modelSFE_uniform_U(x, p, mask, u_in, u_out)
     
     %--------------------------------------------------------------------
     % Temperature | 2
-    - VELOCITY      ./ ( 1 - epsi .* mask )  .* CPRHOCP   .*   dTdz  +   KRHOCP  .* d2Tdz2;
+    - VELOCITY      ./ ( 1 - epsi .* mask )  .* CPRHOCP   .*   dTdz  +  KRHOCP  .* d2Tdz2;
     %zeros(nstages_index,1);
     
     %--------------------------------------------------------------------
     % Continuity - 3 
-    
-    - VELOCITY      ./ ( 1 - epsi .* mask ) .* dRhodz - RHO ./ ( 1 - epsi .* mask ) .* dudz ;
-    %VELOCITY        ./ ( 1 - epsi .* mask ) .* RHO .* alpha .* dT ./ dz;
-    
-    %{
-     - VELOCITY  ./  ( 1 - epsi.*mask)       .* dRhodz  +...
-     - RHO       ./  ( 1 - epsi.*mask)       .* dudz    +...
-     - RHO       .*  VELOCITY                .* dEdz     ;
-    %}
+
+    - dx1dz;
     %zeros(nstages_index,1);
     
     %--------------------------------------------------------------------

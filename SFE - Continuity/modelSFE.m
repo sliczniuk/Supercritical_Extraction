@@ -37,20 +37,20 @@ function xdot = modelSFE(x, p, mask)
     FLUID         =    x(0*nstages_index+1:1*nstages_index);
     SOLID         =    x(1*nstages_index+1:2*nstages_index);
     TEMP          =    x(2*nstages_index+1:3*nstages_index);
-    %RHO_NS        =    x(3*nstages_index+1:4*nstages_index);
+    RHO_NS        =    x(3*nstages_index+1:4*nstages_index);
     %VELOCITY_NS   =    x(4*nstages_index+1:5*nstages_index);
     
     E_Inv         = (1 - epsi.*mask).^(-1);
 
     %%
 
-    PRESSURE      =    P_u * ones(nstages_index,1);
-    %PRESSURE      = Pressure_PR(TEMP,RHO_NS,parameters);
+    %PRESSURE      =    P_u * ones(nstages_index,1);
+    PRESSURE      = Pressure_PR(TEMP,RHO_NS,parameters);
       
     %Properties of the fluid in the extractor
-    Z             =     Compressibility(TEMP, PRESSURE,   parameters);
+    %Z             =     Compressibility(TEMP, PRESSURE,   parameters);
 
-    RHO           =     rhoPB_Comp(     TEMP, PRESSURE, Z,parameters);
+    %RHO           =     rhoPB_Comp(     TEMP, PRESSURE, Z,parameters);
     %RHO           = RHO_NS;
 
 %    VELOCITY      =  (F_u / A) .* ones(nstages_index,1);

@@ -4,41 +4,25 @@ clear all
 addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-windows-matlabR2016a-v3.5.1');
 import casadi.*
 
-%DATA = {'LUKE_T40_P200.xlsx', 'LUKE_T50_P200.xlsx', 'LUKE_T40_P300.xlsx', 'LUKE_T50_P300.xlsx'};
-%DATA = {'LUKE_T40_P300.xlsx'};
-
 Parameters_table        = readtable('Parameters.csv') ;        % Fulle table with prameters
 
 %% Set time of the simulation
-simulationTime          = 250;                                                 % Minutes
-SamplingTime            = 5;                                                   % Minutes
+simulationTime          = 150;                                        % Minutes
 
-timeStep                = 1/4;                                                 % Minutes
+timeStep                = simulationTime/500;                               % Minutes
 
 timeStep_in_sec         = timeStep * 60;                                       % Seconds
 Time_in_sec             = (timeStep:timeStep:simulationTime)*60;               % Seconds
 Time                    = [0 Time_in_sec/60];                                  % Minutes
-%--------------------------------------------------------------------
-SAMPLE                  = [0:SamplingTime:150];
-SAMPLE(1)               = 0;
-%{
-N_Sample = [];
-for i = 1:numel(SAMPLE)
-    N_Sample = [N_Sample ; find(Time == SAMPLE(i))];
-end
-if numel(N_Sample) ~= numel(SAMPLE)
-    keyboard
-end
-%}
 
-N_Time                  = length(Time_in_sec);
+N_Time                  = length(Time);
 
 %% Specify parameters to estimate
-nstages                 = 100;
+nstages                 = 300;
 
-before  = 0.14;         nstagesbefore   = 1:floor(before*nstages);
-bed     = 0.16;         nstagesbed      = nstagesbefore(end)+1 : nstagesbefore(end) + floor(bed*nstages);
-nstagesafter    = nstagesbed(end)+1:nstages;
+before  = 0.135;        nstagesbefore   = 1:floor(before*nstages);
+bed     = 0.165;        nstagesbed      = nstagesbefore(end)+1 : nstagesbefore(end) + floor(bed*nstages);
+                        nstagesafter    = nstagesbed(end)+1:nstages;
 
 bed_mask                = nan(nstages,1);
 bed_mask(nstagesbefore) = 0;
@@ -56,7 +40,9 @@ mSOL_f                   = 0;                                           % g of b
 V                       = 0.01;                                         %
 r                       = 0.075;                                        % Radius of the extractor  [m3]
 L                       = V / pi / r^2;                                 % Total length of the extractor [m]
-epsi                    = 1/3;                                          % Fullness [-]
+L_stages                = linspace(0, L, nstages);
+A                       = pi*r^2;                                       % Extractor cross-section
+epsi                    = 0.2 ;                                         % Fullness [-]
 
 %--------------------------------------------------------------------
 V_slice                 = (L/nstages) * pi * r^2;
@@ -101,69 +87,93 @@ Nk                      = numel(which_k);
 x                       = MX.sym('x', Nx);
 u                       = MX.sym('u', Nu);
 
+%% Velocity profile: linear change
+u_in  = 1.00;
+u_out = 0.75;
+
 %% Set Integrator
-f                       = @(x, u) modelSFE(x, u, bed_mask);
+f                       = @(x, u) modelSFE_Conservative(x, u, bed_mask, u_in, u_out, 'nonconservative');
 
 % Integrator
 F                       = buildIntegrator(f, [Nx,Nu] , timeStep_in_sec);
+
+%% Set Integrator
+f_cons                  = @(x, u) modelSFE_Conservative(x, u, bed_mask, u_in, u_out, 'conservative');
+
+% Integrator
+F_cons                  = buildIntegrator(f_cons, [Nx,Nu] , timeStep_in_sec);
 
 %%
 V_Flow     = 0.39;
 T0homog    = 40+273.15;
 feedPress  = 300 ;
-k0         = [0.1, 0.5];
-
-%%
-rho        = rhoPB_Comp(T0homog, feedPress, Compressibility(T0homog,feedPress,table2cell(Parameters_table(:,3))), table2cell(Parameters_table(:,3)));
-
-% Set operating conditions
-feedTemp   = T0homog   * ones(1,length(Time_in_sec))  ;  % Kelvin
-feedTemp(round(numel(Time)/4):round(numel(Time)/2))   = feedTemp(1) + 10;
-
-feedPress  = feedPress * ones(1,length(Time_in_sec));  % Bars
-%feedPress(round(numel(Time)/3):round(2*numel(Time)/3))   = feedPress(1) + 50;
-
-feedFlow   = V_Flow * rho * 1e-3 / 60 * ones(1,length(Time_in_sec));  % l/min -> kg/min -> Kg / sec
-%feedFlow(round(numel(Time)/3):round(2*numel(Time)/3))   = 2*feedFlow(1) ;
-
-uu         = [feedTemp', feedPress', feedFlow'];
-
-% Initial conditions
-x0         = [C0fluid * ones(nstages,1);
-            C0solid * bed_mask;
-            T0homog*ones(nstages,1);
-            rho*ones(nstages,1);                                                                                           % rho*ones(nstages,1);
-            Velocity(feedFlow(1), rho(1), table2cell(Parameters_table(:,3)) ) * ones(nstages,1);                           % Velocity(feedFlow(1), rho(1), table2cell(Parameters_table(:,3)) ) * ones(nstages,1)
-            0;
-            ];
+k0         = [1, 0.1];
 
 Parameters          = Parameters_table{:,3};
 Parameters(1:9)     = [nstages, C0solid, r, epsi, dp, L, rho_s, km, mi];
 
 Parameters(which_k) = k0;
-Parameters_opt = [uu repmat(Parameters,1,N_Time)'];
-
-[xx_0] = simulateSystem(F, [], x0, Parameters_opt  );
 
 %%
-ind = 1:numel(Time);
+rho        = rhoPB_Comp(T0homog, feedPress, Compressibility(T0homog,feedPress, num2cell(Parameters) ), num2cell(Parameters) );
 
-NAME = {'C_f','C_s','T','Continuity','Momentum'};
+% Set operating conditions
+feedTemp   = T0homog   * ones(1,N_Time) + 0;  % Kelvin
+%feedTemp( round(numel(Time)/4) : round(numel(Time)/2) )   = T0homog + 0;
+%feedTemp( round(numel(Time)/2)  : end )   = T0homog +20 ;
 
-for i=0:numel(NAME)-1
+feedPress  = feedPress * ones(1,N_Time) + 0 ;  % Bars
+%feedPress(round(numel(Time)/2):round(3*numel(Time)/4))   = feedPress(1) - 10;
 
-    subplot(2,3,i+1)
-    imagesc(Time,1:nstages,xx_0(i*nstages+1:(i+1)*nstages,:)); colorbar
-    hold on
-    yline(nstagesbed(1),'w')
-    yline(nstagesbed(end),'w')
-    hold off
-    title(NAME{i+1})
-    
-    end
+%feedFlow   = V_Flow * rho * 1e-3 / 60 * ones(1,N_Time);  % l/min -> kg/min -> Kg / sec
+feedFlow    = V_Flow * 1e-3 / 60 * ones(1,N_Time);  % l/min -> kg/min -> m3 / sec
+%feedFlow(round(numel(Time)/20):round(numel(Time)/10))   = 2*feedFlow(1) ;
 
-subplot(2,3,6)
-plotyy(Time, xx_0(end,:), Time, 1e3 * (sum(xx_0(0*nstages+1:1*nstages,ind) .* V_fluid) + sum(xx_0(1*nstages+1:2*nstages,ind) .* V_solid)) + xx_0(Nx,ind))
+uu         = [feedTemp', feedPress', feedFlow'];
+
+Parameters_opt = [uu repmat(Parameters,1,N_Time)'];
+
+%% Initial conditions
+x0         = [
+            C0fluid * ones(nstages,1);
+            C0solid * bed_mask;
+            T0homog * ones(nstages,1);
+            rho * ones(nstages,1);        
+            feedFlow(1) / A  .* linspace(u_in,u_out ,nstages)'; %Velocity(feedFlow(1),rho(1), num2cell(Parameters)) * ones(nstages,1);
+            0;
+            ];
+
+x0_cons     = [
+            C0fluid * ones(nstages,1) .* ( 1 - epsi .* bed_mask );
+            C0solid * bed_mask;
+            T0homog * ones(nstages,1);
+            rho * ones(nstages,1) .* ( 1 - epsi .* bed_mask );        
+            feedFlow(1) / A  .* linspace(u_in,u_out ,nstages)'; %Velocity(feedFlow(1),rho(1), num2cell(Parameters)) * ones(nstages,1);
+            0;
+            ];
+
+%% Simulate system
+[xx_0]      = simulateSystem(F,      [], x0,      Parameters_opt  );
+[xx_0_cons] = simulateSystem(F_cons, [], x0_cons, Parameters_opt  );
+
+%%
+figure(1)
+PlotResults(xx_0, Time, nstagesbed, Parameters, uu, bed_mask, epsi, 'nonconservative')
+sgtitle ('nonconservative')
+
+figure(2)
+PlotResults(xx_0_cons, Time, nstagesbed, Parameters, uu, bed_mask, epsi, 'conservative')
+sgtitle ('conservative')
+
+figure(3)
+subplot(2,1,1);
+plotyy(Time, xx_0(Nx,:)     , Time, 1e3 * (sum(xx_0(0*nstages+1:1*nstages,:)      .* V_fluid)                              + sum(xx_0(1*nstages+1:2*nstages,:)      .* V_solid)) + xx_0(Nx,:)    )
+title ('nonconservative')
+
+subplot(2,1,2);
+plotyy(Time, xx_0_cons(Nx,:), Time, 1e3 * (sum(xx_0_cons(0*nstages+1:1*nstages,:) .* V_fluid ./ ( 1 - epsi .* bed_mask ) ) + sum(xx_0_cons(1*nstages+1:2*nstages,:) .* V_solid)) + xx_0_cons(Nx,:))
+title ('conservative')
 
 %%
 xx_0(end,end)
+xx_0_cons(end,end)

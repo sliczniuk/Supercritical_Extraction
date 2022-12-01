@@ -1,4 +1,4 @@
-function Cp = SpecificHeatComp(T, P, Z, RHO, theta)
+function c = SpeedOfSound(T, P, Z, RHO, theta)
 
     % Specific heat equations
     % https://cheguide.com/specific_heat_ratio.html
@@ -11,7 +11,7 @@ function Cp = SpecificHeatComp(T, P, Z, RHO, theta)
     Pc      = theta{11};         % Critical pressure [bar]
     R       = 83.1447;    % Universal gas constant, [m3-bar/K-mol]
     kappa   = 0.2250;
-    MW      = theta{14};         % Molar mass [g/mol]       
+    MW      = theta{14};         % Molar mass [kg/mol]       
     CP_0    = theta{17};     
     CP_A    = theta{18};       
     CP_B    = theta{19};       
@@ -33,16 +33,16 @@ function Cp = SpecificHeatComp(T, P, Z, RHO, theta)
     A = 0.45723553.*alpha.*Pr./Tr.^2;
     B = b .* P ./ R ./ T;
 
-    v = 1./RHO*MW*1e6;
+    v = 1./RHO*MW*1e6;                                                      % cm3/mol
     
     %% Derivatives
     
     %  (δP/ δV)_T = -RT/(v - b)² + 2a(v + b)/[v(v + b) + b(v - b)]²
-    dPdV = -R.*T./(v-b).^2 + 2.*a.*(v+b)./(v.*(v+b) + b.*(v-b)).^2;
+    dPdV = -R.*T./(v-b).^2 + 2.*a.*(v+b)./(v.*(v+b) + b.*(v-b)).^2;         % bar/(cm3/mol)
     
     %  (δa/ δT)_V = -kappa/[ ((T*Tc)^0.5) (1 + kappa( 1 - (T/Tc)^0.5))]
     %dadT = -kappa.*a./( sqrt(T*Tc).*(1 + kappa.*( 1 - sqrt(Tr))) );
-    dadT = -m.*a./( sqrt(T*Tc).*(1 + m.*( 1 - sqrt(Tr))) );
+    dadT = -m.*a./( sqrt(T*Tc).*(1 + m.*( 1 - sqrt(Tr))) );                 % cm6-bar/mol2 - K
     
     %  (δA/δT)_P = (P/(RT)²)(a' - 2a/T)
     dAdT = (P./(R.*T).^2).*(dadT - 2*a./T);
@@ -51,7 +51,7 @@ function Cp = SpecificHeatComp(T, P, Z, RHO, theta)
     dBdT = -b.*P./(R.*T.^2);
     
     %  (δP/ δT)V = R/(v - b) - a'/[v(v + b) + b(v - b)]
-    dPdT = R./(v-b) - dadT./( v.*(v+b) + b.*(v-b) );
+    dPdT = R./(v-b) - dadT./( v.*(v+b) + b.*(v-b) );                        % bar/K
     
     %  (δZ/ δT)_P = Num / Denom
     %   Num = (δA/δT)P (B-Z) + (δB/δT)_P (6BZ+2Z-3B²-2B+A-Z²)
@@ -64,7 +64,7 @@ function Cp = SpecificHeatComp(T, P, Z, RHO, theta)
     dVdT = (R./P) .* (T.*dZdT + Z);
     
     %  a" = a kappa (1 + kappa)(Tc/T)^0.5 / (2*T*Tc)
-    d2adT2 = a*m*(1+m).*sqrt(Tc./T)./(2.*T.*Tc);
+    d2adT2 = a*m*(1+m).*sqrt(Tc./T)./(2.*T.*Tc);                            % cm6-bar/mol2 - K2
 
     %% Heat Capacity - Ideal gas
     Cp_Ideal = CP_0 * (CP_A + CP_B.*T + CP_C.*T.^2 + CP_D.*T.^3);
@@ -80,7 +80,10 @@ function Cp = SpecificHeatComp(T, P, Z, RHO, theta)
     Cp_corr = Cv_corr + T.*dPdT.*dVdT/10 - R/10;
 
     %% Heat Capacity - Real gas
-    Cv = (Cv_Ideal + Cv_corr)/MW;               %[J/kg/K]
-    Cp = (Cp_Ideal + Cp_corr)/MW;               %[J/kg/K]
+    Cv = (Cv_Ideal + Cv_corr)/MW;                   %[J/kg/K]
+    Cp = (Cp_Ideal + Cp_corr)/MW;                   %[J/kg/K]
+
+    %c = sqrt( v.^2 * (T./Cv .* dPdV.^2 - dPdT ) );      % m/s
+    c = sqrt( - v.^2 .* (Cp./Cv) .* dPdV ./MW ./10 ) ;   % m/s
 
 end

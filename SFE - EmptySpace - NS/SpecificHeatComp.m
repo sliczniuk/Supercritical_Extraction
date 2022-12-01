@@ -80,7 +80,7 @@ function Cp = SpecificHeatComp(T, P, Z, RHO, theta)
     Cp_corr = Cv_corr + T.*dPdT.*dVdT/10 - R/10;
 
     %% Heat Capacity - Real gas
-    Cv = (Cv_Ideal + Cv_corr)/MW;               %[kJ/kg/K]
-    Cp = (Cp_Ideal + Cp_corr)/MW;               %[kJ/kg/K]
+    Cv = (Cv_Ideal + Cv_corr)/MW;               %[J/kg/K]
+    Cp = (Cp_Ideal + Cp_corr)/MW;               %[J/kg/K]
 
 end
