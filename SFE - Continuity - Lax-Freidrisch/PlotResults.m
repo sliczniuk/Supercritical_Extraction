@@ -13,15 +13,15 @@ T_NS   = xx_0(2*nstages+1:3*nstages,:);
 if isequal(flag, 'conservative')
     Cf_NS  = xx_0(0*nstages+1:1*nstages,:) ./ ( 1 - epsi .* bed_mask );
     rho_NS = xx_0(3*nstages+1:4*nstages,:) ./ ( 1 - epsi .* bed_mask );
-    u_NS   = xx_0(4*nstages+1:5*nstages,:) ./ rho_NS;
-    sgtitle ('conservative')
+    u_NS   = xx_0(4*nstages+1:5*nstages,:);
+    %sgtitle ('conservative')
     
 else
     Cf_NS  = xx_0(0*nstages+1:1*nstages,:);
     rho_NS = xx_0(3*nstages+1:4*nstages,:);
     u_NS   = xx_0(4*nstages+1:5*nstages,:);
 
-    sgtitle ('nonconservative')
+    %sgtitle ('nonconservative')
 end
 
 %u_NS   = Velocity(feedFlow,rho_NS, num2cell(Parameters));

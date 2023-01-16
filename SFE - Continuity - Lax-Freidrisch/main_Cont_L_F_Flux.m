@@ -7,9 +7,9 @@ import casadi.*
 Parameters_table        = readtable('Parameters.csv') ;        % Fulle table with prameters
 
 %% Set time of the simulation
-simulationTime          = 2;                                        % Minutes
+simulationTime          = 150;                                        % Minutes
 
-timeStep                = simulationTime/6000;                               % Minutes
+timeStep                = simulationTime/500;                               % Minutes
 
 timeStep_in_sec         = timeStep * 60;                                       % Seconds
 Time_in_sec             = (timeStep:timeStep:simulationTime)*60;               % Seconds
@@ -18,7 +18,7 @@ Time                    = [0 Time_in_sec/60];                                  %
 N_Time                  = length(Time);
 
 %% Specify parameters to estimate
-nstages                 = 1000;
+nstages                 = 300;
 
 before  = 0.135;        nstagesbefore   = 1:floor(before*nstages);
 bed     = 0.165;        nstagesbed      = nstagesbefore(end)+1 : nstagesbefore(end) + floor(bed*nstages);
@@ -89,19 +89,19 @@ u                       = MX.sym('u', Nu);
 
 %% Velocity profile: linear change
 u_in  = 1.00;
-u_out = 0.999;
+u_out = 0.8;
 
 %% Set Integrator
-%f                       = @(x, u) modelSFE_Conservative_Momentum(x, u, bed_mask, u_in, u_out, 'nonconservative');
-
-% Integrator
-%F                       = buildIntegrator(f, [Nx,Nu] , timeStep_in_sec);
-
-%% Set Integrator
-f_cons                  = @(x, u) modelSFE_Conservative_Momentum(x, u, bed_mask, u_in, u_out, 'conservative');
+f_cons                  = @(x, u) modelSFE_Cont_L_F_Flux(x, u, bed_mask, u_in, u_out, timeStep_in_sec, 'conservative');
 
 % Integrator
 F_cons                  = buildIntegrator(f_cons, [Nx,Nu] , timeStep_in_sec);
+
+%
+f_flux                  = @(x, u) modelSFE_Cont_L_F_Flux(x, u, bed_mask, u_in, u_out, timeStep_in_sec, 'flux');
+
+% Integrator
+F_flux                  = buildIntegrator(f_flux, [Nx,Nu] , timeStep_in_sec);
 
 %%
 V_Flow     = 0.39;
@@ -134,43 +134,37 @@ uu         = [feedTemp', feedPress', feedFlow'];
 Parameters_opt = [uu repmat(Parameters,1,N_Time)'];
 
 %% Initial conditions
-x0         = [
-            C0fluid * ones(nstages,1);
-            C0solid * bed_mask;
-            T0homog * ones(nstages,1);
-            rho ;        
-            feedFlow(1) / A * ones(nstages,1); %Velocity(feedFlow(1),rho(1), num2cell(Parameters)) * ones(nstages,1);
-            0;
-            ];
-
 x0_cons     = [
             C0fluid * ones(nstages,1) .* ( 1 - epsi .* bed_mask );
             C0solid * bed_mask;
             T0homog * ones(nstages,1);
             rho     .* ( 1 - epsi .* bed_mask );        
-            feedFlow(1) / A  .* rho ; %Velocity(feedFlow(1),rho(1), num2cell(Parameters)) * ones(nstages,1);
+            feedFlow(1) / A * ones(nstages,1)  ;
             0;
             ];
 
 %% Simulate system
-%[xx_0]      = simulateSystem(F,      [], x0,      Parameters_opt  );
 [xx_0_cons] = simulateSystem(F_cons, [], x0_cons, Parameters_opt  );
+[xx_0_flux] = simulateSystem(F_flux, [], x0_cons, Parameters_opt  );
 
 %%
 figure(1)
-%PlotResults(xx_0, Time, nstagesbed, Parameters, uu, bed_mask, epsi, 'nonconservative')
-
-%figure(2)
 PlotResults(xx_0_cons, Time, nstagesbed, Parameters, uu, bed_mask, epsi, 'conservative')
+sgtitle ('conservative')
+
+figure(2)
+PlotResults(xx_0_flux, Time, nstagesbed, Parameters, uu, bed_mask, epsi, 'conservative')
+sgtitle ('flux')
 
 figure(3)
-%subplot(2,1,1);
-%plotyy(Time, xx_0(Nx,:)     , Time, 1e3 * (sum(xx_0(0*nstages+1:1*nstages,:)      .* V_fluid)                              + sum(xx_0(1*nstages+1:2*nstages,:)      .* V_solid)) + xx_0(Nx,:)    )
-%title ('nonconservative')
-
-%subplot(2,1,2);
+subplot(1,2,1)
 plotyy(Time, xx_0_cons(Nx,:), Time, 1e3 * (sum(xx_0_cons(0*nstages+1:1*nstages,:) .* V_fluid ./ ( 1 - epsi .* bed_mask ) ) + sum(xx_0_cons(1*nstages+1:2*nstages,:) .* V_solid)) + xx_0_cons(Nx,:))
 title ('conservative')
+
+subplot(1,2,2)
+plotyy(Time, xx_0_flux(Nx,:), Time, 1e3 * (sum(xx_0_flux(0*nstages+1:1*nstages,:) .* V_fluid ./ ( 1 - epsi .* bed_mask ) ) + sum(xx_0_flux(1*nstages+1:2*nstages,:) .* V_solid)) + xx_0_flux(Nx,:))
+title ('flux')
+
 
 %%
 %xx_0(end,end)
