@@ -1,4 +1,4 @@
-\begin{thebibliography}{4}
+\begin{thebibliography}{7}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -35,5 +35,24 @@ A.~Srinivasan and C.~Depcik.
 \newblock \emph{Chemical Engineering {\&} Technology}, 36\penalty0
   (1):\penalty0 22--32, dec 2012.
 \newblock \doi{10.1002/ceat.201200458}.
+
+\bibitem[Lions(2013)]{Lions2013}
+Pierre-Louis Lions.
+\newblock \emph{Mathematical Topics in Fluid Mechanics : Volume 1
+  Incompressible Models}.
+\newblock Oxford University Press, 2013.
+\newblock ISBN 9780199679218.
+
+\bibitem[Mandel(1957)]{Mandel1957}
+John Mandel.
+\newblock Fitting a straight line to certain types of cumulative data.
+\newblock \emph{Journal of the American Statistical Association}, 52\penalty0
+  (280):\penalty0 552--566, dec 1957.
+\newblock \doi{10.1080/01621459.1957.10501413}.
+
+\bibitem[Himmelblau(1970)]{Himmelblau1970}
+David~Mautner Himmelblau.
+\newblock Process analysis by statistical methods, 1970.
+\newblock [by] David M. Himmelblau., Includes bibliographical references.
 
 \end{thebibliography}

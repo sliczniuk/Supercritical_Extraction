@@ -238,8 +238,8 @@ xlabel('Time [min]','Interpreter','latex')
 nexttile
 %pbaspect([3 1 1])
 hold on 
-plot(Time(1:end-1), diff(xx_out(end,:)) /max(diff(xx_out(end,:))) );
-plot(SAMPLE(1:end-1), diff(data_org)/max(diff(data_org)),'o');
+plot(SAMPLE(1:end-1), diff(xx_out(end,N_Sample)));
+plot(SAMPLE(1:end-1), diff(data_org),'o');
 xline(PreparationTime,'--k')
 hold off
 ylabel('PDF: norm $\frac{dy(t)}{dt}$','Interpreter','latex')

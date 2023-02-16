@@ -1,4 +1,5 @@
 % Encoding: UTF-8
+
 ﻿
 
 @Article{Dirac1953888,
@@ -420,6 +421,16 @@
   volume    = {19},
   doi       = {10.1063/1.555875},
   publisher = {{AIP} Publishing},
+}
+
+@Book{Lions2013,
+  author    = {Lions, Pierre-Louis},
+  publisher = {Oxford University Press},
+  title     = {Mathematical Topics in Fluid Mechanics : Volume 1 Incompressible Models},
+  year      = {2013},
+  isbn      = {9780199679218},
+  pages     = {252},
+  subtitle  = {Incompressible Models},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}

@@ -2,6 +2,8 @@
 \graphicspath{{\subfix{../Figures/}}}
 \begin{document}
 	
+	\subsubsection{Mass continuity}
+	
 	\label{CH: Gouverning equations}
 	
 	Let's assume that any properties of the flow are uniform across any given cross-section of an extractor. The variation of the cross-section might be an result of partial filling of an extractor or its irregular shape. In reality, such a flow is two-dimensional, because with the area changing as a function of $z$, in actuality there will be flow-field variations in both directions. The assumption of quasi-one-dimensional flow dictates that the flow properties are function of $z$ only. The equations described by quasi-one-dimensional assumption hold: (1) mass conservation, (2) Newton's second law, and (3) energy conservation. To ensure that these physical principles are satisfied the modified governing equation can be derived.	Let's start with the integral form of the continuity equation:
@@ -60,8 +62,8 @@
 	 
 	{\footnotesize
 		\begin{align}
-			\iint_S \rho_f \textbf{V} \cdot \textbf{dS} &= -\rho_f V A_f + \rho_f V A_f + \rho_f V dA_f + \rho_f A_f dV + \rho_f dV dA_f \nonumber \\ 
-			&+ V A_f d\rho_f + V d\rho_f dA + A_f d\rho_f dV + d\rho_f dV dA_f
+			&\iint_S \rho_f \textbf{V} \cdot \textbf{dS} = -\rho_f V A_f + \rho_f V A_f + \rho_f V dA_f + \rho_f A_f dV \nonumber \\ 
+			&+ \rho_f dV dA_f + V A_f d\rho_f + V d\rho_f dA + A_f d\rho_f dV + d\rho_f dV dA_f
 			\label{EQ: Triple_Prod_Cont_Surf}
 		\end{align}
 	}
@@ -80,6 +82,7 @@
 	{\footnotesize
 		\begin{equation}
 			\cfrac{\partial \left( \rho_f A_f \right)}{\partial t} + \cfrac{\partial \left( \rho_f A_f V \right)}{\partial z} = 0
+			\label{EQ: Conservative_continuity}
 		\end{equation}
 	}
 	
@@ -111,7 +114,7 @@
 	
 	\subsubsection{Transport of a species}
 	
-	The transport of a chemical species, in this case a solute, can be described by analogous equation to the Eq. \ref{EQ: Continuity_integral_general} with additional terms on the right-hand side. The first term on the right-hand side describes that a substance goes from high density regions to low density regions and is based on the Fick's law ${\footnotesize\left( J_{diff}=-D\cfrac{\partial C_f}{\partial z} \right)}$. The other term correspond for the mass transfer between solid and fluid phases, which is treated as a source term.
+	The transport of a chemical species, in this case a solute, can be described by analogous equation to the Eq. \ref{EQ: Continuity_integral_general} with additional terms on the right-hand side. The first term on the right-hand side describes that a substance goes from high density regions to low density regions and is based on the Fick's law ${\footnotesize\left( J_{diff} = D\cfrac{\partial C_f}{\partial z} \right)}$. The other term correspond for the mass transfer between solid and fluid phases, which is treated as a source term.
 	
 	{\footnotesize
 		\begin{equation}
@@ -165,7 +168,7 @@
 	
 	{\footnotesize
 		\begin{equation}
-			\cfrac{\partial C_f}{\partial t} + \cfrac{u}{\varepsilon} \cfrac{\partial C_f}{\partial z} + \cfrac{C_f}{\varepsilon} \cfrac{\partial u}{\partial z} = \cfrac{1-\varepsilon}{\varepsilon} \cfrac{\partial C_s}{\partial t} - \cfrac{D}{\varepsilon} \cfrac{\partial C_f}{\partial z} \cfrac{\partial \varepsilon}{\partial z} - \cfrac{\partial}{\partial z} \left( D \cfrac{\partial C_f}{\partial z} \right)
+			\cfrac{\partial C_f}{\partial t} + \cfrac{u}{\varepsilon} \cfrac{\partial C_f}{\partial z} + \cfrac{C_f}{\varepsilon} \cfrac{\partial u}{\partial z} = \cfrac{1-\varepsilon}{\varepsilon} \cfrac{\partial C_s}{\partial t} + \cfrac{D}{\varepsilon} \cfrac{\partial C_f}{\partial z} \cfrac{\partial \varepsilon}{\partial z} + \cfrac{\partial}{\partial z} \left( D \cfrac{\partial C_f}{\partial z} \right)
 		\end{equation}
 	}
 	
@@ -302,7 +305,23 @@
 		\end{equation}
 	}
 
-	The Eq. \ref{EQ: Non-conservative_Momentum} is stylistically the same as the general momentum conservation for one-dimensional flow with no-body forces. The momentum equation can be expressed in terms of superficial velocity $u=V\varepsilon$. If $\cfrac{\partial \varepsilon}{\partial t}=0$
+	The Eq. \ref{EQ: Non-conservative_Momentum} is stylistically the same as the general momentum conservation for one-dimensional flow with no-body forces. The momentum equation can be expressed in terms of superficial velocity $u=V\varepsilon$. 
+	
+	{\footnotesize
+		\begin{equation}
+			\rho_f \cfrac{\partial \left(u / \varepsilon \right)}{\partial t} + \rho_f \cfrac{u}{\varepsilon} \cfrac{\partial \left( u / \varepsilon \right)}{\partial z} = - \cfrac{\partial P}{\partial z}
+		\end{equation}
+	}
+
+	By expanding all the terms of equation above, we get
+	
+	{\footnotesize
+		\begin{equation}
+			\cfrac{\rho_f}{\varepsilon} \cfrac{\partial u}{\partial t} + \rho_f u \cfrac{\partial \varepsilon^{-1}}{\partial t} + \rho_f \cfrac{u}{\varepsilon} \cfrac{1}{\varepsilon} \cfrac{\partial u}{\partial z} + \rho_f \cfrac{u}{\varepsilon} u \cfrac{\partial \varepsilon^{-1} }{\partial z} = - \cfrac{\partial P}{\partial z}
+		\end{equation}
+	}
+	
+	If the bed is not compressible and doesn't change its properties during the batch, then ${\footnotesize\cfrac{\partial \varepsilon}{\partial t}=0}$
 	
 	{\footnotesize
 		\begin{equation}
@@ -315,16 +334,105 @@
 	{\footnotesize
 		\begin{equation}
 			\cfrac{\rho_f}{\varepsilon} \left( \cfrac{\partial u}{\partial t} + \cfrac{u}{\varepsilon} \cfrac{\partial u}{\partial z} \right) = -\cfrac{\partial P}{\partial z}
+			\label{EQ: Non-conservative_Momentum_Const_Porosity}
+		\end{equation}
+	}
+
+	The Eq. \ref{EQ: Non-conservative_Momentum_Const_Porosity} represents non-conservative form of the momentum equation for quasi-one-dimensional flow with no body forces and constant porosity.
+	
+	\hrule
+	
+	\subsubsection{Energy conservation}
+	
+	Let's consider the integral form of the energy equation for adiabatic flow with no body forces and no viscous effects
+	
+	{\footnotesize
+		\begin{equation}
+			\cfrac{\partial}{\partial} \iiint_{\mathcal{V}_f} \rho_f \left( e_f + \cfrac{V^2}{2} \right) d\mathcal{V}_f + \iint_S \rho_f \left( e_f + \cfrac{V^2}{2} \right) \textbf{V} \cdot \textbf{dS} = - \iint_S \left( P\textbf{V} \right) \cdot \textbf{dS}
+			\label{EQ: Energy_equation_integral}
+		\end{equation}
+	}
+
+	Applied to the shaded control volume in Fig. \ref{fig: control_volume}, and keeping in mind the pressure forces shown in Fig. \ref{fig: Forces_Momentum_Control_Volume}, Eq. \ref{EQ: Energy_equation_integral} becomes
+	
+	{\footnotesize
+		\begin{align}
+			&\cfrac{\partial}{\partial t} \left[ \rho_f \left( e_f + \cfrac{V^2}{2} \right) A_f dz \right] - \rho_f \left( e_f + \cfrac{V^2}{2} \right) V A_f \nonumber \\
+			&+ \left( \rho_f + d\rho_f \right) \left[ e_f + de_f + \cfrac{\left( V + dV \right)^2}{2} \right] \left( V+fV \right) \left( A_f+dA_f \right) \nonumber \\
+			&= - \left[ -PVA_f + \left(P+dP\right) \left(V+dV\right) \left(A_f+dA_f\right) - 2\left( PV\cfrac{dA_f}{2} \right) \right]
+		\end{align}
+	}
+	
+	Neglecting products of differential and cancelling like terms, the above equation becomes
+	
+	{\footnotesize
+		\begin{equation}
+			\cfrac{\partial}{\partial t} \left[ \rho_f \left( e_f + \cfrac{V^2}{2} \right) A_f dz \right] + d\left( \rho_f r_f A_f \right) + \cfrac{ \left( \rho_f V^3 A_f \right) }{2} = -d \left( P A_f V \right)
+		\end{equation}
+	}
+
+	or
+	
+	{\footnotesize
+		\begin{equation}
+			\cfrac{\partial}{\partial t} \left[ \rho_f \left( e_f + \cfrac{V^2}{2} \right) A_f dz \right] + d \left[ \rho_f \left( e_f \cfrac{V^2}{2} \right) VA_f \right] = - d\left( P A_f V \right)
+		\end{equation}
+	}
+
+	Taking the limit as $dz$ approaches zero, the equation above becomes the following partial differential equation
+	
+	{\footnotesize
+		\begin{equation}
+			\cfrac{\partial \left[ \rho_f \left( e_f + V^2 / 2 \right) A \right]}{\partial t} + \cfrac{\partial \rho_f \left( e_f + V^2 / 2 \right)VA_f}{\partial z} = -\cfrac{\partial \left( P A_f V \right)}{\partial z}
+			\label{EQ: Energy_equation_conservative_total}
 		\end{equation}
 	}
 	
+	Equation \ref{EQ: Energy_equation_conservative_total} is the conservation form of the energy expressed in terms of the total energy $e~+~V^2/2$, appropriate for unsteady, quasi-one-dimensional flow. The energy equation can be expressed in terms of internal energy if Eq. \ref{EQ: Conservative_Momentum} is multiplicated by $V$ and then subtracted from Eq. \ref{EQ: Energy_equation_conservative_total}
 	
+	{\footnotesize
+		\begin{equation}
+			\cfrac{\partial \left( \rho_f e_f A_f \right) }{\partial t} + \cfrac{\partial \left( \rho_f  e_f V A_f \right)}{\partial z} = -P \cfrac{\partial A_f V}{\partial z}
+			\label{EQ: Energy_conservative_internal}
+		\end{equation}
+	}
 	
+	The equation above is the conservation form of the energy equation expressed in terms of internal energy $e_f$ suitable for quasi-one-dimensional flow. The non-conservative for is then obtained by multiplying the continuity equation \ref{EQ: Conservative_continuity}, by $e_f$ and substructing it from \ref{EQ: Energy_conservative_internal}, yielding 
 	
+	{\footnotesize
+		\begin{equation}
+			\rho_f A_f \cfrac{\partial e_f}{\partial t} + \rho_f A_f V \cfrac{\partial e_f}{\partial z} = - P \cfrac{\partial (A_f V) }{\partial z}
+		\end{equation}
+	}
 	
+	Expanding right-hand side and dividing by $A_f$, the above equation becomes 
 	
+	{\footnotesize
+		\begin{equation}
+			\rho_f \cfrac{\partial e_f}{\partial t} + \rho_f V \cfrac{\partial e_f}{\partial z} = -P \cfrac{V}{A_f} \cfrac{\partial A_f}{\partial z}
+		\end{equation}
+	}
+
+	or
 	
+	{\footnotesize
+		\begin{equation}
+			\rho_f \cfrac{\partial e_f}{\partial t} + \rho_f V \cfrac{\partial e_f}{\partial z} = -P \cfrac{\partial V}{\partial z} - P V \cfrac{\partial (ln~A_f)}{\partial z}
+			\label{EQ: Energy_equation_nonconservative}
+		\end{equation}
+	}
 	
+	Equation \ref{EQ: Energy_equation_nonconservative} is the non-conservative for of the energy equation expressed in therms of internal energy, appropriate to unsteady quasi-one-dimensional flow. The reason for obtaining the energy equation in the form of Eq. \ref{EQ: Energy_equation_nonconservative} is that, for a calorically perfect gas, it leads directly to a form of the energy equation in therms of temperature $T$. For calorically perfect gas ${\footnotesize e_f=C_vT}$
+	
+	\hrule
+	
+	{\footnotesize
+		\begin{equation}
+			\cfrac{\partial \left( \rho_f e_f A_f \right) }{\partial t} + \cfrac{\partial \left( \rho_f  e_f V A_f \right)}{\partial z} = -P \cfrac{\partial A_f V}{\partial z} + \cfrac{\partial}{\partial z} \left( k \cfrac{\partial T}{\partial z} \right)
+		\end{equation}
+	}
+	
+	{TODO: \color{red}finish derivation of energy equation for real gas and introduce homogenous version of the energy equation}
 	
 	
 	

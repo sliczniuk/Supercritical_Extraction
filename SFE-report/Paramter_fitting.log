@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.8) (preloaded format=pdflatex 2022.9.27)  24 JAN 2023 16:53
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.8) (preloaded format=pdflatex 2022.9.27)  16 FEB 2023 16:46
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1328,80 +1328,80 @@ Package caption Info: End \AtBeginDocument code.
 \openout5 = `Paramter_fitting.abs'.
 
 LaTeX Font Info:    Trying to load font information for LS1+stixscr on input li
-ne 106.
+ne 108.
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls1stixscr.fd
 File: ls1stixscr.fd 2015/04/17 v1.1.2-latex STIX script LS1 font definitions
 )
 LaTeX Font Info:    Trying to load font information for LS2+stixex on input lin
-e 106.
+e 108.
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls2stixex.fd
 File: ls2stixex.fd 2015/04/17 v1.1.2-latex STIX extentions LS2 font definitions
 
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 106
+LaTeX Font Info:    Trying to load font information for U+msa on input line 108
 .
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 106
+LaTeX Font Info:    Trying to load font information for U+msb on input line 108
 .
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Trying to load font information for LS1+stixfrak on input l
-ine 106.
+ine 108.
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls1stixfrak.fd
 File: ls1stixfrak.fd 2015/04/17 v1.1.2-latex STIX fraktur LS1 font definitions
 )
 LaTeX Font Info:    Trying to load font information for LS1+stixbb on input lin
-e 106.
+e 108.
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls1stixbb.fd
 File: ls1stixbb.fd 2015/04/17 v1.1.2-latex STIX blackboard LS1 font definitions
 
 )
 LaTeX Font Info:    Trying to load font information for LS2+stixcal on input li
-ne 106.
+ne 108.
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls2stixcal.fd
 File: ls2stixcal.fd 2015/04/17 v1.1.2-latex STIX calligraphic LS2 font definiti
 ons
 )
 LaTeX Font Info:    Trying to load font information for LS1+stixsf on input lin
-e 106.
+e 108.
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls1stixsf.fd
 File: ls1stixsf.fd 2015/04/17 v1.1.2-latex STIX sans-serif LS1 font definitions
 
 )
 LaTeX Font Info:    Trying to load font information for LS2+stixtt on input lin
-e 106.
+e 108.
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls2stixtt.fd
 File: ls2stixtt.fd 2015/04/17 v1.1.2-latex STIX typewriter LS2 font definitions
 
 )
-Overfull \hbox (123.62721pt too wide) detected at line 106
+Overfull \hbox (123.62721pt too wide) detected at line 108
 []
  []
 
 (Paramter_fitting.abs)
-<thumbnails/cas-email.jpeg, id=82, 225.84375pt x 225.84375pt>
+<thumbnails/cas-email.jpeg, id=110, 225.84375pt x 225.84375pt>
 File: thumbnails/cas-email.jpeg Graphic file (type jpg)
 <use thumbnails/cas-email.jpeg>
-Package pdftex.def Info: thumbnails/cas-email.jpeg  used on input line 106.
+Package pdftex.def Info: thumbnails/cas-email.jpeg  used on input line 108.
 (pdftex.def)             Requested size: 7.99838pt x 8.0pt.
 LaTeX Font Info:    Trying to load font information for T1+zi4 on input line 10
-6.
+8.
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/inconsolata\t1zi4.fd
 File: t1zi4.fd 2018/01/14 T1/zi4 (Inconsolata)
 )
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 6.80005pt on input line 106.
+(Font)              scaled to size 6.80005pt on input line 108.
  (Sections/Model.tex
 Overfull \hbox (23.48555pt too wide) in paragraph at lines 5--12
 []|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [
@@ -1420,7 +1420,7 @@ File: t1cmss.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 
 pdfTeX warning: pdflatex (file ./Figures/SFE_draft.pdf): PDF inclusion: found P
 DF version <1.7>, but at most version <1.5> allowed
-<Figures/SFE_draft.pdf, id=114, 963.6pt x 542.025pt>
+<Figures/SFE_draft.pdf, id=142, 963.6pt x 542.025pt>
 File: Figures/SFE_draft.pdf Graphic file (type pdf)
 <use Figures/SFE_draft.pdf>
 Package pdftex.def Info: Figures/SFE_draft.pdf  used on input line 74.
@@ -1463,63 +1463,139 @@ S1/stix/m/n/10 .\LS1/stix/m/it/10 t\LS1/stix/m/n/10 /\LS1/stix/m/it/10 ; [][]\L
 S1/stix/m/n/10 .\LS1/stix/m/it/10 t\LS1/stix/m/n/10 //$
  []
 
-[3]
-Overfull \hbox (25.1578pt too wide) in paragraph at lines 156--158
-[]\T1/stix/m/n/10 The inter-particle dif-fu-sion co-ef-fi-cient $[][]\LS1/stix/
-m/n/10 .[][].\LS1/stix/m/it/10 t; z\LS1/stix/m/n/10 /\LS1/stix/m/it/10 ; [][]\L
-S1/stix/m/n/10 .\LS1/stix/m/it/10 t\LS1/stix/m/n/10 /\LS1/stix/m/it/10 ; [][]\L
-S1/stix/m/n/10 .\LS1/stix/m/it/10 t\LS1/stix/m/n/10 //$
- []
-
-
-Underfull \hbox (badness 1325) in paragraph at lines 156--158
-[][]\LS1/stix/m/n/10 .[][].\LS1/stix/m/it/10 t; z\LS1/stix/m/n/10 //$ \T1/stix/
-m/n/10 come from the lab-o-ra-tory ex-per-i-ments. The
- []
-
-
-Overfull \hbox (0.9626pt too wide) detected at line 186
+<Figures/Compressibility.pdf, id=190, 794.97pt x 614.295pt>
+File: Figures/Compressibility.pdf Graphic file (type pdf)
+<use Figures/Compressibility.pdf>
+Package pdftex.def Info: Figures/Compressibility.pdf  used on input line 160.
+(pdftex.def)             Requested size: 494.50888pt x 170.29396pt.
+<Figures/RHO.pdf, id=192, 794.97pt x 614.295pt>
+File: Figures/RHO.pdf Graphic file (type pdf)
+<use Figures/RHO.pdf>
+Package pdftex.def Info: Figures/RHO.pdf  used on input line 166.
+(pdftex.def)             Requested size: 494.50888pt x 170.29396pt.
+<Figures/CP.pdf, id=194, 794.97pt x 614.295pt>
+File: Figures/CP.pdf Graphic file (type pdf)
+<use Figures/CP.pdf>
+Package pdftex.def Info: Figures/CP.pdf  used on input line 172.
+(pdftex.def)             Requested size: 494.50888pt x 170.29396pt.
+[3] [4 <./Figures/Compressibility.pdf> <./Figures/RHO.pdf> <./Figures/CP.pdf>]
+Overfull \hbox (0.9626pt too wide) detected at line 219
 []
  []
 
 
-LaTeX Warning: Reference `discretization' on page 4 undefined on input line 190
+LaTeX Warning: Reference `discretization' on page 5 undefined on input line 223
 .
 
-) [4] (Paramter_fitting.bbl
+) (Sections/Low_mach_number_expansion.tex
+Overfull \hbox (24.56099pt too wide) detected at line 15
+ $\LS1/stix/m/it/8 ^^Z[] \LS1/stix/m/n/8 = \LS1/stix/m/it/8 ^^Z [] ;  V[] \LS1/
+stix/m/n/8 = []\LS1/stix/m/it/8 V []  T[] \LS1/stix/m/n/8 = \LS1/stix/m/it/8 T 
+[] ;  k[] \LS1/stix/m/n/8 = \LS1/stix/m/it/8 ^^Pk\LS1/stix/m/n/8 .\LS1/stix/m/i
+t/8 ^^Z[]; T\LS1/stix/m/n/8 /$ 
+ []
+
+[5]
+Overfull \hbox (23.61758pt too wide) detected at line 64
+[]
+ []
+
+
+Overfull \hbox (21.5376pt too wide) detected at line 94
+[]
+ []
+
+
+Overfull \hbox (23.82063pt too wide) detected at line 124
+ $\LS1/stix/m/it/8 ^^ZA[] [] \LS1/stix/m/n/8 + \LS1/stix/m/it/8 e [] \LS1/stix/
+m/n/8 *[] [] + \LS1/stix/m/it/8 P[][] \LS1/stix/m/n/8 = 0$ 
+ []
+
+
+Overfull \hbox (0.9864pt too wide) in paragraph at lines 160--161
+[]\T1/stix/m/n/10 In one-dimensional case, the equa-tion [][]16[][] be-come equ
+iv-
+ []
+
+) [6] (Sections/Parameter_estimation.tex
+
+LaTeX Font Warning: Command \normalsize invalid in math mode on input line 73.
+
+
+LaTeX Font Warning: Command \normalsize invalid in math mode on input line 73.
+
+
+LaTeX Font Warning: Command \normalsize invalid in math mode on input line 73.
+
+
+LaTeX Font Warning: Command \normalsize invalid in math mode on input line 73.
+
+
+LaTeX Font Warning: Command \normalsize invalid in math mode on input line 73.
+
+
+LaTeX Font Warning: Command \normalsize invalid in math mode on input line 73.
+
+
+Overfull \hbox (23.08676pt too wide) detected at line 73
+[]
+ []
+
+[7
+
+]
+Underfull \hbox (badness 1199) in paragraph at lines 125--126
+\T1/stix/m/n/10 be-cause it's con-stant with re-spect to the max-i-miza-tion.
+ []
+
+)
+<Figures/Results_estimation/Yield.pdf, id=329, 794.97pt x 614.295pt>
+File: Figures/Results_estimation/Yield.pdf Graphic file (type pdf)
+<use Figures/Results_estimation/Yield.pdf>
+Package pdftex.def Info: Figures/Results_estimation/Yield.pdf  used on input li
+ne 140.
+(pdftex.def)             Requested size: 494.50888pt x 382.13373pt.
+<Figures/Results_estimation/Profiles.pdf, id=331, 794.97pt x 614.295pt>
+File: Figures/Results_estimation/Profiles.pdf Graphic file (type pdf)
+<use Figures/Results_estimation/Profiles.pdf>
+Package pdftex.def Info: Figures/Results_estimation/Profiles.pdf  used on input
+ line 146.
+(pdftex.def)             Requested size: 494.50888pt x 382.13373pt.
+ [8] [9 <./Figures/Results_estimation/Yield.pdf>] [10 <./Figures/Results_estima
+tion/Profiles.pdf>] (Paramter_fitting.bbl
 LaTeX Font Info:    Trying to load font information for TS1+stix on input line 
 19.
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ts1stix.fd
 File: ts1stix.fd 2015/04/17 v1.1.2-latex STIX TS1 font definitions
 ))
-[5
+[11
 
 
 ] (Sections/Gouverning_equation_derivation.tex
-Overfull \hbox (25.89073pt too wide) detected at line 66
+Overfull \hbox (0.99298pt too wide) detected at line 68
 []
  []
 
 
-Underfull \hbox (badness 1142) in paragraph at lines 69--70
+Underfull \hbox (badness 1142) in paragraph at lines 71--72
 []\T1/stix/m/n/10 In the limit as $\LS1/stix/m/it/10 dz$ \T1/stix/m/n/10 be-com
 es very small, the terms
  []
 
 
-Underfull \hbox (badness 1584) in paragraph at lines 69--70
+Underfull \hbox (badness 1584) in paragraph at lines 71--72
 \T1/stix/m/n/10 terms in-volv-ing only one dif-fer-en-tial. Hence, all terms
  []
 
 
 LaTeX Font Warning: Command \footnotesize invalid in math mode on input line 11
-4.
+7.
 
-[6
+[12
 
 ]
-Overfull \hbox (7.98909pt too wide) detected at line 145
+Overfull \hbox (7.98909pt too wide) detected at line 148
  $[][] \LS1/stix/m/it/8 J[] \LS1/stixscr/m/n/8 ^^L [] [][] \LS1/stix/m/n/8 = []
 [] (\LS1/stix/m/it/8 J[]dV[] \LS1/stix/m/n/8 = ( [][] \LS1/stix/m/it/8 J[]dV[] 
 \LS1/stix/m/n/8 = ( []$  
@@ -1527,42 +1603,62 @@ Overfull \hbox (7.98909pt too wide) detected at line 145
 
 
 LaTeX Font Warning: Command \footnotesize invalid in math mode on input line 16
-4.
+7.
 
 
 
 pdfTeX warning: pdflatex (file ./Figures//Forces.pdf): PDF inclusion: found PDF
  version <1.7>, but at most version <1.5> allowed
-<Figures//Forces.pdf, id=217, 205.72859pt x 191.7564pt>
+<Figures//Forces.pdf, id=436, 205.72859pt x 191.7564pt>
 File: Figures//Forces.pdf Graphic file (type pdf)
 <use Figures//Forces.pdf>
-Package pdftex.def Info: Figures//Forces.pdf  used on input line 216.
+Package pdftex.def Info: Figures//Forces.pdf  used on input line 219.
 (pdftex.def)             Requested size: 238.25444pt x 222.08058pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[7 <./Figures//Forces.pdf>]
-Underfull \hbox (badness 1038) in paragraph at lines 288--289
+[13 <./Figures//Forces.pdf>]
+Underfull \hbox (badness 1038) in paragraph at lines 291--292
 []\T1/stix/m/n/10 Expanding the deriva-tives on the left-hand size of
  []
 
-) [8
 
-] [9] (Paramter_fitting.aux)
+LaTeX Font Warning: Command \footnotesize invalid in math mode on input line 32
+4.
+
+
+Overfull \hbox (0.78976pt too wide) detected at line 353
+ $[] [][] \LS1/stix/m/it/8 ^^Z[] [] d\LS2/stixcal/m/n/8 V[] \LS1/stix/m/n/8 + [
+][] \LS1/stix/m/it/8 ^^Z[] [] [] \LS1/stixscr/m/n/8 ^^L [] \LS1/stix/m/n/8 = * 
+[][] [] \LS1/stixscr/m/n/8 ^^L []$  
+ []
+
+
+Overfull \hbox (14.48483pt too wide) detected at line 363
+[]
+ []
+
+
+LaTeX Font Warning: Command \footnotesize invalid in math mode on input line 42
+5.
+
+) (Sections/Bayes_Theorem.tex [14] [15]) [16
+
+] [17] (Paramter_fitting.aux)
 
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `Paramter_fitting.out' has not changed.
-(rerunfilecheck)             Checksum: 860CF2A2978E9FB9A30AC073FD1E1E5A;2875.
+(rerunfilecheck)             Checksum: 93CC51925570776C4500E097A360DF65;4167.
  ) 
 Here is how much of TeX's memory you used:
- 30604 strings out of 478847
- 541469 string characters out of 2848486
- 907678 words of memory out of 3000000
- 47789 multiletter control sequences out of 15000+600000
- 527680 words of font info for 177 fonts, out of 8000000 for 9000
+ 30799 strings out of 478847
+ 545673 string characters out of 2848486
+ 887719 words of memory out of 3000000
+ 47878 multiletter control sequences out of 15000+600000
+ 530445 words of font info for 178 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,26n,131p,1724b,893s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 84i,26n,131p,1724b,916s stack positions out of 5000i,500n,10000p,200000b,80000s
 {C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/stix/stix-ts
 1.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/cm-super/cm-super-t1.enc}{C:/Use
 rs/sliczno1/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/stix/stix-t1.enc}{C:/
@@ -1579,12 +1675,15 @@ ers/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix/stix-mathbb.
 pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix/st
 ix-mathcal.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/pub
 lic/stix/stix-mathex.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts
-/type1/public/stix/stix-mathit.pfb><C:/Users/sliczno1/AppData/Local/Programs/Mi
-KTeX/fonts/type1/public/stix/stix-mathrm.pfb><C:/Users/sliczno1/AppData/Local/P
-rograms/MiKTeX/fonts/type1/public/stix/stix-mathscr.pfb>
-Output written on Paramter_fitting.pdf (9 pages, 450606 bytes).
+/type1/public/stix/stix-mathit-bold.pfb><C:/Users/sliczno1/AppData/Local/Progra
+ms/MiKTeX/fonts/type1/public/stix/stix-mathit.pfb><C:/Users/sliczno1/AppData/Lo
+cal/Programs/MiKTeX/fonts/type1/public/stix/stix-mathrm.pfb><C:/Users/sliczno1/
+AppData/Local/Programs/MiKTeX/fonts/type1/public/stix/stix-mathscr.pfb><C:/User
+s/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix/stix-mathsf.pf
+b>
+Output written on Paramter_fitting.pdf (17 pages, 935053 bytes).
 PDF statistics:
- 353 PDF objects out of 1000 (max. 8388607)
- 82 named destinations out of 1000 (max. 500000)
- 186 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 662 PDF objects out of 1000 (max. 8388607)
+ 173 named destinations out of 1000 (max. 500000)
+ 297 words of extra memory for PDF output out of 10000 (max. 10000000)
 

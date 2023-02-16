@@ -181,7 +181,7 @@ By collecting a random sample of values of the random variable $y$ and selecting
 					&\text{subject to}
 					& \dot{x} = f(t,x,\theta) \\
 					&& \dot{\theta} = 0 \\
-					&& y = g(x)
+					&& y = y(x)
 				\end{aligned}
 		\end{equation} }
 		
@@ -210,6 +210,8 @@ By collecting a random sample of values of the random variable $y$ and selecting
 		where $\rho^2_{\hat{\theta}}$ is the matrix of correlation coefficients.
 		
 		Maximum likelihood estimates are not necessarily unbiased. Maximum likelihood estimates, however are efficient and, hence, consistent estimates. Furthermore, where a sufficient estimate can be obtained, the maximum likelihood method will obtain it. Finally, if $\hat{\theta}$ is a maximum likelihood estimator of $\theta$, the $f\left( \hat{\theta} \right)$ is a maximum likelihood estimator of $f\left( \theta \right)$, a function of $\theta$.
+		
+		\iffalse
 		
 		\hrule
 		
@@ -424,5 +426,7 @@ By collecting a random sample of values of the random variable $y$ and selecting
 										%
 										%Notice that we dropped some of the constants (with respect to $\theta$) and factored to simplify the expression. You can see this is the same expression as Equation \ref{EQ: MAP_L2} (L2 Regularization) with $\lambda_{L2}$. We can adjust the amount of regularization we want by changing $\lambda_{L2}$. Equivalently, we can adjust how much we want to weight the priors carry on the coefficients ($\theta$). If we have a very small variance (large $\lambda_{L2}$) then the coefficients will be very close to 0; if we have a large variance (small $\lambda_{L2}$) then the coefficients will not be affected much (similar to as if we didn't have any regularization).
 
+
+	\fi
 
 \end{document}

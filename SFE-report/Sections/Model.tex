@@ -20,7 +20,7 @@
 		
 		The heat balance (Eq. \ref{Model_heat}) consists of the convective and diffusive terms. It follows the assumption of a pseudo-homogeneous phase, which properties are the mean between fluid and solid phases. We consider no heat loss through the wall, and there is no heat generation in the system. Therefore, the temperature of the extractor can be changed only by manipulating the temperature of the inlet stream $T_{In}(t)$.
 		
-		We assume that at a given section, where the cross-sectional area is $A$, the flow properties are uniform across that section. Hence, although the are of an extractor changes  as a function of a distance along an extractor (e.g. if a fixed fill an extractor partially), $z$, and therefore in reality the flow field is two-dimensional (the flow varies in the two-dimensional space), we make the assumption that the flow properties vary only with $z$; this is tantamount to assuming uniform properties across any given cross section. Such flow is defined as quasi-one-dimensional flow.
+		We assume that at a given section, where the cross-sectional area is $A$, the flow properties are uniform across that section. Hence, although the area of an extractor changes  as a function of a distance along an extractor (e.g. if a fixed fill an extractor partially), $z$, and therefore in reality the flow field is two-dimensional (the flow varies in the two-dimensional space), we make the assumption that the flow properties vary only with $z$; this is tantamount to assuming uniform properties across any given cross section. Such flow is defined as quasi-one-dimensional flow.
 		
 	}
 	
@@ -48,8 +48,8 @@
 	{\footnotesize
 		\begin{align} 
 			\label{Model_fluid}
-			\cfrac{\partial {\color{blue}c_f}(t,z)}{\partial t} &	=  \underbrace{-\cfrac{1}{ {\color{magenta}\varepsilon A}}\cfrac{{\color{red}F}(t)}{{\color{orange}\rho_f}\left[{\color{blue}T}(t,z),{\color{red}P}(t)\right]} \cfrac{\partial {\color{blue}c_f}(t,z)}{\partial {\color{blue}z}}}_{\text{Convective term}} \nonumber \\
-			&+ \underbrace{ {\color{orange}D^M_e}\left[{\color{blue}T}(t,z),{\color{red}P}(t),{\color{red}F}(t)\right] \cfrac{\partial^2 {\color{blue}c_f}(t,z)}{\partial {\color{blue}z^2}} }_{\text{Diffusive term}} 
+			\cfrac{\partial {\color{blue}c_f}(t,z)}{\partial t} &	=  \underbrace{- \cfrac{u}{\varepsilon} \cfrac{\partial {\color{blue}c_f}(t,z)}{\partial {\color{blue}z}}}_{\text{Convective term}} - \underbrace{ \cfrac{ {\color{blue}c_f}(t,z) }{\varepsilon} \cfrac{\partial {\color{blue}u}(t,z)}{\partial {\color{blue}z}}}_{\text{Convective term}} \nonumber \\
+			&+ \underbrace{ \cfrac{ {\color{orange}D^M_e} }{\varepsilon} \left[{\color{blue}T}(t,z),{\color{red}P}(t),{\color{red}F}(t)\right] \cfrac{\partial^2 {\color{blue}c_f}(t,z)}{\partial {\color{blue}z^2}} }_{\text{Diffusive term}} 
 			+ \underbrace{ \cfrac{1-{\color{magenta}\varepsilon}}{{\color{magenta}\varepsilon}} {\color{blue}r_e}(t,z) }_{\text{Kinetic term}} 
 	\end{align} }
 	
@@ -118,7 +118,7 @@
 			
 			\subsubsection{Heat balance} \label{CH: heat_balance}
 			\sout{The heat balance equation (Eq.  \ref{Model_heat}) was developed, assuming the existence of a pseudo-homogeneous phase, which properties are the mean between fluid and solid phases (the amount of solute is considered small enough not to affect the overall heat balance). Equation \ref{Model_heat} contains the convection and the diffusion terms. It is considered that there is no heat loss through the wall, and there is no heat generation in the system. The temperature of the extractor can be changed only by increasing the temperature of the inlet stream. The pseudo-homogenous phase is assumed to flow only in the axial direction. 
-				The numerator of the factor in front of the convection term of the heat equation contains only the specific heat of the fluid ${\color{orange}C_p}({\color{blue}T}(t,z),{\color{red}P}(t))$ because the solid phase is stationary. Therefore, this factor can be understood as the fraction of the fluid's total heat through convection. On the other hand, the axial heat diffusion is calculated based on the definition of thermal diffusivity for the fluid, as explained in the appendix. }
+			The numerator of the factor in front of the convection term of the heat equation contains only the specific heat of the fluid ${\color{orange}C_p}({\color{blue}T}(t,z),{\color{red}P}(t))$ because the solid phase is stationary. Therefore, this factor can be understood as the fraction of the fluid's total heat through convection. On the other hand, the axial heat diffusion is calculated based on the definition of thermal diffusivity for the fluid, as explained in the appendix. }
 			
 			{\color{blue} The heat balance (Eq. \ref{Model_heat}), is based on \citet{Srinivasan2012}, and consists of convective and diffusive terms. It follows the assumption of a pseudo-homogeneous phase, which properties are the mean between fluid and solid phases. It is considered that there is no heat loss through the walls, and there is no heat generation in the system. The temperature of the extractor can be changed only by manipulating the temperature of the inlet stream ${\color{red}T_{Inlet}}(t)$.
 			}
@@ -135,26 +135,59 @@
 			where $ {\color{orange}D^M_e}({\color{blue}T}(t,z),{\color{red}P}(t),{\color{red}F}(t))$ is the axial mass diffusion coefficient, ${\color{orange}C_p}({\color{blue}T}(t,z),{\color{red}P}(t))$ is the fluid's specific heat, ${\color{magenta}C_{ps}}$ is the specific heat of the solid phase, ${\color{orange}D^T_e}({\color{blue}T}(t,z),{\color{red}P}(t),{\color{red}F}(t))$ is the axial heat diffusion coefficient.
 			
 			\subsubsection{Extraction yield} \label{CH: Yield}
-			\sout{The efficiency of the process (the yield) is calculated according to equation \ref{Model_measurment}. The yield is defined as the ratio between a difference of initial solute's mass in the solid phase ${\color{magenta}m_0}$, and an actual amount of solute in the same phase ${\color{blue}m}$, compared to the initial amount of the solute in the fixed bed ${\color{magenta}m_0}$. The yield can also be calculated based on the change of solutes concentration in the solid phase if the volume of the extractor ${\color{magenta}V}$ is constant.
-				An output function ${\color{blue}y}(t)$ returns a yield curve that represents the fraction of the solute's mass over time. The yield is obtained by function ${\color{blue}g}({\color{blue}q}(t,z))$. Function ${\color{blue}g}({\color{blue}q}(t,z))$ corresponds to a 'measurement device' that allows to calculate the yield based on the state variable ${\color{blue}q}(t,z)$. }
-			{\color{blue}The efficiency of the process (the yield) is calculated according to Eq. \ref{Model_measurment}, and is based on the change of solute's mass in the solid phase. It is defined as ratio the ratio between the difference of its initial value ${\color{magenta}m_0}$ and the actual value ${\color{blue}m}(t,z)$, compared to the initial one. The yield can also be calculated based on the change of solutes concentration in the solid phase if the volume of the extractor ${\color{magenta}V}$ is constant.}
 			
+			The efficiency of the process (the yield) is calculated according to one of Eq. \ref{Model_measurment}, which evaluates the mass of solute at the exit of the extraction unit and sums it. The integral form of the measurement equation can be transformed into the differential form, and augmented with model equations to be solved simultaneously.
 			
 			{\footnotesize
 				\begin{align} 
 					\label{Model_measurment}
-					{\color{blue}y}(t) ={\color{blue}g}({\color{blue}q}(t,z)) &= \cfrac{ \left({\color{magenta}m_0} - {\color{blue}m}({\color{blue}q}(t,z)) \right) }{{\color{magenta}m_0}} = \cfrac{ {\color{magenta}V} \left({\color{magenta}q_0} - {\color{blue}q}(t,z) \right) }{{\color{magenta}V q_0}} 
+					y(t) \left[ kg \right] &= \int_{t_0}^{t_f} Q(t,z) \left[ \cfrac{m^3}{s} \right] c_f(t,z) \biggr\rvert_{z=L} \left[ \cfrac{kg}{m^3} \right] dt \left[ s \right] \\
+					y(t) \left[ kg \right] &= \int_{t_0}^{t_f} \cfrac{F(t)}{\rho(t,z)} \left[ \cfrac{kg}{s} \left( \cfrac{kg}{m^3} \right)^{-1} \right] c_f(t,z) \biggr\rvert_{z=L} \left[ \cfrac{kg}{m^3} \right] dt \left[ s \right] 	\\
+					\cfrac{dy}{dt} \left[ \cfrac{kg}{s} \right] &= Q(t,z) \left[ \cfrac{m^3}{s} \right] c_f(t,z) \biggr\rvert_{z=L} \left[ \cfrac{kg}{m^3} \right]  \\
+					\cfrac{dy}{dt} \left[ \cfrac{kg}{s} \right] &= \cfrac{F(t)}{\rho(t,z)} \left[ \cfrac{kg}{s} \left( \cfrac{kg}{m^3} \right)^{-1} \right] c_f(t,z) \biggr\rvert_{z=L} \left[ \cfrac{kg}{m^3} \right]
 			\end{align}	}
 			
-			\sout{where ${\color{blue}q}(t,z)$ is concentration of solute in a solid phase and a temperature, respectively. ${\color{magenta}m_0}$ is a initial mass of the solute in the solid phase, ${\color{magenta}q_0}$ is a  initial concentration of the solute in the solid phase, ${\color{magenta}V}$ is an extractor volume.}
+			\subsubsection{Thermodynamic} \label{CH: Thermodynamic}
+			%{\color{blue}The Peng-Robinson equation of state is used to describe the thermodynamics of the fluid phase. The thermal properties of the pseudo-homogeneous phase are assumed to vary along the extractor, though always remaining equal to the corresponding mean values between the fluid and solid phase. }
+			
+			%In the process model, properties of the supercritical fluid such as the density ${\color{orange}\rho} ({\color{blue}T}(t,z),{\color{red}P}(t))$, the specific heat ${\color{orange}C_p}({\color{blue}T}(t,z),{\color{red}P}(t))$, the thermal conductivity ${\color{orange}k^T}({\color{blue}T}(t,z),{\color{red}P}(t))$, or the viscosity ${\color{orange}\eta}({\color{blue}T}(t,z),{\color{red}P}(t))$ are calculated based on the local temperatures along the fixed bed and the pressure. The Peng-Robinson equation of state is used to find values of a ${\color{orange}\rho} ({\color{blue}T}(t,z),{\color{red}P}(t))$ and ${\color{orange}C_p}({\color{blue}T}(t,z),{\color{red}P}(t))$.
+			
+			At standard atmospheric pressure and temperature, the $CO_2$ behaves as an ideal gas, and its compressibility factor equals to unity.  However, at high temperature and pressure, the compressibility factor varies from unity, due to real gas effects.  In order to predict this real gas effects, the Peng-Robinson equation of state (P-R EOS) is used to compute properties of $CO_2$. As the density is obtained from the continuity equation,store the P-R EOS can used to evaluate: compressibility, density and specific heat. The properties of the $CO_2$ computed as a function of operating conditions (temperature and pressure) are presented on fig. \ref{fig: SFE_Properties}
+			
+			\begin{figure*}[h!]
+				\begin{subfigure}[b]{\textwidth}
+					\centering
+					\includegraphics[trim = 2.9cm 7cm 3cm 7cm,clip,width=\textwidth]{Figures/Compressibility.pdf}	
+					\caption{The compressibility factor based on the Peng-Robinson equation of state}
+				\end{subfigure}
+				\hfill
+				\begin{subfigure}[b]{\textwidth}
+					\centering
+					\includegraphics[trim = 2.9cm 7cm 3cm 7cm,clip,width=\textwidth]{Figures/RHO.pdf}	
+					\caption{The fluid density based on the Peng-Robinson equation of state}
+				\end{subfigure}
+				\hfill
+				\begin{subfigure}[b]{\textwidth}
+					\centering
+					\includegraphics[trim = 2.9cm 7cm 3.cm 7cm,clip,width=\textwidth]{Figures/CP.pdf}	
+					\caption{The specific heat of the $CO_2$ based on the Peng-Robinson equation of state}
+				\end{subfigure}
+				\caption{Properties of $CO_2$ based on the equation of state}
+				\label{fig: SFE_Properties}
+			\end{figure*}
 			
 			\subsubsection{Dependencies} \label{CH: Dependencies}
-			{\color{blue}The Peng-Robinson equation of state is used to describe the thermodynamics of the fluid phase. The thermal properties of the pseudo-homogeneous phase are assumed to vary along the extractor, though always remaining equal to the corresponding mean values between the fluid and solid phase. }
+			%The inter-particle diffusion coefficient ${\color{orange}D^M_e}(\allowbreak{\color{blue}T}(t,z),{\color{red}P}(t),{\color{red}F}(t))$ is calculated from the empirical correlation, as the function of the Reynolds number ${\color{orange}R_e}({\color{blue}T}(t,z),{\color{red}P}(t),\allowbreak{\color{red}F}(t))$ and the Peclet's number ${\color{orange}P_e}({\color{blue}T}(t,z),\allowbreak{\color{red}P}(t),{\color{red}F}(t))$.
+			%The values of the internal diffusion ${\color{orange}D_i} ({\color{blue}T}(t,z))$ and the partition coefficient ${\color{orange}k_m} ({\color{blue}T}(t,z))$ come from the laboratory experiments. The expressions and the detailed information of the parameter fitting can be found in the appendix.
 			
-			In the process model, properties of the supercritical fluid such as the density ${\color{orange}\rho} ({\color{blue}T}(t,z),{\color{red}P}(t))$, the specific heat ${\color{orange}C_p}({\color{blue}T}(t,z),{\color{red}P}(t))$, the thermal conductivity ${\color{orange}k^T}({\color{blue}T}(t,z),{\color{red}P}(t))$, or the viscosity ${\color{orange}\eta}({\color{blue}T}(t,z),{\color{red}P}(t))$ are calculated based on the local temperatures along the fixed bed and the pressure. The Peng-Robinson equation of state is used to find values of a ${\color{orange}\rho} ({\color{blue}T}(t,z),{\color{red}P}(t))$ and ${\color{orange}C_p}({\color{blue}T}(t,z),{\color{red}P}(t))$.
+			TODO:
 			
-			The inter-particle diffusion coefficient ${\color{orange}D^M_e}(\allowbreak{\color{blue}T}(t,z),{\color{red}P}(t),{\color{red}F}(t))$ is calculated from the empirical correlation, as the function of the Reynolds number ${\color{orange}R_e}({\color{blue}T}(t,z),{\color{red}P}(t),\allowbreak{\color{red}F}(t))$ and the Peclet's number ${\color{orange}P_e}({\color{blue}T}(t,z),\allowbreak{\color{red}P}(t),{\color{red}F}(t))$.
-			The values of the internal diffusion ${\color{orange}D_i} ({\color{blue}T}(t,z))$ and the partition coefficient ${\color{orange}k_m} ({\color{blue}T}(t,z))$ come from the laboratory experiments. The expressions and the detailed information of the parameter fitting can be found in the appendix.
+			\begin{enumerate}
+				\item Viscosity
+				\item Thermal conductivity
+				\item Internal diffusion
+				\item Partition factor
+			\end{enumerate}
 			
 			\subsubsection{State-space representation} \label{CH: State_space}
 			It is assumed that the solvent is free of solute at the entrance of the extractor and that all the solid particles have the same initial solute content ${\color{magenta}q_0}$. Moreover, it is considered that the initial temperature of the extractor in every place is equal to ${\color{magenta}T_0}$. Therefore, the initial conditions employed in the simulation are:

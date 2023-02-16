@@ -68,7 +68,7 @@ function xdot = modelSFE_uniform_U(x, p, mask)
     %MU            =     Viscosity(TEMP,RHO);
 
     %% BC
-    Cf_0   = 0;
+    Cf_0   = if_else(F_u == 0, FLUID(1), 0);
     Cf_B   = FLUID(nstages_index);
 
     T_0    = T_u;
@@ -123,6 +123,7 @@ function xdot = modelSFE_uniform_U(x, p, mask)
     % Concentration of extract in fluid phase | 0
     
     - VELOCITY      ./  ( 1 - epsi .* mask ) .* dCfdz  + ...
+    - FLUID         ./  ( 1 - epsi .* mask ) .* dudz  + ...
       Dx            ./  ( 1 - epsi .* mask ) .* d2Cfdz2 +...
     (epsi.*mask)    ./  ( 1 - epsi .* mask ) .* (1 ./ mi ./ lp2 .* Di)  .* ( SOLID - FLUID .* (rho_s ./ km ./ RHO ) );
     %zeros(nstages_index,1);
