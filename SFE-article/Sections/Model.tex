@@ -6,7 +6,7 @@
 		
 		The extraction from a fixed bed is an unsteady process, implying that the solute concentrations in the solid and solvent phases vary over time and space. The convection and the diffusion of the mass and the heat are considered only in the axial direction. The radial distribution of such properties like a velocity is assumed to be flat in that direction. The assumption of the flat velocity profile allows considering a lack of back mixing. The pressure drop in the bed is assumed to be assumed to negligible. Under such conditions, the fluid flow can be considered a plug flow.
 		
-		Since the solute is assumed to be a single pseudo-component, there is only one mass balance equation for each phase (Eq. s \ref{Model_fluid} and \ref{Model_solid}). On the other hand, there is only one heat balance (Eq.  \ref{Model_heat}) because the presence of a single pseudo-phase is assumed.
+		Since the solute is assumed to be a single pseudo-component, there is only one mass balance equation for each phase (Eq.s \ref{Model_fluid} and \ref{Model_solid}). On the other hand, there is only one heat balance (Eq. \ref{Model_heat}) because the presence of a single pseudo-phase is assumed.
 		
 		Moreover, the process model does not consider the change of particle size or the void fraction during the process. The particles are assumed to be uniformly distributed along the bed and to have the same size.}
 	
@@ -146,48 +146,6 @@
 					\cfrac{dy}{dt} \left[ \cfrac{kg}{s} \right] &= Q(t,z) \left[ \cfrac{m^3}{s} \right] c_f(t,z) \biggr\rvert_{z=L} \left[ \cfrac{kg}{m^3} \right]  \\
 					\cfrac{dy}{dt} \left[ \cfrac{kg}{s} \right] &= \cfrac{F(t)}{\rho(t,z)} \left[ \cfrac{kg}{s} \left( \cfrac{kg}{m^3} \right)^{-1} \right] c_f(t,z) \biggr\rvert_{z=L} \left[ \cfrac{kg}{m^3} \right]
 			\end{align}	}
-			
-			\subsubsection{Thermodynamic} \label{CH: Thermodynamic}
-			%{\color{blue}The Peng-Robinson equation of state is used to describe the thermodynamics of the fluid phase. The thermal properties of the pseudo-homogeneous phase are assumed to vary along the extractor, though always remaining equal to the corresponding mean values between the fluid and solid phase. }
-			
-			%In the process model, properties of the supercritical fluid such as the density ${\color{orange}\rho} ({\color{blue}T}(t,z),{\color{red}P}(t))$, the specific heat ${\color{orange}C_p}({\color{blue}T}(t,z),{\color{red}P}(t))$, the thermal conductivity ${\color{orange}k^T}({\color{blue}T}(t,z),{\color{red}P}(t))$, or the viscosity ${\color{orange}\eta}({\color{blue}T}(t,z),{\color{red}P}(t))$ are calculated based on the local temperatures along the fixed bed and the pressure. The Peng-Robinson equation of state is used to find values of a ${\color{orange}\rho} ({\color{blue}T}(t,z),{\color{red}P}(t))$ and ${\color{orange}C_p}({\color{blue}T}(t,z),{\color{red}P}(t))$.
-			
-			At standard atmospheric pressure and temperature, the $CO_2$ behaves as an ideal gas, and its compressibility factor equals to unity.  However, at high temperature and pressure, the compressibility factor varies from unity, due to real gas effects.  In order to predict this real gas effects, the Peng-Robinson equation of state (P-R EOS) is used to compute properties of $CO_2$. As the density is obtained from the continuity equation,store the P-R EOS can used to evaluate: compressibility, density and specific heat. The properties of the $CO_2$ computed as a function of operating conditions (temperature and pressure) are presented on fig. \ref{fig: SFE_Properties}
-			
-			\begin{figure*}[h!]
-				\begin{subfigure}[b]{\textwidth}
-					\centering
-					\includegraphics[trim = 2.9cm 7cm 3cm 7cm,clip,width=\textwidth]{Figures/Compressibility.pdf}	
-					\caption{The compressibility factor based on the Peng-Robinson equation of state}
-				\end{subfigure}
-				\hfill
-				\begin{subfigure}[b]{\textwidth}
-					\centering
-					\includegraphics[trim = 2.9cm 7cm 3cm 7cm,clip,width=\textwidth]{Figures/RHO.pdf}	
-					\caption{The fluid density based on the Peng-Robinson equation of state}
-				\end{subfigure}
-				\hfill
-				\begin{subfigure}[b]{\textwidth}
-					\centering
-					\includegraphics[trim = 2.9cm 7cm 3.cm 7cm,clip,width=\textwidth]{Figures/CP.pdf}	
-					\caption{The specific heat of the $CO_2$ based on the Peng-Robinson equation of state}
-				\end{subfigure}
-				\caption{Properties of $CO_2$ based on the equation of state}
-				\label{fig: SFE_Properties}
-			\end{figure*}
-			
-			\subsubsection{Dependencies} \label{CH: Dependencies}
-			%The inter-particle diffusion coefficient ${\color{orange}D^M_e}(\allowbreak{\color{blue}T}(t,z),{\color{red}P}(t),{\color{red}F}(t))$ is calculated from the empirical correlation, as the function of the Reynolds number ${\color{orange}R_e}({\color{blue}T}(t,z),{\color{red}P}(t),\allowbreak{\color{red}F}(t))$ and the Peclet's number ${\color{orange}P_e}({\color{blue}T}(t,z),\allowbreak{\color{red}P}(t),{\color{red}F}(t))$.
-			%The values of the internal diffusion ${\color{orange}D_i} ({\color{blue}T}(t,z))$ and the partition coefficient ${\color{orange}k_m} ({\color{blue}T}(t,z))$ come from the laboratory experiments. The expressions and the detailed information of the parameter fitting can be found in the appendix.
-			
-			TODO:
-			
-			\begin{enumerate}
-				\item Viscosity
-				\item Thermal conductivity
-				\item Internal diffusion
-				\item Partition factor
-			\end{enumerate}
 			
 			\subsubsection{State-space representation} \label{CH: State_space}
 			It is assumed that the solvent is free of solute at the entrance of the extractor and that all the solid particles have the same initial solute content ${\color{magenta}q_0}$. Moreover, it is considered that the initial temperature of the extractor in every place is equal to ${\color{magenta}T_0}$. Therefore, the initial conditions employed in the simulation are:
