@@ -1,0 +1,175 @@
+\documentclass[../Parameter_fitting.tex]{subfiles}
+\graphicspath{{\subfix{../Figures/}}}
+\begin{document}
+	
+	As discussed by \citet{Lions2013}, the low Mach number equations are a subset of the fully compressible equations of motion (continuity, momentum and energy). Such a set of equations allow for large variations in gas density but it is consider to be acoustically incompressible. The low Mach number equations are preferred over the full compressible equations for low speed flow problems $\left( M_a = \cfrac{|V|}{\sqrt{ \partial P / \partial \rho }} \ll 1 \right)$ to avoids the need to resolve fast-moving acoustic signals. The equations are derived from the compressible equations based on the perturbation theory. The perturbation theory develops an expression for the desired solution in terms of a formal power series known as a perturbation series in some "small" parameter $\zeta$, that quantifies the deviation from the exactly solvable problem. The leading term in this power series is the solution of the exactly solvable problem, while further terms describe the deviation in the solution, due to the deviation from the initial problem. 
+	
+	The equations {\color{red}RED} describe the fully compressible equations of motion (respectively the transport of mass, momentum and energy) for quasi-one-dimensional case. We rescale the time variable, considering finally 
+	
+	{\footnotesize
+		\begin{equation*}
+			\rho_\zeta 	= \rho\left( z, t/M_a \right), \quad
+			V_\zeta 	= \cfrac{1}{\zeta} V\left( z, t/M_a \right) \quad
+			T_\zeta 	= T\left( z, t/M_a \right),  \quad 
+			k_\zeta 	= \zeta k(\rho_f, T) 
+		\end{equation*} 
+	}
+	
+	The conservative non-dimensional equations of motion becomes
+	
+	{\footnotesize
+		\begin{align*}
+			\cfrac{\partial \left( \rho_\zeta A_f \right)}{\partial t} &+ \cfrac{\partial \left( \rho_\zeta A_f V_\zeta \right)}{\partial z} = 0 \\
+			\cfrac{\partial \left( \rho_\zeta A_f V_\zeta \right) }{\partial t}	&+ \cfrac{\partial \left( \rho_\zeta V_\zeta A_f V_\zeta \right)}{\partial z} + \cfrac{A_f}{M_a^2} \cfrac{\partial P_\zeta}{\partial z} = 0\\
+			\cfrac{\partial \left( \rho_\zeta e_\zeta A_f \right) }{\partial t} &+ \cfrac{\partial \left( \rho_\zeta e_\zeta V_\zeta A_f \right)}{\partial z} - \cfrac{\partial}{\partial z} \left( k \cfrac{\partial T_\zeta}{\partial z} \right) + P_\zeta \cfrac{\partial A_f V_\zeta}{\partial z} = 0
+		\end{align*}
+	}
+
+	Let's define $\zeta=M_a^2$ and assume small Mach numbers, $M_a \ll 1$, then the kinetic energy, viscous work, and gravity work terms can be neglected in the energy equation since those terms are scaled by the square of the Mach number. The inverse of Mach number squared remains in the momentum equations, suggesting singular behaviour. In order to explore the singularity, the pressure, velocity and temperature are expanded as asymptotic series in terms of the parameter $\zeta$
+	
+	{\footnotesize
+		\begin{align*}
+			P_\zeta 	& = P_0 	+ P_1 \zeta		+ P_2 \zeta^2 		+ \mathcal{O}(\zeta^3) \\
+			\rho_\zeta 	& = \rho_0	+ \rho_1 \zeta	+ \mathcal{O}(\zeta^2) \\
+			V_\zeta 	& = V_0		+ V_1 \zeta 	+ \mathcal{O}(\zeta^2) \\
+			T_\zeta 	& = T_0 	+ T_1 \zeta 	+ \mathcal{O}(\zeta^2) \\
+			e_\zeta 	& = e_0 	+ e_1 \zeta 	+ \mathcal{O}(\zeta^2) \\
+		\end{align*}
+	}
+
+	 By expanding performing power expansion on the continuity equation and taking the limit of $\zeta$ from the positive side we get
+	 
+	 {\footnotesize
+	 	\begin{align*}
+	 		& \lim_{\zeta \rightarrow 0_+} \cfrac{\partial \left( \left( \rho_0	+ \rho_1 \zeta	+ \mathcal{O}(\zeta^2) \right) A_f \right)}{\partial t} + \\
+	 		&+ \cfrac{\partial \left(  \left(  \rho_0 + \rho_1 \zeta + \mathcal{O}(\zeta^2) \right) A_f \left( V_0	+V_1 \zeta 	+ \mathcal{O}(\zeta^2) \right) \right) }{\partial z} = 0
+	 	\end{align*}
+	 }
+ 
+	The continuity equation become
+	
+		 {\footnotesize
+		\begin{equation}
+			\cfrac{\partial \left( \rho_0 A_f \right)}{\partial t} + \cfrac{\partial \left( \rho_0 A_f V_0 \right)}{\partial z} = 0
+		\end{equation}
+	}
+
+	The form of the continuity equation stays the same. Considering the momentum equation, it can be seen that the inverse of Mach number squared remains which suggests singular behavior. 
+	
+	{\footnotesize
+		\begin{align*}
+		 & \lim_{\zeta \rightarrow 0_+} \cfrac{\partial \left(  \left(  \rho_0 + \rho_1 \zeta + \mathcal{O}(\zeta^2) \right) A_f \left( V_0	+V_1 \zeta 	+ \mathcal{O}(\zeta^2) \right) \right) }{\partial t} + \\
+		 &+ \cfrac{\partial \left(  \left(  \rho_0	+ \rho_1 \zeta	+ \mathcal{O}(\zeta^2) \right) A_f \left( V_0	+ V_1 \zeta 	+ \mathcal{O}(\zeta^2) \right) \left( V_0	+ V_1 \zeta + \mathcal{O}(\zeta^2) \right) \right) }{\partial z} + \\
+		 &+ A_f \cfrac{\partial }{\partial z} \left(  \cfrac{P_0}{M_a^2}	+ \cfrac{P_1 \zeta}{M_a^2}	+ \cfrac{P_2 \zeta^2}{M_a^2} + \mathcal{O}(\zeta^3) \right)
+		\end{align*}
+	}
+
+	The first two terms stays the same, but the third one become different in structure. By further investigation of the pressure term in the momentum equation it can be observed
+	
+	{\footnotesize
+		\begin{align*}
+			& \lim_{\zeta \rightarrow 0_+} \cfrac{\partial }{\partial z} \left(  \cfrac{P_0}{M_a^2}	+ \cfrac{P_1 \zeta}{M_a^2}	+ \cfrac{P_2 \zeta^2}{M_a^2} + \mathcal{O}(\zeta^3) \right) = \\
+			& = \lim_{\zeta \rightarrow 0_+} \cfrac{\partial }{\partial z} \left(  \cfrac{P_0}{M_a^2} \right) + \cfrac{\partial }{\partial z} \left(  \cfrac{P_1 \zeta^2}{M_a^2} \right) + \cfrac{\partial }{\partial z} \left(  \cfrac{P_2 \zeta^2}{M_a^2} \right) \\
+			& = \lim_{\zeta=M_a^2 \rightarrow 0_+} \cfrac{\partial }{\partial z} \left(  \cfrac{P_0}{M_a^2} \right) + \cfrac{\partial }{\partial z} \left(  \cfrac{P_1 M_a^2}{M_a^2} \right) + \cfrac{\partial }{\partial z} \left(  \cfrac{P_2 M_a^4}{M_a^2} \right) \\
+			& = \lim_{\zeta=M_a^2 \rightarrow 0_+} 0 + \cfrac{\partial P_1}{\partial z}  + 0 \\
+		\end{align*}
+	}
+
+	The simplification of the $P_0$ in the momentum equation comes from the fact that $P_0$ is independent of $z$. The term related to $P_2$ and higher order terms become zero at the limit of $M_a \rightarrow 0$. The momentum equation become
+	
+	{\footnotesize
+		\begin{equation*}
+			\cfrac{\partial \left( \rho_0 A_f V_0 \right) }{\partial t}	+ \cfrac{\partial \left( \rho_0 V_0 A_f V_0 \right)}{\partial z} + A_f \cfrac{\partial P_1}{\partial z} = 0
+		\end{equation*}
+	}
+
+	By expanding performing power expansion on the energy equation and taking the limit of $\zeta$ from the positive side we get
+	
+	{\footnotesize
+		\begin{align*}
+			& \lim_{\zeta \rightarrow 0_+} \cfrac{\partial \left( \left( \rho_0	+ \rho_1 \zeta	+ \mathcal{O}(\zeta^2) \right) A_f \left( e_0	+ e_1 \zeta 	+ \mathcal{O}(\zeta^2) \right) \right)}{\partial t} + \\
+			&+ \cfrac{\partial \left(  \left(  \rho_0	+ \rho_1 \zeta	+ \mathcal{O}(\zeta^2) \right) A_f \left( V_0	+ V_1 \zeta 	+ \mathcal{O}(\zeta^2) \right) \left( e_0	+ e_1 \zeta 	+ \mathcal{O}(\zeta^2) \right) \right) }{\partial z} + \\
+			&+ \cfrac{\partial}{\partial z} \left( k \cfrac{\partial }{\partial z} \left( T_0 	+ T_1 \zeta 	+ \mathcal{O}(\zeta^2) \right) \right) + \\
+			&- \left(  P_0 	+ P_1 \zeta		+ P_2 \zeta^2 		+ \mathcal{O}(\zeta^3)  \right) \cfrac{\partial \left( A_f \left( V_0 + V_1 \zeta + \mathcal{O}(\zeta^2) \right) \right) }{\partial z} = 0
+		\end{align*}
+	}
+	
+	The form of the energy equation stays the same. 
+	
+	{\footnotesize
+		\begin{equation*}
+			\cfrac{\partial \left( \rho_0 e_0 A_f \right) }{\partial t} + \cfrac{\partial \left( \rho_0 e_0 V_0 A_f \right)}{\partial z} - \cfrac{\partial}{\partial z} \left( k \cfrac{\partial T_0}{\partial z} \right) + P_0 \cfrac{\partial A_f V_0}{\partial z} = 0
+		\end{equation*}
+	}
+	
+	where $e_0 = e(\rho_0, T_0)$ and $k=k(\rho_0, T_0)$.
+		
+	The expansion results in two different types of pressure and they are considered to be split into a thermodynamic component ($P_0$) and a dynamic component ($P_1$). The thermodynamic pressure is constant in space, but can change in time. The thermodynamic pressure is used in the equation of state. The dynamic pressure only arises as a gradient term in the momentum equation and acts to enforce continuity.
+	
+	The resulting unscaled low Mach number equations are:
+	
+	{\footnotesize
+		\begin{align*}
+			\cfrac{\partial \left( \rho_f A_f \right)}{\partial t} &+ \cfrac{\partial \left( \rho_f A_f V \right)}{\partial z} = 0 \\
+			\cfrac{\partial \left( \rho_f A_f V \right) }{\partial t}	&+ \cfrac{\partial \left( \rho_f V A_f V \right)}{\partial z} + A_f \cfrac{\partial P_1}{\partial z} = 0\\
+			\cfrac{\partial \left( \rho_f e A_f \right) }{\partial t} &+ \cfrac{\partial \left( \rho_f e V A_f \right)}{\partial z} - \cfrac{\partial}{\partial z} \left( k \cfrac{\partial T}{\partial z} \right) + P_0 \cfrac{\partial A_f V}{\partial z} = 0
+		\end{align*}
+	}
+	
+	The energy equation can be expanded through the chain rule to obtain
+	
+	{\footnotesize
+		\begin{equation*}
+			 \rho A_f \left( \cfrac{\partial e }{\partial t} + V \cfrac{\partial e}{\partial z} \right) + e  \underbrace{ \left( \cfrac{\partial \left( \rho_f A_f \right) }{\partial t} + \cfrac{\partial \left( \rho_f V A_f \right)}{\partial z} \right) }_{Continutiy}  - \cfrac{\partial}{\partial z} \left( k \cfrac{\partial T}{\partial z} \right) + P_0 \cfrac{\partial A_f V}{\partial z} = 0
+		\end{equation*}
+	}
+
+	The non-conservative form of the energy equation become
+	
+	{\footnotesize
+		\begin{equation*}
+		\rho A_f \left( \cfrac{\partial e }{\partial t} + V \cfrac{\partial e}{\partial z} \right) - \cfrac{\partial}{\partial z} \left( k \cfrac{\partial T}{\partial z} \right) + P_0 \cfrac{\partial A_f V}{\partial z} = 0
+		\end{equation*}
+	}
+	
+	If the calorically perfect gas is assumed then $e=C_vT$, where $C_v$ is the constant specific heat. The energy equation can derived in terms of temperature $T$
+	
+	{\footnotesize
+		\begin{equation*}
+			\rho A_f C_v \left( \cfrac{\partial T }{\partial t} + V \cfrac{\partial T}{\partial z} \right) - \cfrac{\partial}{\partial z} \left( k \cfrac{\partial T}{\partial z} \right) + P_0 \cfrac{\partial A_f V}{\partial z} = 0
+		\end{equation*}
+	}
+	
+	If isothermal case is assumed then, the energy equation becomes
+	
+	{\footnotesize
+		\begin{equation*}
+			\lim_{\Delta T \rightarrow 0_+} \rho A_f C_v \left( \cfrac{\partial T }{\partial t} + V \cfrac{\partial T}{\partial z} \right) - \cfrac{\partial}{\partial z} \left( k \cfrac{\partial T}{\partial z} \right) + P_0 \cfrac{\partial A_f V}{\partial z} = 0
+		\end{equation*}
+	}
+	
+	which leads to
+	
+	{\footnotesize
+		\begin{equation}
+			\cfrac{\partial A_f V}{\partial z} = 0
+			\label{EQ: Incompressibility_Condition_Ideal_IsoThermal}
+		\end{equation}
+	}
+	
+	In one-dimensional case, the equation \ref{EQ: Incompressibility_Condition_Ideal_IsoThermal} become equivalent of $\text{div} ( A_f V) = 0$, which known as the incompressibility condition (\citet{Lions2013}). 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+\end{document}
