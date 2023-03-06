@@ -24,7 +24,6 @@ function xdot = modelSFE_uniform_U(x, p, mask)
 
     Di            =    parameters{44};      Di = Di * 1e-12;
     Dx            =    parameters{45};      Dx = Dx * 1e-5;
-    C_SAT         =    parameters{47};
 
     nstages_index =    numel(mask);
     
@@ -69,7 +68,6 @@ function xdot = modelSFE_uniform_U(x, p, mask)
     %MU            =     Viscosity(TEMP,RHO);
 
     %% Saturation
-    Sat_coe = Saturation_Concentration(FLUID, C_SAT); % Inverse logistic is used to control saturation. Close to saturation point, the Sat_coe goes to zero.
 
     %% BC
     Cf_0   = if_else(F_u == 0, FLUID(1), 0);
@@ -129,12 +127,12 @@ function xdot = modelSFE_uniform_U(x, p, mask)
     - VELOCITY      ./  ( 1 - epsi .* mask ) .* dCfdz  + ...
     - FLUID         ./  ( 1 - epsi .* mask ) .* dudz  + ...
       Dx            ./  ( 1 - epsi .* mask ) .* d2Cfdz2 +...
-    (epsi.*mask)    ./  ( 1 - epsi .* mask ) .* (1 ./ mi ./ lp2 .* Di)  .* Sat_coe .* ( SOLID - FLUID .* (rho_s ./ km ./ RHO ) );
+    (epsi.*mask)    ./  ( 1 - epsi .* mask ) .* (1 ./ mi ./ lp2 .* Di)  .* ( SOLID - FLUID .* (rho_s ./ km ./ RHO ) );
     %zeros(nstages_index,1);
 
     %--------------------------------------------------------------------
     % Concentration of extract in solid phase | 1
-     -  mask                                 .* (1 ./ mi ./ lp2 .* Di)  .* Sat_coe .* ( SOLID - FLUID .* (rho_s ./ km ./ RHO ) );
+     -  mask                                 .* (1 ./ mi ./ lp2 .* Di)  .* ( SOLID - FLUID .* (rho_s ./ km ./ RHO ) );
     %zeros(nstages_index,1);
     
     %--------------------------------------------------------------------

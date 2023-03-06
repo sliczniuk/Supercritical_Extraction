@@ -45,3 +45,4 @@ Numer,Name,Value,Unit,Description
 44,Di,1,m/s,Internal diffusivity
 45,Dx,0,m/s,Axial dispersion
 46,Z,0.5,[-],Initial guess of compressibility
+47,C_Sat,3,kg/m3,Saturation Concentration
