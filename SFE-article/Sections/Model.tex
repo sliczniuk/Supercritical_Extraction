@@ -1,15 +1,7 @@
-\documentclass[../Parameter_fitting.tex]{subfiles}
+\documentclass[../Article_Model_Parameters.tex]{subfiles}
 \graphicspath{{\subfix{../Figures/}}}
 \begin{document}
-		
-	\sout{The main components of the model are three one-dimensional differential equations related to mass balances (solid and fluid phase) and heat balance. As in all batch processes, our system has only one steady state. The steady-state occurs only if the solute is entirely taken out of the biomass.
-		
-		The extraction from a fixed bed is an unsteady process, implying that the solute concentrations in the solid and solvent phases vary over time and space. The convection and the diffusion of the mass and the heat are considered only in the axial direction. The radial distribution of such properties like a velocity is assumed to be flat in that direction. The assumption of the flat velocity profile allows considering a lack of back mixing. The pressure drop in the bed is assumed to be assumed to negligible. Under such conditions, the fluid flow can be considered a plug flow.
-		
-		Since the solute is assumed to be a single pseudo-component, there is only one mass balance equation for each phase (Eq.s \ref{Model_fluid} and \ref{Model_solid}). On the other hand, there is only one heat balance (Eq. \ref{Model_heat}) because the presence of a single pseudo-phase is assumed.
-		
-		Moreover, the process model does not consider the change of particle size or the void fraction during the process. The particles are assumed to be uniformly distributed along the bed and to have the same size.}
-	
+			
 	{\color{blue}A distributed-parameter model, based on \citet{Reverchon1996}, is used to describe the solid-fluid extraction process. The process model consists of three partial differential equations: two mass balance equations relative to the concentration of solute in the fixed solid phase and the mobile fluid phase, and the heat balance equation relative to the temperature of the fluid phase. The amount of solute in the solvent is considered negligible. Therefore, the fluid phase can be described as pseudo-homogenous, and its properties are assumed to be the same as the solvent.
 		
 		The movement of the mobile pseudo-homogeneous phase (Eq. \ref{Model_fluid}) is considered only in the axial direction. The properties of the system in the radial direction is assumed to be uniform. In addition, it is considered that the boundary layer adjacent to the inner wall of the extractor does not exist. Therefore, the velocity profile is constant across any cross-section of the extractor perpendicular to the axial direction. As a result, the plug flow model can be introduced. The particle size distribution and the void fraction of the solid phase are assumed to be uniform in space and remain constant in time. Moreover, the pressure is considered to be constant along the fixed bed. The mass balance for the fluid phase consists of convection, diffusion, and kinetic terms.
@@ -35,12 +27,20 @@
 	
 	{\footnotesize
 		\begin{equation}
-			\cfrac{\partial \left( \rho_f \varepsilon (z) \right)}{\partial t} + \cfrac{\partial \left( \rho_f u \right)}{\partial z} = 0
+			\cfrac{\partial \left( \rho_f A_f \right)}{\partial t} + \cfrac{\partial \left( \rho_f v A_f \right)}{\partial z} = 0
 			\label{EQ: Continuity}
 		\end{equation}
 	}
+	
+	Considering the mass flow-rate which is constant in time, the temporal derivative become zero and the spacial derivative can be integrated along $z$.
+	
+	{\footnotesize
+		\begin{equation*}
+			\int \cfrac{\partial \left( \rho_f v A_f \right)}{\partial z} dz = 0 \rightarrow F=\rho_f v A_f
+		\end{equation*}
+	}
 
-	where $u$ is the superficial velocity, $\varepsilon$ is the bed porosity and $\rho_f$ is the fluid density. 
+	where $F$ is a constant obtained from the integration. The constant $F$ can be understood as the mass flux per unit area which is assumed to be constant along $z$. $F$ can treated as a control variable, which can change in time but it is constant in space. Such a assumption allows to find the velocity profile which satisfy the mass continuity based on $F, A_f$ and $\rho_f$. The fluid density $\rho_f$ density is connected through equation of state with thermodynamical pressure, which is assumed to be constant along $z$ (due to the low-Mach number) and temperature. The variation in density might be caused by the accumulation of the fluid in the system (which happen instantaneously along $z$) or by temperature change. To simplify the dynamic of the system, it is assumed that $F=F(t)$ is a control variable and affects the whole system instantaneously.
 	
 	\subsubsection{Mass balance for the fluid phase} \label{CH: Mass_balance_fluid}
 	The fluid phase is a mobile phase, which means that the fluids mass balance (Eq. \ref{Model_fluid}) is made of convection, diffusion, and mass transfer kinetic terms.
@@ -71,7 +71,7 @@
 			\begin{figure}[h!]
 				\centering
 				%	\includegraphics[trim  = 6cm 0cm 3cm 0cm,clip,width=\linewidth]{Figures/SFE_draft.png}
-				\includegraphics[trim = 5.8cm 1.1cm 6cm 0.8cm,clip,width=1.0\linewidth]{Figures/SFE_draft.pdf}	
+				\includegraphics[trim = 5.8cm 1.1cm 6cm 0.8cm,clip,width=\columnwidth]{Figures/SFE_draft.pdf}	
 				\caption{The extraction mechanism}
 				\label{fig: SFE_Mechanism}
 			\end{figure}

@@ -51,9 +51,9 @@
     ylabel('Superficial velocity [m/s]','Interpreter','latex')
     xlabel('Time [min]','Interpreter','latex')
 
-    subtitle([DATA,'_',mat2str(round([DATA_K_OUT(:,ii)],5))],'Interpreter','latex')
+    subtitle([DATA,'_',mat2str(round([DATA_K_OUT(:,ii)],3))],'Interpreter','latex')
 
-    set(gcf,'PaperOrientation','landscape'); print(figure(ii),['Yield_',DATA,'_F',mat2str(V_Flow),'.pdf'],'-dpdf','-bestfit'); close all
+    set(gcf,'PaperOrientation','landscape'); print(figure(ii),['Yield_',DATA,'_F',mat2str(V_Flow),'_No_Delay.pdf'],'-dpdf','-bestfit'); close all
 
     %%
 %{

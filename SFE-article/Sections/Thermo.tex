@@ -1,4 +1,4 @@
-\documentclass[../Parameter_fitting.tex]{subfiles}
+\documentclass[../Article_Model_Parameters.tex]{subfiles}
 \graphicspath{{\subfix{../Figures/}}}
 \begin{document}
 
@@ -41,7 +41,7 @@
 			
 	%In the process model, properties of the supercritical fluid such as the density ${\color{orange}\rho} ({\color{blue}T}(t,z),{\color{red}P}(t))$, the specific heat ${\color{orange}C_p}({\color{blue}T}(t,z),{\color{red}P}(t))$, the thermal conductivity ${\color{orange}k^T}({\color{blue}T}(t,z),{\color{red}P}(t))$, or the viscosity ${\color{orange}\eta}({\color{blue}T}(t,z),{\color{red}P}(t))$ are calculated based on the local temperatures along the fixed bed and the pressure. The Peng-Robinson equation of state is used to find values of a ${\color{orange}\rho} ({\color{blue}T}(t,z),{\color{red}P}(t))$ and ${\color{orange}C_p}({\color{blue}T}(t,z),{\color{red}P}(t))$.
 			
-		\begin{figure*}[h!]
+		\begin{figure*}[H]
 			\begin{subfigure}[b]{\textwidth}
 				\centering
 				\includegraphics[trim = 2.9cm 7cm 3cm 7cm,clip,width=\textwidth]{Figures/Compressibility.pdf}	
@@ -71,7 +71,7 @@
 		%The inter-particle diffusion coefficient ${\color{orange}D^M_e}(\allowbreak{\color{blue}T}(t,z),{\color{red}P}(t),{\color{red}F}(t))$ is calculated from the empirical correlation, as the function of the Reynolds number ${\color{orange}R_e}({\color{blue}T}(t,z),{\color{red}P}(t),\allowbreak{\color{red}F}(t))$ and the Peclet's number ${\color{orange}P_e}({\color{blue}T}(t,z),\allowbreak{\color{red}P}(t),{\color{red}F}(t))$.
 		%The values of the internal diffusion ${\color{orange}D_i} ({\color{blue}T}(t,z))$ and the partition coefficient ${\color{orange}k_m} ({\color{blue}T}(t,z))$ come from the laboratory experiments. The expressions and the detailed information of the parameter fitting can be found in the appendix.
 
-        \begin{figure*}[h!]
+        \begin{figure*}[htb!]
 			\centering
 			\includegraphics[trim = 1.5cm 4.0cm 1.5cm 10.0cm,clip,width=\textwidth]{Figures/MU.pdf}	
 			\caption{Viscosity obtained based on different correlations}
@@ -81,9 +81,9 @@
         Similarly, several correlations for thermal conductivity of $CO_2$ were compared on Figure
         \ref{fig: SFE_Properties_kt}. The presented figures are focused around critical point, where the singularity is present. Similarities between specific heat and the thermal conductivity can be observed. Eventually, the NIST correlation were selected. The correlations are applicable for the temperature range from the triple point to 1100 $K$ and pressures up to 200 $MPa$.
 
-        \begin{figure*}[h!]
+        \begin{figure*}[htb!]
 			\centering
-			\includegraphics[trim = 1.5cm 2.5cm 1.5cm 2.0cm,clip,width=\textwidth]{Figures/KT.pdf}	
+			\includegraphics[trim = 1.5cm 2.5cm 1.5cm 2.0cm,clip,width=0.95\textwidth]{Figures/KT.pdf}	
 			\caption{Thermal conductivity obtained based on different correlations}
             \label{fig: SFE_Properties_kt}
 		\end{figure*}

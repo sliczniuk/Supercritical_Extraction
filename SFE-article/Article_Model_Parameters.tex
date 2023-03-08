@@ -114,12 +114,12 @@ Supercritical extraction \sep Parameter estimation \sep Mathematical modelling
 \section{Introduction}
 %\subfile{Sections/introduction}
 
-%\section{Materials and methods} \label{CH: Materials and methods}
+\section{Materials and methods} \label{CH: Materials and methods}
 
-\section{$CO_2$ properties} \label{CH: Thermodynamic}
-%\subfile{Sections/Thermo}
+\subsection{Supercritical fluids} \label{CH: Thermodynamic}
+\subfile{Sections/Thermo}
 
-\clearpage
+%\clearpage
 %\subfile{Sections/Materials_and_methods}
 
 \subsection{Governing equations}
@@ -128,13 +128,11 @@ The detail derivation of the governing equation can be found in the appendix (\r
 The quasi-one-dimensional compressible Navier-Stokes equations in Cartesian coordinates is given be equations \ref{EQ: CompressibleEuler}
 
 {\footnotesize
-\begin{equation}
 \begin{align}
         \cfrac{\partial \left( \rho_f A_f \right) }{\partial t} + \cfrac{\partial \left( \rho_f A_f v \right)}{\partial z} &= 0 \\
         \cfrac{\partial \left( \rho_f v A_f \right) }{\partial t} + \cfrac{\partial \left( \rho_f A_f v^2 \right)}{\partial z} &= -A_f \cfrac{\partial P}{\partial z} \\
         \cfrac{\partial \left( \rho_f e A_f \right) }{\partial t} + \cfrac{\partial \left( \rho_f A_f v e\right)}{\partial z} &= -P\cfrac{\left( A_f v \right)}{\partial z} + \cfrac{\partial}{\partial z} \left( \cfrac{\partial T}{\partial z} \right)   
-    \end{align}    
-\end{equation}
+    \end{align}  
 \label{EQ: CompressibleEuler}
 }
 
@@ -144,7 +142,7 @@ where $\rho_f$ is the density of the fluid, $A_f$ is the function which describe
 \subfile{Sections/Low_mach_number_expansion}
 
 \subsection{Extraction model} \label{CH: Extraction_model}
-%\subfile{Sections/Model}
+\subfile{Sections/Model}
 
 %\newpage
 %\section{Bayes theorem} \label{CH: Bayes}
