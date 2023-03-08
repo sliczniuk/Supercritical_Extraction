@@ -94,7 +94,7 @@
 \begin{abstract}
 %Given a system of partial differential equations, $F(t,x,\dot{x},p,u)=0$, where $x$ represents state variables, $p$ are the parameters, and $u$ are control variables, the process model is simultaneously solved for both $x_i$ and a set of sensitivity functions, $dx_i/dp_j$, overall times $t$.These sensitivity functions measure the influence of the parameter change on the model's output. As an example, the supercritical extraction process is presented. The impact of mass flow rate, pressure, and inlet temperature on the model's output is discussed. The sensitivity analysis results prove that the considered variables can affect the extraction's yield and be used as control variables in optimization problems. Moreover, the local sensitivity analysis results are analyzed from a phenomenological point of view to enhance understanding of the process model.
 Given a system of partial differential equations, $F(t,x,\dot{x},p,u)=0$, where $x$ represents state variables, $p$ are the parameters, and $u$ are control variables, we describe the supercritical extraction process. The process model describes a partially filled extractor with a fixed bed, which work under constant operating conditions. We assume that the flow is uniform across any cross-section, although the area available for the fluid phase is a function of distance. We apply the concept of quasi-one-dimensional flow to mimic the modelling of a two-dimensional case.
-The collected dataset, obtained from the extraction of caraway seeds at different operating conditions, is used to estimate unknown parameters. The model-based parameter estimation applies the maximum likelihood method to estimate values of the extraction kinetic parameters such as mass partition factor, internal diffusion coefficient and radial diffusion.
+In this work, a distributed-parameter model, based on \citet{Reverchon1996} is used to describe a fluid-solid extraction process of caraway oil from caraway seeds with $CO_2$ as a solvent. The model parameters such as partition factor, internal diffusion coefficient, axial diffusion coefficient and saturation concentration are obtained from parameter estimation. The parameters are estimated based on four experiments performed at $40^\circ C$ and $50^\circ C$ at $200$ bar and $300$ bar. The model-based parameter estimation uses the maximum likelihood estimation under assumption of normal error given for yield data.
 
 \end{abstract}
 
@@ -112,7 +112,7 @@ Supercritical extraction \sep Parameter estimation \sep Mathematical modelling
 % ===================================================\section{Introduction}
 
 \section{Introduction}
-%\subfile{Sections/introduction}
+\subfile{Sections/introduction}
 
 \section{Materials and methods} \label{CH: Materials and methods}
 
@@ -150,7 +150,7 @@ where $\rho_f$ is the density of the fluid, $A_f$ is the function which describe
 %\clearpage
 
 \subsection{Parameter estimation} \label{CH: Parameter_estimation}
-%\subfile{Sections/Parameter_estimation}
+\subfile{Sections/Parameter_estimation}
 
 \section{Results} \label{CH: Results}
 
@@ -168,10 +168,10 @@ where $\rho_f$ is the density of the fluid, $A_f$ is the function which describe
 \clearpage \appendix \label{appendix}
 \section{Appendix} 
 \subsection{Governing equations}
-%\subfile{Sections/Gouverning_equation_derivation}
+\subfile{Sections/Gouverning_equation_derivation}
 
 \subsection{Bayes theorem} \label{CH: Bayes}
-%\subfile{Sections/Bayes_Theorem}
+\subfile{Sections/Bayes_Theorem}
 
 \newpage
 \begin{table*}[p]
