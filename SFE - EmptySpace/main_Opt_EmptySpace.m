@@ -11,8 +11,6 @@ import casadi.*
 DATA_set                = {'LUKE_T40_P200','LUKE_T50_P200','LUKE_T40_P300','LUKE_T50_P300'};
 Parameters_table        = readtable('Parameters.csv') ;        % Table with prameters
 
-DATA_K_OUT=nan(5,4);                                           % Store Parameters obatined from all fits (par num x num exper)
-
 %% Set time of the simulation
 PreparationTime         = 0;
 ExtractionTime          = 150;
@@ -104,6 +102,8 @@ Nx                      = 4*nstages+1;
 Nu                      = 3 + numel( Parameters_table{:,3} );
 Nk                      = numel(which_k)+1;
 
+DATA_K_OUT              = nan(Nk,numel(DATA_set));                               % Store Parameters obatined from all fits (par num x num exper)
+
 %% symbolic variables
 % Create symbolic variables
 x                       = MX.sym('x', Nx);
@@ -172,7 +172,7 @@ parfor ii=1:numel(DATA_set)
 
     % Descision variables
     k                       = OPT_solver.variable(Nk);
-    k_lu                    = [ [0;0.01;0.01;0;0] , [2;10;1;10;100] ];
+    k_lu                    = [ [0;0.01;0.01;0;0] , [2;10;1;10;inf] ];
     % Constraints
     for nk=1:Nk
         OPT_solver.subject_to( k_lu(nk,1) <= k(nk,:) <= k_lu(nk,2) );
@@ -183,8 +183,12 @@ parfor ii=1:numel(DATA_set)
     Parameters_sym       = MX(Parameters);           % Vector of paraneters in the form casadi vector
     % Decide which parameters are decision variabales
 
-    Parameters_sym(which_k) = k(1:4);
-    sigma = k(5);
+    Parameters_sym(which_k) = k(1:numel(which_k));
+
+    if numel(which_k) < Nk
+        sigma = k(5);
+    end
+
 
     % Store symbolic results of the simulation
     X = MX(Nx,N_Time+1);
@@ -200,19 +204,18 @@ parfor ii=1:numel(DATA_set)
     Yield_estimate_diff = diff(Yield_estimate);
 
     %% Create the cost function
-    J       = (data-Yield_estimate_diff ) * diag(1:1:1) * (data-Yield_estimate_diff )';
-    %J = sum(abs(data-Yield_estimate))/numel(data);
-
+    J       = (data-Yield_estimate_diff ) * diag(1:numel(data)) * (data-Yield_estimate_diff )';
+    
     % MLE: Normal
-    J_L     = -numel(data)/2 * ( log(2*pi) + log(sigma^2) ) - J/(2*sigma^2);
+    J_L     = -numel(data)./2 .* ( log(2.*pi) + log(sigma) ) - J./(2.*sigma);
     %J_L     = 1./sqrt( ( 2*3.14.*sigma.^2).^(numel(data)) ) .* exp( -J./(2.*sigma.^2) )
 
-    J_L     = -J_L;
+    J_L     = -J_L  ;
     %fJ  = Function('fJ', {k}, {J_L} );
 
     %%
     %k0= [km  Di    Dx  C_sat, sigma];
-    k0 = [0.1, 0.1, 1,  4,     0.01];
+    k0 = [0.1, 0.1, 1,  6,     0.01];
 
     %% Set opt and inital guess
     OPT_solver.minimize(J);
@@ -287,7 +290,7 @@ for ii=1:4
     %[xx_0] = simulateSystem(F, [], x0, Parameters_opt  );
 
     %%
-    Parameters(which_k) = DATA_K_OUT(1:4,ii);
+    Parameters(which_k) = DATA_K_OUT(1:numel(which_k),ii);
     Parameters_opt = [uu repmat(Parameters,1,N_Time)'];
     [xx_out] = simulateSystem(F, [], x0, Parameters_opt  );
 
@@ -326,7 +329,7 @@ for jj=1:2
     
     end
     
-    set(gcf,'PaperOrientation','landscape'); print(figure(1),['Trend_Lines_order_',mat2str(jj),'_No_Delay.pdf'],'-dpdf','-bestfit'); close all;
+    set(gcf,'PaperOrientation','landscape'); print(figure(1),['MLE_Weighted_Trend_Lines_order_',mat2str(jj),'_No_Delay.pdf'],'-dpdf','-bestfit'); close all;
 
 end
 
