@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.8) (preloaded format=pdflatex 2022.9.27)  9 MAR 2023 21:40
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.8) (preloaded format=pdflatex 2022.9.27)  10 MAR 2023 20:09
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1325,67 +1325,90 @@ File: tikzlibraryquotes.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 tikz/libraries\tikzlibrarycalc.code.tex
 File: tikzlibrarycalc.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 )
+(C:\Program Files\MiKTeX\tex/latex/pdfpages\pdfpages.sty
+Package: pdfpages 2022/05/22 v0.5v Insert pages of external PDF documents (AM)
+
+(C:\Program Files\MiKTeX\tex/latex/eso-pic\eso-pic.sty
+Package: eso-pic 2020/10/14 v3.0a eso-pic (RN)
+\ESO@tempdima=\dimen362
+\ESO@tempdimb=\dimen363
+)
+\AM@pagewidth=\dimen364
+\AM@pageheight=\dimen365
+\AM@fboxrule=\dimen366
+
+(C:\Program Files\MiKTeX\tex/latex/pdfpages\pppdftex.def
+File: pppdftex.def 2022/05/22 v0.5v Pdfpages driver for pdfTeX (AM)
+)
+\pdfpages@includegraphics@status=\count369
+\AM@pagebox=\box85
+\AM@global@opts=\toks59
+\AM@pagecnt=\count370
+\AM@toc@title=\toks60
+\c@AM@survey=\count371
+\AM@templatesizebox=\box86
+)
 (C:\Program Files\MiKTeX\tex/latex/enumitem\enumitem.sty
 Package: enumitem 2019/06/20 v3.9 Customized lists
 \labelindent=\skip79
-\enit@outerparindent=\dimen362
-\enit@toks=\toks59
-\enit@inbox=\box85
-\enit@count@id=\count369
-\enitdp@description=\count370
+\enit@outerparindent=\dimen367
+\enit@toks=\toks61
+\enit@inbox=\box87
+\enit@count@id=\count372
+\enitdp@description=\count373
 )
 (Article_Model_Parameters.aux)
 \openout1 = `Article_Model_Parameters.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for LS1/stix/m/n on input line 71.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 73.
+LaTeX Font Info:    ... okay on input line 73.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 73.
+LaTeX Font Info:    ... okay on input line 73.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 73.
+LaTeX Font Info:    ... okay on input line 73.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 73.
+LaTeX Font Info:    ... okay on input line 73.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 73.
+LaTeX Font Info:    ... okay on input line 73.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 73.
+LaTeX Font Info:    ... okay on input line 73.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 73.
+LaTeX Font Info:    ... okay on input line 73.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 73.
+LaTeX Font Info:    ... okay on input line 73.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 73.
+LaTeX Font Info:    ... okay on input line 73.
+LaTeX Font Info:    Checking defaults for LS1/stix/m/n on input line 73.
 LaTeX Font Info:    Trying to load font information for LS1+stix on input line 
-71.
+73.
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls1stix.fd
 File: ls1stix.fd 2015/04/17 v1.1.2-latex STIX LS1 font definitions
 )
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for LS2/stix/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 73.
+LaTeX Font Info:    Checking defaults for LS2/stix/m/n on input line 73.
 LaTeX Font Info:    Trying to load font information for LS2+stix on input line 
-71.
+73.
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls2stix.fd
 File: ls2stix.fd 2015/04/17 v1.1.2-latex STIX LS2 font definitions
 )
-LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    ... okay on input line 73.
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf
 .mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count371
-\scratchdimen=\dimen363
-\scratchbox=\box86
-\nofMPsegments=\count372
-\nofMParguments=\count373
-\everyMPshowfont=\toks60
-\MPscratchCnt=\count374
-\MPscratchDim=\dimen364
-\MPnumerator=\count375
-\makeMPintoPDFobject=\count376
-\everyMPtoPDFconversion=\toks61
+\scratchcounter=\count374
+\scratchdimen=\dimen368
+\scratchbox=\box88
+\nofMPsegments=\count375
+\nofMParguments=\count376
+\everyMPshowfont=\toks62
+\MPscratchCnt=\count377
+\MPscratchDim=\dimen369
+\MPnumerator=\count378
+\makeMPintoPDFobject=\count379
+\everyMPtoPDFconversion=\toks63
 )
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopd
 f-base.sty
@@ -1397,7 +1420,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 s.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-Package hyperref Info: Link coloring ON on input line 71.
+Package hyperref Info: Link coloring ON on input line 73.
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
@@ -1410,11 +1433,11 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 titlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count377
+\c@section@level=\count380
 )
-LaTeX Info: Redefining \ref on input line 71.
-LaTeX Info: Redefining \pageref on input line 71.
-LaTeX Info: Redefining \nameref on input line 71.
+LaTeX Info: Redefining \ref on input line 73.
+LaTeX Info: Redefining \pageref on input line 73.
+LaTeX Info: Redefining \nameref on input line 73.
  (Article_Model_Parameters.out) (Article_Model_Parameters.out)
 \@outlinefile=\write4
 \openout4 = `Article_Model_Parameters.out'.
@@ -1463,86 +1486,92 @@ Package caption Info: End \AtBeginDocument code.
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
 ick labels; missing features). Consider writing \pgfplotsset{compat=1.18} into 
 your preamble.
- on input line 71.
+ on input line 73.
 
+(C:\Program Files\MiKTeX\tex/latex/pdflscape\pdflscape.sty
+Package: pdflscape 2019/12/05 v0.12 Display of landscape pages in PDF (HO)
+
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/graphics\lscape.sty
+Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
+)
+Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
+)
 \verbatim@out=\write5
 \openout5 = `Article_Model_Parameters.abs'.
 
 LaTeX Font Info:    Trying to load font information for LS1+stixscr on input li
-ne 115.
-(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls1stixscr.fd
+ne 117.
+ (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls1stixscr.fd
 File: ls1stixscr.fd 2015/04/17 v1.1.2-latex STIX script LS1 font definitions
 )
 LaTeX Font Info:    Trying to load font information for LS2+stixex on input lin
-e 115.
-
-(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls2stixex.fd
+e 117.
+ (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls2stixex.fd
 File: ls2stixex.fd 2015/04/17 v1.1.2-latex STIX extentions LS2 font definitions
 
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 115
+LaTeX Font Info:    Trying to load font information for U+msa on input line 117
 .
-
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 115
+LaTeX Font Info:    Trying to load font information for U+msb on input line 117
 .
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Trying to load font information for LS1+stixfrak on input l
-ine 115.
+ine 117.
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls1stixfrak.fd
 File: ls1stixfrak.fd 2015/04/17 v1.1.2-latex STIX fraktur LS1 font definitions
 )
 LaTeX Font Info:    Trying to load font information for LS1+stixbb on input lin
-e 115.
+e 117.
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls1stixbb.fd
 File: ls1stixbb.fd 2015/04/17 v1.1.2-latex STIX blackboard LS1 font definitions
 
 )
 LaTeX Font Info:    Trying to load font information for LS2+stixcal on input li
-ne 115.
+ne 117.
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls2stixcal.fd
 File: ls2stixcal.fd 2015/04/17 v1.1.2-latex STIX calligraphic LS2 font definiti
 ons
 )
 LaTeX Font Info:    Trying to load font information for LS1+stixsf on input lin
-e 115.
+e 117.
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls1stixsf.fd
 File: ls1stixsf.fd 2015/04/17 v1.1.2-latex STIX sans-serif LS1 font definitions
 
 )
 LaTeX Font Info:    Trying to load font information for LS2+stixtt on input lin
-e 115.
+e 117.
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls2stixtt.fd
 File: ls2stixtt.fd 2015/04/17 v1.1.2-latex STIX typewriter LS2 font definitions
 
 )
-Overfull \hbox (123.62721pt too wide) detected at line 115
+Overfull \hbox (123.62721pt too wide) detected at line 117
 []
  []
 
 (Article_Model_Parameters.abs)
-<thumbnails/cas-email.jpeg, id=107, 225.84375pt x 225.84375pt>
+<thumbnails/cas-email.jpeg, id=127, 225.84375pt x 225.84375pt>
 File: thumbnails/cas-email.jpeg Graphic file (type jpg)
 <use thumbnails/cas-email.jpeg>
-Package pdftex.def Info: thumbnails/cas-email.jpeg  used on input line 115.
+Package pdftex.def Info: thumbnails/cas-email.jpeg  used on input line 117.
 (pdftex.def)             Requested size: 7.99838pt x 8.0pt.
 LaTeX Font Info:    Trying to load font information for T1+zi4 on input line 11
-5.
+7.
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/inconsolata\t1zi4.fd
 File: t1zi4.fd 2018/01/14 T1/zi4 (Inconsolata)
 )
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 6.80005pt on input line 115.
+(Font)              scaled to size 6.80005pt on input line 117.
  (Sections/introduction.tex
 Overfull \hbox (0.50551pt too wide) in paragraph at lines 13--14
 []\T1/stix/m/n/10 Sovova [][][] pre-sented the Broken-and-Intact Cell model.
@@ -1553,7 +1582,7 @@ LaTeX Font Info:    Trying to load font information for T1+cmss on input line 4
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/base\t1cmss.fd
 File: t1cmss.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-<Figures/SFE_PFD_cropped.pdf, id=113, 450.18227pt x 202.53928pt>
+<Figures/SFE_PFD_cropped.pdf, id=133, 450.18227pt x 202.53928pt>
 File: Figures/SFE_PFD_cropped.pdf Graphic file (type pdf)
 <use Figures/SFE_PFD_cropped.pdf>
 Package pdftex.def Info: Figures/SFE_PFD_cropped.pdf  used on input line 42.
@@ -1564,17 +1593,17 @@ Package pdftex.def Info: Figures/SFE_PFD_cropped.pdf  used on input line 42.
 
 
  <./thumbnails/cas-email.jpeg> <./Figures/SFE_PFD_cropped.pdf>]
-<Figures/Compressibility.pdf, id=158, 794.97pt x 614.295pt>
+<Figures/Compressibility.pdf, id=179, 794.97pt x 614.295pt>
 File: Figures/Compressibility.pdf Graphic file (type pdf)
 <use Figures/Compressibility.pdf>
 Package pdftex.def Info: Figures/Compressibility.pdf  used on input line 49.
 (pdftex.def)             Requested size: 469.78192pt x 161.7791pt.
-<Figures/RHO.pdf, id=160, 794.97pt x 614.295pt>
+<Figures/RHO.pdf, id=181, 794.97pt x 614.295pt>
 File: Figures/RHO.pdf Graphic file (type pdf)
 <use Figures/RHO.pdf>
 Package pdftex.def Info: Figures/RHO.pdf  used on input line 56.
 (pdftex.def)             Requested size: 469.78192pt x 161.7791pt.
-<Figures/CP.pdf, id=162, 794.97pt x 614.295pt>
+<Figures/CP.pdf, id=183, 794.97pt x 614.295pt>
 File: Figures/CP.pdf Graphic file (type pdf)
 <use Figures/CP.pdf>
 Package pdftex.def Info: Figures/CP.pdf  used on input line 63.
@@ -1583,25 +1612,29 @@ Package hyperref Info: bookmark level for unknown todo defaults to 0 on input l
 ine 71.
 
 [2]
-<Figures/MU.pdf, id=185, 614.295pt x 794.97pt>
+<Figures/MU.pdf, id=206, 614.295pt x 794.97pt>
 File: Figures/MU.pdf Graphic file (type pdf)
 <use Figures/MU.pdf>
 Package pdftex.def Info: Figures/MU.pdf  used on input line 78.
-(pdftex.def)             Requested size: 494.50888pt x 391.90378pt.
-<Figures/KT.pdf, id=189, 614.295pt x 794.97pt>
+(pdftex.def)             Requested size: 494.50888pt x 181.0517pt.
+File: Figures/MU.pdf Graphic file (type pdf)
+<use Figures/MU.pdf>
+Package pdftex.def Info: Figures/MU.pdf  used on input line 79.
+(pdftex.def)             Requested size: 494.50888pt x 138.88126pt.
+<Figures/KT.pdf, id=211, 614.295pt x 794.97pt>
 File: Figures/KT.pdf Graphic file (type pdf)
 <use Figures/KT.pdf>
-Package pdftex.def Info: Figures/KT.pdf  used on input line 87.
+Package pdftex.def Info: Figures/KT.pdf  used on input line 88.
 (pdftex.def)             Requested size: 469.78192pt x 592.36734pt.
  [3 <./Figures/Compressibility.pdf> <./Figures/RHO.pdf> <./Figures/CP.pdf>])
-Overfull \hbox (2.15552pt too wide) in paragraph at lines 135--136
+Overfull \hbox (2.15552pt too wide) in paragraph at lines 137--138
 []\T1/stix/m/n/10 The quasi-one-dimensional com-press-ible Navier-Stokes
  []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[4 <./Figures/MU.pdf>] (Sections/Low_mach_number_expansion.tex
+(Sections/Low_mach_number_expansion.tex
 Underfull \hbox (badness 1400) in paragraph at lines 5--6
 \T1/stix/m/n/10 of mo-tion (con-ti-nu-ity, mo-men-tum and en-ergy). Such a
  []
@@ -1616,7 +1649,12 @@ Underfull \hbox (badness 1107) in paragraph at lines 5--6
 \T1/stix/m/n/10 The per-tur-ba-tion the-ory de-vel-ops an ex-pres-sion for the
  []
 
-[5 <./Figures/KT.pdf>]
+[4 <./Figures/MU.pdf>] [5 <./Figures/KT.pdf>]
+
+LaTeX Warning: Reference `EQ: CompressibleEuler_2' on page 6 undefined on input
+ line 7.
+
+
 Overfull \hbox (21.40958pt too wide) detected at line 64
 []
  []
@@ -1633,7 +1671,7 @@ m/n/8 *[] [] + \LS1/stix/m/it/8 P[][] \LS1/stix/m/n/8 = 0$
  []
 
 
-Underfull \hbox (badness 1173) in paragraph at lines 178--179
+Underfull \hbox (badness 1173) in paragraph at lines 180--181
 []\T1/stix/m/n/10 Assuming con-stant tem-per-a-ture and pres-sure along
  []
 
@@ -1651,7 +1689,7 @@ Overfull \hbox (2.14633pt too wide) in paragraph at lines 61--62
 
 pdfTeX warning: pdflatex (file ./Figures/SFE_draft.pdf): PDF inclusion: found P
 DF version <1.7>, but at most version <1.5> allowed
-<Figures/SFE_draft.pdf, id=357, 963.6pt x 542.025pt>
+<Figures/SFE_draft.pdf, id=380, 963.6pt x 542.025pt>
 File: Figures/SFE_draft.pdf Graphic file (type pdf)
 <use Figures/SFE_draft.pdf>
 Package pdftex.def Info: Figures/SFE_draft.pdf  used on input line 66.
@@ -1688,24 +1726,67 @@ S1/stix/m/n/10 .\LS1/stix/m/it/10 t\LS1/stix/m/n/10 /\LS1/stix/m/it/10 ; [][]\L
 S1/stix/m/n/10 .\LS1/stix/m/it/10 t\LS1/stix/m/n/10 //$
  []
 
-) (Sections/Parameter_estimation.tex [10]
 
-LaTeX Warning: Reference `EQ: Probabiltiy_independet_b' on page 11 undefined on
- input line 86.
+Overfull \hbox (11.0pt too wide) in paragraph at lines 179--221
+[][][][][][] 
+ []
 
-
-LaTeX Warning: Reference `EQ: Probabiltiy_dependet_a' on page 11 undefined on i
-nput line 93.
-
-
+[10]) (Sections/Parameter_estimation.tex
 Underfull \hbox (badness 1199) in paragraph at lines 123--124
 \T1/stix/m/n/10 be-cause it's con-stant with re-spect to the max-i-miza-tion.
  []
 
+[11]) (Sections/Experiments.tex
 
-LaTeX Warning: Reference `CH: Bayes' on page 11 undefined on input line 130.
+LaTeX Warning: Marginpar on page 12 moved.
 
-) [11] [12
+
+Overfull \hbox (70.77332pt too wide) in paragraph at lines 17--52
+ [][] 
+ []
+
+) (Sections/Results.tex
+<Figures///Results_estimation/Weighted_Yield_LUKE_T40_P200_F0.41_No_Delay.pdf, 
+id=499, 794.97pt x 614.295pt>
+File: Figures///Results_estimation/Weighted_Yield_LUKE_T40_P200_F0.41_No_Delay.
+pdf Graphic file (type pdf)
+<use Figures///Results_estimation/Weighted_Yield_LUKE_T40_P200_F0.41_No_Delay.p
+df>
+Package pdftex.def Info: Figures///Results_estimation/Weighted_Yield_LUKE_T40_P
+200_F0.41_No_Delay.pdf  used on input line 13.
+(pdftex.def)             Requested size: 346.1547pt x 147.93448pt.
+<Figures///Results_estimation/Weighted_Yield_LUKE_T50_P200_F0.41_No_Delay.pdf, 
+id=501, 794.97pt x 614.295pt>
+File: Figures///Results_estimation/Weighted_Yield_LUKE_T50_P200_F0.41_No_Delay.
+pdf Graphic file (type pdf)
+<use Figures///Results_estimation/Weighted_Yield_LUKE_T50_P200_F0.41_No_Delay.p
+df>
+Package pdftex.def Info: Figures///Results_estimation/Weighted_Yield_LUKE_T50_P
+200_F0.41_No_Delay.pdf  used on input line 19.
+(pdftex.def)             Requested size: 346.1547pt x 147.93448pt.
+<Figures///Results_estimation/Weighted_Yield_LUKE_T40_P300_F0.41_No_Delay.pdf, 
+id=503, 794.97pt x 614.295pt>
+File: Figures///Results_estimation/Weighted_Yield_LUKE_T40_P300_F0.41_No_Delay.
+pdf Graphic file (type pdf)
+<use Figures///Results_estimation/Weighted_Yield_LUKE_T40_P300_F0.41_No_Delay.p
+df>
+Package pdftex.def Info: Figures///Results_estimation/Weighted_Yield_LUKE_T40_P
+300_F0.41_No_Delay.pdf  used on input line 25.
+(pdftex.def)             Requested size: 346.1547pt x 147.93448pt.
+<Figures///Results_estimation/Weighted_Yield_LUKE_T50_P300_F0.41_No_Delay.pdf, 
+id=505, 794.97pt x 614.295pt>
+File: Figures///Results_estimation/Weighted_Yield_LUKE_T50_P300_F0.41_No_Delay.
+pdf Graphic file (type pdf)
+<use Figures///Results_estimation/Weighted_Yield_LUKE_T50_P300_F0.41_No_Delay.p
+df>
+Package pdftex.def Info: Figures///Results_estimation/Weighted_Yield_LUKE_T50_P
+300_F0.41_No_Delay.pdf  used on input line 31.
+(pdftex.def)             Requested size: 346.1547pt x 147.93448pt.
+) [12] [13 <./Figures///Results_estimation/Weighted_Yield_LUKE_T40_P200_F0.41_N
+o_Delay.pdf> <./Figures///Results_estimation/Weighted_Yield_LUKE_T50_P200_F0.41
+_No_Delay.pdf> <./Figures///Results_estimation/Weighted_Yield_LUKE_T40_P300_F0.
+41_No_Delay.pdf> <./Figures///Results_estimation/Weighted_Yield_LUKE_T50_P300_F
+0.41_No_Delay.pdf>] [14
 
 ] (Article_Model_Parameters.bbl
 LaTeX Font Info:    Trying to load font information for TS1+stix on input line 
@@ -1714,8 +1795,7 @@ LaTeX Font Info:    Trying to load font information for TS1+stix on input line
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ts1stix.fd
 File: ts1stix.fd 2015/04/17 v1.1.2-latex STIX TS1 font definitions
 ))
-[13
-
+[15
 
 ] (Sections/Thermodynamic_details.tex
 Underfull \hbox (badness 10000) in paragraph at lines 8--9
@@ -1729,48 +1809,43 @@ $
  []
 
 
-Overfull \hbox (74.43103pt too wide) detected at line 15
- $[][][] \LS1/stix/m/n/8 * [] [][][] + [] [][] = 0\LS1/stix/m/it/8 ;$  
+Overfull \hbox (4.8338pt too wide) detected at line 16
+[]
  []
 
 
-Overfull \hbox (22.20264pt too wide) in paragraph at lines 17--18
+Overfull \hbox (22.20264pt too wide) in paragraph at lines 18--19
 [][] [] \LS1/stix/m/n/10 = [][][][] []$ \T1/stix/m/n/10 with $[][] \LS1/stix/m/
 n/10 ù 0\LS1/stix/m/it/10 :\LS1/stix/m/n/10 45724[]_[]$\T1/stix/m/n/10 ,
  []
 
 
-Overfull \hbox (13.43086pt too wide) in paragraph at lines 23--26
-\T1/stix/m/n/10 The quan-tity $[][] [] \LS1/stix/m/n/10 = [][]$\T1/stix/m/n/10 
-,
+Overfull \hbox (9.30634pt too wide) in paragraph at lines 28--29
+[]\T1/stix/m/n/10 The quan-tity $[][] [] \LS1/stix/m/n/9 = [][]$\T1/stix/m/n/10
+ ,
  []
 
 
-Overfull \hbox (8.68332pt too wide) in paragraph at lines 23--26
+Overfull \hbox (8.68332pt too wide) in paragraph at lines 28--29
 \T1/stix/m/n/10 with con-stant $[][] \LS1/stix/m/n/10 = 0\LS1/stix/m/it/10 :\LS
 1/stix/m/n/10 37464 + 1\LS1/stix/m/it/10 :\LS1/stix/m/n/10 54226[][] * 0\LS1/st
 ix/m/it/10 :\LS1/stix/m/n/10 26992[][][]$\T1/stix/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 23--26
+Underfull \hbox (badness 10000) in paragraph at lines 28--29
 
  []
 
 
-Overfull \hbox (49.32813pt too wide) in paragraph at lines 27--28
-[]\T1/stix/m/n/10 By de-not-ing the phys-i-cal con-stants as $\LS1/stix/m/it/10
- '[] \LS1/stix/m/n/10 = []$\T1/stix/m/n/10 ,
+Overfull \hbox (33.57942pt too wide) in paragraph at lines 30--31
+[]\T1/stix/m/n/10 By de-not-ing the phys-i-cal con-stants as $\LS1/stix/m/it/9 
+'[] \LS1/stix/m/n/9 = []$\T1/stix/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 1043) in paragraph at lines 27--28
+Underfull \hbox (badness 1043) in paragraph at lines 30--31
 \T1/stix/m/n/10 we ob-tain a spatio-temporal rep-re-sen-ta-tion of the com-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 27--28
-
  []
 
 
@@ -1779,83 +1854,72 @@ Underfull \hbox (badness 10000) in paragraph at lines 30--31
  []
 
 
-Overfull \hbox (16.7128pt too wide) in paragraph at lines 35--37
-\T1/stix/m/n/10 where $[][]$ de-notes the mo-lar mass of $[][]$ and $[][] []$
+Underfull \hbox (badness 1137) in paragraph at lines 42--43
+[]\T1/stix/m/n/10 where $[][]$ de-notes the mo-lar mass of $[][]$ and
  []
 
 
-Underfull \hbox (badness 1132) in paragraph at lines 35--37
-\T1/stix/m/n/10 of the fluid is thus a func-tion of space and time, due
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 35--37
+Underfull \hbox (badness 10000) in paragraph at lines 42--43
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 39--40
+Underfull \hbox (badness 10000) in paragraph at lines 47--48
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 41--42
+Underfull \hbox (badness 2213) in paragraph at lines 57--58
+[]$[][] []$ \T1/stix/m/n/10 and $[][] []$ are the
+ []
+
+
+Underfull \hbox (badness 1400) in paragraph at lines 57--58
+\T1/stix/m/n/10 spe-cific heat of $[][]$ at con-stant vol-ume and pres-sure,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 57--58
 
  []
 
 
-Overfull \hbox (28.0863pt too wide) detected at line 47
-[]
+Overfull \hbox (4.20375pt too wide) in paragraph at lines 74--75
+\T1/stix/m/n/10 tion of state $\LS1/stix/m/it/10 P\LS1/stix/m/n/10 .\LS1/stix/m
+/it/10 t\LS1/stix/m/n/10 /\LS1/stix/m/it/10 V [] \LS1/stix/m/n/10 = \LS1/stix/m
+/it/10 Z [] RT\LS1/stix/m/n/10 .\LS1/stix/m/it/10 t; z\LS1/stix/m/n/10 /$\T1/st
+ix/m/n/10 . 
  []
 
 
-Underfull \hbox (badness 1748) in paragraph at lines 47--49
-\T1/stix/m/n/10 at con-stant vol-ume and pres-sure. $[][] []$ and
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 47--49
-
- []
-
-
-Overfull \hbox (14.1479pt too wide) detected at line 53
- $[][] [] \LS1/stix/m/n/10 = [][] + [][]\LS1/stix/m/it/10 T\LS1/stix/m/n/10 .\L
-S1/stix/m/it/10 t; z\LS1/stix/m/n/10 / + [][][][][].\LS1/stix/m/it/10 t; z\LS1/
-stix/m/n/10 / + [][][][][].\LS1/stix/m/it/10 t; z\LS1/stix/m/n/10 /$  
- []
-
-
-Overfull \hbox (149.55669pt too wide) detected at line 57
- $[][] [] \LS1/stix/m/n/10 = [] +[][].\LS1/stix/m/it/10 t; z\LS1/stix/m/n/10 / 
-[] [] *[][]\LS1/stix/m/it/10 :$  
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 57--59
+Underfull \hbox (badness 10000) in paragraph at lines 74--75
 
  []
 
 
-Overfull \hbox (103.62253pt too wide) detected at line 63
- $[][] \LS1/stix/m/n/10 = [] + [] []$  
+Overfull \hbox (36.70769pt too wide) detected at line 81
+ $[][] \LS1/stix/m/n/8 = [] + [] []$  
  []
 
-[14
+[16
 
 ]
-Overfull \hbox (82.5257pt too wide) in paragraph at lines 78--79
+Overfull \hbox (82.5257pt too wide) in paragraph at lines 104--105
 []\T1/stix/m/n/10 By de-not-ing the phys-i-cal con-stants as $\LS1/stix/m/it/10
  '[] \LS1/stix/m/n/10 = []$\T1/stix/m/n/10 ,
  []
 
 
-Overfull \hbox (20.59918pt too wide) in paragraph at lines 78--79
+Overfull \hbox (20.59918pt too wide) in paragraph at lines 104--105
 \T1/stix/m/n/10 we get the spatio-temporal rep-re-sen-ta-tion $\LS1/stix/m/it/1
 0 C[] []$
  []
 
 ) (Sections/Gouverning_equation_derivation.tex
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
 Overfull \hbox (0.99298pt too wide) detected at line 68
 []
  []
@@ -1871,12 +1935,11 @@ Underfull \hbox (badness 1584) in paragraph at lines 71--72
 \T1/stix/m/n/10 terms in-volv-ing only one dif-fer-en-tial. Hence, all terms
  []
 
-[15]
 
 LaTeX Font Warning: Command \footnotesize invalid in math mode on input line 11
 7.
 
-
+[17]
 Overfull \hbox (7.98909pt too wide) detected at line 148
  $[][] \LS1/stix/m/it/8 J[] \LS1/stixscr/m/n/8 ^^L [] [][] \LS1/stix/m/n/8 = []
 [] (\LS1/stix/m/it/8 J[]dV[] \LS1/stix/m/n/8 = ( [][] \LS1/stix/m/it/8 J[]dV[] 
@@ -1891,15 +1954,12 @@ LaTeX Font Warning: Command \footnotesize invalid in math mode on input line 16
 
 pdfTeX warning: pdflatex (file ./Figures//Forces.pdf): PDF inclusion: found PDF
  version <1.7>, but at most version <1.5> allowed
-<Figures//Forces.pdf, id=557, 205.72859pt x 191.7564pt>
+<Figures//Forces.pdf, id=666, 205.72859pt x 191.7564pt>
 File: Figures//Forces.pdf Graphic file (type pdf)
 <use Figures//Forces.pdf>
 Package pdftex.def Info: Figures//Forces.pdf  used on input line 219.
 (pdftex.def)             Requested size: 238.25444pt x 222.08058pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[16]
+[18 <./Figures//Forces.pdf>]
 Underfull \hbox (badness 1038) in paragraph at lines 291--292
 []\T1/stix/m/n/10 Expanding the deriva-tives on the left-hand size of
  []
@@ -1920,29 +1980,43 @@ Overfull \hbox (14.48483pt too wide) detected at line 363
 []
  []
 
-[17 <./Figures//Forces.pdf>]
+[19]
 
 LaTeX Font Warning: Command \footnotesize invalid in math mode on input line 42
 5.
 
-) [18
+) (Sections/Bayes_Theorem.tex [20]) [21
 
-] (Article_Model_Parameters.aux)
+]
+<Sections/ultraReportT5.pdf, id=786, 597.23125pt x 845.1575pt>
+File: Sections/ultraReportT5.pdf Graphic file (type pdf)
+<use Sections/ultraReportT5.pdf>
+Package pdftex.def Info: Sections/ultraReportT5.pdf  used on input line 247.
+(pdftex.def)             Requested size: 549.43207pt x 620.46504pt.
+
+Overfull \hbox (54.92319pt too wide) in paragraph at lines 247--248
+ [][]
+ []
+
+[22
+
+
+ <./Sections/ultraReportT5.pdf>] (Article_Model_Parameters.aux)
 
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `Article_Model_Parameters.out' has not change
 d.
-(rerunfilecheck)             Checksum: 534BC317AB184E6248DF4541D8C78C42;4085.
+(rerunfilecheck)             Checksum: 152FAE4B4F9FE7CDCE597BB0542D64D5;5021.
  ) 
 Here is how much of TeX's memory you used:
- 41792 strings out of 478847
- 912232 string characters out of 2848486
- 1373596 words of memory out of 3000000
- 58709 multiletter control sequences out of 15000+600000
- 527680 words of font info for 177 fonts, out of 8000000 for 9000
+ 42655 strings out of 478847
+ 929418 string characters out of 2848486
+ 1386703 words of memory out of 3000000
+ 59489 multiletter control sequences out of 15000+600000
+ 530445 words of font info for 178 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,19n,131p,1762b,2477s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 99i,22n,131p,1762b,2477s stack positions out of 5000i,500n,10000p,200000b,80000s
 {C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/stix/stix-ts
 1.enc}{C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/stix/sti
 x-t1.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/cm-super/cm-super-t1.enc}{C:/
@@ -1958,13 +2032,15 @@ General-Regular.pfb><C:/Program Files/MiKTeX/fonts/type1/public/cm-super/sfss09
 ers/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix/stix-mathcal
 .pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix/s
 tix-mathex.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/pub
-lic/stix/stix-mathit.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts
-/type1/public/stix/stix-mathrm.pfb><C:/Users/sliczno1/AppData/Local/Programs/Mi
-KTeX/fonts/type1/public/stix/stix-mathscr.pfb><C:/Users/sliczno1/AppData/Local/
-Programs/MiKTeX/fonts/type1/public/stix/stix-mathsf.pfb>
-Output written on Article_Model_Parameters.pdf (18 pages, 1163206 bytes).
+lic/stix/stix-mathit-bold.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/
+fonts/type1/public/stix/stix-mathit.pfb><C:/Users/sliczno1/AppData/Local/Progra
+ms/MiKTeX/fonts/type1/public/stix/stix-mathrm.pfb><C:/Users/sliczno1/AppData/Lo
+cal/Programs/MiKTeX/fonts/type1/public/stix/stix-mathscr.pfb><C:/Users/sliczno1
+/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix/stix-mathsf.pfb><C:/User
+s/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrb8a.pfb>
+Output written on Article_Model_Parameters.pdf (22 pages, 1820461 bytes).
 PDF statistics:
- 740 PDF objects out of 1000 (max. 8388607)
- 185 named destinations out of 1000 (max. 500000)
- 294 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 917 PDF objects out of 1000 (max. 8388607)
+ 233 named destinations out of 1000 (max. 500000)
+ 395 words of extra memory for PDF output out of 10000 (max. 10000000)
 

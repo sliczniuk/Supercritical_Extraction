@@ -34,7 +34,7 @@ Because of the difficulty of obtaining analytical solutions to the deterministic
 
 If unobservable error in the first observation is designated as $\epsilon_1$, the second error observation $\epsilon_2'$ includes $\epsilon_1$ plus a random component introduced side from $\epsilon_1$, or $\epsilon_2' = \epsilon_1 + \epsilon_2$. The error in the third observation is $\epsilon_3' = \epsilon_1 + \epsilon_2 + \epsilon_3$, and so forth. \citet{Mandel1957} distinguished between the usually assumed type of independent measuring error in the dependent variable and a 'cumulative' or interval error in which each new observation includes the error of the previous observations. Cumulative errors, arising because of the fluctuations as a function of time in the process itself due to small changes in operating, are not independent - only the differences in measurement from one period to the next are independent.
 
-\subsection{Least squares estimation}
+\subsubsection{Least squares estimation}
 A least squares parameter estimation does not require prior knowledge of the distribution of unobservable errors, yield  unbiased estimates, and results in the minimum variance among all linear unbiased estimators. If the observations $ Y$ for the model responses are continuous functions of time from $t = 0$ to $t = t_f$, the Markov (or "rigorous least squares") criterion is to minimize:
 
 {\footnotesize
@@ -54,7 +54,7 @@ If the observations are made at discrete instants of time, $t_i$, $i = 1,2,...,n
 If $\Gamma$ is a diagonal matrix, $\phi$  becomes a "weighted least squares" criterion; if $\Gamma = \sigma^2 \textbf{I}$ where $\sigma$ is a standard deviation, $\phi$ is the "ordinary least squares" criterion.
 
 \iffalse
-\subsection{Weighted sum of squares - Cumulative data}
+\subsubsection{Weighted sum of squares - Cumulative data}
 
 One characteristic feature of certain special experiments is the use of the same batch of materials for the entire series of measurements. If unobservable error in the first observation is designated as $\epsilon_1$, the second error observation $\epsilon_2'$ includes $\epsilon_1$ plus a random component introduced side from $\epsilon_1$, or $\epsilon_2' = \epsilon_1 + \epsilon_2$. The error in the third observation is $\epsilon_3' = \epsilon_1 + \epsilon_2 + \epsilon_3$, and so forth. \citet{Mandel1957} distinguished between the usually assumed type of independent measuring error in the dependent variable and a 'cumulative' or interval error in which each new observation includes the error of the previous observations. Cumulative errors, arising because of the fluctuations as a function of time in the process itself due to small changes in operating, are not independent - only the differences in measurement from one period to the next are independent. Thus, if we consider two model:
 
@@ -79,7 +79,7 @@ The unbiased estimate of the Model B is obtained by minimizing the weighted sum 
 
 \fi
 
-\subsection{Maximum likelihood estimation}
+\subsubsection{Maximum likelihood estimation}
 
 Maximum likelihood estimation (MLE) is a method of estimating the parameters of an assumed probability distribution, given some observed data. This is achieved by maximizing a likelihood function so that, under the assumed statistical model, the observed data is most probable. The MLE has the desirable characteristics of asymptotic efficiency and normality. Each time it has been associated with the (joint) normal distribution because of mathematical convenience. Consider the joint probability density function (the likelihood function) $p \left(\theta | y(t_1),y(t_2),...,y(t_n)\right)$ for parameter $\theta$. If a maximum of this function over all choices of $\theta$ can be found, the estimates so obtained are maximum likelihood estimates. The conditions at the maximum can be evolved incorporating prior information as follows.
 
@@ -127,7 +127,7 @@ We can get rid of the evidence term $p\left( y(t_n),...,y(t_1) \right)$ because 
 		p\left( \theta| y(t_n),...,y(t_1) \right) = \prod_{i=1}^{n} p\left( y(t_i)|\theta \right) = \prod_{i=1}^{n} L\left( \theta|y(t_i) \right) 
 \end{equation} }
 
-By collecting a values of $y$ and selecting the values of $\theta$ that maximize the likelihood function $L\left( \theta | y \right)$, a function described in chapter \ref{CH: Bayes} in connection with Bayes' theorem\todo{Is the reference it previous chapter needed?}. Such estimators, $\hat{\theta}$, are known as maximum likelihood estimators. In effect, the methods selects those values of $\theta$ that are at least as likely to generate the observed sample as any other set of values of the parameters if the probability density of $y$ were to be extensively simulated through use of the probability density $p\left( y|\theta \right)$. In making a maximum likelihood estimate, we assume that the form of the probability density (\sout{only the $\theta$ need be determined}) and that all possible values of $\theta$ are equally likely before experimentation. \todo{Needed?}
+By collecting a values of $y$ and selecting the values of $\theta$ that maximize the likelihood function $L\left( \theta | y \right)$, a function described in chapter \ref{CH: Bayes} in connection with Bayes' theorem\todo{Is the reference it previous chapter needed?}. Such estimators, $\hat{\theta}$, are known as maximum likelihood estimators. In effect, the methods selects those values of $\theta$ that are at least as likely to generate the observed sample as any other set of values of the parameters if the probability density of $y$ were to be extensively simulated through use of the probability density $p\left( y|\theta \right)$. In making a maximum likelihood estimate, we assume the form of the probability density and that all possible values of $\theta$ are equally likely before experimentation. \todo{Needed?}
 
 %The likelihood function for the parameters given one observation is just the probability density in which the observation is regarded as a fixed number and the parameters as the variables:
 %
@@ -174,7 +174,7 @@ By collecting a values of $y$ and selecting the values of $\theta$ that maximize
 		
 		{\footnotesize
 			\begin{equation}
-				\begin{aligned}
+				\begin{aligned} \label{EQ: Optimization_formulation_MLE}
 					&\hat{\theta}_{MLE} &= \arg \max_{\sigma, \theta \in \Theta} \ln L = \arg \max_{\sigma,\theta \in \Theta} p(\theta|y) \\
 					&\text{subject to}
 					& \dot{x} = f(t,x,\theta) \\
@@ -185,7 +185,7 @@ By collecting a values of $y$ and selecting the values of $\theta$ that maximize
 		
 		\todo{$x$ has not been defined}
 		
-		{\color{red}Based on the first order optimality condition,} the $\ln L$ can be maximized with respect to the vector $\theta$ by equating to zero the partial derivatives of $\ln L$ with respect to each of the parameters:
+		Based on the first order optimality condition, the $\ln L$ can be maximized with respect to the vector $\theta$ by equating to zero the partial derivatives of $\ln L$ with respect to each of the parameters:
 		
 		{\footnotesize
 			\begin{align}\label{EQ: MLE_Basic_Solution}

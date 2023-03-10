@@ -1,0 +1,56 @@
+\documentclass[../Article_Model_Parameters.tex]{subfiles}
+\graphicspath{{\subfix{../Figures/}}}
+\begin{document}
+	
+	\label{CH: Experiments}
+	
+	The close the optimization problem given by set of equations \ref{EQ: Optimization_formulation_MLE}, it is require to know the dataset $Y(t)$. In this case, the dataset have been obtained by performing extraction of caraway oil from caraway seeds. The caraway seeds have been obtained from the company Caraway Finland\todo{Should be mentioned?} during 2022 growing season. The caraway seeds have been pre-treated with Retsch SM 300 cutting mill to decrease the particle size to 1mm and break the outer shell of the seeds. Later, the moisture content was analysed to ensure that it does not have a negative effect on the extraction process. An Infrared Moisture Analyser was used to investigate the sample. The moisture content after grinding was 4.83\%. The grind material density was measured by pyncometery and its result can be found in appendix \ref{CH: Solid_Density_Measurment}
+	
+	The unit used for the experimental work is 10 litre extractor \todo{Should Biorukki be mentioned?} with inner diameter around 15 cm and 60 cm height \todo{Double check dimension}. Four experiments have been performed in that unit at following operating conditions: $40^\circ C / 200$ bar, $50^\circ C / 200$ bar, $40^\circ C / 300$ bar and $50^\circ C / 300$ bar. 1 kg of grind material was weighted and placed in the extraction chamber. Due to some technical limitations, the amount of solid material fro extraction was selected to be 1 kg per batch, which is not sufficient to fill the whole chamber.
+	
+	After the material was loaded into chamber, the extractor is pre-heated to desired temperature. The next step is to close the outlet line coming out of the extractor and fill the extraction chamber with $CO_2$. The $CO_2$ is pumped and compressed until the operating pressure is achieved. When the operating temperature and pressure are obtained, the outlet in is open to allow the solvent flow through the system. The solvent extract essential oils from the fixed bed of solid material and the mixture $CO_2$-oil flow from the extractor to separator. The separator was operating at $50^\circ C$ and $50$ bar. At this condition the $CO_2$ is gasified and leave from the top, while oil stays in the liquid form and it is collected at the bottom of separator. Every 5 minutes, the oil is drained from the separator and its weight is measured. The amount of oil collect during a batch is an output of the experiment and it is used as data for parameter estimation. The extraction time for each batch was 150 minutes, counted from the opening of the extractor outlet port.
+	
+	The result of the experiment are presented in the table \ref{tab: Yield_data}.
+	
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{c|cccc}
+			& $40 ^\circ C / 200$ bar & $50 ^\circ C / 200$ bar & $40 ^\circ C / 300$ bar & $50 ^\circ C / 300$ bar \\ 
+			Time min & Mass g                  & Mass g                  & Mass g                  & Mass g                  \\ \hline
+			0        & 0.0                     & 0.0                     & 0.0                     & 0.0                     \\
+			5        & 2.3                     & 1.8                     & 1.1                     & 1.2                     \\
+			10       & 5.9                     & 5                       & 4.7                     & 4.5                     \\
+			15       & 11.4                    & 8.6                     & 10.8                    & 11.3                    \\
+			20       & 17.7                    & 13.7                    & 20.6                    & 20.6                    \\
+			25       & 24.4                    & 18.3                    & 32.1                    & 30.6                    \\
+			30       & 30.4                    & 22.3                    & 40.5                    & 37.8                    \\
+			35       & 34.1                    & 26.4                    & 46.7                    & 43.3                    \\
+			40       & 37.6                    & 30.2                    & 50.5                    & 47.5                    \\
+			45       & 40.2                    & 33.8                    & 53.1                    & 50.8                    \\
+			50       & 43.4                    & 37.3                    & 55.5                    & 53.7                    \\
+			55       & 45.6                    & 40.9                    & 57.6                    & 56.5                    \\
+			60       & 47.7                    & 44.2                    & 59.3                    & 58.1                    \\
+			65       & 49.3                    & 46.8                    & 60.9                    & 59.6                    \\
+			70       & 50.9                    & 49.1                    & 62.2                    & 61.1                    \\
+			75       & 52.7                    & 50.9                    & 63.7                    & 62.7                    \\
+			80       & 54.3                    & 52.6                    & 64.9                    & 64.4                    \\
+			85       & 55.2                    & 54                      & 66.6                    & 65.8                    \\
+			90       & 56.3                    & 55.4                    & 67.6                    & 66.7                    \\
+			95       & 57.4                    & 56.6                    & 68.9                    & 67.4                    \\
+			100      & 58.4                    & 57.8                    & 69.7                    & 68.2                    \\
+			105      & 59.5                    & 58.6                    & 70.6                    & 69.1                    \\
+			110      & 60.4                    & 59.8                    & 71.2                    & 70.1                    \\
+			115      & 61.5                    & 60.9                    & 71.9                    & 70.9                    \\
+			120      & 62.6                    & 62.1                    & 72.3                    & 71.6                    \\
+			125      & 63.4                    & 63                      & 72.8                    & 72.3                    \\
+			130      & 64.1                    & 64.1                    & 73.2                    & 72.9                    \\
+			135      & 64.9                    & 65.1                    & 73.6                    & 73.5                    \\
+			140      & 65.6                    & 66                      & 74                      & 74                      \\
+			145      & 66.3                    & 66.9                    & 74.3                    & 74.5                    \\
+			150      & 66.9                    & 67.7                    & 74.6                    & 74.9                   
+		\end{tabular}
+	\caption{Yield data}
+	\label{tab: Yield_data}
+	\end{table}
+	
+\end{document}

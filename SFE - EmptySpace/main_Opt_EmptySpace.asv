@@ -41,7 +41,7 @@ end
 nstages                 = 150;
 
 before  = 0.1;          nstagesbefore   = 1:floor(before*nstages);
-bed     = 0.2;        nstagesbed      = nstagesbefore(end)+1 : nstagesbefore(end) + floor(bed*nstages);
+bed     = 0.165;        nstagesbed      = nstagesbefore(end)+1 : nstagesbefore(end) + floor(bed*nstages);
 nstagesafter                            = nstagesbed(end)+1:nstages;
 
 bed_mask                = nan(nstages,1);
@@ -69,7 +69,7 @@ f                       = @(x, u) modelSFE_uniform_U(x, u, bed_mask);
 % Integrator
 F                       = buildIntegrator(f, [Nx,Nu] , timeStep_in_sec);
 
-V                       = 0.008;                                        % deafault = 0.01
+V                       = 0.01;                                        % deafault = 0.01
 r                       = 0.075;                                        % Radius of the extractor  [m3]
 L                       = V / pi / r^2;                                 % Total length of the extractor [m]
 L_nstages               = linspace(0,L,nstages);
@@ -98,7 +98,7 @@ parfor ii=1:numel(DATA_set)
     OPT_solver                  = casadi.Opti();
 
     nlp_opts                    = struct;
-    nlp_opts.ipopt.max_iter     = 30;
+    nlp_opts.ipopt.max_iter     = 5;
     %nlp_opts.ipopt.max_cpu_time = 3600;
     ocp_opts                    = {'nlp_opts', nlp_opts};
     OPT_solver.solver(             'ipopt'   , nlp_opts)
@@ -110,7 +110,7 @@ parfor ii=1:numel(DATA_set)
     max_ms                   = k(6);
     mSOL_f                   = max_ms-mSOL_s;                                   % g of biomass in fluid
     
-    k_lu                    = [ [0;0.01;0.01;0;0;75] , [1;10;1;10;max_ms;100] ];
+    k_lu                    = [ [0;0.01;0.01;0;0;0] , [1;10;1;10;max_ms;100] ];
     % Constraints
     for nk=1:Nk
         OPT_solver.subject_to( k_lu(nk,1) <= k(nk,:) <= k_lu(nk,2) );

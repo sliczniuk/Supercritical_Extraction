@@ -10,72 +10,98 @@
 	In Peng-Robinson's equation, the compressibility ${\color{orange}\overline{Z}}\left[{\color{blue}T}(t,z), {\color{red}P}(t)\right]$ solves the third-order polynomial equation \todo{reference to Cardano formula}
 	
 	{\footnotesize	
-	\begin{equation}\label{eq: Compressibility}
-		{\color{orange}Z}^3 - \left[1 - {\color{orange}B}\left[{\color{blue}T}(t,z), {\color{red}P}(t)\right]\right] {\color{orange}Z}^2 + \left[{\color{orange}A}\left[{\color{blue}T}(t,z), {\color{red}P}(t)\right] - 2{\color{orange}B}\left[{\color{blue}T}(t,z), {\color{red}P}(t)\right] - 3{\color{orange}B}\left[{\color{blue}T}(t,z), {\color{red}P}(t)\right]^2\right] {\color{orange}Z} = 0, 
-	\end{equation} }
+	\begin{align}\label{eq: Compressibility}
+		&{\color{orange}Z}^3 - \left[1 - {\color{orange}B}\left[{\color{blue}T}(t,z), {\color{red}P}(t)\right]\right] {\color{orange}Z}^2 \\ \nonumber
+		&+ \left[{\color{orange}A}\left[{\color{blue}T}(t,z), {\color{red}P}(t)\right] - 2{\color{orange}B}\left[{\color{blue}T}(t,z), {\color{red}P}(t)\right] - 3{\color{orange}B}\left[{\color{blue}T}(t,z), {\color{red}P}(t)\right]^2\right] {\color{orange}Z} = 0
+	\end{align} }
 
 	where ${\color{orange}A}\left[{\color{blue}T}(t,z), {\color{red}P}(t)\right]$ and ${\color{orange}B}\left[{\color{blue}T}(t,z), {\color{red}P}(t)\right]$ are functions of time and space defined on the attraction parameter, ${\color{orange}a}\left[{\color{blue}T}(t,z)\right] = {\color{magenta}a^c_{\text{CO}_2}}{\color{orange}\alpha}\left[{\color{blue}T}(t,z)\right]$ with ${\color{magenta}a^c_{\text{CO}_2}} \approx 0.45724 {{\color{magenta}R}^2{\color{magenta}T^c_{\text{CO}_2}}^2}/{{\color{magenta}P^c_{\text{CO}_2}}}$, and the repulsion parameter, ${\color{magenta}b_{\text{CO}_2}} \approx 0.07780 {{\color{magenta}R}{\color{magenta}T^c_{\text{CO}_2}}}/{{\color{magenta}P^c_{\text{CO}_2}}}$, both functions of the critical temperature ${\color{magenta}T^c_{\text{CO}_2}}$ and pressure ${\color{magenta}P^c_{\text{CO}_2}}$. Specifically, we have
-	\vskip-0.250cm
+
+	{\footnotesize
 	\begin{subequations} \label{eq: PR_AB}
 		\begin{align} 
 			{\color{orange}A}\left[{\color{blue}T}(t,z), {\color{red}P}(t)\right]	& = \dfrac{{\color{orange}\alpha}\left[T\left(t,z\right)\right]{\color{magenta}a^c_{\text{CO}_2}}{\color{red}P}(t)}{{\color{magenta}R}^2{\color{blue}T}^2(t,z)};													\label{eq: PR_A}\\
 			{\color{orange}B}\left[{\color{blue}T}(t,z), {\color{red}P}(t)\right]	& = \dfrac{{\color{magenta}b_{\text{CO}_2}}{\color{red}P}(t)}{{\color{magenta}R}{\color{blue}T}(t,z)}	\label{eq: PR_B}.
 		\end{align}
-	\end{subequations}
-	The quantity ${\color{orange}\alpha}\left[{\color{blue}T}\left(t,z\right)\right]= \left[1 + {\color{magenta}\kappa_{\text{CO}_2}} \left[1 - \sqrt{{\color{blue}T}\left(t,z\right) / {\color{magenta}T^c_{\text{CO}_2}}} \right] \right]^2$, with constant ${\color{magenta}\kappa_{\text{CO}_2}} = 0.37464 + 1.54226 {\color{magenta}\omega_{\text{CO}_2}} - 0.26992 {\color{magenta}\omega_{\text{CO}_2}}^2$, is a dimensionless correction term defined on the acentric factor ${\color{magenta}\omega_{\text{CO}_2}} = 0.239$ of $\text{CO}_2$ molecules. \\
+	\end{subequations}}
+
+	The quantity {\small${\color{orange}\alpha}\left[{\color{blue}T}\left(t,z\right)\right]= \left[1 + {\color{magenta}\kappa_{\text{CO}_2}} \left[1 - \sqrt{{\color{blue}T}\left(t,z\right) / {\color{magenta}T^c_{\text{CO}_2}}} \right] \right]^2$}, with constant ${\color{magenta}\kappa_{\text{CO}_2}} = 0.37464 + 1.54226 {\color{magenta}\omega_{\text{CO}_2}} - 0.26992 {\color{magenta}\omega_{\text{CO}_2}}^2$, is a dimensionless correction term defined on the acentric factor ${\color{magenta}\omega_{\text{CO}_2}} = 0.239$ of $\text{CO}_2$ molecules. \\
 	
-	By denoting the physical constants as $\varphi_{Z} = \left(R,T^c_{\text{CO}_2},P^c_{\text{CO}_2},\kappa_{\text{CO}_2}\right)$, we obtain a spatio-temporal representation of the compressibility ${\color{orange}\overline{Z}}\left[{\color{blue}T}(t,z), {\color{red}P}(t) \mid \varphi_{Z}\right]$ with its complete set of functional dependencies and parameters. \\
+	By denoting the physical constants as {\small$\varphi_{Z} = \left(R,T^c_{\text{CO}_2},P^c_{\text{CO}_2},\kappa_{\text{CO}_2}\right)$}, we obtain a spatio-temporal representation of the compressibility ${\color{orange}\overline{Z}}\left[{\color{blue}T}(t,z), {\color{red}P}(t) \mid \varphi_{Z}\right]$ with its complete set of functional dependencies and parameters. \\
 	
-	%\subsubsection{Density of the fluid phase} \label{subsubsec: Fluid density}
-	\noindent \textbf{Density of the fluid phase} \\
+	\subsubsection{Density of the fluid phase} \label{subsubsec: Fluid density}
+	%\noindent \textbf{Density of the fluid phase} \\
 	
 	The density $\rho_{\text{F}}$ of the fluid phase is assumed to be equal to the density of solvent, at given temperature and pressure. Because temperature $T(t,z)$ of the fluid phase is a modelled variable, we allow for the density to vary along the bed and in time. From an equation of state of the form ${\color{red}P}(t) {\color{orange}V_{\text{CO}_2}}\left[T(t,z),P(t)\right] = {\color{orange}Z}{\color{magenta}R}{\color{blue}T}(t,z)$, we get
+	
+	{\footnotesize
 	\begin{equation} \label{eq: Density}
 		{\color{orange}\rho_{\text{F}}} \left[{\color{blue}T}(t,z),{\color{red}P}(t) \mid {\color{magenta}\varphi_{\rho_{\text{F}}}}\right] = \dfrac{{\color{red}P}(t) {\color{magenta}M_{\text{CO}_2}}}{{\color{magenta}R}{\color{blue}T}(t,z){\color{orange}\overline{Z}}\left[{\color{blue}T}(t,z),{\color{red}P}(t) \mid \varphi_{Z}\right]},
-	\end{equation}
+	\end{equation} }
+
 	where ${\color{magenta}M_{\text{CO}_2}}$ denotes the molar mass of $\text{CO}_2$ and ${\color{orange}\overline{Z}}\left[{\color{blue}T}(t,z), {\color{red}P}(t)\right]$ is the compressibility factor that solves Eq. \eqref{eq: Compressibility}. The density of the fluid is thus a function of space and time, due to its dependence on temperature and pressure, and it is expressed in terms of the set of physical constants $\varphi_{\rho_\text{F}} = \left({\color{magenta}R}, {\color{magenta}M_{\text{CO}_2}}, {\color{magenta}T^c_{\text{CO}_2}}, {\color{magenta}P^c_{\text{CO}_2}}, {\color{magenta}\omega_{\text{CO}_2}}\right)$. \\
 	
-	%\subsubsection{Heat capacity of the fluid phase} \label{subsubsec: Fluid heat capacity}
-	\noindent\textbf{Heat capacity of the fluid phase} \\
+	\subsubsection{Heat capacity of the fluid phase} \label{subsubsec: Fluid heat capacity}
+%	\noindent\textbf{Heat capacity of the fluid phase} \\
 	
-	The specific heat $C_p^{\text{F}}$ can be calculated from the equation of state, again under the assumption that the fluid phase consists of pure carbon dioxide and that the specific heat of real fluids can be calculated from an ideal contribution plus a residual term {\color{red}REF}. In the following, we report only the main steps in the derivation of ${\color{orange}C^{\text{CO}_2}_p}\left[{\color{blue}T}(t,z), {\color{red}P}(t)\right]$: Step-by-step derivations using the Peng-Robinson's equation are given in Appendix {\color{red}REF}. \\
+	The specific heat $C_p^{\text{F}}$ can be calculated from the equation of state, again under the assumption that the fluid phase consists of pure carbon dioxide and that the specific heat of real fluids can be calculated from an ideal contribution plus a residual term {\color{red}REF}. In the following, we report only the main steps in the derivation of ${\color{orange}C^{\text{CO}_2}_p}\left[{\color{blue}T}(t,z), {\color{red}P}(t)\right]$: Step-by-step derivations using the Peng-Robinson's equation are given. \todo{Add step-by-step derivation} \\
 	
 	At given temperature and pressure, for $\text{CO}_2$ we have
+	
+	{\footnotesize
 	\begin{subequations}\begin{align}
 			{\color{orange}C^{\text{CO}_2}_v}\left[{\color{blue}T}(t,z), {\color{red}P}(t)\right] & = {\color{orange}C_v^{\text{I}}}\left[{\color{blue}T}(t,z),P(t)\right] + {\color{orange}C_v^{\text{R}}}\left[{\color{blue}T}(t,z), {\color{red}P}(t)\right] \label{eq: Cv_CO2}; \\ 
 			{\color{orange}C^{\text{CO}_2}_p}\left[{\color{blue}T}(t,z), {\color{red}P}(t)\right] & = \underbrace{{\color{orange}C_p^{\text{I}}}\left[{\color{blue}T}(t,z),P(t)\right]}_{\text{Eq. } \eqref{eq: Cp_I}} + \underbrace{{\color{orange}C_p^{\text{R}}}\left[{\color{blue}T}(t,z), {\color{red}P}(t)\right]}_{\text{Eq. } \eqref{eq: Cp_R}}  \label{eq: Cp_CO2}.
-	\end{align}\end{subequations}
+	\end{align}\end{subequations} }
+
 	${\color{orange}C^{\text{CO}_2}_v}\left[{\color{blue}T}(t,z), {\color{red}P}(t)\right]$ and ${\color{orange}C^{\text{CO}_2}_p}\left[{\color{blue}T}(t,z), {\color{red}P}(t)\right]$ are the specific heat of $\text{CO}_2$ at constant volume and pressure, respectively. ${\color{orange}C_v^{\text{I}}}\left[{\color{blue}T}(t,z), {\color{red}P}(t)\right]$ and ${\color{orange}C_p^{\text{I}}}\left[{\color{blue}T}(t,z), {\color{red}P}(t)\right]$, with ${\color{orange}C_p^{\text{I}}}({\color{blue}T}(t,z)) - {\color{orange}C_v^{\text{I}}}({\color{blue}T}(t,z)) = {\color{magenta}R}$, are the specific heat of an ideal gas at constant volume and pressure. ${\color{orange}C_v^{\text{R}}}\left[{\color{blue}T}(t,z), {\color{red}P}(t)\right]$ and ${\color{orange}C_p^{\text{R}}}({\color{blue}T}(t,z), {\color{red}P}(t))$ are the correction terms. \\
 	
-	For $CO_2$ {\color{red}REF}, we have the ideal gas contribution to the specific heat at constant $P(t)$, as function of $T(t,z)$,
+	For $CO_2$ ()\todo[fancyline]{Add REF}, we have the ideal gas contribution to the specific heat at constant $P(t)$, as function of $T(t,z)$,
+	
+	{\footnotesize
 	\begin{equation}
 		{\color{orange}C_p^{\text{I}}}\left[{\color{blue}T}(t,z),P(t)\right] = {\color{magenta}C_{P0}} + {\color{magenta}C_{P1}}T(t,z) + {\color{magenta}C_{P2}}{\color{blue}T}^2(t,z) + {\color{magenta}C_{P3}}{\color{blue}T}^3(t,z) \label{eq: Cp_I}
-	\end{equation}
+	\end{equation} }
+
 	where the coefficients of the expansion are ${\color{magenta}C_{P0}} = 4.728$, ${\color{magenta}C_{P1}} = 1.75 \times 10^{-3}$, ${\color{magenta}C_{P2}} = -1.34 \times 10^{-5}$, and ${\color{magenta}C_{P3}} = 4.10 \times 10^{-9}$. For the correction term ${\color{orange}C_p^{\text{R}}}\left[{\color{blue}T}(t,z){\color{red}P}(t)\right]$ at constant pressure $P(t)$, we have
-	\begin{equation}
-		{\color{orange}C_p^{\text{R}}}\left[{\color{blue}T}(t,z), {\color{red}P}(t)\right] = \underbrace{{\color{orange}C_v^{\text{R}}}\left[{\color{blue}T}(t,z), {\color{red}P}(t)\right]}_{\text{Eq. }\eqref{eq: CvR}} + {\color{blue}T}(t,z) \underbrace{\left(\cfrac{\partial {\color{red}P}(t)}{\partial {\color{blue}T}}\right)_{{\color{orange}V_{\text{CO}_2}}(t,z)}}_{\text{Eq. } \eqref{eq: dPdT}} \underbrace{\left(\cfrac{\partial {\color{orange}V_{\text{CO}_2}}\left[{\color{blue}T}(t,z),{\color{red}P}(t)\right]}{\partial {\color{blue}T}}\right)_{{\color{red}P}(t)}}_{\text{Eq. } \eqref{eq: dVdT}} - {\color{magenta}R}. \label{eq: Cp_R}
-	\end{equation}
+	
+	{\footnotesize	
+	\begin{align}
+		&{\color{orange}C_p^{\text{R}}}\left[{\color{blue}T}(t,z), {\color{red}P}(t)\right] = \underbrace{{\color{orange}C_v^{\text{R}}}\left[{\color{blue}T}(t,z), {\color{red}P}(t)\right]}_{\text{Eq. }\eqref{eq: CvR}} \nonumber \\
+		&+ {\color{blue}T}(t,z) \underbrace{\left(\cfrac{\partial {\color{red}P}(t)}{\partial {\color{blue}T}}\right)_{{\color{orange}V_{\text{CO}_2}}(t,z)}}_{\text{Eq. } \eqref{eq: dPdT}} \underbrace{\left(\cfrac{\partial {\color{orange}V_{\text{CO}_2}}\left[{\color{blue}T}(t,z),{\color{red}P}(t)\right]}{\partial {\color{blue}T}}\right)_{{\color{red}P}(t)}}_{\text{Eq. } \eqref{eq: dVdT}} - {\color{magenta}R}. \label{eq: Cp_R} 
+	\end{align} }
+
 	The braced terms are obtained from the chosen equation of state $P(t) V\left[T(t,z),P(t)\right] = Z\left[T(t,z),P(t)\right] R T(t,z)$. \\
 	
 	For the partial derivative of the volume with respect to temperature $T$ at constant pressure $P(t)$, we have
+
+	{\footnotesize
 	\begin{equation}
 		\left( \cfrac{\partial {\color{orange}V_{\text{CO}_2}}\left[{\color{blue}T}(t,z), {\color{red}P}(t)\right]}{\partial {\color{blue}T}} \right)_{{\color{red}P}(t)} = \cfrac{{\color{orange}Z}\left[{\color{blue}T}(t,z), {\color{red}P}(t)\right] {\color{magenta}R}}{{\color{red}P}(t)} + \cfrac{{\color{magenta}R}{\color{blue}T}(t,z)}{{\color{red}P}(t)} \underbrace{\left( \cfrac{\partial {\color{orange}Z}\left[{\color{blue}T}(t,z), {\color{red}P}(t)\right]}{\partial {\color{blue}T}} \right)_{{\color{red}P}(t)}}_{\text{Eq. }\eqref{eq: dZdT}} \label{eq: dVdT}
-	\end{equation} 
+	\end{equation} }
+ 
 	with partial derivative of the compressibility factor with respect to temperature $T$ at constant pressure $P(t)$
+
+	{\footnotesize
 	\begin{equation}
 		\left(\cfrac{\partial{\color{orange}Z}\left[{\color{blue}T}(t,z), {\color{red}P}(t)\right]}{\partial {\color{blue}T}}\right)_{{\color{red}P}(t)} = \left(\cfrac{\partial \dfrac{{\color{red}P}(t) {\color{orange}V_{\text{CO}_2}}\left[T(t,z),P(t)\right]}{{\color{magenta}R}{\color{blue}T}(t,z)}}{\partial {\color{blue}T}}\right)_{{\color{red}P}(t)} \label{eq: dZdT}
-	\end{equation}
+	\end{equation} }
+
 	Similarly, for the partial derivative of the pressure with respect to temperature at constant volume, we have
+	
+	{\footnotesize
 	\begin{equation}
 		\left(\cfrac{\partial {\color{red}P}(t)}{\partial {\color{blue}T}}\right)_{{\color{orange}V_{\text{CO}_2}}(t,z)} = \left( \cfrac{\partial{\dfrac{{\color{orange}Z}{\color{magenta}R}{\color{blue}T}(t,z)}{{\color{magenta}V_{\text{CO}_2}}\left[T(t,z),P(t)\right]}}}{\partial{\color{blue}T}}\right)_{{\color{orange}V}(t,z)} \label{eq: dPdT}
-	\end{equation}
+	\end{equation} }
 	
 	The residual specific heat at constant volume is obtained, by definition, by using the residual internal energy
+	
+	{\footnotesize
 	\begin{equation}
 		{\color{orange}C_v^{\text{R}}}\left[{\color{blue}T}(t,z),{\color{red}P}(t)\right] = \left(\cfrac{\partial{\color{orange}U^{\text{R}}}\left[{\color{blue}T}(t,z),{\color{red}P}(t)\right]}{\partial {\color{blue}T}}\right)_{{\color{orange}V}(t,z)}. \label{eq: CvR}
-	\end{equation}
+	\end{equation} }
 	
-	By denoting the physical constants as $\varphi_{C_p^{\text{F}}} = \left({\color{magenta}R}, {\color{magenta}M_{\text{CO}_2}}, {\color{magenta}T^c_{\text{CO}_2}}, {\color{magenta}P^c_{\text{CO}_2}}, {\color{magenta}\omega_{\text{CO}_2}}\right)$, we get the spatio-temporal representation $C_p^{\text{F}}\left[T(t,z),P(t) \mid \varphi_{C_p^{\text{F}}}\right]$ of the specific heat of the fluid phase
+	By denoting the physical constants as $\varphi_{C_p^{\text{F}}} = \left({\color{magenta}R}, {\color{magenta}M_{\text{CO}_2}}, {\color{magenta}T^c_{\text{CO}_2}}, {\color{magenta}P^c_{\text{CO}_2}}, {\color{magenta}\omega_{\text{CO}_2}}\right)$, we get the spatio-temporal representation $C_p^{\text{F}}\left[T(t,z),P(t) \mid \varphi_{C_p^{\text{F}}}\right]$ of the specific heat of the fluid phase.
 	
 	\todo[]{Add internal energy equation}
 	
