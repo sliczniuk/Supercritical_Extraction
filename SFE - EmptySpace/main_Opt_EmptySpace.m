@@ -98,8 +98,8 @@ parfor ii=1:numel(DATA_set)
     OPT_solver                  = casadi.Opti();
 
     nlp_opts                    = struct;
-    nlp_opts.ipopt.max_iter     = 30;
-    %nlp_opts.ipopt.max_cpu_time = 3600;
+    %nlp_opts.ipopt.max_iter     = 30;
+    nlp_opts.ipopt.max_cpu_time = 3600;
     ocp_opts                    = {'nlp_opts', nlp_opts};
     OPT_solver.solver(             'ipopt'   , nlp_opts)
 
