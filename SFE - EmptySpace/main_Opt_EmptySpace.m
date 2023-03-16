@@ -38,10 +38,10 @@ if numel(N_Sample) ~= numel(SAMPLE)
 end
 
 %% Specify parameters to estimate
-nstages                 = 150;
+nstages                 = 250;
 
 before  = 0.1;          nstagesbefore   = 1:floor(before*nstages);
-bed     = 0.2;        nstagesbed      = nstagesbefore(end)+1 : nstagesbefore(end) + floor(bed*nstages);
+bed     = 0.165;        nstagesbed      = nstagesbefore(end)+1 : nstagesbefore(end) + floor(bed*nstages);
 nstagesafter                            = nstagesbed(end)+1:nstages;
 
 bed_mask                = nan(nstages,1);
@@ -69,14 +69,14 @@ f                       = @(x, u) modelSFE_uniform_U(x, u, bed_mask);
 % Integrator
 F                       = buildIntegrator(f, [Nx,Nu] , timeStep_in_sec);
 
-V                       = 0.008;                                        % deafault = 0.01
+V                       = 0.010;                                        % deafault = 0.01
 r                       = 0.075;                                        % Radius of the extractor  [m3]
 L                       = V / pi / r^2;                                 % Total length of the extractor [m]
 L_nstages               = linspace(0,L,nstages);
 A                       = pi*r^2;                                       % Extractor cross-section
 epsi                    = 0.5;                                          % Fullness [-]
 
-V_Flow     = 0.41;
+V_Flow     = 0.39;
 
 parfor ii=1:numel(DATA_set)
 
@@ -99,7 +99,7 @@ parfor ii=1:numel(DATA_set)
 
     nlp_opts                    = struct;
     %nlp_opts.ipopt.max_iter     = 30;
-    nlp_opts.ipopt.max_cpu_time = 3600;
+    nlp_opts.ipopt.max_cpu_time = 4*3600;
     ocp_opts                    = {'nlp_opts', nlp_opts};
     OPT_solver.solver(             'ipopt'   , nlp_opts)
 
@@ -205,7 +205,7 @@ parfor ii=1:numel(DATA_set)
     Yield_estimate_diff = diff(Yield_estimate);
 
     %% Create the cost function
-    J       = (data-Yield_estimate_diff ) * diag(1) * (data-Yield_estimate_diff )';
+    J       = (data-Yield_estimate_diff ) * diag(1:numel(data)) * (data-Yield_estimate_diff )';
     
     % MLE: Normal
     %J_L     = -numel(data)./2 .* ( log(2.*pi) + log(sigma^2) ) - J./(2.*sigma^2);
@@ -216,7 +216,7 @@ parfor ii=1:numel(DATA_set)
 
     %%
     %k0= [km   Di   Dx  C_sat, sigma, m_s_0, m_s_max];
-    k0 = [0.1, 0.1, 1,  6,            78, 78];
+    k0 = [0.01, 0.1, 1,  4,            80,    80];
 
     %% Set opt and inital guess
     OPT_solver.minimize(J);
