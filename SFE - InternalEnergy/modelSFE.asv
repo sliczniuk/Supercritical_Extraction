@@ -58,7 +58,7 @@ function xdot = modelSFE(x, p, mask, dt)
 
     %% BC
     %Cf_0          =     if_else(F_u == 0, FLUID(1), 0);
-    Cf_0          =     0;
+    Cf_0          =     FLUID(1);
     Cf_B          =     FLUID(nstages_index);
 
     T_0           =     T_u;
@@ -91,7 +91,7 @@ function xdot = modelSFE(x, p, mask, dt)
 
     d_cons_CF_dz  = backward_diff_1_order(VELOCITY .* FLUID, u_0 .* Cf_0, [], dz);
 
-    dPdt          = backward_diff_1_order(P_u, PRESSURE, [], dt)*1e2;
+    dPdt          = backward_diff_1_order(P_u, PRESSURE, [], dt);
    
     %%
 
@@ -106,7 +106,7 @@ function xdot = modelSFE(x, p, mask, dt)
 
     %--------------------------------------------------------------------
     % Concentration of extract in solid phase | 1
-    - mask                                 .* (1 ./ mi ./ lp2 .* Di)  .* Sat_coe .* ( SOLID - FLUID .* (rho_s ./ km ./ RHO ) );
+    -  mask                                 .* (1 ./ mi ./ lp2 .* Di)  .* Sat_coe .* ( SOLID - FLUID .* (rho_s ./ km ./ RHO ) );
     %zeros(nstages_index,1);
     
     %--------------------------------------------------------------------

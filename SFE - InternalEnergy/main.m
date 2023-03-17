@@ -44,7 +44,7 @@ bed_mask(nstagesbed)    = 1;
 bed_mask(nstagesafter)  = 0;
 
 %% Number of variables
-Nx                      = 3 * nstages+1;
+Nx                      = 3 * nstages+2;                    % 3*Nstages(C_f, C_s, H) + P(t) + yield
 Nu                      = 3 + numel( Parameters );
 
 %% symbolic variables
@@ -52,7 +52,7 @@ x                       = MX.sym('x', Nx);
 u                       = MX.sym('u', Nu);
 
 %% Set Integrator
-f                       = @(x, u) modelSFE_uniform_U(x, u, bed_mask);
+f                       = @(x, u) modelSFE(x, u, bed_mask, timeStep_in_sec);
 
 % Integrator
 F                       = buildIntegrator(f, [Nx,Nu] , timeStep_in_sec);
@@ -77,8 +77,8 @@ data_org                = LabResults(:,5)';
 data                    = diff(data_org);
 
 %% Set parameters
-mSOL_s                   = 78;                                          % g of product in biomass
-mSOL_f                   = 0;                                           % g of biomass in fluid
+mSOL_s                   = 68;                                          % g of product in biomass
+mSOL_f                   = 10;                                           % g of biomass in fluid
 
 %C0fluid                 = 1;                                           % Extractor initial concentration of extract - Fluid phase kg / m^3
 
@@ -103,42 +103,62 @@ V_fluid                 = [V_before_fluid; V_bed_fluid; V_after_fluid];
 
 %--------------------------------------------------------------------
                 
-C0solid                 = mSOL_s * 1e-3 / ( V_bed * epsi)  ;            % Solid phase kg / m^3
+C0solid                 = mSOL_s * 1e-3 / ( V_bed * epsi)  ;            % Solid phase kg / m^3      
 
 C0fluid                 = mSOL_f * 1e-3 / (V_before + V_bed * (1-epsi) + V_after);
+
+%%
+m0fluid(nstagesbefore) = C0fluid * V_before / numel(nstagesbefore);
+m0fluid(nstagesbed)    = C0fluid * (V_bed * (1 - epsi)) / numel(nstagesbed);
+m0fluid(nstagesafter)  = C0fluid * V_after / numel(nstagesafter);
 
 %%
 Z                       = Compressibility( T0homog, feedPress,         Parameters );
 rho                     = rhoPB_Comp(      T0homog, feedPress, Z,      Parameters );
 
-enthalpy                = SpecificEnthalpy(T0homog, feedPress, Z, rho, Parameters);                
+enthalpy_rho            = rho.*SpecificEnthalpy(T0homog, feedPress, Z, rho, Parameters );                
 
 % Set operating conditions
 feedTemp                = T0homog   * ones(1,length(Time_in_sec)) + 0 ;  % Kelvin
-%feedTemp(round(numel(Time)/10):round(numel(Time)/4))   = feedTemp(1) + 10;
+feedTemp(1:round(numel(Time)/4))   = feedTemp(1) + 50;
 
 feedPress               = feedPress * ones(1,length(Time_in_sec)) + 0 ;  % Bars
-%feedPress(round(numel(Time)/10):round(numel(Time)/4))   = feedPress(1) - 100;
+feedPress(round(numel(Time)/3):end)         = 100;
 
-feedFlow                = V_Flow * rho * 1e-3 / 60 * ones(1,length(Time_in_sec));  % l/min -> km3/s
+feedFlow                = V_Flow * rho * 1e-3 / 60 * ones(1,length(Time_in_sec));  % l/min -> kg/s
 %feedFlow(1:N_Sample(1)) = 0;% linspace(feedFlow(1)/10,feedFlow(1),numel(feedFlow(1:N_Sample(1))));
 
 uu                      = [feedTemp', feedPress', feedFlow'];
 
 % Initial conditions
-x0                      = [ C0fluid * ones(nstages,1);
-                            C0solid * bed_mask;
-                            T0homog * ones(nstages,1);
+x0                      = [ C0fluid      * ones(nstages,1);
+                            C0solid      * bed_mask;
+                            enthalpy_rho * ones(nstages,1);
+                            200;       
                             0;
                             ];
 
 %%
 %Parameters(which_k) = DATA_K_OUT(1:numel(which_k),ii);
-Parameters_opt = [uu repmat(cell2mat(Parameters),1,N_Time)'];
-[xx_out] = simulateSystem(F, [], x0, Parameters_opt  );
+Parameters_opt          = [uu repmat(cell2mat(Parameters),1,N_Time)'];
+[xx_out]                = simulateSystem(F, [], x0, Parameters_opt  );
 
 %%
-subplot(2,2,1);imagesc(xx_out(1:250,:))
-subplot(2,2,2);imagesc(xx_out(251:500,:))
-subplot(2,2,3);imagesc(xx_out(501:750,:))
-subplot(2,2,4);plot(xx_out(end,:))
+% Reconstruct T
+%keyboard
+T_rec = [];
+for i =1:numel(Time)
+    T_rec = [T_rec, Reconstruct_T_from_enthalpy(xx_out(2*nstages+1:3*nstages,i), xx_out(Nx-1,i), Parameters)];
+end
+T_rec = full(T_rec);
+
+%%
+ind = 1:numel(Time);
+subplot(2,4,1); imagesc(xx_out(0*nstages+1:1*nstages,:)); colorbar; title('$c_f$') 
+subplot(2,4,2); imagesc(xx_out(1*nstages+1:2*nstages,:)); colorbar; title('$c_s$') 
+subplot(2,4,3); imagesc(xx_out(2*nstages+1:3*nstages,:)); colorbar; title('$h \times \rho_f$') 
+subplot(2,4,4); plot(Time, xx_out(Nx-1,:)); title('$P$') 
+subplot(2,4,5); plot(Time,[feedTemp(1), feedTemp]); title('$T_{in}$') 
+subplot(2,4,6); plot(Time,[feedFlow(1), feedFlow]); title('$F$') 
+subplot(2,4,7); imagesc(T_rec); colorbar; title('$T_{rec}$') 
+subplot(2,4,8); plotyy(Time, xx_out(Nx,:), Time, 1e3 * (sum(xx_out(0*nstages+1:1*nstages,ind) .* V_fluid) + sum(xx_out(1*nstages+1:2*nstages,ind) .* V_solid)) + xx_out(Nx,ind)); title('Yield') 
