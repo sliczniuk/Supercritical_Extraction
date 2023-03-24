@@ -149,8 +149,9 @@
 				{\color{blue}r_e}(t,z) = -\cfrac{{\color{orange}D_i}({\color{blue}T}(t,z), {\color{red}P}(t))}{{\color{magenta} \mu l^2} } \gamma(c_f) \left({\color{blue}c_s}(t,z) - \cfrac{{\color{magenta}\rho_s}}{{\color{orange}k_m}({\color{blue}T}(t,z)){\color{orange}\rho}({\color{blue}T}(t,z),{\color{red}P}(t))}  {\color{blue}c_f}(t,z) \right)
 		\end{equation} }
 			
-		\subsubsection{Heat balance} \label{CH: heat_balance} \todo{I will be back. The energy equation is not given as a in terms of temperature any more.}
+		\subsubsection{Heat balance} \label{CH: heat_balance}
 		
+		\iffalse
 		 {\color{red}
 			The heat balance (equation \ref{Model_heat}) consists of the convective and diffusive terms. It follows the assumption of a pseudo-homogeneous phase, which properties are the mean between fluid and solid phases. We consider no heat loss through the wall, and there is no heat generation in the system. Therefore, the temperature of the extractor can be changed only by manipulating the temperature of the inlet stream %$T_{In}(t)$. 
 			
@@ -174,11 +175,9 @@
 			
 		where $ {\color{orange}D^M_e}({\color{blue}T}(t,z),{\color{red}P}(t),{\color{red}F}(t))$ is the axial mass diffusion coefficient, ${\color{orange}C_p}({\color{blue}T}(t,z),{\color{red}P}(t))$ is the fluid's specific heat, ${\color{magenta}C_{ps}}$ is the specific heat of the solid phase, ${\color{orange}D^T_e}({\color{blue}T}(t,z),{\color{red}P}(t),{\color{red}F}(t))$ is the axial heat diffusion coefficient. 
 
-		\todo[inline]{Draft of new heat equation starts here. TODO: \\ Check if the heat cpacity of solid phase needs to be added \\ Elaborate why pressure is know}
-
-		\noindent\colorbox{pink}
-		{
-		\begin{minipage}{\columnwidth}
+%		\todo[inline]{Draft of new heat equation starts here. TODO: \\ Check if the heat cpacity of solid phase needs to be added \\ Elaborate why pressure is know}
+		\fi
+		
 			The heat equation was introduced in the previous chapter through equation \ref{EQ: CompressibleEuler_3} or 
 			
 			{\footnotesize
@@ -197,7 +196,7 @@
 			
 			If a gas is consider to be perfectly caloric ($e=C_v T$), then the energy equation can be written in form of temperature. The perfectly caloric gas can be seen as the special case of a real gas, where the second term of the equation \ref{EQ: internal_energy_def} goes to zero.
 			
-			For real gases it is complicated to write the heat balance in terms of temperature. Alternatively, the energy equation can be used in the form of internal energy, so as it is given by equation \ref{EQ: CompressibleEuler_3}. In such a case, the temperature (which is used as the input to some other functions) needs to be recover from the internal energy. A relation for the internal energy can be obtained from an equation of state. For Peng-Robinson, such a relation is given by equation \ref{EQ: internal_energy_PR}
+			For real gases it is complicated to write the heat balance in terms of temperature, but it be used directly in the form of internal energy, as it is given by equation \ref{EQ: CompressibleEuler_3}. In such a case, the temperature (which is used as the input to some other functions) needs to be recover from the internal energy. A relation for the internal energy can be obtained from an equation of state. For Peng-Robinson, such a relation is given by equation \ref{EQ: internal_energy_PR}.
 			
 			{\footnotesize
 				\begin{equation}
@@ -210,14 +209,41 @@
 			
 			{\footnotesize
 			\begin{equation*}
-				e(t,z)=e(T(t,z),P(t),\rho(t,z))=e(T(t,z),P(t),\underbrace{\rho(T(t,z),P(t))}_{E.O.S.}) 
+				e(t,z)=e(T(t,z),P(t),\rho(t,z))=e( T(t,z), P(t), \rho(T(t,z),P(t)) ) 
 			\end{equation*}
 			}
 		
 			If the value of internal energy $e$ is know from time evolution of the energy equation (\ref{EQ: CompressibleEuler_3}), and pressure is know from measurement, then the temperature can be reconstructed. A roootfinder can be used to find a value of temperature, which minimize the difference between value of internal energy coming from the time evolution and the output from equation \ref{EQ: internal_energy_PR}. Such a procedure allow to find local temperature along spatial direction $z$ and needs to be repeated every time-step.
 			
+			Another way to express the energy equation is to introduce enthalpy $e = h - P_0 / \rho$. By introducing the definition of enthalpy, the energy equation becomes
 			
-		\end{minipage} }
+			{\footnotesize
+				\begin{equation}
+					\cfrac{\partial \left(\rho_f h A_f\right)}{\partial t} - \cfrac{\partial \left(P_0 A_f\right)}{\partial t} + \cfrac{\partial \left( \rho_f h A_f v \right)}{\partial z} - \cfrac{\partial}{\partial z} \left( k \cfrac{\partial T}{\partial z} \right)
+				\end{equation}
+			}
+		
+			The main advantage of this formulation is the presence of term $\partial P_0 / \partial t $, which allow to directly affect the system through the change of thermodynamic pressure (which is a control variable).\todo{ "For high pressures, the influence of the intermolecular forces on the enthalpy has to be taken into account, usually by applying a cubic equation of state. In most cases, these forces are attractive, so that additional energy is necessary to move the molecules away from each other, that is, to lower the density. If this energy is not added, the substance cools down when it is expanded" (\citet{Gmehling2019}). So, pressure reduction cause gas expansion and temperature drop.}
+			If an equation of state is known, the temperature can to be recovered from the enthalpy. The enthalpy is related to the pressure and temperature through the following equation:
+			
+			{\footnotesize
+				\begin{equation}
+					h(t,z)=h(T(t,z),P(t),\rho(t,z))=h( T(t,z), P(t), \rho(T(t,z),P(t)) ) 
+					\label{EQ:Enthalpy_root}
+				\end{equation}
+			}
+		
+			If the value of enthalpy is know from the time evolution and pressure can be measured, then the equation \ref{EQ:Enthalpy_root} can be solved for temperature to recover the temperature profile. By applying the departure functions to Peng-Robinson equation of state, the relation \ref{EQ:Enthalpy_root} can be expressed directly through equation \ref{EQ:Enthalpy_PR} as presented in \ref{CH:Enthalpy} or given by \citet{Gmehling2019}.
+			
+			{\footnotesize
+				\begin{equation}
+					h_{T,P}-h_{T,P}^{\mathrm {ideal} }=RT_{C}\left[T_{r}(Z-1)-2.078(1+\kappa ){\sqrt {\alpha }}\ln \left({\frac {Z+2.414B}{Z-0.414B}}\right)\right]
+					\label{EQ:Enthalpy_PR}
+				\end{equation}
+			}
+		
+			The equation \ref{EQ:Enthalpy_PR} requires an reference sate, which in this case is assumed to be $T_{ref}=298.15[K]$ and $P_{ref}=1.01325[bar]$.
+	
 	
 		\todo[inline]{Add short section about boundary conditions and comment on the used numerical methods}
   

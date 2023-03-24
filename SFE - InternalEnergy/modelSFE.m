@@ -12,8 +12,8 @@ function xdot = modelSFE(x, p, mask, dt)
 
     parameters    =     p(4:end);
 
-    nstages       =     parameters{1};
-    C0solid       =     parameters{2};     % Extractor initial concentration of extract
+    %nstages       =     parameters{1};
+    %C0solid       =     parameters{2};     % Extractor initial concentration of extract
     r             =     parameters{3};     % Extractor length (m)
     epsi          =     parameters{4};     % Void bed fraction
     dp            =     parameters{5};     % Diameter of the particle (m)
@@ -22,9 +22,9 @@ function xdot = modelSFE(x, p, mask, dt)
     km            =     parameters{8};
     mi            =     parameters{9};
 
-    Di            =     parameters{44};      Di = Di * 1e-12;
-    Dx            =     parameters{45};      Dx = Dx * 1e-5;
-    C_SAT         =     parameters{47};
+    Di            =     parameters{44};      Di = Di * 1e-14;
+    Dx            =     parameters{45};      Dx = Dx * 1e-6;
+    %C_SAT         =     parameters{47};
 
     nstages_index =     numel(mask);
     
@@ -49,12 +49,12 @@ function xdot = modelSFE(x, p, mask, dt)
     VELOCITY      =     Velocity(F_u, RHO, parameters);
     
     %% Thermal Properties
-    CP            =     SpecificHeatComp(TEMP, PRESSURE, Z, RHO,                 parameters);            % [kJ/kg/K]
-    CPRHOCP       =     cpRHOcp_Comp(    TEMP, PRESSURE, Z, RHO, CP, epsi.*mask, parameters);
-    KRHOCP        =     kRHOcp_Comp(     TEMP, PRESSURE, Z, RHO, CP, epsi.*mask, parameters);
+    %CP            =     SpecificHeatComp(TEMP, PRESSURE, Z, RHO,                 parameters);            % [kJ/kg/K]
+    %CPRHOCP       =     cpRHOcp_Comp(    TEMP, PRESSURE, Z, RHO, CP, epsi.*mask, parameters);
+    %KRHOCP        =     kRHOcp_Comp(     TEMP, PRESSURE, Z, RHO, CP, epsi.*mask, parameters);
 
     %% Saturation
-    Sat_coe       =     Saturation_Concentration(FLUID, C_SAT); % Inverse logistic is used to control saturation. Close to saturation point, the Sat_coe goes to zero.
+    Sat_coe       =     1;%Saturation_Concentration(FLUID, C_SAT); % Inverse logistic is used to control saturation. Close to saturation point, the Sat_coe goes to zero.
 
     %% BC
     %Cf_0          =     if_else(F_u == 0, FLUID(1), 0);
@@ -62,16 +62,16 @@ function xdot = modelSFE(x, p, mask, dt)
     Cf_B          =     FLUID(nstages_index);
 
     T_0           =     T_u;
-    T_B           =     TEMP(nstages_index);
+    %T_B           =     TEMP(nstages_index);
 
     Z_0           =     Compressibility(T_u, PRESSURE,     parameters);
-    Z_B           =     Compressibility(T_B, PRESSURE,     parameters);
+    %Z_B           =     Compressibility(T_B, PRESSURE,     parameters);
 
     rho_0         =     rhoPB_Comp(     T_u, PRESSURE, Z_0, parameters);
-    rho_B         =     rhoPB_Comp(     T_B, PRESSURE, Z_B, parameters);
+    %rho_B         =     rhoPB_Comp(     T_B, PRESSURE, Z_B, parameters);
 
     u_0           =     Velocity(F_u, rho_0, parameters);
-    u_B           =     Velocity(F_u, rho_B, parameters);
+    %u_B           =     Velocity(F_u, rho_B, parameters);
 
     H_0           =     SpecificEnthalpy(T_0, PRESSURE, Z_0, rho_0, parameters );         
     
@@ -79,13 +79,13 @@ function xdot = modelSFE(x, p, mask, dt)
 
     dz            = L/nstages_index;
     
-    dCfdz         = backward_diff_1_order(FLUID,Cf_0    , [],   dz);
+    %dCfdz         = backward_diff_1_order(FLUID,Cf_0    , [],   dz);
     d2Cfdz2       = central_diff_2_order(FLUID, FLUID(1), Cf_B, dz);
     
-    dTdz          = backward_diff_1_order(TEMP,T_0, [] , dz);
-    d2Tdz2        = central_diff_2_order(TEMP, T_0, T_B, dz);
+    %dTdz          = backward_diff_1_order(TEMP,T_0, [] , dz);
+    %d2Tdz2        = central_diff_2_order(TEMP, T_0, T_B, dz);
         
-    dudz          = backward_diff_1_order(VELOCITY, u_0, [], dz);
+    %dudz          = backward_diff_1_order(VELOCITY, u_0, [], dz);
 
     dHdz          = backward_diff_1_order(VELOCITY .* ENTHALPY_RHO, u_0 .* rho_0 .* H_0, [], dz);
 

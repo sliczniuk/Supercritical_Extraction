@@ -9,43 +9,43 @@ Warning--entry type for "Himmelblau1970" isn't style-file defined
 --line 769 of file mybibfile.bib
 You've used 21 entries,
             2481 wiz_defined-function locations,
-            744 strings with 8657 characters,
-and the built_in function-call counts, 7911 in all, are:
-= -- 719
-> -- 313
-< -- 14
-+ -- 132
-- -- 90
-* -- 639
-:= -- 1265
+            741 strings with 8581 characters,
+and the built_in function-call counts, 7882 in all, are:
+= -- 706
+> -- 325
+< -- 13
++ -- 136
+- -- 94
+* -- 637
+:= -- 1268
 add.period$ -- 84
 call.type$ -- 21
-change.case$ -- 38
+change.case$ -- 37
 chr.to.int$ -- 21
 cite$ -- 21
 duplicate$ -- 394
-empty$ -- 752
-format.name$ -- 119
-if$ -- 1666
+empty$ -- 746
+format.name$ -- 121
+if$ -- 1657
 int.to.chr$ -- 1
 int.to.str$ -- 22
-missing$ -- 24
+missing$ -- 25
 newline$ -- 134
 num.names$ -- 63
-pop$ -- 151
+pop$ -- 156
 preamble$ -- 1
 purify$ -- 21
 quote$ -- 0
-skip$ -- 211
+skip$ -- 208
 stack$ -- 0
-substring$ -- 415
+substring$ -- 396
 swap$ -- 56
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 135
+type$ -- 132
 warning$ -- 0
-while$ -- 71
+while$ -- 69
 width$ -- 0
-write$ -- 318
+write$ -- 317
 (There was 1 warning)

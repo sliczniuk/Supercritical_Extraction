@@ -135,13 +135,12 @@ M.~Spiro and M.~Kandiah.
   25\penalty0 (5):\penalty0 566--575, jun 2007.
 \newblock \doi{10.1111/j.1365-2621.1990.tb01116.x}.
 
-\bibitem[Srinivasan and Depcik(2012)]{Srinivasan2012}
-A.~Srinivasan and C.~Depcik.
-\newblock One-dimensional pseudo-homogeneous packed-bed reactor modeling: I.
-  chemical species equation and effective diffusivity.
-\newblock \emph{Chemical Engineering {\&} Technology}, 36\penalty0
-  (1):\penalty0 22--32, dec 2012.
-\newblock \doi{10.1002/ceat.201200458}.
+\bibitem[Gmehling et~al.(2019)Gmehling, Kleiber, Kolbe, and
+  Rarey]{Gmehling2019}
+Jürgen Gmehling, Michael Kleiber, Bärbel Kolbe, and Jürgen Rarey.
+\newblock \emph{Chemical Thermodynamics for Process Simulation}.
+\newblock Wiley, mar 2019.
+\newblock \doi{10.1002/9783527809479}.
 
 \bibitem[Mandel(1957)]{Mandel1957}
 John Mandel.

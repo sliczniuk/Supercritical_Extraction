@@ -103,9 +103,29 @@
 	
 	By denoting the physical constants as $\varphi_{C_p^{\text{F}}} = \left({\color{magenta}R}, {\color{magenta}M_{\text{CO}_2}}, {\color{magenta}T^c_{\text{CO}_2}}, {\color{magenta}P^c_{\text{CO}_2}}, {\color{magenta}\omega_{\text{CO}_2}}\right)$, we get the spatio-temporal representation $C_p^{\text{F}}\left[T(t,z),P(t) \mid \varphi_{C_p^{\text{F}}}\right]$ of the specific heat of the fluid phase.
 	
-	\todo[]{Add internal energy equation}
+	\subsubsection{Departure functions for enthalpy calculations} \label{CH:Enthalpy} \todo[]{Change to my text}
 	
+	In thermodynamics, a departure function is defined for any thermodynamic property as the difference between the property as computed for an ideal gas and the property of the species as it exists in the real world, for a specified temperature T and pressure P. Common departure functions include those for enthalpy, entropy, and internal energy.
 	
+	Departure functions are used to calculate real fluid extensive properties (i.e. properties which are computed as a difference between two states). A departure function gives the difference between the real state, at a finite volume or non-zero pressure and temperature, and the ideal state, usually at zero pressure or infinite volume and temperature.
+	
+	For example, to evaluate enthalpy change between two points $h(V_1,T_1)$ and $h(V_2,T_2)$ we first compute the enthalpy departure function between volume $V_1$ and infinite volume at $T = T_1$, then add to that the ideal gas enthalpy change due to the temperature change from $T_1$ to $T_2$, then subtract the departure function value between $V_2$ and infinite volume.
+	
+	Departure functions are computed by integrating a function which depends on an equation of state and its derivative. The general form the enthalpy equation is given by
+	
+	{\footnotesize 
+		\begin{equation}
+			\frac{H^{\mathrm {ig} }-H}{RT} =\int_{V}^{\infty }\left[T\left({\frac{\partial Z}{\partial T}}\right)_{V}\right]{\frac{dV}{V}} + 1-Z
+		\end{equation}
+	}
+
+	The Peng–Robinson equation of state relates the three interdependent state properties pressure $P$, temperature $T$, and molar volume $V_m$. From the state properties ($P$, $V_m$, $T$), one may compute the departure function for enthalpy per mole (denoted $h$) as presented by \citet{Gmehling2019} or \citet{Elliott2011}:
+	
+	{\footnotesize
+		\begin{equation}
+			h_{T,P}-h_{T,P}^{\mathrm {ideal} }=RT_{C}\left[T_{r}(Z-1)-2.078(1+\kappa ){\sqrt {\alpha }}\ln \left({\frac {Z+2.414B}{Z-0.414B}}\right)\right]
+		\end{equation}
+	}
 	
 	
 \end{document}

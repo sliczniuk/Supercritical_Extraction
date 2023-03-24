@@ -17,9 +17,9 @@
         \end{equation}
     }
 
-    where $a, b, \alpha$ are parameters defined as presented in the appendix.
+    where $a, b, \alpha$ are parameters defined as presented in the appendix \ref{subsubsec: Equation of state}.
     
-    The properties of the $CO_2$ presented as a function of operating conditions (temperature and pressure) are presented on fig. \ref{fig: SFE_Properties}    
+    The properties of the $CO_2$ presented as a function of operating conditions (temperature and pressure) are presented on Figure \ref{fig: SFE_Properties}    
     
     At standard atmospheric pressure and temperature, the $CO_2$ behaves as an ideal gas, and its compressibility factor equals to unity.  However, at high temperature and pressure, the compressibility factor varies from unity, due to real gas effects. As it is presented on Figure \ref{fig: SFE_Properties_Compressibility}, the compressibility factor obtained from the Peng-Robinson equation of state varies strongly depending on the operating conditions. The compressibility factor can be obtained by given temperature and pressure by solving the polynomial form of the P-R EOS given by equation \ref{EQ: PR_polynomial}.
 
@@ -30,12 +30,13 @@
     \end{equation}
     }
 
-    where $A$ and $B$ are parameters as defined in the appendix (\ref{CH: Thermodynamic_details}). The roots of the polynomial can be found iteratively or by Cardano formula. Depends on the operating conditions, one or two roots can be found. In one-phase region the fluid can be describe as gas, liquid or super-critical. In the two-phase region the gas-liquid mixture is present. The biggest root is assigned to the gas phase and smallest root corresponds to the liquid phase.
+    where $A$ and $B$ are parameters as defined in the appendix \ref{subsubsec: Equation of state}. The roots of the polynomial can be found iteratively or by the Cardano formula. One or three real roots can be found depending on the operating conditions. In a one-phase region, the fluid is described by one real root corresponding to the gas, liquid or supercritical phase. In the two-phase region, the gas-liquid mixture is present and has two roots. The biggest root is assigned to the gas phase, and the smallest root corresponds to the liquid phase.
 
-    The real gas effects are also visible on the density plot presented on the Figure \ref{fig: SFE_Properties_Density}. The density can change significantly depends on the operating conditions. 
+ 	The real gas effects are also visible on the density plot presented on the Figure \ref{fig: SFE_Properties_Density}. The density calculations are based on the compressibility factor, as explained in the appendix \ref{subsubsec: Fluid density}, and its value depends on the operating conditions. 
+    
     By analysing the compressibility and density plots more it can be noticed that very near to the critical point, the fluid can neither be called a liquid nor a gas and has a unique combination of gas-like and liquid-like properties. 
 
-    The Figure \ref{fig: SFE_Properties_CP} show behaviour of the heat capacity of a supercritical fluid at constant pressure ($C_p$). The details of the calculations can be found in the appendix. In contrary to the density which varies monotonically, the specific heat shows very high levels in a narrow region. In the subcritical region, the phase transition is associated with an effective spike in the heat capacity (i.e., the latent heat). Approaching the critical point, the latent heat falls to zero but this is accompanied by a gradual rise in heat capacity in the pure phases near phase transition. At the critical point, the latent heat is zero but the heat capacity shows a diverging singularity. Beyond the critical point, there is no divergence, but rather a smooth peak in the heat capacity; the highest point of this peak identifies the Widom line (as discussed by \citet{Simeoni2010} and \citet{Banuti2019}).
+    The Figure \ref{fig: SFE_Properties_CP} show behaviour of the heat capacity of a supercritical fluid at constant pressure ($C_p$). The details of the calculations can be found in the appendix \ref{subsubsec: Fluid heat capacity}. In contrary to the density which varies monotonically, the specific heat shows very high levels in a narrow region. In the subcritical region, the phase transition is associated with an effective spike in the heat capacity (i.e., the latent heat). Approaching the critical point, the latent heat falls to zero but this is accompanied by a gradual rise in heat capacity in the pure phases near phase transition. At the critical point, the latent heat is zero but the heat capacity shows a diverging singularity. Beyond the critical point, there is no divergence, but rather a smooth peak in the heat capacity; the highest point of this peak identifies the Widom line (as discussed by \citet{Simeoni2010} and \citet{Banuti2019}).
 
     In order to calculate thermodynamic properties from a real gas, the departure function for that property with respect to the chosen equation of state has to be evaluated. As presented by \citet{Elliott2011}, the departure function for any thermodynamic property of a real gas is defined as the difference in the value of that property determined from the chosen real gas equation of state and the value of the same property for an ideal gas under the same conditions of temperature and pressure. %(10.1007/s10494-017-9872-4)
 

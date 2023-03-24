@@ -1,5 +1,5 @@
-RHO         = [840, 785, 910, 870];
-NAME        = {'$km[-]$', '$D_i[m^2/s]$', '$D_x[m^2/s]$', '$C_{sat}[kg/m^3]$', 'mSOL_s', 'max_ms'};
+RHO         = [840, 840, 785, 785, 910, 870];
+NAME        = {'$km[-]$', '$D_i[m^2/s]$', '$D_x[m^2/s]$', 'Mass in solid', 'Mass ratio'};
 
 %% Fit the parameters based as linear function of density
 
@@ -25,6 +25,6 @@ for jj=1:2
     
     end
     
-    set(gcf,'PaperOrientation','landscape'); print(figure(1),['Inital_state_2_Trend_Lines_order_',mat2str(jj),'_No_Delay.pdf'],'-dpdf','-bestfit'); close all;
+    set(gcf,'PaperOrientation','landscape'); print(figure(1),['Trend_Lines_order_',mat2str(jj),'.pdf'],'-dpdf','-bestfit'); close all;
 
 end

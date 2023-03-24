@@ -1,5 +1,5 @@
 Numer,Name,Value,Unit,Description
-1,nstages,150,[-],Number of stages
+1,nstages,100,[-],Number of stages
 2,C0solid,141.8181818,kg/m3,Inital concentration in the solid phase
 3,r,0.075,m,Extractor radius
 4,epsi,0.5,[-],Void fraction
@@ -43,6 +43,6 @@ Numer,Name,Value,Unit,Description
 42,A8_visc,-0.3567559,,
 43,A9_visc,0.03180473,,
 44,Di,1,m/s,Internal diffusivity
-45,Dx,0,m/s,Axial dispersion
+45,Dx,0.1,m/s,Axial dispersion
 46,Z,0.5,[-],Initial guess of compressibility
 47,C_Sat,5,kg/m3,Saturation Concentration

@@ -1,83 +1,51 @@
-    %figure('Visible','off')
-    figure(ii)
+figure(ii)
+subplot(2,2,1)
+hold on
+plot(Time  , xx_0(Nx,:)  ,'k'   )
+plot(Time  , xx_out(Nx,:),'r'   )
+plot(SAMPLE, data_org    ,'b--o')
+%plot(Time, 1e3 * (sum(xx_out(0*nstages+1:1*nstages,:) .* V_fluid) + sum(xx_out(1*nstages+1:2*nstages,:) .* V_solid)) + xx_out(Nx,:));
+hold off
 
-    h = tiledlayout(2,2);
+xlabel('Time [min]')
+ylabel('Yield [g]')
 
-    nexttile
-    %pbaspect([3 1 1])
-    hold on
-%    plot(Time, xx_0(end,:));
-    plot(Time, xx_out(end,:));
-    plot(SAMPLE, data_org,'o');
-    xline(PreparationTime,'--k')
-    ylim([0 80])
-    hold off
-    legend('$k_0$', '$k_{out}$', 'data', 'Location','northoutside')
-    legend('Orientation','horizontal')
-    legend('boxoff')
-    ylabel('CFD: y(t)','Interpreter','latex')
-    xlabel('Time [min]','Interpreter','latex')
+colorbar
 
-    nexttile
-    %pbaspect([3 1 1])
-    hold on
-%    plot(SAMPLE(1:end-1), diff(xx_0(end,N_Sample))   );
-    plot(SAMPLE(1:end-1), diff(xx_out(end,N_Sample)) );
-    plot(SAMPLE(1:end-1), diff(data_org),'o');
-    xline(PreparationTime,'--k')
-    hold off
-    ylim([0 15])
-    legend('$k_0$', '$k_{out}$', 'data', 'Location','northoutside')
-    legend('Orientation','horizontal')
-    legend('boxoff')
-    ylabel('PDF: norm $\frac{dy(t)}{dt}$','Interpreter','latex')
-    xlabel('Time [min]','Interpreter','latex')
+legend('Inital curve','Optimized curve','Data points','Location','northwest'); legend('boxoff')
 
-    nexttile
-    %pbaspect([3 1 1])
-    hold on
-    %plot(Time, 1e3 * (sum(xx_0(  0*nstages+1:1*nstages,:) .* V_fluid) + sum(xx_0(  1*nstages+1:2*nstages,:) .* V_solid)) + xx_0(  Nx,:))
-    plot(Time, 1e3 * (sum(xx_out(0*nstages+1:1*nstages,:) .* V_fluid) + sum(xx_out(1*nstages+1:2*nstages,:) .* V_solid)) + xx_out(Nx,:))
-    hold off
-    ylabel('Total mass of solute [g]','Interpreter','latex')
-    xlabel('Time [min]','Interpreter','latex')
+subplot(2,2,2)
+hold on
+plot(SAMPLE(2:end), diff(xx_0(Nx,N_Sample)  ),'k'   )
+plot(SAMPLE(2:end), diff(xx_out(Nx,N_Sample)),'r'   )
+plot(SAMPLE(2:end), diff(data_org           ),'b--o')
+%plot(Time, 1e3 * (sum(xx_out(0*nstages+1:1*nstages,:) .* V_fluid) + sum(xx_out(1*nstages+1:2*nstages,:) .* V_solid)) + xx_out(Nx,:));
+hold off
 
-    nexttile
-    %pbaspect([3 1 1])
-    hold on
-    %plot(Time, 1e3 * (sum(xx_0(  0*nstages+1:1*nstages,:) .* V_fluid) + sum(xx_0(  1*nstages+1:2*nstages,:) .* V_solid)) + xx_0(  Nx,:))
-    plot(Time, [feedFlow, feedFlow(end)] )
-    hold off
-    ylabel('Superficial velocity [m/s]','Interpreter','latex')
-    xlabel('Time [min]','Interpreter','latex')
+xlabel('Time [min]')
+ylabel('d Yield / dt [g/s]')
 
-    subtitle([DATA,'_',mat2str(round([DATA_K_OUT(:,ii)],3))],'Interpreter','latex')
+colorbar
 
-    set(gcf,'PaperOrientation','landscape'); print(figure(ii),['Inital_state_2_Yield_',DATA,'_F',mat2str(V_Flow),'_No_Delay.pdf'],'-dpdf','-bestfit'); close all
+legend('Inital curve','Optimized curve','Data points','Location','northeast'); legend('boxoff')
 
-    %%
-%{
-    figure('Visible','off')
-    NAME = {'c_f','c_s','T','\rho'};
+subplot(2,2,3)
+imagesc(Time,L_nstages,xx_out(1:nstages,:)); colormap jet;
+a = colorbar;
+a.Label.String = 'C_f';
 
-    h = tiledlayout(2,2);
+xlabel('Time [min]')
+ylabel('Length [cm]')
 
-    for i=1:4
+subplot(2,2,4)
+imagesc(Time,L_nstages,xx_out(1*nstages+1:2*nstages,:)); colormap jet;
+a = colorbar;
+a.Label.String = 'C_s';
 
-        nexttile
-        imagesc(Time,L_nstages./L,xx_out((i-1)*nstages+1:i*nstages,:)); colormap jet; colorbar
-        hold on
-        yline(L_nstages(nstagesbed([1,end]))./L,'--w')
-        xline(PreparationTime,'--w')
-        hold off
-        pbaspect([2 1 1])
-        c = colorbar;
-        title(['$',NAME{i},'$'],'Interpreter','latex')
-        set(c,'TickLabelInterpreter','latex')
-        ylabel('$L [-]$','Interpreter','latex')
-        xlabel('Time [min]','Interpreter','latex')
-        %axis square
-    end
+xlabel('Time [min]')
+ylabel('Length [cm]')
 
-    set(gcf,'PaperOrientation','landscape'); print(figure,['Profiles_',DATA,'_F',mat2str(V_Flow),'.pdf'],'-dpdf','-bestfit'); close all
-%}
+name = sprintf('$k_m = %g,~D_i =%g e-14,~D_x = %g e-6,~Total~mass~of~oil = %g,~Inital~ratio = %g$',KOUT);
+sgtitle(name, 'Interpreter', 'latex')
+
+set(gcf,'PaperOrientation','landscape'); print(figure(ii),['Fitting_',DATA_set{ii},'.pdf'],'-dpdf','-bestfit'); close all
