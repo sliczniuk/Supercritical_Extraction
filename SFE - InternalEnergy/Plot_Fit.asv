@@ -45,7 +45,7 @@ a.Label.String = 'C_s';
 xlabel('Time [min]')
 ylabel('Length [cm]')
 
-name = sprintf('$k_m = %g, D_i =%g e-14, D_x = %g e-6, Mass = %g, Inital~ratio = %g, \\sigma$ = %g',round(KOUT,3));
+name = sprintf('$k_m = %g,~D_i =%g e-14, D_x = %g e-6, Total mass of oil = %g, Inital ratio = %g, \\sigma$ = %g',round(KOUT,3));
 %name = sprintf('%g',round(KOUT,3));
 sgtitle(name, 'Interpreter', 'latex')
 

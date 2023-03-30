@@ -1,5 +1,5 @@
 Numer,Name,Value,Unit,Description
-1,nstages,100,[-],Number of stages
+1,nstages,200,[-],Number of stages
 2,C0solid,141.8181818,kg/m3,Inital concentration in the solid phase
 3,r,0.075,m,Extractor radius
 4,epsi,0.5,[-],Void fraction

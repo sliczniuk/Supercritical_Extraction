@@ -9,16 +9,16 @@ Parameters_table        = readtable('Parameters.csv') ;        % Table with pram
 Parameters              = num2cell(Parameters_table{:,3});
 
 %% Load paramters
-DATA_set                = {'LUKE_T40_P200_org', 'LUKE_T50_P200', 'LUKE_T50_P200_org', 'LUKE_T40_P300_org', 'LUKE_T50_P300_org'};
+DATA_set                = {'LUKE_T40_P200', 'LUKE_T50_P200', 'LUKE_T40_P300_org', 'LUKE_T50_P300_org'};
 %DATA_set                = {'LUKE_T50_P300'};
 
 which_k                 = [8,  44, 45,          ];                          % Select which parameters are used for fitting
-k0                      = [1,  3 , 1 ,  77, 0.65];                          % Give inital value for each parameter
-Nk                      = numel(which_k)+2;                                 % Parameters within the model + m_max, m_ratio
-k_lu                    = [ [0;0;0;77;0] , [1;inf;inf;100;1] ];
+k0                      = [1,  3 , 1 ,  77, 0.65, 0.3];                          % Give inital value for each parameter
+Nk                      = numel(which_k)+3;                                 % Parameters within the model + m_max, m_ratio, sigma
+k_lu                    = [ [0;0;0;77;0;0] , [1;inf;inf;100;1;inf] ];
 
 Iteration_max           = 100;                                              % Maximum number of iterations for optimzer
-Time_max                = 6;                                              % Maximum time of optimization in [h]
+Time_max                = 36;                                               % Maximum time of optimization in [h]
 
 V_Flow                  = 0.4;                                              % Volumetric flow rate l/min
 
@@ -29,7 +29,7 @@ bed                     = 0.165;                                            % Pe
 % Set time of the simulation
 PreparationTime         = 0;
 ExtractionTime          = 150;
-timeStep                = 0.5;                                              % Minutes
+timeStep                = 0.1;                                              % Minutes
 SamplingTime            = 5;                                                % Minutes
 
 simulationTime          = PreparationTime + ExtractionTime;
@@ -45,14 +45,13 @@ SAMPLE                  = [PreparationTime:SamplingTime:simulationTime];
 % Check if the number of data points is the same for both the dataset and the simulation
 N_Sample                = [];
 for i = 1:numel(SAMPLE)
-    N_Sample            = [N_Sample ; find(Time == SAMPLE(i))];
+    N_Sample            = [N_Sample ; find(round(Time,3) == round(SAMPLE(i))) ];
 end
 if numel(N_Sample) ~= numel(SAMPLE)
     keyboard
 end
 
 DATA_K_OUT              = nan(Nk,numel(DATA_set));                          % Store Parameters obatined from all fits (par num x num exper)
-
 
 %% Specify parameters to estimate
 nstages                 = Parameters{1};
@@ -107,6 +106,10 @@ V_after_fluid           = repmat(V_after  * 1          / numel(nstagesafter) , n
 
 V_fluid                 = [V_before_fluid; V_bed_fluid; V_after_fluid];
 
+%%
+Courant_Number = nan(1,numel(DATA_set));
+
+parpool(4)
 parfor ii=1:numel(DATA_set)
 
     DATA                        = DATA_set{ii};
@@ -128,6 +131,9 @@ parfor ii=1:numel(DATA_set)
     %% Set parameters
     msol_max                    = k(4);                                             % g of product in solid and fluid phase
     mSol_ratio                  = k(5);
+
+    sigma                       = k(6);
+
     mSOL_s                      = msol_max*mSol_ratio;                                        % g of product in biomass
     mSOL_f                      = msol_max*(1-mSol_ratio);                                    % g of biomass in fluid
 
@@ -163,6 +169,8 @@ parfor ii=1:numel(DATA_set)
 
     feedFlow                    = V_Flow * rho * 1e-3 / 60 * ones(1,length(Time_in_sec));  % l/min -> kg/s
 
+    Courant_Number(ii)          = Velocity(feedFlow(1), rho, Parameters) * timeStep_in_sec / (L_nstages(2));
+
     uu                          = [feedTemp', feedPress', feedFlow'];
 
     % Initial conditions
@@ -192,10 +200,13 @@ parfor ii=1:numel(DATA_set)
     data                        = diff(data_org);
 
     %% Create the cost function
-    %J                   = (data-Yield_estimate_diff ) * diag([1:numel(data)/2, numel(data)/2:-1:1]) * (data-Yield_estimate_diff )';
-    J                   = (data-Yield_estimate_diff ) * diag(1) * (data-Yield_estimate_diff )';
+    %J                         = (data-Yield_estimate_diff ) * diag([1:numel(data)/2, numel(data)/2:-1:1]) * (data-Yield_estimate_diff )';
+    J                           = (data-Yield_estimate_diff ) * diag(1) * (data-Yield_estimate_diff )';
+    J_L                         = -numel(data)./2 .* ( log(2.*pi) + log(sigma^2) ) - J./(2.*sigma^2);
+    J_L                         = - J_L;
+    %J_L     = 1./sqrt( ( 2*3.14.*sigma.^2).^(numel(data)) ) .* exp( -J./(2.*sigma.^2) )
 
-    fJ  = Function('fJ', {k}, {J} );
+    %fJ  = Function('fJ', {k}, {J} );
 
     %% Constraints
     for nk=1:Nk
@@ -203,7 +214,7 @@ parfor ii=1:numel(DATA_set)
     end
 
     %% Set opt and inital guess
-    OPT_solver.minimize(J);
+    OPT_solver.minimize(J_L);
 
     OPT_solver.set_initial(k, k0);
 
@@ -223,6 +234,7 @@ end
 
 %%  
 
+RHO   = [];
 for ii=1:numel(DATA_set)
 
     DATA                    = DATA_set{ii};
@@ -239,6 +251,7 @@ for ii=1:numel(DATA_set)
 
     Z                       = Compressibility( T0homog, feedPress,         Parameters );
     rho                     = rhoPB_Comp(      T0homog, feedPress, Z,      Parameters );
+    RHO                     = [RHO, rho];
 
     enthalpy_rho            = rho.*SpecificEnthalpy(T0homog, feedPress, Z, rho, Parameters );
 
@@ -279,7 +292,7 @@ for ii=1:numel(DATA_set)
 
     Parameters_init_time   = [uu repmat(cell2mat(Parameters),1,N_Time)'];
     [xx_0]                 = simulateSystem(F, [], x0, Parameters_init_time );
-
+ 
 
     %% Solve for the optimzed parameters
     Parameters_opt = Parameters;
