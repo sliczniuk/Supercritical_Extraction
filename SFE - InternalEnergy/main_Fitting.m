@@ -18,7 +18,7 @@ Nk                      = numel(which_k)+3;                                 % Pa
 k_lu                    = [ [0;0;0;77;0;0] , [1;inf;inf;100;1;inf] ];
 
 Iteration_max           = 100;                                              % Maximum number of iterations for optimzer
-Time_max                = 36;                                               % Maximum time of optimization in [h]
+Time_max                = 24;                                               % Maximum time of optimization in [h]
 
 V_Flow                  = 0.4;                                              % Volumetric flow rate l/min
 
@@ -29,7 +29,7 @@ bed                     = 0.165;                                            % Pe
 % Set time of the simulation
 PreparationTime         = 0;
 ExtractionTime          = 150;
-timeStep                = 0.1;                                              % Minutes
+timeStep                = 0.25;                                             % Minutes
 SamplingTime            = 5;                                                % Minutes
 
 simulationTime          = PreparationTime + ExtractionTime;

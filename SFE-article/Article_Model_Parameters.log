@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.8) (preloaded format=pdflatex 2022.9.27)  30 MAR 2023 10:29
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.8) (preloaded format=pdflatex 2022.9.27)  19 APR 2023 17:40
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1500,61 +1500,61 @@ Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 \openout5 = `Article_Model_Parameters.abs'.
 
 LaTeX Font Info:    Trying to load font information for LS1+stixscr on input li
-ne 117.
+ne 119.
  (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls1stixscr.fd
 File: ls1stixscr.fd 2015/04/17 v1.1.2-latex STIX script LS1 font definitions
 )
 LaTeX Font Info:    Trying to load font information for LS2+stixex on input lin
-e 117.
+e 119.
  (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls2stixex.fd
 File: ls2stixex.fd 2015/04/17 v1.1.2-latex STIX extentions LS2 font definitions
 
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 117
+LaTeX Font Info:    Trying to load font information for U+msa on input line 119
 .
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 117
+LaTeX Font Info:    Trying to load font information for U+msb on input line 119
 .
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Trying to load font information for LS1+stixfrak on input l
-ine 117.
+ine 119.
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls1stixfrak.fd
 File: ls1stixfrak.fd 2015/04/17 v1.1.2-latex STIX fraktur LS1 font definitions
 )
 LaTeX Font Info:    Trying to load font information for LS1+stixbb on input lin
-e 117.
+e 119.
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls1stixbb.fd
 File: ls1stixbb.fd 2015/04/17 v1.1.2-latex STIX blackboard LS1 font definitions
 
 )
 LaTeX Font Info:    Trying to load font information for LS2+stixcal on input li
-ne 117.
+ne 119.
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls2stixcal.fd
 File: ls2stixcal.fd 2015/04/17 v1.1.2-latex STIX calligraphic LS2 font definiti
 ons
 )
 LaTeX Font Info:    Trying to load font information for LS1+stixsf on input lin
-e 117.
+e 119.
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls1stixsf.fd
 File: ls1stixsf.fd 2015/04/17 v1.1.2-latex STIX sans-serif LS1 font definitions
 
 )
 LaTeX Font Info:    Trying to load font information for LS2+stixtt on input lin
-e 117.
+e 119.
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls2stixtt.fd
 File: ls2stixtt.fd 2015/04/17 v1.1.2-latex STIX typewriter LS2 font definitions
 
 )
-Overfull \hbox (123.62721pt too wide) detected at line 117
+Overfull \hbox (123.62721pt too wide) detected at line 119
 []
  []
 
@@ -1562,90 +1562,72 @@ Overfull \hbox (123.62721pt too wide) detected at line 117
 <thumbnails/cas-email.jpeg, id=131, 225.84375pt x 225.84375pt>
 File: thumbnails/cas-email.jpeg Graphic file (type jpg)
 <use thumbnails/cas-email.jpeg>
-Package pdftex.def Info: thumbnails/cas-email.jpeg  used on input line 117.
+Package pdftex.def Info: thumbnails/cas-email.jpeg  used on input line 119.
 (pdftex.def)             Requested size: 7.99838pt x 8.0pt.
 LaTeX Font Info:    Trying to load font information for T1+zi4 on input line 11
-7.
+9.
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/inconsolata\t1zi4.fd
 File: t1zi4.fd 2018/01/14 T1/zi4 (Inconsolata)
 )
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 6.80005pt on input line 117.
- (Sections/introduction.tex
-Overfull \hbox (0.50551pt too wide) in paragraph at lines 13--14
-[]\T1/stix/m/n/10 Sovova [][][] pre-sented the Broken-and-Intact Cell model.
- []
+(Font)              scaled to size 6.80005pt on input line 119.
+ (Sections/introduction_imp.tex
+LaTeX Font Info:    Trying to load font information for T1+cmss on input line 1
+3.
 
-LaTeX Font Info:    Trying to load font information for T1+cmss on input line 4
-0.
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/base\t1cmss.fd
 File: t1cmss.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
 <Figures/SFE_PFD_cropped.pdf, id=137, 450.18227pt x 202.53928pt>
 File: Figures/SFE_PFD_cropped.pdf Graphic file (type pdf)
 <use Figures/SFE_PFD_cropped.pdf>
-Package pdftex.def Info: Figures/SFE_PFD_cropped.pdf  used on input line 42.
+Package pdftex.def Info: Figures/SFE_PFD_cropped.pdf  used on input line 15.
 (pdftex.def)             Requested size: 226.34099pt x 101.83185pt.
 )
-(Sections/Thermo.tex [1{C:/Users/sliczno1/AppData/Local/MiKTeX/fonts/map/pdftex
-/pdftex.map}
+(Sections/Thermo_imp.tex [1{C:/Users/sliczno1/AppData/Local/MiKTeX/fonts/map/pd
+ftex/pdftex.map}
 
 
  <./thumbnails/cas-email.jpeg> <./Figures/SFE_PFD_cropped.pdf>]
-Underfull \hbox (badness 1158) in paragraph at lines 37--38
-[]\T1/stix/m/n/10 By analysing the com-press-ibil-ity and den-sity plots
- []
-
 <Figures/Compressibility.pdf, id=186, 794.97pt x 614.295pt>
 File: Figures/Compressibility.pdf Graphic file (type pdf)
 <use Figures/Compressibility.pdf>
-Package pdftex.def Info: Figures/Compressibility.pdf  used on input line 50.
+Package pdftex.def Info: Figures/Compressibility.pdf  used on input line 40.
 (pdftex.def)             Requested size: 469.78192pt x 161.7791pt.
 <Figures/RHO.pdf, id=188, 794.97pt x 614.295pt>
 File: Figures/RHO.pdf Graphic file (type pdf)
 <use Figures/RHO.pdf>
-Package pdftex.def Info: Figures/RHO.pdf  used on input line 57.
+Package pdftex.def Info: Figures/RHO.pdf  used on input line 47.
 (pdftex.def)             Requested size: 469.78192pt x 161.7791pt.
 <Figures/CP.pdf, id=190, 794.97pt x 614.295pt>
 File: Figures/CP.pdf Graphic file (type pdf)
 <use Figures/CP.pdf>
-Package pdftex.def Info: Figures/CP.pdf  used on input line 64.
+Package pdftex.def Info: Figures/CP.pdf  used on input line 54.
 (pdftex.def)             Requested size: 469.78192pt x 161.7791pt.
-Package hyperref Info: bookmark level for unknown todo defaults to 0 on input l
-ine 72.
 [2]
-<Figures/MU.pdf, id=210, 614.295pt x 794.97pt>
+<Figures/MU.pdf, id=214, 614.295pt x 794.97pt>
 File: Figures/MU.pdf Graphic file (type pdf)
 <use Figures/MU.pdf>
-Package pdftex.def Info: Figures/MU.pdf  used on input line 79.
+Package pdftex.def Info: Figures/MU.pdf  used on input line 70.
 (pdftex.def)             Requested size: 494.50888pt x 181.0517pt.
 File: Figures/MU.pdf Graphic file (type pdf)
 <use Figures/MU.pdf>
-Package pdftex.def Info: Figures/MU.pdf  used on input line 80.
+Package pdftex.def Info: Figures/MU.pdf  used on input line 71.
 (pdftex.def)             Requested size: 494.50888pt x 138.88126pt.
- [3 <./Figures/Compressibility.pdf> <./Figures/RHO.pdf> <./Figures/CP.pdf>]
-<Figures/KT.pdf, id=290, 614.295pt x 794.97pt>
+<Figures/KT.pdf, id=219, 614.295pt x 794.97pt>
 File: Figures/KT.pdf Graphic file (type pdf)
 <use Figures/KT.pdf>
-Package pdftex.def Info: Figures/KT.pdf  used on input line 89.
+Package pdftex.def Info: Figures/KT.pdf  used on input line 80.
 (pdftex.def)             Requested size: 469.78192pt x 592.36734pt.
-)
-Overfull \hbox (2.15552pt too wide) in paragraph at lines 137--138
+) [3 <./Figures/Compressibility.pdf> <./Figures/RHO.pdf> <./Figures/CP.pdf>]
+Overfull \hbox (2.15552pt too wide) in paragraph at lines 141--142
 []\T1/stix/m/n/10 The quasi-one-dimensional com-press-ible Navier-Stokes
  []
 
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-(Sections/Low_mach_number_expansion.tex
+(Sections/Low_mach_number_expansion_imp.tex
 Underfull \hbox (badness 1400) in paragraph at lines 5--6
 \T1/stix/m/n/10 of mo-tion (con-ti-nu-ity, mo-men-tum and en-ergy). Such a
- []
-
-
-Underfull \hbox (badness 1377) in paragraph at lines 5--6
-\T1/stix/m/n/10 set of equa-tions al-low for large vari-a-tions in gas den-
  []
 
 
@@ -1670,17 +1652,20 @@ m/n/8 *[] [] + \LS1/stix/m/it/8 P[][] \LS1/stix/m/n/8 = 0$
  []
 
 
-Underfull \hbox (badness 1173) in paragraph at lines 180--181
+Underfull \hbox (badness 1173) in paragraph at lines 178--179
 []\T1/stix/m/n/10 Assuming con-stant tem-per-a-ture and pres-sure along
  []
 
 
-Overfull \hbox (8.86765pt too wide) detected at line 185
+Overfull \hbox (8.86765pt too wide) detected at line 183
  $[] \LS1/stix/m/it/8 ^^ZA[] [] \LS1/stix/m/n/8 * [] [] + \LS1/stix/m/it/8 P[][
 ] \LS1/stix/m/n/8 = 0 \LS1/stixsf/m/n/8 ™ [] \LS1/stix/m/n/8 = 0$ 
  []
 
 ) (Sections/Model.tex [7]
+Package hyperref Info: bookmark level for unknown todo defaults to 0 on input l
+ine 28.
+
 
 LaTeX Warning: Marginpar on page 8 moved.
 
@@ -1794,7 +1779,7 @@ Overfull \vbox (0.00002pt too high) has occurred while \output is active []
 [14 <./Figures///Results_estimation/Trend_Lines_order_1.pdf> <./Figures///Resul
 ts_estimation/Trend_Lines_order_2.pdf>] (Article_Model_Parameters.bbl
 LaTeX Font Info:    Trying to load font information for TS1+stix on input line 
-126.
+132.
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ts1stix.fd
 File: ts1stix.fd 2015/04/17 v1.1.2-latex STIX TS1 font definitions
@@ -1997,10 +1982,10 @@ LaTeX Font Warning: Command \footnotesize invalid in math mode on input line 42
 <Sections/ultraReportT5.pdf, id=843, 597.23125pt x 845.1575pt>
 File: Sections/ultraReportT5.pdf Graphic file (type pdf)
 <use Sections/ultraReportT5.pdf>
-Package pdftex.def Info: Sections/ultraReportT5.pdf  used on input line 247.
+Package pdftex.def Info: Sections/ultraReportT5.pdf  used on input line 252.
 (pdftex.def)             Requested size: 549.43207pt x 620.46504pt.
 
-Overfull \hbox (54.92319pt too wide) in paragraph at lines 247--248
+Overfull \hbox (54.92319pt too wide) in paragraph at lines 252--253
  [][]
  []
 
@@ -2013,13 +1998,13 @@ d.
 (rerunfilecheck)             Checksum: DFCF2B7EACE344551C30A2180CBDD7C1;5326.
  ) 
 Here is how much of TeX's memory you used:
- 42677 strings out of 478847
- 929753 string characters out of 2848486
- 1382809 words of memory out of 3000000
- 59504 multiletter control sequences out of 15000+600000
+ 42654 strings out of 478847
+ 929284 string characters out of 2848486
+ 1378025 words of memory out of 3000000
+ 59483 multiletter control sequences out of 15000+600000
  530445 words of font info for 178 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,22n,131p,1762b,2477s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 99i,22n,131p,1556b,2477s stack positions out of 5000i,500n,10000p,200000b,80000s
 {C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/stix/stix-ts
 1.enc}{C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/stix/sti
 x-t1.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/cm-super/cm-super-t1.enc}{C:/
@@ -2041,9 +2026,9 @@ ms/MiKTeX/fonts/type1/public/stix/stix-mathrm.pfb><C:/Users/sliczno1/AppData/Lo
 cal/Programs/MiKTeX/fonts/type1/public/stix/stix-mathscr.pfb><C:/Users/sliczno1
 /AppData/Local/Programs/MiKTeX/fonts/type1/public/stix/stix-mathsf.pfb><C:/User
 s/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrb8a.pfb>
-Output written on Article_Model_Parameters.pdf (22 pages, 2721956 bytes).
+Output written on Article_Model_Parameters.pdf (22 pages, 2864635 bytes).
 PDF statistics:
  975 PDF objects out of 1000 (max. 8388607)
- 238 named destinations out of 1000 (max. 500000)
+ 236 named destinations out of 1000 (max. 500000)
  425 words of extra memory for PDF output out of 10000 (max. 10000000)
 

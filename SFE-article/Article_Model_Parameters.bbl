@@ -1,4 +1,4 @@
-\begin{thebibliography}{21}
+\begin{thebibliography}{22}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -91,6 +91,12 @@ Arno Laesecke and Chris~D. Muzny.
 \newblock \emph{Journal of Physical and Chemical Reference Data}, 46\penalty0
   (1):\penalty0 013107, mar 2017.
 \newblock \doi{10.1063/1.4977429}.
+
+\bibitem[Chapman and Cowling(1991)]{Chapman1991}
+Sydney Chapman and T.~G. Cowling.
+\newblock \emph{The Mathematical Theory of Non-uniform Gases}.
+\newblock Cambridge University Press, 1991.
+\newblock ISBN 9780521408448.
 
 \bibitem[Huber et~al.(2016)Huber, Sykioti, Assael, and Perkins]{Huber2016}
 M.~L. Huber, E.~A. Sykioti, M.~J. Assael, and R.~A. Perkins.

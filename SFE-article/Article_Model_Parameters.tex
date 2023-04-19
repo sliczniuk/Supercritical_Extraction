@@ -15,7 +15,7 @@
 % Packages
 % --------------------------------------------------------------------
 % Figure packages
-\usepackage{float}
+\usepackage{graphicx,float}
 \usepackage{adjustbox}
 % Text, input, formatting, and language-related packages
 \usepackage[T1]{fontenc}
@@ -102,8 +102,10 @@
 % ===================================================
 \begin{abstract}
 %Given a system of partial differential equations, $F(t,x,\dot{x},p,u)=0$, where $x$ represents state variables, $p$ are the parameters, and $u$ are control variables, the process model is simultaneously solved for both $x_i$ and a set of sensitivity functions, $dx_i/dp_j$, overall times $t$.These sensitivity functions measure the influence of the parameter change on the model's output. As an example, the supercritical extraction process is presented. The impact of mass flow rate, pressure, and inlet temperature on the model's output is discussed. The sensitivity analysis results prove that the considered variables can affect the extraction's yield and be used as control variables in optimization problems. Moreover, the local sensitivity analysis results are analyzed from a phenomenological point of view to enhance understanding of the process model.
-Given a system of partial differential equations, $F(t,x,\dot{x},\Theta,u)=0$, where $x$ represents state variables, $\Theta$ are the parameters, and $u$ are control variables, we describe the supercritical extraction process. The process model describes a partially filled extractor with a fixed bed, which work under constant operating conditions. We assume that the flow is uniform across any cross-section, although the area available for the fluid phase can change along the extractor. We apply the concept of quasi-one-dimensional flow to mimic the modelling of a two-dimensional case.
-In this work, a distributed-parameter model, based on \citet{Reverchon1996} is used to describe a fluid-solid extraction process of caraway oil from caraway seeds with $CO_2$ as a solvent. The model parameters such as partition factor, internal diffusion coefficient, axial diffusion coefficient and saturation concentration are obtained from parameter estimation. The parameters are estimated based on four experiments performed at $40^\circ C$ and $50^\circ C$ at $200$ bar and $300$ bar. Given yield data, the model-based parameter estimation uses the maximum likelihood estimation method under assumption of normal error.
+%Given a system of partial differential equations, $F(t,x,\dot{x},\Theta,u)=0$, where $x$ represents state variables, $\Theta$ are the parameters, and $u$ are control variables, we describe the supercritical extraction process. The process model describes a partially filled extractor with a fixed bed, which work under constant operating conditions. We assume that the flow is uniform across any cross-section, although the area available for the fluid phase can change along the extractor. We apply the concept of quasi-one-dimensional flow to mimic the modelling of a two-dimensional case.
+%In this work, a distributed-parameter model, based on \citet{Reverchon1996} is used to describe a fluid-solid extraction process of caraway oil from caraway seeds with $CO_2$ as a solvent. The model parameters such as partition factor, internal diffusion coefficient, axial diffusion coefficient \textit{and saturation concentration} are obtained from parameter estimation. The parameters are estimated based on four experiments performed at $40^\circ C$/$200$ bar, $50^\circ C$/$200$ bar, $40^\circ C$/$300$ bar and $50^\circ C$/$300$ bar. Given yield data, the model-based parameter estimation uses the maximum likelihood estimation method under assumption of normal error.
+We consider a system of partial differential equations, $F(t,x,\dot{x},\Theta,u)=0$, where $x$ denotes the state variables, $\Theta$ represents the parameters, and $u$ is the control variables. Our focus is on the supercritical extraction process, which involves a partially filled extractor with a fixed bed that operates under constant conditions. We assume the flow is uniform across any cross-section, although the area available for the fluid phase can vary along the extractor. To model this two-dimensional case, we use the concept of quasi-one-dimensional flow.
+To describe the fluid-solid extraction process of caraway oil from caraway seeds with $CO_2$ as a solvent, we use a distributed-parameter model based on \citet{Reverchon1996}. This model requires parameters such as partition factor, internal diffusion coefficient, axial diffusion coefficient, and saturation concentration. We estimate these parameters from four experiments at different temperatures and pressures: $40^\circ C$/$200$ bar, $50^\circ C$/$200$ bar, $40^\circ C$/$300$ bar, and $50^\circ C$/$300$ bar. We obtain the parameter values using the maximum likelihood estimation method on yield data under the normal error assumption.
 
 \end{abstract}
 
@@ -121,60 +123,62 @@ Supercritical extraction \sep Parameter estimation \sep Mathematical modelling
 % ===================================================\section{Introduction}
 
 \section{Introduction}
-\subfile{Sections/introduction}
+%\subfile{Sections/introduction}
+\subfile{Sections/introduction_imp}
 
 \section{Materials and methods} \label{CH: Materials and methods}
 
 \subsection{Supercritical fluids} \label{CH: Thermodynamic}
-\subfile{Sections/Thermo}
+%\subfile{Sections/Thermo}
+\subfile{Sections/Thermo_imp}
 
 %\clearpage
 %\subfile{Sections/Materials_and_methods}
 
 \subsection{Governing equations}
-The detail derivation of the governing equation can be found in the appendix \ref{CH: Gouverning equations} as well as in the work of \citet{Anderson1995}. Let's assume that any properties of the flow are unifrom across any given cross-section of an channel (or any device like an extractor). Such a flow is called quasi-one-dimensional. The variation of the cross-section might be an result of its irregular shape (or partial filling of an extractor). 
+The governing equation for a quasi-one-dimensional compressible flow in Cartesian coordinates can be found in the appendix \ref{CH: Gouverning equations} and in the work of \citet{Anderson1995}.  Quasi-one-dimensional flow is a type of fluid flow that is characterized by the assumption that the flow properties remain uniform across any given cross-section of the flow. This assumption is made when there is a variation in the cross-sectional area of the flow channel, such as a irregular shape or partial filling of an extractor. In such cases, the flow is considered to be quasi-one-dimensional because the velocity and other flow properties are assumed to vary only in the direction of flow.
 
-The quasi-one-dimensional compressible Navier-Stokes equations in Cartesian coordinates is given be equations \ref{EQ: CompressibleEuler_1} to \ref{EQ: CompressibleEuler_3}.
+The quasi-one-dimensional compressible Navier-Stokes equations in Cartesian coordinates are given by equations \ref{EQ: CompressibleEuler_1} to \ref{EQ: CompressibleEuler_3}.
 
 {\footnotesize
-\begin{align}
+	\begin{align}
 		\label{EQ: CompressibleEuler_1}
-        \cfrac{\partial \left( \rho_f A_f \right) }{\partial t} + \cfrac{\partial \left( \rho_f A_f v \right)}{\partial z} &= 0 \\
-        \cfrac{\partial \left( \rho_f v A_f \right) }{\partial t} + \cfrac{\partial \left( \rho_f A_f v^2 \right)}{\partial z} &= -A_f \cfrac{\partial P}{\partial z} \label{EQ: CompressibleEuler_2} \\
-        \cfrac{\partial \left( \rho_f e A_f \right) }{\partial t} + \cfrac{\partial \left( \rho_f A_f v e\right)}{\partial z} &= -P\cfrac{\left( A_f v \right)}{\partial z} + \cfrac{\partial}{\partial z} \left( \cfrac{\partial T}{\partial z} \right)   
-        \label{EQ: CompressibleEuler_3}
-    \end{align}  
+		\cfrac{\partial \left( \rho_f A_f \right) }{\partial t} + \cfrac{\partial \left( \rho_f A_f v \right)}{\partial z} &= 0 \\
+		\cfrac{\partial \left( \rho_f v A_f \right) }{\partial t} + \cfrac{\partial \left( \rho_f A_f v^2 \right)}{\partial z} &= -A_f \cfrac{\partial P}{\partial z} \label{EQ: CompressibleEuler_2} \\
+		\cfrac{\partial \left( \rho_f e A_f \right) }{\partial t} + \cfrac{\partial \left( \rho_f A_f v e\right)}{\partial z} &= -P\cfrac{\left( A_f v \right)}{\partial z} + \cfrac{\partial}{\partial z} \left( \cfrac{\partial T}{\partial z} \right)   
+		\label{EQ: CompressibleEuler_3}
+	\end{align}  
 }
 
 where $\rho_f$ is the density of the fluid, $A_f$ is the function which describe change of the cross-section, $v$ is the velocity, $P$ is the total pressure, $e$ is the internal energy of the fluid, $t$ is time and $z$ is the spacial direction.
 
-Based on governing equations, the small discontinuity in flow properties, shown on figure \ref{fig: Discontinuity_slow_flow}, can be analysed. The analysis follow the work of \citet{Schreier1982}.
+Based on governing equations, the small discontinuity (defined as $\delta$) in flow properties, shown on figure \ref{fig: Discontinuity_slow_flow}, can be analysed. The analysis follow the work of \citet{Schreier1982}.
 
-\begin{figure}[h!]
+\begin{figure}[!ht]
 	\centering
 	\resizebox{0.95\columnwidth}{!}{%
-	\begin{tikzpicture}[]
-		\draw (0,2) -- (9,2);	% Top line
-		\draw (0,0) -- (9,0); 	% Bottom line
-		\draw (4.5,0) -- (4.5,2); 	% Bottom line
-		\node at (4,1.5) {$\rho$};
-		\node at (5.5,1.5) {$\rho+\delta\rho$};
-		\node at (4,1.0) {$P$};
-		\node at (5.5,1.0) {$P+\delta P$};
-		\node at (4,0.5) {$T$};
-		\node at (5.5,0.5) {$T+\delta T$};
-		\node at (1,1.0) {$v \rightarrow$};
-		\node at (8,1.0) {$v + \delta v \rightarrow$};
+		\begin{tikzpicture}[]
+			\draw (0,2) -- (9,2);	% Top line
+			\draw (0,0) -- (9,0); 	% Bottom line
+			\draw (4.5,0) -- (4.5,2); 	% Bottom line
+			\node at (4,1.5) {$\rho_f$};
+			\node at (5.5,1.5) {$\rho_f+\delta\rho_f$};
+			\node at (4,1.0) {$P$};
+			\node at (5.5,1.0) {$P+\delta P$};
+			\node at (4,0.5) {$T$};
+			\node at (5.5,0.5) {$T+\delta T$};
+			\node at (1,1.0) {$v \rightarrow$};
+			\node at (8,1.0) {$v + \delta v \rightarrow$};
 	\end{tikzpicture} }
 	\caption{Small discontinuity in one-dimensional flow}
 	\label{fig: Discontinuity_slow_flow}
 \end{figure} 
 
-The discontinuity is presumed to be at rest relative and \todo[]{Fix the notation of pressure perturbation section to be coherent with governing equations}  the balance equations become		
+The discontinuity is presumed to be at rest relative and the balance equations become		
 
 {\footnotesize
 	\begin{align*}
-		&\rho \delta v + v \delta \rho_f + \delta \rho_f \delta v = 0 \\
+		&\rho_f \delta v + v \delta \rho_f + \delta \rho_f \delta v = 0 \\
 		&\delta P = \delta v \delta \rho_f
 	\end{align*}
 }
@@ -195,10 +199,11 @@ By combining momentum equation with above equation we get
 	\end{equation*}
 }
 
-If the flow is presumed to be isentropic, $dP/d\rho = c^2$, so $V^2=c^2$, where $c$ is the speed of sound. This can be interpreted that a small pressure wave propagates with the speed of sound relative to the flow.
+If the flow is presumed to be isentropic, $dP/d\rho = c^2$, so $v^2=c^2$, where $c$ is the speed of sound. This can be interpreted that a small pressure wave propagates with the speed of sound relative to the flow.
 
 \subsection{Low Mach number expansion}
-\subfile{Sections/Low_mach_number_expansion}
+%\subfile{Sections/Low_mach_number_expansion}
+\subfile{Sections/Low_mach_number_expansion_imp}
 
 \subsection{Extraction model} \label{CH: Extraction_model}
 \subfile{Sections/Model}
