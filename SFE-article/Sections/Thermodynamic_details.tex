@@ -5,7 +5,7 @@
 	\label{CH: Thermodynamic_details}
 	
 	\subsubsection{Equation of state and properties of the fluid phase} \label{subsubsec: Equation of state}
-	We consider equations of state in the general form ${\color{red}P}(t) {\color{orange}V_{\text{CO}_2}}\left[T(t,z),P(t)\right] = {\color{orange}Z}{\color{magenta}R}{\color{blue}T}(t,z)$, where ${\color{magenta}V_{\text{CO}_2}}$ denotes the molar volume of $\text{CO}_2$, ${\color{orange}Z}$ represents its compressibility factor, and $R$ is the universal gas constant. More specifically, we are interested in these equations because of the possibility to express the compressibility $Z$ as an explicit function of temperature and pressure. This is the case when $Z$ is obtained as one of the physically meaningful roots of a polynomial equation, like the Peng-Robinson's and {\color{red} stuff with REFS to equations of state}. \\
+	We consider equations of state in the general form ${\color{red}P}(t) {\color{orange}v_m}\left[T(t,z),P(t)\right] = {\color{orange}Z}{\color{magenta}R}{\color{blue}T}(t,z)$, where ${\color{magenta}v_m}$ denotes the molar volume of $\text{CO}_2$, ${\color{orange}Z}$ represents its compressibility factor, and $R$ is the universal gas constant. More specifically, we are interested in these equations because of the possibility to express the compressibility $Z$ as an explicit function of temperature and pressure. This is the case when $Z$ is obtained as one of the physically meaningful roots of a polynomial equation, like the Peng-Robinson's and {\color{red} stuff with REFS to equations of state}. \\
 	
 	In Peng-Robinson's equation, the compressibility ${\color{orange}\overline{Z}}\left[{\color{blue}T}(t,z), {\color{red}P}(t)\right]$ solves the third-order polynomial equation \todo{reference to Cardano formula}
 	
@@ -32,7 +32,7 @@
 	\subsubsection{Density of the fluid phase} \label{subsubsec: Fluid density}
 	%\noindent \textbf{Density of the fluid phase} \\
 	
-	The density $\rho_{\text{F}}$ of the fluid phase is assumed to be equal to the density of solvent, at given temperature and pressure. Because temperature $T(t,z)$ of the fluid phase is a modelled variable, we allow for the density to vary along the bed and in time. From an equation of state of the form ${\color{red}P}(t) {\color{orange}V_{\text{CO}_2}}\left[T(t,z),P(t)\right] = {\color{orange}Z}{\color{magenta}R}{\color{blue}T}(t,z)$, we get
+	The density $\rho_{\text{F}}$ of the fluid phase is assumed to be equal to the density of solvent, at given temperature and pressure. Because temperature $T(t,z)$ of the fluid phase is a modelled variable, we allow for the density to vary along the bed and in time. From an equation of state of the form ${\color{red}P}(t) {\color{orange}v_m}\left[T(t,z),P(t)\right] = {\color{orange}Z}{\color{magenta}R}{\color{blue}T}(t,z)$, we get
 	
 	{\footnotesize
 	\begin{equation} \label{eq: Density}
@@ -68,7 +68,7 @@
 	{\footnotesize	
 	\begin{align}
 		&{\color{orange}C_p^{\text{R}}}\left[{\color{blue}T}(t,z), {\color{red}P}(t)\right] = \underbrace{{\color{orange}C_v^{\text{R}}}\left[{\color{blue}T}(t,z), {\color{red}P}(t)\right]}_{\text{Eq. }\eqref{eq: CvR}} \nonumber \\
-		&+ {\color{blue}T}(t,z) \underbrace{\left(\cfrac{\partial {\color{red}P}(t)}{\partial {\color{blue}T}}\right)_{{\color{orange}V_{\text{CO}_2}}(t,z)}}_{\text{Eq. } \eqref{eq: dPdT}} \underbrace{\left(\cfrac{\partial {\color{orange}V_{\text{CO}_2}}\left[{\color{blue}T}(t,z),{\color{red}P}(t)\right]}{\partial {\color{blue}T}}\right)_{{\color{red}P}(t)}}_{\text{Eq. } \eqref{eq: dVdT}} - {\color{magenta}R}. \label{eq: Cp_R} 
+		&+ {\color{blue}T}(t,z) \underbrace{\left(\cfrac{\partial {\color{red}P}(t)}{\partial {\color{blue}T}}\right)_{{\color{orange}v_m}(t,z)}}_{\text{Eq. } \eqref{eq: dPdT}} \underbrace{\left(\cfrac{\partial {\color{orange}v_m}\left[{\color{blue}T}(t,z),{\color{red}P}(t)\right]}{\partial {\color{blue}T}}\right)_{{\color{red}P}(t)}}_{\text{Eq. } \eqref{eq: dVdT}} - {\color{magenta}R}. \label{eq: Cp_R} 
 	\end{align} }
 
 	The braced terms are obtained from the chosen equation of state $P(t) V\left[T(t,z),P(t)\right] = Z\left[T(t,z),P(t)\right] R T(t,z)$. \\
@@ -77,21 +77,21 @@
 
 	{\footnotesize
 	\begin{equation}
-		\left( \cfrac{\partial {\color{orange}V_{\text{CO}_2}}\left[{\color{blue}T}(t,z), {\color{red}P}(t)\right]}{\partial {\color{blue}T}} \right)_{{\color{red}P}(t)} = \cfrac{{\color{orange}Z}\left[{\color{blue}T}(t,z), {\color{red}P}(t)\right] {\color{magenta}R}}{{\color{red}P}(t)} + \cfrac{{\color{magenta}R}{\color{blue}T}(t,z)}{{\color{red}P}(t)} \underbrace{\left( \cfrac{\partial {\color{orange}Z}\left[{\color{blue}T}(t,z), {\color{red}P}(t)\right]}{\partial {\color{blue}T}} \right)_{{\color{red}P}(t)}}_{\text{Eq. }\eqref{eq: dZdT}} \label{eq: dVdT}
+		\left( \cfrac{\partial {\color{orange}v_m}\left[{\color{blue}T}(t,z), {\color{red}P}(t)\right]}{\partial {\color{blue}T}} \right)_{{\color{red}P}(t)} = \cfrac{{\color{orange}Z}\left[{\color{blue}T}(t,z), {\color{red}P}(t)\right] {\color{magenta}R}}{{\color{red}P}(t)} + \cfrac{{\color{magenta}R}{\color{blue}T}(t,z)}{{\color{red}P}(t)} \underbrace{\left( \cfrac{\partial {\color{orange}Z}\left[{\color{blue}T}(t,z), {\color{red}P}(t)\right]}{\partial {\color{blue}T}} \right)_{{\color{red}P}(t)}}_{\text{Eq. }\eqref{eq: dZdT}} \label{eq: dVdT}
 	\end{equation} }
  
 	with partial derivative of the compressibility factor with respect to temperature $T$ at constant pressure $P(t)$
 
 	{\footnotesize
 	\begin{equation}
-		\left(\cfrac{\partial{\color{orange}Z}\left[{\color{blue}T}(t,z), {\color{red}P}(t)\right]}{\partial {\color{blue}T}}\right)_{{\color{red}P}(t)} = \left(\cfrac{\partial \dfrac{{\color{red}P}(t) {\color{orange}V_{\text{CO}_2}}\left[T(t,z),P(t)\right]}{{\color{magenta}R}{\color{blue}T}(t,z)}}{\partial {\color{blue}T}}\right)_{{\color{red}P}(t)} \label{eq: dZdT}
+		\left(\cfrac{\partial{\color{orange}Z}\left[{\color{blue}T}(t,z), {\color{red}P}(t)\right]}{\partial {\color{blue}T}}\right)_{{\color{red}P}(t)} = \left(\cfrac{\partial \dfrac{{\color{red}P}(t) {\color{orange}v_m}\left[T(t,z),P(t)\right]}{{\color{magenta}R}{\color{blue}T}(t,z)}}{\partial {\color{blue}T}}\right)_{{\color{red}P}(t)} \label{eq: dZdT}
 	\end{equation} }
 
 	Similarly, for the partial derivative of the pressure with respect to temperature at constant volume, we have
 	
 	{\footnotesize
 	\begin{equation}
-		\left(\cfrac{\partial {\color{red}P}(t)}{\partial {\color{blue}T}}\right)_{{\color{orange}V_{\text{CO}_2}}(t,z)} = \left( \cfrac{\partial{\dfrac{{\color{orange}Z}{\color{magenta}R}{\color{blue}T}(t,z)}{{\color{magenta}V_{\text{CO}_2}}\left[T(t,z),P(t)\right]}}}{\partial{\color{blue}T}}\right)_{{\color{orange}V}(t,z)} \label{eq: dPdT}
+		\left(\cfrac{\partial {\color{red}P}(t)}{\partial {\color{blue}T}}\right)_{{\color{orange}v_m}(t,z)} = \left( \cfrac{\partial{\dfrac{{\color{orange}Z}{\color{magenta}R}{\color{blue}T}(t,z)}{{\color{magenta}v_m}\left[T(t,z),P(t)\right]}}}{\partial{\color{blue}T}}\right)_{{\color{orange}V}(t,z)} \label{eq: dPdT}
 	\end{equation} }
 	
 	The residual specific heat at constant volume is obtained, by definition, by using the residual internal energy
@@ -115,15 +115,15 @@
 	
 	{\footnotesize 
 		\begin{equation}
-			\frac{H^{\mathrm {ig} }-H}{RT} =\int_{V}^{\infty }\left[T\left({\frac{\partial Z}{\partial T}}\right)_{V}\right]{\frac{dV}{V}} + 1-Z
+			\frac{h^{id}-h}{RT} =\int_{v_m}^{\infty }\left[T\left({\frac{\partial Z}{\partial T}}\right)_{v_m}\right]{\frac{dv_m}{v_m}} + 1-Z
 		\end{equation}
 	}
 
-	The Peng–Robinson equation of state relates the three interdependent state properties pressure $P$, temperature $T$, and molar volume $V_m$. From the state properties ($P$, $V_m$, $T$), one may compute the departure function for enthalpy per mole (denoted $h$) as presented by \citet{Gmehling2019} or \citet{Elliott2011}:
+	The Peng–Robinson equation of state relates the three interdependent state properties pressure $P$, temperature $T$, and molar volume $v_m$. From the state properties ($P$, $v_m$, $T$), one may compute the departure function for enthalpy per mole (denoted $h$) as presented by \citet{Gmehling2019} or \citet{Elliott2011}:
 	
 	{\footnotesize
 		\begin{equation}
-			h_{T,P}-h_{T,P}^{\mathrm {ideal} }=RT_{C}\left[T_{r}(Z-1)-2.078(1+\kappa ){\sqrt {\alpha }}\ln \left({\frac {Z+2.414B}{Z-0.414B}}\right)\right]
+			h-h^{\mathrm {id} }=RT\left[T_{r}(Z-1)-2.078(1+\kappa ){\sqrt {\alpha }}\ln \left({\frac {Z+2.414B}{Z-0.414B}}\right)\right]
 		\end{equation}
 	}
 	

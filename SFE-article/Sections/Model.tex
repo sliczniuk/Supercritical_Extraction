@@ -9,43 +9,59 @@
 	{\color{magenta}parameters}.
 	
 	\subsubsection{Continuity equation} \label{CH: Continuity}
-	The details of derivation can be found in the appendix \ref{CH: Gouverning equations}. The continuity equation for the fluid phase is given by equation \ref{EQ: CompressibleEuler_1}. If $A_f$ is specified to be a function of void fraction $A_f = A\varepsilon(z)$, where $\varepsilon$ is void fraction of the bed and $A$ is the cross-section of the empty extractor. The continuity equation become
+	The continuity equation for the fluid phase is derived in Appendix \ref{CH: Gouverning equations}. When the cross-sectional area of the channel $A_f$ is specified as a function of the void fraction ${\color{magenta}\phi}(z)$ (where ${\color{magenta}\phi}$ is the void fraction of the bed and $A$ is the cross-section of the empty extractor), the continuity equation takes the form: \todo[]{assign color to v and u}
 	
 	{\footnotesize
 		\begin{equation*}
-			\cfrac{\partial \left( \rho_f \varepsilon \right)}{\partial t} + \cfrac{\partial \left( \rho_f v \varepsilon \right)}{\partial z} = 0
+			\frac{\partial ({\color{orange}\rho_f}({\color{blue}T}(t,z),{\color{red}P}(t)) {\color{magenta}\phi})}{\partial t} + \frac{\partial ({\color{orange}\rho_f}({\color{blue}T}(t,z),{\color{red}P}(t)) v A {\color{magenta}\phi})}{\partial {\color{blue}z}} = 0
 		\end{equation*}
 	}
 	
-	Assuming that the mass flow-rate is constant in time, the temporal derivative become zero and the spacial derivative can be integrated along $z$.
+	Assuming that the mass flow rate is constant in time, the temporal derivative becomes zero, and the spatial derivative can be integrated along ${\color{blue}z}$ as
 	
 	{\footnotesize
 		\begin{equation}
-			\int \cfrac{\partial \left( \rho_f v \varepsilon \right)}{\partial z} dz = 0 \rightarrow F=\rho_f v \varepsilon
+			\int \frac{\partial ({\color{orange}\rho_f}({\color{blue}T}(t,z),{\color{red}P}(t)) v A {\color{magenta}\phi})}{\partial {\color{blue}z}} dz = 0 \rightarrow {\color{red}F}={\color{orange}\rho_f}({\color{blue}T}(t,z),{\color{red}P}(t)) v A {\color{magenta}\phi}
 		\end{equation}
 	}
-
-	where $F$ is a constant obtained from the integration and it is understood as the mass flux per unit area which is assumed to be constant along $z$. $F$ can treated as a control variable, which can change in time but it is constant in space. Such a assumption allows to find the velocity profile which satisfy the mass continuity based on $F, \varepsilon$ and $\rho_f$. The fluid density $\rho_f$ density is connected through equation of state with thermodynamical pressure, which is assumed to be constant along $z$ (due to the low-Mach number) and temperature \todo{Elaborate, the pressure is know (a control variable) and temperature can be found from energy equation}. The variation in density might be caused by the accumulation of the fluid \todo{Introduce relation between accumulation, pressure and energy equation} in the system (which happen instantaneously along $z$) or by temperature change. To simplify the dynamic of the system, it is assumed that $F=F(t)$ is a control variable and affects the whole system instantaneously.
+	
+	Here, ${\color{red}F}$ is a constant obtained from the integration and is understood as the mass flux per unit area, which is assumed to be constant along ${\color{blue}z}$. To simplify the dynamics of the system, it is assumed that ${\color{red}F}={\color{red}F}(t)$ is a control variable and affects the whole system instantaneously. This assumption allows for finding the velocity profile that satisfies mass continuity based on ${\color{red}F}(t)$, ${\color{magenta}\phi}(z)$, and ${\color{orange}\rho_f}({\color{blue}T}(t,z),{\color{red}P}(t))$.
+	
+	{\footnotesize
+	\begin{equation}
+		v = \cfrac{{\color{red}F}(t)}{{\color{orange}\rho_f}({\color{blue}T}(t,z),{\color{red}P}(t)) A {\color{magenta}\phi}} 
+	\end{equation}
+	}
+	
+	The fluid density ${\color{orange}\rho_f}({\color{blue}T}(t,z),{\color{red}P}(t))$ can be obtained from an equation of state if temperature and the thermodynamic pressure (assumed ${\color{red}P}(t)$ to be constant along ${\color{blue}z}$ due to the low-Mach number condition) are known. The variation in density may be caused by the fluid accumulation in the system (equivalent to pressure change), which occurs instantaneously along ${\color{blue}z}$ or by a temperature change. 
+	
+	Analogously, the superficial velocity mught be introduced to the model and defined as
+	
+	{\footnotesize
+		\begin{equation}
+			u = v {\color{magenta}\phi} = \cfrac{{\color{red}F}(t)}{{\color{orange}\rho_f}({\color{blue}T}(t,z),{\color{red}P}(t)) A }
+		\end{equation}
+	}
 	
 	\subsubsection{Mass balance for the fluid phase} \label{CH: Mass_balance_fluid}
 	
-	The detail derivation of the mass balance equation for the fluid phase can be found in the appendix (\ref{CH: Gouverning equations}). The movement of the mobile pseudo-homogeneous phase (equation \ref{Model_fluid}) is considered only in the axial direction. The properties of the system in the radial direction are assumed to be uniform. In addition, it is considered that the boundary layer adjacent to the inner wall of the extractor does not exist. Therefore, the velocity profile is constant across any cross-section of the extractor perpendicular to the axial direction. As a result, the plug flow model \todo{Double check if we can call it a plug flow} can be introduced. The particle size distribution and the void fraction of the solid phase cab change along an extractor but they remain constant in time. Moreover, the thermodynamic pressure is considered to be constant along the device, as discussed above. The amount of solute in the solvent is considered negligible. Therefore, the fluid phase can be described as pseudo-homogenous, and its properties are assumed to be the same as the solvent. The mass balance for the fluid phase consists of convection, diffusion, and kinetic terms.
-	
-	%The process model consists of three partial differential equations: two mass balance equations relative to the concentration of solute in the fixed solid phase and the mobile fluid phase, and the heat balance equation relative to the temperature of the fluid phase.
+	The detailed derivation of the mass balance equation for the fluid phase can be found in the appendix (\ref{CH: Gouverning equations}). The movement of the mobile pseudo-homogeneous phase (equation \ref{Model_fluid}) is considered only in the axial direction, while the properties of the system in the radial direction are assumed to be uniform. Additionally, the boundary layer adjacent to the inner wall of the extractor is neglected, resulting in a constant velocity profile across any cross-section of the extractor perpendicular to the axial direction. Although the particle size distribution and void fraction of the solid phase may change along the extractor, they are assumed to remain constant in time. Furthermore, the thermodynamic pressure is assumed to be constant along the device due to the Low-Mach number condition, as previously discussed. The amount of solute in the solvent is considered negligible, resulting in the fluid phase being described as pseudo-homogeneous, and its properties are assumed to be the same as the solvent. The mass balance equation for the fluid phase includes convection, diffusion, and kinetic terms.
 	
 	{\footnotesize
-		\begin{align} 
+		\begin{equation}
 			\label{Model_fluid}
-			\cfrac{\partial {\color{blue}c_f}(t,z)}{\partial t} &	=  \underbrace{- \cfrac{u_s}{\varepsilon} \cfrac{\partial {\color{blue}c_f}(t,z)}{\partial {\color{blue}z}}}_{\text{Convective term}} - \underbrace{ \cfrac{ {\color{blue}c_f}(t,z) }{\varepsilon} \cfrac{\partial {\color{blue}u}(t,z)}{\partial {\color{blue}z}}}_{\text{Convective term}} \nonumber \\
-			&+ \underbrace{ \cfrac{ {\color{orange}D^M_e} }{\varepsilon} \left[{\color{blue}T}(t,z),{\color{red}P}(t),{\color{red}F}(t)\right] \cfrac{\partial^2 {\color{blue}c_f}(t,z)}{\partial {\color{blue}z^2}} }_{\text{Diffusive term}} 
-			+ \underbrace{ \cfrac{1-{\color{magenta}\varepsilon}}{{\color{magenta}\varepsilon}} {\color{blue}r_e}(t,z) }_{\text{Kinetic term}}
-	\end{align} }
+			\frac{\partial {\color{blue}c_f}(t,z)}{\partial t}
+			+ \frac{1}{{\color{magenta}\phi}} \frac{\partial \left( {\color{blue}c_f}(t,z) u\right)}{\partial {\color{blue}z}}
+			= \frac{1-{\color{magenta}\phi}}{{\color{magenta}\phi}} {\color{blue}r_e}(t,z)
+			+ \frac{1}{{\color{magenta}\phi}} \frac{\partial}{\partial {\color{blue}z}} \left( {\color{orange}D^M_e} \frac{\partial {\color{blue}c_f}(t,z)}{\partial {\color{blue}z}} \right)
+		\end{equation}
+	}
 	
-	where ${\color{blue}c_f}(t,z), {\color{blue}c_s}(t,z), {\color{blue}T}(t,z)$ correspond to concentration of solute in the fluid phase, concentration of solute in the solid phase and the temperature, respectively. ${\color{blue}r_e}(t,z)$ is a mass transfer kinetic term. ${\color{red}F}(t)$ is the mass flow rate, ${\color{red}P}(t)$ is the pressure, ${\color{magenta}\epsilon}$ is the void fraction of the bed, ${\color{orange}\rho}({\color{blue}T}(t,z),{\color{red}P}(t))$ is the fluid's density, ${\color{magenta}\rho_s}$ is the solids density, ${\color{orange}D^M_e}({\color{blue}T}(t,z),{\color{red}P}(t),{\color{red}F}(t))$ is the axial mass diffusion coefficient and $u$ is the superficial velocity. \todo{Remove symbols which have been introduced before}
+	Here, ${\color{blue}c_f}(t,z), {\color{blue}c_s}(t,z),$ and ${\color{blue}T}(t,z)$ represent the concentration of solute in the fluid phase, concentration of solute in the solid phase, and temperature, respectively. ${\color{blue}r_e}(t,z)$ is a mass transfer kinetic term. ${\color{red}F}(t)$ is the mass flow rate, ${\color{red}P}(t)$ is the pressure, ${\color{magenta}\epsilon}$ is the void fraction of the bed, ${\color{orange}\rho_f}({\color{blue}T}(t,z),{\color{red}P}(t))$ is the fluid density, ${\color{magenta}\rho_s}$ is the solids density, ${\color{orange}D^M_e}({\color{blue}T}(t,z),{\color{red}P}(t),{\color{red}F}(t))$ is the axial mass diffusion coefficient, and $u$ is the superficial velocity.
 	
 	\subsubsection{Mass balance for the solid phase} \label{Mass_balance_solid}
 	
-	Considering the solid phase to be fixed, the convection and diffusion terms in the corresponding mass balance (equation \ref{Model_solid}) are both assumed to be negligible or absent. Therefore, the only term present in this equation is the kinetic term (defined as presented in equation \ref{Model_kinetic_basic}), which links solid and fluid phases. A single pseudo-component is used to represent the extract collectively. 
+	The solid phase is considered to be stationary, with negligible convection and diffusion terms in the mass balance equation (equation \ref{Model_solid}). Therefore, the only significant term in this equation is the kinetic term (as defined in equation \ref{Model_kinetic_basic}), which connects the solid and fluid phases. The extract is represented by a single pseudo-component to simplify the analysis. 
 	
 	{\footnotesize
 		\begin{equation} 
@@ -56,9 +72,13 @@
 			
 	\subsubsection{Kinetic term} \label{CH: Kinetic}
 	
-	The kinetic term is based on two-film theory and follow work of \citet{Reverchon1996}. The mass transfer kinetic (equation \ref{Model_kinetic_basic}) consists of the overall diffusion coefficient and the concentration gradient, which acts as a driving force for the process.
+	%The kinetic term is based on two-film theory and follow work of \citet{Reverchon1996}. The mass transfer kinetic (equation \ref{Model_kinetic_basic}) consists of the overall diffusion coefficient and the concentration gradient, which acts as a driving force for the process.
 	
-	As the solvent flows through the bed, the $CO_2$ molecules diffuse into the pores and adsorb on the particle surface to for an external fluid film around the solid particles through the solvent–solid matrix interactions. Assuming that the mean free path of the molecule is much smaller than the pore diameter, the effect of Knudsen diffusion is small and can be neglected. The dissolved solute diffuses from the particle's core through the solid-fluid interface, the pore, and the film into the bulk. The graphical representation of the mass transfer mechanism is shown in Figure \ref{fig: SFE_Mechanism}. The mean solute concentration in the solid phase is denoted as ${\color{blue}c_s}$. At the solid-fluid interface, the equilibrium concentrations are given as ${\color{blue}c_s^*}$ and ${\color{blue}c_P^*}$, respectively for solid and fluid phases. The concentration of the solutes in the fluid phase in the centre of the pore is denoted as ${\color{blue}c_{P}}$. As the solute diffuses through the pore, its concentration changes and reaches ${\color{blue}c_{Pf}}$ at the opening of the pore. The solute diffuses through the film around the particle and reaches a concentration in the bulk ${\color{blue}c_f}$. It can be assumed that the two-film theory describes the solid-fluid interface inside the pore. The overall mass transfer coefficient can be introduced if the relation between the solute concentration in one phase and its equilibrium concentration is known.
+	The kinetic term in this study is based on the two-film theory proposed by \citet{Reverchon1996} and the mass transfer kinetic is given by equation \ref{Model_kinetic_basic}. This equation takes into account the overall diffusion coefficient and the concentration gradient, which acts as the driving force for the process.
+	
+%	As the solvent flows through the bed, the $CO_2$ molecules diffuse into the pores and adsorb on the particle surface to form an external fluid film around the solid particles through the solvent–solid matrix interactions. Assuming that the mean free path of the molecule is much smaller than the pore diameter, the effect of Knudsen diffusion is small and can be neglected. The dissolved solute diffuses from the particle's core through the solid-fluid interface, the pore, and the film into the bulk. The graphical representation of the mass transfer mechanism is shown in Figure \ref{fig: SFE_Mechanism}. The mean solute concentration in the solid phase is denoted as ${\color{blue}c_s}$. At the solid-fluid interface, the equilibrium concentrations are given as ${\color{blue}c_s^*}$ and ${\color{blue}c_P^*}$, respectively for solid and fluid phases. The concentration of the solutes in the fluid phase in the centre of the pore is denoted as ${\color{blue}c_{P}}$. As the solute diffuses through the pore, its concentration changes and reaches ${\color{blue}c_{Pf}}$ at the opening of the pore. The solute diffuses through the film around the particle and reaches a concentration in the bulk ${\color{blue}c_f}$. It can be assumed that the two-film theory describes the solid-fluid interface inside the pore. The overall mass transfer coefficient can be introduced if the relation between the solute concentration in one phase and its equilibrium concentration is known.
+	
+	As the solvent flows through the bed, $CO_2$ molecules diffuse into the pores and adsorb on the particle surface to form an external fluid film around the solid particles due to the solvent-solid matrix interactions. The effect of Knudsen diffusion is negligible in this process, as the mean free path of the molecule is much smaller than the pore diameter. The dissolved solute diffuses from the particle's core through the solid-fluid interface, the pore, and the film into the bulk. Figure \ref{fig: SFE_Mechanism} illustrates the mass transfer mechanism, where the mean solute concentration in the solid phase is denoted as ${\color{blue}c_s}$ and the equilibrium concentrations at the solid-fluid interface are denoted as ${\color{blue}c_s^*}$ and ${\color{blue}c_P^*}$, respectively, for solid and fluid phases. The concentration of the solutes in the fluid phase in the centre of the pore is denoted as ${\color{blue}c_{P}}$. As the solute diffuses through the pore, its concentration changes and reaches ${\color{blue}c_{Pf}}$ at the opening of the pore. The solute then diffuses through the film around the particle and reaches a concentration in the bulk ${\color{blue}c_f}$. The two-film theory describes the solid-fluid interface inside the pore. The overall mass transfer coefficient can be determined if the relation between the solute concentration in one phase and its equilibrium concentration is known.
 			
 		\begin{figure}[h!]
 			\centering
@@ -68,7 +88,7 @@
 			\label{fig: SFE_Mechanism}
 		\end{figure}
 			
-		\citet{Bulley1984} suggest a process where the driving force for extraction is given by the difference between concentration of the solute in the bulk, ${\color{blue}c_f}$, and in the centre of the pore, ${\color{blue}c_P^*}$. The concentration ${\color{blue}c_P^*}$ is in equilibrium with ${\color{blue}c_s}$ according to an equilibrium relationship. The rate of extraction is thus ${\color{blue}r_\text{e}}\left({\color{blue}c_f} - {\color{blue}c^*_P}({\color{blue}c_s})\right)$. 
+		\citet{Bulley1984} suggest a process where the driving force for extraction is given by the difference between concentration of the solute in the bulk, ${\color{blue}c_f}$, and in the centre of the pore, ${\color{blue}c_P^*}$. The concentration ${\color{blue}c_P^*}$ is in equilibrium with ${\color{blue}c_s}$ according to an equilibrium relationship. The rate of extraction is thus ${\color{blue}r_\text{e}}\left({\color{blue}c_f} - {\color{blue}c^*_P}({\color{blue}c_s})\right)$.  
 			
 		On the other hand, \citet{Reverchon1996} proposes a driving force given by the difference between ${\color{blue}c_s}$ and ${\color{blue}c_P^*}$. ${\color{blue}c_P^*}$ is determined by an equilibrium relationship with ${\color{blue}c_f}$ and the extraction rate is ${\color{blue}r_\text{e}}\left({\color{blue}c_s} - {\color{blue}c^*_P}({\color{blue}c_f})\right)$ or more precisely
 			
@@ -98,56 +118,10 @@
 			{\footnotesize
 				\begin{equation}
 					\label{Model_kinetic_no_sat}
-					{\color{blue}r_e}(t,z) = -\cfrac{{\color{orange}D_i}({\color{blue}T}(t,z), {\color{red}P}(t))}{{\color{magenta} \mu l^2} }\left({\color{blue}c_s}(t,z) - \cfrac{{\color{magenta}\rho_s}}{{\color{orange}k_m}({\color{blue}T}(t,z)){\color{orange}\rho}({\color{blue}T}(t,z),{\color{red}P}(t))}  {\color{blue}c_f}(t,z) \right)
+					{\color{blue}r_e}(t,z) = -\cfrac{{\color{orange}D_i}({\color{blue}T}(t,z), {\color{red}P}(t))}{{\color{magenta} \mu l^2} }\left({\color{blue}c_s}(t,z) - \cfrac{{\color{magenta}\rho_s}}{{\color{orange}k_m}({\color{blue}T}(t,z)){\color{orange}\rho_f}({\color{blue}T}(t,z),{\color{red}P}(t))}  {\color{blue}c_f}(t,z) \right)
 			\end{equation} }
 
-        The above model does not take into account the saturation of fluid, which can be introduced by multiplying the gradient by a function $\gamma(c_f)$ (equation \ref{EQ: C_sat_function}). $\gamma(c_f)$ describe the reverse logistic function, which is equal to unity below the $c_{sat}$, the saturation concentration, and equal to zero, above the $c_{sat}$. The $\gamma(c_f)$ for $c_{sat}=5$ is shown on figure \ref{fig: Gamma_function}.
-
-        {\footnotesize
-            \begin{equation}
-                \gamma(c_f) = \cfrac{1}{1+\exp ( -k_{sat} \left( c_f - c_{sat} \right) ) }
-                \label{EQ: C_sat_function}
-            \end{equation}
-        }
-
-        where $k_{sat}$ is the growth rate, and it is defined as $k_{sat} = 2c_{sat}$\todo{Explain why the growth rate is defined as it is}.
-        
-        \begin{figure}[h!]
-        	\centering
-        	\begin{tikzpicture}
-        		
-        		\begin{axis}[
-        			legend style={draw=none},
-        			xmin = 0, xmax = 10,
-        			ymin = -0.5, ymax = 1.5,
-        			xlabel = {$c_f[kg/m^3]$},
-        			ylabel = {$\gamma(c_f)[-]$}]
-        			\addplot[
-        			domain = 0:10,
-        			samples = 100,
-        			smooth,
-        			thick,
-        			blue,
-        			] { 1 / (1 + exp( 2*5 .* ( x - 5 ) ) ) };
-        			\addplot[thick, samples=50, dashed, domain=0:1.5, black] coordinates {(5,-0.5)(5,1.5)};
-        			
-        			\addlegendentry{$\gamma(c_f)$}
-        			\addlegendentry{$c_{sat}$}
-        		\end{axis}
-        	        		
-        	\end{tikzpicture}
-        \caption{$\gamma(c_f)$ function under assumption of $c_{sat}=5 [kg/m^3]$}
-        \label{fig: Gamma_function}
-        \end{figure}
-        
-
-        The final form of the extraction kinetic equation is given by equation \ref{Model_kinetic}.
-
-        {\footnotesize
-			\begin{equation}
-				\label{Model_kinetic}
-				{\color{blue}r_e}(t,z) = -\cfrac{{\color{orange}D_i}({\color{blue}T}(t,z), {\color{red}P}(t))}{{\color{magenta} \mu l^2} } \gamma(c_f) \left({\color{blue}c_s}(t,z) - \cfrac{{\color{magenta}\rho_s}}{{\color{orange}k_m}({\color{blue}T}(t,z)){\color{orange}\rho}({\color{blue}T}(t,z),{\color{red}P}(t))}  {\color{blue}c_f}(t,z) \right)
-		\end{equation} }
+        %\subfile{Sections/Saturation}
 			
 		\subsubsection{Heat balance} \label{CH: heat_balance}
 		
@@ -168,7 +142,7 @@
 				\begin{equation} \label{Model_heat}
 					\begin{split}
 						\cfrac{\partial {\color{blue}T}(t,z)}{\partial t} &= 
-						\underbrace{ -\cfrac{{\color{red}F}(t) {\color{orange}C_p}({\color{blue}T}(t,z),{\color{red}P}(t))}{{\color{magenta}A} 	[(1-{\color{magenta}\epsilon}){\color{orange}\rho}({\color{blue}T}(t,z),{\color{red}P}(t)) {\color{orange}C_p} ({\color{blue}T}(t,z),{\color{red}P}(t)) + {\color{magenta} \epsilon \rho_s C_{ps} } ]} \cfrac{\partial {\color{blue}T}(t,z)}{\partial {\color{blue}z}}  }_{\text{Convection}} + \\
+						\underbrace{ -\cfrac{{\color{red}F}(t) {\color{orange}C_p}({\color{blue}T}(t,z),{\color{red}P}(t))}{{\color{magenta}A} 	[(1-{\color{magenta}\epsilon}){\color{orange}\rho_f}({\color{blue}T}(t,z),{\color{red}P}(t)) {\color{orange}C_p} ({\color{blue}T}(t,z),{\color{red}P}(t)) + {\color{magenta} \epsilon \rho_s C_{ps} } ]} \cfrac{\partial {\color{blue}T}(t,z)}{\partial {\color{blue}z}}  }_{\text{Convection}} + \\
 						& + \underbrace{ {\color{orange}D^T_e}({\color{blue}T}(t,z),{\color{red}P}(t)) \cfrac{\partial^2 {\color{blue}T}(t,z)}{\partial {\color{blue}z^2}} }_{\text{Diffusion}}
 					\end{split}
 			\end{equation} }
@@ -178,57 +152,68 @@
 %		\todo[inline]{Draft of new heat equation starts here. TODO: \\ Check if the heat cpacity of solid phase needs to be added \\ Elaborate why pressure is know}
 		\fi
 		
-			The heat equation was introduced in the previous chapter through equation \ref{EQ: CompressibleEuler_3} or 
+			The heat equation was introduced in the previous chapter through equation \ref{EQ: CompressibleEuler_3} and in the appendix \ref{CH: Gouverning equations} 
 			
 			{\footnotesize
-			\begin{equation*}
-				\cfrac{\partial \left( \rho_f e A_f \right) }{\partial t} + \cfrac{\partial \left( \rho_f A_f v e\right)}{\partial z} = -P\cfrac{\left( A_f v \right)}{\partial z} + \cfrac{\partial}{\partial z} \left( \cfrac{\partial T}{\partial z} \right) 
-			\end{equation*}
+			\begin{align}
+				&\cfrac{\partial \left( {\color{orange}\rho_f}({\color{blue}T}(t,z),{\color{red}P}(t)) {\color{blue}e}(t,z) A_f \right) }{\partial t} + \cfrac{\partial \left( {\color{orange}\rho_f}({\color{blue}T}(t,z),{\color{red}P}(t)) A_f v {\color{blue}e}(t,z) \right)}{\partial {\color{blue}z}} \nonumber \\
+				&= -{\color{red}P}(t)\cfrac{\left( A_f v \right)}{\partial {\color{blue}z}} + \cfrac{\partial}{\partial {\color{blue}z}} \left( \cfrac{\partial {\color{blue}T}(t,z)}{\partial {\color{blue}z}} \right) 
+			\end{align}
 			}
 		
-			For real gases the internal energy is defined as 
+			Following \citet{Elliott2011} or \citet{Gmehling2019}, a real gases internal energy definition can be obtained from the departure functions:
 
 			{\footnotesize
 				\begin{equation}
-					de=C_vdT-\left[P-T\left(\cfrac{\partial P}{\partial T}\right)_{V_m}\right]dv_m
+					d{\color{blue}e}(t,z)=C_vd{\color{blue}T}-\left[{\color{red}P}(t)-{\color{blue}T}(t,z)\left(\cfrac{\partial {\color{red}P}(t)}{\partial {\color{blue}T}(t,z)}\right)_{v_m}\right]dv_m
 					\label{EQ: internal_energy_def}
 				\end{equation} }
 			
-			If a gas is consider to be perfectly caloric ($e=C_v T$), then the energy equation can be written in form of temperature. The perfectly caloric gas can be seen as the special case of a real gas, where the second term of the equation \ref{EQ: internal_energy_def} goes to zero.
+			where ${\color{blue}e}^{id}(t,z)$ is the internal energy of perfect gas.
 			
-			For real gases it is complicated to write the heat balance in terms of temperature, but it be used directly in the form of internal energy, as it is given by equation \ref{EQ: CompressibleEuler_3}. In such a case, the temperature (which is used as the input to some other functions) needs to be recover from the internal energy. A relation for the internal energy can be obtained from an equation of state. For Peng-Robinson, such a relation is given by equation \ref{EQ: internal_energy_PR}.
+			If a gas is consider to be perfectly caloric (${\color{blue}e}(t,z)=C_v {\color{blue}T}(t,z)$), then the energy equation can be written in form of temperature. The perfectly caloric gas can be seen as the special case of a real gas, where the second term of the equation \ref{EQ: internal_energy_def} goes to zero.
 			
+			For real gases it is complicated to write the heat balance in terms of temperature, but it be can used directly in the form of internal energy, as it is given by equation \ref{EQ: CompressibleEuler_3}. In such a case, the temperature (which is used as the input to some other functions) needs to be recover from the internal energy. A relation for the internal energy can be obtained from an equation of state. For Peng-Robinson, such a relation is given by equation \ref{EQ: internal_energy_PR} as presented by \citet{Elliott2011}.
+			
+%			{\footnotesize
+%				\begin{equation}
+%					e = C_vT + \cfrac{a\left(\alpha -T\cfrac{d \alpha}{dT}\right)}{2\sqrt{2}b} \ln \left[ \cfrac{1+b\left(1-\sqrt{2}\rho\right) }{1+b\left(1+\sqrt{2}\rho\right)} \right]
+%					\label{EQ: internal_energy_PR}
+%				\end{equation}
+%			}
+		
 			{\footnotesize
 				\begin{equation}
-					e = C_vT + \cfrac{a\left(\alpha -T\cfrac{d \alpha}{dT}\right)}{2\sqrt{2}b} \ln \left[ \cfrac{1+b\left(1-\sqrt{2}\rho\right) }{1+b\left(1+\sqrt{2}\rho\right)} \right]
+					\cfrac{{\color{blue}e}(t,z)-{\color{blue}e}^{id}(t,z)}{R{\color{blue}T}(t,z)} = - \cfrac{A}{B\sqrt{8}} \cfrac{\kappa \sqrt{T_r}}{\sqrt{\alpha}} \ln \left[ \cfrac{Z+\left( 1+\sqrt{2} \right)B}{Z+\left( 1+\sqrt{2} \right)B} \right]
 					\label{EQ: internal_energy_PR}
 				\end{equation}
 			}
 			
-			To solve equation \ref{EQ: internal_energy_PR}, values of temperature, pressure and density needs to be know. If an equation of state is introduce, then only 2 out 3 variables needs to be know as the third one can be calculated, this can be represented as follow
+			To solve equation \ref{EQ: internal_energy_PR}, values of temperature, pressure and density needs to be know. If an equation of state is introduce, then only two out three variables needs to be know as the third one can be calculated, this can be represented as follow
 			
 			{\footnotesize
-			\begin{equation*}
-				e(t,z)=e(T(t,z),P(t),\rho(t,z))=e( T(t,z), P(t), \rho(T(t,z),P(t)) ) 
-			\end{equation*}
+			\begin{equation}
+				{\color{blue}e}(t,z)={\color{blue}e}({\color{blue}T}(t,z),{\color{red}P}(t),{\color{orange}\rho_f}({\color{blue}T}(t,z),{\color{red}P}(t)))=e( {\color{blue}T}(t,z),{\color{red}P}(t), \rho({\color{blue}T}(t,z),{\color{red}P}(t)) ) 
+			\end{equation}
 			}
 		
-			If the value of internal energy $e$ is know from time evolution of the energy equation (\ref{EQ: CompressibleEuler_3}), and pressure is know from measurement, then the temperature can be reconstructed. A roootfinder can be used to find a value of temperature, which minimize the difference between value of internal energy coming from the time evolution and the output from equation \ref{EQ: internal_energy_PR}. Such a procedure allow to find local temperature along spatial direction $z$ and needs to be repeated every time-step.
+			If the value of internal energy ${\color{blue}e}(t,z)$ is know from time evolution of the energy equation (\ref{EQ: CompressibleEuler_3}), and pressure is know from measurement, then the temperature can be reconstructed. A roootfinder can be used to find a value of temperature, which minimize the difference between value of internal energy coming from the time evolution and the output from equation \ref{EQ: internal_energy_PR}. Such a procedure allow to find local temperature along spatial direction ${\color{blue}z}$ and needs to be repeated every time-step.
 			
-			Another way to express the energy equation is to introduce enthalpy $e = h - P_0 / \rho$. By introducing the definition of enthalpy, the energy equation becomes
+			Another way to express the energy equation is to introduce enthalpy ${\color{blue}h}(t,z) = {\color{blue}e}(t,z) + {\color{red}P}(t) / \rho$. By introducing the definition of enthalpy, the energy equation becomes
 			
 			{\footnotesize
-				\begin{equation}
-					\cfrac{\partial \left(\rho_f h A_f\right)}{\partial t} - \cfrac{\partial \left(P_0 A_f\right)}{\partial t} + \cfrac{\partial \left( \rho_f h A_f v \right)}{\partial z} - \cfrac{\partial}{\partial z} \left( k \cfrac{\partial T}{\partial z} \right)
-				\end{equation}
+				\begin{align}
+					&\cfrac{\partial \left({\color{orange}\rho_f}({\color{blue}T}(t,z),{\color{red}P}(t)) {\color{blue}h}(t,z) A_f\right)}{\partial t} - \cfrac{\partial \left({\color{red}P}(t) A_f\right)}{\partial t} \nonumber \\
+					&+ \cfrac{\partial \left( {\color{orange}\rho_f}({\color{blue}T}(t,z),{\color{red}P}(t)) {\color{blue}h}(t,z) A_f v \right)}{\partial {\color{blue}z}} - \cfrac{\partial}{\partial {\color{blue}z}} \left( k \cfrac{\partial {\color{blue}T}(t,z)}{\partial {\color{blue}z}} \right)
+				\end{align}
 			}
 		
-			The main advantage of this formulation is the presence of term $\partial P_0 / \partial t $, which allow to directly affect the system through the change of thermodynamic pressure (which is a control variable).\todo{ "For high pressures, the influence of the intermolecular forces on the enthalpy has to be taken into account, usually by applying a cubic equation of state. In most cases, these forces are attractive, so that additional energy is necessary to move the molecules away from each other, that is, to lower the density. If this energy is not added, the substance cools down when it is expanded" (\citet{Gmehling2019}). So, pressure reduction cause gas expansion and temperature drop.}
+			The main advantage of this formulation is the presence of term $\partial {\color{red}P}(t) / \partial t $, which allow to directly affect the system through the change of thermodynamic pressure (which is a control variable).\todo{ "For high pressures, the influence of the intermolecular forces on the enthalpy has to be taken into account, usually by applying a cubic equation of state. In most cases, these forces are attractive, so that additional energy is necessary to move the molecules away from each other, that is, to lower the density. If this energy is not added, the substance cools down when it is expanded" (\citet{Gmehling2019}). So, pressure reduction cause gas expansion and temperature drop.}
 			If an equation of state is known, the temperature can to be recovered from the enthalpy. The enthalpy is related to the pressure and temperature through the following equation:
 			
 			{\footnotesize
 				\begin{equation}
-					h(t,z)=h(T(t,z),P(t),\rho(t,z))=h( T(t,z), P(t), \rho(T(t,z),P(t)) ) 
+					{\color{blue}h}(t,z)=h({\color{blue}T}(t,z),{\color{red}P}(t),{\color{orange}\rho_f}({\color{blue}T}(t,z),{\color{red}P}(t)))=h( {\color{blue}T}(t,z),{\color{red}P}(t), \rho({\color{blue}T}(t,z),{\color{red}P}(t)) ) 
 					\label{EQ:Enthalpy_root}
 				\end{equation}
 			}
@@ -237,12 +222,12 @@
 			
 			{\footnotesize
 				\begin{equation}
-					h_{T,P}-h_{T,P}^{\mathrm {ideal} }=RT_{C}\left[T_{r}(Z-1)-2.078(1+\kappa ){\sqrt {\alpha }}\ln \left({\frac {Z+2.414B}{Z-0.414B}}\right)\right]
+					{\color{blue}h}(t,z)-{\color{blue}h}(t,z)^{id}=R{\color{blue}T}(t,z) \left[T_{r}(Z-1)-2.078(1+\kappa ){\sqrt {\alpha }}\ln \left({\frac {Z+2.414B}{Z-0.414B}}\right)\right]
 					\label{EQ:Enthalpy_PR}
 				\end{equation}
 			}
 		
-			The equation \ref{EQ:Enthalpy_PR} requires an reference sate, which in this case is assumed to be $T_{ref}=298.15[K]$ and $P_{ref}=1.01325[bar]$.
+			The equation \ref{EQ:Enthalpy_PR} requires an reference sate, which in this case is assumed to be $T_{ref}=298.15~[K]$ and $P_{ref}=1.01325~[bar]$.
 	
 	
 		\todo[inline]{Add short section about boundary conditions and comment on the used numerical methods}
@@ -255,9 +240,9 @@
 			\begin{align} 
 				\label{Model_measurment_1}
 %				y(t) \left[ kg \right] &= \int_{t_0}^{t_f} Q(t,z) \left[ \cfrac{m^3}{s} \right] c_f(t,z) \biggr\rvert_{z=L} \left[ \cfrac{kg}{m^3} \right] dt \left[ s \right] \\
-				y(t) \left[ kg \right] &= \int_{t_0}^{t_f} \cfrac{F(t)}{\rho(t,z)} \left[ \cfrac{kg}{s} \left( \cfrac{kg}{m^3} \right)^{-1} \right] c_f(t,z) \biggr\rvert_{z=L} \left[ \cfrac{kg}{m^3} \right] dt \left[ s \right] 	\\
+				y(t) \left[ kg \right] &= \int_{t_0}^{t_f} \cfrac{{\color{red}P}(t)}{{\color{orange}\rho_f}({\color{blue}T}(t,z),{\color{red}P}(t))} \left[ \cfrac{kg}{s} \left( \cfrac{kg}{m^3} \right)^{-1} \right] ({\color{blue}c_f}(t,z) \biggr\rvert_{z=L} \left[ \cfrac{kg}{m^3} \right] dt \left[ s \right] 	\\
 %				\cfrac{dy}{dt} \left[ \cfrac{kg}{s} \right] &= Q(t,z) \left[ \cfrac{m^3}{s} \right] c_f(t,z) \biggr\rvert_{z=L} \left[ \cfrac{kg}{m^3} \right]  \\
-				\cfrac{dy}{dt} \left[ \cfrac{kg}{s} \right] &= \cfrac{F(t)}{\rho(t,z)} \left[ \cfrac{kg}{s} \left( \cfrac{kg}{m^3} \right)^{-1} \right] c_f(t,z) \biggr\rvert_{z=L} \left[ \cfrac{kg}{m^3} \right]
+				\cfrac{dy}{dt} \left[ \cfrac{kg}{s} \right] &= \cfrac{{\color{red}P}(t)}{{\color{orange}\rho_f}({\color{blue}T}(t,z),{\color{red}P}(t))} \left[ \cfrac{kg}{s} \left( \cfrac{kg}{m^3} \right)^{-1} \right] ({\color{blue}c_f}(t,z) \biggr\rvert_{z=L} \left[ \cfrac{kg}{m^3} \right]
                 \label{Model_measurment_2}
 		\end{align}	}
 			
@@ -330,7 +315,7 @@
 			
 			where ${\color{blue}x} \in \mathbb{R}^{N_x = 3N_z} $ and ${\color{magenta}p} \in \mathbb{R}^{N_p =  N_{\theta} + N_u } $, $N_{\theta}$ is the number of model parameters, $N_{u}$ is the number of control variables.
 			
-			{\color{blue} In a state-space sense, the state variables of the system are the local concentrations of solute in the fluid and solid phases ($c(t,z)$ and $q(t,z)$, respectively), and the local temperature of the pseudo-homogeneous phase ($T(t,z)$). The controllable input variables are the mass flow-rate and temperature of the solvent in the feed ($F_\text{in}(t) = F(t)$ and $T_\text{in}(t) = T(t,z=0)$, respectively) and the pressure in the extractor ($P(t,z) = P(t)$). {\color{red}We also assume that extraction yield can be modelled as a function of a known initial mass of solute in the solid phase and it can be measured after the separator ($Y(t)$).} The system is controllable by manipulating the flow-rate and temperature of CO2 in the feed, and the pressure in the extractor. }
+			{\color{blue} In a state-space sense, the state variables of the system are the local concentrations of solute in the fluid and solid phases ($c(t,z)$ and $q(t,z)$, respectively), and the local temperature of the pseudo-homogeneous phase ($T(t,z)$). The controllable input variables are the mass flow-rate and temperature of the solvent in the feed ($F_\text{in}(t) = {\color{red}P}(t)$ and $T_\text{in}(t) = T(t,z=0)$, respectively) and the pressure in the extractor ($P(t,z) ={\color{red}P}(t)$). {\color{red}We also assume that extraction yield can be modelled as a function of a known initial mass of solute in the solid phase and it can be measured after the separator ($Y(t)$).} The system is controllable by manipulating the flow-rate and temperature of CO2 in the feed, and the pressure in the extractor. }
 			
 			\fi
 			

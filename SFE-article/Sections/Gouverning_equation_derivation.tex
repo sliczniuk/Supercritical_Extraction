@@ -86,26 +86,26 @@
 		\end{equation}
 	}
 	
-	Above partial differential equation form of the continuity equation suitable for unsteady, quasi-one-dimensional flow. It ensures that mass is conserved for this mode of the flow. The $A_f(z)$ is an arbitrary function, which describe change of the cross-section of an extractor. The function $A_f(z)$ can be defined as $A_f(z) = \textbf{A} \varepsilon(z)$, where $\varepsilon$ is the bed porosity and $\textbf{A}$ is the cross-section of an empty extractor.
+	Above partial differential equation form of the continuity equation suitable for unsteady, quasi-one-dimensional flow. It ensures that mass is conserved for this mode of the flow. The $A_f(z)$ is an arbitrary function, which describe change of the cross-section of an extractor. The function $A_f(z)$ can be defined as $A_f(z) = \textbf{A} \phi(z)$, where $\phi$ is the bed porosity and $\textbf{A}$ is the cross-section of an empty extractor.
 	
 	{\footnotesize
 		\begin{equation}
-			\cfrac{\partial \left( \rho_f \textbf{A} \varepsilon (z) \right)}{\partial t} + \cfrac{\partial \left( \rho_f \textbf{A} \varepsilon (z) V \right)}{\partial z} = 0
+			\cfrac{\partial \left( \rho_f \textbf{A} \phi (z) \right)}{\partial t} + \cfrac{\partial \left( \rho_f \textbf{A} \phi (z) V \right)}{\partial z} = 0
 		\end{equation}
 	}
 	The equation can be simplified by cancel out a constant $\textbf{A}$
 	
 	{\footnotesize
 		\begin{equation}
-			\cfrac{\partial \left( \rho_f \varepsilon (z) \right)}{\partial t} + \cfrac{\partial \left( \rho_f \varepsilon (z) V \right)}{\partial z} = 0
+			\cfrac{\partial \left( \rho_f \phi (z) \right)}{\partial t} + \cfrac{\partial \left( \rho_f \phi (z) V \right)}{\partial z} = 0
 		\end{equation}
 	}
 	
-	If so called superficial velocity is defined $u=\varepsilon V$, the mass continuity becomes
+	If so called superficial velocity is defined $u=\phi V$, the mass continuity becomes
 	
 	{\footnotesize
 		\begin{equation}
-			\cfrac{\partial \left( \rho_f \varepsilon (z) \right)}{\partial t} + \cfrac{\partial \left( \rho_f u \right)}{\partial z} = 0
+			\cfrac{\partial \left( \rho_f \phi (z) \right)}{\partial t} + \cfrac{\partial \left( \rho_f u \right)}{\partial z} = 0
 			\label{EQ: Mass_Continuity}
 		\end{equation}
 	}
@@ -114,11 +114,11 @@
 	
 	\subsubsection{Transport of a species}
 	
-	The transport of a chemical species, in this case a solute, can be described by analogous equation to the Eq. \ref{EQ: Continuity_integral_general} with additional terms on the right-hand side. The first term on the right-hand side describes that a substance goes from high density regions to low density regions and is based on the Fick's law ${\footnotesize\left( J_{diff} = D\cfrac{\partial C_f}{\partial z} \right)}$. The other term correspond for the mass transfer between solid and fluid phases, which is treated as a source term.
+	The transport of a chemical species, in this case a solute, can be described by analogous equation to the Eq. \ref{EQ: Continuity_integral_general} with additional terms on the right-hand side. The first term on the right-hand side describes that a substance goes from high density regions to low density regions and is based on the Fick's law $\left( J_{diff} = D_e^M\frac{\partial c_f}{\partial z} \right)$. The other term correspond for the mass transfer between solid and fluid phases, which is treated as a source term.
 	
 	{\footnotesize
 		\begin{equation}
-			\cfrac{\partial}{\partial t} \iiint_{\mathcal{V}_f} C_f d\mathcal{V}_f + \iint_S C_f \textbf{V} \cdot \textbf{dS} = \iint_S J_{diff} \cdot \textbf{n}~\textbf{dS} + \cfrac{\partial}{\partial t} \iiint_{\mathcal{V}_s} C_s d\mathcal{V}_s
+			\cfrac{\partial}{\partial t} \iiint_{\mathcal{V}_f} c_f d\mathcal{V}_f + \iint_S c_f \textbf{V} \cdot \textbf{dS} = \iint_S J_{diff} \cdot \textbf{n}~\textbf{dS} + \cfrac{\partial}{\partial t} \iiint_{\mathcal{V}_s} c_s d\mathcal{V}_s
 			\label{EQ: Integral_Mass_Species_general}
 		\end{equation}
 	}
@@ -127,8 +127,8 @@
 	
 	{\footnotesize
 		\begin{align}
-			\cfrac{\partial}{\partial t} \iiint_{\mathcal{V}_f} C_f d\mathcal{V}_f &= \cfrac{\partial}{\partial t}\left( C_f A_f dz \right) \\
-			\cfrac{\partial}{\partial t} \iiint_{\mathcal{V}_s} C_s d\mathcal{V}_s &= \cfrac{\partial}{\partial t}\left( C_s A_s dz \right)
+			\cfrac{\partial}{\partial t} \iiint_{\mathcal{V}_f} c_f d\mathcal{V}_f &= \cfrac{\partial}{\partial t}\left( c_f A_f dz \right) \\
+			\cfrac{\partial}{\partial t} \iiint_{\mathcal{V}_s} c_s d\mathcal{V}_s &= \cfrac{\partial}{\partial t}\left( c_s A_s dz \right)
 		\end{align}
 	}
 
@@ -136,7 +136,7 @@
 	
 	{\footnotesize
 		\begin{equation}
-			\iint_S C_f \textbf{V} \cdot \textbf{dS} = C_f V dA_f + C_f A_f dV + V A_f dC_f 
+			\iint_S c_f \textbf{V} \cdot \textbf{dS} = c_f V dA_f + c_f A_f dV + V A_f dc_f 
 		\end{equation}
 	}
 	
@@ -152,31 +152,31 @@
 	
 	{\footnotesize
 		\begin{equation}
-			\cfrac{\partial \left( C_f A_f \right)}{\partial t} + \cfrac{\partial \left( C_f A_f V \right)}{\partial z} = \cfrac{\partial \left( C_s A_s \right) }{\partial t} + \cfrac{\partial \left( J_{diff} A_f \right) }{\partial z}
+			\cfrac{\partial \left( c_f A_f \right)}{\partial t} + \cfrac{\partial \left( c_f A_f V \right)}{\partial z} = \cfrac{\partial \left( c_s A_s \right) }{\partial t} + \cfrac{\partial \left( J_{diff} A_f \right) }{\partial z}
 		\end{equation}
 	}
 
-	By defining $A_f = A \cdot \varepsilon$, $A_s = A \cdot \left( 1-\varepsilon \right)$ and $u=V \cdot \varepsilon$, and assuming that $A$ is constant, the above equation becomes
+	By defining $A_f = A \cdot \phi$, $A_s = A \cdot \left( 1-\phi \right)$ and $u=V \cdot \phi$, and assuming that $A$ is constant, the above equation becomes
 	
 	{\footnotesize
 		\begin{equation}
-			\cfrac{\partial \left( C_f \varepsilon \right)}{\partial t} + \cfrac{\partial \left( C_f u\right)}{\partial z} = \cfrac{\partial \left( C_s (1-\varepsilon) \right) }{\partial t} + \cfrac{\partial \left( J_{diff} \varepsilon \right) }{\partial z}
+			\cfrac{\partial \left( c_f \phi \right)}{\partial t} + \cfrac{\partial \left( c_f u\right)}{\partial z} = \cfrac{\partial \left( c_s (1-\phi) \right) }{\partial t} + \cfrac{\partial \left( J_{diff} \phi \right) }{\partial z}
 		\end{equation}
 	}
 
-	By expanding above equation, splitting variable and assuming that ${\footnotesize \cfrac{\partial \varepsilon}{\partial t}=0}$ we get
+	By assuming that ${\footnotesize \frac{\partial \phi}{\partial t}=0}$ and expanding $J_{diff}$, we get
 	
 	{\footnotesize
 		\begin{equation}
-			\cfrac{\partial C_f}{\partial t} + \cfrac{u}{\varepsilon} \cfrac{\partial C_f}{\partial z} + \cfrac{C_f}{\varepsilon} \cfrac{\partial u}{\partial z} = \cfrac{1-\varepsilon}{\varepsilon} \cfrac{\partial C_s}{\partial t} + \cfrac{D}{\varepsilon} \cfrac{\partial C_f}{\partial z} \cfrac{\partial \varepsilon}{\partial z} + \cfrac{\partial}{\partial z} \left( D \cfrac{\partial C_f}{\partial z} \right)
+			\cfrac{\partial c_f}{\partial t} + \cfrac{1}{\phi} \cfrac{\partial \left( c_f u\right)}{\partial z} = \cfrac{ (1-\phi)}{\phi} \cfrac{\partial c_s }{\partial t} + \cfrac{1}{\phi} \cfrac{\partial}{\partial z} \left( D_e^M \cfrac{\partial c_f}{\partial z} \right)
 		\end{equation}
 	}
 	
-	The equation can be further simplified if $\cfrac{\partial u}{\partial z} = \cfrac{\partial \varepsilon}{\partial z} = D = 0$, which corresponds to the assumptions of constant velocity along the bed( which might be a case of isothermal and low-mach number flow), constant porosity( which comes from the assumption of constant area for both solid and fluid phase) and no radial diffusion.
+	The equation can be further simplified if $\frac{\partial u}{\partial z} = \frac{\partial \phi}{\partial z} = D_e^M = 0$, which corresponds to the assumptions of constant velocity along the bed( which might be a case of isothermal and low-mach number flow), constant porosity( which comes from the assumption of constant area for both solid and fluid phase) and no radial diffusion.
 	
 	{\footnotesize
 		\begin{equation}
-			\cfrac{\partial C_f}{\partial t} + \cfrac{u}{\varepsilon} \cfrac{\partial C_f}{\partial z}  = \cfrac{1-\varepsilon}{\varepsilon} \cfrac{\partial C_s}{\partial t} 
+			\cfrac{\partial c_f}{\partial t} + \cfrac{u}{\phi} \cfrac{\partial c_f}{\partial z}  = \cfrac{1-\phi}{\phi} \cfrac{\partial c_s}{\partial t} 
 			\label{EQ: Simplified_Species_Conservation}
 		\end{equation}
 	}
@@ -256,11 +256,11 @@
 		\end{equation}
 	}
 
-	The Eq. \ref{EQ: Conservative_Momentum} can be expanded further by assuming that $A_f = \textbf{A}\varepsilon$ 
+	The Eq. \ref{EQ: Conservative_Momentum} can be expanded further by assuming that $A_f = \textbf{A}\phi$ 
 	
 	{\footnotesize
 		\begin{equation}
-			\cfrac{\partial \left( \rho_f V \textbf{A} \varepsilon \right) }{\partial t} + \cfrac{\partial \left( \rho_f V^2 \textbf{A} \varepsilon \right) }{\partial z} = - 	\textbf{A} \varepsilon \cfrac{\partial P}{\partial t}
+			\cfrac{\partial \left( \rho_f V \textbf{A} \phi \right) }{\partial t} + \cfrac{\partial \left( \rho_f V^2 \textbf{A} \phi \right) }{\partial z} = - 	\textbf{A} \phi \cfrac{\partial P}{\partial t}
 		\end{equation}
 	}
 
@@ -268,15 +268,15 @@
 	
 	{\footnotesize
 		\begin{equation}
-			\cfrac{\partial \left( \rho_f V \varepsilon \right) }{\partial t} + \cfrac{\partial \left( \rho_f V^2 \varepsilon \right) }{\partial z} = - \varepsilon 	\cfrac{\partial P}{\partial t}
+			\cfrac{\partial \left( \rho_f V \phi \right) }{\partial t} + \cfrac{\partial \left( \rho_f V^2 \phi \right) }{\partial z} = - \phi 	\cfrac{\partial P}{\partial t}
 		\end{equation}
 	}
 
-	If the superficial velocity $u=\varepsilon V$ is introduced, then the momentum conservation becomes
+	If the superficial velocity $u=\phi V$ is introduced, then the momentum conservation becomes
 	
 	{\footnotesize
 		\begin{equation}
-			\cfrac{\partial \left( \rho_f u \right)}{\partial z} + \cfrac{\partial \left( \rho_f u^2/\varepsilon \right) }{\partial z} = -\varepsilon \cfrac{\partial 	P}{\partial z}
+			\cfrac{\partial \left( \rho_f u \right)}{\partial z} + \cfrac{\partial \left( \rho_f u^2/\phi \right) }{\partial z} = -\phi \cfrac{\partial 	P}{\partial z}
 		\end{equation}
 	}
 
@@ -305,11 +305,11 @@
 		\end{equation}
 	}
 
-	The Eq. \ref{EQ: Non-conservative_Momentum} is stylistically the same as the general momentum conservation for one-dimensional flow with no-body forces. The momentum equation can be expressed in terms of superficial velocity $u=V\varepsilon$. 
+	The Eq. \ref{EQ: Non-conservative_Momentum} is stylistically the same as the general momentum conservation for one-dimensional flow with no-body forces. The momentum equation can be expressed in terms of superficial velocity $u=V\phi$. 
 	
 	{\footnotesize
 		\begin{equation}
-			\rho_f \cfrac{\partial \left(u / \varepsilon \right)}{\partial t} + \rho_f \cfrac{u}{\varepsilon} \cfrac{\partial \left( u / \varepsilon \right)}{\partial z} = - \cfrac{\partial P}{\partial z}
+			\rho_f \cfrac{\partial \left(u / \phi \right)}{\partial t} + \rho_f \cfrac{u}{\phi} \cfrac{\partial \left( u / \phi \right)}{\partial z} = - \cfrac{\partial P}{\partial z}
 		\end{equation}
 	}
 
@@ -317,15 +317,15 @@
 	
 	{\footnotesize
 		\begin{equation}
-			\cfrac{\rho_f}{\varepsilon} \cfrac{\partial u}{\partial t} + \rho_f u \cfrac{\partial \varepsilon^{-1}}{\partial t} + \rho_f \cfrac{u}{\varepsilon} \cfrac{1}{\varepsilon} \cfrac{\partial u}{\partial z} + \rho_f \cfrac{u}{\varepsilon} u \cfrac{\partial \varepsilon^{-1} }{\partial z} = - \cfrac{\partial P}{\partial z}
+			\cfrac{\rho_f}{\phi} \cfrac{\partial u}{\partial t} + \rho_f u \cfrac{\partial \phi^{-1}}{\partial t} + \rho_f \cfrac{u}{\phi} \cfrac{1}{\phi} \cfrac{\partial u}{\partial z} + \rho_f \cfrac{u}{\phi} u \cfrac{\partial \phi^{-1} }{\partial z} = - \cfrac{\partial P}{\partial z}
 		\end{equation}
 	}
 	
-	If the bed is not compressible and doesn't change its properties during the batch, then ${\footnotesize\cfrac{\partial \varepsilon}{\partial t}=0}$
+	If the bed is not compressible and doesn't change its properties during the batch, then ${\footnotesize\cfrac{\partial \phi}{\partial t}=0}$
 	
 	{\footnotesize
 		\begin{equation}
-			\cfrac{\rho_f}{\varepsilon} \left( \cfrac{\partial u}{\partial t} + \cfrac{u}{\varepsilon} \cfrac{\partial u}{\partial z} + u^2 \cfrac{\partial \varepsilon^{-1}}{\partial z} \right) = -\cfrac{\partial P}{\partial z}
+			\cfrac{\rho_f}{\phi} \left( \cfrac{\partial u}{\partial t} + \cfrac{u}{\phi} \cfrac{\partial u}{\partial z} + u^2 \cfrac{\partial \phi^{-1}}{\partial z} \right) = -\cfrac{\partial P}{\partial z}
 		\end{equation}
 	}
 
@@ -333,7 +333,7 @@
 	
 	{\footnotesize
 		\begin{equation}
-			\cfrac{\rho_f}{\varepsilon} \left( \cfrac{\partial u}{\partial t} + \cfrac{u}{\varepsilon} \cfrac{\partial u}{\partial z} \right) = -\cfrac{\partial P}{\partial z}
+			\cfrac{\rho_f}{\phi} \left( \cfrac{\partial u}{\partial t} + \cfrac{u}{\phi} \cfrac{\partial u}{\partial z} \right) = -\cfrac{\partial P}{\partial z}
 			\label{EQ: Non-conservative_Momentum_Const_Porosity}
 		\end{equation}
 	}

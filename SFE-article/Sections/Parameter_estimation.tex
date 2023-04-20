@@ -39,19 +39,19 @@ A least squares parameter estimation does not require prior knowledge of the dis
 
 {\footnotesize
 	\begin{align}
-		\phi &= \cfrac{1}{2} \int_{0}^{t_f}  \left[ Y(t) - y(\theta,t) \right]^T \Gamma^{-1} \left[ Y(t) - y(\theta,t) \right] dt \\
-		\hat{\theta} &= \arg \min_{\theta \in \Theta} \phi
+		\gamma &= \cfrac{1}{2} \int_{0}^{t_f}  \left[ Y(t) - y(\theta,t) \right]^T \Gamma^{-1} \left[ Y(t) - y(\theta,t) \right] dt \\
+		\hat{\theta} &= \arg \min_{\theta \in \Theta} \gamma
 \end{align} }
-where $\Gamma$ is the covariance matrix (or perhaps a matrix of appropriate weights), $\hat{\theta}$ is the parameter estimate, $\Theta$ is the parameter space, and $\phi$ is the time integrated value of the error squared ("integral squared error"). 
+where $\Gamma$ is the covariance matrix (or perhaps a matrix of appropriate weights), $\hat{\theta}$ is the parameter estimate, $\Theta$ is the parameter space, and $\gamma$ is the time integrated value of the error squared ("integral squared error"). 
 If the observations are made at discrete instants of time, $t_i$, $i = 1,2,...,n$, the Markov criterion is to minimize:
 
 {\footnotesize
 	\begin{align}
-		\phi &= \cfrac{1}{2} \sum_{i=1}^{n} \left[ Y(t_i) - y(\theta,t_i) \right]^T \Gamma^{-1} \left[ Y(t_i) - y(\theta,t_i) \right] \\
-		\hat{\theta} &= \arg \min_{\theta \in \Theta} \phi
+		\gamma &= \cfrac{1}{2} \sum_{i=1}^{n} \left[ Y(t_i) - y(\theta,t_i) \right]^T \Gamma^{-1} \left[ Y(t_i) - y(\theta,t_i) \right] \\
+		\hat{\theta} &= \arg \min_{\theta \in \Theta} \gamma
 \end{align} }
 
-If $\Gamma$ is a diagonal matrix, $\phi$  becomes a "weighted least squares" criterion; if $\Gamma = \sigma^2 \textbf{I}$ where $\sigma$ is a standard deviation, $\phi$ is the "ordinary least squares" criterion.
+If $\Gamma$ is a diagonal matrix, $\gamma$  becomes a "weighted least squares" criterion; if $\Gamma = \sigma^2 \textbf{I}$ where $\sigma$ is a standard deviation, $\gamma$ is the "ordinary least squares" criterion.
 
 \iffalse
 \subsubsection{Weighted sum of squares - Cumulative data}
