@@ -1,49 +1,44 @@
 \documentclass[../Article_Model_Parameters.tex]{subfiles}
 \graphicspath{{\subfix{../Figures/}}}
 \begin{document}
-	
-Conceptually, the unobservable error $\epsilon(t)$\todo[fancyline]{The same symbol as void fraction} is added to the deterministic model output, $y(t)$ (equation \ref{Model_measurment_1}), to give the observable dependent variable $Y(t)$ (for example results of an experiments). For discrete observations:
+
+The goal of parameter estimation is to obtain the "best" estimate of parameter set $\theta$ (which is a subset of the parameter space $\Theta$ containing all parameters of a model) based on the continuous observations $Y(t)$ or the discrete observations $Y(t_i)$. Conceptually, the unobservable error $\epsilon(t)$ is added to the deterministic model output, $y(t)$ (equation \ref{Model_measurment_1}), to give the observable dependent variable $Y(t)$ (for example results of an experiments). For discrete observations, this can be expressed as:
 
 {\footnotesize
 	\begin{equation*}
-		Y(t_i) = y(t_i) + \epsilon(t_i)
-\end{equation*} }
-and for continuos variables:
-
-{\footnotesize
-	\begin{equation*}
-		Y(t) = y(t) + \epsilon(t)
-\end{equation*} }
-
-%If the estimated parameter $\hat{\theta}$ replaces the model parameter $\theta$, the residue error is $\textbf{E} = Y(t) - \hat{Y}(t)$, where $\hat{Y}(t)$ is the predicted value of $Y_i$ at $y_i$. 
-The objective in parameter estimation is to obtain the "best" estimate of $\theta$ based on the continuous observations $Y(t)$ or the discrete observations $Y(t_i)$. The above equation can be written in general form as:
-
-{\footnotesize
-	\begin{equation} \label{EQ: Measurment_noise}
 		Y(t_i) = y(\theta, t_i) + \epsilon(t_i)
-\end{equation}}
+\end{equation*} }
 
-where $\theta$ is set of parameters to be estimated from the data. $\theta$ is a subset of parameter space $\Theta$, which contain all parameters of the model.
+For continuous variables, the equation is:
 
-Because of the difficulty of obtaining analytical solutions to the deterministic process model, experiments have been arranged whereby the vector of derivatives $d Y(t_i)/dt$ is measured rather than $Y(t_i)$ itself. In such cases, it is assumed that the unobservable error is added to the deterministic derivative $dy(\theta, t_i)/dt$ (equation \ref{Model_measurment_2}) as follows:
+{\footnotesize
+	\begin{equation*}
+		Y(t) = y(\theta, t) + \epsilon(t)
+\end{equation*} }
+
+However, obtaining analytical solutions for a deterministic process model can be challenging, so experiments are often conducted where the vector of derivatives $dY(t_i)/dt$ is measured instead of $Y(t_i)$ itself. In such cases, it is assumed that the unobservable error is added to the deterministic derivative $dy(\theta, t_i)/dt$ (as shown in equation \ref{Model_measurment_2}) as follows:
 
 {\footnotesize
 	\begin{equation*}
 		\cfrac{d Y(t_i)}{dt} = \cfrac{dy(\theta, t_i)}{dt} + \epsilon(t_i)
 \end{equation*} }
 
-If unobservable error in the first observation is designated as $\epsilon_1$, the second error observation $\epsilon_2'$ includes $\epsilon_1$ plus a random component introduced side from $\epsilon_1$, or $\epsilon_2' = \epsilon_1 + \epsilon_2$. The error in the third observation is $\epsilon_3' = \epsilon_1 + \epsilon_2 + \epsilon_3$, and so forth. \citet{Mandel1957} distinguished between the usually assumed type of independent measuring error in the dependent variable and a 'cumulative' or interval error in which each new observation includes the error of the previous observations. Cumulative errors, arising because of the fluctuations as a function of time in the process itself due to small changes in operating, are not independent - only the differences in measurement from one period to the next are independent.
+In the case where the error in the first observation is denoted as $\epsilon_1$, the error in the second observation $\epsilon_2'$ incorporates $\epsilon_1$ as well as an independent random component, given by $\epsilon_2' = \epsilon_1 + \epsilon_2$. Similarly, the error in the third observation is $\epsilon_3' = \epsilon_1 + \epsilon_2 + \epsilon_3$, and so on. \citet{Mandel1957}  made a distinction between the typically assumed independent measurement error in the dependent variable and a "cumulative" or interval error, in which each new observation encompasses the error of the previous ones. Cumulative errors arise from fluctuations in the process itself due to small variations in operating conditions and are not independent; only the differences in measurement from one period to the next are independent.
 
 \subsubsection{Least squares estimation}
-A least squares parameter estimation does not require prior knowledge of the distribution of unobservable errors, yield  unbiased estimates, and results in the minimum variance among all linear unbiased estimators. If the observations $ Y$ for the model responses are continuous functions of time from $t = 0$ to $t = t_f$, the Markov (or "rigorous least squares") criterion is to minimize:
+In statistics, least squares parameter estimation is a method used to estimate the parameters of a linear regression model. One of the benefits of this method is that it does not require any prior knowledge about the distribution of unobservable errors. Additionally, it yields unbiased estimates and results in the minimum variance among all linear unbiased estimators.
+
+If the model responses, represented by $Y$, are continuous functions of time from $t = 0$ to $t = t_f$, the Markov criterion, also known as "rigorous least squares," is used to minimize the integral squared error $\gamma$. This is achieved by minimizing the following expression:
 
 {\footnotesize
 	\begin{align}
-		\gamma &= \cfrac{1}{2} \int_{0}^{t_f}  \left[ Y(t) - y(\theta,t) \right]^T \Gamma^{-1} \left[ Y(t) - y(\theta,t) \right] dt \\
+		\gamma &= \cfrac{1}{2} \int_{0}^{t_f} \left[ Y(t) - y(\theta,t) \right]^T \Gamma^{-1} \left[ Y(t) - y(\theta,t) \right] dt \\
 		\hat{\theta} &= \arg \min_{\theta \in \Theta} \gamma
 \end{align} }
-where $\Gamma$ is the covariance matrix (or perhaps a matrix of appropriate weights), $\hat{\theta}$ is the parameter estimate, $\Theta$ is the parameter space, and $\gamma$ is the time integrated value of the error squared ("integral squared error"). 
-If the observations are made at discrete instants of time, $t_i$, $i = 1,2,...,n$, the Markov criterion is to minimize:
+
+Here, $\Gamma$ represents the covariance matrix or a matrix of appropriate weights, $\hat{\theta}$ is the parameter estimate, $\Theta$ is the parameter space, and $\gamma$ is the time-integrated value of the error squared.
+
+Alternatively, if the observations are made at discrete time intervals $t_i$, where $i = 1, 2, \dots, n$, the Markov criterion is to minimize the sum of squared errors, which is given by:
 
 {\footnotesize
 	\begin{align}
@@ -51,7 +46,9 @@ If the observations are made at discrete instants of time, $t_i$, $i = 1,2,...,n
 		\hat{\theta} &= \arg \min_{\theta \in \Theta} \gamma
 \end{align} }
 
-If $\Gamma$ is a diagonal matrix, $\gamma$  becomes a "weighted least squares" criterion; if $\Gamma = \sigma^2 \textbf{I}$ where $\sigma$ is a standard deviation, $\gamma$ is the "ordinary least squares" criterion.
+The parameter estimate, $\hat{\theta}$, is obtained by minimizing $\gamma$ over the parameter space $\Theta$.
+
+If the covariance matrix, $\Gamma$, is a diagonal matrix, the Markov criterion becomes a "weighted least squares" criterion. If $\Gamma = \sigma^2 \textbf{I}$, where $\sigma$ is a standard deviation and $\textbf{I}$ is the identity matrix, the Markov criterion becomes the "ordinary least squares" criterion.
 
 \iffalse
 \subsubsection{Weighted sum of squares - Cumulative data}
