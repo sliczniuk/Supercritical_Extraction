@@ -2,9 +2,9 @@
 \graphicspath{{\subfix{../Figures/}}}
 \begin{document}
 	
-As discussed by \citet{Himmelblau1970}, the Bayesian approach to estimation make use of prior information. Such prior knowledge can come from theoretical considerations, from the results of previous experiments, or from assumptions by the experimenter. Typically, a Bayesian approach assumes a prior probability distribution of an unknown parameter $\theta$ in some parameter space $\boldsymbol{\theta}$. The distribution is updated by using Bayes' rule to obtain the posterior probability distribution. 
+As discussed by \citet{Himmelblau1970}, the Bayesian approach to estimation makes use of prior information. Such prior knowledge can come from theoretical considerations, from the results of previous experiments, or from assumptions by the experimenter. Typically, a Bayesian approach assumes a prior probability distribution of an unknown parameter $\theta$ in some parameter space $\boldsymbol{\theta}$. The distribution is updated by using Bayes' rule to obtain the posterior probability distribution. 
 
-Consider a set of events or outcomes, $A_1,A_2,...,A_n$, and some other event $B$. Bayes' theorem states that the probability that event $A_i$ will occur, given that event $B$ has already occured, which will denoted by $P\{A_i|B\}$, is equal to the product of the probability that $A_i$ will occur regardless of whether $B$ will take place and the probability that $B$ will occur, given that $A_i$  has already taken place, divided by the probability of the occurrence of $B$:
+Consider a set of events or outcomes, $A_1, A_2,..., A_n$, and some other event $B$. Bayes' theorem states that the probability that event $A_i$ will occur, given that event, $B$ has already occurred, which will be denoted by $P\{A_i|B\}$, is equal to the product of the probability that $A_i$ will occur regardless of whether $B$ will take place and the probability that $B$ will occur, given that $A_i$  has already taken place, divided by the probability of the occurrence of $B$:
 
 {\footnotesize
 	\begin{equation}
@@ -26,7 +26,7 @@ We can interpret these symbols as follows:
 	\item $P\{B|A_i\}$ denotes the likelihood that event $B$ will occur, given that event $A_i$ is true. $P\{B|A_i\}$ is a conditional probability, interpreted in the Bayesian framework as a likelihood, $L(A_i|B)$.
 \end{enumerate}
 
-For continuous variable, Bayes' theorem can be more conveniently expressed in terms of the probability density function rather than the probabilities themselves. Equation \ref{EQ: Bayes_discrit} can be expressed in terms of a set of observed values of the random variable $X$, the experimental data \textbf{x} and unknown parameter $\theta$ as
+For a continuous variables, Bayes' theorem can be more conveniently expressed in terms of the probability density function rather than the probabilities themselves. Equation \ref{EQ: Bayes_discrit} can be expressed in terms of a set of observed values of the random variable $X$, the experimental data \textbf{x} and unknown parameter $\theta$ as
 
 {\footnotesize
 	\begin{equation} \label{EQ: Bayes_continous}
@@ -61,9 +61,9 @@ In the application of tests and the design of experiments, certain definitions a
 
 \begin{enumerate}
 	\item It follows from the frequency theory of probability that: $0 \leq P \leq 1$
-	\item If the probability of occurrence of one event $A$ depends on whether or not event $B$ has occurred, the two events are termed \textit{dependent}; if the probability of occurrence of event $A$ does not depend on the occurrence of $B$, or the reverse, the two events are \textit{independent}.
+	\item If the probability of occurrence of one event $A$ depends on whether or not event $B$ has occurred, the two events are termed \textit{dependent}; if the probability of occurrence of event $A$ does not depend on the occurrence of $B$ or the reverse, the two events are \textit{independent}.
 	\item \textbf{Addition Rule}
-	If $A_1,A_2,...,A_n$ are mutually exclusive events, i.e., cannot occur at the same time, the probability of occurrence of just one of the events is equal to the sum of the probabilities of each $A_i$:
+	If $A_1, A_2,..., A_n$ are mutually exclusive events, i.e., cannot occur at the same time, the probability of occurrence of just one of the events is equal to the sum of the probabilities of each $A_i$:
 	
 	{\footnotesize
 		\begin{equation}
@@ -77,14 +77,14 @@ In the application of tests and the design of experiments, certain definitions a
 			\sum_{i=1}^{n} P\left( A_i \right) = 1
 	\end{equation} }
 	
-	Also, if each event is equi-probable so that $P(A_i) = q$,
+	Also, if each event is equiprobable so that $P(A_i) = q$,
 	
 	{\footnotesize
 		\begin{equation}
 			\sum_{i=1}^{n} q = nq = 1 \qquad \text{or} \qquad  q=\cfrac{1}{n} = P\left( A_i \right)
 	\end{equation} }
 	
-	In set theory, mutually exclusive event have no points in common. The union of the sets which represents the set of all elements that belong to
+	In set theory, mutually exclusive events have no points in common. The union of the sets which represents the set of all elements that belong to
 	
 	{\footnotesize
 		\begin{equation}
@@ -123,7 +123,7 @@ In the application of tests and the design of experiments, certain definitions a
 			\end{alignat}
 	\end{subequations} }
 	
-	Two kind of probabilities enter Equation \ref{EQ: Probabiltiy_dependet_a} (or Equation \ref{EQ: Probabiltiy_dependet_b}): the absolute probability of event $B$ (or $A$) irrespective of whether or not $A$ (or $B$) has occurred, and that the conditional probability of event $A$ (or $B$) computed on the assumption that $B$ (or $B$) has occurred. Equation \ref{EQ: Probabiltiy_independet_a} or \ref{EQ: Probabiltiy_independet_b} is special case of Equation \ref{EQ: Probabiltiy_dependet_a} or \ref{EQ: Probabiltiy_dependet_b}, because if the event are independent $P(A|B)=P(A)$.
+	Two kinds of probabilities enter Equation \ref{EQ: Probabiltiy_dependet_a} (or Equation \ref{EQ: Probabiltiy_dependet_b}): the absolute probability of event $B$ (or $A$) irrespective of whether or not $A$ (or $B$) has occurred, and that the conditional probability of event $A$ (or $B$) computed on the assumption that $B$ (or $B$) has occurred. Equation \ref{EQ: Probabiltiy_independet_a} or \ref{EQ: Probabiltiy_independet_b} is special case of Equation \ref{EQ: Probabiltiy_dependet_a} or \ref{EQ: Probabiltiy_dependet_b}, because if the event are independent $P(A|B)=P(A)$.
 	For the case of many event, Equation \ref{EQ: Probabiltiy_independet_a} can be expanded to 
 	
 	{\footnotesize
@@ -133,7 +133,7 @@ In the application of tests and the design of experiments, certain definitions a
 			\end{split}
 	\end{equation} }
 	
-	\item Another useful relationship for event which are not mutually exclusive is 
+	\item Another useful relationship for events that are not mutually exclusive is 
 	
 	{\footnotesize
 		\begin{equation}

@@ -2,7 +2,7 @@
 \graphicspath{{\subfix{../Figures/}}}
 \begin{document}
 
-The goal of parameter estimation is to obtain the "best" estimate of parameter set $\theta$ (which is a subset of the parameter space $\Theta$ containing all parameters of a model) based on the continuous observations $Y(t)$ or the discrete observations $Y(t_i)$. Conceptually, the unobservable error $\epsilon(t)$ is added to the deterministic model output, $y(t)$ (equation \ref{Model_measurment_1}), to give the observable dependent variable $Y(t)$ (for example results of an experiments). For discrete observations, this can be expressed as:
+The goal of parameter estimation is to obtain the "best" estimate of parameter set $\theta$ (which is a subset of the parameter space $\Theta$ containing all parameters of a model) based on the continuous observations $Y(t)$ or the discrete observations $Y(t_i)$. Conceptually, the unobservable error $\epsilon(t)$ is added to the deterministic model output, $y(t)$ (equation \ref{Model_measurment_1}), to give the observable dependent variable $Y(t)$ (for example results of experiments). For discrete observations, this can be expressed as:
 
 {\footnotesize
 	\begin{equation*}
@@ -23,12 +23,12 @@ However, obtaining analytical solutions for a deterministic process model can be
 		\cfrac{d Y(t_i)}{dt} = \cfrac{dy(\theta, t_i)}{dt} + \epsilon(t_i)
 \end{equation*} }
 
-In the case where the error in the first observation is denoted as $\epsilon_1$, the error in the second observation $\epsilon_2'$ incorporates $\epsilon_1$ as well as an independent random component, given by $\epsilon_2' = \epsilon_1 + \epsilon_2$. Similarly, the error in the third observation is $\epsilon_3' = \epsilon_1 + \epsilon_2 + \epsilon_3$, and so on. \citet{Mandel1957}  made a distinction between the typically assumed independent measurement error in the dependent variable and a "cumulative" or interval error, in which each new observation encompasses the error of the previous ones. Cumulative errors arise from fluctuations in the process itself due to small variations in operating conditions and are not independent; only the differences in measurement from one period to the next are independent.
+When the error in the first observation is denoted as $\epsilon_1$, the error in the second observation $\epsilon_2'$ incorporates $\epsilon_1$ and an independent random component, given by $\epsilon_2' = \epsilon_1 + \epsilon_2$. Similarly, the error in the third observation is $\epsilon_3' = \epsilon_1 + \epsilon_2 + \epsilon_3$, and so on. \citet{Mandel1957}  distinguished between the typically assumed independent measurement error in the dependent variable and a "cumulative" or interval error, in which each new observation encompasses the error of the previous ones. Cumulative errors arise from fluctuations in the process due to small variations in operating conditions and are not independent; only the differences in measurement from one period to the next are independent.
 
 \subsubsection{Least squares estimation}
-In statistics, least squares parameter estimation is a method used to estimate the parameters of a linear regression model. One of the benefits of this method is that it does not require any prior knowledge about the distribution of unobservable errors. Additionally, it yields unbiased estimates and results in the minimum variance among all linear unbiased estimators.
+In statistics, least squares parameter estimation is a method used to estimate the parameters of a linear regression model. One of the benefits of this method is that it does not require prior knowledge about the distribution of unobservable errors. Additionally, it yields unbiased estimates and results in the minimum variance among all linear unbiased estimators.
 
-If the model responses, represented by $Y$, are continuous functions of time from $t = 0$ to $t = t_f$, the Markov criterion, also known as "rigorous least squares," is used to minimize the integral squared error $\gamma$. This is achieved by minimizing the following expression:
+If the model responses, represented by $Y$, are continuous time functions from $t = 0$ to $t = t_f$, the Markov criterion, also known as "rigorous least squares," is used to minimize the integral squared error $\gamma$. This is achieved by minimizing the following expression:
 
 {\footnotesize
 	\begin{align}
@@ -53,7 +53,7 @@ If the covariance matrix, $\Gamma$, is a diagonal matrix, the Markov criterion b
 \iffalse
 \subsubsection{Weighted sum of squares - Cumulative data}
 
-One characteristic feature of certain special experiments is the use of the same batch of materials for the entire series of measurements. If unobservable error in the first observation is designated as $\epsilon_1$, the second error observation $\epsilon_2'$ includes $\epsilon_1$ plus a random component introduced side from $\epsilon_1$, or $\epsilon_2' = \epsilon_1 + \epsilon_2$. The error in the third observation is $\epsilon_3' = \epsilon_1 + \epsilon_2 + \epsilon_3$, and so forth. \citet{Mandel1957} distinguished between the usually assumed type of independent measuring error in the dependent variable and a 'cumulative' or interval error in which each new observation includes the error of the previous observations. Cumulative errors, arising because of the fluctuations as a function of time in the process itself due to small changes in operating, are not independent - only the differences in measurement from one period to the next are independent. Thus, if we consider two model:
+One characteristic feature of certain special experiments is the usage of the same batch of materials for the entire series of measurements. If unobservable error in the first observation is designated as $\epsilon_1$, the second error observation $\epsilon_2'$ includes $\epsilon_1$ plus a random component introduced side from $\epsilon_1$, or $\epsilon_2' = \epsilon_1 + \epsilon_2$. The error in the third observation is $\epsilon_3' = \epsilon_1 + \epsilon_2 + \epsilon_3$, and so forth. \citet{Mandel1957} distinguished between the usually assumed type of independent measuring error in the dependent variable and a 'cumulative' or interval error in which each new observation includes the error of the previous observations. Cumulative errors, arising because of the fluctuations as a function of time in the process due to small operating changes, are not independent - only the differences in measurement from one period to the next are independent. Thus, if we consider two models:
 
 {\footnotesize
 	\begin{flalign*}
@@ -78,9 +78,9 @@ The unbiased estimate of the Model B is obtained by minimizing the weighted sum 
 
 \subsubsection{Maximum likelihood estimation}
 
-Maximum likelihood estimation (MLE) is a method of estimating the parameters of an assumed probability distribution, given some observed data. This is achieved by maximizing a likelihood function so that, under the assumed statistical model, the observed data is most probable. The MLE has the desirable characteristics of asymptotic efficiency and normality. Each time it has been associated with the (joint) normal distribution because of mathematical convenience. Consider the joint probability density function (the likelihood function) $p \left(\theta | y(t_1),y(t_2),...,y(t_n)\right)$ for parameter $\theta$. If a maximum of this function over all choices of $\theta$ can be found, the estimates so obtained are maximum likelihood estimates. The conditions at the maximum can be evolved incorporating prior information as follows.
+Maximum likelihood estimation (MLE) is a method of estimating the parameters of an assumed probability distribution given some observed data. This is achieved by maximizing a likelihood function so that the observed data is most probable under the assumed statistical model. The MLE has the desirable characteristics of asymptotic efficiency and normality. Each time it has been associated with the (joint) normal distribution because of mathematical convenience. Consider the joint probability density function (the likelihood function) $p \left(\theta | y(t_1),y(t_2),...,y(t_n)\right)$ for parameter $\theta$. If a maximum of this function over all choices of $\theta$ can be found, the estimates so obtained are maximum likelihood estimates. The conditions at the maximum can be evolved incorporating prior information as follows.
 
-The posterior probability density $p(\theta|y)$ can be expressed as the ratio of two probability densities if we make use of the analogue for continuous variables of Equation \ref{EQ: Probabiltiy_independet_b}:
+The posterior probability density $p(\theta|y)$ can be expressed as the ratio of two probability densities if we make use of the analog for continuous variables of Equation \ref{EQ: Probabiltiy_independet_b}:
 
 {\footnotesize
 	\begin{align} \label{EQ: Posterior_distribution}
@@ -117,14 +117,14 @@ provided Equation \ref{EQ: Measurment_noise} is observed as a constraint. The de
 		p\left( \theta| y(t_n),...,y(t_1) \right) = \cfrac{p\left( \theta \right) \prod_{i=1}^{n} p\left( y(t_i)|\theta \right) }{p\left( y(t_n),...,y(t_1) \right)}
 \end{equation} }
 
-We can get rid of the evidence term $p\left( y(t_n),...,y(t_1) \right)$ because it's constant with respect to the maximization. Moreover, if we are lacking a prior distribution over the quantity we want to estimate, then $p(\theta)$ can be omitted. In such a case:
+We can get rid of the evidence term $p\left( y(t_n),...,y(t_1) \right)$ because it's constant with respect to the maximization. Moreover, if we lack a prior distribution over the quantity we want to estimate, then $p(\theta)$ can be omitted. In such a case:
 
 {\footnotesize
 	\begin{equation}
 		p\left( \theta| y(t_n),...,y(t_1) \right) = \prod_{i=1}^{n} p\left( y(t_i)|\theta \right) = \prod_{i=1}^{n} L\left( \theta|y(t_i) \right) 
 \end{equation} }
 
-By collecting a values of $y$ and selecting the values of $\theta$ that maximize the likelihood function $L\left( \theta | y \right)$, a function described in chapter \ref{CH: Bayes} in connection with Bayes' theorem\todo{Is the reference it previous chapter needed?}. Such estimators, $\hat{\theta}$, are known as maximum likelihood estimators. In effect, the methods selects those values of $\theta$ that are at least as likely to generate the observed sample as any other set of values of the parameters if the probability density of $y$ were to be extensively simulated through use of the probability density $p\left( y|\theta \right)$. In making a maximum likelihood estimate, we assume the form of the probability density and that all possible values of $\theta$ are equally likely before experimentation. \todo{Needed?}
+By collecting values of $y$ and selecting the values of $\theta$ that maximize the likelihood function $L\left( \theta | y \right)$, a function described in chapter \ref{CH: Bayes} in connection with Bayes' theorem\todo{Is the reference it previous chapter needed?}. Such estimators, $\hat{\theta}$, are known as maximum likelihood estimators. In effect, the methods select those values of $\theta$ that are at least as likely to generate the observed sample as any other set of values of the parameters if the probability density of $y$ were to be extensively simulated through the use of the probability density $p\left( y|\theta \right)$. In making a maximum likelihood estimate, we assume the form of the probability density and that all possible values of $\theta$ are equally likely before experimentation. \todo{Needed?}
 
 %The likelihood function for the parameters given one observation is just the probability density in which the observation is regarded as a fixed number and the parameters as the variables:
 %
@@ -182,7 +182,7 @@ By collecting a values of $y$ and selecting the values of $\theta$ that maximize
 		
 		\todo{$x$ has not been defined}
 		
-		Based on the first order optimality condition, the $\ln L$ can be maximized with respect to the vector $\theta$ by equating to zero the partial derivatives of $\ln L$ with respect to each of the parameters:
+		Based on the first-order optimality condition, the $\ln L$ can be maximized with respect to the vector $\theta$ by equating to zero the partial derivatives of $\ln L$ with respect to each of the parameters:
 		
 		{\footnotesize
 			\begin{align}\label{EQ: MLE_Basic_Solution}
@@ -193,7 +193,7 @@ By collecting a values of $y$ and selecting the values of $\theta$ that maximize
 		
 		\iffalse
 		
-		It can be shown that as $n$ approaches infinity the maximum likelihood estimates have the desirable asymptotic properties:
+		It can be shown that as $n$ approaches infinity, the maximum likelihood estimates have the desirable asymptotic properties:
 		
 		\begin{enumerate}[label=(\arabic*)]
 			\item {\footnotesize $\lim\limits_{n \rightarrow \infty} \mathbb{E}\{\hat{\theta}\} = \theta$ }
@@ -207,15 +207,15 @@ By collecting a values of $y$ and selecting the values of $\theta$ that maximize
 		
 		where $\rho^2_{\hat{\theta}}$ is the matrix of correlation coefficients.
 		
-		Maximum likelihood estimates are not necessarily unbiased. Maximum likelihood estimates, however are efficient and, hence, consistent estimates. Furthermore, where a sufficient estimate can be obtained, the maximum likelihood method will obtain it. Finally, if $\hat{\theta}$ is a maximum likelihood estimator of $\theta$, the $f\left( \hat{\theta} \right)$ is a maximum likelihood estimator of $f\left( \theta \right)$, a function of $\theta$.
+		Maximum likelihood estimates are not necessarily unbiased. Maximum likelihood estimates, however, are efficient and consistent estimates. Furthermore, where a sufficient estimate can be obtained, the maximum likelihood method will obtain it. Finally, if $\hat{\theta}$ is a maximum likelihood estimator of $\theta$, the $f\left( \hat{\theta} \right)$ is a maximum likelihood estimator of $f\left( \theta \right)$, a function of $\theta$.
 		
 		
 		
 		\hrule
 		
-		%Under the assumption of normality, the lack of prior knowledge about the parameters $\theta^0$ and known initial conditions $y_0$. Intuitively, this selects the parameter values that make the observed data most probable. The specific value $\hat{\theta}$ that maximizes the likelihood function $L$ is called the maximum likelihood estimate.
+		%Under the assumption of normality, the lack of prior knowledge about the parameters $\theta^0$ and known initial conditions $y_0$. Intuitively, this selects the parameter values that make the observed data most probable. The maximum likelihood estimate is the specific value $\hat{\theta}$ that maximizes the likelihood function $L$.
 		
-		As already discussed, the prior information about the estimated parameters can be incorporated in to the maximum likelihood estimator to form a maximum a posteriori probability (MAP) estimate. MAP can be used to obtain a point estimate of an unobserved quantity on the basis of empirical data. MAP estimation can therefore be seen as a regularization of maximum likelihood estimation. The relationship between MAP and MLE can be obtained from the Bayes' rule:
+		As already discussed, the prior information about the estimated parameters can be incorporated in to the maximum likelihood estimator to form a maximum a posteriori probability (MAP) estimate. MAP can be used to obtain a point estimate of an unobserved quantity based on empirical data. MAP estimation can therefore be seen as a regularization of maximum likelihood estimation. The relationship between MAP and MLE can be obtained from the Bayes' rule:
 		
 		{\footnotesize
 			\begin{equation} 
