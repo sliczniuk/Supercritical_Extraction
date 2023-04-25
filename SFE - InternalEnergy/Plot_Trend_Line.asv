@@ -1,5 +1,5 @@
 %RHO         = [840, 840, 785, 758, 910, 910, 870];
-NAME        = {'$k_m[-]$', '$D_i[m^2/s]$', '$D_e^M[m^2/s]$', '$m_{total}$', '$\tau$', '$\sigma$'};
+NAME        = {'$km[-]$', '$D_i[m^2/s]$', '$D_x[m^2/s]$', 'Toral mass of oil', 'Mass ratio', '$\sigma$'};
 %EXP_Name    = {'exp1','exp2'};
 
 %% Fit the parameters based as linear function of density
@@ -20,17 +20,17 @@ for jj=1:2
         hold off
 
         if jj==1
-            pp=sprintf('%s=$(%6.4g) \\rho + (%6.4g)$',NAME{ii},trendLine');
+            pp=sprintf('\n$(%4.2s) \rho + (%4.2s)$',trendLine');
         else
-            pp=sprintf('%s=$(%6.4g) \\rho^2 + (%6.4g) \\rho + (%6.4g)$',NAME{ii},trendLine');
+            pp=sprintf('\n$(%4.2s) x^2 + (%4.2s) x + (%4.2s)$',trendLine');
         end
 
-        oo = sprintf('$R^2 = %g$\n', round(power(corr2(DATA_K_OUT(ii,:), p_est),2),2) ) ;
+        oo = ['$R^2 = $', mat2str( round(power(corr2(DATA_K_OUT(ii,:), p_est),2),2) ) ];
     
-        title( [oo,pp], 'FontSize', 6)
+        title( [oo,pp], 'Interpreter','latex')
     
-        xlabel('$\rho~[kg/m^3]$','Interpreter','latex')
-        ylabel(NAME{ii},'Interpreter','latex')
+        xlabel('$\rho~[kg/m^3]$')
+        ylabel(NAME{ii})
     
     end
     

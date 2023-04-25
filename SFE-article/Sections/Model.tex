@@ -9,7 +9,7 @@
 	{\color{magenta}parameters}.
 	
 	\subsubsection{Continuity equation} \label{CH: Continuity}
-	The continuity equation for the fluid phase is derived in Appendix \ref{CH: Gouverning equations}. When the cross-sectional area of the channel $A_f$ is specified as a function of the void fraction ${\color{magenta}\phi}(z)$ (where ${\color{magenta}\phi}$ is the void fraction of the bed and $A$ is the cross-section of the empty extractor), the continuity equation takes the form: \todo[]{assign a color to v and u}
+	The continuity equation for the fluid phase is derived in Appendix \ref{CH: Gouverning equations}. When the cross-sectional area of the channel $A_f$ is specified as a function of the void fraction ${\color{magenta}\phi}(z)$ (where ${\color{magenta}\phi}$ is the void fraction of the bed and $A$ is the cross-section of the empty extractor), the continuity equation takes the form: \todo[]{assign a color of v and u}
 	
 	{\footnotesize
 		\begin{equation*}
@@ -247,13 +247,13 @@
 		\end{align}	}
   
 		\subsubsection{State-space representation} \label{CH: State_space}
-		It is assumed that the solvent is free of solute at the entrance of the extractor and that all the solid particles have the same initial solute content ${\color{magenta}c_s_0}$. Moreover, it is considered that the initial temperature of the extractor in every place is equal to ${\color{magenta}h_0}$. Therefore, the initial conditions employed in the simulation are:
+		It is assumed that the solvent is free of solute at the entrance of the extractor and that all the solid particles have the same initial solute content ${\color{magenta}c_{s0}}$. The fluid concentration is assumed to not be uniform, and as such it is described by a function $H=H(z)$. The further discussion on the distribution of concentration in the fluid phase can be found in appendix \todo[fancyline]{REF}. Moreover, it is considered that the initial temperature of the extractor in every place is the same and described by ${\color{magenta}h_0}$. Therefore, the initial conditions employed in the simulation are:
 			
 		{\footnotesize
 			\begin{subequations}
 				\begin{align*}
-					{\color{blue}c_f}(t = 0, z) &= 0   \\
-					{\color{blue}c_s}(t = 0, z) &= {\color{magenta}c_s_0} \\
+					{\color{blue}c_f}(t = 0, z) &= H(z)   \\
+					{\color{blue}c_s}(t = 0, z) &= {\color{magenta}c_{s0}} \\
 					{\color{blue}h}(t = 0, z) &= {\color{magenta}h_0}
 				\end{align*}
 		\end{subequations} }

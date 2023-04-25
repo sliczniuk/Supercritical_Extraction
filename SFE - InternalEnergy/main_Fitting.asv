@@ -13,12 +13,12 @@ DATA_set                = {'LUKE_T40_P200', 'LUKE_T50_P200', 'LUKE_T40_P300_org'
 %DATA_set                = {'LUKE_T50_P300'};
 
 which_k                 = [8,  44, 45,          ];                          % Select which parameters are used for fitting
-k0                      = [1,  3 , 1 ,  77, 0.65, 0.1];                     % Give inital value for each parameter
+k0                      = [1,  3 , 1 ,  77, 0.65, 0.1];                          % Give inital value for each parameter
 Nk                      = numel(which_k)+3;                                 % Parameters within the model + m_max, m_ratio, sigma
 k_lu                    = [ [0;0;0;76;0;0] , [1;inf;inf;100;1;inf] ];
 
 Iteration_max           = 100;                                              % Maximum number of iterations for optimzer
-Time_max                = 24;                                               % Maximum time of optimization in [h]
+Time_max                = 15;                                               % Maximum time of optimization in [h]
 
 V_Flow                  = 0.4;                                              % Volumetric flow rate l/min
 
@@ -29,7 +29,7 @@ bed                     = 0.165;                                            % Pe
 % Set time of the simulation
 PreparationTime         = 0;
 ExtractionTime          = 150;
-timeStep                = 0.25;                                             % Minutes
+timeStep                = 0.5;                                             % Minutes
 SamplingTime            = 5;                                                % Minutes
 
 simulationTime          = PreparationTime + ExtractionTime;
@@ -133,12 +133,13 @@ parfor ii=1:numel(DATA_set)
     k                           = OPT_solver.variable(Nk);
 
     %% Set parameters
-    msol_max                    = k(4);                                                             % g of product in solid and fluid phase
+    msol_max                    = k(4);                                             % g of product in solid and fluid phase
     mSol_ratio                  = k(5);
+
     sigma                       = k(6);
 
-    mSOL_s                      = msol_max*mSol_ratio;                                              % g of product in biomass
-    mSOL_f                      = msol_max*(1-mSol_ratio);                                          % g of biomass in fluid
+    mSOL_s                      = msol_max*mSol_ratio;                                        % g of product in biomass
+    mSOL_f                      = msol_max*(1-mSol_ratio);                                    % g of biomass in fluid
 
     %%
     
@@ -147,7 +148,7 @@ parfor ii=1:numel(DATA_set)
 
     %--------------------------------------------------------------------
 
-    C0solid                     = mSOL_s * 1e-3 / ( V_bed * epsi)  ;                                 % Solid phase kg / m^3
+    C0solid                     = mSOL_s * 1e-3 / ( V_bed * epsi)  ;            % Solid phase kg / m^3
     
     G                           =@(x) -(2*mSOL_f / L_end^2) * (x-L_end) ;
     
@@ -236,15 +237,15 @@ parfor ii=1:numel(DATA_set)
 end
 %%
 
-NAME = {'$k_m[-]$', '$D_i[m^2/s]$', '$D_e^M[m^2/s]$', '$m_{total}$', '$\tau$', '$\sigma$'};
-TT   = cell2table(NAME');
+TT = cell2table(NAME');
 
 for i=1:numel(DATA_set)
-    TT.(i+1)=round(DATA_K_OUT(:,i),5);
+    TT.(i+1)=DATA_K_OUT(:,i);
 end
 
-TT.Properties.VariableNames = ["$Parameter$",'$40[C] 200[bar]$',"$50[C] 200[bar]$","$40[C] 300[bar]$","$50[C] 300[bar]$"]
-writetable(TT,'estimation.csv')
+TT.Properties.VariableNames = ["Parameter","40^{circ}/200 bar","50^{circ}/200 bar","40^{circ}|300 bar","50^{circ}|300 bar"]
+
+%writematrix(round(DATA_K_OUT,5),'estimation_res.csv')
 
 %%  
 

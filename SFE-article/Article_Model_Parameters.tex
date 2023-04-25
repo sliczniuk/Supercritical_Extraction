@@ -20,6 +20,9 @@
 % Text, input, formatting, and language-related packages
 \usepackage[T1]{fontenc}
 \usepackage{subcaption}
+
+\usepackage{csvsimple}
+
 \usepackage[bordercolor=gray!20,backgroundcolor=blue!10,linecolor=black,textsize=footnotesize,textwidth=1in]{todonotes}
 \setlength{\marginparwidth}{1in}
 % \usepackage[utf8]{inputenc}
@@ -104,7 +107,7 @@
 %Given a system of partial differential equations, $F(t,x,\dot{x},p,u)=0$, where $x$ represents state variables, $p$ is the parameters, and $u$ are control variables, the process model is simultaneously solved for both $x_i$ and a set of sensitivity functions, $dx_i/dp_j$, overall times $t$.These sensitivity functions measure the influence of the parameter change on the model's output. As an example, the supercritical extraction process is presented. The impact of mass flow rate, pressure, and inlet temperature on the model's output is discussed. The sensitivity analysis results prove that the considered variables can affect the extraction's yield and be used as control variables in optimization problems. Moreover, the local sensitivity analysis results are analyzed from a phenomenological point of view to enhance understanding of the process model.
 %Given a system of partial differential equations, $F(t,x,\dot{x},\Theta,u)=0$, where $x$ represents state variables, $\Theta$ are the parameters, and $u$ are control variables, we describe the supercritical extraction process. The process model describes a partially filled extractor with a fixed bed, which work under constant operating conditions. We assume that the flow is uniform across any cross-section, although the area available for the fluid phase can change along the extractor. We apply the concept of quasi-one-dimensional flow to mimic the modelling of a two-dimensional case.
 %In this work, a distributed-parameter model, based on \citet{Reverchon1996} is used to describe a fluid-solid extraction process of caraway oil from caraway seeds with $CO_2$ as a solvent. The model parameters such as partition factor, internal diffusion coefficient, axial diffusion coefficient \textit{and saturation concentration} are obtained from parameter estimation. The parameters are estimated based on four experiments performed at $40^\circ C$/$200$ bar, $50^\circ C$/$200$ bar, $40^\circ C$/$300$ bar and $50^\circ C$/$300$ bar. Given yield data, the model-based parameter estimation uses the maximum likelihood estimation method under assumption of normal error.
-We consider a system of partial differential equations, $F(t,x,\dot{x},\Theta,u)=0$, where $x$ denotes the state variables, $\Theta$ represents the parameters, and $u$ is the control variables. Our focus is on the supercritical extraction process, which involves a partially filled extractor with a fixed bed that operates under constant conditions. We assume the flow is uniform across any cross-section, although the area available for the fluid phase can vary along the extractor. To model this two-dimensional case, we use the concept of quasi-one-dimensional flow.
+We consider a system of partial differential equations, $G(t,x,\dot{x},\Theta,u)=0$, where $x$ denotes the state variables, $\Theta$ represents the parameters, and $u$ is the control variables. Our focus is on the supercritical extraction process, which involves a partially filled extractor with a fixed bed that operates under constant conditions. We assume the flow is uniform across any cross-section, although the area available for the fluid phase can vary along the extractor. To model this two-dimensional case, we use the concept of quasi-one-dimensional flow.
 To describe the fluid-solid extraction process of caraway oil from caraway seeds with $CO_2$ as a solvent, we use a distributed-parameter model based on \citet{Reverchon1996}. This model requires parameters such as partition factor, internal diffusion coefficient, axial diffusion coefficient, and saturation concentration. We estimate these parameters from four experiments at different temperatures and pressures: $40^\circ C$/$200$ bar, $50^\circ C$/$200$ bar, $40^\circ C$/$300$ bar, and $50^\circ C$/$300$ bar. We obtain the parameter values using the maximum likelihood estimation method on yield data under the normal error assumption.
 
 \end{abstract}
@@ -246,6 +249,9 @@ Suppose the flow is presumed to be isentropic, $dP/d\rho = c^2$, so $v^2=c^2$, w
 \subsection{Cardano's Formula} \label{CH: Cardano}
 \subfile{Sections/Cardano}
 
+\subsection{Initial and boundary conditions} \label{CH: IC_BC}
+\subfile{Sections/IC_BC}
+
 \subsection{Porosity Calculations} \label{CH: Porosity}
 \subfile{Sections/Porosity}
 
@@ -255,9 +261,15 @@ Suppose the flow is presumed to be isentropic, $dP/d\rho = c^2$, so $v^2=c^2$, w
 
 \begin{figure*}[!h]
 	%\centering 
-	\includegraphics[trim=0cm 6cm 0cm 0cm, clip,height=0.9\textheight]{Sections/ultraReportT5.pdf}
+	\includegraphics[trim=0cm 6cm 0cm 0cm, clip,height=0.85\textheight]{Sections/ultraReportT5.pdf}
 	\caption{The result of solid density measurement}
 \end{figure*}
+
+{\footnotesize
+	\begin{equation*}
+		\rho_s^{ave} = \frac{1.2585+1.2582+1.2561+1.2546+1.2555}{5} = 1.25658 [g/cc]
+	\end{equation*}
+}
 
 \iffalse
 \newpage

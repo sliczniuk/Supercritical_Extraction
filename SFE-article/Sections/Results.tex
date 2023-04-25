@@ -4,61 +4,77 @@
 	
 	\label{CH: Results}
 
-    The parameter estimation problem was solved by fitting the process model to the dataset \ref{tab: Yield_data}. Each time-series was fitted to the model separately. As a result of fitting, the following parameters were obtained:
+    The parameter estimation problem was solved by fitting the process model to the dataset given in the table \ref{tab: Yield_data}. Each time-series was fitted to the model separately. As a result of fitting, the following parameters were obtained:
 
     \begin{itemize}
-        \item Partition coefficient $k_m$
-        \item Internal Diffusion coefficient $D_i$
-        \item Axial Diffusion coefficient $D_e^M$
-        \item Standard Deviation $\sigma$
+        \item Partition coefficient:\qquad\quad\qquad$k_m$
+        \item Internal Diffusion coefficient: \quad$D_i$
+        \item Axial Diffusion coefficient: \qquad$D_e^M$
+        \item Standard Deviation: \qquad\qquad\quad$\sigma$
     \end{itemize}
 
-    Moreover, the initial state estimation was performed together with parameter estimation. The concentration of solute is assumed to be constant and uniformly distributed. On the other hand, the solute concentration is assumed not to be uniform and not zero, which is a common assumption. During the preparation period, when the operating conditions are achieved, the solute diffuses to the fluid phase in contact with the solid particles. Later, the solute in the fluid phase is partially moved (if the pressure increase in the system, the pump cause the movement of the fluid, even if the outlet valve is closed) to the region where there is no solid phase. As a result, the solute distribution in the fluid phase should also be estimated as it is unknown. Some conclusions can be drawn from the analysis of the initial part of each yield curve. It can be noticed that each curve at the beginning has a curvature, which is not linear. In a general sense, it can be said that a quadratic function could approximate the initial part of each extraction curve. A function that, after integration, gives a quadratic-like result is a straight line. Based on that observation, the solute concentration in the fluid phase is assumed to be linearly distributed. The solute concentration is assumed to be zero at the outlet and reach the maximum at the beginning of the fixed bed. Such a formulation allows to fully describe the linear distribution of solute in the solid phase if the total mass of solute in the fluid phase is known, as explained in appendix \todo[]{Add chapter}. The total mass of solute in the fluid phase can be obtained from the total mass of solute $m_{total}$ and partition coefficient $\tau$, which is defined as
-
-    {\footnotesize
-    \begin{equation*}
-        \tau = \cfrac{\text{total mass of solute in the fluid phase}}{\text{total mass of solute in the system}} = \cfrac{m^0_{fluid}}{m_{total}}
-    \end{equation*}
-    }
-
+    Moreover, the initial state estimation was performed together with parameter estimation. The concentration of solute in the solid phase is assumed to be constant and uniformly distributed. On the other hand, the solute concentration in the fluid phase is assumed not to be uniform and not zero. During the preparation period, when the operating conditions are achieved, the solute diffuses to the fluid phase in contact with the solid particles. Later, the solute in the fluid phase is partially moved (if the pressure increase in the system, the pump cause the movement of the fluid, even if the outlet valve is closed) to the region where there is no solid phase. As a result, the distribution of solutes mass in the fluid phase is assumed to not be uniform, and described by an arbitrary function $H=H(z)$. Some conclusions can be drawn from the analysis of the initial part of each yield curve. It can be noticed that each curve at the beginning has a curvature, which is not linear. In a general sense, it can be said that a quadratic function could approximate the initial part of each extraction curve. A function that, after integration, gives a quadratic-like result is a straight line. Based on that observation, the solute concentration in the fluid phase is assumed to be linearly distributed. The solute concentration is assumed to be zero at the outlet and reach the maximum at the beginning of the fixed bed. The details on the calculation are given in appendix \ref{CH: IC_BC}. The linear distribution can be defined if the total mass of solute $m_{total}$ and partition coefficient $\tau$ are know.
+    
     Due to initial state estimation, two additional parameters are fitted.
 
     \begin{itemize}
-        \item Total mass of solute $m_{total}$
-        \item Partition coefficient $\tau$
+        \item Total mass of solute: \qquad\qquad\quad$m_{total}$
+        \item Partition coefficient: \qquad\qquad\quad$\tau$
     \end{itemize}
-	
-	Some results of the parameter estimations
 
-	\begin{figure*}
+	The parameter estimation was run as constrained optimization problem with following constraints:
+	
+	\begin{itemize}
+		\item $0  \leq k_m   \leq 1$
+		\item $0  \leq D_i   \leq +\infty$
+		\item $0  \leq D_e^M \leq +\infty$
+		\item $76 \leq m_{total} \leq 100$
+		\item $0  \leq \tau \leq 1$
+		\item $0  \leq \sigma \leq +\infty$
+	\end{itemize}
+
+	The results of the parameter estimation can be found in Table \ref{tab: Estimation_results}.
+		
+	\begin{table}[H]
 		\centering
-		\begin{subfigure}[b]{0.7\textwidth}
+		\adjustbox{max width=\columnwidth}{%
+			\csvautotabular{Figures/Results_estimation/estimation.csv} }
+		\caption{Parameter estimation results}
+		\label{tab: Estimation_results}
+	\end{table}
+	
+	The graphical representation of the original
+
+	\begin{figure*}[!h]
+		\centering
+		\begin{subfigure}[b]{0.8\textwidth}
 			\centering
-			\includegraphics[trim = 3cm 11cm 2.5cm 1cm,clip,width=\textwidth]{/Results_estimation/Fitting_LUKE_T40_P200.pdf}
+			\includegraphics[trim = 3cm 11cm 2.5cm 2.1cm,clip,width=\textwidth]{/Results_estimation/Fitting_LUKE_T40_P200.pdf}
 			\caption{Experiment at $40^\circ C$ and $200$ bar}
 		\end{subfigure}
 		\hfill
-		\begin{subfigure}[b]{0.7\textwidth}
+		\begin{subfigure}[b]{0.8\textwidth}
 			\centering
-			\includegraphics[trim = 3cm 11cm 2.5cm 1cm,clip,width=\textwidth]{/Results_estimation/Fitting_LUKE_T50_P200.pdf}
+			\includegraphics[trim = 3cm 11cm 2.5cm 2.1cm,clip,width=\textwidth]{/Results_estimation/Fitting_LUKE_T50_P200.pdf}
 			\caption{Experiment at $50^\circ C$ and $200$ bar}
 		\end{subfigure}
 		\hfill
-		\begin{subfigure}[b]{0.7\textwidth}
+		\begin{subfigure}[b]{0.8\textwidth}
 			\centering
-			\includegraphics[trim = 3cm 11cm 2.5cm 1cm,clip,width=\textwidth]{/Results_estimation/Fitting_LUKE_T40_P300_org.pdf}
+			\includegraphics[trim = 3cm 11cm 2.5cm 2.1cm,clip,width=\textwidth]{/Results_estimation/Fitting_LUKE_T40_P300_org.pdf}
 			\caption{Experiment at $40^\circ C$ and $300$ bar}
 		\end{subfigure}
 		\hfill
-		\begin{subfigure}[b]{0.7\textwidth}
+		\begin{subfigure}[b]{0.8\textwidth}
 			\centering
-			\includegraphics[trim = 3cm 11cm 2.5cm 1cm,clip,width=\textwidth]{/Results_estimation/Fitting_LUKE_T50_P300_org.pdf}
+			\includegraphics[trim = 3cm 11cm 2.5cm 2.1cm,clip,width=\textwidth]{/Results_estimation/Fitting_LUKE_T50_P300_org.pdf}
 			\caption{Experiment at $50^\circ C$ and $300$ bar}
 		\end{subfigure}
 		\caption{Results of parameter fitting, with estimation of the initial state}
 	\end{figure*}
 
-	\begin{figure*}
+
+	\begin{figure*}[!h]
 	\centering
 	\begin{subfigure}[b]{0.85\textwidth}
 		\centering
@@ -72,7 +88,7 @@
 		\caption{Second order polynomial regression of fitted parameters as a function of fluid density $\rho_f$}
 	\end{subfigure}
 	\caption{Results of parameter fitting, with estimation of the initial state}
-\end{figure*}
-		
+	\end{figure*}
+	
 	
 \end{document}
