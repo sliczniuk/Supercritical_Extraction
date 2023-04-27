@@ -1,4 +1,4 @@
-startup; datetime("now");
+startup; datetime("now")
 %p = Pushbullet(pushbullet_api);
 
 %addpath('C:\dev\casadi-windows-matlabR2016a-v3.5.2');
@@ -18,7 +18,7 @@ Nk                      = numel(which_k)+3;                                 % Pa
 k_lu                    = [ [0;0;0;76;0;0] , [1;inf;inf;100;1;inf] ];
 
 Iteration_max           = 100;                                              % Maximum number of iterations for optimzer
-Time_max                = 24;                                               % Maximum time of optimization in [h]
+Time_max                = 5*24;                                               % Maximum time of optimization in [h]
 
 V_Flow                  = 0.4;                                              % Volumetric flow rate l/min
 
@@ -29,7 +29,7 @@ bed                     = 0.165;                                            % Pe
 % Set time of the simulation
 PreparationTime         = 0;
 ExtractionTime          = 150;
-timeStep                = 0.25;                                             % Minutes
+timeStep                = 0.05;                                             % Minutes
 SamplingTime            = 5;                                                % Minutes
 
 simulationTime          = PreparationTime + ExtractionTime;
@@ -243,7 +243,7 @@ for i=1:numel(DATA_set)
     TT.(i+1)=round(DATA_K_OUT(:,i),5);
 end
 
-TT.Properties.VariableNames = ["$Parameter$",'$40[C] 200[bar]$',"$50[C] 200[bar]$","$40[C] 300[bar]$","$50[C] 300[bar]$"]
+TT.Properties.VariableNames = ["Parameter",'$40[C] 200[bar]$',"$50[C] 200[bar]$","$40[C] 300[bar]$","$50[C] 300[bar]$"];
 writetable(TT,'estimation.csv')
 
 %%  
@@ -283,12 +283,12 @@ for ii=1:numel(DATA_set)
         Parameters{which_k(i)}  = k0(i);
     end
 
-    msol_max                = k0(4);                                                % g of product in solid and fluid phase
+    msol_max                = k0(4);                                                             % g of product in solid and fluid phase
     mSol_ratio              = k0(5);
-    mSOL_s                  = msol_max*mSol_ratio;                                        % g of product in biomass
-    mSOL_f                  = msol_max*(1-mSol_ratio);                                    % g of biomass in fluid
+    mSOL_s                  = msol_max*mSol_ratio;                                               % g of product in biomass
+    mSOL_f                  = msol_max*(1-mSol_ratio);                                           % g of biomass in fluid
 
-    C0solid                 = mSOL_s * 1e-3 / ( V_bed * epsi)  ;                      % Solid phase kg / m^3
+    C0solid                 = mSOL_s * 1e-3 / ( V_bed * epsi)  ;                                 % Solid phase kg / m^3
 
     G                       =@(x) -(2*mSOL_f / L_end^2) * (x-L_end) ;
 
@@ -315,16 +315,16 @@ for ii=1:numel(DATA_set)
     end
 
     % 
-    msol_max_opt            = KOUT(4);                                                % g of product in solid and fluid phase
+    msol_max_opt            = KOUT(4);                                                            % g of product in solid and fluid phase
     mSol_ratio_opt          = KOUT(5);
     mSOL_s_opt              = msol_max_opt*mSol_ratio_opt;                                        % g of product in biomass
     mSOL_f_opt              = msol_max_opt*(1-mSol_ratio_opt);                                    % g of biomass in fluid
 
-    C0solid_opt             = mSOL_s_opt * 1e-3 / ( V_bed * epsi)  ;            % Solid phase kg / m^3
+    C0solid_opt             = mSOL_s_opt * 1e-3 / ( V_bed * epsi)  ;                              % Solid phase kg / m^3
 
     G                       =@(x) -(2*mSOL_f_opt / L_end^2) * (x-L_end) ;
     
-    m_fluid_opt             = G(L_bed_after_nstages)*( L_bed_after_nstages(2) );                 % Lienarly distirubuted mass of solute in fluid phase, which goes is zero at the outlet. mass*dz
+    m_fluid_opt             = G(L_bed_after_nstages)*( L_bed_after_nstages(2) );                  % Lienarly distirubuted mass of solute in fluid phase, which goes is zero at the outlet. mass*dz
     m_fluid_opt             = [zeros(1,numel(nstagesbefore)) m_fluid_opt];         
     C0fluid_opt             = m_fluid_opt * 1e-3 ./ V_fluid';
 

@@ -5,9 +5,9 @@
 	\label{CH: Thermodynamic_details}
 	
 	\subsubsection{Equation of state and properties of the fluid phase} \label{subsubsec: Equation of state}
-	We consider equations of state in the general form ${\color{red}P}(t) {\color{orange}v_m}\left[T(t,z),P(t)\right] = {\color{orange}Z}{\color{magenta}R}{\color{blue}T}(t,z)$, where ${\color{magenta}v_m}$ denotes the molar volume of $\text{CO}_2$, ${\color{orange}Z}$ represents its compressibility factor, and $R$ is the universal gas constant. More specifically, we are interested in these equations because of the possibility to express the compressibility $Z$ as an explicit function of temperature and pressure. This is the case when $Z$ is obtained as one of the physically meaningful roots of a polynomial equation, like the Peng-Robinson's and {\color{red} stuff with REFS to equations of state}. \\
+	We consider equations of state in the general form ${\color{red}P}(t) {\color{orange}v_m}[T(t,z),P(t)] = {\color{orange}Z}{\color{magenta}R}{\color{blue}T}(t,z)$, where ${\color{magenta}v_m}$ denotes the molar volume of $\text{CO}_2$, ${\color{orange}Z}$ represents its compressibility factor, and $R$ is the universal gas constant. More specifically, we are interested in these equations because of the possibility to express the compressibility $Z$ as an explicit function of temperature and pressure. This is the case when $Z$ is obtained as one of the physically meaningful roots of a polynomial equation, like the Van der Waals's, Peng-Robinson's or Redlich–Kwong's equation of state. In this work the Peng-Robinson equation of state (\citet{Peng1976}) is used 
 	
-	In Peng-Robinson's equation, the compressibility ${\color{orange}\overline{Z}}\left[{\color{blue}T}(t,z), {\color{red}P}(t)\right]$ solves the third-order polynomial equation \todo{reference to Cardano formula}
+	In Peng-Robinson's equation fo state, the compressibility ${\color{orange}\overline{Z}}[{\color{blue}T}(t,z), {\color{red}P}(t)]$ solves the third-order polynomial equation given by equitation \ref{eq: Compressibility}. The polynomial equation can be solved by numerical methods like Newton-Raphson, or by applying Cardano formula. The Cardano formula is preferable in comparison to numerical root-finders, as it allows to obtain an analytical solution. The details of the Cardano formula are presented in appendix \ref{CH: Cardano}.
 	
 	{\footnotesize	
 	\begin{align}\label{eq: Compressibility}
@@ -103,21 +103,23 @@
 	
 	By denoting the physical constants as $\varphi_{C_p^{\text{F}}} = \left({\color{magenta}R}, {\color{magenta}M_{\text{CO}_2}}, {\color{magenta}T^c_{\text{CO}_2}}, {\color{magenta}P^c_{\text{CO}_2}}, {\color{magenta}\omega_{\text{CO}_2}}\right)$, we get the spatio-temporal representation $C_p^{\text{F}}\left[T(t,z),P(t) \mid \varphi_{C_p^{\text{F}}}\right]$ of the specific heat of the fluid phase.
 	
-	\subsubsection{Departure functions for enthalpy calculations} \label{CH:Enthalpy} \todo[]{Change to my text}
+	\subsubsection{Departure functions for enthalpy calculations} \label{CH:Enthalpy}
 	
-	In thermodynamics, a departure function is defined for any thermodynamic property as the difference between the property as computed for an ideal gas and the property of the species as it exists in the real world, for a specified temperature T and pressure P. Common departure functions include those for enthalpy, entropy, and internal energy.
+	In thermodynamics, a departure function is a concept used to calculate the difference between a real fluid's thermodynamic properties and those of an ideal gas, given a specific temperature and pressure. Common departure functions include those for enthalpy, entropy, and internal energy. These functions are used to calculate extensive properties, which are properties computed as a difference between two states.
 	
-	Departure functions are used to calculate real fluid extensive properties (i.e. properties which are computed as a difference between two states). A departure function gives the difference between the real state, at a finite volume or non-zero pressure and temperature, and the ideal state, usually at zero pressure or infinite volume and temperature.
+	For example, to evaluate the enthalpy change between two points, $h(V_1,T_1)$ and $h(V_2,T_2)$, we first calculate the enthalpy departure function between the initial volume $V_1$ and infinite volume at temperature $T_1$. We then add to that the ideal gas enthalpy change due to the temperature change from $T_1$ to $T_2$, and finally subtract the departure function value between the final volume $V_2$ and infinite volume.
 	
-	For example, to evaluate enthalpy change between two points $h(V_1,T_1)$ and $h(V_2,T_2)$ we first compute the enthalpy departure function between volume $V_1$ and infinite volume at $T = T_1$, then add to that the ideal gas enthalpy change due to the temperature change from $T_1$ to $T_2$, then subtract the departure function value between $V_2$ and infinite volume.
+	Departure functions are computed by integrating a function that depends on an equation of state and its derivative. The general form of the enthalpy equation is given by:
 	
-	Departure functions are computed by integrating a function which depends on an equation of state and its derivative. The general form the enthalpy equation is given by
-	
-	{\footnotesize 
+	{\footnotesize
 		\begin{equation}
 			\frac{h^{id}-h}{RT} =\int_{v_m}^{\infty }\left[T\left({\frac{\partial Z}{\partial T}}\right)_{v_m}\right]{\frac{dv_m}{v_m}} + 1-Z
 		\end{equation}
 	}
+	
+	Here, $h^{id}$ represents the enthalpy of an ideal gas, $h$ is the enthalpy of a real fluid, $R$ is the universal gas constant, $T$ is temperature, $v_m$ is the molar volume, and $Z$ is the compressibility factor.
+	
+	The integral in the equation is evaluated over the range of molar volumes from $v_m$ to infinity. The integral includes a term that depends on the derivative of the compressibility factor with respect to temperature, evaluated at the molar volume $v_m$. Finally, the term $1-Z$ is added to account for the deviation of the fluid's properties from those of an ideal gas.
 
 	The Peng–Robinson equation of state relates the three interdependent state properties pressure $P$, temperature $T$, and molar volume $v_m$. From the state properties ($P$, $v_m$, $T$), one may compute the departure function for enthalpy per mole (denoted $h$) as presented by \citet{Gmehling2019} or \citet{Elliott2011}:
 	
