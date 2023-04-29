@@ -3,14 +3,6 @@
 \begin{document}
 	
 	\label{CH: Results}
-	
-	To ensure the stability of the convergence while solving the partial differential equations, the Courant–Friedrichs–Lewy condition (given by equation) was applied. Based on the discretization step and the velocity, the Courant–Friedrichs–Lewy condition can be used to find.
-	
-	{\footnotesize
-		\begin{equation*}
-			C = \cfrac{u\Delta t}{\Delta x} \leq C_{max} = 1
-		\end{equation*}
-	}
 
     The parameter estimation problem was solved by fitting the process model to the dataset given in the table \ref{tab: Yield_data}. Each time-series was fitted to the model separately. As a result of fitting, the following parameters were obtained:
 
@@ -33,12 +25,10 @@
 	To ensure that parameters found by the optimizer do not reach unrealistic values, an additional set of inequality constraints is introduced. The lower and upper bounds for each parameter are given in Table \ref{tab:Constraints}.
 
 	\begin{table}[!h]
-		\begin{tabular}{ |l|c|c|c|c|c|c| } 
-			\hline
+		\begin{tabular}{ l|cccccc } 
 			Parameter	&$k_m$ 	& $D_i$ 	& $D_e^M$ 	& $m_{total}$	& $\tau$ 	& $\sigma$ \\  \hline
-			Lower bound	&0	  	& 0 	  	& 0 		& 76 		 	& 0 	   	& 0 \\  \hline
+			Lower bound	&0	  	& 0 	  	& 0 		& 76 		 	& 0 	   	& 0 \\ 
 			Upper bound	&1 		& $+\infty$ & $+\infty$	& 100 			& 1 		& $+\infty$ \\
-			\hline
 		\end{tabular}
 	\caption{Constraints of the parameter estimation problem}
 	\label{tab:Constraints}
@@ -47,11 +37,9 @@
 	The parameter estimation problem requires an initial guess as an input to an optimization problem. To ensure that the solution is a global solution multiple initial points have been tested. The initial guesses for the parameter estimation problem are given in Table \ref{tab:InitialGuess}
 	
 	\begin{table}[!h]
-		\begin{tabular}{ |l|c|c|c|c|c|c| } 
-			\hline
+		\begin{tabular}{ l|cccccc } 
 			Parameter		&$k_m$ 	& $D_i$ 	& $D_e^M$ 	& $m_{total}$	& $\tau$ 	& $\sigma$ \\  \hline
 			Initial guess	&1	  	& 3 	  	& 1 		& 77 		 	& 0.65 	   	& 0.1 \\  
-			\hline
 		\end{tabular}
 		\caption{Constraints of the parameter estimation problem}
 		\label{tab:InitialGuess}
@@ -67,7 +55,7 @@
 		\label{tab: Estimation_results}
 	\end{table}
 	
-	The graphical representation of the original
+	The figure \ref{fig: estimation_results} show yield plots for each of experiments. The blue dot indicate the data point obtained as a measurement from the laboratory experiments. The black curve represents the yield curve obtained from the initial guess of the parameters. The blue curve correspond to yield curve obtained as a solution of the optimization problem.
 
 	\begin{figure*}[!h]
 		\centering
@@ -95,6 +83,7 @@
 			\caption{Experiment at $50^\circ C$ and $300$ bar}
 		\end{subfigure}
 		\caption{Results of parameter fitting, with estimation of the initial state}
+		\label{fig: estimation_results}
 	\end{figure*}
 
 
