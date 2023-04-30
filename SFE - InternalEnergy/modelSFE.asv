@@ -54,7 +54,7 @@ function xdot = modelSFE(x, p, mask, dt)
     %KRHOCP        =     kRHOcp_Comp(     TEMP, PRESSURE, Z, RHO, CP, epsi.*mask, parameters);
 
     %% Saturation
-    Sat_coe       =     Saturation_Concentration(FLUID, C_SAT); % Inverse logistic is used to control saturation. Close to saturation point, the Sat_coe goes to zero.
+    Sat_coe       =     1;%Saturation_Concentration(FLUID, C_SAT); % Inverse logistic is used to control saturation. Close to saturation point, the Sat_coe goes to zero.
 
     %% BC
     %Cf_0          =     if_else(F_u == 0, FLUID(1), 0);

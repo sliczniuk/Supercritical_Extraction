@@ -1,5 +1,5 @@
 %RHO         = [840, 840, 785, 758, 910, 910, 870];
-NAME        = {'$k_m[-]$', '$D_i[m^2/s]$', '$D_e^M[m^2/s]$', '$m_{total}$', '$\tau$', '$\sigma$'};
+NAME        = {'$k_m[-]$', '$D_i[m^2/s]$', '$D_e^M[m^2/s]$', '$C_{sat}$', '$m_{total}$', '$\tau$', '$\sigma$'};
 %EXP_Name    = {'exp1','exp2'};
 
 %% Fit the parameters based as linear function of density
@@ -13,7 +13,7 @@ for jj=1:2
         p_est                = polyval(trendLine, RHO);
         p_y                  = polyval(trendLine, linspace(min(RHO), max(RHO) ) );
         
-        subplot(2,3,ii)
+        subplot(2,4,ii)
         scatter(RHO, DATA_K_OUT(ii,:), 'filled')
         hold on
         plot(linspace(min(RHO), max(RHO) ),p_y,'LineWidth',2);

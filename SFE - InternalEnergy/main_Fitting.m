@@ -12,10 +12,10 @@ Parameters              = num2cell(Parameters_table{:,3});
 DATA_set                = {'LUKE_T40_P200', 'LUKE_T50_P200', 'LUKE_T40_P300_org', 'LUKE_T50_P300_org'};
 %DATA_set                = {'LUKE_T50_P300'};
 
-which_k                 = [8,  44, 45,          ];                          % Select which parameters are used for fitting
-k0                      = [1,  3 , 1 ,  77, 0.65, 0.1];                     % Give inital value for each parameter
+which_k                 = [8,  44, 45, 47               ];                          % Select which parameters are used for fitting
+k0                      = [1,  3 , 1 ,  3, 77, 0.65, 0.1];                     % Give inital value for each parameter
 Nk                      = numel(which_k)+3;                                 % Parameters within the model + m_max, m_ratio, sigma
-k_lu                    = [ [0;0;0;76;0;0] , [1;inf;inf;100;1;inf] ];
+k_lu                    = [ [0;0;0;0;76;0;0] , [1;inf;inf;inf;100;1;inf] ];
 
 Iteration_max           = 100;                                              % Maximum number of iterations for optimzer
 Time_max                = 5*24;                                               % Maximum time of optimization in [h]
@@ -29,7 +29,7 @@ bed                     = 0.165;                                            % Pe
 % Set time of the simulation
 PreparationTime         = 0;
 ExtractionTime          = 150;
-timeStep                = 0.05;                                             % Minutes
+timeStep                = 0.20;                                             % Minutes
 SamplingTime            = 5;                                                % Minutes
 
 simulationTime          = PreparationTime + ExtractionTime;
@@ -133,9 +133,9 @@ parfor ii=1:numel(DATA_set)
     k                           = OPT_solver.variable(Nk);
 
     %% Set parameters
-    msol_max                    = k(4);                                                             % g of product in solid and fluid phase
-    mSol_ratio                  = k(5);
-    sigma                       = k(6);
+    msol_max                    = k(5);                                                             % g of product in solid and fluid phase
+    mSol_ratio                  = k(6);
+    sigma                       = k(7);
 
     mSOL_s                      = msol_max*mSol_ratio;                                              % g of product in biomass
     mSOL_f                      = msol_max*(1-mSol_ratio);                                          % g of biomass in fluid
@@ -236,7 +236,7 @@ parfor ii=1:numel(DATA_set)
 end
 %%
 
-NAME = {'$k_m[-]$', '$D_i[m^2/s]$', '$D_e^M[m^2/s]$', '$m_{total}$', '$\tau$', '$\sigma$'};
+NAME = {'$k_m[-]$', '$D_i[m^2/s]$', '$D_e^M[m^2/s]$', '$C_{sat}$'; '$m_{total}$', '$\tau$', '$\sigma$'};
 TT   = cell2table(NAME');
 
 for i=1:numel(DATA_set)
@@ -283,8 +283,8 @@ for ii=1:numel(DATA_set)
         Parameters{which_k(i)}  = k0(i);
     end
 
-    msol_max                = k0(4);                                                             % g of product in solid and fluid phase
-    mSol_ratio              = k0(5);
+    msol_max                = k0(5);                                                             % g of product in solid and fluid phase
+    mSol_ratio              = k0(6);
     mSOL_s                  = msol_max*mSol_ratio;                                               % g of product in biomass
     mSOL_f                  = msol_max*(1-mSol_ratio);                                           % g of biomass in fluid
 
@@ -315,8 +315,8 @@ for ii=1:numel(DATA_set)
     end
 
     % 
-    msol_max_opt            = KOUT(4);                                                            % g of product in solid and fluid phase
-    mSol_ratio_opt          = KOUT(5);
+    msol_max_opt            = KOUT(5);                                                            % g of product in solid and fluid phase
+    mSol_ratio_opt          = KOUT(6);
     mSOL_s_opt              = msol_max_opt*mSol_ratio_opt;                                        % g of product in biomass
     mSOL_f_opt              = msol_max_opt*(1-mSol_ratio_opt);                                    % g of biomass in fluid
 
