@@ -1,4 +1,4 @@
-\begin{thebibliography}{22}
+\begin{thebibliography}{24}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -148,12 +148,28 @@ Jürgen Gmehling, Michael Kleiber, Bärbel Kolbe, and Jürgen Rarey.
 \newblock Wiley, mar 2019.
 \newblock \doi{10.1002/9783527809479}.
 
+\bibitem[Sovova et~al.(1994)Sovova, Komers, Kucuera, and Jezu]{Sovova1994a}
+H.~Sovova, R.~Komers, J.~Kucuera, and J.~Jezu.
+\newblock Supercritical carbon dioxide extraction of caraway essential oil.
+\newblock \emph{Chemical Engineering Science}, 49\penalty0 (15):\penalty0
+  2499--2505, aug 1994.
+\newblock \doi{10.1016/0009-2509(94)e0058-x}.
+
 \bibitem[Mandel(1957)]{Mandel1957}
 John Mandel.
 \newblock Fitting a straight line to certain types of cumulative data.
 \newblock \emph{Journal of the American Statistical Association}, 52\penalty0
   (280):\penalty0 552--566, dec 1957.
 \newblock \doi{10.1080/01621459.1957.10501413}.
+
+\bibitem[Reis-Vasco et~al.(2000)Reis-Vasco, Coelho, Palavra, Marrone, and
+  Reverchon]{ReisVasco2000}
+E.M.C Reis-Vasco, J.A.P Coelho, A.M.F Palavra, C~Marrone, and E~Reverchon.
+\newblock Mathematical modelling and simulation of pennyroyal essential oil
+  supercritical extraction.
+\newblock \emph{Chemical Engineering Science}, 55\penalty0 (15):\penalty0
+  2917--2922, aug 2000.
+\newblock \doi{10.1016/s0009-2509(99)00561-8}.
 
 \bibitem[Himmelblau(1970)]{Himmelblau1970}
 David~Mautner Himmelblau.

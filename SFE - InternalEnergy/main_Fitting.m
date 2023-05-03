@@ -13,9 +13,9 @@ DATA_set                = {'LUKE_T40_P200', 'LUKE_T50_P200', 'LUKE_T40_P300_org'
 %DATA_set                = {'LUKE_T50_P300'};
 
 which_k                 = [8,  44, 45, 47               ];                          % Select which parameters are used for fitting
-k0                      = [1,  3 , 1 ,  3, 77, 0.65, 0.1];                     % Give inital value for each parameter
+k0                      = [1,  3 , 1 ,  3, 76, 0.65, 0.3];                     % Give inital value for each parameter
 Nk                      = numel(which_k)+3;                                 % Parameters within the model + m_max, m_ratio, sigma
-k_lu                    = [ [0;0;0;0;76;0;0] , [1;inf;inf;inf;100;1;inf] ];
+k_lu                    = [ [0;0;0;0;70;0;0] , [1;inf;inf;inf;100;1;inf] ];
 
 Iteration_max           = 100;                                              % Maximum number of iterations for optimzer
 Time_max                = 5*24;                                               % Maximum time of optimization in [h]
@@ -236,15 +236,24 @@ parfor ii=1:numel(DATA_set)
 end
 %%
 
-NAME = {'$k_m[-]$', '$D_i[m^2/s]$', '$D_e^M[m^2/s]$', '$C_{sat}$'; '$m_{total}$', '$\tau$', '$\sigma$'};
+format shortE
+
+NAME = {'$k_m[-]$', '$D_i[m^2/s]$', '$D_e^M[m^2/s]$', '$C_{sat}$', '$m_{total}$', '$\tau$', '$\sigma$'};
 TT   = cell2table(NAME');
 
+DATA_K_OUT_order_of_mag = DATA_K_OUT;
+DATA_K_OUT_order_of_mag(2,:) = DATA_K_OUT_order_of_mag(2,:) * 1e-14;
+DATA_K_OUT_order_of_mag(3,:) = DATA_K_OUT_order_of_mag(3,:) * 1e-6;
+
 for i=1:numel(DATA_set)
-    TT.(i+1)=round(DATA_K_OUT(:,i),5);
+    TT.(i+1)=DATA_K_OUT_order_of_mag(:,i);
 end
 
 TT.Properties.VariableNames = ["Parameter",'$40[C] 200[bar]$',"$50[C] 200[bar]$","$40[C] 300[bar]$","$50[C] 300[bar]$"];
 writetable(TT,'estimation.csv')
+TT
+
+format short
 
 %%  
 

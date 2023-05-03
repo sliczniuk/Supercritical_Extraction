@@ -230,9 +230,9 @@
 			
 			As discussed by \citet{Gmehling2019}, special attention should be paid to high pressures systems, so the influence of the intermolecular forces on the enthalpy is taken into account. In most cases, these forces are attractive, so additional energy is necessary to move the molecules away from each other, that is, to lower the density. If this energy is not added, the substance cools down when it is expanded.
   
-		\subsubsection{Extraction yield} \label{CH: Yield} \todo{Give reference for measurement function}
+		\subsubsection{Extraction yield} \label{CH: Yield}
 			
-		The efficiency of the process (the yield) is calculated according to equations \ref{Model_measurment_1} to \ref{Model_measurment_2}, which evaluate the mass of solute at the exit of the extraction unit and sums it. The integral form of the measurement equation can be transformed into the differential form and augmented with model equations to be solved simultaneously.
+		The efficiency of the process (the yield) is calculated according to equations \ref{Model_measurment_1} as presented by \citet{Sovova1994a}. The measurement equation evaluate the mass of solute at the outlet of the extraction unit and sums it. The integral form of the measurement equation (\ref{Model_measurment_1}) can be transformed into the differential form (\ref{Model_measurment_2}) and augmented with the process model.
 			
 		{\footnotesize
 			\begin{align} 
@@ -319,7 +319,7 @@
 			
 			where ${\color{blue}x} \in \mathbb{R}^{N_x = 3N_z} $ and ${\color{magenta}p} \in \mathbb{R}^{N_p =  N_{\Theta} + N_u } $, $N_{\Theta}$ is the number of model parameters, $N_{u}$ is the number of control variables.
 			
-			In a state-space sense, the state variables of the system are the local concentrations of solute in the fluid and solid phases (${\color{blue}c_f}(t,z)$ and ${\color{blue}c_s}(t,z)$, respectively), and the local enthalpy of the pseudo-homogeneous phase (${\color{blue}h}(t,z)$). The controllable input variables are the mass flow-rate and temperature of the solvent in the feed ($F_\text{in}(t) = {\color{red}P}(t)$ and $h_\text{in}(t) = h(t,z=0)$, respectively) and the pressure in the extractor ($P(t,z) ={\color{red}P}(t)$). We extend the system state-space by assuming that extraction yield can be modelled as a function of a known initial mass of solute in the solid phase and it can be measured after the separator ($Y(t)$). The system is controllable by manipulating the flow-rate and temperature (enthalpy) of $CO_2$ in the feed, and the pressure in the extractor.
+			In a state-space sense, the state variables of the system are the local concentrations of solute in the fluid and solid phases (${\color{blue}c_f}(t,z)$ and ${\color{blue}c_s}(t,z)$, respectively), and the local enthalpy of the pseudo-homogeneous phase (${\color{blue}h}(t,z)$). The controllable input variables are the mass flow-rate and temperature of the solvent in the feed ($F_\text{in}(t) = {\color{red}P}(t)$ and $h_\text{in}(t) = {\color{red}h}(t,z=0)$, respectively) and the pressure in the extractor ($P(t,z) ={\color{red}P}(t)$). We extend the system state-space by assuming that extraction yield can be modelled as a function of a known initial mass of solute in the solid phase and it can be measured after the separator ($Y(t)$). The system is controllable by manipulating the flow-rate and temperature (enthalpy) of $CO_2$ in the feed, and the pressure in the extractor.
 			
 			\subsubsection{Discretization methods}
 			
