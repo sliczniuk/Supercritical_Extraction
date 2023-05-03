@@ -76,9 +76,10 @@
 	For the partial derivative of the volume with respect to temperature $T$ at constant pressure $P(t)$, we have
 
 	{\footnotesize
-	\begin{equation}
-		\left( \cfrac{\partial {\color{orange}v_m}\left[{\color{blue}T}(t,z), {\color{red}P}(t)\right]}{\partial {\color{blue}T}} \right)_{{\color{red}P}(t)} = \cfrac{{\color{orange}Z}\left[{\color{blue}T}(t,z), {\color{red}P}(t)\right] {\color{magenta}R}}{{\color{red}P}(t)} + \cfrac{{\color{magenta}R}{\color{blue}T}(t,z)}{{\color{red}P}(t)} \underbrace{\left( \cfrac{\partial {\color{orange}Z}\left[{\color{blue}T}(t,z), {\color{red}P}(t)\right]}{\partial {\color{blue}T}} \right)_{{\color{red}P}(t)}}_{\text{Eq. }\eqref{eq: dZdT}} \label{eq: dVdT}
-	\end{equation} }
+	\begin{align}
+		\left( \cfrac{\partial {\color{orange}v_m}\left[{\color{blue}T}(t,z), {\color{red}P}(t)\right]}{\partial {\color{blue}T}} \right)_{{\color{red}P}(t)} &= \cfrac{{\color{orange}Z}\left[{\color{blue}T}(t,z), {\color{red}P}(t)\right] {\color{magenta}R}}{{\color{red}P}(t)} \nonumber \\
+		&+ \cfrac{{\color{magenta}R}{\color{blue}T}(t,z)}{{\color{red}P}(t)} \underbrace{\left( \cfrac{\partial {\color{orange}Z}\left[{\color{blue}T}(t,z), {\color{red}P}(t)\right]}{\partial {\color{blue}T}} \right)_{{\color{red}P}(t)}}_{\text{Eq. }\eqref{eq: dZdT}} \label{eq: dVdT}
+	\end{align} }
  
 	with partial derivative of the compressibility factor with respect to temperature $T$ at constant pressure $P(t)$
 
@@ -91,17 +92,17 @@
 	
 	{\footnotesize
 	\begin{equation}
-		\left(\cfrac{\partial {\color{red}P}(t)}{\partial {\color{blue}T}}\right)_{{\color{orange}v_m}(t,z)} = \left( \cfrac{\partial{\dfrac{{\color{orange}Z}{\color{magenta}R}{\color{blue}T}(t,z)}{{\color{magenta}v_m}\left[T(t,z),P(t)\right]}}}{\partial{\color{blue}T}}\right)_{{\color{orange}V}(t,z)} \label{eq: dPdT}
+		\left(\cfrac{\partial {\color{red}P}(t)}{\partial {\color{blue}T}}\right)_{{\color{orange}v_m}(t,z)} = \left( \cfrac{\partial{\dfrac{{\color{orange}Z}{\color{magenta}R}{\color{blue}T}(t,z)}{{\color{magenta}v_m}\left[T(t,z),P(t)\right]}}}{\partial{\color{blue}T}}\right)_{{\color{orange}v_m}(t,z)} \label{eq: dPdT}
 	\end{equation} }
 	
 	The residual specific heat at constant volume is obtained, by definition, by using the residual internal energy
 	
 	{\footnotesize
 	\begin{equation}
-		{\color{orange}C_v^{\text{R}}}\left[{\color{blue}T}(t,z),{\color{red}P}(t)\right] = \left(\cfrac{\partial{\color{orange}U^{\text{R}}}\left[{\color{blue}T}(t,z),{\color{red}P}(t)\right]}{\partial {\color{blue}T}}\right)_{{\color{orange}V}(t,z)}. \label{eq: CvR}
+		{\color{orange}C_v^{\text{R}}}\left[{\color{blue}T}(t,z),{\color{red}P}(t)\right] = \left(\cfrac{\partial{\color{orange}U^{\text{R}}}\left[{\color{blue}T}(t,z),{\color{red}P}(t)\right]}{\partial {\color{blue}T}}\right)_{{\color{orange}v_m}(t,z)}. \label{eq: CvR}
 	\end{equation} }
 	
-	By denoting the physical constants as $\varphi_{C_p^{\text{F}}} = \left({\color{magenta}R}, {\color{magenta}M_{\text{CO}_2}}, {\color{magenta}T^c_{\text{CO}_2}}, {\color{magenta}P^c_{\text{CO}_2}}, {\color{magenta}\omega_{\text{CO}_2}}\right)$, we get the spatio-temporal representation $C_p^{\text{F}}\left[T(t,z),P(t) \mid \varphi_{C_p^{\text{F}}}\right]$ of the specific heat of the fluid phase.
+	By denoting the physical constants as $\varphi_{C_p^{\text{F}}} = ({\color{magenta}R}, {\color{magenta}M_{\text{CO}_2}},\\ {\color{magenta}T^c_{\text{CO}_2}}, {\color{magenta}P^c_{\text{CO}_2}}, {\color{magenta}\omega_{\text{CO}_2}})$, we get the spatio-temporal representation $C_p^{\text{F}}\left[T(t,z),P(t) \mid \varphi_{C_p^{\text{F}}}\right]$ of the specific heat of the fluid phase.
 	
 	\subsubsection{Departure functions for enthalpy calculations} \label{CH:Enthalpy}
 	

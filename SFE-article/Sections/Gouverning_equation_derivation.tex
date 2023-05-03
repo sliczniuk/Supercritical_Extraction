@@ -41,7 +41,7 @@
 		\label{fig: control_volume}
 	\end{figure}
 	
-	This control volume is a slice of an extractor, where the infinitesimal thickness of the slice is $dz$. On the left side of the control volume, consistent with the quasi-one-dimensional assumptions, the density, velocity, pressure, and internal energy denoted by $\rho_f$, $V$, $P$, and $e$, respectively, are uniform over the area $A$. Similarly, on the right side of the control volume, the density, velocity, pressure, and internal energy $\rho_f+d\rho_f$, $V+dV$, $P+dP$, and $e+de$, respectively, are uniform over the area available for fluid phase $A_f+dA_f$. Applied to the control volume in Fig. \ref{fig: control_volume}, the volume integral in Eq. \ref{EQ: Continuity_integral_general} becomes, in the limit as $dz$ becomes very small,
+	This control volume is a slice of an extractor, where the infinitesimal thickness of the slice is $dz$. On the left side of the control volume, consistent with the quasi-one-dimensional assumptions, the density, velocity, pressure, and internal energy denoted by $\rho_f$, $v$, $P$, and $e$, respectively, are uniform over the area $A$. Similarly, on the right side of the control volume, the density, velocity, pressure, and internal energy $\rho_f+d\rho_f$, $v+dv$, $P+dP$, and $e+de$, respectively, are uniform over the area available for fluid phase $A_f+dA_f$. Applied to the control volume in Fig. \ref{fig: control_volume}, the volume integral in Eq. \ref{EQ: Continuity_integral_general} becomes, in the limit as $dz$ becomes very small,
 	
 	{\footnotesize
 		\begin{equation}
@@ -54,7 +54,7 @@
 	
 	{\footnotesize
 		\begin{equation}
-			\iint_S \rho_f \textbf{V} \cdot \textbf{dS} = -\rho_f V A_f + (\rho_f+d\rho_f)(V+dV)(A_f+dA_f)
+			\iint_S \rho_f \textbf{V} \cdot \textbf{dS} = -\rho_f v A_f + (\rho_f+d\rho_f)(v+dv)(A_f+dA_f)
 		\end{equation}
 	}
 
@@ -62,17 +62,17 @@
 	 
 	{\footnotesize
 		\begin{align}
-			&\iint_S \rho_f \textbf{V} \cdot \textbf{dS} = -\rho_f V A_f + \rho_f V A_f + \rho_f V dA_f + \rho_f A_f dV \nonumber \\ 
-			&+ \rho_f dV dA_f + V A_f d\rho_f + V d\rho_f dA + A_f d\rho_f dV + d\rho_f dV dA_f
+			&\iint_S \rho_f \textbf{V} \cdot \textbf{dS} = -\rho_f v A_f + \rho_f v A_f + \rho_f v dA_f + \rho_f A_f dv \nonumber \\ 
+			&+ \rho_f dv dA_f + v A_f d\rho_f + v d\rho_f dA + A_f d\rho_f dv + d\rho_f dv dA_f
 			\label{EQ: Triple_Prod_Cont_Surf}
 		\end{align}
 	}
 	
-	In the limit as $dz$ becomes very small, the terms involving products of the differential in Eq. \ref{EQ: Triple_Prod_Cont_Surf}, such as $\rho_f dV dA_f,~d\rho_f dV dA_f$, go to zero much faster than those terms involving only one differential. Hence, all terms involving products of differentials can be dropped, yielding in the limit as $dz$ becomes very small
+	In the limit as $dz$ becomes very small, the terms involving products of the differential in Eq. \ref{EQ: Triple_Prod_Cont_Surf}, such as $\rho_f dv dA_f,~d\rho_f dv dA_f$, go to zero much faster than those terms involving only one differential. Hence, all terms involving products of differentials can be dropped, yielding in the limit as $dz$ becomes very small
 	
 	{\footnotesize
 		\begin{equation}
-			\iint_S \rho_f \textbf{V} \cdot \textbf{dS} = \rho_f V dA_f + \rho_f A_f dV + V A_f d\rho_f 
+			\iint_S \rho_f \textbf{V} \cdot \textbf{dS} = \rho_f v dA_f + \rho_f A_f dv + v A_f d\rho_f 
 			\label{EQ: Cont_Simpl_Surf}
 		\end{equation}
 	}
@@ -81,7 +81,7 @@
 	
 	{\footnotesize
 		\begin{equation}
-			\cfrac{\partial \left( \rho_f A_f \right)}{\partial t} + \cfrac{\partial \left( \rho_f A_f V \right)}{\partial z} = 0
+			\cfrac{\partial \left( \rho_f A_f \right)}{\partial t} + \cfrac{\partial \left( \rho_f A_f v \right)}{\partial z} = 0
 			\label{EQ: Conservative_continuity}
 		\end{equation}
 	}
@@ -90,18 +90,18 @@
 	
 	{\footnotesize
 		\begin{equation}
-			\cfrac{\partial \left( \rho_f \textbf{A} \phi (z) \right)}{\partial t} + \cfrac{\partial \left( \rho_f \textbf{A} \phi (z) V \right)}{\partial z} = 0
+			\cfrac{\partial \left( \rho_f \textbf{A} \phi (z) \right)}{\partial t} + \cfrac{\partial \left( \rho_f \textbf{A} \phi (z) v \right)}{\partial z} = 0
 		\end{equation}
 	}
 	The equation can be simplified by canceling out a constant $\textbf{A}$
 	
 	{\footnotesize
 		\begin{equation}
-			\cfrac{\partial \left( \rho_f \phi (z) \right)}{\partial t} + \cfrac{\partial \left( \rho_f \phi (z) V \right)}{\partial z} = 0
+			\cfrac{\partial \left( \rho_f \phi (z) \right)}{\partial t} + \cfrac{\partial \left( \rho_f \phi (z) v \right)}{\partial z} = 0
 		\end{equation}
 	}
 	
-	If so-called superficial velocity is defined as $u=\phi V$, the mass continuity becomes
+	If so-called superficial velocity is defined as $u=\phi v$, the mass continuity becomes
 	
 	{\footnotesize
 		\begin{equation}
@@ -136,7 +136,7 @@
 	
 	{\footnotesize
 		\begin{equation}
-			\iint_S c_f \textbf{V} \cdot \textbf{dS} = c_f V dA_f + c_f A_f dV + V A_f dc_f 
+			\iint_S c_f \textbf{V} \cdot \textbf{dS} = c_f v dA_f + c_f A_f dv + v A_f dc_f 
 		\end{equation}
 	}
 	
@@ -144,7 +144,7 @@
 	
 	{\footnotesize
 		\begin{equation}
-			\iint_S J_{diff} \cdot \textbf{n}~\textbf{dS} = \iiint_{\mathcal{V}_f} \nabla J_{diff} dV_f = \nabla \iiint_{\mathcal{V}_f} J_{diff} dV_f = \nabla \left( J_{diff} A_f dz \right)
+			\iint_S J_{diff} \cdot \textbf{n}~\textbf{dS} = \iiint_{\mathcal{V}_f} \nabla J_{diff} dv_f = \nabla \iiint_{\mathcal{V}_f} J_{diff} dv_f = \nabla \left( J_{diff} A_f dz \right)
 		\end{equation}
 	}
 	
@@ -152,7 +152,7 @@
 	
 	{\footnotesize
 		\begin{equation}
-			\cfrac{\partial \left( c_f A_f \right)}{\partial t} + \cfrac{\partial \left( c_f A_f V \right)}{\partial z} = \cfrac{\partial \left( c_s A_s \right) }{\partial t} + \cfrac{\partial \left( J_{diff} A_f \right) }{\partial z}
+			\cfrac{\partial \left( c_f A_f \right)}{\partial t} + \cfrac{\partial \left( c_f A_f v \right)}{\partial z} = \cfrac{\partial \left( c_s A_s \right) }{\partial t} + \cfrac{\partial \left( J_{diff} A_f \right) }{\partial z}
 		\end{equation}
 	}
 
@@ -191,7 +191,7 @@
 	
 	{\footnotesize
 		\begin{equation}
-			\cfrac{\partial}{\partial t} \iiint_{\mathcal{V}_f} \left( \rho_f V_z \right) d\mathcal{V}_f + \iint_S \left( \rho_f V_z \textbf{V} \right) \textbf{dS} = \iint_S \left( P dS \right)_z
+			\cfrac{\partial}{\partial t} \iiint_{\mathcal{V}_f} \left( \rho_f v_z \right) d\mathcal{V}_f + \iint_S \left( \rho_f v_z \textbf{V} \right) \textbf{dS} = \iint_S \left( P dS \right)_z
 			\label{EQ: Momentum_Integral_Form}
 		\end{equation}
 	}
@@ -201,7 +201,7 @@
 	
 	{\footnotesize
 		\begin{equation}
-			\cfrac{\partial}{\partial t} \iiint_{\mathcal{V}_f} \left( \rho_f V_z \right) d \mathcal{V}_f = \cfrac{\partial}{\partial t} \left( \rho_f V A_f dz \right)
+			\cfrac{\partial}{\partial t} \iiint_{\mathcal{V}_f} \left( \rho_f v_z \right) d \mathcal{V}_f = \cfrac{\partial}{\partial t} \left( \rho_f v A_f dz \right)
 			\label{EQ: Force_Continuity_Monenmtum}
 		\end{equation}equation
 	}
@@ -210,7 +210,7 @@
 	
 	{\footnotesize
 		\begin{equation}
-			\iint_S \left( \rho_f V_z \textbf{V} \right) dS = -\rho_f V^2 + \left( \rho_f + d \rho_f \right) \left( V+dV \right)^2 \left( A+dA \right)
+			\iint_S \left( \rho_f v_z \textbf{V} \right) dS = -\rho_f v^2 + \left( \rho_f + d \rho_f \right) \left( v+dv \right)^2 \left( A+dA \right)
 		\end{equation}
 	}
 	
@@ -234,7 +234,7 @@
 	
 	{\footnotesize
 		\begin{align}
-			& \cfrac{\partial}{\partial t} \left( \rho_f V A_f dz \right) - \rho_f V^2 A_f + (\rho_f + d\rho_f)(V+dV)^2(A_f+dA_f)  \nonumber \\
+			& \cfrac{\partial}{\partial t} \left( \rho_f v A_f dz \right) - \rho_f v^2 A_f + (\rho_f + d\rho_f)(v+dv)^2(A_f+dA_f)  \nonumber \\
 			&= PA_f - (P+dP)(A+dA_f)+PdA_f
 		\end{align}
 	}
@@ -243,7 +243,7 @@
 	
 	{\footnotesize
 		\begin{equation}
-			\cfrac{\partial}{\partial t} \left( \rho_f V A_f dz \right) + d\left( \rho_f V^2 A_f \right) = -A dP
+			\cfrac{\partial}{\partial t} \left( \rho_f v A_f dz \right) + d\left( \rho_f v^2 A_f \right) = -A dP
 		\end{equation}
 	}
 
@@ -251,7 +251,7 @@
 	
 	{\footnotesize
 		\begin{equation}
-			\cfrac{\partial \left( \rho_f V A_f \right)}{\partial t} + \cfrac{\partial \left( \rho_f V^2 A_f \right)}{\partial z} = -A_f \cfrac{\partial P}{\partial z}
+			\cfrac{\partial \left( \rho_f v A_f \right)}{\partial t} + \cfrac{\partial \left( \rho_f v^2 A_f \right)}{\partial z} = -A_f \cfrac{\partial P}{\partial z}
 			\label{EQ: Conservative_Momentum}
 		\end{equation}
 	}
@@ -260,7 +260,7 @@
 	
 	{\footnotesize
 		\begin{equation}
-			\cfrac{\partial \left( \rho_f V \textbf{A} \phi \right) }{\partial t} + \cfrac{\partial \left( \rho_f V^2 \textbf{A} \phi \right) }{\partial z} = - 	\textbf{A} \phi \cfrac{\partial P}{\partial t}
+			\cfrac{\partial \left( \rho_f v \textbf{A} \phi \right) }{\partial t} + \cfrac{\partial \left( \rho_f v^2 \textbf{A} \phi \right) }{\partial z} = - 	\textbf{A} \phi \cfrac{\partial P}{\partial t}
 		\end{equation}
 	}
 
@@ -268,7 +268,7 @@
 	
 	{\footnotesize
 		\begin{equation}
-			\cfrac{\partial \left( \rho_f V \phi \right) }{\partial t} + \cfrac{\partial \left( \rho_f V^2 \phi \right) }{\partial z} = - \phi 	\cfrac{\partial P}{\partial t}
+			\cfrac{\partial \left( \rho_f v \phi \right) }{\partial t} + \cfrac{\partial \left( \rho_f v^2 \phi \right) }{\partial z} = - \phi 	\cfrac{\partial P}{\partial t}
 		\end{equation}
 	}
 
@@ -280,11 +280,11 @@
 		\end{equation}
 	}
 
-	Eq. \ref{EQ: Conservative_Momentum} represents the conservative form of the momentum equation for the quasi-one-dimensional flow. The equivalent non-conservative form can be obtained by multiplying the continuity equation by $V$ and subtracting it from Eq. \ref{EQ: Conservative_Momentum}
+	Eq. \ref{EQ: Conservative_Momentum} represents the conservative form of the momentum equation for the quasi-one-dimensional flow. The equivalent non-conservative form can be obtained by multiplying the continuity equation by $v$ and subtracting it from Eq. \ref{EQ: Conservative_Momentum}
 	
 	{\footnotesize
 		\begin{equation}
-			\cfrac{\partial \left( \rho_f V A_f \right)}{\partial t} - V\cfrac{ \partial \left( \rho_f A_f \right) }{\partial t} + \cfrac{\left( \rho_f V^2 A_f 	\right)}{\partial z} - V \cfrac{\left( \rho_f V A_f \right)}{\partial z} = -A_f \cfrac{\partial P}{\partial z}
+			\cfrac{\partial \left( \rho_f v A_f \right)}{\partial t} - V\cfrac{ \partial \left( \rho_f A_f \right) }{\partial t} + \cfrac{\left( \rho_f v^2 A_f 	\right)}{\partial z} - V \cfrac{\left( \rho_f v A_f \right)}{\partial z} = -A_f \cfrac{\partial P}{\partial z}
 		\end{equation}
 	}
 	
@@ -292,7 +292,7 @@
 
 	{\footnotesize
 		\begin{equation}
-			\rho_f A_f \cfrac{\partial V}{\partial t} + \rho_f A_f V \cfrac{\partial V}{\partial z} = -A_f \cfrac{\partial P}{\partial z}
+			\rho_f A_f \cfrac{\partial v}{\partial t} + \rho_f A_f v \cfrac{\partial v}{\partial z} = -A_f \cfrac{\partial P}{\partial z}
 		\end{equation}
 	}
 
@@ -300,12 +300,12 @@
 	
 	{\footnotesize
 		\begin{equation}
-			\rho_f \cfrac{\partial V}{\partial t} + \rho_f V \cfrac{\partial V}{\partial z} = -\cfrac{\partial P}{\partial z}
+			\rho_f \cfrac{\partial v}{\partial t} + \rho_f v \cfrac{\partial v}{\partial z} = -\cfrac{\partial P}{\partial z}
 			\label{EQ: Non-conservative_Momentum}
 		\end{equation}
 	}
 
-	The Eq. \ref{EQ: Non-conservative_Momentum} is stylistically the same as the general momentum conservation for one-dimensional flow with no-body forces. The momentum equation can be expressed in terms of superficial velocity $u=V\phi$. 
+	The Eq. \ref{EQ: Non-conservative_Momentum} is stylistically the same as the general momentum conservation for one-dimensional flow with no-body forces. The momentum equation can be expressed in terms of superficial velocity $u=v\phi$. 
 	
 	{\footnotesize
 		\begin{equation}
@@ -348,7 +348,7 @@
 	
 	{\footnotesize
 		\begin{equation}
-			\cfrac{\partial}{\partial} \iiint_{\mathcal{V}_f} \rho_f \left( e_f + \cfrac{V^2}{2} \right) d\mathcal{V}_f + \iint_S \rho_f \left( e_f + \cfrac{V^2}{2} \right) \textbf{V} \cdot \textbf{dS} = - \iint_S \left( P\textbf{V} \right) \cdot \textbf{dS}
+			\cfrac{\partial}{\partial} \iiint_{\mathcal{V}_f} \rho_f \left( e_f + \cfrac{v^2}{2} \right) d\mathcal{V}_f + \iint_S \rho_f \left( e_f + \cfrac{v^2}{2} \right) \textbf{V} \cdot \textbf{dS} = - \iint_S \left( P\textbf{V} \right) \cdot \textbf{dS}
 			\label{EQ: Energy_equation_integral}
 		\end{equation}
 	}
@@ -357,17 +357,17 @@
 	
 	{\footnotesize
 		\begin{align}
-			&\cfrac{\partial}{\partial t} \left[ \rho_f \left( e_f + \cfrac{V^2}{2} \right) A_f dz \right] - \rho_f \left( e_f + \cfrac{V^2}{2} \right) V A_f \nonumber \\
-			&+ \left( \rho_f + d\rho_f \right) \left[ e_f + de_f + \cfrac{\left( V + dV \right)^2}{2} \right] \left( V+fV \right) \left( A_f+dA_f \right) \nonumber \\
-			&= - \left[ -PVA_f + \left(P+dP\right) \left(V+dV\right) \left(A_f+dA_f\right) - 2\left( PV\cfrac{dA_f}{2} \right) \right]
+			&\cfrac{\partial}{\partial t} \left[ \rho_f \left( e_f + \cfrac{v^2}{2} \right) A_f dz \right] - \rho_f \left( e_f + \cfrac{v^2}{2} \right) v A_f \nonumber \\
+			&+ \left( \rho_f + d\rho_f \right) \left[ e_f + de_f + \cfrac{\left( v + dv \right)^2}{2} \right] \left( V+{\color{red}fV} \right) \left( A_f+dA_f \right) \nonumber \\
+			&= - \left[ -PvA_f + \left(P+dP\right) \left(v+dv\right) \left(A_f+dA_f\right) - 2\left( Pv\cfrac{dA_f}{2} \right) \right]
 		\end{align}
-	}
+	} \todo[]{Check fV}
 	
 	Neglecting products of differential and canceling like terms, the above equation becomes
 	
 	{\footnotesize
 		\begin{equation}
-			\cfrac{\partial}{\partial t} \left[ \rho_f \left( e_f + \cfrac{V^2}{2} \right) A_f dz \right] + d\left( \rho_f r_f A_f \right) + \cfrac{ \left( \rho_f V^3 A_f \right) }{2} = -d \left( P A_f V \right)
+			\cfrac{\partial}{\partial t} \left[ \rho_f \left( e_f + \cfrac{v^2}{2} \right) A_f dz \right] + d\left( \rho_f r_f A_f \right) + \cfrac{ \left( \rho_f v^3 A_f \right) }{2} = -d \left( P A_f v \right)
 		\end{equation}
 	}
 
@@ -375,7 +375,7 @@
 	
 	{\footnotesize
 		\begin{equation}
-			\cfrac{\partial}{\partial t} \left[ \rho_f \left( e_f + \cfrac{V^2}{2} \right) A_f dz \right] + d \left[ \rho_f \left( e_f \cfrac{V^2}{2} \right) VA_f \right] = - d\left( P A_f V \right)
+			\cfrac{\partial}{\partial t} \left[ \rho_f \left( e_f + \cfrac{v^2}{2} \right) A_f dz \right] + d \left[ \rho_f \left( e_f \cfrac{v^2}{2} \right) vA_f \right] = - d\left( P A_f v \right)
 		\end{equation}
 	}
 
@@ -383,16 +383,16 @@
 	
 	{\footnotesize
 		\begin{equation}
-			\cfrac{\partial \left[ \rho_f \left( e_f + V^2 / 2 \right) A \right]}{\partial t} + \cfrac{\partial \rho_f \left( e_f + V^2 / 2 \right)VA_f}{\partial z} = -\cfrac{\partial \left( P A_f V \right)}{\partial z}
+			\cfrac{\partial \left[ \rho_f \left( e_f + v^2 / 2 \right) A \right]}{\partial t} + \cfrac{\partial \rho_f \left( e_f + v^2 / 2 \right)vA_f}{\partial z} = -\cfrac{\partial \left( P A_f v \right)}{\partial z}
 			\label{EQ: Energy_equation_conservative_total}
 		\end{equation}
 	}
 	
-	Equation \ref{EQ: Energy_equation_conservative_total} is the conservation form of the energy expressed in terms of the total energy $e~+~V^2/2$, appropriate for unsteady, quasi-one-dimensional flow. The energy equation can be expressed in terms of internal energy if Eq. \ref{EQ: Conservative_Momentum} is multiplicated by $V$ and then subtracted from Eq. \ref{EQ: Energy_equation_conservative_total}
+	Equation \ref{EQ: Energy_equation_conservative_total} is the conservation form of the energy expressed in terms of the total energy $e~+~v^2/2$, appropriate for unsteady, quasi-one-dimensional flow. The energy equation can be expressed in terms of internal energy if Eq. \ref{EQ: Conservative_Momentum} is multiplicated by $v$ and then subtracted from Eq. \ref{EQ: Energy_equation_conservative_total}
 	
 	{\footnotesize
 		\begin{equation}
-			\cfrac{\partial \left( \rho_f e_f A_f \right) }{\partial t} + \cfrac{\partial \left( \rho_f  e_f V A_f \right)}{\partial z} = -P \cfrac{\partial A_f V}{\partial z}
+			\cfrac{\partial \left( \rho_f e_f A_f \right) }{\partial t} + \cfrac{\partial \left( \rho_f  e_f v A_f \right)}{\partial z} = -P \cfrac{\partial A_f v}{\partial z}
 			\label{EQ: Energy_conservative_internal}
 		\end{equation}
 	}
@@ -401,7 +401,7 @@
 	
 	{\footnotesize
 		\begin{equation}
-			\rho_f A_f \cfrac{\partial e_f}{\partial t} + \rho_f A_f V \cfrac{\partial e_f}{\partial z} = - P \cfrac{\partial (A_f V) }{\partial z}
+			\rho_f A_f \cfrac{\partial e_f}{\partial t} + \rho_f A_f v \cfrac{\partial e_f}{\partial z} = - P \cfrac{\partial (A_f v) }{\partial z}
 		\end{equation}
 	}
 	
@@ -409,7 +409,7 @@
 	
 	{\footnotesize
 		\begin{equation}
-			\rho_f \cfrac{\partial e_f}{\partial t} + \rho_f V \cfrac{\partial e_f}{\partial z} = -P \cfrac{V}{A_f} \cfrac{\partial A_f}{\partial z}
+			\rho_f \cfrac{\partial e_f}{\partial t} + \rho_f v \cfrac{\partial e_f}{\partial z} = -P \cfrac{v}{A_f} \cfrac{\partial A_f}{\partial z}
 		\end{equation}
 	}
 
@@ -417,20 +417,22 @@
 	
 	{\footnotesize
 		\begin{equation}
-			\rho_f \cfrac{\partial e_f}{\partial t} + \rho_f V \cfrac{\partial e_f}{\partial z} = -P \cfrac{\partial V}{\partial z} - P V \cfrac{\partial (ln~A_f)}{\partial z}
+			\rho_f \cfrac{\partial e_f}{\partial t} + \rho_f v \cfrac{\partial e_f}{\partial z} = -P \cfrac{\partial v}{\partial z} - P V \cfrac{\partial (ln~A_f)}{\partial z}
 			\label{EQ: Energy_equation_nonconservative}
 		\end{equation}
 	}
 	
-	Equation \ref{EQ: Energy_equation_nonconservative} is the non-conservative form of the energy equation expressed in terms of internal energy, appropriate to unsteady quasi-one-dimensional flow. The reason for obtaining the energy equation in the form of Eq. \ref{EQ: Energy_equation_nonconservative} is that, for a calorically perfect gas, it leads directly to a form of the energy equation in terms of temperature $T$. For calorically perfect gas ${\footnotesize e_f=C_vT}$
-	
-	\hrule
-	
-	{\footnotesize
-		\begin{equation}
-			\cfrac{\partial \left( \rho_f e_f A_f \right) }{\partial t} + \cfrac{\partial \left( \rho_f  e_f V A_f \right)}{\partial z} = -P \cfrac{\partial A_f V}{\partial z} + \cfrac{\partial}{\partial z} \left( k \cfrac{\partial T}{\partial z} \right)
-		\end{equation}
-	}
+	Equation \ref{EQ: Energy_equation_nonconservative} is the non-conservative form of the energy equation expressed in terms of internal energy, appropriate to unsteady quasi-one-dimensional flow. The reason for obtaining the energy equation in the form of Eq. \ref{EQ: Energy_equation_nonconservative} is that, for a calorically perfect gas, it leads directly to a form of the energy equation in terms of temperature $T$. 
+%	
+%	For calorically perfect gas ${\footnotesize e_f=C_vT}$
+%	
+%	\hrule
+%	
+%	{\footnotesize
+%		\begin{equation}
+%			\cfrac{\partial \left( \rho_f e_f A_f \right) }{\partial t} + \cfrac{\partial \left( \rho_f  e_f v A_f \right)}{\partial z} = -P \cfrac{\partial A_f v}{\partial z} + \cfrac{\partial}{\partial z} \left( k \cfrac{\partial T}{\partial z} \right)
+%		\end{equation}
+%	}
 	
 %	{TODO: \color{red}finish derivation of energy equation for real gas and introduce a homogenous version of the energy equation}
 	

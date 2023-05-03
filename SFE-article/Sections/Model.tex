@@ -244,7 +244,7 @@
                 \label{Model_measurment_2}
 		\end{align}	}
   
-		\subsubsection{State-space representation} \label{CH: State_space}
+		\subsubsection{Initial and boundary conditions} 
 		It is assumed that the solvent is free of solute at the entrance of the extractor and that all the solid particles have the same initial solute content ${\color{magenta}c_{s0}}$. The fluid concentration is assumed to not be uniform, and as such it is described by a function $H=H(z)$. The further discussion on the distribution of concentration in the fluid phase can be found in appendix \ref{CH: IC_BC}. Moreover, it is considered that the initial temperature of the extractor in every place is the same and described by ${\color{magenta}h_0}$. Therefore, the initial conditions employed in the simulation are:
 			
 		{\footnotesize
@@ -255,6 +255,8 @@
 					{\color{blue}h}(t = 0, z) &= {\color{magenta}h_0}
 				\end{align*}
 		\end{subequations} }
+	
+		\subsubsection{State-space representation} \label{CH: State_space}
 			
 		The process model can be written in a general form:
 			
@@ -268,24 +270,16 @@
 				\end{bmatrix}
 				& =
 				\begin{bmatrix}
-					{\color{blue}\phi_1} \left( {\color{blue}c_f}(t,z),{\color{blue}c_s}(t,z),{\color{blue}h}(t,z); {\color{magenta}\Theta} \right)\\
-					{\color{blue}\phi_2} \left( {\color{blue}c_f}(t,z),{\color{blue}c_s}(t,z),{\color{blue}h}(t,z); {\color{magenta}\Theta} \right)\\
-					{\color{blue}\phi_3} \left( {\color{blue}c_f}(t,z),{\color{blue}c_s}(t,z),{\color{blue}h}(t,z); {\color{magenta}\Theta} \right) \\
-					{\color{blue}\phi_4} \left( {\color{blue}c_f}(t,z),{\color{blue}c_s}(t,z),{\color{blue}h}(t,z); {\color{magenta}\Theta} \right)
-				\end{bmatrix} = {\color{blue}\phi} \left( t,z; {\color{magenta}\Theta} \right) = \cfrac{\partial {\color{blue}\chi}(t,z)}{\partial t}
+					{\color{blue}\bar{\phi_1}} \left( {\color{blue}c_f}(t,z),{\color{blue}c_s}(t,z),{\color{blue}h}(t,z); {\color{magenta}\Theta} \right)\\
+					{\color{blue}\bar{\phi_2}} \left( {\color{blue}c_f}(t,z),{\color{blue}c_s}(t,z),{\color{blue}h}(t,z); {\color{magenta}\Theta} \right)\\
+					{\color{blue}\bar{\phi_3}} \left( {\color{blue}c_f}(t,z),{\color{blue}c_s}(t,z),{\color{blue}h}(t,z); {\color{magenta}\Theta} \right) \\
+					{\color{blue}\bar{\phi_4}} \left( {\color{blue}c_f}(t,z),{\color{blue}c_s}(t,z),{\color{blue}h}(t,z); {\color{magenta}\Theta} \right)
+				\end{bmatrix} = {\color{blue}\bar{\phi}} \left( t,z; {\color{magenta}\Theta} \right) = \cfrac{\partial {\color{blue}\chi}(t,z)}{\partial t}
 		\end{align} }
 			
-		where ${\color{magenta}\theta}$ is a set of parameters present in the model, ${\color{blue}\phi}$ is a set of functions that correspond to state equations of the model, and ${\color{blue}\chi}$ is the state-space model.
+		where ${\color{magenta}\theta}$ is a set of parameters present in the model, ${\color{blue}\bar{\phi}}$ is a set of functions that correspond to state equations of the model, and ${\color{blue}\chi}$ is the state-space model.
 		
-		The method of lines is used to transform the process model equations into a set of ODEs denoted as ${\color{blue}G}({\color{blue}x}(t);{\color{magenta}p})$. The partial derivatives in $z$-direction are computed using a first-order and second-order finite difference approximation. The backward finite difference is used to approximate the first-order derivative, while the central difference scheme is used to approximate the second-order derivative. The length of the fixed bed is divided into $N_z$ equally distributed points in $z$-direction. To ensure the stability of the convergence while solving the partial differential equations, the Courant–Friedrichs–Lewy condition (given by equation) was applied. Based on the discretization step and the velocity, the Courant–Friedrichs–Lewy condition can be used to find.
-		
-		{\footnotesize
-			\begin{equation*}
-				C = \cfrac{u\Delta t}{\Delta x} \leq C_{max} = 1
-			\end{equation*}
-		}
-		
-		Each function ${\color{blue}\phi_i}$ is transformed to a corresponding set of $N_z$ discretized equations denoted as ${\color{blue}G}_{i\times N_z+1}$ to ${\color{blue}G}_{(i+1)\times N_z}$, where $i$ corresponds to the process model equation. The state-space model ${\color{blue}\chi}(t,z)$ after the discretization is represented by $\dot{{\color{blue}x}}(t)$.
+		Each function ${\color{blue}\bar{\phi_i}}$ is transformed to a corresponding set of $N_z$ discretized equations denoted as ${\color{blue}G}_{i\times N_z+1}$ to ${\color{blue}G}_{(i+1)\times N_z}$, where $i$ corresponds to the process model equation. The state-space model ${\color{blue}\chi}(t,z)$ after the discretization is represented by $\dot{{\color{blue}x}}(t)$.
 			
 			{\footnotesize
 				\begin{align*} \label{discretization}
@@ -327,5 +321,21 @@
 			
 			In a state-space sense, the state variables of the system are the local concentrations of solute in the fluid and solid phases (${\color{blue}c_f}(t,z)$ and ${\color{blue}c_s}(t,z)$, respectively), and the local enthalpy of the pseudo-homogeneous phase (${\color{blue}h}(t,z)$). The controllable input variables are the mass flow-rate and temperature of the solvent in the feed ($F_\text{in}(t) = {\color{red}P}(t)$ and $h_\text{in}(t) = h(t,z=0)$, respectively) and the pressure in the extractor ($P(t,z) ={\color{red}P}(t)$). We extend the system state-space by assuming that extraction yield can be modelled as a function of a known initial mass of solute in the solid phase and it can be measured after the separator ($Y(t)$). The system is controllable by manipulating the flow-rate and temperature (enthalpy) of $CO_2$ in the feed, and the pressure in the extractor.
 			
+			\subsubsection{Discretization methods}
+			
+			The method of lines is used to transform the process model equations into a set of ODEs denoted as ${\color{blue}G}({\color{blue}x}(t);{\color{magenta}p})$. The partial derivatives in $z$-direction are computed using a first-order and second-order finite difference approximation. The backward finite difference is used to approximate the first-order derivative, while the central difference scheme is used to approximate the second-order derivative. The length of the fixed bed is divided into $N_z$ equally distributed points in $z$-direction. 
+			
+			As presented in Appendix \ref{CH: Gouverning equations}, all the governing can be written in the integral form using the Divergence Theorem. The integral equation states that the change rate of the integral of any quantity over an arbitrary control volume is given by the flux through the boundary of the control volume, with being the outer surface normal through the boundary. That quantity is neither produced nor consumed inside of the control volume and is hence conserved. For a derivative to be conservative, it must form a telescoping series. In other words, after the addition of all terms coming from the discretization over a grid, only the boundary terms should remain and the artificial interior points should cancel out. To ensure the mass conservation, the discretization is applied on the conservative form of the process model.
+			
+			To ensure the stability of the convergence while solving the partial differential equations, the Courant–Friedrichs–Lewy condition (given by Equation \ref{EQ:CFL}) was applied. Based on the discretization step and the velocity, the Courant–Friedrichs–Lewy condition can be used to find.
+			
+			{\footnotesize
+				\begin{equation}
+					C = \cfrac{u\Delta t}{\Delta x} \leq C_{max} = 1 
+					\label{EQ:CFL}
+				\end{equation}
+			}
+			
+			where u is velocity, $\Delta t$	is a time step and $\Delta x$ is the space discretization.
 			
 \end{document}
