@@ -12,10 +12,10 @@ Parameters              = num2cell(Parameters_table{:,3});
 DATA_set                = {'LUKE_T40_P200', 'LUKE_T50_P200', 'LUKE_T40_P300_org', 'LUKE_T50_P300_org'};
 %DATA_set                = {'LUKE_T50_P300'};
 
-which_k                 = [8,  44, 45, 47               ];                          % Select which parameters are used for fitting
-k0                      = [1,  3 , 1 ,  3, 76, 0.65, 0.3];                     % Give inital value for each parameter
+which_k                 = [8,  44, 45, 47               ];                  % Select which parameters are used for fitting
+k0                      = [0.01,  30 , 1 ,  3, 100, 0.65, 0.3];                  % Give inital value for each parameter
 Nk                      = numel(which_k)+3;                                 % Parameters within the model + m_max, m_ratio, sigma
-k_lu                    = [ [0;0;0;0;70;0;0] , [1;inf;inf;inf;100;1;inf] ];
+k_lu                    = [ [0;0;0;0;80;0;0] , [1;inf;inf;inf;150;1;inf] ];
 
 Iteration_max           = 100;                                              % Maximum number of iterations for optimzer
 Time_max                = 5*24;                                               % Maximum time of optimization in [h]

@@ -104,7 +104,7 @@
 	
 	While the experimental procedure and device can affect $\tau$ and $\sigma$, these parameters are not further considered. They are used only to define the initial conditions and are not included in the process model. Additionally, since the optimizer found that $k_m$ and $m_{total}$ have the same value, they are assumed to be constants and not considered further.
 	
-	The other two parameters ($D_i$ and $D_e^M$) are subject to regression to obtain correlations in terms of density. Figure \ref{fig:Regression} shows the first- and second-order polynomials used to fit $D_i$ and $D_e^M$ as a function of fluid density. Interestingly, these two parameters exhibit opposite behavior. The internal diffusion coefficient increases with increasing fluid density, whereas the axial diffusion coefficient decreases.
+	The other two parameters ($D_i$ and $D_e^M$) are subject to regression to obtain correlations in terms of density. Figure \ref{fig:Regression} shows the first- and second-order polynomials used to fit $D_i$ and $D_e^M$ as a function of fluid density. Interestingly, these two parameters exhibit opposite behavior.
 
 	\begin{figure}[!h]
 	\centering
@@ -112,15 +112,27 @@
 		\centering
 		\includegraphics[trim = 10.5cm 11cm 2.5cm 1cm,clip,width=\textwidth]{/Results_estimation/Trend_Lines_order_1.pdf}
 		\caption{First order polynomial regression of fitted parameters as a function of fluid density $\rho_f$}
+		\label{fig:Regression_1}
 	\end{subfigure}
 	\begin{subfigure}[b]{\columnwidth}
 		\centering
 		\includegraphics[trim = 10.5cm 11cm 2.5cm 1cm,clip,width=\textwidth]{/Results_estimation/Trend_Lines_order_2.pdf}
 		\caption{Second order polynomial regression of fitted parameters as a function of fluid density $\rho_f$}
+		\label{fig:Regression_2}
 	\end{subfigure}
 	\caption{Results of parameter fitting, with estimation of the initial state} 
 	\label{fig:Regression}
 	\end{figure}
+
+	The results of the linear regression applied to $D_i$ and $D_e^M$ are presented in Figure \ref{fig:Regression_1}. It can be observed that the internal diffusion coefficient increases with increasing fluid density, while the axial diffusion coefficient decreases.
+	
+	The increase in the density of the supercritical fluid can lead to an increase in the solubility of the solute and, consequently, an increase in the concentration gradient. This increased concentration gradient drives the solute to diffuse more rapidly through the matrix of the solid particles, resulting in an increase in the internal mass transfer coefficient. However, the effect of increased solubility on the internal mass transfer coefficient is greater than the resistance coming from higher density, resulting in an overall increase in the internal mass transfer coefficient with density.
+	
+	The behaviour of the axial diffusion coefficient can be explained through Graham’s Law of Diffusion, which states that the rate of diffusion of a molecule is inversely proportional to the square root of its density under given conditions of temperature and pressure. This means that denser media slow down the axial diffusion rate of molecules. 
+	
+	{\color{red}IDEAL I SHOULD SUPPORT THIS EXPLANATION WITH SOME REFERENCES}
+	
+	Figure \ref{fig:Regression_1} show the result of fitting a second-order polynomial in density space. It can be observed that the fit obtained from quadratic functions seems to be represent both dataset better. 
 	
 	
 \end{document}

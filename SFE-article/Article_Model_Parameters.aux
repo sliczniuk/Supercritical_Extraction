@@ -144,6 +144,10 @@
 \newlabel{tab: Estimation_results}{{3}{14}{Parameter estimation results\relax }{table.caption.10}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Results of parameter fitting, with estimation of the initial state\relax }}{14}{figure.caption.11}\protected@file@percent }
 \newlabel{fig: estimation_results}{{7}{14}{Results of parameter fitting, with estimation of the initial state\relax }{figure.caption.11}{}}
+\newlabel{fig:Regression_1}{{8a}{15}{First order polynomial regression of fitted parameters as a function of fluid density $\rho _f$\relax }{figure.caption.12}{}}
+\newlabel{sub@fig:Regression_1}{{a}{15}{First order polynomial regression of fitted parameters as a function of fluid density $\rho _f$\relax }{figure.caption.12}{}}
+\newlabel{fig:Regression_2}{{8b}{15}{Second order polynomial regression of fitted parameters as a function of fluid density $\rho _f$\relax }{figure.caption.12}{}}
+\newlabel{sub@fig:Regression_2}{{b}{15}{Second order polynomial regression of fitted parameters as a function of fluid density $\rho _f$\relax }{figure.caption.12}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Results of parameter fitting, with estimation of the initial state\relax }}{15}{figure.caption.12}\protected@file@percent }
 \newlabel{fig:Regression}{{8}{15}{Results of parameter fitting, with estimation of the initial state\relax }{figure.caption.12}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {4}Conclusions}{15}{section.4}\protected@file@percent }
@@ -174,6 +178,7 @@
 \bibcite{ReisVasco2000}{{23}{2000}{{Reis-Vasco et~al.}}{{Reis-Vasco, Coelho, Palavra, Marrone, and Reverchon}}}
 \bibcite{Himmelblau1970}{{24}{1970}{{Himmelblau}}{{}}}
 \citation{Peng1976}
+\citation{Pratt2001}
 \newlabel{appendix}{{4}{17}{Conclusions}{section*.13}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {A}Appendix}{17}{appendix.A}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {A.1}Thermodynamic}{17}{subsection.A.1}\protected@file@percent }
@@ -189,16 +194,12 @@
 \newlabel{eq: Density}{{48}{17}{Density of the fluid phase}{equation.A.48}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {A.1.3}Heat capacity of the fluid phase}{17}{subsubsection.A.1.3}\protected@file@percent }
 \newlabel{subsubsec: Fluid heat capacity}{{A.1.3}{17}{Heat capacity of the fluid phase}{subsubsection.A.1.3}{}}
-\@writefile{tdo}{\contentsline {todo}{Add step-by-step derivation}{17}{section*.14}\protected@file@percent }
-\pgfsyspdfmark {pgfid7}{41131845}{34148771}
-\pgfsyspdfmark {pgfid10}{44449898}{34104535}
-\pgfsyspdfmark {pgfid11}{46801656}{33927588}
 \newlabel{eq: Cv_CO2}{{49a}{17}{Heat capacity of the fluid phase}{equation.A.49a}{}}
 \newlabel{eq: Cp_CO2}{{49b}{17}{Heat capacity of the fluid phase}{equation.A.49b}{}}
-\@writefile{tdo}{\contentsline {todo}{Add REF}{17}{section*.15}\protected@file@percent }
-\pgfsyspdfmark {pgfid12}{30090653}{19386431}
-\pgfsyspdfmark {pgfid15}{44449898}{19342195}
-\pgfsyspdfmark {pgfid16}{46801656}{19165248}
+\@writefile{tdo}{\contentsline {todo}{Add REF}{17}{section*.14}\protected@file@percent }
+\pgfsyspdfmark {pgfid7}{30090653}{21664301}
+\pgfsyspdfmark {pgfid10}{44449898}{21620065}
+\pgfsyspdfmark {pgfid11}{46801656}{21443118}
 \newlabel{eq: Cp_I}{{50}{17}{Heat capacity of the fluid phase}{equation.A.50}{}}
 \newlabel{eq: Cp_R}{{51}{17}{Heat capacity of the fluid phase}{equation.A.51}{}}
 \citation{Gmehling2019}
@@ -214,8 +215,8 @@
 \newlabel{CH: Gouverning equations}{{A.2}{18}{Governing equations}{subsection.A.2}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {A.2.1}Mass continuity}{18}{subsubsection.A.2.1}\protected@file@percent }
 \newlabel{EQ: Continuity_integral_general}{{58}{18}{Mass continuity}{equation.A.58}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Control volume for deriving the partial differential equation for unsteady, quasi-one-dimensional flow\relax }}{18}{figure.caption.16}\protected@file@percent }
-\newlabel{fig: control_volume}{{9}{18}{Control volume for deriving the partial differential equation for unsteady, quasi-one-dimensional flow\relax }{figure.caption.16}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Control volume for deriving the partial differential equation for unsteady, quasi-one-dimensional flow\relax }}{18}{figure.caption.15}\protected@file@percent }
+\newlabel{fig: control_volume}{{9}{18}{Control volume for deriving the partial differential equation for unsteady, quasi-one-dimensional flow\relax }{figure.caption.15}{}}
 \citation{Reverchon1996}
 \newlabel{EQ: Cont_Simpl_Vol}{{59}{19}{Mass continuity}{equation.A.59}{}}
 \newlabel{EQ: Triple_Prod_Cont_Surf}{{61}{19}{Mass continuity}{equation.A.61}{}}
@@ -225,46 +226,46 @@
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {A.2.2}Transport of a species}{19}{subsubsection.A.2.2}\protected@file@percent }
 \newlabel{EQ: Integral_Mass_Species_general}{{67}{19}{Transport of a species}{equation.A.67}{}}
 \newlabel{EQ: Simplified_Species_Conservation}{{75}{19}{Transport of a species}{equation.A.75}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {A.2.3}Momentum conservation}{20}{subsubsection.A.2.3}\protected@file@percent }
-\newlabel{EQ: Momentum_Integral_Form}{{76}{20}{Momentum conservation}{equation.A.76}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {A.2.3}Momentum conservation}{19}{subsubsection.A.2.3}\protected@file@percent }
+\newlabel{EQ: Momentum_Integral_Form}{{76}{19}{Momentum conservation}{equation.A.76}{}}
 \newlabel{EQ: Force_Continuity_Monenmtum}{{77}{20}{Momentum conservation}{equation.A.77}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces The forces in the $z$ direction acting on the control volume\relax }}{20}{figure.caption.17}\protected@file@percent }
-\newlabel{fig: Forces_Momentum_Control_Volume}{{10}{20}{The forces in the $z$ direction acting on the control volume\relax }{figure.caption.17}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces The forces in the $z$ direction acting on the control volume\relax }}{20}{figure.caption.16}\protected@file@percent }
+\newlabel{fig: Forces_Momentum_Control_Volume}{{10}{20}{The forces in the $z$ direction acting on the control volume\relax }{figure.caption.16}{}}
 \newlabel{EQ: Force_Integral_Varying_Cross_Section}{{79}{20}{Momentum conservation}{equation.A.79}{}}
 \newlabel{EQ: Conservative_Momentum}{{82}{20}{Momentum conservation}{equation.A.82}{}}
 \newlabel{EQ: Non-conservative_Momentum}{{88}{20}{Momentum conservation}{equation.A.88}{}}
+\newlabel{EQ: Non-conservative_Momentum_Const_Porosity}{{92}{20}{Momentum conservation}{equation.A.92}{}}
 \citation{Himmelblau1970}
-\newlabel{EQ: Non-conservative_Momentum_Const_Porosity}{{92}{21}{Momentum conservation}{equation.A.92}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {A.2.4}Energy conservation}{21}{subsubsection.A.2.4}\protected@file@percent }
 \newlabel{EQ: Energy_equation_integral}{{93}{21}{Energy conservation}{equation.A.93}{}}
-\@writefile{tdo}{\contentsline {todo}{Check fV}{21}{section*.18}\protected@file@percent }
-\pgfsyspdfmark {pgfid18}{9132950}{24983084}
-\pgfsyspdfmark {pgfid19}{5863686}{24938848}
-\pgfsyspdfmark {pgfid20}{8215444}{24761901}
+\@writefile{tdo}{\contentsline {todo}{Check fV}{21}{section*.17}\protected@file@percent }
+\pgfsyspdfmark {pgfid13}{9132950}{34577644}
+\pgfsyspdfmark {pgfid14}{5863686}{34533408}
+\pgfsyspdfmark {pgfid15}{8215444}{34356461}
 \newlabel{EQ: Energy_equation_conservative_total}{{97}{21}{Energy conservation}{equation.A.97}{}}
 \newlabel{EQ: Energy_conservative_internal}{{98}{21}{Energy conservation}{equation.A.98}{}}
 \newlabel{EQ: Energy_equation_nonconservative}{{101}{21}{Energy conservation}{equation.A.101}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {A.3}Bayes theorem}{21}{subsection.A.3}\protected@file@percent }
 \newlabel{CH: Bayes}{{A.3}{21}{Bayes theorem}{subsection.A.3}{}}
 \newlabel{EQ: Bayes_discrit}{{103}{21}{Bayes theorem}{equation.A.103}{}}
+\newlabel{EQ: Bayes_continous}{{104}{21}{Bayes theorem}{equation.A.104}{}}
 \citation{Gmehling2019}
-\newlabel{EQ: Bayes_continous}{{104}{22}{Bayes theorem}{equation.A.104}{}}
 \newlabel{EQ: Probabiltiy_independet_a}{{112}{22}{Bayes theorem}{equation.A.112}{}}
 \newlabel{EQ: Probabiltiy_independet_b}{{113}{22}{Bayes theorem}{equation.A.113}{}}
 \newlabel{EQ: Probabiltiy_dependet_a}{{114a}{22}{Bayes theorem}{equation.A.114a}{}}
 \newlabel{EQ: Probabiltiy_dependet_b}{{114b}{22}{Bayes theorem}{equation.A.114b}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.4}Cardano's Formula}{23}{subsection.A.4}\protected@file@percent }
-\newlabel{CH: Cardano}{{A.4}{23}{Cardano's Formula}{subsection.A.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.4}Cardano's Formula}{22}{subsection.A.4}\protected@file@percent }
+\newlabel{CH: Cardano}{{A.4}{22}{Cardano's Formula}{subsection.A.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {A.5}Initial and boundary conditions}{23}{subsection.A.5}\protected@file@percent }
 \newlabel{CH: IC_BC}{{A.5}{23}{Initial and boundary conditions}{subsection.A.5}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces The linear distribution of the solute concentration in the fluid phase\relax }}{23}{figure.caption.19}\protected@file@percent }
-\newlabel{fig: C_f_linear}{{11}{23}{The linear distribution of the solute concentration in the fluid phase\relax }{figure.caption.19}{}}
 \newlabel{EQ: C_f_linear_int}{{125}{23}{Initial and boundary conditions}{equation.A.125}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces The linear distribution of the solute concentration in the fluid phase\relax }}{23}{figure.caption.18}\protected@file@percent }
+\newlabel{fig: C_f_linear}{{11}{23}{The linear distribution of the solute concentration in the fluid phase\relax }{figure.caption.18}{}}
 \newlabel{EQ: C_f_linear_after_int}{{126}{23}{Initial and boundary conditions}{equation.A.126}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.6}Solid density measurement}{23}{subsection.A.6}\protected@file@percent }
+\newlabel{CH: Solid_Density_Measurment}{{A.6}{23}{Solid density measurement}{subsection.A.6}{}}
 \csxdef{lastpage}{24}
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.6}Solid density measurement}{24}{subsection.A.6}\protected@file@percent }
-\newlabel{CH: Solid_Density_Measurment}{{A.6}{24}{Solid density measurement}{subsection.A.6}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces The result of solid density measurement\relax }}{24}{figure.caption.20}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces The result of solid density measurement\relax }}{24}{figure.caption.19}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {A.7}Porosity Calculations}{24}{subsection.A.7}\protected@file@percent }
 \newlabel{CH: Porosity}{{A.7}{24}{Porosity Calculations}{subsection.A.7}{}}
 \gdef \@abspage@last{24}
