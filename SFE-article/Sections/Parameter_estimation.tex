@@ -25,6 +25,7 @@ However, obtaining analytical solutions for a deterministic process model can be
 
 In the case where the error in the first observation is denoted as $\epsilon_1$, the error in the second observation $\epsilon_2'$ incorporates $\epsilon_1$ as well as an independent random component, given by $\epsilon_2' = \epsilon_1 + \epsilon_2$. Similarly, the error in the third observation is $\epsilon_3' = \epsilon_1 + \epsilon_2 + \epsilon_3$, and so on. \citet{Mandel1957}  made a distinction between the typically assumed independent measurement error in the dependent variable and a "cumulative" or interval error, in which each new observation encompasses the error of the previous ones. Cumulative errors arise from fluctuations in the process itself due to small variations in operating conditions and are not independent; only the differences in measurement from one period to the next are independent.
 
+\iffalse
 \subsubsection{Least squares estimation}
 In statistics, least squares parameter estimation is a method used to estimate the parameters of a linear regression model. One of the benefits of this method is that it does not require any prior knowledge about the distribution of unobservable errors. Additionally, it yields unbiased estimates and results in the minimum variance among all linear unbiased estimators.
 
@@ -50,7 +51,7 @@ The parameter estimate, $\hat{\theta}$, is obtained by minimizing $\gamma$ over 
 
 If the covariance matrix, $\Gamma$, is a diagonal matrix, the Markov criterion becomes a "weighted least squares" criterion. If $\Gamma = \sigma^2 \textbf{I}$, where $\sigma$ is a standard deviation and $\textbf{I}$ is the identity matrix, the Markov criterion becomes the "ordinary least squares" criterion.
 
-\iffalse
+
 \subsubsection{Weighted sum of squares - Cumulative data}
 
 One characteristic feature of certain special experiments is the use of the same batch of materials for the entire series of measurements. If unobservable error in the first observation is designated as $\epsilon_1$, the second error observation $\epsilon_2'$ includes $\epsilon_1$ plus a random component introduced side from $\epsilon_1$, or $\epsilon_2' = \epsilon_1 + \epsilon_2$. The error in the third observation is $\epsilon_3' = \epsilon_1 + \epsilon_2 + \epsilon_3$, and so forth. \citet{Mandel1957} distinguished between the usually assumed type of independent measuring error in the dependent variable and a 'cumulative' or interval error in which each new observation includes the error of the previous observations. Cumulative errors, arising because of the fluctuations as a function of time in the process itself due to small changes in operating, are not independent - only the differences in measurement from one period to the next are independent. Thus, if we consider two model:
@@ -76,7 +77,7 @@ The unbiased estimate of the Model B is obtained by minimizing the weighted sum 
 
 \fi
 
-\subsubsection{Maximum likelihood estimation}
+%\subsubsection{Maximum likelihood estimation}
 
 Maximum likelihood estimation (MLE) is a statistical method used to estimate the parameters of a probability distribution based on observed data. The MLE works by finding the values of the parameters that maximize the likelihood function, which is the probability of observing the given data for a given set of parameter values. The MLE has desirable properties such as asymptotic efficiency and normality. Although the MLE has often been associated with the normal distribution for mathematical convenience, it can be applied to a wide range of probability distributions.
 
