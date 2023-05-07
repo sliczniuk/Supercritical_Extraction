@@ -6,10 +6,10 @@
 %\documentclass[a4paper]{cas-dc}
 %\documentclass[a4paper]{cas-sc}
 % ---------------------------------------------------------------
-% Make margins bigger to fit annotations. TO be removed later
-\paperwidth=\dimexpr \paperwidth + 6cm\relax
-\oddsidemargin=\dimexpr\oddsidemargin + 3cm\relax
-\evensidemargin=\dimexpr\evensidemargin + 3cm\relax
+% Make margins bigger to fit annotations. Use 1, 2 and 3. TO be removed later
+%\paperwidth=\dimexpr \paperwidth + 6cm\relax
+%\oddsidemargin=\dimexpr\oddsidemargin + 3cm\relax
+%\evensidemargin=\dimexpr\evensidemargin + 3cm\relax
 %\marginparwidth=\dimexpr \marginparwidth + 3cm\relax
 % -------------------------------------------------------------------- 
 % Packages
@@ -23,6 +23,7 @@
 
 \usepackage{csvsimple}
 
+% TODO package
 \usepackage[bordercolor=gray!20,backgroundcolor=blue!10,linecolor=black,textsize=footnotesize,textwidth=1in]{todonotes}
 \setlength{\marginparwidth}{1in}
 % \usepackage[utf8]{inputenc}
@@ -82,15 +83,15 @@
 \title[mode=title]{Parameter estimation}                      
 \shorttitle{Parameter estimation}
 
-\shortauthors{A, B, C}
+\shortauthors{OS, PO}
 
 \author[1]{Oliwer Sliczniuk*}[orcid=0000-0003-2593-5956]
 \ead{oliwer.sliczniuk@aalto.fi}
 \cormark[1]
-%\credit{a}
+\credit{a}
 
-%\author[1]{Pekka Oinas}[orcid=0000-0002-0183-5558]
-%\credit{b}
+\author[1]{Pekka Oinas}[orcid=0000-0002-0183-5558]
+\credit{b}
 
 %\author[1]{Francesco Corona}[orcid=0000-0002-3615-1359]
 %\credit{c}
@@ -107,8 +108,8 @@
 %Given a system of partial differential equations, $F(t,x,\dot{x},p,u)=0$, where $x$ represents state variables, $p$ is the parameters, and $u$ are control variables, the process model is simultaneously solved for both $x_i$ and a set of sensitivity functions, $dx_i/dp_j$, overall times $t$.These sensitivity functions measure the influence of the parameter change on the model's output. As an example, the supercritical extraction process is presented. The impact of mass flow rate, pressure, and inlet temperature on the model's output is discussed. The sensitivity analysis results prove that the considered variables can affect the extraction's yield and be used as control variables in optimization problems. Moreover, the local sensitivity analysis results are analyzed from a phenomenological point of view to enhance understanding of the process model.
 %Given a system of partial differential equations, $F(t,x,\dot{x},\Theta,u)=0$, where $x$ represents state variables, $\Theta$ are the parameters, and $u$ are control variables, we describe the supercritical extraction process. The process model describes a partially filled extractor with a fixed bed, which work under constant operating conditions. We assume that the flow is uniform across any cross-section, although the area available for the fluid phase can change along the extractor. We apply the concept of quasi-one-dimensional flow to mimic the modelling of a two-dimensional case.
 %In this work, a distributed-parameter model, based on \citet{Reverchon1996} is used to describe a fluid-solid extraction process of caraway oil from caraway seeds with $CO_2$ as a solvent. The model parameters such as partition factor, internal diffusion coefficient, axial diffusion coefficient \textit{and saturation concentration} are obtained from parameter estimation. The parameters are estimated based on four experiments performed at $40^\circ C$/$200$ bar, $50^\circ C$/$200$ bar, $40^\circ C$/$300$ bar and $50^\circ C$/$300$ bar. Given yield data, the model-based parameter estimation uses the maximum likelihood estimation method under assumption of normal error.
-We consider a system of partial differential equations, $G(t,x,\dot{x},\Theta,u)=0$, where $x$ denotes the state variables, $\Theta$ represents the parameters, and $u$ is the control variables. Our focus is on the supercritical extraction process, which involves a partially filled extractor with a fixed bed that operates under constant conditions. We assume the flow is uniform across any cross-section, although the area available for the fluid phase can vary along the extractor. To model this two-dimensional case, we use the concept of quasi-one-dimensional flow.
-To describe the fluid-solid extraction process of caraway oil from caraway seeds with $CO_2$ as a solvent, we use a distributed-parameter model based on \citet{Reverchon1996}. This model requires parameters such as partition factor, internal diffusion coefficient, axial diffusion coefficient, and an initial state estimate. We estimate these parameters by applying the maximum likelihood estimation method on yield data under the normal error assumption.
+A system of partial differential equations, $G(t,x,\dot{x},\Theta,u)=0$ is considered, where $x$ denotes the state variables, $\Theta$ represents the parameters, and $u$ is the control variables. The system $G(t,x,\dot{x},\Theta,u)=0$ describe the supercritical extraction process, which involves a partially filled extractor with a fixed bed that operates under constant conditions. It is assumed that the flow is uniform across any cross-section, although the area available for the fluid phase can vary along the extractor. To model this two-dimensional case, the concept of quasi-one-dimensional flow is applied.
+To describe the fluid-solid extraction process of caraway oil from caraway seeds with $CO_2$ as a solvent, we use the distributed-parameter model $G(t,x,\dot{x},\Theta,u)=0$ based on \citet{Reverchon1996}. This model requires parameters such as partition factor, internal diffusion coefficient, axial diffusion coefficient, saturation concentration, and an initial state estimate. These parameters are estimated from the Peng-Robinson equation of state and by applying the maximum likelihood estimation method on yield data under the normal error assumption.
 The dataset comes from four experiments conducted at different operating conditions: $40^\circ C$/$200$ bar, $50^\circ C$/$200$ bar, $40^\circ C$/$300$ bar, and $50^\circ C$/$300$ bar.
 
 \end{abstract}
@@ -140,9 +141,9 @@ Supercritical extraction \sep Parameter estimation \sep Mathematical modeling
 %\subfile{Sections/Materials_and_methods}
 
 \subsection{Governing equations} \label{CH:Governing_equations_chapter}
-The governing equation for a quasi-one-dimensional compressible flow in Cartesian coordinates can be found in the appendix \ref{CH: Gouverning equations} and in the work of \citet{Anderson1995}.  Quasi-one-dimensional flow is a fluid flow characterized by the assumption that the flow properties remain uniform across any given cross-section of the flow. This assumption is made when there is a variation in the cross-sectional area of the flow channel, such as an irregular shape or partial filling of an extractor. In such cases, the flow is considered to be quasi-one-dimensional because the velocity and other flow properties are assumed to vary only in the direction of flow.
+The governing equation for a quasi-one-dimensional compressible flow in Cartesian coordinates can be found in the Appendix \ref{CH: Gouverning equations} and in the work of \citet{Anderson1995}.  Quasi-one-dimensional flow is a fluid flow characterized by the assumption that the flow properties remain uniform across any given cross-section of the flow. This assumption is made when there is a variation in the cross-sectional area of the flow channel, such as an irregular shape or partial filling of an extractor. In such cases, the flow is considered to be quasi-one-dimensional because the velocity and other flow properties are assumed to vary only in the direction of flow.
 
-The quasi-one-dimensional compressible Navier-Stokes equations in Cartesian coordinates are given by equations \ref{EQ: CompressibleEuler_1} to \ref{EQ: CompressibleEuler_3}.
+The quasi-one-dimensional compressible Navier-Stokes equations in Cartesian coordinates are given by Equations \ref{EQ: CompressibleEuler_1} to \ref{EQ: CompressibleEuler_3}.
 
 {\footnotesize
 	\begin{align}
@@ -227,7 +228,11 @@ Suppose the flow is presumed to be isentropic, $dP/d\rho = c^2$, so $v^2=c^2$, w
 \subfile{Sections/Results}
 
 \section{Conclusions} \label{CH: Conclusion}
-In this study, a process model was developed through parameter estimation using a dataset obtained from experiments conducted at various temperature and pressure. The model was found to have good agreement with experimental yield curves for the extraction of caraway oil from caraway seeds. To establish correlations for the internal and axial diffusion coefficients in terms of fluid density, both linear and non-linear regression techniques were utilized. These correlations facilitated the generalization of the process model to a range of operating conditions, specifically for temperatures ranging from $40^\circ C$ to $50^\circ C$, pressures ranging from 200 bar to 300 bar, and flow rates of 0.4 l/min (with flow variations of up to 5\%). The generalized model can be employed to investigate the impact of different operating conditions on the extraction yield, or for economic analysis of the extraction process.
+In this study, a process model was developed by performing parameter estimation using a dataset obtained from experiments conducted at various temperature and pressure levels. The model was found to have good agreement with experimental yield curves for the extraction of caraway oil from caraway seeds. However, it was noticed that the simulation results overshoot the dataset, which may be explained to the presence of losses in the real system, such as some amount of the solute sticking to the inner walls of pipes. Another possible reason could be the need for a more complex mass transfer mechanism than the extraction kinetic presented in this work. For example, the Broken-and-Intact Cell model suggested by \citet{Sovova2017} formulated a general SFE model that includes the solute-matrix interaction. This model allows for solute diffusion from intact cells to the region of broken cells, and the equilibrium is established at the particle surface between the broken cells and fluid phase. Such a mechanism gives more flexibility to the process model to adapt to a dataset.
+
+To establish correlations for the internal and axial diffusion coefficients in terms of fluid density, both linear and non-linear regression techniques were utilized. These correlations facilitated the generalization of the process model to a range of operating conditions, specifically for temperatures ranging from $40^\circ C$ to $50^\circ C$, pressures ranging from 200 bar to 300 bar, and flow rates of 0.4 l/min (with flow variations of up to 5\%). The dependencies given by these correlations can be justified by the influence of the solubility and Graham's Law of Diffusion, as suggested above.
+
+The generalized model can be used to study the impact of different operating conditions on the extraction yield or for economic analysis of the extraction process.
 
 % ===================================================
 % Bibliography
@@ -270,6 +275,9 @@ In this study, a process model was developed through parameter estimation using 
 
 \subsection{Porosity Calculations} \label{CH: Porosity}
 \subfile{Sections/Porosity}
+
+\subsection{Concentration profiles} \label{CH: Profiles}
+\subfile{Sections/Profiles}
 
 \iffalse
 \newpage

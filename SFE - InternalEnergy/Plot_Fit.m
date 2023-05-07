@@ -10,9 +10,12 @@ hold off
 xlabel('Time [min]')
 ylabel('Yield [g]')
 
-colorbar
+%colorbar
 
-legend('Inital curve','Optimized curve','Data points','Location','northwest'); legend('boxoff')
+%legend('Inital curve','Optimized curve','Data points','Location','northwest'); legend('boxoff')
+
+ax=gca;
+ax.FontSize = 20;
 
 subplot(2,2,2)
 hold on
@@ -25,25 +28,38 @@ hold off
 xlabel('Time [min]')
 ylabel('d Yield / dt [g/s]')
 
-colorbar
+%colorbar
 
 legend('Inital curve','Optimized curve','Data points','Location','northeast'); legend('boxoff')
 
+ax=gca;
+ax.FontSize = 20;
+
 subplot(2,2,3)
-imagesc(Time,L_nstages,xx_out(1:nstages,:)); colormap jet;
+imagesc(Time,L_nstages,xx_out(1:nstages,:)); colormap turbo;
 a = colorbar;
 a.Label.String = 'C_f';
+a.Label.FontSize = 16;
+caxis([0, 15]);
 
 xlabel('Time [min]')
-ylabel('Length [cm]')
+ylabel('Length [m]')
+
+ax=gca;
+ax.FontSize = 16;
 
 subplot(2,2,4)
-imagesc(Time,L_nstages,xx_out(1*nstages+1:2*nstages,:)); colormap jet;
+imagesc(Time,L_nstages,xx_out(1*nstages+1:2*nstages,:)); colormap turbo;
 a = colorbar;
 a.Label.String = 'C_s';
+a.Label.FontSize = 16;
+caxis([0, 70]);
 
 xlabel('Time [min]')
-ylabel('Length [cm]')
+ylabel('Length [m]')
+
+ax=gca;
+ax.FontSize = 16;
 
 name = sprintf('$k_m = %g, D_i =%g e-14, D_x = %g e-6, C_{sat}=%g, Mass = %g, Inital~ratio = %g, \\sigma$ = %g',round(KOUT,3));
 %name = sprintf('%g',round(KOUT,3));

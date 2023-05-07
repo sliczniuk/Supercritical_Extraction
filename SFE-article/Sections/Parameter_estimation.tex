@@ -2,7 +2,7 @@
 \graphicspath{{\subfix{../Figures/}}}
 \begin{document}
 
-The goal of parameter estimation is to obtain the "best" estimate of parameter set $\theta$ (which is a subset of the parameter space $\Theta$ containing all parameters of a model) based on the continuous observations $Y(t)$ or the discrete observations $Y(t_i)$. Conceptually, the unobservable error $\epsilon(t)$ is added to the deterministic model output, $y(t)$ (equation \ref{Model_measurment_1}), to give the observable dependent variable $Y(t)$ (for example results of an experiments). For discrete observations, this can be expressed as:
+The goal of parameter estimation is to obtain the "best" estimate of parameter set $\theta$ (which is a subset of the parameter space $\Theta$ containing all parameters of a model) based on the continuous observations $Y(t)$ or the discrete observations $Y(t_i)$. Conceptually, the unobservable error $\epsilon(t)$ is added to the deterministic model output, $y(t)$ (Equation \ref{Model_measurment_1}), to give the observable dependent variable $Y(t)$ (for example results of an experiments). For discrete observations, this can be expressed as:
 
 {\footnotesize
 	\begin{equation*}
@@ -81,7 +81,7 @@ The unbiased estimate of the Model B is obtained by minimizing the weighted sum 
 
 Maximum likelihood estimation (MLE) is a statistical method used to estimate the parameters of a probability distribution based on observed data. The MLE works by finding the values of the parameters that maximize the likelihood function, which is the probability of observing the given data for a given set of parameter values. The MLE has desirable properties such as asymptotic efficiency and normality. Although the MLE has often been associated with the normal distribution for mathematical convenience, it can be applied to a wide range of probability distributions.
 
-To find the maximum likelihood estimates, we maximize the joint probability density function, or likelihood function, denoted as $p(\theta | y(t_1),y(t_2),...,y(t_n))$, where $\theta$ represents the parameters and $y(t_1),y(t_2),...,y(t_n)$ represent the observed data. The conditions at the maximum can be refined by incorporating prior information. The posterior probability density function $p(\theta|y)$ can be expressed as the ratio of two probability densities (\ref{EQ: Probabiltiy_independet_b}) using the continuous variable analogue of Bayes' theorem (details in appendix \ref{CH: Bayes}). In such a case the posteriori distribution is given by Equation \ref{EQ: Posterior_distribution}.
+To find the maximum likelihood estimates, we maximize the joint probability density function, or likelihood function, denoted as $p(\theta | y(t_1),y(t_2),...,y(t_n))$, where $\theta$ represents the parameters and $y(t_1),y(t_2),...,y(t_n)$ represent the observed data. The conditions at the maximum can be refined by incorporating prior information. The posterior probability density function $p(\theta|y)$ can be expressed as the ratio of two probability densities (\ref{EQ: Probabiltiy_independet_b}) using the continuous variable analogue of Bayes' theorem (details in Appendix \ref{CH: Bayes}). In such a case the posteriori distribution is given by Equation \ref{EQ: Posterior_distribution}.
 
 {\footnotesize
 	\begin{align} \label{EQ: Posterior_distribution}

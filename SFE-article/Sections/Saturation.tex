@@ -13,7 +13,7 @@
 			\end{equation}
 	}
 			
-	where $k_{sat}$ is the growth rate, and it is defined as $k_{sat} = 2c_{sat}$\todo{Explain why the growth rate is defined as it is}.
+	where $k_{sat}$ is the growth rate, and it is defined as $k_{sat} = 4$. The growth rate corresponds for the shape of the $\gamma(c_f)$ function. The bigger value of the $k_{sat}$ the steeper the function is. In the limit when $ k_{sat}\rightarrow+\infty$ become a step function. If the growth rate is to high, the gradient of the $\gamma$ function become high, or goes to infinity, which might cause difficulties for a gradient-based optimizer.
 			
 	\begin{figure}[h!]
 		\centering
@@ -31,7 +31,7 @@
 					smooth,
 					thick,
 					blue,
-					] { 1 / (1 + exp( 2*5 .* ( x - 5 ) ) ) };
+					] { 1 / (1 + exp( 4 .* ( x - 5 ) ) ) };
 					\addplot[thick, samples=50, dashed, domain=0:1.5, black] coordinates {(5,-0.5)(5,1.5)};
 					
 					\addlegendentry{$\gamma(c_f)$}

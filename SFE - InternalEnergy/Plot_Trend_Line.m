@@ -13,21 +13,21 @@ for jj=1:2
         p_est                = polyval(trendLine, RHO);
         p_y                  = polyval(trendLine, linspace(min(RHO), max(RHO) ) );
         
-        subplot(2,4,ii)
+        subplot(3,3,ii)
         scatter(RHO, DATA_K_OUT(ii,:), 'filled')
         hold on
         plot(linspace(min(RHO), max(RHO) ),p_y,'LineWidth',2);
         hold off
 
         if jj==1
-            pp=sprintf('%s=$(%6.4g) \\rho + (%6.4g)$',NAME{ii},trendLine');
+            pp=sprintf('%s=$(%6.4g) \\rho + (%6.4g)$\n',NAME{ii},trendLine');
         else
-            pp=sprintf('%s=$(%6.4g) \\rho^2 + (%6.4g) \\rho + (%6.4g)$',NAME{ii},trendLine');
+            pp=sprintf('%s=$(%6.4g) \\rho^2 + (%6.4g) \\rho + (%6.4g)$\n',NAME{ii},trendLine');
         end
 
         oo = sprintf('$R^2 = %g$\n', round(power(corr2(DATA_K_OUT(ii,:), p_est),2),2) ) ;
     
-        title( [oo,pp], 'FontSize', 6)
+        title( [oo,pp], 'FontSize', 8)
     
         xlabel('$\rho~[kg/m^3]$','Interpreter','latex')
         ylabel(NAME{ii},'Interpreter','latex')

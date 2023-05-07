@@ -12,12 +12,6 @@ E.~Reverchon.
   1996.
 \newblock \doi{10.1002/aic.690420627}.
 
-\bibitem[Huang et~al.(2012)Huang, han Shi, and juan Jiang]{Huang2012}
-Zhen Huang, Xiao han Shi, and Wei juan Jiang.
-\newblock Theoretical models for supercritical fluid extraction.
-\newblock \emph{Journal of Chromatography A}, 1250:\penalty0 2--26, aug 2012.
-\newblock \doi{10.1016/j.chroma.2012.04.032}.
-
 \bibitem[Reverchon et~al.(1993)Reverchon, Donsi, and Osseo]{Reverchon1993}
 Ernesto Reverchon, Giorgio Donsi, and Libero~Sesti Osseo.
 \newblock Modeling of supercritical fluid extraction from herbaceous matrices.
@@ -170,6 +164,14 @@ E.M.C Reis-Vasco, J.A.P Coelho, A.M.F Palavra, C~Marrone, and E~Reverchon.
 \newblock \emph{Chemical Engineering Science}, 55\penalty0 (15):\penalty0
   2917--2922, aug 2000.
 \newblock \doi{10.1016/s0009-2509(99)00561-8}.
+
+\bibitem[Sovova(2017)]{Sovova2017}
+Helena Sovova.
+\newblock Broken-and-intact cell model for supercritical fluid extraction: Its
+  origin and limits.
+\newblock \emph{The Journal of Supercritical Fluids}, 129:\penalty0 3--8, nov
+  2017.
+\newblock \doi{10.1016/j.supflu.2017.02.014}.
 
 \bibitem[Himmelblau(1970)]{Himmelblau1970}
 David~Mautner Himmelblau.

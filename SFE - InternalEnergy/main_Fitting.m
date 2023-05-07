@@ -13,7 +13,7 @@ DATA_set                = {'LUKE_T40_P200', 'LUKE_T50_P200', 'LUKE_T40_P300_org'
 %DATA_set                = {'LUKE_T50_P300'};
 
 which_k                 = [8,  44, 45, 47               ];                  % Select which parameters are used for fitting
-k0                      = [0.01,  30 , 1 ,  3, 100, 0.65, 0.3];                  % Give inital value for each parameter
+k0                      = [1,  3 , 1 ,  10, 80, 0.65, 0.3];                  % Give inital value for each parameter
 Nk                      = numel(which_k)+3;                                 % Parameters within the model + m_max, m_ratio, sigma
 k_lu                    = [ [0;0;0;0;80;0;0] , [1;inf;inf;inf;150;1;inf] ];
 
@@ -234,26 +234,42 @@ parfor ii=1:numel(DATA_set)
     DATA_K_OUT(:,ii) = KOUT;
 
 end
-%%
+%% save parameter estimation results in csv format
 
-format shortE
+%format shortE
 
-NAME = {'$k_m[-]$', '$D_i[m^2/s]$', '$D_e^M[m^2/s]$', '$C_{sat}$', '$m_{total}$', '$\tau$', '$\sigma$'};
+NAME = {'$k_m[-]$', '$D_i[m^2/s] \times 1e-14$', '$D_e^M[m^2/s] \times 1e-6$', '$C_{sat} [kg/m^3] \times 1e5$', '$m_{total}[g]$', '$\tau[-]$', '$\sigma[-]$'};
 TT   = cell2table(NAME');
 
 DATA_K_OUT_order_of_mag = DATA_K_OUT;
-DATA_K_OUT_order_of_mag(2,:) = DATA_K_OUT_order_of_mag(2,:) * 1e-14;
-DATA_K_OUT_order_of_mag(3,:) = DATA_K_OUT_order_of_mag(3,:) * 1e-6;
+DATA_K_OUT_order_of_mag(2,:) = DATA_K_OUT_order_of_mag(2,:);
+DATA_K_OUT_order_of_mag(3,:) = DATA_K_OUT_order_of_mag(3,:);
+DATA_K_OUT_order_of_mag(4,:) = DATA_K_OUT_order_of_mag(4,:) * 1e-5;
 
 for i=1:numel(DATA_set)
-    TT.(i+1)=DATA_K_OUT_order_of_mag(:,i);
+    TT.(i+1)=round(DATA_K_OUT_order_of_mag(:,i),5);
 end
 
-TT.Properties.VariableNames = ["Parameter",'$40[C] 200[bar]$',"$50[C] 200[bar]$","$40[C] 300[bar]$","$50[C] 300[bar]$"];
+TT.Properties.VariableNames = ["Parameter","$40[C] 200[bar]$","$50[C] 200[bar]$","$40[C] 300[bar]$","$50[C] 300[bar]$"];
 writetable(TT,'estimation.csv')
 TT
 
-format short
+%format short
+
+%% save dataset in csv format
+
+TTT = table([0:5:150]');
+
+for ii=1:numel(DATA_set)
+    DATA                    = DATA_set{ii};
+    LabResults              = xlsread([DATA,'.xlsx']);
+    data_org                = LabResults(:,5);
+    TTT.(ii+1)=data_org;
+end
+
+TTT.Properties.VariableNames = ["Time [min]","$40[C] 200[bar]$","$50[C] 200[bar]$","$40[C] 300[bar]$","$50[C] 300[bar]$"];
+writetable(TTT,'Dataset.csv')
+TTT
 
 %%  
 

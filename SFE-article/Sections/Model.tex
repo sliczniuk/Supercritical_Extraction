@@ -9,13 +9,15 @@
 	{\color{magenta}parameters}.
 	
 	\subsubsection{Continuity equation} \label{CH: Continuity}
-	The continuity equation for the fluid phase is derived in Appendix \ref{CH: Gouverning equations}. When the cross-sectional area of the channel $A_f$ is specified as a function of the void fraction ${\color{magenta}\phi}(z)$ (where ${\color{magenta}\phi}$ is the void fraction of the bed and $A$ is the cross-section of the empty extractor), the continuity equation takes the form: \todo[]{assign a color of v and u}
+	The continuity equation for the fluid phase is derived in Appendix \ref{CH: Gouverning equations}. When the cross-sectional area of the channel $A_f$ is specified as a function of the void fraction ${\color{magenta}\phi}(z)$ (where ${\color{magenta}\phi}$ is the void fraction of the bed and $A$ is the cross-section of the empty extractor), the continuity equation takes the form: %\todo[]{assign a color of v and u}
 	
 	{\footnotesize
 		\begin{equation*}
 			\frac{\partial ({\color{orange}\rho_f}({\color{blue}T}(t,z),{\color{red}P}(t)) {\color{magenta}\phi})}{\partial t} + \frac{\partial ({\color{orange}\rho_f}({\color{blue}T}(t,z),{\color{red}P}(t)) v A {\color{magenta}\phi})}{\partial {\color{blue}z}} = 0
 		\end{equation*}
 	}
+	
+	{\color{red}assign a color of v and u}
 	
 	Assuming that the mass flow rate is constant in time, the temporal derivative becomes zero, and the spatial derivative can be integrated along ${\color{blue}z}$ as
 	
@@ -45,7 +47,7 @@
 	
 	\subsubsection{Mass balance for the fluid phase} \label{CH: Mass_balance_fluid}
 	
-	The detailed derivation of the mass balance equation for the fluid phase can be found in the appendix (\ref{CH: Gouverning equations}). The movement of the mobile pseudo-homogeneous phase (equation \ref{Model_fluid}) is considered only in the axial direction, while the properties of the system in the radial direction are assumed to be uniform. Additionally, the boundary layer adjacent to the inner wall of the extractor is neglected, resulting in a constant velocity profile across any cross-section of the extractor perpendicular to the axial direction. Although the particle size distribution and void fraction of the solid phase may change along the extractor, they are assumed to remain constant in time. Furthermore, the thermodynamic pressure is assumed to be constant along the device due to the Low-Mach number condition, as previously discussed. The amount of solute in the solvent is considered negligible, resulting in the fluid phase being described as pseudo-homogeneous, and its properties are assumed to be the same as the solvent. The mass balance equation for the fluid phase includes convection, diffusion, and kinetic terms.
+	The detailed derivation of the mass balance equation for the fluid phase can be found in the appendix (\ref{CH: Gouverning equations}). The movement of the mobile pseudo-homogeneous phase (Equation \ref{Model_fluid}) is considered only in the axial direction, while the properties of the system in the radial direction are assumed to be uniform. Additionally, the boundary layer adjacent to the inner wall of the extractor is neglected, resulting in a constant velocity profile across any cross-section of the extractor perpendicular to the axial direction. Although the particle size distribution and void fraction of the solid phase may change along the extractor, they are assumed to remain constant in time. Furthermore, the thermodynamic pressure is assumed to be constant along the device due to the Low-Mach number condition, as previously discussed. The amount of solute in the solvent is considered negligible, resulting in the fluid phase being described as pseudo-homogeneous, and its properties are assumed to be the same as the solvent. The mass balance equation for the fluid phase includes convection, diffusion, and kinetic terms.
 	
 	{\footnotesize
 		\begin{equation}
@@ -61,7 +63,7 @@
 	
 	\subsubsection{Mass balance for the solid phase} \label{Mass_balance_solid}
 	
-	The solid phase is considered to be stationary, with negligible convection and diffusion terms in the mass balance equation (equation \ref{Model_solid}). Therefore, the only significant term in this equation is the kinetic term (as defined in equation \ref{Model_kinetic_basic}), which connects the solid and fluid phases. The extract is represented by a single pseudo-component to simplify the analysis. 
+	The solid phase is considered to be stationary, with negligible convection and diffusion terms in the mass balance equation (Equation \ref{Model_solid}). Therefore, the only significant term in this equation is the kinetic term (as defined in Equation \ref{Model_kinetic_basic}), which connects the solid and fluid phases. The extract is represented by a single pseudo-component to simplify the analysis. 
 	
 	{\footnotesize
 		\begin{equation} 
@@ -72,9 +74,9 @@
 			
 	\subsubsection{Kinetic term} \label{CH: Kinetic}
 	
-	%The kinetic term is based on two-film theory and follow work of \citet{Reverchon1996}. The mass transfer kinetic (equation \ref{Model_kinetic_basic}) consists of the overall diffusion coefficient and the concentration gradient, which acts as a driving force for the process.
+	%The kinetic term is based on two-film theory and follow work of \citet{Reverchon1996}. The mass transfer kinetic (Equation \ref{Model_kinetic_basic}) consists of the overall diffusion coefficient and the concentration gradient, which acts as a driving force for the process.
 	
-	The kinetic term in this study is based on the two-film theory proposed by \citet{Reverchon1996}, and the mass transfer kinetic is given by equation \ref{Model_kinetic_basic}. This equation takes into account the overall diffusion coefficient and the concentration gradient, which acts as the driving force for the process.
+	The kinetic term in this study is based on the two-film theory proposed by \citet{Reverchon1996}, and the mass transfer kinetic is given by Equation \ref{Model_kinetic_basic}. This equation takes into account the overall diffusion coefficient and the concentration gradient, which acts as the driving force for the process.
 	
 %	As the solvent flows through the bed, the $CO_2$ molecules diffuse into the pores and adsorb on the particle surface to form an external fluid film around the solid particles through the solvent–solid matrix interactions. Assuming that the mean free path of the molecule is much smaller than the pore diameter, the effect of Knudsen diffusion is small and can be neglected. The dissolved solute diffuses from the particle's core through the solid-fluid interface, the pore, and the film into the bulk. The graphical representation of the mass transfer mechanism is shown in Figure \ref{fig: SFE_Mechanism}. The mean solute concentration in the solid phase is denoted as ${\color{blue}c_s}$. At the solid-fluid interface, the equilibrium concentrations are given as ${\color{blue}c_s^*}$ and ${\color{blue}c_P^*}$, respectively for solid and fluid phases. The concentration of the solutes in the fluid phase in the centre of the pore is denoted as ${\color{blue}c_{P}}$. As the solute diffuses through the pore, its concentration changes and reaches ${\color{blue}c_{Pf}}$ at the opening of the pore. The solute diffuses through the film around the particle and reaches a concentration in the bulk ${\color{blue}c_f}$. It can be assumed that the two-film theory describes the solid-fluid interface inside the pore. The overall mass transfer coefficient can be introduced if the relation between the solute concentration in one phase and its equilibrium concentration is known.
 	
@@ -121,13 +123,13 @@
 					{\color{blue}r_e}(t,z) = -\cfrac{{\color{orange}D_i}({\color{blue}T}(t,z), {\color{red}P}(t))}{{\color{magenta} \mu l^2} }\left({\color{blue}c_s}(t,z) - \cfrac{{\color{magenta}\rho_s}}{{\color{orange}k_m}({\color{blue}T}(t,z)){\color{orange}\rho_f}({\color{blue}T}(t,z),{\color{red}P}(t))}  {\color{blue}c_f}(t,z) \right)
 			\end{equation} }
 
-        %\subfile{Sections/Saturation}
+        \subfile{Saturation}
 			
 		\subsubsection{Heat balance} \label{CH: heat_balance}
 		
 		\iffalse
 		 {\color{red}
-			The heat balance (equation \ref{Model_heat}) consists of the convective and diffusive terms. It follows the assumption of a pseudo-homogeneous phase, which properties are the mean between fluid and solid phases. We consider no heat loss through the wall, and there is no heat generation in the system. Therefore, the temperature of the extractor can be changed only by manipulating the temperature of the inlet stream %$T_{In}(t)$. 
+			The heat balance (Equation \ref{Model_heat}) consists of the convective and diffusive terms. It follows the assumption of a pseudo-homogeneous phase, which properties are the mean between fluid and solid phases. We consider no heat loss through the wall, and there is no heat generation in the system. Therefore, the temperature of the extractor can be changed only by manipulating the temperature of the inlet stream %$T_{In}(t)$. 
 			
 			We assume that at a given section, where the cross-sectional area is $A$, the flow properties are uniform across that section. Hence, although the area of an extractor changes  as a function of a distance along an extractor (e.g. if a fixed fill an extractor partially), $z$, and therefore in reality the flow field is two-dimensional (the flow varies in the two-dimensional space), we make the assumption that the flow properties vary only with $z$; this is tantamount to assuming uniform properties across any given cross section. Such flow is defined as quasi-one-dimensional flow.
 			
@@ -135,7 +137,7 @@
 		
 		\sout{The heat balance equation (equation  \ref{Model_heat}) was developed, assuming the existence of a pseudo-homogeneous phase, which properties are the mean between fluid and solid phases (the amount of solute is considered small enough not to affect the overall heat balance). Equation \ref{Model_heat} contains the convection and the diffusion terms. It is considered that there is no heat loss through the wall, and there is no heat generation in the system. The temperature of the extractor can be changed only by increasing the temperature of the inlet stream. The pseudo-homogenous phase is assumed to flow only in the axial direction. The numerator of the factor in front of the convection term of the heat equation contains only the specific heat of the fluid ${\color{orange}C_p}({\color{blue}T}(t,z),{\color{red}P}(t))$ because the solid phase is stationary. Therefore, this factor can be understood as the fraction of the fluid's total heat through convection. On the other hand, the axial heat diffusion is calculated based on the definition of thermal diffusivity for the fluid, as explained in the appendix. }
 			
-		{\color{blue} The heat balance (equation \ref{Model_heat}), is based on \citet{Srinivasan2012}, and consists of convective and diffusive terms. It follows the assumption of a pseudo-homogeneous phase, which properties are the mean between fluid and solid phases. It is considered that there is no heat loss through the walls, and there is no heat generation in the system. The temperature of the extractor can be changed only by manipulating the temperature of the inlet stream ${\color{red}T_{Inlet}}(t)$.
+		{\color{blue} The heat balance (Equation \ref{Model_heat}), is based on \citet{Srinivasan2012}, and consists of convective and diffusive terms. It follows the assumption of a pseudo-homogeneous phase, which properties are the mean between fluid and solid phases. It is considered that there is no heat loss through the walls, and there is no heat generation in the system. The temperature of the extractor can be changed only by manipulating the temperature of the inlet stream ${\color{red}T_{Inlet}}(t)$.
 			}
 			
 			{\footnotesize
@@ -152,7 +154,7 @@
 %		\todo[inline]{Draft of new heat equation starts here. TODO: \\ Check if the heat cpacity of solid phase needs to be added \\ Elaborate why pressure is know}
 		\fi
 		
-			The heat equation was introduced in the previous chapter through equation \ref{EQ: CompressibleEuler_3} and in the appendix \ref{CH: Gouverning equations} 
+			The heat equation was introduced in the previous chapter through Equation \ref{EQ: CompressibleEuler_3} and in the appendix \ref{CH: Gouverning equations} 
 			
 			{\footnotesize
 			\begin{align}
@@ -161,7 +163,7 @@
 			\end{align}
 			}
 		
-			Following \citet{Elliott2011} or \citet{Gmehling2019}, a real gas internal energy definition can be obtained from the departure functions, defined through equation \ref{EQ: internal_energy_def}. In thermodynamics, the departure function is a mathematical function that characterizes the deviation of a thermodynamic property of a real substance from that of an ideal gas at the same temperature and pressure. The departure function is typically defined as the difference between the value of a thermodynamic property for a real fluid and the corresponding value for an ideal gas at the same temperature and pressure. Common departure functions include those for enthalpy, entropy, and internal energy. They are typically computed by integrating a function that depends on the equation of state and its derivatives. More information on the departure functions can be found in appendix \ref{CH:Enthalpy}.
+			Following \citet{Elliott2011} or \citet{Gmehling2019}, a real gas internal energy definition can be obtained from the departure functions, defined through Equation \ref{EQ: internal_energy_def}. In thermodynamics, the departure function is a mathematical function that characterizes the deviation of a thermodynamic property of a real substance from that of an ideal gas at the same temperature and pressure. The departure function is typically defined as the difference between the value of a thermodynamic property for a real fluid and the corresponding value for an ideal gas at the same temperature and pressure. Common departure functions include those for enthalpy, entropy, and internal energy. They are typically computed by integrating a function that depends on the equation of state and its derivatives. More information on the departure functions can be found in appendix \ref{CH:Enthalpy}.
 
 			{\footnotesize
 				\begin{equation}
@@ -171,9 +173,9 @@
 			
 			where ${\color{blue}e}^{id}(t,z)$ is the internal energy of perfect gas.
 			
-			If a gas is considered to be perfectly caloric (${\color{blue}e}(t,z)=C_v {\color{blue}T}(t,z)$), then the energy equation can be written in form of temperature. The perfectly caloric gas can be seen as the special case of a real gas, where the second term of the equation \ref{EQ: internal_energy_def} goes to zero.
+			If a gas is considered to be perfectly caloric (${\color{blue}e}(t,z)=C_v {\color{blue}T}(t,z)$), then the energy equation can be written in form of temperature. The perfectly caloric gas can be seen as the special case of a real gas, where the second term of the Equation \ref{EQ: internal_energy_def} goes to zero.
 			
-			For real gases, it is complicated to write the heat balance in terms of temperature, but it be can be used directly in the form of internal energy, as it is given by equation \ref{EQ: CompressibleEuler_3}. In such a case, the temperature (which is used as the input to some other functions) needs to be recovered from the internal energy. A relation for the internal energy can be obtained from an equation of state. For Peng-Robinson, such a relation is given by equation \ref{EQ: internal_energy_PR} as presented by \citet{Elliott2011}.
+			For real gases, it is complicated to write the heat balance in terms of temperature, but it be can be used directly in the form of internal energy, as it is given by Equation \ref{EQ: CompressibleEuler_3}. In such a case, the temperature (which is used as the input to some other functions) needs to be recovered from the internal energy. A relation for the internal energy can be obtained from an equation of state. For Peng-Robinson, such a relation is given by Equation \ref{EQ: internal_energy_PR} as presented by \citet{Elliott2011}.
 			
 %			{\footnotesize
 %				\begin{equation}
@@ -189,7 +191,7 @@
 				\end{equation}
 			}
 			
-			To solve equation \ref{EQ: internal_energy_PR}, values of temperature, pressure, and density need to be known. If an equation of state is introduced, then only two out of three variables need to be obtained as the third one can be calculated, this can be represented as follow
+			To solve Equation \ref{EQ: internal_energy_PR}, values of temperature, pressure, and density need to be known. If an equation of state is introduced, then only two out of three variables need to be obtained as the third one can be calculated, this can be represented as follow
 			
 			{\footnotesize
 			\begin{equation}
@@ -197,7 +199,7 @@
 			\end{equation}
 			}
 		
-			If the value of internal energy ${\color{blue}e}(t,z)$ is known from the time evolution of the energy equation (\ref{EQ: CompressibleEuler_3}), and pressure is known from measurement, then the temperature can be reconstructed. A roootfinder can be used to find a value of temperature, which minimizes the difference between the value of internal energy coming from the time evolution and the output from equation \ref{EQ: internal_energy_PR}. Such a procedure allow to find local temperature along spatial direction ${\color{blue}z}$ and needs to be repeated every time-step.
+			If the value of internal energy ${\color{blue}e}(t,z)$ is known from the time evolution of the energy equation (\ref{EQ: CompressibleEuler_3}), and pressure is known from measurement, then the temperature can be reconstructed. A roootfinder can be used to find a value of temperature, which minimizes the difference between the value of internal energy coming from the time evolution and the output from Equation \ref{EQ: internal_energy_PR}. Such a procedure allow to find local temperature along spatial direction ${\color{blue}z}$ and needs to be repeated every time-step.
 			
 			Another way to express the energy equation is to introduce enthalpy ${\color{blue}h}(t,z) = {\color{blue}e}(t,z) + {\color{red}P}(t) / \rho$. By introducing the definition of enthalpy, the energy equation becomes
 			
@@ -217,7 +219,7 @@
 				\end{equation}
 			}
 		
-			If the value of enthalpy is known from the time evolution and pressure can be measured, then the equation \ref{EQ:Enthalpy_root} can be solved for the temperature to recover the temperature profile. By applying the departure functions to Peng-Robinson equation of state, the relation \ref{EQ:Enthalpy_root} can be expressed directly through equation \ref{EQ:Enthalpy_PR} as presented in \ref{CH:Enthalpy} or given by \citet{Gmehling2019}.
+			If the value of enthalpy is known from the time evolution and pressure can be measured, then the Equation \ref{EQ:Enthalpy_root} can be solved for the temperature to recover the temperature profile. By applying the departure functions to Peng-Robinson equation of state, the relation \ref{EQ:Enthalpy_root} can be expressed directly through Equation \ref{EQ:Enthalpy_PR} as presented in \ref{CH:Enthalpy} or given by \citet{Gmehling2019}.
 			
 			{\footnotesize
 				\begin{equation}
@@ -226,7 +228,7 @@
 				\end{equation}
 			}
 		
-			The equation \ref{EQ:Enthalpy_PR} requires an reference sate, which in this case is assumed to be $T_{ref}=298.15~[K]$ and $P_{ref}=1.01325~[bar]$.
+			The Equation \ref{EQ:Enthalpy_PR} requires an reference sate, which in this case is assumed to be $T_{ref}=298.15~[K]$ and $P_{ref}=1.01325~[bar]$.
 			
 			As discussed by \citet{Gmehling2019}, special attention should be paid to high pressures systems, so the influence of the intermolecular forces on the enthalpy is taken into account. In most cases, these forces are attractive, so additional energy is necessary to move the molecules away from each other, that is, to lower the density. If this energy is not added, the substance cools down when it is expanded.
   
@@ -327,15 +329,15 @@
 			
 			As presented in Appendix \ref{CH: Gouverning equations}, all the governing can be written in the integral form using the Divergence Theorem. The integral equation states that the change rate of the integral of any quantity over an arbitrary control volume is given by the flux through the boundary of the control volume, with being the outer surface normal through the boundary. That quantity is neither produced nor consumed inside of the control volume and is hence conserved. For a derivative to be conservative, it must form a telescoping series. In other words, after the addition of all terms coming from the discretization over a grid, only the boundary terms should remain and the artificial interior points should cancel out. To ensure the mass conservation, the discretization is applied on the conservative form of the process model.
 			
-			To ensure the stability of the convergence while solving the partial differential equations, the Courant–Friedrichs–Lewy condition (given by Equation \ref{EQ:CFL}) was applied. Based on the discretization step and the velocity, the Courant–Friedrichs–Lewy condition can be used to find.
-			
-			{\footnotesize
-				\begin{equation}
-					C = \cfrac{u\Delta t}{\Delta x} \leq C_{max} = 1 
-					\label{EQ:CFL}
-				\end{equation}
-			}
-			
-			where u is velocity, $\Delta t$	is a time step and $\Delta x$ is the space discretization.
+%			To ensure the stability of the convergence while solving the partial differential equations, the Courant–Friedrichs–Lewy condition (given by Equation \ref{EQ:CFL}) was applied. Based on the discretization step and the velocity, the Courant–Friedrichs–Lewy condition can be used to find.
+%			
+%			{\footnotesize
+%				\begin{equation}
+%					C = \cfrac{u\Delta t}{\Delta x} \leq C_{max} = 1 
+%					\label{EQ:CFL}
+%				\end{equation}
+%			}
+%			
+%			where u is velocity, $\Delta t$	is a time step and $\Delta x$ is the space discretization.
 			
 \end{document}
