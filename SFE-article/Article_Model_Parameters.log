@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.8) (preloaded format=pdflatex 2022.9.27)  7 MAY 2023 14:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.8) (preloaded format=pdflatex 2022.9.27)  8 MAY 2023 13:39
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1578,7 +1578,7 @@ Overfull \hbox (123.62721pt too wide) detected at line 124
  []
 
 (Article_Model_Parameters.abs)
-<thumbnails/cas-email.jpeg, id=155, 225.84375pt x 225.84375pt>
+<thumbnails/cas-email.jpeg, id=159, 225.84375pt x 225.84375pt>
 File: thumbnails/cas-email.jpeg Graphic file (type jpg)
 <use thumbnails/cas-email.jpeg>
 Package pdftex.def Info: thumbnails/cas-email.jpeg  used on input line 124.
@@ -1598,7 +1598,7 @@ LaTeX Font Info:    Trying to load font information for T1+cmss on input line 1
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/base\t1cmss.fd
 File: t1cmss.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-<Figures/SFE_PFD_cropped.pdf, id=161, 450.18227pt x 202.53928pt>
+<Figures/SFE_PFD_cropped.pdf, id=165, 450.18227pt x 202.53928pt>
 File: Figures/SFE_PFD_cropped.pdf Graphic file (type pdf)
 <use Figures/SFE_PFD_cropped.pdf>
 Package pdftex.def Info: Figures/SFE_PFD_cropped.pdf  used on input line 17.
@@ -1609,23 +1609,23 @@ Package pdftex.def Info: Figures/SFE_PFD_cropped.pdf  used on input line 17.
 
  <./thumbnails/cas-email.jpeg> <./Figures/SFE_PFD_cropped.pdf>])
 (Sections/Thermo_imp.tex
-<Figures/Compressibility.pdf, id=217, 794.97pt x 614.295pt>
+<Figures/Compressibility.pdf, id=221, 794.97pt x 614.295pt>
 File: Figures/Compressibility.pdf Graphic file (type pdf)
 <use Figures/Compressibility.pdf>
 Package pdftex.def Info: Figures/Compressibility.pdf  used on input line 40.
 (pdftex.def)             Requested size: 469.78192pt x 161.7791pt.
-<Figures/RHO.pdf, id=219, 794.97pt x 614.295pt>
+<Figures/RHO.pdf, id=223, 794.97pt x 614.295pt>
 File: Figures/RHO.pdf Graphic file (type pdf)
 <use Figures/RHO.pdf>
 Package pdftex.def Info: Figures/RHO.pdf  used on input line 47.
 (pdftex.def)             Requested size: 469.78192pt x 161.7791pt.
-<Figures/CP.pdf, id=221, 794.97pt x 614.295pt>
+<Figures/CP.pdf, id=225, 794.97pt x 614.295pt>
 File: Figures/CP.pdf Graphic file (type pdf)
 <use Figures/CP.pdf>
 Package pdftex.def Info: Figures/CP.pdf  used on input line 54.
 (pdftex.def)             Requested size: 469.78192pt x 161.7791pt.
  [2] [3 <./Figures/Compressibility.pdf> <./Figures/RHO.pdf> <./Figures/CP.pdf>]
-<Figures/MU.pdf, id=312, 614.295pt x 794.97pt>
+<Figures/MU.pdf, id=316, 614.295pt x 794.97pt>
 File: Figures/MU.pdf Graphic file (type pdf)
 <use Figures/MU.pdf>
 Package pdftex.def Info: Figures/MU.pdf  used on input line 70.
@@ -1634,7 +1634,7 @@ File: Figures/MU.pdf Graphic file (type pdf)
 <use Figures/MU.pdf>
 Package pdftex.def Info: Figures/MU.pdf  used on input line 71.
 (pdftex.def)             Requested size: 494.50888pt x 138.88126pt.
-<Figures/KT.pdf, id=317, 614.295pt x 794.97pt>
+<Figures/KT.pdf, id=321, 614.295pt x 794.97pt>
 File: Figures/KT.pdf Graphic file (type pdf)
 <use Figures/KT.pdf>
 Package pdftex.def Info: Figures/KT.pdf  used on input line 80.
@@ -1695,7 +1695,7 @@ Overfull \hbox (8.86765pt too wide) detected at line 183
 
 pdfTeX warning: pdflatex (file ./Figures/SFE_draft.pdf): PDF inclusion: found P
 DF version <1.7>, but at most version <1.5> allowed
-<Figures/SFE_draft.pdf, id=429, 963.6pt x 542.025pt>
+<Figures/SFE_draft.pdf, id=433, 963.6pt x 542.025pt>
 File: Figures/SFE_draft.pdf Graphic file (type pdf)
 <use Figures/SFE_draft.pdf>
 Package pdftex.def Info: Figures/SFE_draft.pdf  used on input line 88.
@@ -1769,7 +1769,7 @@ LaTeX Font Info:    Trying to load font information for TS1+stix on input line
 File: ts1stix.fd 2015/04/17 v1.1.2-latex STIX TS1 font definitions
 )
 [13] [14]
-<Figures///Results_estimation/Fitting_LUKE_T40_P200.pdf, id=585, 794.97pt x 614
+<Figures///Results_estimation/Fitting_LUKE_T40_P200.pdf, id=589, 794.97pt x 614
 .295pt>
 File: Figures///Results_estimation/Fitting_LUKE_T40_P200.pdf Graphic file (type
  pdf)
@@ -1777,7 +1777,7 @@ File: Figures///Results_estimation/Fitting_LUKE_T40_P200.pdf Graphic file (type
 Package pdftex.def Info: Figures///Results_estimation/Fitting_LUKE_T40_P200.pdf
   used on input line 84.
 (pdftex.def)             Requested size: 238.25444pt x 92.19109pt.
-<Figures///Results_estimation/Fitting_LUKE_T50_P200.pdf, id=587, 794.97pt x 614
+<Figures///Results_estimation/Fitting_LUKE_T50_P200.pdf, id=591, 794.97pt x 614
 .295pt>
 File: Figures///Results_estimation/Fitting_LUKE_T50_P200.pdf Graphic file (type
  pdf)
@@ -1785,7 +1785,7 @@ File: Figures///Results_estimation/Fitting_LUKE_T50_P200.pdf Graphic file (type
 Package pdftex.def Info: Figures///Results_estimation/Fitting_LUKE_T50_P200.pdf
   used on input line 89.
 (pdftex.def)             Requested size: 238.25444pt x 92.19109pt.
-<Figures///Results_estimation/Fitting_LUKE_T40_P300_org.pdf, id=589, 794.97pt x
+<Figures///Results_estimation/Fitting_LUKE_T40_P300_org.pdf, id=593, 794.97pt x
  614.295pt>
 File: Figures///Results_estimation/Fitting_LUKE_T40_P300_org.pdf Graphic file (
 type pdf)
@@ -1793,7 +1793,7 @@ type pdf)
 Package pdftex.def Info: Figures///Results_estimation/Fitting_LUKE_T40_P300_org
 .pdf  used on input line 94.
 (pdftex.def)             Requested size: 238.25444pt x 92.19109pt.
-<Figures///Results_estimation/Fitting_LUKE_T50_P300_org.pdf, id=591, 794.97pt x
+<Figures///Results_estimation/Fitting_LUKE_T50_P300_org.pdf, id=595, 794.97pt x
  614.295pt>
 File: Figures///Results_estimation/Fitting_LUKE_T50_P300_org.pdf Graphic file (
 type pdf)
@@ -1812,7 +1812,7 @@ Underfull \hbox (badness 1609) in paragraph at lines 106--107
 \T1/stix/m/n/10 which link the es-ti-mated pa-ram-e-ters and the op-er-at-ing
  []
 
-<Figures///Results_estimation/Trend_Lines_order_1.pdf, id=594, 794.97pt x 614.2
+<Figures///Results_estimation/Trend_Lines_order_1.pdf, id=598, 794.97pt x 614.2
 95pt>
 File: Figures///Results_estimation/Trend_Lines_order_1.pdf Graphic file (type p
 df)
@@ -1820,7 +1820,7 @@ df)
 Package pdftex.def Info: Figures///Results_estimation/Trend_Lines_order_1.pdf  
 used on input line 114.
 (pdftex.def)             Requested size: 238.25444pt x 112.63182pt.
-<Figures///Results_estimation/Trend_Lines_order_2.pdf, id=596, 794.97pt x 614.2
+<Figures///Results_estimation/Trend_Lines_order_2.pdf, id=600, 794.97pt x 614.2
 95pt>
 File: Figures///Results_estimation/Trend_Lines_order_2.pdf Graphic file (type p
 df)
@@ -1943,7 +1943,7 @@ LaTeX Font Warning: Command \footnotesize invalid in math mode on input line 16
 
 pdfTeX warning: pdflatex (file ./Figures//Forces.pdf): PDF inclusion: found PDF
  version <1.7>, but at most version <1.5> allowed
-<Figures//Forces.pdf, id=777, 205.72859pt x 191.7564pt>
+<Figures//Forces.pdf, id=782, 205.72859pt x 191.7564pt>
 File: Figures//Forces.pdf Graphic file (type pdf)
 <use Figures//Forces.pdf>
 Package pdftex.def Info: Figures//Forces.pdf  used on input line 219.
@@ -1974,7 +1974,7 @@ LaTeX Font Info:    Trying to load font information for TS1+cmss on input line
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/base\ts1cmss.fd
 File: ts1cmss.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 ))
-<Sections/ultraReportT5.pdf, id=912, 597.23125pt x 845.1575pt>
+<Sections/ultraReportT5.pdf, id=917, 597.23125pt x 845.1575pt>
 File: Sections/ultraReportT5.pdf Graphic file (type pdf)
 <use Sections/ultraReportT5.pdf>
 Package pdftex.def Info: Sections/ultraReportT5.pdf  used on input line 266.
@@ -2012,16 +2012,134 @@ Package pdftex.def Info: Figures///Results_estimation/Fitting_LUKE_T50_P300_org
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-) [25 <./Sections/ultraReportT5.pdf>] (Article_Model_Parameters.aux)
+) [25 <./Sections/ultraReportT5.pdf>]
+(Sections/Parameter_estimation_solution_from_another_IG.tex
+<Figures///Results_estimation/Fitting_LUKE_T40_P200_2.pdf, id=964, 794.97pt x 6
+14.295pt>
+File: Figures///Results_estimation/Fitting_LUKE_T40_P200_2.pdf Graphic file (ty
+pe pdf)
+<use Figures///Results_estimation/Fitting_LUKE_T40_P200_2.pdf>
+Package pdftex.def Info: Figures///Results_estimation/Fitting_LUKE_T40_P200_2.p
+df  used on input line 33.
+(pdftex.def)             Requested size: 238.25444pt x 92.19109pt.
+<Figures///Results_estimation/Fitting_LUKE_T50_P200_2.pdf, id=966, 794.97pt x 6
+14.295pt>
+File: Figures///Results_estimation/Fitting_LUKE_T50_P200_2.pdf Graphic file (ty
+pe pdf)
+<use Figures///Results_estimation/Fitting_LUKE_T50_P200_2.pdf>
+Package pdftex.def Info: Figures///Results_estimation/Fitting_LUKE_T50_P200_2.p
+df  used on input line 38.
+(pdftex.def)             Requested size: 238.25444pt x 92.19109pt.
+<Figures///Results_estimation/Fitting_LUKE_T40_P300_org_2.pdf, id=968, 794.97pt
+ x 614.295pt>
+File: Figures///Results_estimation/Fitting_LUKE_T40_P300_org_2.pdf Graphic file
+ (type pdf)
+<use Figures///Results_estimation/Fitting_LUKE_T40_P300_org_2.pdf>
+Package pdftex.def Info: Figures///Results_estimation/Fitting_LUKE_T40_P300_org
+_2.pdf  used on input line 43.
+(pdftex.def)             Requested size: 238.25444pt x 92.19109pt.
+<Figures///Results_estimation/Fitting_LUKE_T50_P300_org_2.pdf, id=970, 794.97pt
+ x 614.295pt>
+File: Figures///Results_estimation/Fitting_LUKE_T50_P300_org_2.pdf Graphic file
+ (type pdf)
+<use Figures///Results_estimation/Fitting_LUKE_T50_P300_org_2.pdf>
+Package pdftex.def Info: Figures///Results_estimation/Fitting_LUKE_T50_P300_org
+_2.pdf  used on input line 48.
+(pdftex.def)             Requested size: 238.25444pt x 92.19109pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<Figures///Results_estimation/Trend_Lines_order_1_2.pdf, id=972, 794.97pt x 614
+.295pt>
+File: Figures///Results_estimation/Trend_Lines_order_1_2.pdf Graphic file (type
+ pdf)
+<use Figures///Results_estimation/Trend_Lines_order_1_2.pdf>
+Package pdftex.def Info: Figures///Results_estimation/Trend_Lines_order_1_2.pdf
+  used on input line 59.
+(pdftex.def)             Requested size: 238.25444pt x 112.63182pt.
+<Figures///Results_estimation/Trend_Lines_order_2_2.pdf, id=974, 794.97pt x 614
+.295pt>
+File: Figures///Results_estimation/Trend_Lines_order_2_2.pdf Graphic file (type
+ pdf)
+<use Figures///Results_estimation/Trend_Lines_order_2_2.pdf>
+Package pdftex.def Info: Figures///Results_estimation/Trend_Lines_order_2_2.pdf
+  used on input line 65.
+(pdftex.def)             Requested size: 238.25444pt x 112.63182pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+File: Figures///Results_estimation/Trend_Lines_order_1_2.pdf Graphic file (type
+ pdf)
+<use Figures///Results_estimation/Trend_Lines_order_1_2.pdf>
+Package pdftex.def Info: Figures///Results_estimation/Trend_Lines_order_1_2.pdf
+  used on input line 77.
+(pdftex.def)             Requested size: 116.74597pt x 105.31819pt.
+File: Figures///Results_estimation/Trend_Lines_order_1_2.pdf Graphic file (type
+ pdf)
+<use Figures///Results_estimation/Trend_Lines_order_1_2.pdf>
+Package pdftex.def Info: Figures///Results_estimation/Trend_Lines_order_1_2.pdf
+  used on input line 78.
+(pdftex.def)             Requested size: 116.74597pt x 108.5871pt.
+File: Figures///Results_estimation/Trend_Lines_order_2_2.pdf Graphic file (type
+ pdf)
+<use Figures///Results_estimation/Trend_Lines_order_2_2.pdf>
+Package pdftex.def Info: Figures///Results_estimation/Trend_Lines_order_2_2.pdf
+  used on input line 84.
+(pdftex.def)             Requested size: 116.74597pt x 105.31819pt.
+File: Figures///Results_estimation/Trend_Lines_order_2_2.pdf Graphic file (type
+ pdf)
+<use Figures///Results_estimation/Trend_Lines_order_2_2.pdf>
+Package pdftex.def Info: Figures///Results_estimation/Trend_Lines_order_2_2.pdf
+  used on input line 85.
+(pdftex.def)             Requested size: 116.74597pt x 108.5871pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+File: Figures///Results_estimation/Fitting_LUKE_T40_P200_2.pdf Graphic file (ty
+pe pdf)
+<use Figures///Results_estimation/Fitting_LUKE_T40_P200_2.pdf>
+Package pdftex.def Info: Figures///Results_estimation/Fitting_LUKE_T40_P200_2.p
+df  used on input line 97.
+(pdftex.def)             Requested size: 238.25444pt x 91.07686pt.
+File: Figures///Results_estimation/Fitting_LUKE_T50_P200_2.pdf Graphic file (ty
+pe pdf)
+<use Figures///Results_estimation/Fitting_LUKE_T50_P200_2.pdf>
+Package pdftex.def Info: Figures///Results_estimation/Fitting_LUKE_T50_P200_2.p
+df  used on input line 102.
+(pdftex.def)             Requested size: 238.25444pt x 91.07686pt.
+File: Figures///Results_estimation/Fitting_LUKE_T40_P300_org_2.pdf Graphic file
+ (type pdf)
+<use Figures///Results_estimation/Fitting_LUKE_T40_P300_org_2.pdf>
+Package pdftex.def Info: Figures///Results_estimation/Fitting_LUKE_T40_P300_org
+_2.pdf  used on input line 107.
+(pdftex.def)             Requested size: 238.25444pt x 91.07686pt.
+File: Figures///Results_estimation/Fitting_LUKE_T50_P300_org_2.pdf Graphic file
+ (type pdf)
+<use Figures///Results_estimation/Fitting_LUKE_T50_P300_org_2.pdf>
+Package pdftex.def Info: Figures///Results_estimation/Fitting_LUKE_T50_P300_org
+_2.pdf  used on input line 112.
+(pdftex.def)             Requested size: 238.25444pt x 91.07686pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+) [26
+
+ <./Figures///Results_estimation/Fitting_LUKE_T40_P200_2.pdf> <./Figures///Resu
+lts_estimation/Fitting_LUKE_T50_P200_2.pdf> <./Figures///Results_estimation/Fit
+ting_LUKE_T40_P300_org_2.pdf> <./Figures///Results_estimation/Fitting_LUKE_T50_
+P300_org_2.pdf>] [27 <./Figures///Results_estimation/Trend_Lines_order_1_2.pdf>
+ <./Figures///Results_estimation/Trend_Lines_order_2_2.pdf>]
+(Article_Model_Parameters.aux)
 Package rerunfilecheck Info: File `Article_Model_Parameters.out' has not change
 d.
-(rerunfilecheck)             Checksum: 9E139521C53A76DAF54BB2C869DBA7B9;6428.
+(rerunfilecheck)             Checksum: E803F01C0ECC130F2D448D24A2E966A2;6874.
  ) 
 Here is how much of TeX's memory you used:
- 43105 strings out of 478847
- 942060 string characters out of 2848486
- 1377831 words of memory out of 3000000
- 59883 multiletter control sequences out of 15000+600000
+ 43185 strings out of 478847
+ 945884 string characters out of 2848486
+ 1379607 words of memory out of 3000000
+ 59944 multiletter control sequences out of 15000+600000
  531118 words of font info for 180 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  94i,26n,131p,1594b,2555s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -2048,9 +2166,9 @@ nts/type1/public/stix/stix-mathit.pfb><C:/Users/sliczno1/AppData/Local/Programs
 l/Programs/MiKTeX/fonts/type1/public/stix/stix-mathscr.pfb><C:/Users/sliczno1/A
 ppData/Local/Programs/MiKTeX/fonts/type1/public/stix/stix-mathsf.pfb><C:/Users/
 sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrb8a.pfb>
-Output written on Article_Model_Parameters.pdf (25 pages, 3044391 bytes).
+Output written on Article_Model_Parameters.pdf (27 pages, 4804541 bytes).
 PDF statistics:
- 1079 PDF objects out of 1200 (max. 8388607)
- 249 named destinations out of 1000 (max. 500000)
- 521 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1182 PDF objects out of 1200 (max. 8388607)
+ 258 named destinations out of 1000 (max. 500000)
+ 643 words of extra memory for PDF output out of 10000 (max. 10000000)
 
