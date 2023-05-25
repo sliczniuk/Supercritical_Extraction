@@ -22,7 +22,7 @@ function xdot = modelSFE(x, p, mask, dt)
     km            =     parameters{8};
     mi            =     parameters{9};
 
-    Di            =     parameters{44};      Di = Di * 1e-13;
+    Di            =     parameters{44};      Di = Di * 1e-12;
     Dx            =     parameters{45};      Dx = Dx * 1e-6;
     C_SAT         =     parameters{47};
 

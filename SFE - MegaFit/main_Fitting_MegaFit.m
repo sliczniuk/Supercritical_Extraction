@@ -12,13 +12,14 @@ Parameters              = num2cell(Parameters_table{:,3});
 DATA_set                = {'LUKE_T40_P200', 'LUKE_T50_P200', 'LUKE_T40_P300_org', 'LUKE_T50_P300_org'};
 %DATA_set                = {'LUKE_T50_P300'};
 
-which_k                 = [8,  44, 45, 47                  ];               % Select which parameters are used for fitting
-k0                      = [0.1, 3, 1,  1, 80, 0.65, 0.4    ];               % Give inital value for each parameter
+which_k                 = [    8, 44, 45, 47                  ];            % Select which parameters are used for fitting
+k0                      = [ 0.01,  3,  1, 1,  80,  0.65,  0.4 ];            % Give inital value for each parameter
+k_lu                    = [ [  0;  0;  0; 0;  80;     0;     0], ...
+                          [  inf;inf;inf;inf;150;     1;   inf]];
 Nk                      = numel(which_k)+3;                                 % Parameters within the model + m_max, m_ratio, sigma
-k_lu                    = [ [0;0;0;0;80;0;0] , [inf;inf;inf;inf;150;1;inf] ];
 
-Iteration_max           = 30;                                               % Maximum number of iterations for optimzer
-Time_max                = 2.0;                                              % Maximum time of optimization in [h]
+Iteration_max           = 5;                                                % Maximum number of iterations for optimzer
+Time_max                = 1.0;                                              % Maximum time of optimization in [h]
 
 V_Flow                  = 0.4;                                              % Volumetric flow rate l/min
 
@@ -29,7 +30,7 @@ bed                     = 0.165;                                            % Pe
 % Set time of the simulation
 PreparationTime         = 0;
 ExtractionTime          = 150;
-timeStep                = 0.5;                                              % Minutes
+timeStep                = 5;                                                % Minutes
 SamplingTime            = 5;                                                % Minutes
 
 simulationTime          = PreparationTime + ExtractionTime;
@@ -52,6 +53,15 @@ if numel(N_Sample) ~= numel(SAMPLE)
 end
 
 DATA_K_OUT              = nan(Nk,numel(DATA_set));                          % Store Parameters obatined from all fits (par num x num exper)
+
+%% Create the solver
+OPT_solver                  = casadi.Opti();
+
+nlp_opts                    = struct;
+nlp_opts.ipopt.max_iter     = Iteration_max;
+nlp_opts.ipopt.max_cpu_time = Time_max*3600;
+ocp_opts                    = {'nlp_opts', nlp_opts};
+OPT_solver.solver(             'ipopt'   , nlp_opts)
 
 %% Specify parameters to estimate
 nstages                 = Parameters{1};
@@ -113,24 +123,20 @@ L_end                   = L_bed_after_nstages(end);
 %%
 Courant_Number = nan(1,numel(DATA_set));
 
-parpool(4)
-parfor ii=1:numel(DATA_set)
+%parpool(4)
 
-    DATA                        = DATA_set{ii};
-    LabResults                  = xlsread([DATA,'.xlsx']);
+cost = 0;
+K    = [];
+RHO  = [];
 
-    %% Create the solver
-    OPT_solver                  = casadi.Opti();
-
-    nlp_opts                    = struct;
-    nlp_opts.ipopt.max_iter     = Iteration_max;
-    nlp_opts.ipopt.max_cpu_time = Time_max*3600;
-    ocp_opts                    = {'nlp_opts', nlp_opts};
-    OPT_solver.solver(             'ipopt'   , nlp_opts)
+for ii=1:numel(DATA_set)
 
     % Descision variables
-    
     k                           = OPT_solver.variable(Nk);
+
+    % Dataset
+    DATA                        = DATA_set{ii};
+    LabResults                  = xlsread([DATA,'.xlsx']);
 
     %% Set parameters
     msol_max                    = k(numel(which_k)+1);                                                             % g of product in solid and fluid phase
@@ -162,6 +168,7 @@ parfor ii=1:numel(DATA_set)
 
     Z                           = Compressibility( T0homog, feedPress,         Parameters );
     rho                         = rhoPB_Comp(      T0homog, feedPress, Z,      Parameters );
+    RHO                         = [RHO; rho];
 
     enthalpy_rho                = rho.*SpecificEnthalpy(T0homog, feedPress, Z, rho, Parameters );
 
@@ -211,29 +218,35 @@ parfor ii=1:numel(DATA_set)
 
     %fJ  = Function('fJ', {k}, {J} );
 
+    cost = cost + J_L;
+    K = [K; k];
+    
     %% Constraints
     for nk=1:Nk
         OPT_solver.subject_to( k_lu(nk,1) <= k(nk,:) <= k_lu(nk,2) );
     end
 
-    %% Set opt and inital guess
-    OPT_solver.minimize(J_L);
-
-    OPT_solver.set_initial(k, k0);
-
-    %% Solve the opt
-    tic
-
-    try
-        sol = OPT_solver.solve();
-        KOUT = full(sol.value(k))
-    catch
-        KOUT = OPT_solver.debug.value(k)
-    end
-
-    DATA_K_OUT(:,ii) = KOUT;
-
 end
+
+%OPT_solver.subject_to( K(9) < K(2) < K(23) < K(16) );   
+
+%% Set opt and inital guess
+OPT_solver.minimize(cost);
+% 
+K0 = repmat(k0,1,numel(DATA_set));
+OPT_solver.set_initial(K, K0);
+% 
+% %% Solve the opt
+tic
+% 
+try
+        sol = OPT_solver.solve();
+        KOUT = full(sol.value(K))
+catch
+        KOUT = OPT_solver.debug.value(K)
+end
+
+DATA_K_OUT = reshape(KOUT,Nk,[]);
 %% save parameter estimation results in csv format
 
 %format shortE
