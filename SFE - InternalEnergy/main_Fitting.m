@@ -17,8 +17,8 @@ k0                      = [0.1, 3, 1,  1, 80, 0.65, 0.4    ];               % Gi
 Nk                      = numel(which_k)+3;                                 % Parameters within the model + m_max, m_ratio, sigma
 k_lu                    = [ [0;0;0;0;80;0;0] , [inf;inf;inf;inf;150;1;inf] ];
 
-Iteration_max           = 30;                                               % Maximum number of iterations for optimzer
-Time_max                = 2.0;                                              % Maximum time of optimization in [h]
+Iteration_max           = 50;                                               % Maximum number of iterations for optimzer
+Time_max                = 12.0;                                              % Maximum time of optimization in [h]
 
 V_Flow                  = 0.4;                                              % Volumetric flow rate l/min
 
@@ -244,7 +244,7 @@ TT   = cell2table(NAME');
 DATA_K_OUT_order_of_mag = DATA_K_OUT;
 DATA_K_OUT_order_of_mag(2,:) = DATA_K_OUT_order_of_mag(2,:);
 DATA_K_OUT_order_of_mag(3,:) = DATA_K_OUT_order_of_mag(3,:);
-DATA_K_OUT_order_of_mag(4,:) = DATA_K_OUT_order_of_mag(4,:) * 1e-6;
+DATA_K_OUT_order_of_mag(4,:) = DATA_K_OUT_order_of_mag(4,:) * 1e-5;
 
 for i=1:numel(DATA_set)
     TT.(i+1)=round(DATA_K_OUT_order_of_mag(:,i),5);

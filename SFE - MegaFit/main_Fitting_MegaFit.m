@@ -1,5 +1,6 @@
-startup; datetime("now");  delete(gcp('nocreate'));
-%p = Pushbullet(pushbullet_api);
+startup; datetime("now")
+delete(gcp('nocreate'));
+% %p = Pushbullet(pushbullet_api);
 
 %addpath('C:\dev\casadi-windows-matlabR2016a-v3.5.2');
 addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-windows-matlabR2016a-v3.5.1');
@@ -13,13 +14,13 @@ DATA_set                = {'LUKE_T40_P200', 'LUKE_T50_P200', 'LUKE_T40_P300_org'
 %DATA_set                = {'LUKE_T50_P300'};
 
 which_k                 = [    8, 44, 45, 47                  ];            % Select which parameters are used for fitting
-k0                      = [ 0.01,  3,  1, 1,  80,  0.65,  0.4 ];            % Give inital value for each parameter
+k0                      = [  0.1,  3,  1, 1,  80,  0.65,   0.4];            % Give inital value for each parameter
 k_lu                    = [ [  0;  0;  0; 0;  80;     0;     0], ...
                           [  inf;inf;inf;inf;150;     1;   inf]];
 Nk                      = numel(which_k)+3;                                 % Parameters within the model + m_max, m_ratio, sigma
 
-Iteration_max           = 5;                                                % Maximum number of iterations for optimzer
-Time_max                = 1.0;                                              % Maximum time of optimization in [h]
+Iteration_max           = 50;                                               % Maximum number of iterations for optimzer
+Time_max                = 12.0;                                              % Maximum time of optimization in [h]
 
 V_Flow                  = 0.4;                                              % Volumetric flow rate l/min
 
@@ -30,7 +31,7 @@ bed                     = 0.165;                                            % Pe
 % Set time of the simulation
 PreparationTime         = 0;
 ExtractionTime          = 150;
-timeStep                = 5;                                                % Minutes
+timeStep                = 2.5;                                                % Minutes
 SamplingTime            = 5;                                                % Minutes
 
 simulationTime          = PreparationTime + ExtractionTime;
@@ -59,7 +60,8 @@ OPT_solver                  = casadi.Opti();
 
 nlp_opts                    = struct;
 nlp_opts.ipopt.max_iter     = Iteration_max;
-nlp_opts.ipopt.max_cpu_time = Time_max*3600;
+nlp_opts.ipopt.max_cpu_time = Time_max*3600;     
+
 ocp_opts                    = {'nlp_opts', nlp_opts};
 OPT_solver.solver(             'ipopt'   , nlp_opts)
 
@@ -76,18 +78,8 @@ bed_mask(nstagesbed)    = 1;
 bed_mask(nstagesafter)  = 0;
 
 %% Number of variables
-Nx                      = 3 * nstages+2;                    % 3*Nstages(C_f, C_s, H) + P(t) + yield
+Nx                      = 3 * nstages+2;                                % 3*Nstages(C_f, C_s, H) + P(t) + yield
 Nu                      = 3 + numel( Parameters );
-
-%% symbolic variables
-x                       = MX.sym('x', Nx);
-u                       = MX.sym('u', Nu);
-
-%% Set Integrator
-f                       = @(x, u) modelSFE(x, u, bed_mask, timeStep_in_sec);
-
-% Integrator
-F                       = buildIntegrator(f, [Nx,Nu] , timeStep_in_sec);
 
 r                       = Parameters{3};                                % Radius of the extractor  [m]
 epsi                    = Parameters{4};                                % Fullness [-]
@@ -130,6 +122,17 @@ K    = [];
 RHO  = [];
 
 for ii=1:numel(DATA_set)
+
+    
+    %% symbolic variables
+    x                           = MX.sym('x', Nx);
+    u                           = MX.sym('u', Nu);
+    
+    %% Set Integrator
+    f                           = @(x, u) modelSFE(x, u, bed_mask, timeStep_in_sec);
+    
+    % Integrator
+    F                           = buildIntegrator(f, [Nx,Nu] , timeStep_in_sec);
 
     % Descision variables
     k                           = OPT_solver.variable(Nk);
@@ -241,9 +244,9 @@ tic
 % 
 try
         sol = OPT_solver.solve();
-        KOUT = full(sol.value(K))
+        KOUT = full(sol.value(K));
 catch
-        KOUT = OPT_solver.debug.value(K)
+        KOUT = OPT_solver.debug.value(K);
 end
 
 DATA_K_OUT = reshape(KOUT,Nk,[]);
@@ -321,7 +324,7 @@ for ii=1:numel(DATA_set)
         Parameters{which_k(i)}  = k0(i);
     end
 
-    msol_max                = k0(numel(which_k)+1);                                                             % g of product in solid and fluid phase
+    msol_max                = k0(numel(which_k)+1);                                              % g of product in solid and fluid phase
     mSol_ratio              = k0(numel(which_k)+2);
     mSOL_s                  = msol_max*mSol_ratio;                                               % g of product in biomass
     mSOL_f                  = msol_max*(1-mSol_ratio);                                           % g of biomass in fluid
@@ -353,7 +356,7 @@ for ii=1:numel(DATA_set)
     end
 
     % 
-    msol_max_opt            = KOUT(numel(which_k)+1);                                                            % g of product in solid and fluid phase
+    msol_max_opt            = KOUT(numel(which_k)+1);                                             % g of product in solid and fluid phase
     mSol_ratio_opt          = KOUT(numel(which_k)+2);
     mSOL_s_opt              = msol_max_opt*mSol_ratio_opt;                                        % g of product in biomass
     mSOL_f_opt              = msol_max_opt*(1-mSol_ratio_opt);                                    % g of biomass in fluid
