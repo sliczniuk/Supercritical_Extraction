@@ -202,11 +202,7 @@ By combining the momentum equation with the above equation, we get
 	\end{equation}
 }
 
-Suppose the flow is presumed to be isentropic, $dP/d\rho = c^2$, so $v^2=c^2$, where $c$ is the speed of sound. This can be interpreted as a small pressure wave propagating with the speed of sound relative to the flow.
-
-\subsection{Low Mach number expansion} \label{CH:Low_Mach_chapter}
-%\subfile{Sections/Low_mach_number_expansion}
-\subfile{Sections/Low_mach_number_expansion_imp}
+Suppose the flow is presumed to be isentropic, $dP/d\rho = c^2$, so $v^2=c^2$, where $c$ is the speed of sound. This can be interpreted as a small pressure wave propagating with the speed of sound relative to the flow. Moreover, if the flow velocity is relatively low, all pressure changes are hydrodynamic (due to velocity motion) rather than thermodynamic which leads to $\partial \rho / \partial P \approx 0$. In other words, the small changes in pressure due to flow velocity changes do not change the density. This has a secondary effect -- the speed of sound in the fluid is $\partial P/\partial \rho = \infty$ in this instance. So there is an infinite speed of sound, which makes the equations elliptic in nature. It can be deduced that at the isothermal conditions, the density in the system propagates with the same speed as pressure since they are both connected through the equation of state. The details of the Mach-number analysis are presented in Appendix \ref{CH:Low_Mach_chapter}.
 
 \subsection{Extraction model} \label{CH: Extraction_model}
 \subfile{Sections/Model}
@@ -245,8 +241,13 @@ The generalized model can be used to study the impact of different operating con
 \section{Appendix} 
 \subsection{Thermodynamic}
 \subfile{Sections/Thermodynamic_details}
+
 \subsection{Governing equations}
 \subfile{Sections/Gouverning_equation_derivation}
+
+\subsection{Low Mach number expansion} \label{CH:Low_Mach_chapter}
+%\subfile{Sections/Low_mach_number_expansion}
+\subfile{Sections/Low_mach_number_expansion_imp}
 
 \subsection{Bayes theorem} \label{CH: Bayes}
 \subfile{Sections/Bayes_Theorem}
