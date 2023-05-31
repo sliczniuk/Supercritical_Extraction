@@ -1,7 +1,7 @@
 function [T] = Reconstruct_T_from_enthalpy(h, P, theta)
 
     %addpath('C:\dev\casadi-windows-matlabR2016a-v3.5.2');
-    addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-windows-matlabR2016a-v3.5.1');
+    %addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi');
     import casadi.*
 
     if class(P)=="double"

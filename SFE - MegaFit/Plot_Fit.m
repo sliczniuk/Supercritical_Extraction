@@ -40,7 +40,7 @@ imagesc(Time,L_nstages,xx_out(1:nstages,:)); colormap turbo;
 a = colorbar;
 a.Label.String = 'C_f';
 a.Label.FontSize = 16;
-caxis([0, 15]);
+%caxis([0, 15]);
 
 xlabel('Time [min]')
 ylabel('Length [m]')
@@ -53,7 +53,7 @@ imagesc(Time,L_nstages,xx_out(1*nstages+1:2*nstages,:)); colormap turbo;
 a = colorbar;
 a.Label.String = 'C_s';
 a.Label.FontSize = 16;
-caxis([0, 70]);
+%caxis([0, 70]);
 
 xlabel('Time [min]')
 ylabel('Length [m]')
@@ -61,8 +61,8 @@ ylabel('Length [m]')
 ax=gca;
 ax.FontSize = 16;
 
-name = sprintf('$k_m = %g, D_i =%g e-14, D_x = %g e-6, C_{sat}=%g, Mass = %g, Inital~ratio = %g, \\sigma$ = %g',round(KOUT,3));
+%name = sprintf('$k_m = %g, D_i =%g e-14, D_x = %g e-6, C_{sat}=%g, Inital~ratio = %g, \\sigma$ = %g',round(KOUT,3));
 %name = sprintf('%g',round(KOUT,3));
-sgtitle(name, 'Interpreter', 'latex')
+%sgtitle(name, 'Interpreter', 'latex')
 
 set(gcf,'PaperOrientation','landscape'); print(figure(ii),['Fitting_',DATA_set{ii},'.pdf'],'-dpdf','-bestfit'); close all
