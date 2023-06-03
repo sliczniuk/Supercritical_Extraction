@@ -1,5 +1,5 @@
-function [Di] = DI_correlation(RHO, k1, k2)
+function [Di] = DI_correlation(RHO, k)
 
-    Di = k1 .* RHO + k2;
+    Di = k(1) .* RHO + k(2);
 
 end

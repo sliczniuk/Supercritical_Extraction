@@ -22,9 +22,9 @@ function xdot = modelSFE(x, p, mask, dt)
     km            =     parameters{8};
     mi            =     parameters{9};
 
-    Di            =     parameters{44};      Di = Di * 1e-14;
+    %Di            =     parameters{44};      
     Dx            =     parameters{45};      Dx = Dx * 1e-6;
-    C_SAT         =     parameters{47};
+    %C_SAT         =     parameters{47};
 
     nstages_index =     numel(mask);
     
@@ -46,6 +46,7 @@ function xdot = modelSFE(x, p, mask, dt)
     Z             =     Compressibility(TEMP, PRESSURE,    parameters);
 
     RHO           =     rhoPB_Comp(     TEMP, PRESSURE, Z, parameters);
+    Di            =     DI_correlation(RHO, [parameters{44},parameters{47}]) * 1e-14;
     
     VELOCITY      =     Velocity(F_u, RHO, parameters);
     
@@ -55,8 +56,8 @@ function xdot = modelSFE(x, p, mask, dt)
     KRHOCP        =     kRHOcp_Comp(     TEMP, PRESSURE, Z, RHO, CP, epsi.*mask, parameters);
 
     %% Saturation
-    Colid_percentage_left = 1 - (SOLID./C0solid);
-    Sat_coe       =     Saturation_Concentration(Colid_percentage_left, C_SAT); % Inverse logistic is used to control saturation. Close to saturation point, the Sat_coe goes to zero.
+    %Colid_percentage_left = 1 - (SOLID./C0solid);
+    Sat_coe       =     1;%Saturation_Concentration(Colid_percentage_left, C_SAT); % Inverse logistic is used to control saturation. Close to saturation point, the Sat_coe goes to zero.
 
     %% BC
     %Cf_0          =     if_else(F_u == 0, FLUID(1), 0);
