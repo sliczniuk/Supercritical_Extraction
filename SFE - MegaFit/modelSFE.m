@@ -22,7 +22,7 @@ function xdot = modelSFE(x, p, mask, dt)
     km            =     parameters{8};
     mi            =     parameters{9};
 
-    Di            =     parameters{44};      Di = Di * 1e-14;
+    %Di            =     parameters{44};      Di = Di * 1e-14;
     Dx            =     parameters{45};      Dx = Dx * 1e-6;
     %C_SAT         =     parameters{47};
 
@@ -47,6 +47,7 @@ function xdot = modelSFE(x, p, mask, dt)
 
     RHO           =     rhoPB_Comp(     TEMP, PRESSURE, Z, parameters);
     %Di            =     DI_correlation(RHO, [parameters{44},parameters{47}]) * 1e-14;
+    Di            =     DI_correlation(RHO, [-0.02142,22]) * 1e-14;
     
     VELOCITY      =     Velocity(F_u, RHO, parameters);
     
