@@ -23,20 +23,16 @@ nlp_opts.ipopt.max_cpu_time = Time_max*3600;
 ocp_opts                    = {'nlp_opts', nlp_opts};
 OPT_solver.solver(             'ipopt'   , nlp_opts)
 
-which_k                 = [     8, 45,          ];                      % Select which parameters are used for fitting
-k0                      = [     1,  1, 0.8,  0.4];                      % Give inital value for each parameter
-k_lu                    = [ [0.05;  0;   0;    0], ...
-                          [  100; inf;   1; inf]];
+which_k                 = [     8, 44, 45,          ];                      % Select which parameters are used for fitting
+k0                      = [     1,  3,  1, 0.8,  0.4];                      % Give inital value for each parameter
+k_lu                    = [ [0.05;  0;  0;   0;    0], ...
+                          [  100; inf;inf;   1; inf]];
 Nk                      = numel(which_k)+2;                                 % Parameters within the model + (m_max), m_ratio, sigma
 
 m_total                 = 90; 
 
-%ratio                   = OPT_solver.variable(2);
-                          %OPT_solver.subject_to( 0 <= sat <= 1 );
-%Parameters_sym(44)      = ratio(1);
-%Parameters_sym(47)      = ratio(2);
-                          %OPT_solver.subject_to( 0 <= DI_correlation(800,ratio) );
-                          %OPT_solver.subject_to( 0 <= DI_correlation(950,ratio) );
+%sat                     = OPT_solver.variable(2);
+%                          OPT_solver.subject_to( 0 <= sat <= 1 );
 
 %% Load paramters
 DATA_set                = {'LUKE_T40_P200', 'LUKE_T50_P200', 'LUKE_T40_P300_org', 'LUKE_T50_P300_org'};
@@ -248,8 +244,8 @@ end
 OPT_solver.minimize(cost);
 % 
 K0 = repmat(k0,1,numel(DATA_set));
-%K0 = [0.02141,-14.5, K0];
-%K  = [ratio;K];
+%K0 = [K0,100];
+%K  = [K;m_total];
 
 OPT_solver.set_initial(K, K0);
 % 
@@ -260,16 +256,13 @@ try
         sol = OPT_solver.solve();
         KOUT = full(sol.value(K));
 catch
-        KOUT = full(OPT_solver.debug.value(K));
+        KOUT = OPT_solver.debug.value(K);
 end
 datetime("now")
 
-%m_total    = KOUT(1:2);
-%KOUT       = KOUT(3:end);
+%m_total    = KOUT(end);
+%KOUT       = KOUT(1:end-1);
 DATA_K_OUT = reshape(KOUT,Nk,[]);
-
-%Parameters{44} = ratio(1);
-%Parameters{47} = ratio(2);
 
 %% save parameter estimation results in csv format
 
