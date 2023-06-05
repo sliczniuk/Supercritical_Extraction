@@ -2,8 +2,8 @@ figure(ii)
 subplot(2,2,1)
 hold on
 plot(Time  , xx_0(Nx,:)  ,'k'    , 'LineWidth',2)
-plot(Time  , xx_out(Nx,:),'r',   , 'LineWidth',2)
-plot(SAMPLE, data_org    ,'b--o' , 'LineWidth',2)
+plot(Time  , xx_out(Nx,:),'r'    , 'LineWidth',2)
+plot(SAMPLE, data_org    ,'bo'   , 'LineWidth',2)
 %plot(Time, 1e3 * (sum(xx_out(0*nstages+1:1*nstages,:) .* V_fluid) + sum(xx_out(1*nstages+1:2*nstages,:) .* V_solid)) + xx_out(Nx,:));
 hold off
 
@@ -21,7 +21,7 @@ subplot(2,2,2)
 hold on
 plot(SAMPLE(2:end), diff(xx_0(Nx,N_Sample)  ),'k'   ,'LineWidth',2)
 plot(SAMPLE(2:end), diff(xx_out(Nx,N_Sample)),'r'   ,'LineWidth',2)
-plot(SAMPLE(2:end), diff(data_org           ),'b--o','LineWidth',2)
+plot(SAMPLE(2:end), diff(data_org           ),'bo'  ,'LineWidth',2)
 %plot(Time, 1e3 * (sum(xx_out(0*nstages+1:1*nstages,:) .* V_fluid) + sum(xx_out(1*nstages+1:2*nstages,:) .* V_solid)) + xx_out(Nx,:));
 hold off
 
