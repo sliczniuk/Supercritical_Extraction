@@ -313,7 +313,7 @@ TTT.Properties.VariableNames = ["Time [min]","$40[C] 200[bar]$","$50[C] 200[bar]
 writetable(TTT,'Dataset.csv');
 
 %%  Inrease the simulation for sensitivity analysis
- simulationTime          = PreparationTime + 400;
+ simulationTime          = PreparationTime + 200;
 %
  timeStep_in_sec         = timeStep * 60;                                    % Seconds
  Time_in_sec             = (timeStep:timeStep:simulationTime)*60;            % Seconds
@@ -478,7 +478,7 @@ for xoxo=1:2
         hold off
         colormap jet
 
-        set(gcf,'PaperOrientation','landscape'); print(figure(1),[name_v,Title{ii},'_long.pdf'],'-dpdf','-bestfit')
+        set(gcf,'PaperOrientation','landscape'); print(figure(1),[name_v,Title{ii},'.pdf'],'-dpdf','-bestfit')
         close all;
 
         U = [U; Res(end,:)];
@@ -489,7 +489,7 @@ for xoxo=1:2
     plot(Time, U, 'LineWidth',2);
     xlabel('Time [min]'); ylabel(['$\frac{d y}{d',name_v,'}$'])
     legend(Title)
-    set(gcf,'PaperOrientation','landscape'); print(figure(1),[name_v,'_all_long.pdf'],'-dpdf','-bestfit'); close all
+    set(gcf,'PaperOrientation','landscape'); print(figure(1),[name_v,'_all.pdf'],'-dpdf','-bestfit'); close all
 
 end
 
