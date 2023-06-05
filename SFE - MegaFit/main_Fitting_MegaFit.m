@@ -13,7 +13,7 @@ Parameters_sym          = MX(cell2mat(Parameters));
 %% Create the solver
 OPT_solver                  = casadi.Opti();
 
-Iteration_max               = 0;                                          % Maximum number of iterations for optimzer
+Iteration_max               = 0;                                            % Maximum number of iterations for optimzer
 Time_max                    = 4.0;                                          % Maximum time of optimization in [h]
 
 nlp_opts                    = struct;
@@ -313,7 +313,7 @@ TTT.Properties.VariableNames = ["Time [min]","$40[C] 200[bar]$","$50[C] 200[bar]
 writetable(TTT,'Dataset.csv');
 
 %%  Inrease the simulation for sensitivity analysis
- simulationTime          = PreparationTime + 200;
+ simulationTime          = PreparationTime + 400;
 %
  timeStep_in_sec         = timeStep * 60;                                    % Seconds
  Time_in_sec             = (timeStep:timeStep:simulationTime)*60;            % Seconds
@@ -321,10 +321,10 @@ writetable(TTT,'Dataset.csv');
 %
  N_Time                  = length(Time_in_sec);
 
-Name_v = {'F','k_m'};
-XOXO   = [3, 3+8];
+Name_v = {'F','k_m', 'D_i', 'D_M'};
+XOXO   = [3, 3+8, 3+44, 3+45];
 
-for xoxo=1:2
+for xoxo=1:numel(XOXO)
 
     name_v                  = Name_v{xoxo};
 
