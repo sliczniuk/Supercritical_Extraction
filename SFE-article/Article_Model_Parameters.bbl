@@ -1,9 +1,19 @@
-\begin{thebibliography}{24}
+\begin{thebibliography}{25}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Hromis et~al.(2015)Hromis, Lazic, Markov, Vastag, Popovic, Suput,
+  Dzinic, Velicanski, and Popovic]{Hromis2015}
+Nevena~M. Hromis, Vera~L. Lazic, Sinisa~L. Markov, Zuzana~G. Vastag, Senka~Z.
+  Popovic, Danijela~Z. Suput, Natalija~R. Dzinic, Aleksandra~S. Velicanski, and
+  Ljiljana~M. Popovic.
+\newblock Optimization of chitosan biofilm properties by addition of caraway
+  essential oil and beeswax.
+\newblock \emph{Journal of Food Engineering}, 158:\penalty0 86--93, aug 2015.
+\newblock \doi{10.1016/j.jfoodeng.2015.01.001}.
 
 \bibitem[Reverchon et~al.(1993)Reverchon, Donsi, and Osseo]{Reverchon1993}
 Ernesto Reverchon, Giorgio Donsi, and Libero~Sesti Osseo.
@@ -112,13 +122,6 @@ Stefan Schreier.
 \newblock Wiley, 1982.
 \newblock ISBN 047105691X.
 
-\bibitem[Lions(2013)]{Lions2013}
-Pierre-Louis Lions.
-\newblock \emph{Mathematical Topics in Fluid Mechanics : Volume 1
-  Incompressible Models}.
-\newblock Oxford University Press, 2013.
-\newblock ISBN 9780199679218.
-
 \bibitem[Bulley et~al.(1984)Bulley, Fattori, Meisen, and Moyls]{Bulley1984}
 N.~R. Bulley, M.~Fattori, A.~Meisen, and L.~Moyls.
 \newblock Supercritical fluid extraction of vegetable oil seeds.
@@ -172,6 +175,13 @@ Helena Sovova.
 \newblock \emph{The Journal of Supercritical Fluids}, 129:\penalty0 3--8, nov
   2017.
 \newblock \doi{10.1016/j.supflu.2017.02.014}.
+
+\bibitem[Lions(2013)]{Lions2013}
+Pierre-Louis Lions.
+\newblock \emph{Mathematical Topics in Fluid Mechanics : Volume 1
+  Incompressible Models}.
+\newblock Oxford University Press, 2013.
+\newblock ISBN 9780199679218.
 
 \bibitem[Himmelblau(1970)]{Himmelblau1970}
 David~Mautner Himmelblau.

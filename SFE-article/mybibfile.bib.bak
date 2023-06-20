@@ -578,4 +578,16 @@
   publisher = {Elsevier {BV}},
 }
 
+@Article{Hromis2015,
+  author    = {Nevena M. Hromis and Vera L. Lazic and Sinisa L. Markov and Zuzana G. Vastag and Senka Z. Popovic and Danijela Z. Suput and Natalija R. Dzinic and Aleksandra S. Velicanski and Ljiljana M. Popovic},
+  journal   = {Journal of Food Engineering},
+  title     = {Optimization of chitosan biofilm properties by addition of caraway essential oil and beeswax},
+  year      = {2015},
+  month     = {aug},
+  pages     = {86--93},
+  volume    = {158},
+  doi       = {10.1016/j.jfoodeng.2015.01.001},
+  publisher = {Elsevier {BV}},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}

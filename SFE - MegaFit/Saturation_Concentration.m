@@ -1,8 +1,7 @@
-function [FLUID_SAT] = Saturation_Concentration(SOLID, C_SAT)
+function [FLUID_SAT] = Saturation_Concentration(SOLID, C_SAT, km)
 
-    k = 100;            % Growth rate
+    k = 25;            % Growth rate
     %L = 0.5*C_SAT;          % Location of midpoint
-    FLUID_SAT = 1 ./ (1 + exp( k .* ( SOLID - C_SAT ) ) );
+    FLUID_SAT = km ./ (1 + exp( k .* ( SOLID - C_SAT ) ) );
 
 end
-

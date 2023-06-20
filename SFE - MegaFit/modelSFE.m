@@ -24,7 +24,7 @@ function xdot = modelSFE(x, p, mask, dt)
 
     Di            =     parameters{44};      Di = Di * 1e-14;
     Dx            =     parameters{45};      Dx = Dx * 1e-6;
-    %C_SAT         =     parameters{47};
+    C_SAT         =     parameters{47};
 
     nstages_index =     numel(mask);
     
@@ -57,8 +57,8 @@ function xdot = modelSFE(x, p, mask, dt)
     KRHOCP        =     kRHOcp_Comp(     TEMP, PRESSURE, Z, RHO, CP, epsi.*mask, parameters);
 
     %% Saturation
-    %Colid_percentage_left = 1 - (SOLID./C0solid);
-    Sat_coe       =     1;%Saturation_Concentration(Colid_percentage_left, C_SAT); % Inverse logistic is used to control saturation. Close to saturation point, the Sat_coe goes to zero.
+    Colid_percentage_left = 1 - (SOLID./C0solid);
+    Sat_coe       =     Saturation_Concentration(Colid_percentage_left, C_SAT, km); % Inverse logistic is used to control saturation. Close to saturation point, the Sat_coe goes to zero.
 
     %% BC
     %Cf_0          =     if_else(F_u == 0, FLUID(1), 0);
@@ -97,20 +97,22 @@ function xdot = modelSFE(x, p, mask, dt)
 
     dPdt          = backward_diff_1_order(P_u, PRESSURE, [], dt)*1e2;
    
+    re = (1 ./ mi ./ lp2 .* Di)  .* ( SOLID .* Sat_coe - FLUID );
+
     %%
 
     xdot = [
     
     %--------------------------------------------------------------------
     % Concentration of extract in fluid phase | 0
-   - 1            ./  ( 1 - epsi .* mask ) .* d_cons_CF_dz                                                                     + ...
-    Dx            ./  ( 1 - epsi .* mask ) .* d2Cfdz2                                                                          + ...
-    (epsi.*mask)  ./  ( 1 - epsi .* mask ) .* (1 ./ mi ./ lp2 .* Di)  .* ( SOLID .* Sat_coe - FLUID ./ km ) ;
+   - 1            ./  ( 1 - epsi .* mask ) .* d_cons_CF_dz   + ...
+    Dx            ./  ( 1 - epsi .* mask ) .* d2Cfdz2        + ...
+    (epsi.*mask)  ./  ( 1 - epsi .* mask ) .* re;
     %zeros(nstages_index,1);
 
     %--------------------------------------------------------------------
     % Concentration of extract in solid phase | 1
-    - mask                                 .* (1 ./ mi ./ lp2 .* Di)  .* ( SOLID .* Sat_coe .* km - FLUID );
+    - mask                                 .* re;
     %zeros(nstages_index,1);
     
     %--------------------------------------------------------------------

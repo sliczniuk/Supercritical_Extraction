@@ -13,8 +13,8 @@ Parameters_sym          = MX(cell2mat(Parameters));
 %% Create the solver
 OPT_solver                  = casadi.Opti();
 
-Iteration_max               = 0;                                            % Maximum number of iterations for optimzer
-Time_max                    = 4.0;                                          % Maximum time of optimization in [h]
+Iteration_max               = 3000;                                          % Maximum number of iterations for optimzer
+Time_max                    = 72.0;                                          % Maximum time of optimization in [h]
 
 nlp_opts                    = struct;
 nlp_opts.ipopt.max_iter     = Iteration_max;
@@ -23,16 +23,16 @@ nlp_opts.ipopt.max_cpu_time = Time_max*3600;
 ocp_opts                    = {'nlp_opts', nlp_opts};
 OPT_solver.solver(             'ipopt'   , nlp_opts)
 
-which_k                 = [     8, 44, 45,          ];                      % Select which parameters are used for fitting
-k0                      = [     1,  3,  1, 0.8,  0.4];                      % Give inital value for each parameter
-k_lu                    = [ [0.05;  0;  0;   0;    0], ...
-    [  100; inf;inf;   1; inf]];
+which_k                 = [     8, 44, 45, 47            ];                      % Select which parameters are used for fitting
+k0                      = [     1,  3,  1, 0.9, 0.7,  0.2];                      % Give inital value for each parameter
+k_lu                    = [ [0.05;  0;  0;   0;   0;    0], ...
+                          [  inf; inf;inf;   1;   1; inf]];
 Nk                      = numel(which_k)+2;                                 % Parameters within the model + (m_max), m_ratio, sigma
 
-m_total                 = 90;
+%m_total                 = 90;
 
-%sat                     = OPT_solver.variable(2);
-%                          OPT_solver.subject_to( 0 <= sat <= 1 );
+m_total                 = OPT_solver.variable(1);
+                          OPT_solver.subject_to( 80 <= m_total <= 150 );
 
 %% Load paramters
 DATA_set                = {'LUKE_T40_P200', 'LUKE_T50_P200', 'LUKE_T40_P300_org', 'LUKE_T50_P300_org'};
@@ -47,7 +47,7 @@ bed                     = 0.165;                                            % Pe
 PreparationTime         = 0;
 ExtractionTime          = 200;
 ExtractionTime_SA       = 300;
-timeStep                = 1;                                                % Minutes
+timeStep                = 0.5;                                              % Minutes
 SamplingTime            = 5;                                                % Minutes
 
 simulationTime          = PreparationTime + ExtractionTime;
@@ -195,11 +195,11 @@ for ii=1:numel(DATA_set)
 
     % Initial conditions
     x0                          = [ C0fluid'                        ;
-        C0solid      * bed_mask         ;
-        enthalpy_rho * ones(nstages,1)  ;
-        feedPress(1)                    ;
-        0                               ;
-        ];
+                                    C0solid      * bed_mask         ;
+                                    enthalpy_rho * ones(nstages,1)  ;
+                                    feedPress(1)                    ;
+                                    0                               ;
+                                    ];
 
     %%
     % Store symbolic results of the simulation
@@ -220,11 +220,12 @@ for ii=1:numel(DATA_set)
     data                        = diff(data_org);
 
     %% Create the cost function
-    %J                         = (data-Yield_estimate_diff ) * diag([1:numel(data)/2, numel(data)/2:-1:1]) * (data-Yield_estimate_diff )';
-    J                           = (data-Yield_estimate_diff ) * diag(1) * (data-Yield_estimate_diff )';
-    J_L                         = -numel(data)./2 .* ( log(2.*pi) + log(sigma^2) ) - J./(2.*sigma^2);
+    J                         = (data-Yield_estimate_diff ) * diag([ones(1,20), 1:1:10]) * (data-Yield_estimate_diff )';
+    %J                           = (data-Yield_estimate_diff ) * diag(1) * (data-Yield_estimate_diff )';
+    J_L                         = -numel(data)./2 .* ( log(2.*pi) + log(sigma) ) - J./(2.*sigma);
     J_L                         = - J_L;
-    %J_L     = 1./sqrt( ( 2*3.14.*sigma.^2).^(numel(data)) ) .* exp( -J./(2.*sigma.^2) )
+    %J_L     = 1./sqrt( ( 2*3.14.*sigma.^2).^(numel(data)) ) .* exp(
+    %-J./(2.*sigma.^2) )66666
 
     %fJ  = Function('fJ', {k}, {J} );
 
@@ -236,7 +237,7 @@ for ii=1:numel(DATA_set)
         OPT_solver.subject_to( k_lu(nk,1) <= k(nk,:) <= k_lu(nk,2) );
     end
 
-    OPT_solver.subject_to( Yield_estimate(end)+1 <= X(Nx,end) );
+    OPT_solver.subject_to( Yield_estimate(end)-1 <= data_org(end) <= Yield_estimate(end)+3 );
 
 end
 
@@ -245,16 +246,17 @@ OPT_solver.minimize(cost);
 %
 K0 = repmat(k0,1,numel(DATA_set));
 
-Test0 = [1.42655,1.27583,1.21608,1.29423;
-3.0623,2.7902,5.54752,5.11937;
-6.53158,7.45505,1.39714,3.11692;
-0.74805,0.78813,0.69998,0.70227;
-0.29309,0.34347,0.62332,0.37067];
+Test0 = [   2.2462    2.1031    4.4823    3.6457
+            0.5798    0.6490    0.3359    0.3763
+            6.7939    7.4933    1.5156    3.0849
+            0.8028    0.7805    0.8608    0.9332
+            0.7070    0.7585    0.6640    0.6625
+            0.1683    0.1372    0.4733    0.2632];
 
 K0 = Test0(:);
 
-%K0 = [K0,100];
-%K  = [K;m_total];
+K0 = [K0;80];
+K  = [K;m_total];
 
 OPT_solver.set_initial(K, K0);
 %
@@ -269,15 +271,15 @@ catch
 end
 datetime("now")
 
-%m_total    = KOUT(end);
-%KOUT       = KOUT(1:end-1);
+m_total    = KOUT(end);
+KOUT       = KOUT(1:end-1);
 DATA_K_OUT = reshape(KOUT,Nk,[]);
 
 %% save parameter estimation results in csv format
 
 %format shortE
 
-NAME = {'$k_m[-]$', '$D_i[m^2/s] \times 1e-14$', '$D_e^M[m^2/s] \times 1e-6$', '$\tau[-]$', '$\sigma[-]$'};
+NAME = {'$k_m[-]$', '$D_i[m^2/s] \times 1e-14$', '$D_e^M[m^2/s] \times 1e-6$', 'sat', '$\tau[-]$', '$\sigma[-]$'};
 name = {'km', 'Di', 'De', 'sat', 'tau', 'sigma'};
 Title = {'T40P200', 'T50P200', 'T40P300', 'T50P300'};
 
@@ -324,7 +326,7 @@ writetable(TTT,'Dataset.csv');
 Name_v = {'F','k_m', 'D_i', 'D_M'};
 XOXO   = [3, 3+8, 3+44, 3+45];
 
-for xoxo=1:numel(XOXO)
+for xoxo=1:1%numel(XOXO)
 
     name_v                  = Name_v{xoxo};
 
@@ -382,11 +384,11 @@ for xoxo=1:numel(XOXO)
 
         % Initial conditions
         x0                      = [ C0fluid'                        ;
-            C0solid  * bed_mask             ;
-            enthalpy_rho * ones(nstages,1)  ;
-            feedPress(1)                    ;
-            0                               ;
-            ];
+                                    C0solid  * bed_mask             ;
+                                    enthalpy_rho * ones(nstages,1)  ;
+                                    feedPress(1)                    ;
+                                    0                               ;
+                                    ];
 
         Parameters_init_time   = [uu repmat(cell2mat(Parameters),1,N_Time)'];
         [xx_0]                 = simulateSystem(F, [], x0, Parameters_init_time );
@@ -432,12 +434,12 @@ for xoxo=1:numel(XOXO)
 
         % Initial conditions
         x0_SA                   = [ C0fluid';
-            C0solid  * bed_mask        ;
-            enthalpy_rho * ones(nstages,1) ;
-            feedPress(1);
-            0;
-            zeros(length(S)-length(xdot),1)
-            ];
+                                    C0solid  * bed_mask        ;
+                                    enthalpy_rho * ones(nstages,1) ;
+                                    feedPress(1);
+                                    0;
+                                    zeros(length(S)-length(xdot),1)
+                                    ];
 
         f_SA = @(S, p) Sdot(S, p, bed_mask);
         Results = Integrator_SS(Time*60, x0_SA, S, p, Sdot, Parameters_opt_time );

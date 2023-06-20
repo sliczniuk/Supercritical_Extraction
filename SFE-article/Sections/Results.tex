@@ -8,10 +8,10 @@
 
     \begin{itemize}
         \item Partition coefficient:\qquad\quad\qquad$k_m$
-        \item Internal Diffusion coefficient: \quad$D_i$
-        \item Axial Diffusion coefficient: \qquad$D_e^M$
-        \item Saturation concentration: \quad\qquad$C_{sat}$
-        \item Standard Deviation: \qquad\qquad\quad$\sigma$
+        \item Internal diffusion coefficient: \quad$D_i$
+        \item Axial diffusion coefficient: \qquad$D_e^M$
+        \item Limiting concentration: \quad\qquad$C_{lim}$
+        \item Standard deviation: \qquad\qquad\quad$\sigma$
     \end{itemize}
 
     Moreover, the initial state estimation was performed together with parameter estimation. The concentration of solute in the solid phase is assumed to be constant and uniformly distributed. On the other hand, the solute concentration in the fluid phase should not follow the same assumption as the solid phase. During the preparation period the solute diffuses to the fluid phase in contact with the solid particles. Later, the solute in the fluid phase is partially moved along the extractor (if the pressure increase in the system, the pump cause the movement of the fluid, even if the outlet valve is closed). As a result, the distribution of solute mass in the fluid phase is assumed to not be uniform. Some conclusions can be drawn from the analysis of the initial part of each yield curve. It can be noticed that each curve at the beginning has a curvature, which is not linear. In a general sense, it can be said that a quadratic function could approximate the initial part of each extraction curve. A function that, after integration, gives a quadratic-like result is a straight line. Based on that observation, the solute concentration in the fluid phase is assumed to be linearly distributed. The solute concentration is assumed to be zero at the outlet and reach the maximum at the beginning of the fixed bed. The details on the calculation are given in appendix \ref{CH: IC_BC}. The linear distribution can be defined if the total mass of solute $m_{total}$ and partition coefficient $\tau$ are know.
@@ -30,7 +30,7 @@
 		\adjustbox{max width=\columnwidth}{%
 		\begin{tabular}{ lccccccc }
 			\hline 
-			Parameter		&$k_m$[-] 	& $D_i$[m/s$^2$] 	& $D_e^M$[m/s$^2$]	& $C_{sat}$ [kg/m$^3$] 	& $m_{total}$[g]	& $\tau$[-] 	& $\sigma$[-] \\  \hline
+			Parameter		&$k_m$[-] 	& $D_i$[m/s$^2$] 	& $D_e^M$[m/s$^2$]	& $C_{lim}$ [kg/m$^3$] 	& $m_{total}$[g]	& $\tau$[-] 	& $\sigma$[-] \\  \hline
 			Lower bound		&0	  		& 0 	  			& 0 				&	0					& 80 		 		& 0 	   		& 0 \\ 
 			Upper bound		&1 			& $+\infty$ 		& $+\infty$			&	$+\infty$			& 150 				& 1 			& $+\infty$ \\ 
 			Initial guess	&1	  		& 3 	  			& 1 				&	3					& 80 		 		& 0.65 	   		& 0.1 \\  \hline
@@ -69,7 +69,7 @@
 	
 	The axial diffusion coefficient obtained from the optimizer seems to be quite high if compared to the internal diffusion coefficients. Nevertheless, the values of $D_e^M$ have similar order of magnitude as reported in literature, for example \citet{ReisVasco2000}. The relatively high values of the axial diffusion coefficients might be justified by taking into account low values of flow rate used in all the experiments.
 	
-	The further spifflication of the process model can be introduced based on $C_{sat}$ results. Values of saturation concentrations are at the level of 1e5 which is an internal upper bound of the optimizer used if $+\infty$ indicates the upper bound. This suggest that solvent hasn't reach the saturation concentration and the process model can be simplified by replacing $\gamma(c_f)$ function with unity.
+	The further spifflication of the process model can be introduced based on $C_{lim}$ results. Values of saturation concentrations are at the level of 1e5 which is an internal upper bound of the optimizer used if $+\infty$ indicates the upper bound. This suggest that solvent hasn't reach the saturation concentration and the process model can be simplified by replacing $\gamma(c_f)$ function with unity.
 	
 	As the total amount of the oil present in the system is unknown, and as such it has been obtained from the optimizer. Given the dataset and the process model, the optimizer found that the best fit is obtained if the total mass of the oil reach a lower bound equal to 80 g. The lower bound was estimated by round up of the biggest value of collected cumulative amount of the extraction product. As the same raw material was used in all experiments, the same initial amount of solute is assumed for all the cases.
 	
@@ -103,7 +103,7 @@
 		\label{fig: estimation_results}
 	\end{figure}
 
-	The results obtained from the parameter estimation are used to develop a generalized process model. The model generalization is performed by introducing correlations which link the estimated parameters and the operating conditions. Since the experiments were performed under varying temperature and pressure, the influence of these variables is taken into account. To simplify the problem, the correlations are written as functions of fluid density rather than temperature and pressure. Since the optimizer found that $k_m$, $m_{total}$ and $C_{sat}$ don't change with the density variations, they are assumed to be constants and not considered further.
+	The results obtained from the parameter estimation are used to develop a generalized process model. The model generalization is performed by introducing correlations which link the estimated parameters and the operating conditions. Since the experiments were performed under varying temperature and pressure, the influence of these variables is taken into account. To simplify the problem, the correlations are written as functions of fluid density rather than temperature and pressure. Since the optimizer found that $k_m$, $m_{total}$ and $C_{lim}$ don't change with the density variations, they are assumed to be constants and not considered further.
 		
 	The other two parameters ($D_i$ and $D_e^M$) are subject to regression to obtain correlations in terms of density. Figure \ref{fig:Regression} shows the first- and second-order polynomials used to fit $D_i$ and $D_e^M$ as a function of fluid density. 
 	
