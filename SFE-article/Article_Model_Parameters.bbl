@@ -37,26 +37,11 @@ E.~Reverchon.
   1996.
 \newblock \doi{10.1002/aic.690420627}.
 
-\bibitem[Peng and Robinson(1976)]{Peng1976}
-Ding-Yu Peng and Donald~B. Robinson.
-\newblock A new two-constant equation of state.
-\newblock \emph{Industrial {\&} Engineering Chemistry Fundamentals},
-  15\penalty0 (1):\penalty0 59--64, feb 1976.
-\newblock \doi{10.1021/i160057a011}.
-
 \bibitem[Elliott(2011)]{Elliott2011}
 J~Elliott.
 \newblock \emph{Introductory chemical engineering thermodynamics}.
 \newblock Prentice Hall, Upper Saddle River, NJ, 2011.
 \newblock ISBN 9780136068549.
-
-\bibitem[Pratt(2001)]{Pratt2001}
-R.~M. Pratt.
-\newblock Thermodynamic properties involving derivatives: Using the
-  peng-robinson equation of state, chemical engineering education.
-\newblock \emph{CHEMICAL ENGINEERING EDUCATION}, 35:\penalty0 112--139, 2001.
-\newblock ISSN 0009-2479.
-\newblock URL \url{https://www.tib.eu/de/suchen/id/BLSE%3ARN095457101}.
 
 \bibitem[Simeoni et~al.(2010)Simeoni, Bryk, Gorelli, Krisch, Ruocco, Santoro,
   and Scopigno]{Simeoni2010}
@@ -175,6 +160,21 @@ Helena Sovova.
 \newblock \emph{The Journal of Supercritical Fluids}, 129:\penalty0 3--8, nov
   2017.
 \newblock \doi{10.1016/j.supflu.2017.02.014}.
+
+\bibitem[Peng and Robinson(1976)]{Peng1976}
+Ding-Yu Peng and Donald~B. Robinson.
+\newblock A new two-constant equation of state.
+\newblock \emph{Industrial {\&} Engineering Chemistry Fundamentals},
+  15\penalty0 (1):\penalty0 59--64, feb 1976.
+\newblock \doi{10.1021/i160057a011}.
+
+\bibitem[Pratt(2001)]{Pratt2001}
+R.~M. Pratt.
+\newblock Thermodynamic properties involving derivatives: Using the
+  peng-robinson equation of state, chemical engineering education.
+\newblock \emph{CHEMICAL ENGINEERING EDUCATION}, 35:\penalty0 112--139, 2001.
+\newblock ISSN 0009-2479.
+\newblock URL \url{https://www.tib.eu/de/suchen/id/BLSE%3ARN095457101}.
 
 \bibitem[Lions(2013)]{Lions2013}
 Pierre-Louis Lions.

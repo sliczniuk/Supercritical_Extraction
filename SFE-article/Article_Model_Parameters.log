@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.8) (preloaded format=pdflatex 2022.9.27)  20 JUN 2023 16:13
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.8) (preloaded format=pdflatex 2022.9.27)  21 JUN 2023 19:45
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1649,101 +1649,110 @@ File: Figures/KT.pdf Graphic file (type pdf)
 <use Figures/KT.pdf>
 Package pdftex.def Info: Figures/KT.pdf  used on input line 57.
 (pdftex.def)             Requested size: 153.29654pt x 119.69856pt.
-[2 <./Figures/PFD.pdf>])
-Overfull \hbox (2.15552pt too wide) in paragraph at lines 144--145
+[2 <./Figures/PFD.pdf>]) [3 <./Figures/Compressibility.pdf> <./Figures/RHO.pdf>
+ <./Figures/CP.pdf> <./Figures/Enthalpy.pdf> <./Figures/MU.pdf> <./Figures/KT.p
+df>]
+Overfull \hbox (2.15552pt too wide) in paragraph at lines 148--149
 []\T1/stix/m/n/10 The quasi-one-dimensional com-press-ible Navier-Stokes
  []
 
-[3 <./Figures/Compressibility.pdf> <./Figures/RHO.pdf> <./Figures/CP.pdf> <./Fi
-gures/Enthalpy.pdf> <./Figures/MU.pdf> <./Figures/KT.pdf>]
-Overfull \hbox (2.624pt too wide) in paragraph at lines 205--206
+
+Overfull \hbox (8.18648pt too wide) in paragraph at lines 209--210
 []\T1/stix/m/n/10 Suppose the flow is pre-sumed to be isen-tropic, $\LS1/stix/m
-/it/10 dP\LS1/stix/m/n/10 _\LS1/stix/m/it/10 d^^Z \LS1/stix/m/n/10 =
+/it/10 d[][]\LS1/stix/m/n/10 _\LS1/stix/m/it/10 d[][] \LS1/stix/m/n/10 =
  []
 
 
-Underfull \hbox (badness 1436) in paragraph at lines 205--206
+Underfull \hbox (badness 1436) in paragraph at lines 209--210
 \T1/stix/m/n/10 are hy-dro-dy-namic (due to ve-loc-ity mo-tion) rather than
  []
 
 (Sections/Model.tex [4]
+Overfull \hbox (6.37921pt too wide) detected at line 55
+ $[] \LS1/stix/m/n/8 + [][] = [][][].\LS1/stix/m/it/8 t; z\LS1/stix/m/n/8 / + [
+][] []$  
+ []
+
+
 
 pdfTeX warning: pdflatex (file ./Figures/SFE_draft.pdf): PDF inclusion: found P
 DF version <1.7>, but at most version <1.5> allowed
-<Figures/SFE_draft.pdf, id=411, 963.6pt x 542.025pt>
+<Figures/SFE_draft.pdf, id=415, 963.6pt x 542.025pt>
 File: Figures/SFE_draft.pdf Graphic file (type pdf)
 <use Figures/SFE_draft.pdf>
-Package pdftex.def Info: Figures/SFE_draft.pdf  used on input line 88.
+Package pdftex.def Info: Figures/SFE_draft.pdf  used on input line 84.
 (pdftex.def)             Requested size: 238.25444pt x 161.41455pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Overfull \hbox (8.16127pt too wide) detected at line 124
+Overfull \hbox (8.16127pt too wide) detected at line 120
  $[][]\LS1/stix/m/n/8 .\LS1/stix/m/it/8 t; z\LS1/stix/m/n/8 / = *[] []$  
  []
 
 (Sections/Saturation.tex [5 <./Figures/SFE_draft.pdf>]
-Overfull \hbox (9.45523pt too wide) in paragraph at lines 42--43
+Overfull \hbox (8.93472pt too wide) in paragraph at lines 42--43
  [][] 
  []
 
 
-Overfull \hbox (19.46326pt too wide) detected at line 54
- $[][]\LS1/stix/m/n/8 .\LS1/stix/m/it/8 t; z\LS1/stix/m/n/8 / = *[] []$  
+Overfull \hbox (0.43062pt too wide) detected at line 54
+ $[][]\LS1/stix/m/n/7 .\LS1/stix/m/it/7 t; z\LS1/stix/m/n/7 / = *[] []$  
  []
 
-) [6]
-Overfull \hbox (2.9789pt too wide) detected at line 219
- $[][]\LS1/stix/m/n/8 .\LS1/stix/m/it/8 t; z\LS1/stix/m/n/8 / = \LS1/stix/m/it/
-8 h\LS1/stix/m/n/8 .[][].\LS1/stix/m/it/8 t; z\LS1/stix/m/n/8 /\LS1/stix/m/it/8
- ; [][]\LS1/stix/m/n/8 .\LS1/stix/m/it/8 t\LS1/stix/m/n/8 /\LS1/stix/m/it/8 ; [
-][]\LS1/stix/m/n/8 .[][].\LS1/stix/m/it/8 t; z\LS1/stix/m/n/8 /\LS1/stix/m/it/8
- ; [][]\LS1/stix/m/n/8 .\LS1/stix/m/it/8 t\LS1/stix/m/n/8 /// = \LS1/stix/m/it/
-8 h\LS1/stix/m/n/8 .[][].\LS1/stix/m/it/8 t; z\LS1/stix/m/n/8 /\LS1/stix/m/it/8
- ; [][]\LS1/stix/m/n/8 .\LS1/stix/m/it/8 t\LS1/stix/m/n/8 /\LS1/stix/m/it/8 ; ^
-^Z\LS1/stix/m/n/8 .[][].\LS1/stix/m/it/8 t; z\LS1/stix/m/n/8 /\LS1/stix/m/it/8 
-; [][]\LS1/stix/m/n/8 .\LS1/stix/m/it/8 t\LS1/stix/m/n/8 ///$  
+)
+Overfull \hbox (8.70789pt too wide) detected at line 168
+ $\LS1/stix/m/it/8 d[][]\LS1/stix/m/n/8 .\LS1/stix/m/it/8 t; z\LS1/stix/m/n/8 /
+ = \LS1/stix/m/it/8 C[]d[][] \LS1/stix/m/n/8 * [] \LS1/stix/m/it/8 d[][] []$  
  []
 
 
-Overfull \hbox (13.10997pt too wide) detected at line 228
- $[][]\LS1/stix/m/n/8 .\LS1/stix/m/it/8 t; z\LS1/stix/m/n/8 / * [][].\LS1/stix/
-m/it/8 t; z\LS1/stix/m/n/8 /[] = \LS1/stix/m/it/8 R[][]\LS1/stix/m/n/8 .\LS1/st
-ix/m/it/8 t; z\LS1/stix/m/n/8 / []$  
+Overfull \hbox (4.36089pt too wide) detected at line 198
+ $[][]\LS1/stix/m/n/8 .\LS1/stix/m/it/8 t; z\LS1/stix/m/n/8 / = [][].[][].\LS1/
+stix/m/it/8 t; z\LS1/stix/m/n/8 /\LS1/stix/m/it/8 ; [][]\LS1/stix/m/n/8 .\LS1/s
+tix/m/it/8 t\LS1/stix/m/n/8 /\LS1/stix/m/it/8 ; [][]\LS1/stix/m/n/8 .[][].\LS1/
+stix/m/it/8 t; z\LS1/stix/m/n/8 /\LS1/stix/m/it/8 ; [][]\LS1/stix/m/n/8 .\LS1/s
+tix/m/it/8 t\LS1/stix/m/n/8 /// = \LS1/stix/m/it/8 e\LS1/stix/m/n/8 .[][].\LS1/
+stix/m/it/8 t; z\LS1/stix/m/n/8 /\LS1/stix/m/it/8 ; [][]\LS1/stix/m/n/8 .\LS1/s
+tix/m/it/8 t\LS1/stix/m/n/8 /\LS1/stix/m/it/8 ; [][]\LS1/stix/m/n/8 .[][].\LS1/
+stix/m/it/8 t; z\LS1/stix/m/n/8 /\LS1/stix/m/it/8 ; [][]\LS1/stix/m/n/8 .\LS1/s
+tix/m/it/8 t\LS1/stix/m/n/8 ///$  
+ []
+
+[6]
+Overfull \hbox (7.52888pt too wide) detected at line 218
+ $[][]\LS1/stix/m/n/8 .\LS1/stix/m/it/8 t; z\LS1/stix/m/n/8 / = [][].[][].\LS1/
+stix/m/it/8 t; z\LS1/stix/m/n/8 /\LS1/stix/m/it/8 ; [][]\LS1/stix/m/n/8 .\LS1/s
+tix/m/it/8 t\LS1/stix/m/n/8 /\LS1/stix/m/it/8 ; [][]\LS1/stix/m/n/8 .[][].\LS1/
+stix/m/it/8 t; z\LS1/stix/m/n/8 /\LS1/stix/m/it/8 ; [][]\LS1/stix/m/n/8 .\LS1/s
+tix/m/it/8 t\LS1/stix/m/n/8 /// = [][].[][].\LS1/stix/m/it/8 t; z\LS1/stix/m/n/
+8 /\LS1/stix/m/it/8 ; [][]\LS1/stix/m/n/8 .\LS1/stix/m/it/8 t\LS1/stix/m/n/8 /\
+LS1/stix/m/it/8 ; [][]\LS1/stix/m/n/8 .[][].\LS1/stix/m/it/8 t; z\LS1/stix/m/n/
+8 /\LS1/stix/m/it/8 ; [][]\LS1/stix/m/n/8 .\LS1/stix/m/it/8 t\LS1/stix/m/n/8 //
+/$  
  []
 
 
-Overfull \hbox (14.0426pt too wide) detected at line 291
+Overfull \hbox (14.0426pt too wide) detected at line 293
 []
  []
 
 
-Underfull \hbox (badness 1237) in paragraph at lines 295--296
+Underfull \hbox (badness 1237) in paragraph at lines 297--298
 \T1/stix/m/n/10 set of $\LS1/stix/m/it/10 N[]$ \T1/stix/m/n/10 dis-cretized equ
 a-tions de-noted as $[][][]$ to
  []
 
-[7]) (Sections/Parameter_estimation.tex [8]
-Underfull \hbox (badness 1199) in paragraph at lines 121--122
-\T1/stix/m/n/10 be-cause it's con-stant with re-spect to the max-i-miza-tion.
- []
-
-
-Underfull \hbox (badness 1320) in paragraph at lines 137--138
-[]\T1/stix/m/n/10 The like-li-hood func-tion $\LS1/stix/m/it/10 L []$ \T1/stix/
-m/n/10 for the pa-ram-e-ters
- []
-
-) (Sections/Experiments.tex [9]) (Sections/Results.tex
+[7]) (Sections/Parameter_estimation.tex [8]) (Sections/Experiments.tex)
+(Sections/Results.tex
 LaTeX Font Info:    Trying to load font information for TS1+stix on input line 
 10.
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ts1stix.fd
 File: ts1stix.fd 2015/04/17 v1.1.2-latex STIX TS1 font definitions
 )
-[10]
-<Figures///Results_estimation/Fitting_LUKE_T40_P200.pdf, id=569, 794.97pt x 614
+[9]
+<Figures///Results_estimation/Fitting_LUKE_T40_P200.pdf, id=550, 794.97pt x 614
 .295pt>
 File: Figures///Results_estimation/Fitting_LUKE_T40_P200.pdf Graphic file (type
  pdf)
@@ -1751,7 +1760,7 @@ File: Figures///Results_estimation/Fitting_LUKE_T40_P200.pdf Graphic file (type
 Package pdftex.def Info: Figures///Results_estimation/Fitting_LUKE_T40_P200.pdf
   used on input line 84.
 (pdftex.def)             Requested size: 238.25444pt x 92.19109pt.
-<Figures///Results_estimation/Fitting_LUKE_T50_P200.pdf, id=571, 794.97pt x 614
+<Figures///Results_estimation/Fitting_LUKE_T50_P200.pdf, id=552, 794.97pt x 614
 .295pt>
 File: Figures///Results_estimation/Fitting_LUKE_T50_P200.pdf Graphic file (type
  pdf)
@@ -1759,7 +1768,7 @@ File: Figures///Results_estimation/Fitting_LUKE_T50_P200.pdf Graphic file (type
 Package pdftex.def Info: Figures///Results_estimation/Fitting_LUKE_T50_P200.pdf
   used on input line 89.
 (pdftex.def)             Requested size: 238.25444pt x 92.19109pt.
-<Figures///Results_estimation/Fitting_LUKE_T40_P300_org.pdf, id=573, 794.97pt x
+<Figures///Results_estimation/Fitting_LUKE_T40_P300_org.pdf, id=554, 794.97pt x
  614.295pt>
 File: Figures///Results_estimation/Fitting_LUKE_T40_P300_org.pdf Graphic file (
 type pdf)
@@ -1767,7 +1776,7 @@ type pdf)
 Package pdftex.def Info: Figures///Results_estimation/Fitting_LUKE_T40_P300_org
 .pdf  used on input line 94.
 (pdftex.def)             Requested size: 238.25444pt x 92.19109pt.
-<Figures///Results_estimation/Fitting_LUKE_T50_P300_org.pdf, id=575, 794.97pt x
+<Figures///Results_estimation/Fitting_LUKE_T50_P300_org.pdf, id=556, 794.97pt x
  614.295pt>
 File: Figures///Results_estimation/Fitting_LUKE_T50_P300_org.pdf Graphic file (
 type pdf)
@@ -1775,6 +1784,10 @@ type pdf)
 Package pdftex.def Info: Figures///Results_estimation/Fitting_LUKE_T50_P300_org
 .pdf  used on input line 99.
 (pdftex.def)             Requested size: 238.25444pt x 92.19109pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
 
 Underfull \hbox (badness 2221) in paragraph at lines 106--107
 \T1/stix/m/n/10 gen-er-al-iza-tion is per-formed by in-tro-duc-ing cor-re-la-ti
@@ -1786,11 +1799,8 @@ Underfull \hbox (badness 1609) in paragraph at lines 106--107
 \T1/stix/m/n/10 which link the es-ti-mated pa-ram-e-ters and the op-er-at-ing
  []
 
-[11 <./Figures///Results_estimation/Fitting_LUKE_T40_P200.pdf> <./Figures///Res
-ults_estimation/Fitting_LUKE_T50_P200.pdf> <./Figures///Results_estimation/Fitt
-ing_LUKE_T40_P300_org.pdf> <./Figures///Results_estimation/Fitting_LUKE_T50_P30
-0_org.pdf>]
-<Figures///Results_estimation/Trend_Lines_order_1.pdf, id=629, 794.97pt x 614.2
+[10]
+<Figures///Results_estimation/Trend_Lines_order_1.pdf, id=568, 794.97pt x 614.2
 95pt>
 File: Figures///Results_estimation/Trend_Lines_order_1.pdf Graphic file (type p
 df)
@@ -1798,7 +1808,7 @@ df)
 Package pdftex.def Info: Figures///Results_estimation/Trend_Lines_order_1.pdf  
 used on input line 114.
 (pdftex.def)             Requested size: 238.25444pt x 112.63182pt.
-<Figures///Results_estimation/Trend_Lines_order_2.pdf, id=631, 794.97pt x 614.2
+<Figures///Results_estimation/Trend_Lines_order_2.pdf, id=570, 794.97pt x 614.2
 95pt>
 File: Figures///Results_estimation/Trend_Lines_order_2.pdf Graphic file (type p
 df)
@@ -1806,6 +1816,15 @@ df)
 Package pdftex.def Info: Figures///Results_estimation/Trend_Lines_order_2.pdf  
 used on input line 120.
 (pdftex.def)             Requested size: 238.25444pt x 112.63182pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[11 <./Figures///Results_estimation/Fitting_LUKE_T40_P200.pdf> <./Figures///Res
+ults_estimation/Fitting_LUKE_T50_P200.pdf> <./Figures///Results_estimation/Fitt
+ing_LUKE_T40_P300_org.pdf> <./Figures///Results_estimation/Fitting_LUKE_T50_P30
+0_org.pdf> <./Figures///Results_estimation/Trend_Lines_order_1.pdf> <./Figures/
+//Results_estimation/Trend_Lines_order_2.pdf>]
 File: Figures///Results_estimation/Trend_Lines_order_1.pdf Graphic file (type p
 df)
 <use Figures///Results_estimation/Trend_Lines_order_1.pdf>
@@ -1830,59 +1849,56 @@ df)
 Package pdftex.def Info: Figures///Results_estimation/Trend_Lines_order_2.pdf  
 used on input line 152.
 (pdftex.def)             Requested size: 116.74597pt x 108.5871pt.
-) [12 <./Figures///Results_estimation/Trend_Lines_order_1.pdf> <./Figures///Res
-ults_estimation/Trend_Lines_order_2.pdf>] [13
 
-]
-(Article_Model_Parameters.bbl) [14
+
+LaTeX Warning: Reference `CH: Profiles_2' on page 12 undefined on input line 16
+2.
+
+) [12] (Article_Model_Parameters.bbl) [13
 
 ] (Sections/Thermodynamic_details.tex
-Overfull \hbox (4.8338pt too wide) detected at line 23
-[]
+Overfull \hbox (16.52216pt too wide) in paragraph at lines 8--9
+\T1/stix/m/n/10 duced through $[][]\LS1/stix/m/n/10 .\LS1/stix/m/it/10 t\LS1/st
+ix/m/n/10 /[][].[][].\LS1/stix/m/it/10 t; z\LS1/stix/m/n/10 /\LS1/stix/m/it/10 
+; [][]\LS1/stix/m/n/10 .\LS1/stix/m/it/10 t\LS1/stix/m/n/10 // = [][] [] [][][]
+[].\LS1/stix/m/it/10 t; z\LS1/stix/m/n/10 /$\T1/stix/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 1565) in paragraph at lines 74--75
+Overfull \hbox (10.36116pt too wide) in paragraph at lines 8--9
+\T1/stix/m/n/10 where $[][]$ rep-re-sents the mo-lar vol-ume of $\LS1/stix/m/it
+/10 CO[]$\T1/stix/m/n/10 , $[][] []$
+ []
+
+
+Underfull \hbox (badness 1565) in paragraph at lines 75--76
 []$[][] []$ \T1/stix/m/n/10 and $[][] []$ are the
  []
 
 
-Underfull \hbox (badness 1226) in paragraph at lines 74--75
+Underfull \hbox (badness 1226) in paragraph at lines 75--76
 \T1/stix/m/n/10 spe-cific heat of $\LS1/stix/m/it/10 CO[]$ \T1/stix/m/n/10 at c
 on-stant vol-ume and pres-sure,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 74--75
+Underfull \hbox (badness 10000) in paragraph at lines 75--76
 
  []
 
 
-Underfull \hbox (badness 1253) in paragraph at lines 83--84
+Underfull \hbox (badness 1253) in paragraph at lines 84--85
 []\T1/stix/m/n/10 where the co-ef-fi-cients ([]REF[]) of the ex-pan-sion are
  []
 
-
-Overfull \hbox (4.20375pt too wide) in paragraph at lines 91--92
-\T1/stix/m/n/10 tion of state $\LS1/stix/m/it/10 P\LS1/stix/m/n/10 .\LS1/stix/m
-/it/10 t\LS1/stix/m/n/10 /\LS1/stix/m/it/10 V [] \LS1/stix/m/n/10 = \LS1/stix/m
-/it/10 Z [] RT\LS1/stix/m/n/10 .\LS1/stix/m/it/10 t; z\LS1/stix/m/n/10 /$\T1/st
-ix/m/n/10 . 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 91--92
-
- []
-
-[15
+[14
 
 ]
-Underfull \hbox (badness 1082) in paragraph at lines 130--131
+Underfull \hbox (badness 1082) in paragraph at lines 131--132
 []\T1/stix/m/n/10 Departure func-tions are com-puted by in-te-grat-ing a
  []
 
-) (Sections/Gouverning_equation_derivation.tex [16]
+) (Sections/Gouverning_equation_derivation.tex [15]
 Underfull \hbox (badness 1142) in paragraph at lines 71--72
 []\T1/stix/m/n/10 In the limit as $\LS1/stix/m/it/10 dz$ \T1/stix/m/n/10 be-com
 es very small, the terms
@@ -1913,7 +1929,7 @@ LaTeX Font Warning: Command \footnotesize invalid in math mode on input line 16
 
 pdfTeX warning: pdflatex (file ./Figures//Forces.pdf): PDF inclusion: found PDF
  version <1.7>, but at most version <1.5> allowed
-<Figures//Forces.pdf, id=777, 205.72859pt x 191.7564pt>
+<Figures//Forces.pdf, id=760, 205.72859pt x 191.7564pt>
 File: Figures//Forces.pdf Graphic file (type pdf)
 <use Figures//Forces.pdf>
 Package pdftex.def Info: Figures//Forces.pdf  used on input line 219.
@@ -1921,7 +1937,7 @@ Package pdftex.def Info: Figures//Forces.pdf  used on input line 219.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[17]
+[16]
 Overfull \hbox (2.48799pt too wide) in paragraph at lines 299--300
 []\T1/stix/m/n/10 Dividing the above equa-tion by $\LS1/stix/m/it/10 A[]$ \T1/s
 tix/m/n/10 the non-conservative
@@ -1936,7 +1952,7 @@ Overfull \hbox (5.07681pt too wide) detected at line 361
 []
  []
 
-[18 <./Figures//Forces.pdf>]) (Sections/Low_mach_number_expansion_imp.tex
+[17 <./Figures//Forces.pdf>]) (Sections/Low_mach_number_expansion_imp.tex
 Underfull \hbox (badness 1400) in paragraph at lines 5--6
 \T1/stix/m/n/10 of mo-tion (con-ti-nu-ity, mo-men-tum and en-ergy). Such a
  []
@@ -1946,7 +1962,7 @@ Underfull \hbox (badness 1107) in paragraph at lines 5--6
 \T1/stix/m/n/10 The per-tur-ba-tion the-ory de-vel-ops an ex-pres-sion for the
  []
 
-[19]
+[18]
 Overfull \hbox (21.40958pt too wide) detected at line 64
 []
  []
@@ -1964,7 +1980,7 @@ m/n/8 *[] [] + \LS1/stix/m/it/8 P[][] \LS1/stix/m/n/8 = 0$
 
 
 Underfull \hbox (badness 1668) in paragraph at lines 160--161
-[]\T1/stix/m/n/10 In one-dimensional case, the Equa-tion [][]99[][] be-come
+[]\T1/stix/m/n/10 In one-dimensional case, the Equa-tion [][]91[][] be-come
  []
 
 
@@ -1978,24 +1994,37 @@ Overfull \hbox (8.86765pt too wide) detected at line 183
 ] \LS1/stix/m/n/8 = 0 \LS1/stixsf/m/n/8 ™ [] \LS1/stix/m/n/8 = 0$ 
  []
 
-[20]) (Sections/Bayes_Theorem.tex [21]) (Sections/Cardano.tex)
-(Sections/IC_BC.tex [22]
+[19]) (Sections/Bayes_Theorem.tex [20]) (Sections/Cardano.tex)
+(Sections/IC_BC.tex [21]
 LaTeX Font Info:    Trying to load font information for TS1+cmss on input line 
 18.
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/base\ts1cmss.fd
 File: ts1cmss.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 ))
-<Sections/ultraReportT5.pdf, id=929, 597.23125pt x 845.1575pt>
+(Sections/Likelihood.tex [22]
+Underfull \hbox (badness 1199) in paragraph at lines 44--45
+\T1/stix/m/n/10 be-cause it's con-stant with re-spect to the max-i-miza-tion.
+ []
+
+
+Underfull \hbox (badness 1320) in paragraph at lines 52--53
+[]\T1/stix/m/n/10 The like-li-hood func-tion $\LS1/stix/m/it/10 L []$ \T1/stix/
+m/n/10 for the pa-ram-e-ters
+ []
+
+)
+<Sections/ultraReportT5.pdf, id=934, 597.23125pt x 845.1575pt>
 File: Sections/ultraReportT5.pdf Graphic file (type pdf)
 <use Sections/ultraReportT5.pdf>
-Package pdftex.def Info: Sections/ultraReportT5.pdf  used on input line 265.
+Package pdftex.def Info: Sections/ultraReportT5.pdf  used on input line 272.
 (pdftex.def)             Requested size: 238.25444pt x 376.75818pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-(Sections/Porosity.tex) [23] (Sections/Profiles.tex
+(Sections/Porosity.tex) [23 <./Sections/ultraReportT5.pdf>]
+(Sections/Profiles.tex
 File: Figures///Results_estimation/Fitting_LUKE_T40_P200.pdf Graphic file (type
  pdf)
 <use Figures///Results_estimation/Fitting_LUKE_T40_P200.pdf>
@@ -2020,167 +2049,54 @@ type pdf)
 Package pdftex.def Info: Figures///Results_estimation/Fitting_LUKE_T50_P300_org
 .pdf  used on input line 26.
 (pdftex.def)             Requested size: 238.25444pt x 91.07686pt.
+) [24
 
+] (Article_Model_Parameters.aux)
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
+LaTeX Warning: There were undefined references.
 
-) [24 <./Sections/ultraReportT5.pdf>]
-(Sections/Parameter_estimation_solution_from_another_IG.tex
-<Figures///Results_estimation/Fitting_LUKE_T40_P200_2.pdf, id=975, 794.97pt x 6
-14.295pt>
-File: Figures///Results_estimation/Fitting_LUKE_T40_P200_2.pdf Graphic file (ty
-pe pdf)
-<use Figures///Results_estimation/Fitting_LUKE_T40_P200_2.pdf>
-Package pdftex.def Info: Figures///Results_estimation/Fitting_LUKE_T40_P200_2.p
-df  used on input line 33.
-(pdftex.def)             Requested size: 238.25444pt x 92.19109pt.
-<Figures///Results_estimation/Fitting_LUKE_T50_P200_2.pdf, id=977, 794.97pt x 6
-14.295pt>
-File: Figures///Results_estimation/Fitting_LUKE_T50_P200_2.pdf Graphic file (ty
-pe pdf)
-<use Figures///Results_estimation/Fitting_LUKE_T50_P200_2.pdf>
-Package pdftex.def Info: Figures///Results_estimation/Fitting_LUKE_T50_P200_2.p
-df  used on input line 38.
-(pdftex.def)             Requested size: 238.25444pt x 92.19109pt.
-<Figures///Results_estimation/Fitting_LUKE_T40_P300_org_2.pdf, id=979, 794.97pt
- x 614.295pt>
-File: Figures///Results_estimation/Fitting_LUKE_T40_P300_org_2.pdf Graphic file
- (type pdf)
-<use Figures///Results_estimation/Fitting_LUKE_T40_P300_org_2.pdf>
-Package pdftex.def Info: Figures///Results_estimation/Fitting_LUKE_T40_P300_org
-_2.pdf  used on input line 43.
-(pdftex.def)             Requested size: 238.25444pt x 92.19109pt.
-<Figures///Results_estimation/Fitting_LUKE_T50_P300_org_2.pdf, id=981, 794.97pt
- x 614.295pt>
-File: Figures///Results_estimation/Fitting_LUKE_T50_P300_org_2.pdf Graphic file
- (type pdf)
-<use Figures///Results_estimation/Fitting_LUKE_T50_P300_org_2.pdf>
-Package pdftex.def Info: Figures///Results_estimation/Fitting_LUKE_T50_P300_org
-_2.pdf  used on input line 48.
-(pdftex.def)             Requested size: 238.25444pt x 92.19109pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<Figures///Results_estimation/Trend_Lines_order_1_2.pdf, id=983, 794.97pt x 614
-.295pt>
-File: Figures///Results_estimation/Trend_Lines_order_1_2.pdf Graphic file (type
- pdf)
-<use Figures///Results_estimation/Trend_Lines_order_1_2.pdf>
-Package pdftex.def Info: Figures///Results_estimation/Trend_Lines_order_1_2.pdf
-  used on input line 59.
-(pdftex.def)             Requested size: 238.25444pt x 112.63182pt.
-<Figures///Results_estimation/Trend_Lines_order_2_2.pdf, id=985, 794.97pt x 614
-.295pt>
-File: Figures///Results_estimation/Trend_Lines_order_2_2.pdf Graphic file (type
- pdf)
-<use Figures///Results_estimation/Trend_Lines_order_2_2.pdf>
-Package pdftex.def Info: Figures///Results_estimation/Trend_Lines_order_2_2.pdf
-  used on input line 65.
-(pdftex.def)             Requested size: 238.25444pt x 112.63182pt.
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-File: Figures///Results_estimation/Trend_Lines_order_1_2.pdf Graphic file (type
- pdf)
-<use Figures///Results_estimation/Trend_Lines_order_1_2.pdf>
-Package pdftex.def Info: Figures///Results_estimation/Trend_Lines_order_1_2.pdf
-  used on input line 77.
-(pdftex.def)             Requested size: 116.74597pt x 105.31819pt.
-File: Figures///Results_estimation/Trend_Lines_order_1_2.pdf Graphic file (type
- pdf)
-<use Figures///Results_estimation/Trend_Lines_order_1_2.pdf>
-Package pdftex.def Info: Figures///Results_estimation/Trend_Lines_order_1_2.pdf
-  used on input line 78.
-(pdftex.def)             Requested size: 116.74597pt x 108.5871pt.
-File: Figures///Results_estimation/Trend_Lines_order_2_2.pdf Graphic file (type
- pdf)
-<use Figures///Results_estimation/Trend_Lines_order_2_2.pdf>
-Package pdftex.def Info: Figures///Results_estimation/Trend_Lines_order_2_2.pdf
-  used on input line 84.
-(pdftex.def)             Requested size: 116.74597pt x 105.31819pt.
-File: Figures///Results_estimation/Trend_Lines_order_2_2.pdf Graphic file (type
- pdf)
-<use Figures///Results_estimation/Trend_Lines_order_2_2.pdf>
-Package pdftex.def Info: Figures///Results_estimation/Trend_Lines_order_2_2.pdf
-  used on input line 85.
-(pdftex.def)             Requested size: 116.74597pt x 108.5871pt.
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-File: Figures///Results_estimation/Fitting_LUKE_T40_P200_2.pdf Graphic file (ty
-pe pdf)
-<use Figures///Results_estimation/Fitting_LUKE_T40_P200_2.pdf>
-Package pdftex.def Info: Figures///Results_estimation/Fitting_LUKE_T40_P200_2.p
-df  used on input line 97.
-(pdftex.def)             Requested size: 238.25444pt x 91.07686pt.
-File: Figures///Results_estimation/Fitting_LUKE_T50_P200_2.pdf Graphic file (ty
-pe pdf)
-<use Figures///Results_estimation/Fitting_LUKE_T50_P200_2.pdf>
-Package pdftex.def Info: Figures///Results_estimation/Fitting_LUKE_T50_P200_2.p
-df  used on input line 102.
-(pdftex.def)             Requested size: 238.25444pt x 91.07686pt.
-File: Figures///Results_estimation/Fitting_LUKE_T40_P300_org_2.pdf Graphic file
- (type pdf)
-<use Figures///Results_estimation/Fitting_LUKE_T40_P300_org_2.pdf>
-Package pdftex.def Info: Figures///Results_estimation/Fitting_LUKE_T40_P300_org
-_2.pdf  used on input line 107.
-(pdftex.def)             Requested size: 238.25444pt x 91.07686pt.
-File: Figures///Results_estimation/Fitting_LUKE_T50_P300_org_2.pdf Graphic file
- (type pdf)
-<use Figures///Results_estimation/Fitting_LUKE_T50_P300_org_2.pdf>
-Package pdftex.def Info: Figures///Results_estimation/Fitting_LUKE_T50_P300_org
-_2.pdf  used on input line 112.
-(pdftex.def)             Requested size: 238.25444pt x 91.07686pt.
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-) [25
-
- <./Figures///Results_estimation/Fitting_LUKE_T40_P200_2.pdf> <./Figures///Resu
-lts_estimation/Fitting_LUKE_T50_P200_2.pdf> <./Figures///Results_estimation/Fit
-ting_LUKE_T40_P300_org_2.pdf> <./Figures///Results_estimation/Fitting_LUKE_T50_
-P300_org_2.pdf>] [26 <./Figures///Results_estimation/Trend_Lines_order_1_2.pdf>
- <./Figures///Results_estimation/Trend_Lines_order_2_2.pdf>]
-(Article_Model_Parameters.aux)
 Package rerunfilecheck Info: File `Article_Model_Parameters.out' has not change
 d.
-(rerunfilecheck)             Checksum: C67F835F404E24844E403A69AEC477F7;6988.
+(rerunfilecheck)             Checksum: 89CFD75C1BD351C2B76F6A632C954BB0;6694.
  ) 
 Here is how much of TeX's memory you used:
- 43202 strings out of 478847
- 946243 string characters out of 2848486
- 1378612 words of memory out of 3000000
- 59960 multiletter control sequences out of 15000+600000
- 531118 words of font info for 180 fonts, out of 8000000 for 9000
+ 43138 strings out of 478847
+ 942803 string characters out of 2848486
+ 1376897 words of memory out of 3000000
+ 59908 multiletter control sequences out of 15000+600000
+ 533890 words of font info for 181 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  94i,26n,131p,1594b,2555s stack positions out of 5000i,500n,10000p,200000b,80000s
-{C:/Program Files/MiKTeX/fonts/enc/dvips/cm-super/cm-super-ts1.enc}{C:/Users/
-sliczno1/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/stix/stix-ts1.enc}{C:/Us
-ers/sliczno1/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/stix/stix-t1.enc}{C:
-/Program Files/MiKTeX/fonts/enc/dvips/cm-super/cm-super-t1.enc}{C:/Users/sliczn
-o1/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/inconsolata/i4-t1-0.enc}<C:/Us
-ers/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/inconsolata/Incon
-solata-zi4r.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/pu
-blic/stix/STIXGeneral-Bold.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX
-/fonts/type1/public/stix/STIXGeneral-BoldItalic.pfb><C:/Users/sliczno1/AppData/
-Local/Programs/MiKTeX/fonts/type1/public/stix/STIXGeneral-Italic.pfb><C:/Users/
-sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix/STIXGeneral-Regu
-lar.pfb><C:/Program Files/MiKTeX/fonts/type1/public/cm-super/sfss0900.pfb><C:/P
-rogram Files/MiKTeX/fonts/type1/public/cm-super/sfsx0900.pfb><C:/Users/sliczno1
-/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix/stix-mathbb.pfb><C:/User
-s/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix/stix-mathcal.p
-fb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix/sti
-x-mathex.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/publi
-c/stix/stix-mathit-bold.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fo
-nts/type1/public/stix/stix-mathit.pfb><C:/Users/sliczno1/AppData/Local/Programs
-/MiKTeX/fonts/type1/public/stix/stix-mathrm.pfb><C:/Users/sliczno1/AppData/Loca
-l/Programs/MiKTeX/fonts/type1/public/stix/stix-mathscr.pfb><C:/Users/sliczno1/A
-ppData/Local/Programs/MiKTeX/fonts/type1/public/stix/stix-mathsf.pfb><C:/Users/
-sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrb8a.pfb>
-Output written on Article_Model_Parameters.pdf (26 pages, 4964971 bytes).
+
+pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist
+, replaced by a fixed one
+
+{C:/Program Files/MiKTeX/fonts/enc/dvips/cm-super/cm-super-ts1.enc}{C:/Users/sl
+iczno1/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/stix/stix-ts1.enc}{C:/User
+s/sliczno1/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/stix/stix-t1.enc}{C:/P
+rogram Files/MiKTeX/fonts/enc/dvips/cm-super/cm-super-t1.enc}{C:/Users/sliczno1
+/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/inconsolata/i4-t1-0.enc}<C:/User
+s/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/inconsolata/Inconso
+lata-zi4r.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/publ
+ic/stix/STIXGeneral-Bold.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/f
+onts/type1/public/stix/STIXGeneral-BoldItalic.pfb><C:/Users/sliczno1/AppData/Lo
+cal/Programs/MiKTeX/fonts/type1/public/stix/STIXGeneral-Italic.pfb><C:/Users/sl
+iczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix/STIXGeneral-Regula
+r.pfb><C:/Program Files/MiKTeX/fonts/type1/public/cm-super/sfss0900.pfb><C:/Pro
+gram Files/MiKTeX/fonts/type1/public/cm-super/sfsx0900.pfb><C:/Users/sliczno1/A
+ppData/Local/Programs/MiKTeX/fonts/type1/public/stix/stix-mathbb.pfb><C:/Users/
+sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix/stix-mathcal.pfb
+><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix/stix-
+mathex.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/
+stix/stix-mathit-bold.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/font
+s/type1/public/stix/stix-mathit.pfb><C:/Users/sliczno1/AppData/Local/Programs/M
+iKTeX/fonts/type1/public/stix/stix-mathrm.pfb><C:/Users/sliczno1/AppData/Local/
+Programs/MiKTeX/fonts/type1/public/stix/stix-mathscr.pfb><C:/Users/sliczno1/App
+Data/Local/Programs/MiKTeX/fonts/type1/public/stix/stix-mathsf.pfb><C:/Users/sl
+iczno1/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrb8a.pfb>
+Output written on Article_Model_Parameters.pdf (24 pages, 3208493 bytes).
 PDF statistics:
- 1194 PDF objects out of 1200 (max. 8388607)
- 258 named destinations out of 1000 (max. 500000)
- 662 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1104 PDF objects out of 1200 (max. 8388607)
+ 253 named destinations out of 1000 (max. 500000)
+ 548 words of extra memory for PDF output out of 10000 (max. 10000000)
 
