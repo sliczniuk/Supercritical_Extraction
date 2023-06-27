@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.8) (preloaded format=pdflatex 2022.9.27)  27 JUN 2023 19:09
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.8) (preloaded format=pdflatex 2022.9.27)  27 JUN 2023 22:40
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -2057,7 +2057,7 @@ d.
 Here is how much of TeX's memory you used:
  42693 strings out of 478847
  929783 string characters out of 2848486
- 1331149 words of memory out of 3000000
+ 1332149 words of memory out of 3000000
  59464 multiletter control sequences out of 15000+600000
  533890 words of font info for 181 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -2089,7 +2089,7 @@ iKTeX/fonts/type1/public/stix/stix-mathrm.pfb><C:/Users/sliczno1/AppData/Local/
 Programs/MiKTeX/fonts/type1/public/stix/stix-mathscr.pfb><C:/Users/sliczno1/App
 Data/Local/Programs/MiKTeX/fonts/type1/public/stix/stix-mathsf.pfb><C:/Users/sl
 iczno1/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrb8a.pfb>
-Output written on Article_Model_Parameters.pdf (24 pages, 2793609 bytes).
+Output written on Article_Model_Parameters.pdf (24 pages, 2762450 bytes).
 PDF statistics:
  1107 PDF objects out of 1200 (max. 8388607)
  252 named destinations out of 1000 (max. 500000)
