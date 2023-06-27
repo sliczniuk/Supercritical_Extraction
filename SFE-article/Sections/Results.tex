@@ -10,11 +10,11 @@
         \item Partition coefficient:\qquad\quad\qquad$k_m$
         \item Internal diffusion coefficient: \quad$D_i$
         \item Axial diffusion coefficient: \qquad$D_e^M$
-        \item Limiting concentration: \quad\qquad$C_{lim}$
-        \item Standard deviation: \qquad\qquad\quad$\sigma$
+        \item Decay curvature coefficient:\qquad$\Upsilon$
+        \item Standard deviation:\qquad\qquad\quad~$\sigma$
     \end{itemize}
 
-    Moreover, the initial state estimation was performed together with parameter estimation. The concentration of solute in the solid phase is assumed to be constant and uniformly distributed. On the other hand, the solute concentration in the fluid phase should not follow the same assumption as the solid phase. During the preparation period the solute diffuses to the fluid phase in contact with the solid particles. Later, the solute in the fluid phase is partially moved along the extractor (if the pressure increase in the system, the pump cause the movement of the fluid, even if the outlet valve is closed). As a result, the distribution of solute mass in the fluid phase is assumed to not be uniform. Some conclusions can be drawn from the analysis of the initial part of each yield curve. It can be noticed that each curve at the beginning has a curvature, which is not linear. In a general sense, it can be said that a quadratic function could approximate the initial part of each extraction curve. A function that, after integration, gives a quadratic-like result is a straight line. Based on that observation, the solute concentration in the fluid phase is assumed to be linearly distributed. The solute concentration is assumed to be zero at the outlet and reach the maximum at the beginning of the fixed bed. The details on the calculation are given in appendix \ref{CH: IC_BC}. The linear distribution can be defined if the total mass of solute $m_{total}$ and partition coefficient $\tau$ are know.
+    Moreover, the initial state estimation was performed together with parameter estimation. The initial solute concentration in the solid phase is assumed to be uniformly distributed. On the other hand, the solute concentration in the fluid phase should not follow the same assumption as the solid phase. During the preparation period, the solute diffuses to the fluid phase in contact with the solid particles. Later, the solute in the fluid phase is partially moved along the extractor (if the pressure increase in the system, the pump cause the movement of the fluid, even if the outlet valve is closed). As a result, the distribution of solute mass in the fluid phase is assumed not to be uniform. Some conclusions can be drawn from the analysis of the initial part of each yield curve obtained from the laboratory. It can be noticed that each curve at the beginning has a curvature, which is not linear. Generally, a quadratic function could approximate the initial part of each extraction curve. A function that, after integration, gives a quadratic-like result is a straight line. Based on that observation, the solute concentration in the fluid phase is assumed to be linearly distributed. The solute concentration is assumed to be zero at the outlet and reach the maximum at the beginning of the fixed bed. The details on the calculation are given in appendix \ref{CH: IC_BC}. The linear distribution can be defined if the total mass of solute $m_{total}$ and partition coefficient $\tau$ are known.
     
     Due to initial state estimation, two additional parameters are fitted.
 
@@ -30,10 +30,10 @@
 		\adjustbox{max width=\columnwidth}{%
 		\begin{tabular}{ lccccccc }
 			\hline 
-			Parameter		&$k_m$[-] 	& $D_i$[m/s$^2$] 	& $D_e^M$[m/s$^2$]	& $C_{lim}$ [kg/m$^3$] 	& $m_{total}$[g]	& $\tau$[-] 	& $\sigma$[-] \\  \hline
+			Parameter		&$k_m$[-] 	& $D_i$[m/s$^2$] 	& $D_e^M$[m/s$^2$]	& $\Upsilon$ [m$^3$/kg] & $m_{total}$[g]	& $\tau$[-] 	& $\sigma$[-] \\  \hline
 			Lower bound		&0	  		& 0 	  			& 0 				&	0					& 80 		 		& 0 	   		& 0 \\ 
-			Upper bound		&1 			& $+\infty$ 		& $+\infty$			&	$+\infty$			& 150 				& 1 			& $+\infty$ \\ 
-			Initial guess	&1	  		& 3 	  			& 1 				&	3					& 80 		 		& 0.65 	   		& 0.1 \\  \hline
+			Upper bound		&$+\infty$	& $+\infty$ 		& $+\infty$			&	100					& 150 				& 1 			& $+\infty$ \\ 
+			Initial guess	&1e5 		& 3 	  			& 1 				&	0					& 80 		 		& 0.65 	   		& 0.1 \\  \hline
 		\end{tabular} }
 	\caption{Constraints and initial guess of the parameter estimation problem}
 	\label{tab:Constraints}
@@ -63,7 +63,15 @@
 		\label{tab: Estimation_results}
 	\end{table}
 
-	The results of parameter estimation can be found in Table \ref{tab: Estimation_results} and the concentration profiles, which correspond for the optimized solution for each experiments, are presented on Figure \ref{fig: estimation_results_profiles} in Appendix \ref{CH: Profiles}. As can be noticed, the optimizer found that the partition factor should be as high as possible and moved values of $k_m$ for each experiment to unity, which was chosen as the upper bound.
+	The results of parameter estimation can be found in Table \ref{tab: Estimation_results} and the concentration profiles, which correspond for the optimized solution for each experiments, are presented on Figure \ref{fig: estimation_results_profiles} in Appendix \ref{CH: Profiles}. As can be noticed, the optimizer found that the partition factor should be as high as possible. Such a behaviour suggest that the solvent is far from the saturation, and the model can be simplified. The model reduction can be introduced by considering the limit of the concentration gradient
+	
+	{\footnotesize
+	\begin{equation*}
+		\begin{split}
+			&\lim_{k_m \rightarrow \infty} \left({\color{blue}{\color{blue} c_s} }(t,z)  - \cfrac{{\color{magenta}\rho_s}}{{\color{orange}k_m}({\color{blue}T}(t,z)){\color{orange}\rho}({\color{blue}T}(t,z),{\color{red}P}(t))}  {\color{blue}c_f}(t,z) \right)  = \\
+			&= \left({\color{blue}{\color{blue} c_s} }(t,z)  - \cfrac{{\color{magenta}\rho_s}}{\infty{\color{orange}\rho}({\color{blue}T}(t,z),{\color{red}P}(t))}  {\color{blue}c_f}(t,z) \right) = \left({\color{blue}{\color{blue} c_s} }(t,z) - 0 \right)
+		\end{split}
+	\end{equation*} }
 		
 	Values of the internal diffusion coefficients are distinguished for each experiment, which grows as the fluid density increase. The order of magnitude of $D_i$ obtained from the optimization is similar to values found by other researchers. \citet{Reverchon1996} performed the parameter estimation for the extraction process of sage oil from seeds and reported $D_i \approx 6e-13$.
 	

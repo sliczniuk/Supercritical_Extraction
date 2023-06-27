@@ -24,7 +24,8 @@ function xdot = modelSFE(x, p, mask, dt)
 
     Di            =     parameters{44};      Di = Di * 1e-14;
     Dx            =     parameters{45};      Dx = Dx * 1e-6;
-    C_SAT         =     parameters{47};
+    %SAT           =     parameters{47};
+    shape         =     parameters{48};
 
     nstages_index =     numel(mask);
     
@@ -57,8 +58,9 @@ function xdot = modelSFE(x, p, mask, dt)
     KRHOCP        =     kRHOcp_Comp(     TEMP, PRESSURE, Z, RHO, CP, epsi.*mask, parameters);
 
     %% Saturation
-    Colid_percentage_left = 1 - (SOLID./C0solid);
-    Sat_coe       =     Saturation_Concentration(Colid_percentage_left, C_SAT, km); % Inverse logistic is used to control saturation. Close to saturation point, the Sat_coe goes to zero.
+    Csolid_percentage_left = 1 - (SOLID./C0solid);
+    Csolid_percentage_left(find(~mask)) = 0;                                              % inserte zeros instead of NAN in pleces where there is no bed
+    Sat_coe       =     Saturation_Concentration(Csolid_percentage_left, shape, Di); % Inverse logistic is used to control saturation. Close to saturation point, the Sat_coe goes to zero.
 
     %% BC
     %Cf_0          =     if_else(F_u == 0, FLUID(1), 0);
@@ -97,8 +99,8 @@ function xdot = modelSFE(x, p, mask, dt)
 
     dPdt          = backward_diff_1_order(P_u, PRESSURE, [], dt)*1e2;
    
-    re = (1 ./ mi ./ lp2 .* Di)  .* ( SOLID .* Sat_coe - FLUID );
-
+    re            = (Sat_coe ./ mi ./ lp2)  .* ( SOLID - FLUID .* rho_s ./ RHO ./ km );
+    
     %%
 
     xdot = [

@@ -4,7 +4,7 @@
 		
 	\subsubsection{Continuity equation} \label{CH: Continuity}
 	 %When the cross-sectional area of the channel $A_f$ is specified as a function of the void fraction ${\color{magenta}\phi}(z)$ (where ${\color{magenta}\phi}$ is the void fraction of the bed and $A$ is the cross-section of the empty extractor), the continuity equation takes the form: %\todo[]{assign a color of v and u}
-	The discussed above quasi-one-dimensional assumption was used to derive the continuity equation for the fluid phase as presented in Appendix \ref{CH: Gouverning equations}. The cross-section change is taken into account by void fraction ${\color{magenta}\phi}(z)$, which depends on the spatial dimension. The equation \ref{EQ: Continuity_differential} shows the differential form, of the continuity equation: 
+	The obtained above quasi-one-dimensional continuity equation (Equation \ref{EQ: CompressibleEuler_1}) is further modified by specifying a function ${\color{magenta}A_f}(z) = {\color{magenta}A_f\phi}(z)$ to take into account the change of the cross-section available for the fluid. The cross-section change is taken into account by void fraction ${\color{magenta}\phi}(z)$, which depends on the spatial dimension. The equation \ref{EQ: Continuity_differential} shows the differential form, of the continuity equation: 
 	
 	{\footnotesize
 		\begin{equation} \label{EQ: Continuity_differential}
@@ -150,10 +150,10 @@
 %		\todo[inline]{Draft of new heat equation starts here. TODO: \\ Check if the heat cpacity of solid phase needs to be added \\ Elaborate why pressure is know}
 		\fi
 		
-			The heat equation was introduced in the previous chapter through Equation \ref{EQ: CompressibleEuler_3} and in the appendix \ref{CH: Gouverning equations} 
+			The heat equation was introduced in the previous chapter through Equation \ref{EQ: CompressibleEuler_3}, in the appendix \ref{CH: Gouverning equations}  as well as through Equation \ref{EQ: Heat_internal}
 			
 			{\footnotesize
-			\begin{align}
+			\begin{align} \label{EQ: Heat_internal}
 				&\cfrac{\partial \left( {\color{orange}\rho_f}({\color{blue}T}(t,z),{\color{blue}P}(t)) {\color{blue}e}(t,z) A_f \right) }{\partial t} + \cfrac{\partial \left( {\color{orange}\rho_f}({\color{blue}T}(t,z),{\color{blue}P}(t)) A_f v {\color{blue}e}(t,z) \right)}{\partial {\color{blue}z}} \nonumber \\
 				&= -{\color{blue}P}(t)\cfrac{\left( A_f v \right)}{\partial {\color{blue}z}} + \cfrac{\partial}{\partial {\color{blue}z}} \left( \cfrac{\partial {\color{blue}T}(t,z)}{\partial {\color{blue}z}} \right) 
 			\end{align}
@@ -169,9 +169,9 @@
 			
 			where ${\color{blue}e}^{id}(t,z)$ is the internal energy of perfect gas.
 			
-			If a gas is considered to be perfectly caloric (${\color{blue}e}(t,z)=C_v {\color{blue}T}(t,z)$), then the energy equation can be written in form of temperature. The perfectly caloric gas can be seen as the special case of a real gas, where the second term of the Equation \ref{EQ: internal_energy_def} goes to zero.
+			Suppose a gas is considered to be perfectly caloric (${\color{blue}e}(t,z)={\color{magenta}C_v} {\color{blue}T}(t,z)$), then the energy equation can be written explicitly in the form of temperature. The perfectly caloric gas can be seen as the special case of a real gas, where the second term of Equation \ref{EQ: internal_energy_def} goes to zero and the heat capacity ${\color{magenta}C_v}$ is constant.
 			
-			For real gases, it is complicated to write the heat balance in terms of temperature, but it be can be used directly in the form of internal energy, as it is given by Equation \ref{EQ: CompressibleEuler_3}. In such a case, the temperature (which is used as the input to some other functions) needs to be recovered from the internal energy. A relation for the internal energy can be obtained from an equation of state. For Peng-Robinson, such a relation is given by Equation \ref{EQ: internal_energy_PR} as presented by \citet{Elliott2011}.
+			For real gases, it is complicated to write the heat balance in terms of temperature, but it be can be used directly in the form of internal energy, as it is given by Equation \ref{EQ: CompressibleEuler_3}. In such a case, the temperature needs to be recovered from the internal energy. A relation for the internal energy can be obtained from an equation of state. For Peng-Robinson, such a relation is given by Equation \ref{EQ: internal_energy_PR} as presented by \citet{Elliott2011}.
 			
 %			{\footnotesize
 %				\begin{equation}
@@ -190,7 +190,7 @@
 			\end{equation}
 			}
 			
-			To solve Equation \ref{EQ: internal_energy_PR}, values of temperature, pressure, and density need to be known. If an equation of state is introduced, then only two out of three variables need to be obtained as the third one can be calculated, this can be represented as follow
+			To solve Equation \ref{EQ: internal_energy_PR}, temperature, pressure, and density values need to be known. If an equation of state is introduced, then only two out of three variables need to be obtained as the third one can be calculated; this can be represented as follow
 			
 			{\footnotesize
 			\begin{equation}
@@ -198,7 +198,7 @@
 			\end{equation}
 			}
 		
-			If the value of internal energy ${\color{blue}e}(t,z)$ is known from the time evolution of the energy Equation \ref{EQ: CompressibleEuler_3}, and pressure is known from measurement, then the temperature can be reconstructed. A roootfinder can be used to find a value of temperature, which minimizes the difference between the value of internal energy coming from the time evolution and the output from Equation \ref{EQ: internal_energy_PR}. Such a procedure allow to find local temperature along spatial direction ${\color{blue}z}$ and needs to be repeated every time-step.
+			If the value of internal energy ${\color{blue}e}(t,z)$ is known from the time evolution of the energy Equation \ref{EQ: CompressibleEuler_3}, and pressure is known from measurement, then the temperature can be reconstructed. A roootfinder can be used to find a value of temperature, which minimizes the difference between the value of internal energy coming from the time evolution (Equation \ref{EQ: Heat_internal}) and the output from Equation \ref{EQ: internal_energy_PR}. Such a procedure allow to find local temperature along spatial direction ${\color{blue}z}$ and needs to be repeated every time-step.
 			
 			Another way to express the energy equation is to introduce enthalpy ${\color{blue}h}(t,z) = {\color{blue}e}(t,z) + {\color{blue}P}(t) / {\color{orange}\rho_f}({\color{blue}T}(t,z),{\color{blue}P}(t))$. By introducing the definition of enthalpy, the energy equation becomes
 			
@@ -222,11 +222,11 @@
 			
 			{\scriptsize
 				\begin{equation}
-					\begin{aligned}
-					&{\color{blue}h}(t,z)-{\color{blue}h}(t,z)^{id}={\color{magenta}R}{\color{blue}T}(t,z) \\
-					& \left[{\color{magenta}T_r}(Z-1)-2.078(1+{\color{magenta}\kappa} ){\sqrt {\alpha }}\ln \left(\cfrac{{\color{orange}Z}\left({\color{blue}T}(t,z), {\color{red}P}(t)\right)+\left( 1+\sqrt{2} \right){\color{orange}B}\left({\color{blue}T}(t,z), {\color{red}P}(t)\right)}{{\color{orange}Z}\left({\color{blue}T}(t,z), {\color{red}P}(t)\right)+\left( 1-\sqrt{2} \right){\color{orange}B}\left({\color{blue}T}(t,z), {\color{red}P}(t)\right)}\right)\right]
+					\begin{split}
+					{\color{blue}h}(t,z)-{\color{blue}h}(t,z)^{id}={\color{magenta}R}{\color{blue}T}(t,z) \left[{\color{magenta}T_r}({\color{orange}Z}\left({\color{blue}T}(t,z), {\color{red}P}(t)\right)-1) \right. \\
+					\left. -2.078(1+{\color{magenta}\kappa} ){\sqrt { {\color{orange}\alpha}\left({\color{blue}T}(t,z)\right) } } \ln \left(\cfrac{{\color{orange}Z}\left({\color{blue}T}(t,z), {\color{red}P}(t)\right)+\left( 1+\sqrt{2} \right){\color{orange}B}\left({\color{blue}T}(t,z), {\color{red}P}(t)\right)}{{\color{orange}Z}\left({\color{blue}T}(t,z), {\color{red}P}(t)\right)+\left( 1-\sqrt{2} \right){\color{orange}B}\left({\color{blue}T}(t,z), {\color{red}P}(t)\right)}\right)\right]
 					\label{EQ:Enthalpy_PR}
-				\end{aligned}
+				\end{split}
 			\end{equation}				
 			}
 		
@@ -236,7 +236,7 @@
 			
 		\subsubsection{Pressure term} \label{CH: Pressure}
 		
-		The pressure term in the energy equation, given by Equation \ref{EQ:Enthalpy_equation}, describes the change of the thermodynamic pressure with respect to time. As explained in Chapters \ref{CH: Gouverning equations} and \ref{CH:Low_Mach_chapter}, at low-Mach number conditions, the thermodynamic pressure is nearly constant in space due to the small pressure wave propagation that occurs at the speed of sound. Under such conditions, the term $\partial P/\partial t$ can be approximated by an ordinary differential equation, which describes the instantaneous change of pressure in the system. The pressure in the system is considered a state variable, while the pressure in the new time-step is considered a control variable.
+		The pressure term in the energy equation, given by Equation \ref{EQ:Enthalpy_equation}, describes the change of the thermodynamic pressure with respect to time. As explained in Chapters \ref{CH: Gouverning equations} and \ref{CH:Low_Mach_chapter}, at low-Mach number conditions, the thermodynamic pressure is nearly constant in space due to the small pressure wave propagation that occurs at the speed of sound. Under such conditions, the term $\partial {\color{blue}P}/\partial t$ can be approximated by an ordinary differential equation, which describes the instantaneous change of pressure in the system. The pressure in the system is considered a state variable, while the pressure in the new time-step is considered a control variable.
 		
 		{\footnotesize
 			\begin{equation}

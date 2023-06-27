@@ -46,3 +46,4 @@ Numer,Name,Value,Unit,Description
 45,Dx,0.1,m/s,Axial dispersion
 46,Z,0.5,[-],Initial guess of compressibility
 47,C_Sat,5,kg/m3,Saturation Concentration
+48,Shape,100,[-],Shape factor of the limiting function

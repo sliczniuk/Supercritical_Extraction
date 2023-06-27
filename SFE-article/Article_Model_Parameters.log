@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.8) (preloaded format=pdflatex 2022.9.27)  21 JUN 2023 19:45
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.8) (preloaded format=pdflatex 2022.9.27)  27 JUN 2023 19:09
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1592,9 +1592,12 @@ File: t1zi4.fd 2018/01/14 T1/zi4 (Inconsolata)
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
 (Font)              scaled to size 6.80005pt on input line 122.
  (Sections/introduction_imp.tex
+Underfull \hbox (badness 1584) in paragraph at lines 7--8
+[]\T1/stix/m/n/10 The eco-nomic fea-si-bil-ity of the pro-cess is cru-cial
+ []
+
 LaTeX Font Info:    Trying to load font information for T1+cmss on input line 1
 7.
-
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/base\t1cmss.fd
 File: t1cmss.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
@@ -1649,14 +1652,13 @@ File: Figures/KT.pdf Graphic file (type pdf)
 <use Figures/KT.pdf>
 Package pdftex.def Info: Figures/KT.pdf  used on input line 57.
 (pdftex.def)             Requested size: 153.29654pt x 119.69856pt.
-[2 <./Figures/PFD.pdf>]) [3 <./Figures/Compressibility.pdf> <./Figures/RHO.pdf>
- <./Figures/CP.pdf> <./Figures/Enthalpy.pdf> <./Figures/MU.pdf> <./Figures/KT.p
-df>]
+[2 <./Figures/PFD.pdf>])
 Overfull \hbox (2.15552pt too wide) in paragraph at lines 148--149
 []\T1/stix/m/n/10 The quasi-one-dimensional com-press-ible Navier-Stokes
  []
 
-
+[3 <./Figures/Compressibility.pdf> <./Figures/RHO.pdf> <./Figures/CP.pdf> <./Fi
+gures/Enthalpy.pdf> <./Figures/MU.pdf> <./Figures/KT.pdf>]
 Overfull \hbox (8.18648pt too wide) in paragraph at lines 209--210
 []\T1/stix/m/n/10 Suppose the flow is pre-sumed to be isen-tropic, $\LS1/stix/m
 /it/10 d[][]\LS1/stix/m/n/10 _\LS1/stix/m/it/10 d[][] \LS1/stix/m/n/10 =
@@ -1677,7 +1679,7 @@ Overfull \hbox (6.37921pt too wide) detected at line 55
 
 pdfTeX warning: pdflatex (file ./Figures/SFE_draft.pdf): PDF inclusion: found P
 DF version <1.7>, but at most version <1.5> allowed
-<Figures/SFE_draft.pdf, id=415, 963.6pt x 542.025pt>
+<Figures/SFE_draft.pdf, id=416, 963.6pt x 542.025pt>
 File: Figures/SFE_draft.pdf Graphic file (type pdf)
 <use Figures/SFE_draft.pdf>
 Package pdftex.def Info: Figures/SFE_draft.pdf  used on input line 84.
@@ -1691,12 +1693,7 @@ Overfull \hbox (8.16127pt too wide) detected at line 120
  []
 
 (Sections/Saturation.tex [5 <./Figures/SFE_draft.pdf>]
-Overfull \hbox (8.93472pt too wide) in paragraph at lines 42--43
- [][] 
- []
-
-
-Overfull \hbox (0.43062pt too wide) detected at line 54
+Overfull \hbox (0.43062pt too wide) detected at line 60
  $[][]\LS1/stix/m/n/7 .\LS1/stix/m/it/7 t; z\LS1/stix/m/n/7 / = *[] []$  
  []
 
@@ -1719,7 +1716,7 @@ stix/m/it/8 t; z\LS1/stix/m/n/8 /\LS1/stix/m/it/8 ; [][]\LS1/stix/m/n/8 .\LS1/s
 tix/m/it/8 t\LS1/stix/m/n/8 ///$  
  []
 
-[6]
+
 Overfull \hbox (7.52888pt too wide) detected at line 218
  $[][]\LS1/stix/m/n/8 .\LS1/stix/m/it/8 t; z\LS1/stix/m/n/8 / = [][].[][].\LS1/
 stix/m/it/8 t; z\LS1/stix/m/n/8 /\LS1/stix/m/it/8 ; [][]\LS1/stix/m/n/8 .\LS1/s
@@ -1732,7 +1729,7 @@ LS1/stix/m/it/8 ; [][]\LS1/stix/m/n/8 .[][].\LS1/stix/m/it/8 t; z\LS1/stix/m/n/
 /$  
  []
 
-
+[6]
 Overfull \hbox (14.0426pt too wide) detected at line 293
 []
  []
@@ -1743,7 +1740,7 @@ Underfull \hbox (badness 1237) in paragraph at lines 297--298
 a-tions de-noted as $[][][]$ to
  []
 
-[7]) (Sections/Parameter_estimation.tex [8]) (Sections/Experiments.tex)
+[7]) (Sections/Parameter_estimation.tex) (Sections/Experiments.tex [8])
 (Sections/Results.tex
 LaTeX Font Info:    Trying to load font information for TS1+stix on input line 
 10.
@@ -1752,109 +1749,111 @@ LaTeX Font Info:    Trying to load font information for TS1+stix on input line
 File: ts1stix.fd 2015/04/17 v1.1.2-latex STIX TS1 font definitions
 )
 [9]
-<Figures///Results_estimation/Fitting_LUKE_T40_P200.pdf, id=550, 794.97pt x 614
+<Figures///Results_estimation/Fitting_LUKE_T40_P200.pdf, id=553, 794.97pt x 614
 .295pt>
 File: Figures///Results_estimation/Fitting_LUKE_T40_P200.pdf Graphic file (type
  pdf)
 <use Figures///Results_estimation/Fitting_LUKE_T40_P200.pdf>
 Package pdftex.def Info: Figures///Results_estimation/Fitting_LUKE_T40_P200.pdf
-  used on input line 84.
+  used on input line 92.
 (pdftex.def)             Requested size: 238.25444pt x 92.19109pt.
-<Figures///Results_estimation/Fitting_LUKE_T50_P200.pdf, id=552, 794.97pt x 614
+<Figures///Results_estimation/Fitting_LUKE_T50_P200.pdf, id=555, 794.97pt x 614
 .295pt>
 File: Figures///Results_estimation/Fitting_LUKE_T50_P200.pdf Graphic file (type
  pdf)
 <use Figures///Results_estimation/Fitting_LUKE_T50_P200.pdf>
 Package pdftex.def Info: Figures///Results_estimation/Fitting_LUKE_T50_P200.pdf
-  used on input line 89.
+  used on input line 97.
 (pdftex.def)             Requested size: 238.25444pt x 92.19109pt.
-<Figures///Results_estimation/Fitting_LUKE_T40_P300_org.pdf, id=554, 794.97pt x
+<Figures///Results_estimation/Fitting_LUKE_T40_P300_org.pdf, id=557, 794.97pt x
  614.295pt>
 File: Figures///Results_estimation/Fitting_LUKE_T40_P300_org.pdf Graphic file (
 type pdf)
 <use Figures///Results_estimation/Fitting_LUKE_T40_P300_org.pdf>
 Package pdftex.def Info: Figures///Results_estimation/Fitting_LUKE_T40_P300_org
-.pdf  used on input line 94.
+.pdf  used on input line 102.
 (pdftex.def)             Requested size: 238.25444pt x 92.19109pt.
-<Figures///Results_estimation/Fitting_LUKE_T50_P300_org.pdf, id=556, 794.97pt x
+<Figures///Results_estimation/Fitting_LUKE_T50_P300_org.pdf, id=559, 794.97pt x
  614.295pt>
 File: Figures///Results_estimation/Fitting_LUKE_T50_P300_org.pdf Graphic file (
 type pdf)
 <use Figures///Results_estimation/Fitting_LUKE_T50_P300_org.pdf>
 Package pdftex.def Info: Figures///Results_estimation/Fitting_LUKE_T50_P300_org
-.pdf  used on input line 99.
+.pdf  used on input line 107.
 (pdftex.def)             Requested size: 238.25444pt x 92.19109pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Underfull \hbox (badness 2221) in paragraph at lines 106--107
+Underfull \hbox (badness 2221) in paragraph at lines 114--115
 \T1/stix/m/n/10 gen-er-al-iza-tion is per-formed by in-tro-duc-ing cor-re-la-ti
 ons
  []
 
 
-Underfull \hbox (badness 1609) in paragraph at lines 106--107
+Underfull \hbox (badness 1609) in paragraph at lines 114--115
 \T1/stix/m/n/10 which link the es-ti-mated pa-ram-e-ters and the op-er-at-ing
  []
 
-[10]
-<Figures///Results_estimation/Trend_Lines_order_1.pdf, id=568, 794.97pt x 614.2
+<Figures///Results_estimation/Trend_Lines_order_1.pdf, id=562, 794.97pt x 614.2
 95pt>
 File: Figures///Results_estimation/Trend_Lines_order_1.pdf Graphic file (type p
 df)
 <use Figures///Results_estimation/Trend_Lines_order_1.pdf>
 Package pdftex.def Info: Figures///Results_estimation/Trend_Lines_order_1.pdf  
-used on input line 114.
+used on input line 122.
 (pdftex.def)             Requested size: 238.25444pt x 112.63182pt.
-<Figures///Results_estimation/Trend_Lines_order_2.pdf, id=570, 794.97pt x 614.2
+<Figures///Results_estimation/Trend_Lines_order_2.pdf, id=564, 794.97pt x 614.2
 95pt>
 File: Figures///Results_estimation/Trend_Lines_order_2.pdf Graphic file (type p
 df)
 <use Figures///Results_estimation/Trend_Lines_order_2.pdf>
 Package pdftex.def Info: Figures///Results_estimation/Trend_Lines_order_2.pdf  
-used on input line 120.
+used on input line 128.
 (pdftex.def)             Requested size: 238.25444pt x 112.63182pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[10]
+File: Figures///Results_estimation/Trend_Lines_order_1.pdf Graphic file (type p
+df)
+<use Figures///Results_estimation/Trend_Lines_order_1.pdf>
+Package pdftex.def Info: Figures///Results_estimation/Trend_Lines_order_1.pdf  
+used on input line 152.
+(pdftex.def)             Requested size: 116.74597pt x 105.31819pt.
+File: Figures///Results_estimation/Trend_Lines_order_1.pdf Graphic file (type p
+df)
+<use Figures///Results_estimation/Trend_Lines_order_1.pdf>
+Package pdftex.def Info: Figures///Results_estimation/Trend_Lines_order_1.pdf  
+used on input line 153.
+(pdftex.def)             Requested size: 116.74597pt x 108.5871pt.
+File: Figures///Results_estimation/Trend_Lines_order_2.pdf Graphic file (type p
+df)
+<use Figures///Results_estimation/Trend_Lines_order_2.pdf>
+Package pdftex.def Info: Figures///Results_estimation/Trend_Lines_order_2.pdf  
+used on input line 159.
+(pdftex.def)             Requested size: 116.74597pt x 105.31819pt.
+File: Figures///Results_estimation/Trend_Lines_order_2.pdf Graphic file (type p
+df)
+<use Figures///Results_estimation/Trend_Lines_order_2.pdf>
+Package pdftex.def Info: Figures///Results_estimation/Trend_Lines_order_2.pdf  
+used on input line 160.
+(pdftex.def)             Requested size: 116.74597pt x 108.5871pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[11 <./Figures///Results_estimation/Fitting_LUKE_T40_P200.pdf> <./Figures///Res
-ults_estimation/Fitting_LUKE_T50_P200.pdf> <./Figures///Results_estimation/Fitt
-ing_LUKE_T40_P300_org.pdf> <./Figures///Results_estimation/Fitting_LUKE_T50_P30
-0_org.pdf> <./Figures///Results_estimation/Trend_Lines_order_1.pdf> <./Figures/
-//Results_estimation/Trend_Lines_order_2.pdf>]
-File: Figures///Results_estimation/Trend_Lines_order_1.pdf Graphic file (type p
-df)
-<use Figures///Results_estimation/Trend_Lines_order_1.pdf>
-Package pdftex.def Info: Figures///Results_estimation/Trend_Lines_order_1.pdf  
-used on input line 144.
-(pdftex.def)             Requested size: 116.74597pt x 105.31819pt.
-File: Figures///Results_estimation/Trend_Lines_order_1.pdf Graphic file (type p
-df)
-<use Figures///Results_estimation/Trend_Lines_order_1.pdf>
-Package pdftex.def Info: Figures///Results_estimation/Trend_Lines_order_1.pdf  
-used on input line 145.
-(pdftex.def)             Requested size: 116.74597pt x 108.5871pt.
-File: Figures///Results_estimation/Trend_Lines_order_2.pdf Graphic file (type p
-df)
-<use Figures///Results_estimation/Trend_Lines_order_2.pdf>
-Package pdftex.def Info: Figures///Results_estimation/Trend_Lines_order_2.pdf  
-used on input line 151.
-(pdftex.def)             Requested size: 116.74597pt x 105.31819pt.
-File: Figures///Results_estimation/Trend_Lines_order_2.pdf Graphic file (type p
-df)
-<use Figures///Results_estimation/Trend_Lines_order_2.pdf>
-Package pdftex.def Info: Figures///Results_estimation/Trend_Lines_order_2.pdf  
-used on input line 152.
-(pdftex.def)             Requested size: 116.74597pt x 108.5871pt.
 
+LaTeX Warning: Reference `CH: Profiles_2' on page 11 undefined on input line 17
+0.
 
-LaTeX Warning: Reference `CH: Profiles_2' on page 12 undefined on input line 16
-2.
-
-) [12] (Article_Model_Parameters.bbl) [13
+) [11 <./Figures///Results_estimation/Fitting_LUKE_T40_P200.pdf> <./Figures///R
+esults_estimation/Fitting_LUKE_T50_P200.pdf> <./Figures///Results_estimation/Fi
+tting_LUKE_T40_P300_org.pdf> <./Figures///Results_estimation/Fitting_LUKE_T50_P
+300_org.pdf> <./Figures///Results_estimation/Trend_Lines_order_1.pdf> <./Figure
+s///Results_estimation/Trend_Lines_order_2.pdf>] [12]
+(Article_Model_Parameters.bbl) [13
 
 ] (Sections/Thermodynamic_details.tex
 Overfull \hbox (16.52216pt too wide) in paragraph at lines 8--9
@@ -1871,30 +1870,26 @@ Overfull \hbox (10.36116pt too wide) in paragraph at lines 8--9
  []
 
 
-Underfull \hbox (badness 1565) in paragraph at lines 75--76
-[]$[][] []$ \T1/stix/m/n/10 and $[][] []$ are the
+Overfull \hbox (41.07765pt too wide) in paragraph at lines 78--79
+[]\T1/stix/m/n/10 The ideal-gas con-tri-bu-tion $[][] []$ and $[][] []$,
  []
 
 
-Underfull \hbox (badness 1226) in paragraph at lines 75--76
-\T1/stix/m/n/10 spe-cific heat of $\LS1/stix/m/it/10 CO[]$ \T1/stix/m/n/10 at c
-on-stant vol-ume and pres-sure,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 75--76
-
- []
-
-
-Underfull \hbox (badness 1253) in paragraph at lines 84--85
+Underfull \hbox (badness 1253) in paragraph at lines 85--86
 []\T1/stix/m/n/10 where the co-ef-fi-cients ([]REF[]) of the ex-pan-sion are
+ []
+
+
+Underfull \hbox (badness 1281) in paragraph at lines 87--88
+\T1/stix/m/n/10 sure $[][]\LS1/stix/m/n/10 .\LS1/stix/m/it/10 t\LS1/stix/m/n/10
+ /$\T1/stix/m/n/10 , can be de-fined by in-tro-duc-ing $[][]\LS1/stix/m/n/10 .[
+][].\LS1/stix/m/it/10 t; z\LS1/stix/m/n/10 // *
  []
 
 [14
 
 ]
-Underfull \hbox (badness 1082) in paragraph at lines 131--132
+Underfull \hbox (badness 1082) in paragraph at lines 134--135
 []\T1/stix/m/n/10 Departure func-tions are com-puted by in-te-grat-ing a
  []
 
@@ -1929,7 +1924,7 @@ LaTeX Font Warning: Command \footnotesize invalid in math mode on input line 16
 
 pdfTeX warning: pdflatex (file ./Figures//Forces.pdf): PDF inclusion: found PDF
  version <1.7>, but at most version <1.5> allowed
-<Figures//Forces.pdf, id=760, 205.72859pt x 191.7564pt>
+<Figures//Forces.pdf, id=765, 205.72859pt x 191.7564pt>
 File: Figures//Forces.pdf Graphic file (type pdf)
 <use Figures//Forces.pdf>
 Package pdftex.def Info: Figures//Forces.pdf  used on input line 219.
@@ -1962,12 +1957,12 @@ Underfull \hbox (badness 1107) in paragraph at lines 5--6
 \T1/stix/m/n/10 The per-tur-ba-tion the-ory de-vel-ops an ex-pres-sion for the
  []
 
-[18]
+
 Overfull \hbox (21.40958pt too wide) detected at line 64
 []
  []
 
-
+[18]
 Overfull \hbox (20.4336pt too wide) detected at line 94
 []
  []
@@ -2014,7 +2009,7 @@ m/n/10 for the pa-ram-e-ters
  []
 
 )
-<Sections/ultraReportT5.pdf, id=934, 597.23125pt x 845.1575pt>
+<Sections/ultraReportT5.pdf, id=939, 597.23125pt x 845.1575pt>
 File: Sections/ultraReportT5.pdf Graphic file (type pdf)
 <use Sections/ultraReportT5.pdf>
 Package pdftex.def Info: Sections/ultraReportT5.pdf  used on input line 272.
@@ -2057,16 +2052,16 @@ LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `Article_Model_Parameters.out' has not change
 d.
-(rerunfilecheck)             Checksum: 89CFD75C1BD351C2B76F6A632C954BB0;6694.
+(rerunfilecheck)             Checksum: DFD5F259622DDE8CE2BADDA3D5B400F5;6880.
  ) 
 Here is how much of TeX's memory you used:
- 43138 strings out of 478847
- 942803 string characters out of 2848486
- 1376897 words of memory out of 3000000
- 59908 multiletter control sequences out of 15000+600000
+ 42693 strings out of 478847
+ 929783 string characters out of 2848486
+ 1331149 words of memory out of 3000000
+ 59464 multiletter control sequences out of 15000+600000
  533890 words of font info for 181 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 94i,26n,131p,1594b,2555s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 94i,26n,131p,1588b,926s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist
 , replaced by a fixed one
@@ -2094,9 +2089,9 @@ iKTeX/fonts/type1/public/stix/stix-mathrm.pfb><C:/Users/sliczno1/AppData/Local/
 Programs/MiKTeX/fonts/type1/public/stix/stix-mathscr.pfb><C:/Users/sliczno1/App
 Data/Local/Programs/MiKTeX/fonts/type1/public/stix/stix-mathsf.pfb><C:/Users/sl
 iczno1/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrb8a.pfb>
-Output written on Article_Model_Parameters.pdf (24 pages, 3208493 bytes).
+Output written on Article_Model_Parameters.pdf (24 pages, 2793609 bytes).
 PDF statistics:
- 1104 PDF objects out of 1200 (max. 8388607)
- 253 named destinations out of 1000 (max. 500000)
+ 1107 PDF objects out of 1200 (max. 8388607)
+ 252 named destinations out of 1000 (max. 500000)
  548 words of extra memory for PDF output out of 10000 (max. 10000000)
 

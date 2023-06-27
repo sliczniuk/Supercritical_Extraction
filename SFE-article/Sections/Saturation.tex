@@ -2,55 +2,61 @@
 \graphicspath{{\subfix{../Figures/}}}
 \begin{document}
 	
-	\subsubsection{Concentration limit}
+	\subsubsection{Uneven distribution of the solute in the solid phase}
 	
-	To mimic that not all solute might be obtained at specific operating conditions, the coefficient ${\color{orange} \gamma}$ is introduced to limit the available oil. The ${\color{orange} \gamma}({\color{blue} c_s} (t,z))$ describe the reverse logistic function, which is equal to unity above the ${\color{magenta} c_{lim}}$, the saturation concentration, and equal to zero, below the ${\color{magenta} c_{lim}}$. The ${\color{orange} \gamma}$ parameter multiply the solute concentration term in solid phase in the concentration gradient. As the concentration of solute decrease, it can reach the limiting value ${\color{magenta} c_{lim}}$ when the ${\color{orange} \gamma}$ goes to zero and stop the extraction from the solid.
+%	To mimic that not all solute might be obtained at specific operating conditions, the coefficient ${\color{orange} \gamma}$ is introduced to limit the available oil. The ${\color{orange} \gamma}({\color{blue} c_s} (t,z))$ describe the reverse logistic function, which is equal to unity above the ${\color{magenta} c_{lim}}$, the saturation concentration, and equal to zero, below the ${\color{magenta} c_{lim}}$. The ${\color{orange} \gamma}$ parameter multiply the solute concentration term in solid phase in the concentration gradient. As the concentration of solute decrease, it can reach the limiting value ${\color{magenta} c_{lim}}$ when the ${\color{orange} \gamma}$ goes to zero and stop the extraction from the solid.
+%			
+%	{\footnotesize
+%		\begin{equation}
+%			{\color{orange} \gamma}({\color{blue} c_s} (t,z)) = \cfrac{1}{1+\exp \left( -{\color{magenta} k_{lim}} \left( {\color{blue} c_s} (t,z) - {\color{magenta} c_{lim}} \right) \right) }
+%			\label{EQ: C_sat_function}
+%			\end{equation}
+%	}
+%			
+%	where ${\color{magenta} k_{lim}}$ describe the curvature of the $\gamma$ function, and it is defined as ${\color{magenta} k_{lim}} = 1$. %In the limit when $ {\color{magenta} k_{lim}}\rightarrow+\infty$ become a step function. If the ${\color{magenta} k_{lim}}$ is to high, the gradient of the ${\color{orange} \gamma}$ function become high, or goes to infinity, which might cause difficulties for a gradient-based optimizer. 
+%	The ${\color{orange} \gamma}({\color{blue} c_s} (t,z))$ gamma function is visualised on \ref{fig: Gamma_function}.
+%			
+%	\begin{figure}[h!]
+%		\centering
+%			\begin{tikzpicture}
+%					
+%				\begin{axis}[
+%					legend style={draw=none},
+%					xmin = 0, xmax = 100,
+%					ymin = -0.5, ymax = 1.5,
+%					xlabel = {${\color{blue} c_s}(t,z)[kg/m^3]$},
+%					ylabel = {${\color{orange} \gamma}({\color{blue} c_s}(t,z))[-]$}]
+%					\addplot[
+%					domain = 0:100,
+%					samples = 100,
+%					smooth,
+%					thick,
+%					blue,
+%					] { 1 / (1 + exp( 1 * ( 50 - x ) ) ) };
+%					\addplot[thick, samples=50, dashed, domain=0:1.5, black] coordinates {(50,-0.5)(50,1.5)};
+%					
+%					\addlegendentry{${\color{orange} \gamma}({\color{blue} c_s} (t,z))$}
+%					\addlegendentry{${\color{magenta} c_{lim}}$}
+%				\end{axis}
+%					
+%			\end{tikzpicture}
+%			\caption{${\color{orange} \gamma}({\color{blue} c_s} (t,z))$ function under assumption of ${\color{magenta} c_{lim}}=50~[kg/m^3]$}
+%			\label{fig: Gamma_function}
+%	\end{figure}
 			
+	Following the idea of the Broken-and-Intact Cell (BIC) model presented by \citet{Sovova2017}, the coefficient ${\color{orange} \gamma}$ is introduced to limit the available oil. The ${\color{orange} \gamma}({\color{blue} c_s} (t,z))$ describes the decay function, which is equal to unity and slowly decays when the amount of the solute in the solid phase decrease. Similarly to the BIC model, this can be explained if oil is assumed to be contained in the cells, a part of which is open because the cell walls were broken by grinding, and the rest remains intact. The ${\color{orange} \gamma}$ parameter multiply the internal diffusion term to indicate that the diffusion of the solute from a particle's core takes more time compared to the diffusion of the solute located close to the outer surface.
+	
 	{\footnotesize
 		\begin{equation}
-			{\color{orange} \gamma}({\color{blue} c_s} (t,z)) = \cfrac{1}{1+\exp \left( -{\color{magenta} k_{lim}} \left( {\color{blue} c_s} (t,z) - {\color{magenta} c_{lim}} \right) \right) }
-			\label{EQ: C_sat_function}
-			\end{equation}
-	}
-			
-	where ${\color{magenta} k_{lim}}$ describe the curvature of the $\gamma$ function, and it is defined as ${\color{magenta} k_{lim}} = 1$. %In the limit when $ {\color{magenta} k_{lim}}\rightarrow+\infty$ become a step function. If the ${\color{magenta} k_{lim}}$ is to high, the gradient of the ${\color{orange} \gamma}$ function become high, or goes to infinity, which might cause difficulties for a gradient-based optimizer. 
-	The ${\color{orange} \gamma}({\color{blue} c_s} (t,z))$ gamma function is visualised on \ref{fig: Gamma_function}.
-			
-	\begin{figure}[h!]
-		\centering
-			\begin{tikzpicture}
-					
-				\begin{axis}[
-					legend style={draw=none},
-					xmin = 0, xmax = 100,
-					ymin = -0.5, ymax = 1.5,
-					xlabel = {${\color{blue} c_s}(t,z)[kg/m^3]$},
-					ylabel = {${\color{orange} \gamma}({\color{blue} c_s}(t,z))[-]$}]
-					\addplot[
-					domain = 0:100,
-					samples = 100,
-					smooth,
-					thick,
-					blue,
-					] { 1 / (1 + exp( 1 * ( 50 - x ) ) ) };
-					\addplot[thick, samples=50, dashed, domain=0:1.5, black] coordinates {(50,-0.5)(50,1.5)};
-					
-					\addlegendentry{${\color{orange} \gamma}({\color{blue} c_s} (t,z))$}
-					\addlegendentry{${\color{magenta} c_{lim}}$}
-				\end{axis}
-					
-			\end{tikzpicture}
-			\caption{${\color{orange} \gamma}({\color{blue} c_s} (t,z))$ function under assumption of ${\color{magenta} c_{lim}}=50~[kg/m^3]$}
-			\label{fig: Gamma_function}
-	\end{figure}
-			
-			
-	The final form of the extraction kinetic equation is given by equation \ref{Model_kinetic}.
+			{\color{orange} \gamma}({\color{blue} c_s} (t,z)) = \exp\left( {\color{magenta}\Upsilon} \left( 1-\cfrac{{\color{blue} c_s} (t,z) }{{\color{magenta}c_{s0}}} \right) \right) \label{EQ: C_sat_function}
+		\end{equation} }
+	
+	where the ${\color{magenta}\Upsilon}$ describe the curvature of the decay function. The final form of the extraction kinetic equation is given by equation \ref{Model_kinetic}.
 			
 	{\scriptsize
 		\begin{equation}
 			\label{Model_kinetic}
-				{\color{blue}r_e}(t,z) = -\cfrac{{\color{orange}D_i}({\color{blue}T}(t,z), {\color{red}P}(t))}{{\color{magenta} \mu l^2} } \left({\color{blue}{\color{blue} c_s} }(t,z) {\color{orange} \gamma}({\color{blue} c_s} (t,z)) - \cfrac{{\color{magenta}\rho_s}}{{\color{orange}k_m}({\color{blue}T}(t,z)){\color{orange}\rho}({\color{blue}T}(t,z),{\color{red}P}(t))}  {\color{blue}c_f}(t,z) \right)
+				{\color{blue}r_e}(t,z) = -\cfrac{{\color{orange}D_i}({\color{blue}T}(t,z), {\color{red}P}(t)) {\color{orange} \gamma}({\color{blue} c_s} (t,z)) }{{\color{magenta} \mu l^2} } \left({\color{blue}{\color{blue} c_s} }(t,z)  - \cfrac{{\color{magenta}\rho_s}}{{\color{orange}k_m}({\color{blue}T}(t,z)){\color{orange}\rho}({\color{blue}T}(t,z),{\color{red}P}(t))}  {\color{blue}c_f}(t,z) \right)
 		\end{equation} }
 			
 \end{document}

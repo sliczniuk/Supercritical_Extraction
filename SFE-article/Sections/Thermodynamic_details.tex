@@ -64,24 +64,27 @@
 	\subsubsection{Heat capacity of the fluid phase} \label{subsubsec: Fluid heat capacity}
 %	\noindent\textbf{Heat capacity of the fluid phase} \\
 	
-	The specific heat $C_p^{\text{F}}$ can be calculated from the equation of state, again under the assumption that the fluid phase consists of pure carbon dioxide and that the specific heat of real fluids can be calculated from an ideal contribution plus a residual term \citet{Pratt2001}. The main steps in the derivation of ${\color{orange}C^{CO_2}_p}\left({\color{blue}T}(t,z), {\color{red}P}(t)\right)$ are presented below: 
+	%The specific heat $C_p^{\text{F}}$ can be calculated from the equation of state, again under the assumption that the fluid phase consists of pure carbon dioxide and that the specific heat of real fluids can be calculated from an ideal contribution plus a residual term \citet{Pratt2001}. The main steps in the derivation of ${\color{orange}C_p}\left({\color{blue}T}(t,z), {\color{red}P}(t)\right)$ are presented below: 
+	Following the work of \citet{Pratt2001}, it is assumed that the specific heat can be obtained as a sum of ideal gas contribution and a residual correction for non-ideal behaviour, as given by Equations \ref{eq: Cv_CO2} and \ref{eq: Cp_CO2}.
 	
 	{\footnotesize
 	\begin{subequations}\begin{align}
-			{\color{orange}C^{CO_2}_v}\left({\color{blue}T}(t,z), {\color{red}P}(t)\right) & = {\color{orange}C_v^{\text{I}}}\left({\color{blue}T}(t,z),P(t)\right) + {\color{orange}C_v^{\text{R}}}\left({\color{blue}T}(t,z), {\color{red}P}(t)\right) \label{eq: Cv_CO2}; \\ 
-			{\color{orange}C^{CO_2}_p}\left({\color{blue}T}(t,z), {\color{red}P}(t)\right) & = \underbrace{{\color{orange}C_p^{\text{I}}}\left({\color{blue}T}(t,z),P(t)\right)}_{\text{Eq. } \eqref{eq: Cp_I}} + \underbrace{{\color{orange}C_p^{\text{R}}}\left({\color{blue}T}(t,z), {\color{red}P}(t)\right)}_{\text{Eq. } \eqref{eq: Cp_R}}  \label{eq: Cp_CO2}.
+			{\color{orange}C_v}\left({\color{blue}T}(t,z), {\color{red}P}(t)\right) & = {\color{orange}C_v^{\text{I}}}\left({\color{blue}T}(t,z),P(t)\right) + {\color{orange}C_v^{\text{R}}}\left({\color{blue}T}(t,z), {\color{red}P}(t)\right) \label{eq: Cv_CO2}; \\ 
+			{\color{orange}C_p}\left({\color{blue}T}(t,z), {\color{red}P}(t)\right) & = \underbrace{{\color{orange}C_p^{\text{I}}}\left({\color{blue}T}(t,z),P(t)\right)}_{\text{Eq. } \eqref{eq: Cp_I}} + \underbrace{{\color{orange}C_p^{\text{R}}}\left({\color{blue}T}(t,z), {\color{red}P}(t)\right)}_{\text{Eq. } \eqref{eq: Cp_R}}  \label{eq: Cp_CO2}.
 	\end{align}\end{subequations} }
 
-	${\color{orange}C^{CO_2}_v}\left({\color{blue}T}(t,z), {\color{red}P}(t)\right)$ and ${\color{orange}C^{CO_2}_p}\left({\color{blue}T}(t,z), {\color{red}P}(t)\right)$ are the specific heat of $CO_2$ at constant volume and pressure, respectively. ${\color{orange}C_v^{\text{I}}}\left({\color{blue}T}(t,z), {\color{red}P}(t)\right)$ and ${\color{orange}C_p^{\text{I}}}\left({\color{blue}T}(t,z), {\color{red}P}(t)\right)$, with ${\color{orange}C_p^{\text{I}}}({\color{blue}T}(t,z)) - {\color{orange}C_v^{\text{I}}}({\color{blue}T}(t,z)) = {\color{magenta}R}$, are the specific heat of an ideal gas at constant volume and pressure. ${\color{orange}C_v^{\text{R}}}\left({\color{blue}T}(t,z), {\color{red}P}(t)\right)$ and ${\color{orange}C_p^{\text{R}}}({\color{blue}T}(t,z), {\color{red}P}(t))$ are the correction terms. \\
+	${\color{orange}C_v}\left({\color{blue}T}(t,z), {\color{red}P}(t)\right)$ and ${\color{orange}C_p}\left({\color{blue}T}(t,z), {\color{red}P}(t)\right)$ are the specific heat of $CO_2$ at constant volume and pressure, respectively. 
 	
-	For $CO_2$, the ideal gas contribution to the specific heat at constant ${\color{red}P}(t)$, as function of ${\color{blue}T}(t,z)$ is given by,
+	The ideal-gas contribution ${\color{orange}C_v^{\text{I}}}\left({\color{blue}T}(t,z), {\color{red}P}(t)\right)$ and ${\color{orange}C_p^{\text{I}}}\left({\color{blue}T}(t,z), {\color{red}P}(t)\right)$, can be obtained based on heat-capacity data applicable to gases at low pressure. For $CO_2$, the ideal gas contribution to the specific heat at constant ${\color{red}P}(t)$, as function of ${\color{blue}T}(t,z)$ is given by,
 	
 	{\footnotesize
 	\begin{equation}
 		{\color{orange}C_p^{\text{I}}}\left({\color{blue}T}(t,z),P(t)\right) = {\color{magenta}C_{P0}} + {\color{magenta}C_{P1}}T(t,z) + {\color{magenta}C_{P2}}{\color{blue}T}^2(t,z) + {\color{magenta}C_{P3}}{\color{blue}T}^3(t,z) \label{eq: Cp_I}
 	\end{equation} }
 
-	where the coefficients ({\color{red}REF}) of the expansion are ${\color{magenta}C_{P0}} = 4.728$, ${\color{magenta}C_{P1}} = 1.75 \times 10^{-3}$, ${\color{magenta}C_{P2}} = -1.34 \times 10^{-5}$, and ${\color{magenta}C_{P3}} = 4.10 \times 10^{-9}$. For the correction term ${\color{orange}C_p^{\text{R}}}\left({\color{blue}T}(t,z){\color{red}P}(t)\right)$ at constant pressure ${\color{red}P}(t)$, we have
+	where the coefficients ({\color{red}REF}) of the expansion are ${\color{magenta}C_{P0}} = 4.728$, ${\color{magenta}C_{P1}} = 1.75 \times 10^{-3}$, ${\color{magenta}C_{P2}} = -1.34 \times 10^{-5}$, and ${\color{magenta}C_{P3}} = 4.10 \times 10^{-9}$. 
+	
+	The correction term ${\color{orange}C_p^{\text{R}}}\left({\color{blue}T}(t,z){\color{red}P}(t)\right)$ at constant pressure ${\color{red}P}(t)$, can be defined by introducing  ${\color{orange}C_p^{\text{I}}}({\color{blue}T}(t,z)) - {\color{orange}C_v^{\text{I}}}({\color{blue}T}(t,z)) = {\color{magenta}R}$ and using the definition of ${\color{orange}C_v^{\text{R}}}\left({\color{blue}T}(t,z){\color{red}P}(t)\right)$. The general form of the correction term is given by Equation \ref{eq: Cp_R}
 	
 	{\footnotesize	
 	\begin{align}
@@ -91,7 +94,7 @@
 
 %	The braced terms are obtained from the chosen equation of state and the compressibility definition ${\color{red}P}(t) {\color{orange}v_m}({\color{blue}T}(t,z),{\color{red}P}(t)) = {\color{orange}Z}\left({\color{blue}T}(t,z), {\color{red}P}(t)\right){\color{magenta}R}{\color{blue}T}(t,z)$. \\
 	
-	For the partial derivative of the volume with respect to temperature $T$ at constant pressure $P(t)$, we have
+	For the partial derivative of the volume with respect to temperature ${\color{blue}T}(t,z)$ at constant pressure ${\color{red}P}(t)$, we have
 
 	{\footnotesize
 	\begin{align}
@@ -99,7 +102,7 @@
 		&+ \cfrac{{\color{magenta}R}{\color{blue}T}(t,z)}{{\color{red}P}(t)} \underbrace{\left( \cfrac{\partial {\color{orange}Z}\left({\color{blue}T}(t,z), {\color{red}P}(t)\right)}{\partial {\color{blue}T}} \right)_{{\color{red}P}(t)}}_{\text{Eq. }\eqref{eq: dZdT}} \label{eq: dVdT}
 	\end{align} }
  
-	with partial derivative of the compressibility factor with respect to temperature ${\color{blue}T}$ at constant pressure ${\color{blue}P}(t)$
+	with partial derivative of the compressibility factor with respect to temperature ${\color{blue}T}(t,z)$ at constant pressure ${\color{blue}P}(t)$
 
 	{\footnotesize
 	\begin{equation}
@@ -117,7 +120,7 @@
 	
 	{\footnotesize
 	\begin{equation}
-		{\color{orange}C_v^{\text{R}}}\left({\color{blue}T}(t,z),{\color{red}P}(t)\right) = \left(\cfrac{\partial{\color{orange}U^{\text{R}}}\left({\color{blue}T}(t,z),{\color{red}P}(t)\right)}{\partial {\color{blue}T}}\right)_{{\color{orange}v_m}(t,z)}. \label{eq: CvR}
+		{\color{orange}C_v^{\text{R}}}\left({\color{blue}T}(t,z),{\color{red}P}(t)\right) = \left(\cfrac{\partial{\color{orange}U^{\text{R}}}\left({\color{blue}T}(t,z),{\color{red}P}(t)\right)}{\partial {\color{blue}T}}\right)_{{\color{orange}v_m}(t,z)} \label{eq: CvR}
 	\end{equation} }
 	
 	%By denoting the physical constants as $\varphi_{C_p^{\text{F}}} = ({\color{magenta}R}, {\color{magenta}M},\\ {\color{magenta}T_c}, {\color{magenta}P_c}, {\color{magenta}\omega})$, we get the spatio-temporal representation \\$C_p^{\text{F}}\left(T(t,z),P(t) \mid \varphi_{C_p^{\text{F}}}\right)$ of the specific heat of the fluid phase.

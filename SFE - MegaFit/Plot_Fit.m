@@ -4,9 +4,10 @@ hold on
 plot(Time  , xx_0(Nx,:)  ,'k'    , 'LineWidth',2)
 plot(Time  , xx_out(Nx,:),'r'    , 'LineWidth',2)
 plot(SAMPLE, data_org    ,'bo'   , 'LineWidth',2)
-%plot(Time, 1e3 * (sum(xx_out(0*nstages+1:1*nstages,:) .* V_fluid) + sum(xx_out(1*nstages+1:2*nstages,:) .* V_solid)) + xx_out(Nx,:));
+plot(Time, 1e3 * (sum(xx_out(0*nstages+1:1*nstages,:) .* V_fluid) + sum(xx_out(1*nstages+1:2*nstages,:) .* V_solid)) + xx_out(Nx,:));
 hold off
 
+ylim([0 m_total+5])
 xlabel('Time [min]')
 ylabel('Yield [g]')
 
