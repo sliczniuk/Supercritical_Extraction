@@ -281,6 +281,7 @@
 					\cfrac{\partial {\color{blue}c_f}(t,z)}{\partial t}\\
 					\cfrac{\partial {\color{blue}c_s}(t,z)}{\partial t}\\
 					\cfrac{\partial {\color{blue}h}(t,z)}{\partial t} \\
+					\cfrac{\partial {\color{blue}P}(t,z)}{\partial t} \\
 					\cfrac{\partial {\color{blue}y}(t)}{\partial t} 
 				\end{bmatrix}
 				& =
@@ -288,7 +289,8 @@
 					{\color{blue}\bar{\phi_1}} \left( {\color{blue}c_f}(t,z),{\color{blue}c_s}(t,z),{\color{blue}h}(t,z); {\color{magenta}\Theta} \right)\\
 					{\color{blue}\bar{\phi_2}} \left( {\color{blue}c_f}(t,z),{\color{blue}c_s}(t,z),{\color{blue}h}(t,z); {\color{magenta}\Theta} \right)\\
 					{\color{blue}\bar{\phi_3}} \left( {\color{blue}c_f}(t,z),{\color{blue}c_s}(t,z),{\color{blue}h}(t,z); {\color{magenta}\Theta} \right) \\
-					{\color{blue}\bar{\phi_4}} \left( {\color{blue}c_f}(t,z),{\color{blue}c_s}(t,z),{\color{blue}h}(t,z); {\color{magenta}\Theta} \right)
+					{\color{blue}\bar{\phi_4}} \left( {\color{blue}c_f}(t,z),{\color{blue}c_s}(t,z),{\color{blue}h}(t,z); {\color{magenta}\Theta} \right)\\
+					{\color{blue}\bar{\phi_5}} \left( {\color{blue}c_f}(t,z),{\color{blue}c_s}(t,z),{\color{blue}h}(t,z); {\color{magenta}\Theta} \right)
 				\end{bmatrix} = {\color{blue}\bar{\phi}} \left( t,z; {\color{magenta}\Theta} \right) = \cfrac{\partial {\color{blue}\chi}(t,z)}{\partial t}
 		\end{align} }
 			
@@ -312,6 +314,8 @@
 						\vdots 					  \\
 						\cfrac{d {\color{blue}h_{N_z}}(t)}{d t} \\
 						\\ \hline \\
+						\cfrac{d {\color{blue}P}(t)}{d t} \\
+						\\ \hline \\
 						\cfrac{d {\color{blue}y}(t)}{d t}
 					\end{bmatrix}
 					=
@@ -328,7 +332,9 @@
 							\vdots\\
 							{\color{orange}G_{3N_z}} \left( {\color{blue}c_f}(t),{\color{blue}c_s}(t),{\color{blue}h}(t); {\color{magenta}\Theta} \right) \\ 
 							\\ \\ \hline \\
-							{\color{orange}G_{3N_z+1}} \left( {\color{blue}c_f}(t),{\color{blue}c_s}(t),{\color{blue}h}(t); {\color{magenta}\Theta} \right) 
+							{\color{orange}G_{3N_z+1}} \left( {\color{blue}c_f}(t),{\color{blue}c_s}(t),{\color{blue}h}(t); {\color{magenta}\Theta} \right) \\
+							\\ \\ \hline \\
+							{\color{orange}G_{3N_z+2}} \left( {\color{blue}c_f}(t),{\color{blue}c_s}(t),{\color{blue}h}(t); {\color{magenta}\Theta} \right) 
 					\end{bmatrix}}_{{\color{orange}G} \left( {\color{blue}x}(t); {\color{magenta}\Theta} \right)} 
 			\end{align*} }
 			

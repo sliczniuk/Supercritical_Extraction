@@ -1,4 +1,4 @@
-function Cv = SpecificHeatComp(T, P, Z, RHO, theta)
+function Cp = SpecificHeatComp(T, P, Z, RHO, theta)
 
     % Specific heat equations
     % https://cheguide.com/specific_heat_ratio.html

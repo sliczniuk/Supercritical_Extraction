@@ -1,5 +1,7 @@
 function [Z] = Cardaon(T, P, THETA)
 
+    P = P./10;
+
     %import casadi.*
     %T = MX.sym('T',length(t));
     %P = MX.sym('P',length(p));
@@ -9,13 +11,13 @@ function [Z] = Cardaon(T, P, THETA)
     % theta = [nstages, C0solid, V, epsi, dp, L, rho_s, km, mi, Tc, Pc, R, kappa];
     %          1        2        3  4     5   6  7      8   9   10  11  12 13
 
-    Tc      = THETA{10};   % Critical temperature [K]
-    Pc      = THETA{11};   % Critical pressure [bar]
-    R       = THETA{12};   % Universal gas constant, [m3-bar/K-mol]
-    kappa   = THETA{13};
+    Tc      = 304.2;   % Critical temperature [K]
+    Pc      = 7.382;   % Critical pressure [bar]
+    R       = 8.314472;   % Universal gas constant, [m3-bar/K-mol]
+    kappa   = 0.228;
     MW      = THETA{14};   % Molar mass [g/mol]
     Tr      = T ./ Tc;
-    a       = 0.4572350 .* R.^2 .* Tc.^2 ./ Pc;
+    a       = 0.45723555289 .* (R.*Tc).^2 ./ Pc;
     b       = 0.0777961 .* R    .* Tc    ./ Pc;
 
     alpha = (1 + kappa .* (1 - sqrt(Tr))).^2;
@@ -30,7 +32,7 @@ function [Z] = Cardaon(T, P, THETA)
     TC = - ( A .* B - B.^2 - B.^3);
 
     PC = (3.*SC - UC.^2) ./ 3;
-    QC = (2.*UC.^3 ./ 27) - UC.*SC./3 + TC;
+    QC = (2.*UC.^3 -9.*UC.*SC + 27.*TC)./27;
 
     DC = (PC./3).^3 + (QC./2).^2;
 

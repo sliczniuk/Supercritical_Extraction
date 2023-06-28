@@ -77,7 +77,7 @@ k = ( A1 + A2.*rho + A3.*(rho.^2) + A4.*(rho.^3).*(T.^3) + A5.*(rho.^4) + A6.*T 
 
     fk = Function('fk',{T,rho}, {k});
 
-    k = fk(t,RHO);
+    k = full(fk(t,RHO));
 
     %k = Delta_k;
 

@@ -88,11 +88,11 @@
 			\includegraphics[trim = 2cm 10.5cm 2.5cm 2.02cm,clip,width=\textwidth]{/Results_estimation/Fitting_LUKE_T50_P300_org.pdf}
 			\caption{Experiment at $50^\circ C$ and $300$ bar}
 		\end{subfigure}
-		\caption{Results of parameter fitting, with estimation of the initial state}
+		\caption{Results of parameter estimation}
 		\label{fig: estimation_results}
 	\end{figure}
 	
-	As can be noticed, the optimizer found that the partition factor should be as high as possible. Such a behaviour suggest that the solvent is far from the saturation, and the model can be simplified. The model reduction can be introduced by considering the limit of the concentration gradient
+	Based on the Table \ref{tab: Estimation_results}, the optimizer found optimal values of the partition factors at relatively high. Such a behaviour suggest that the solvent is far from the saturation, and the model can be simplified. The model reduction can be introduced by considering the limit of the concentration gradient
 	
 	{\footnotesize
 	\begin{equation*}
@@ -102,15 +102,35 @@
 		\end{split}
 	\end{equation*} }
 		
-	Values of the internal diffusion coefficients are distinguished for each experiment. The order of magnitude of $D_i$ obtained from the optimization is similar to values found by other researchers. \citet{Reverchon1996} performed the parameter estimation for the extraction process of sage oil from seeds and reported $D_i \approx 6e-13$. The $\gamma$ (Equation \ref{EQ: C_sat_function}) coefficient multiply the reference value of $D_i$ to take into consideration that solute inside of a particle is harder to obtain than the solute close to the outer surface, as explained before. The Figure \ref{fig:Di_upsilon_res} shows how the internal diffusivity as a function of the solute's concentration in the solid phase. It can be observed that the obtained values of $D_i$ increase as the density increase. This behaviour can be explained by an increase in solubility when the density grow. \citet{Shojaie2010}, proved that the carvone (which is one of the main components of caraway oil) solubility increase together with pressure increase and decrease when temperature increase.
+	Values of the internal diffusion coefficients are distinguished for each experiment. The order of magnitude of $D_i$ obtained from the optimization is similar to values found by other researchers. \citet{Reverchon1996} performed the parameter estimation for the extraction process of sage oil from seeds and reported $D_i \approx 6e-13$. The $\gamma$ (Equation \ref{EQ: C_sat_function}) coefficient multiply the reference value of $D_i$ to take into consideration that solute inside of a particle is harder to obtain than the solute close to the outer surface, as explained before. The curvature of the $\gamma$ function is described by a $\Upsilon$. The higher the value of $D_i \times \gamma$, the higher 
 	
-	\begin{figure}
+	It can be observed that the obtained values of $D_i$ increase as the density increase. This behaviour can be explained by an increase in solubility when the density grow. \citet{Shojaie2010}, proved that the carvone (which is one of the main components of caraway oil) solubility increase together with pressure increase and decrease when temperature increase. $D_i$ and $\Upsilon$ can be related directly to 
+	
+		\begin{figure*}[!h]
 		\centering
-		\includegraphics[trim = 2cm 0.4cm 2cm 0.5cm, clip, width=\columnwidth]{/Results_estimation/D_i_Uppsilon_results.pdf}
-		\caption{The dependence of the internal diffusion coefficient on the solutes concentration in the solid phase}
-		\label{fig:Di_upsilon_res}
-	\end{figure}
+		\begin{subfigure}[b]{0.32\textwidth}
+			\centering
+			\includegraphics[trim = 10.5cm 14cm 10cm 1.5cm,clip,width=\columnwidth]{/Results_estimation/Trend_Lines_order_1.pdf}
+			\caption{Experiment at $40^\circ C$ and $200$ bar}
+		\end{subfigure}
+		\begin{subfigure}[b]{0.32\textwidth}
+			\centering
+			\includegraphics[trim = 3cm 8cm 17.7cm 7.7cm,clip,width=\columnwidth]{/Results_estimation/Trend_Lines_order_1.pdf}
+			\caption{Experiment at $50^\circ C$ and $200$ bar}
+		\end{subfigure}
+		\hfill
+		\begin{subfigure}[b]{0.32\textwidth}
+			\includegraphics[trim = 2cm 0.4cm 2cm 0.9cm, clip, width=\columnwidth]{/Results_estimation/D_i_Uppsilon_results.pdf}
+			\caption{The dependence of the internal diffusion coefficient on the solutes concentration in the solid phase}
+			\label{fig:Di_upsilon_res}
+		\end{subfigure}
+		\caption{Results of parameter estimation}
+		%\label{fig: estimation_results}
+	\end{figure*}
 	
+	
+	
+	The Figure \ref{fig:Di_upsilon_res} shows how the internal diffusivity as a function of the solute's concentration in the solid phase. 
 	
 	The axial diffusion coefficient obtained from the optimizer seems to be quite high if compared to the internal diffusion coefficients. Nevertheless, the values of $D_e^M$ have similar order of magnitude as reported in literature, for example \citet{ReisVasco2000}. The relatively high values of the axial diffusion coefficients might be justified by taking into account low values of flow rate used in all the experiments.
 	
@@ -124,23 +144,12 @@
 		
 	The other two parameters ($D_i$ and $D_e^M$) are subject to regression to obtain correlations in terms of density. Figure \ref{fig:Regression} shows the first- and second-order polynomials used to fit $D_i$ and $D_e^M$ as a function of fluid density. 
 	
-	\begin{figure}[!h]
-	\centering
-	\begin{subfigure}[b]{\columnwidth}
-		\centering
-		\includegraphics[trim = 11.7cm 14cm 2.3cm 1cm,clip,width=\textwidth]{/Results_estimation/Trend_Lines_order_1.pdf}
-		\caption{First-order polynomial regression of fitted parameters ($D_i$ and $D_e^M$) as a function of fluid density $\rho_f$}
-		\label{fig:Regression_1}
-	\end{subfigure}
-	\begin{subfigure}[b]{\columnwidth}
-		\centering
-		\includegraphics[trim = 11.7cm 14cm 2.3cm 1cm,clip,width=\textwidth]{/Results_estimation/Trend_Lines_order_2.pdf}
-		\caption{Second-order polynomial regression of fitted parameters ($D_i$ and $D_e^M$) as a function of fluid density $\rho_f$}
-		\label{fig:Regression_2}
-	\end{subfigure}
-	\caption{Regression of $D_i$ and $D_e^M$} 
-	\label{fig:Regression}
-	\end{figure}
+%	\begin{figure}[!h]
+%		\centering
+%		\includegraphics[trim = 11.7cm 14cm 2.3cm 1cm,clip,width=\textwidth]{/Results_estimation/Trend_Lines_order_1.pdf}
+%		\caption{Second-order polynomial regression of fitted parameters ($D_i$ and $D_e^M$) as a function of fluid density $\rho_f$}
+%		\label{fig:Regression_2}
+%	\end{figure}
 
 	
 	

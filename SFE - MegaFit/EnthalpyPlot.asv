@@ -1,0 +1,114 @@
+startup;
+
+import casadi.*
+
+Parameters_table        = readtable('Parameters.csv') ;        % Table with prameters
+Parameters_cell         = table2cell(Parameters_table(:,3));
+
+%%
+T_set               = linspace(34, 177, 100)+273;
+P_set               = linspace(74, 300, 100);
+
+[p,q] = meshgrid(T_set,P_set);
+data = [p(:) q(:)];
+
+h_data              = nan(numel(T_set)*numel(P_set),1);
+Z_data              = nan(numel(T_set)*numel(P_set),1);
+rho_data            = nan(numel(T_set)*numel(P_set),1);
+
+numIterations       = length(data);
+
+f = waitbar(0, 'Starting');
+
+for i=1:numIterations
+    T               = data(i,1);
+    P               = data(i,2);
+
+    Z               = Compressibility( T, P,         Parameters_cell );
+    rho             = rhoPB_Comp(      T, P, Z,      Parameters_cell );
+    h               = SpecificEnthalpy(T, P, Z, rho, Parameters_cell );
+
+    Z_data(i)       = Z;
+    rho_data(i)     = rho;
+    h_data(i)       = h;     
+
+    waitbar(i/numIterations, f, sprintf('Progress: %d', floor(i/numIterations*100)));
+    pause(0.1);
+end
+
+close(f)
+
+%%
+[X,Y] = meshgrid(T_set,P_set);
+Z     = reshape(h_data,numel(T_set),numel(P_set));
+
+figure(1);
+
+set(gcf,'PaperOrientation','landscape', 'visible','on')
+
+[C,h] = contourf(X,Y,Z, 50, 'EdgeColor', 'none'); colormap jet; axis square tight; colorbar;
+
+clabel(C,h)
+title('$\textbf{Enthalpy~1-phase~region}$')
+subtitle('~')
+
+%xline((Parameters_cell{10}),':','color','w')
+%yline(Parameters_cell{11},':','color','w')
+
+hcb=colorbar;
+title(hcb,'$h~[kJ/kg]$','Interpreter','latex');
+
+ylabel('$Pressure~[bar]$')
+xlabel('$Temperature~[K]$')
+
+fontsize(36,"points")
+print(gcf, '-dpdf', '-fillpage', 'Enthalpy.pdf'); close all
+
+%%
+[X,Y] = meshgrid(T_set,P_set);
+Z     = reshape(Z_data,numel(T_set),numel(P_set));
+
+figure(1);
+
+set(gcf,'PaperOrientation','landscape', 'visible','on')
+
+[C,h] = contourf(X,Y,Z, 50, 'EdgeColor', 'none'); colormap jet; axis square tight; colorbar;
+
+clabel(C,h)
+title('$\textbf{Compressibility~1-phase~region}$')
+subtitle('~')
+
+%xline((Parameters_cell{10}),':','color','w')
+%yline(Parameters_cell{11},':','color','w')
+
+hcb=colorbar;
+title(hcb,'$Z~[kJ/kg]$','Interpreter','latex');
+
+ylabel('$Pressure~[bar]$')
+xlabel('$Temperature~[K]$')
+
+fontsize(36,"points")
+print(gcf, '-dpdf', '-fillpage', 'Enthalpy.pdf'); close all
+
+%%
+figure(1);
+
+set(gcf,'PaperOrientation','landscape', 'visible','on')
+
+[C,h] = contourf(X,Y,Z, 50, 'EdgeColor', 'none'); colormap jet; axis square tight; colorbar;
+
+clabel(C,h)
+title('$\textbf{Enthalpy~1-phase~region}$')
+subtitle('~')
+
+%xline((Parameters_cell{10}),':','color','w')
+%yline(Parameters_cell{11},':','color','w')
+
+hcb=colorbar;
+title(hcb,'$h~[kJ/kg]$','Interpreter','latex');
+
+ylabel('$Pressure~[bar]$')
+xlabel('$Temperature~[K]$')
+
+fontsize(36,"points")
+print(gcf, '-dpdf', '-fillpage', 'Enthalpy.pdf'); close all

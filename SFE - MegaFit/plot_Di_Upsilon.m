@@ -7,7 +7,7 @@ hold off
 legend({'$40^\circ C / 200 bar$', '$50^\circ C / 200 bar$', '$40^\circ C / 300 bar$', '$50^\circ C / 300 bar$'}, 'Location','northwest')
 legend('boxoff')
 xlabel('$c_s [kg/m^3]$')
-ylabel('$D_i [m^2/s]$')
+ylabel('$D_i \gamma [m^2/s]$')
 fontsize(24,"points")
 set(gcf,'PaperOrientation','landscape'); print(figure(1),['D_i_Uppsilon_results.pdf'],'-dpdf','-bestfit');
 close all;

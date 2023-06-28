@@ -6,10 +6,10 @@ The style file: unsrtnat.bst
 Reallocating 'name_of_file' (item size: 1) to 10 items.
 Database file #1: mybibfile.bib
 Warning--entry type for "Himmelblau1970" isn't style-file defined
---line 769 of file mybibfile.bib
+--line 765 of file mybibfile.bib
 You've used 26 entries,
             2481 wiz_defined-function locations,
-            777 strings with 9738 characters,
+            776 strings with 9676 characters,
 and the built_in function-call counts, 10062 in all, are:
 = -- 879
 > -- 470

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.5.26)  28 JUN 2023 20:39
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.5.26)  29 JUN 2023 00:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1639,43 +1639,37 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 {C:/Users/Omistaja/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/inconsolata/i4
 -t1-0.enc} <./thumbnails/cas-email.jpeg>]) (Sections/Thermo_imp.tex
-<Figures/Compressibility.pdf, id=206, 794.97pt x 614.295pt>
+<Figures/Compressibility.pdf, id=206, 845.1575pt x 597.23125pt>
 File: Figures/Compressibility.pdf Graphic file (type pdf)
 <use Figures/Compressibility.pdf>
 Package pdftex.def Info: Figures/Compressibility.pdf  used on input line 22.
-(pdftex.def)             Requested size: 153.29654pt x 143.50278pt.
-<Figures/RHO.pdf, id=208, 794.97pt x 614.295pt>
+(pdftex.def)             Requested size: 158.24646pt x 140.13065pt.
+<Figures/RHO.pdf, id=208, 845.1575pt x 597.23125pt>
 File: Figures/RHO.pdf Graphic file (type pdf)
 <use Figures/RHO.pdf>
 Package pdftex.def Info: Figures/RHO.pdf  used on input line 29.
-(pdftex.def)             Requested size: 153.29654pt x 143.50278pt.
-<Figures/CP.pdf, id=210, 794.97pt x 614.295pt>
+(pdftex.def)             Requested size: 158.24646pt x 140.13065pt.
+<Figures/CP.pdf, id=210, 845.1575pt x 597.23125pt>
 File: Figures/CP.pdf Graphic file (type pdf)
 <use Figures/CP.pdf>
 Package pdftex.def Info: Figures/CP.pdf  used on input line 36.
-(pdftex.def)             Requested size: 153.29654pt x 143.50278pt.
-<Figures/Enthalpy.pdf, id=212, 794.97pt x 614.295pt>
+(pdftex.def)             Requested size: 158.24646pt x 140.13065pt.
+<Figures/Enthalpy.pdf, id=212, 845.1575pt x 597.23125pt>
 File: Figures/Enthalpy.pdf Graphic file (type pdf)
 <use Figures/Enthalpy.pdf>
 Package pdftex.def Info: Figures/Enthalpy.pdf  used on input line 43.
-(pdftex.def)             Requested size: 153.29654pt x 118.45132pt.
-
-Underfull \hbox (badness 1028) in paragraph at lines 44--44
-[]\T1/stix/m/n/9 (d) |The en-thalpy of $\LS1/stix/m/it/9 CO[]$ \T1/stix/m/n/9 b
-ased on the
- []
-
-<Figures/MU.pdf, id=214, 614.295pt x 794.97pt>
+(pdftex.def)             Requested size: 158.24646pt x 140.13065pt.
+<Figures/MU.pdf, id=214, 845.1575pt x 597.23125pt>
 File: Figures/MU.pdf Graphic file (type pdf)
 <use Figures/MU.pdf>
 Package pdftex.def Info: Figures/MU.pdf  used on input line 50.
-(pdftex.def)             Requested size: 153.29654pt x 124.35507pt.
-<Figures/KT.pdf, id=216, 614.295pt x 794.97pt>
+(pdftex.def)             Requested size: 158.24646pt x 140.13065pt.
+<Figures/KT.pdf, id=216, 845.1575pt x 597.23125pt>
 File: Figures/KT.pdf Graphic file (type pdf)
 <use Figures/KT.pdf>
 Package pdftex.def Info: Figures/KT.pdf  used on input line 57.
-(pdftex.def)             Requested size: 153.29654pt x 119.69856pt.
-[2 <./Figures/PFD.pdf>])
+(pdftex.def)             Requested size: 158.24646pt x 140.13065pt.
+ [2 <./Figures/PFD.pdf>])
 Overfull \hbox (2.15552pt too wide) in paragraph at lines 148--149
 []\T1/stix/m/n/10 The quasi-one-dimensional com-press-ible Navier-Stokes
  []
@@ -1702,7 +1696,7 @@ Overfull \hbox (6.37921pt too wide) detected at line 55
 
 pdfTeX warning: pdflatex.exe (file ./Figures/SFE_draft.pdf): PDF inclusion: fou
 nd PDF version <1.7>, but at most version <1.5> allowed
-<Figures/SFE_draft.pdf, id=416, 963.6pt x 542.025pt>
+<Figures/SFE_draft.pdf, id=331, 963.6pt x 542.025pt>
 File: Figures/SFE_draft.pdf Graphic file (type pdf)
 <use Figures/SFE_draft.pdf>
 Package pdftex.def Info: Figures/SFE_draft.pdf  used on input line 84.
@@ -1753,12 +1747,12 @@ LS1/stix/m/it/8 ; [][]\LS1/stix/m/n/8 .[][].\LS1/stix/m/it/8 t; z\LS1/stix/m/n/
  []
 
 [6]
-Overfull \hbox (14.0426pt too wide) detected at line 293
+Overfull \hbox (14.0426pt too wide) detected at line 295
 []
  []
 
 
-Underfull \hbox (badness 1237) in paragraph at lines 297--298
+Underfull \hbox (badness 1237) in paragraph at lines 299--300
 \T1/stix/m/n/10 set of $\LS1/stix/m/it/10 N[]$ \T1/stix/m/n/10 dis-cretized equ
 a-tions de-noted as $[][][]$ to
  []
@@ -1773,7 +1767,7 @@ File: ts1stix.fd 2015/04/17 v1.1.2-latex STIX TS1 font definitions
 )
 [9{C:/Users/Omistaja/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/stix/stix-ts
 1.enc}]
-<Figures//Results_estimation/Fitting_LUKE_T40_P200.pdf, id=550, 794.97pt x 614.
+<Figures//Results_estimation/Fitting_LUKE_T40_P200.pdf, id=465, 794.97pt x 614.
 295pt>
 File: Figures//Results_estimation/Fitting_LUKE_T40_P200.pdf Graphic file (type 
 pdf)
@@ -1781,7 +1775,7 @@ pdf)
 Package pdftex.def Info: Figures//Results_estimation/Fitting_LUKE_T40_P200.pdf 
  used on input line 72.
 (pdftex.def)             Requested size: 238.25444pt x 92.19109pt.
-<Figures//Results_estimation/Fitting_LUKE_T50_P200.pdf, id=552, 794.97pt x 614.
+<Figures//Results_estimation/Fitting_LUKE_T50_P200.pdf, id=467, 794.97pt x 614.
 295pt>
 File: Figures//Results_estimation/Fitting_LUKE_T50_P200.pdf Graphic file (type 
 pdf)
@@ -1789,7 +1783,7 @@ pdf)
 Package pdftex.def Info: Figures//Results_estimation/Fitting_LUKE_T50_P200.pdf 
  used on input line 77.
 (pdftex.def)             Requested size: 238.25444pt x 92.19109pt.
-<Figures//Results_estimation/Fitting_LUKE_T40_P300_org.pdf, id=554, 794.97pt x 
+<Figures//Results_estimation/Fitting_LUKE_T40_P300_org.pdf, id=469, 794.97pt x 
 614.295pt>
 File: Figures//Results_estimation/Fitting_LUKE_T40_P300_org.pdf Graphic file (t
 ype pdf)
@@ -1797,7 +1791,7 @@ ype pdf)
 Package pdftex.def Info: Figures//Results_estimation/Fitting_LUKE_T40_P300_org.
 pdf  used on input line 83.
 (pdftex.def)             Requested size: 238.25444pt x 92.19109pt.
-<Figures//Results_estimation/Fitting_LUKE_T50_P300_org.pdf, id=556, 794.97pt x 
+<Figures//Results_estimation/Fitting_LUKE_T50_P300_org.pdf, id=471, 794.97pt x 
 614.295pt>
 File: Figures//Results_estimation/Fitting_LUKE_T50_P300_org.pdf Graphic file (t
 ype pdf)
@@ -1809,52 +1803,51 @@ pdf  used on input line 88.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<Figures//Results_estimation/D_i_Uppsilon_results.pdf, id=562, 845.1575pt x 597
-.23125pt>
-File: Figures//Results_estimation/D_i_Uppsilon_results.pdf Graphic file (type p
-df)
-<use Figures//Results_estimation/D_i_Uppsilon_results.pdf>
-Package pdftex.def Info: Figures//Results_estimation/D_i_Uppsilon_results.pdf  
-used on input line 109.
-(pdftex.def)             Requested size: 238.25444pt x 186.22043pt.
-[10 <./Figures//Results_estimation/Fitting_LUKE_T40_P200.pdf> <./Figures//Resul
-ts_estimation/Fitting_LUKE_T50_P200.pdf> <./Figures//Results_estimation/Fitting
-_LUKE_T40_P300_org.pdf> <./Figures//Results_estimation/Fitting_LUKE_T50_P300_or
-g.pdf>]
-Underfull \hbox (badness 2221) in paragraph at lines 123--124
-\T1/stix/m/n/10 gen-er-al-iza-tion is per-formed by in-tro-duc-ing cor-re-la-ti
-ons
- []
-
-
-Underfull \hbox (badness 1609) in paragraph at lines 123--124
-\T1/stix/m/n/10 which link the es-ti-mated pa-ram-e-ters and the op-er-at-ing
- []
-
-<Figures//Results_estimation/Trend_Lines_order_1.pdf, id=622, 794.97pt x 614.29
+<Figures//Results_estimation/Trend_Lines_order_1.pdf, id=477, 794.97pt x 614.29
 5pt>
 File: Figures//Results_estimation/Trend_Lines_order_1.pdf Graphic file (type pd
 f)
 <use Figures//Results_estimation/Trend_Lines_order_1.pdf>
 Package pdftex.def Info: Figures//Results_estimation/Trend_Lines_order_1.pdf  u
-sed on input line 131.
-(pdftex.def)             Requested size: 238.25444pt x 112.63182pt.
-<Figures//Results_estimation/Trend_Lines_order_2.pdf, id=624, 794.97pt x 614.29
-5pt>
-File: Figures//Results_estimation/Trend_Lines_order_2.pdf Graphic file (type pd
+sed on input line 113.
+(pdftex.def)             Requested size: 158.24646pt x 129.53197pt.
+File: Figures//Results_estimation/Trend_Lines_order_1.pdf Graphic file (type pd
 f)
-<use Figures//Results_estimation/Trend_Lines_order_2.pdf>
-Package pdftex.def Info: Figures//Results_estimation/Trend_Lines_order_2.pdf  u
-sed on input line 137.
-(pdftex.def)             Requested size: 238.25444pt x 112.63182pt.
-) [11 <./Figures//Results_estimation/D_i_Uppsilon_results.pdf> <./Figures//Resu
-lts_estimation/Trend_Lines_order_1.pdf> <./Figures//Results_estimation/Trend_Li
-nes_order_2.pdf>] [12
+<use Figures//Results_estimation/Trend_Lines_order_1.pdf>
+Package pdftex.def Info: Figures//Results_estimation/Trend_Lines_order_1.pdf  u
+sed on input line 118.
+(pdftex.def)             Requested size: 158.24646pt x 128.74564pt.
+<Figures//Results_estimation/D_i_Uppsilon_results.pdf, id=480, 845.1575pt x 597
+.23125pt>
+File: Figures//Results_estimation/D_i_Uppsilon_results.pdf Graphic file (type p
+df)
+<use Figures//Results_estimation/D_i_Uppsilon_results.pdf>
+Package pdftex.def Info: Figures//Results_estimation/D_i_Uppsilon_results.pdf  
+used on input line 123.
+(pdftex.def)             Requested size: 158.24646pt x 121.21928pt.
+[10 <./Figures//Results_estimation/Fitting_LUKE_T40_P200.pdf> <./Figures//Resul
+ts_estimation/Fitting_LUKE_T50_P200.pdf> <./Figures//Results_estimation/Fitting
+_LUKE_T40_P300_org.pdf> <./Figures//Results_estimation/Fitting_LUKE_T50_P300_or
+g.pdf>]
+Underfull \hbox (badness 2221) in paragraph at lines 143--144
+\T1/stix/m/n/10 gen-er-al-iza-tion is per-formed by in-tro-duc-ing cor-re-la-ti
+ons
+ []
 
-] (Article_Model_Parameters.bbl) [13
 
-]
-(Sections/Thermodynamic_details.tex
+Underfull \hbox (badness 1609) in paragraph at lines 143--144
+\T1/stix/m/n/10 which link the es-ti-mated pa-ram-e-ters and the op-er-at-ing
+ []
+
+
+LaTeX Warning: Reference `fig:Regression' on page 11 undefined on input line 14
+5.
+
+) [11 <./Figures//Results_estimation/Trend_Lines_order_1.pdf> <./Figures//Resul
+ts_estimation/D_i_Uppsilon_results.pdf>] (Article_Model_Parameters.bbl)
+[12
+
+] (Sections/Thermodynamic_details.tex
 Overfull \hbox (16.52216pt too wide) in paragraph at lines 8--9
 \T1/stix/m/n/10 duced through $[][]\LS1/stix/m/n/10 .\LS1/stix/m/it/10 t\LS1/st
 ix/m/n/10 /[][].[][].\LS1/stix/m/it/10 t; z\LS1/stix/m/n/10 /\LS1/stix/m/it/10 
@@ -1885,14 +1878,14 @@ Underfull \hbox (badness 1281) in paragraph at lines 87--88
 ][].\LS1/stix/m/it/10 t; z\LS1/stix/m/n/10 // *
  []
 
-[14
+[13
 
 ]
 Underfull \hbox (badness 1082) in paragraph at lines 134--135
 []\T1/stix/m/n/10 Departure func-tions are com-puted by in-te-grat-ing a
  []
 
-) (Sections/Gouverning_equation_derivation.tex [15]
+) (Sections/Gouverning_equation_derivation.tex [14]
 Underfull \hbox (badness 1142) in paragraph at lines 71--72
 []\T1/stix/m/n/10 In the limit as $\LS1/stix/m/it/10 dz$ \T1/stix/m/n/10 be-com
 es very small, the terms
@@ -1923,7 +1916,7 @@ LaTeX Font Warning: Command \footnotesize invalid in math mode on input line 16
 
 pdfTeX warning: pdflatex.exe (file ./Figures/Forces.pdf): PDF inclusion: found 
 PDF version <1.7>, but at most version <1.5> allowed
-<Figures/Forces.pdf, id=760, 205.72859pt x 191.7564pt>
+<Figures/Forces.pdf, id=668, 205.72859pt x 191.7564pt>
 File: Figures/Forces.pdf Graphic file (type pdf)
 <use Figures/Forces.pdf>
 Package pdftex.def Info: Figures/Forces.pdf  used on input line 219.
@@ -1931,7 +1924,7 @@ Package pdftex.def Info: Figures/Forces.pdf  used on input line 219.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[16]
+[15]
 Overfull \hbox (2.48799pt too wide) in paragraph at lines 299--300
 []\T1/stix/m/n/10 Dividing the above equa-tion by $\LS1/stix/m/it/10 A[]$ \T1/s
 tix/m/n/10 the non-conservative
@@ -1946,7 +1939,7 @@ Overfull \hbox (5.07681pt too wide) detected at line 361
 []
  []
 
-[17 <./Figures/Forces.pdf>]) (Sections/Low_mach_number_expansion_imp.tex
+[16 <./Figures/Forces.pdf>]) (Sections/Low_mach_number_expansion_imp.tex
 Underfull \hbox (badness 1400) in paragraph at lines 5--6
 \T1/stix/m/n/10 of mo-tion (con-ti-nu-ity, mo-men-tum and en-ergy). Such a
  []
@@ -1961,7 +1954,7 @@ Overfull \hbox (21.40958pt too wide) detected at line 64
 []
  []
 
-[18]
+[17]
 Overfull \hbox (20.4336pt too wide) detected at line 94
 []
  []
@@ -1988,15 +1981,15 @@ Overfull \hbox (8.86765pt too wide) detected at line 183
 ] \LS1/stix/m/n/8 = 0 \LS1/stixsf/m/n/8 ™ [] \LS1/stix/m/n/8 = 0$ 
  []
 
-[19]) (Sections/Bayes_Theorem.tex [20]) (Sections/Cardano.tex)
-(Sections/IC_BC.tex [21]
+[18]) (Sections/Bayes_Theorem.tex [19]) (Sections/Cardano.tex)
+(Sections/IC_BC.tex [20]
 LaTeX Font Info:    Trying to load font information for TS1+cmss on input line 
 18.
 
 (C:\Users\Omistaja\AppData\Local\Programs\MiKTeX\tex/latex/base\ts1cmss.fd
 File: ts1cmss.fd 2022/07/10 v2.5l Standard LaTeX font definitions
 ))
-(Sections/Likelihood.tex [22]
+(Sections/Likelihood.tex [21]
 Underfull \hbox (badness 1199) in paragraph at lines 44--45
 \T1/stix/m/n/10 be-cause it's con-stant with re-spect to the max-i-miza-tion.
  []
@@ -2008,7 +2001,7 @@ m/n/10 for the pa-ram-e-ters
  []
 
 )
-<Sections/ultraReportT5.pdf, id=934, 597.23125pt x 845.1575pt>
+<Sections/ultraReportT5.pdf, id=842, 597.23125pt x 845.1575pt>
 File: Sections/ultraReportT5.pdf Graphic file (type pdf)
 <use Sections/ultraReportT5.pdf>
 Package pdftex.def Info: Sections/ultraReportT5.pdf  used on input line 272.
@@ -2017,7 +2010,7 @@ Package pdftex.def Info: Sections/ultraReportT5.pdf  used on input line 272.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-(Sections/Porosity.tex) [23 <./Sections/ultraReportT5.pdf>]
+(Sections/Porosity.tex) [22 <./Sections/ultraReportT5.pdf>]
 (Sections/Profiles.tex
 File: Figures//Results_estimation/Fitting_LUKE_T40_P200.pdf Graphic file (type 
 pdf)
@@ -2043,18 +2036,21 @@ ype pdf)
 Package pdftex.def Info: Figures//Results_estimation/Fitting_LUKE_T50_P300_org.
 pdf  used on input line 26.
 (pdftex.def)             Requested size: 238.25444pt x 91.07686pt.
-) [24
+) [23
 
 ] (Article_Model_Parameters.aux)
+
+LaTeX Warning: There were undefined references.
+
 Package rerunfilecheck Info: File `Article_Model_Parameters.out' has not change
 d.
 (rerunfilecheck)             Checksum: DFD5F259622DDE8CE2BADDA3D5B400F5;6880.
  ) 
 Here is how much of TeX's memory you used:
- 44247 strings out of 476411
- 981614 string characters out of 5787718
+ 44232 strings out of 476411
+ 980988 string characters out of 5787718
  1904845 words of memory out of 5000000
- 63478 multiletter control sequences out of 15000+600000
+ 63466 multiletter control sequences out of 15000+600000
  642733 words of font info for 186 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  94i,26n,131p,1588b,955s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -2082,9 +2078,9 @@ public/stix/stix-mathrm.pfb><C:/Users/Omistaja/AppData/Local/Programs/MiKTeX/fo
 nts/type1/public/stix/stix-mathscr.pfb><C:/Users/Omistaja/AppData/Local/Program
 s/MiKTeX/fonts/type1/public/stix/stix-mathsf.pfb><C:/Users/Omistaja/AppData/Loc
 al/Programs/MiKTeX/fonts/type1/urw/courier/ucrb8a.pfb>
-Output written on Article_Model_Parameters.pdf (24 pages, 2788348 bytes).
+Output written on Article_Model_Parameters.pdf (23 pages, 2416747 bytes).
 PDF statistics:
- 1180 PDF objects out of 1200 (max. 8388607)
- 253 named destinations out of 1000 (max. 500000)
- 535 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1085 PDF objects out of 1200 (max. 8388607)
+ 251 named destinations out of 1000 (max. 500000)
+ 530 words of extra memory for PDF output out of 10000 (max. 10000000)
 
