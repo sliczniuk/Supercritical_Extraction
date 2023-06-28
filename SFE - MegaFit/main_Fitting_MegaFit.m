@@ -2,8 +2,8 @@ startup; datetime("now")
 delete(gcp('nocreate'));
 % %p = Pushbullet(pushbullet_api);
 
-%addpath('C:\Dev\casadi-3.6.3-windows64-matlab2018b');
-addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-3.6.3-windows64-matlab2018b');
+addpath('C:\Dev\casadi-3.6.3-windows64-matlab2018b');
+%addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-3.6.3-windows64-matlab2018b');
 import casadi.*
 
 Parameters_table        = readtable('Parameters.csv') ;        % Table with prameters
@@ -80,24 +80,24 @@ bed_mask(nstagesbed)    = 1;
 bed_mask(nstagesafter)  = 0;
 
 %% Number of variables
-Nx                      = 3 * nstages+2;                                % 3*Nstages(C_f, C_s, H) + P(t) + yield
+Nx                      = 3 * nstages+2;                                    % 3*Nstages(C_f, C_s, H) + P(t) + yield
 Nu                      = 3 + numel( Parameters );
 
 %% Extractor geometry
-r                       = Parameters{3};                                % Radius of the extractor  [m]
-epsi                    = Parameters{4};                                % Fullness [-]
-L                       = Parameters{6};                                % Total length of the extractor [m]
+r                       = Parameters{3};                                    % Radius of the extractor  [m]
+epsi                    = Parameters{4};                                    % Fullness [-]
+L                       = Parameters{6};                                    % Total length of the extractor [m]
 
 L_nstages               = linspace(0,L,nstages);
-V                       = L  * pi * r^2;                                % Total volume of the extractor [m3]
-A                       = pi *      r^2;                                % Extractor cross-section
+V                       = L  * pi * r^2;                                    % Total volume of the extractor [m3]
+A                       = pi *      r^2;                                    % Extractor cross-section
 
 %--------------------------------------------------------------------
 V_slice                 = (L/nstages) * pi * r^2;
 
 V_before                = V_slice * numel(nstagesbefore);
 V_after                 = V_slice * numel(nstagesafter);
-V_bed                   = V_slice * numel(nstagesbed);                  % Volume of the fixed bed [m3]
+V_bed                   = V_slice * numel(nstagesbed);                      % Volume of the fixed bed [m3]
 
 V_before_solid          = repmat(V_before * 0          / numel(nstagesbefore), numel(nstagesbefore),1);
 V_bed_solid             = repmat(V_bed    * epsi       / numel(nstagesbed)   , numel(nstagesbed)   ,1);
@@ -151,19 +151,19 @@ parfor ii=1:numel(DATA_set)
     LabResults                  = xlsread([DATA,'.xlsx']);
 
     %% Set parameters
-    msol_max                    = m_total;%k(numel(which_k)+1);                                     % g of product in solid and fluid phase
+    msol_max                    = m_total;%k(numel(which_k)+1);             % g of product in solid and fluid phase
     mSol_ratio                  = k(numel(which_k)+1);
     sigma                       = k(numel(which_k)+2);
 
-    mSOL_s                      = msol_max*mSol_ratio;                                              % g of product in biomass
-    mSOL_f                      = msol_max*(1-mSol_ratio);                                          % g of biomass in fluid
+    mSOL_s                      = msol_max*mSol_ratio;                      % g of product in biomass
+    mSOL_f                      = msol_max*(1-mSol_ratio);                  % g of biomass in fluid
 
     %%
     Parameters_sym(which_k)     = k(1:numel(which_k));
 
     %--------------------------------------------------------------------
 
-    C0solid                     = mSOL_s * 1e-3 / ( V_bed * epsi)  ;                                % Solid phase kg / m^3
+    C0solid                     = mSOL_s * 1e-3 / ( V_bed * epsi)  ;        % Solid phase kg / m^3
     Parameters_sym(2)           = C0solid;
 
     G                           =@(x) -(2*mSOL_f / L_end^2) * (x-L_end) ;
@@ -306,7 +306,7 @@ DATA_K_OUT_order_of_mag(3,:) = DATA_K_OUT_order_of_mag(3,:);
 %DATA_K_OUT_order_of_mag(4,:) = DATA_K_OUT_order_of_mag(4,:) * 1e-6;
 
 for i=1:numel(DATA_set)
-    TT.(i+1)=round(DATA_K_OUT_order_of_mag(:,i),5);
+    TT.(i+1)=round(DATA_K_OUT_order_of_mag(:,i),3);
 end
 
 TT.Properties.VariableNames = ["Parameter","$40[C] 200[bar]$","$50[C] 200[bar]$","$40[C] 300[bar]$","$50[C] 300[bar]$"];
@@ -382,13 +382,13 @@ for xoxo=1:1%numel(XOXO)
             Parameters{which_k(i)}  = k0(i);
         end
 
-        msol_max                = m_total;%k0(numel(which_k)+1);                                     % g of product in solid and fluid phase
+        msol_max                = m_total;%k0(numel(which_k)+1);            % g of product in solid and fluid phase
         mSol_ratio              = k0(numel(which_k)+1);
 
-        mSOL_s                  = msol_max*mSol_ratio;                                               % g of product in biomass
-        mSOL_f                  = msol_max*(1-mSol_ratio);                                           % g of biomass in fluid
+        mSOL_s                  = msol_max*mSol_ratio;                      % g of product in biomass
+        mSOL_f                  = msol_max*(1-mSol_ratio);                  % g of biomass in fluid
 
-        C0solid                 = mSOL_s * 1e-3 / ( V_bed * epsi)  ;                                 % Solid phase kg / m^3
+        C0solid                 = mSOL_s * 1e-3 / ( V_bed * epsi)  ;        % Solid phase kg / m^3
         Parameters{2}           = C0solid;
 
         G                       =@(x) -(2*mSOL_f / L_end^2) * (x-L_end) ;
@@ -416,12 +416,12 @@ for xoxo=1:1%numel(XOXO)
         end
 
         %
-        msol_max_opt            = m_total;%KOUT(numel(which_k)+1);                                    % g of product in solid and fluid phase
+        msol_max_opt            = m_total;%KOUT(numel(which_k)+1);          % g of product in solid and fluid phase
         mSol_ratio_opt          = KOUT(numel(which_k)+1);
-        mSOL_s_opt              = msol_max_opt*mSol_ratio_opt;                                        % g of product in biomass
-        mSOL_f_opt              = msol_max_opt*(1-mSol_ratio_opt);                                    % g of biomass in fluid
+        mSOL_s_opt              = msol_max_opt*mSol_ratio_opt;              % g of product in biomass
+        mSOL_f_opt              = msol_max_opt*(1-mSol_ratio_opt);          % g of biomass in fluid
 
-        C0solid_opt             = mSOL_s_opt * 1e-3 / ( V_bed * epsi)  ;                              % Solid phase kg / m^3
+        C0solid_opt             = mSOL_s_opt * 1e-3 / ( V_bed * epsi)  ;    % Solid phase kg / m^3
         Parameters_opt{2}       = C0solid_opt;
 
         G                       =@(x) -(2*mSOL_f_opt / L_end^2) * (x-L_end) ;
@@ -473,7 +473,7 @@ for xoxo=1:1%numel(XOXO)
         hold on
         yline([L_nstages(nstagesbed(end)) L_nstages(nstagesbed(1))],'w--',{'end of bed','beginning of bed'}, 'Interpreter', 'latex')
         hold off
-        cb.Label.String = ['$\frac{d h}{d',name_v,'}$']; cb.Label.Interpreter = 'latex'; cb.Label.FontSize = 14;
+        cb.Label.String = ['$\frac{d h}{d',name_v,'}$']1; cb.Label.Interpreter = 'latex'; cb.Label.FontSize = 14;
         xlabel('Time [min]'); ylabel('Length [m]')
 
         subplot(3,2,3)
@@ -514,6 +514,7 @@ end
 %%
 
 Plot_Trend_Line
+plot_Di_Upsilon
 
 %%
 
@@ -523,3 +524,6 @@ for ii=1:Nk
     km = DATA_K_OUT(ii,:);
     createSurfFit(T, P, km, NAME{ii}, name{ii});
 end
+
+%%
+save data.mat

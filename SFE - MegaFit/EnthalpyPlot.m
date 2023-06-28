@@ -1,30 +1,41 @@
-clc, close all
-clear all
+startup;
 
-%addpath('C:\dev\casadi-windows-matlabR2016a-v3.5.2');
-addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-windows-matlabR2016a-v3.5.1');
 import casadi.*
 
 Parameters_table        = readtable('Parameters.csv') ;        % Table with prameters
 Parameters_cell         = table2cell(Parameters_table(:,3));
 
 %%
-T_set               = linspace(34,100)+273;
-P_set               = linspace(74,300,200);
+T_set               = linspace(34,100, 100)+273;
+P_set               = linspace(74,300, 100);
 
-data                = [combvec(T_set,P_set)'];
+data                = [mtcombvec(T_set,P_set)'];
 
 h_data              = nan(numel(T_set)*numel(P_set),1);
 
-parfor i=1:length(data)
-    T               = data(i,1);
-    P               = data(i,2);
+numIterations       = length(data);
+
+parpool(6)
+
+ppm = ParforProgressbar(numIterations);
+
+parfor i=1:numIterations
+    T               = data(i,1)
+    P               = data(i,2)
 
     Z               = Compressibility( T, P,         Parameters_cell );
     rho             = rhoPB_Comp(      T, P, Z,      Parameters_cell );
+    tic
     h               = SpecificEnthalpy(T, P, Z, rho, Parameters_cell );
+    toc
     h_data(i)       = h;        
+
+    pause(100/numIterations);
+    % increment counter to track progress
+    ppm.increment();
 end
+
+delete(ppm);
 
 %%
 [X,Y] = meshgrid(T_set,P_set);
@@ -45,4 +56,5 @@ title(hcb,'Enthalpy~[kJ/kg]','Interpreter','latex');
 ylabel('Pressure [bar]')
 xlabel('Temperature [K]')
 
+fontsize(24,"points")
 print(gcf, '-dpdf', '-fillpage', 'Enthalpy.pdf'); close all

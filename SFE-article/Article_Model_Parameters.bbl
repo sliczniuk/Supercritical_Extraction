@@ -1,4 +1,4 @@
-\begin{thebibliography}{25}
+\begin{thebibliography}{26}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -123,6 +123,14 @@ M.~Spiro and M.~Kandiah.
   25\penalty0 (5):\penalty0 566--575, jun 2007.
 \newblock \doi{10.1111/j.1365-2621.1990.tb01116.x}.
 
+\bibitem[Sovova(2017)]{Sovova2017}
+Helena Sovova.
+\newblock Broken-and-intact cell model for supercritical fluid extraction: Its
+  origin and limits.
+\newblock \emph{The Journal of Supercritical Fluids}, 129:\penalty0 3--8, nov
+  2017.
+\newblock \doi{10.1016/j.supflu.2017.02.014}.
+
 \bibitem[Gmehling et~al.(2019)Gmehling, Kleiber, Kolbe, and
   Rarey]{Gmehling2019}
 Jürgen Gmehling, Michael Kleiber, Bärbel Kolbe, and Jürgen Rarey.
@@ -144,6 +152,14 @@ John Mandel.
   (280):\penalty0 552--566, dec 1957.
 \newblock \doi{10.1080/01621459.1957.10501413}.
 
+\bibitem[Shojaie et~al.(2010)Shojaie, A.~Shirazi, Kargari, and
+  Shirazi]{Shojaie2010}
+G~Shojaie, Mohammad~Mahdi A.~Shirazi, Ali Kargari, and M~Shirazi.
+\newblock Solubility prediction of supercritical fluids extraction by equations
+  of state.
+\newblock \emph{Journal of Applied Chemical Research}, 158:\penalty0 41--59,
+  mar 2010.
+
 \bibitem[Reis-Vasco et~al.(2000)Reis-Vasco, Coelho, Palavra, Marrone, and
   Reverchon]{ReisVasco2000}
 E.M.C Reis-Vasco, J.A.P Coelho, A.M.F Palavra, C~Marrone, and E~Reverchon.
@@ -152,14 +168,6 @@ E.M.C Reis-Vasco, J.A.P Coelho, A.M.F Palavra, C~Marrone, and E~Reverchon.
 \newblock \emph{Chemical Engineering Science}, 55\penalty0 (15):\penalty0
   2917--2922, aug 2000.
 \newblock \doi{10.1016/s0009-2509(99)00561-8}.
-
-\bibitem[Sovova(2017)]{Sovova2017}
-Helena Sovova.
-\newblock Broken-and-intact cell model for supercritical fluid extraction: Its
-  origin and limits.
-\newblock \emph{The Journal of Supercritical Fluids}, 129:\penalty0 3--8, nov
-  2017.
-\newblock \doi{10.1016/j.supflu.2017.02.014}.
 
 \bibitem[Peng and Robinson(1976)]{Peng1976}
 Ding-Yu Peng and Donald~B. Robinson.
