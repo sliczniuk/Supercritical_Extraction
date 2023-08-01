@@ -294,7 +294,7 @@ end
 
 %format shortE
 
-NAME = {'$k_m[-]$', '$D_i[m^2/s] \times 1e-14$', '$D_e^M[m^2/s] \times 1e-6$', '$\Upsilon[-]$', '$\tau[-]$', '$\sigma[-]$'};
+NAME = {'$k_m[-]$', '$D_i[m^2/s] \times 10^{-14}$', '$D_e^M[m^2/s] \times 10^{-6}$', '$\Upsilon[-]$', '$\tau[-]$', '$\sigma[-]$'};
 name = {'km', 'Di', 'De', 'Upsilon', 'tau', 'sigma'};
 Title = {'T40P200', 'T50P200', 'T40P300', 'T50P300'};
 
@@ -512,7 +512,6 @@ for xoxo=1:1%numel(XOXO)
 end
 
 %%
-
 Plot_Trend_Line
 plot_Di_Upsilon
 

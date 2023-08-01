@@ -44,11 +44,11 @@
 %			\label{fig: Gamma_function}
 %	\end{figure}
 			
-	Following the idea of the Broken-and-Intact Cell (BIC) model presented by \citet{Sovova2017}, the coefficient ${\color{orange} \gamma}$ is introduced to limit the available oil. The ${\color{orange} \gamma}({\color{blue} c_s} (t,z))$ describes the decay function, which is equal to unity and slowly decays when the amount of the solute in the solid phase decrease. Similarly to the BIC model, this can be explained if oil is assumed to be contained in the cells, a part of which is open because the cell walls were broken by grinding, and the rest remains intact. The ${\color{orange} \gamma}$ parameter multiply the internal diffusion term to indicate that the diffusion of the solute from a particle's core takes more time compared to the diffusion of the solute located close to the outer surface.
-	
+	Following the idea of the Broken-and-Intact Cell (BIC) model presented by \citet{Sovova2017}, the internal diffusion coefficient ${\color{orange}D_i}$ is consider to be a product of the reference value of ${\color{orange}D_i^R}$ and the exponential decay function ${\color{orange} \gamma}$, as given by Equation \ref{EQ: C_sat_function}.
+		
 	{\footnotesize
 		\begin{equation}
-			{\color{orange} \gamma}({\color{blue} c_s} (t,z)) = \exp\left( {\color{magenta}\Upsilon} \left( 1-\cfrac{{\color{blue} c_s} (t,z) }{{\color{magenta}c_{s0}}} \right) \right) \label{EQ: C_sat_function}
+			{\color{orange}D_i} = {\color{orange}D_i^R} {\color{orange} \gamma}({\color{blue} c_s} (t,z)) = {\color{orange}D_i^R} \exp\left( {\color{magenta}\Upsilon} \left( 1-\cfrac{{\color{blue} c_s} (t,z) }{{\color{magenta}c_{s0}}} \right) \right) \label{EQ: C_sat_function}
 		\end{equation} }
 	
 	where the ${\color{magenta}\Upsilon}$ describe the curvature of the decay function. The final form of the extraction kinetic equation is given by equation \ref{Model_kinetic}.
@@ -56,7 +56,9 @@
 	{\scriptsize
 		\begin{equation}
 			\label{Model_kinetic}
-				{\color{blue}r_e}(t,z) = -\cfrac{{\color{orange}D_i}({\color{blue}T}(t,z), {\color{red}P}(t)) {\color{orange} \gamma}({\color{blue} c_s} (t,z)) }{{\color{magenta} \mu l^2} } \left({\color{blue}{\color{blue} c_s} }(t,z)  - \cfrac{{\color{magenta}\rho_s}}{{\color{orange}k_m}({\color{blue}T}(t,z)){\color{orange}\rho}({\color{blue}T}(t,z),{\color{red}P}(t))}  {\color{blue}c_f}(t,z) \right)
+				{\color{blue}r_e}(t,z) = -\cfrac{{\color{orange}D_i^R}({\color{blue}T}(t,z), {\color{red}P}(t)) {\color{orange} \gamma}({\color{blue} c_s} (t,z)) }{{\color{magenta} \mu l^2} } \left({\color{blue}{\color{blue} c_s} }(t,z)  - \cfrac{{\color{magenta}\rho_s}}{{\color{orange}k_m}({\color{blue}T}(t,z)){\color{orange}\rho}({\color{blue}T}(t,z),{\color{red}P}(t))}  {\color{blue}c_f}(t,z) \right)
 		\end{equation} }
-			
+	
+	Such a formulation limits the availability of the solute in the solid phase. Similarly to the BIC model, this can be explained if oil is assumed to be contained in the cells, a part of which is open because the cell walls were broken by grinding, and the rest remains intact. The diffusion of the solute from a particle's core takes more time compared to the diffusion of the solute located close to the outer surface, considering that the internal diffusion coefficient decay as the concentration of the solute in the solid decrease. As the value of the ${\color{blue}c_s}$ decrease over time, the exponential term approach unity and $\lim_{ {\color{blue}c_s} \rightarrow 0} {\color{orange}D_i} =  {\color{orange}D_i^R}$. ${\color{orange}D_i^R}$ can be interpreted as the internal diffusion coefficient at vanishing gradient. 
+		
 \end{document}

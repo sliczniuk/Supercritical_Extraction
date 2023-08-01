@@ -48,7 +48,10 @@ end
 close(f)
 
 %%
+T_set = T_set - 273;
 [X,Y] = meshgrid(T_set,P_set);
+
+%%
 Z     = reshape(h_data,numel(T_set),numel(P_set));
 
 figure(1);
@@ -66,8 +69,8 @@ set(gcf,'PaperOrientation','landscape', 'visible','on')
 hcb=colorbar;
 title(hcb,'$h~[kJ/kg]$','Interpreter','latex');
 
-ylabel('$Pressure~[bar]$')
-xlabel('$Temperature~[K]$')
+ylabel('Pressure~[bar]')
+xlabel('Temperature~[C]')
 
 fontsize(36,"points")
 print(gcf, '-dpdf', '-fillpage', 'Enthalpy.pdf'); close all
@@ -78,6 +81,7 @@ Z     = reshape(Z_data,numel(T_set),numel(P_set));
 figure(1);
 
 set(gcf,'PaperOrientation','landscape', 'visible','on')
+set(gca,'FontName','Segoe UI')
 
 [C,h] = contourf(X,Y,Z, 50, 'EdgeColor', 'none'); colormap jet; axis square tight; colorbar;
 
@@ -90,8 +94,8 @@ set(gcf,'PaperOrientation','landscape', 'visible','on')
 hcb=colorbar;
 title(hcb,'$Z~[-]$','Interpreter','latex');
 
-ylabel('$Pressure~[bar]$')
-xlabel('$Temperature~[K]$')
+ylabel('Pressure~[bar]')
+xlabel('Temperature~[C]')
 
 fontsize(36,"points")
 print(gcf, '-dpdf', '-fillpage', 'Compressibility.pdf'); close all
@@ -114,8 +118,8 @@ set(gcf,'PaperOrientation','landscape', 'visible','on')
 hcb=colorbar;
 title(hcb,'$\rho~[kg/m^3]$','Interpreter','latex');
 
-ylabel('$Pressure~[bar]$')
-xlabel('$Temperature~[K]$')
+ylabel('Pressure~[bar]')
+xlabel('Temperature~[C]')
 
 fontsize(36,"points")
 print(gcf, '-dpdf', '-fillpage', 'RHO.pdf'); close all
@@ -138,8 +142,8 @@ set(gcf,'PaperOrientation','landscape', 'visible','on')
 hcb=colorbar;
 title(hcb,'$log_{10}C_p~[kJ/kg/K]$','Interpreter','latex');
 
-ylabel('$Pressure~[bar]$')
-xlabel('$Temperature~[K]$')
+ylabel('Pressure~[bar]')
+xlabel('Temperature~[C]')
 
 fontsize(36,"points")
 print(gcf, '-dpdf', '-fillpage', 'CP.pdf'); close all
@@ -162,8 +166,8 @@ set(gcf,'PaperOrientation','landscape', 'visible','on')
 hcb=colorbar;
 title(hcb,'$\mu~[Pa~s] \times 10^{-5}$','Interpreter','latex');
 
-ylabel('$Pressure~[bar]$')
-xlabel('$Temperature~[K]$')
+ylabel('Pressure~[bar]')
+xlabel('Temperature~[C]')
 
 fontsize(36,"points")
 print(gcf, '-dpdf', '-fillpage', 'MU.pdf'); close all
@@ -186,8 +190,8 @@ set(gcf,'PaperOrientation','landscape', 'visible','on')
 hcb=colorbar;
 title(hcb,'$k~[(W/mK)]\times 10^{-3}$','Interpreter','latex');
 
-ylabel('$Pressure~[bar]$')
-xlabel('$Temperature~[K]$')
+ylabel('Pressure~[bar]')
+xlabel('Temperature~[C]')
 
 fontsize(36,"points")
 print(gcf, '-dpdf', '-fillpage', 'KT.pdf'); close all

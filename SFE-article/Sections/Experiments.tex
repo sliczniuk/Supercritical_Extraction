@@ -10,57 +10,14 @@
 	
 	After loading the material into the extraction chamber, the extractor was pre-heated to the desired temperature. The outlet line was then closed, and the extraction chamber was filled with $CO_2$. The $CO_2$ was pumped and compressed until the desired operating pressure was reached. When the operating temperature and pressure were achieved, the outlet line was opened, allowing the solvent to flow through the system. The solvent extracted the essential oils from the solid material, and the resulting $CO_2$ and oil mixture flowed from the extractor to the separator. The separator operated at $50^\circ C$ and $50$ bar. The gaseous $CO_2$ exited from the top and was recycled to the $CO_2$ storage tank. The oil stayed at the bottom of the separator in the liquid form. The extraction time for each batch was 150 minutes, measured from the opening of the extractor outlet port. Every 5 minutes, the oil was drained from the separator, and its weight was measured. The resulting time series ${\color{blue}Y}(t)$ corresponds to the output of measurement Equation \ref{Model_measurment_1} and can be used for parameter estimation.
 	
-	The results of experiments are presented in the Table \ref{tab: Yield_data}.
-	
+	%The results of experiments are presented in the Table \ref{tab: Yield_data}.
+
 %	\begin{table}[!h]
 %		\centering
 %		\adjustbox{max width=\columnwidth}{%
-%		\begin{tabular}{ccccc}
-%			\hline
-%			& $40 ^\circ C / 200$ bar & $50 ^\circ C / 200$ bar & $40 ^\circ C / 300$ bar & $50 ^\circ C / 300$ bar \\ 
-%			Time min & Mass g                  & Mass g                  & Mass g                  & Mass g                  \\ \hline
-%			0        & 0.0                     & 0.0                     & 0.0                     & 0.0                     \\
-%			5        & 1.7                     & 1.8                     & 1.1                     & 1.2                     \\
-%			10       & 5.7                     & 4.7                     & 4.7                     & 4.5                     \\
-%			15       & 10.9                    & 9.5                     & 10.8                    & 11.3                    \\
-%			20       & 17.8                    & 15.1                    & 20.6                    & 20.6                    \\
-%			25       & 24.9                    & 21.3                    & 32.1                    & 30.6                    \\
-%			30       & 30.3                    & 26.4                    & 40.5                    & 37.8                    \\
-%			35       & 34.0                    & 29.8                    & 46.7                    & 43.3                    \\
-%			40       & 37.5                    & 33.1                    & 50.5                    & 47.5                    \\
-%			45       & 40.1                    & 35.6                    & 53.1                    & 50.8                    \\
-%			50       & 43.3                    & 38.7                    & 55.5                    & 53.7                    \\
-%			55       & 45.5                    & 41.5                    & 57.6                    & 56.5                    \\
-%			60       & 47.6                    & 43.5                    & 59.3                    & 58.1                    \\
-%			65       & 49.2                    & 45.9                    & 60.9                    & 59.6                    \\
-%			70       & 50.8                    & 48.3                    & 62.2                    & 61.1                    \\
-%			75       & 52.6                    & 50.8                    & 63.7                    & 62.7                    \\
-%			80       & 54.2                    & 52.9                    & 64.9                    & 64.4                    \\
-%			85       & 55.1                    & 55.3                    & 66.6                    & 65.8                    \\
-%			90       & 56.2                    & 57.2                    & 67.6                    & 66.7                    \\
-%			95       & 57.3                    & 58.3                    & 68.9                    & 67.4                    \\
-%			100      & 58.3                    & 59.4                    & 69.7                    & 68.2                    \\
-%			105      & 59.4                    & 60.4                    & 70.6                    & 69.1                    \\
-%			110      & 60.2                    & 61.6                    & 71.2                    & 70.1                    \\
-%			115      & 61.4                    & 62.7                    & 71.9                    & 70.9                    \\
-%			120      & 62.5                    & 63.9                    & 72.3                    & 71.6                    \\
-%			125      & 63.3                    & 64.7                    & 72.8                    & 72.3                    \\
-%			130      & 64.0                    & 65.4                    & 73.2                    & 72.9                    \\
-%			135      & 64.8                    & 65.9                    & 73.6                    & 73.5                    \\
-%			140      & 65.5                    & 66.4                    & 74                      & 74                      \\
-%			145      & 66.2                    & 67.1                    & 74.3                    & 74.5                    \\
-%			150      & 66.8                    & 67.7                    & 74.6                    & 74.9              		 \\ \hline     
-%		\end{tabular} }
-%	\caption{Yield data}
-%	\label{tab: Yield_data}
+%			\csvautobooktabular{Figures/Results_estimation/Dataset.csv} }
+%		\caption{Yield data; cumulative amount of solute [g] collected every 5 min}
+%		\label{tab: Yield_data}
 %	\end{table}
-
-	\begin{table}[!h]
-		\centering
-		\adjustbox{max width=\columnwidth}{%
-			\csvautobooktabular{Figures/Results_estimation/Dataset.csv} }
-		\caption{Yield data; cumulative amount of solute [g] collected every 5 min}
-		\label{tab: Yield_data}
-	\end{table}
 	
 \end{document}

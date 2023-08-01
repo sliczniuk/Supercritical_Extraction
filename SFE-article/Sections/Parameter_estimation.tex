@@ -58,5 +58,32 @@
 	\end{align} }
 	
 	Solution of Equations \ref{EQ: MLE_Basic_Solution} yield the desired estimates $\hat{{\color{magenta} \theta}}$. For some models, these equations can be explicitly solved for $\hat{{\color{magenta} \theta}}$ but in general, no closed-form solution to the maximization problem is known or available, and a maximum likelihood estimator can only be found via numerical optimization.
-
+	
+	As a result of fitting, the following parameters are obtained:
+	
+	\begin{itemize}
+		\item Partition coefficient:\qquad\quad\qquad$k_m$
+		\item Internal diffusion coefficient: \quad$D_i^R$
+		\item Axial diffusion coefficient: \qquad$D_e^M$
+		\item Decay coefficient:\qquad\qquad\qquad$\Upsilon$
+		\item Standard deviation:\qquad\qquad\quad~$\sigma^2$
+		\item Total mass of solute: \qquad\quad\quad$m_{total}$
+		\item Initial mass ratio: \qquad\qquad\qquad$\tau$
+	\end{itemize}
+	
+	To ensure that parameters found by the optimizer do not reach unrealistic values, an additional set of inequality constraints is introduced. The initial guess for each optimization, the lower and upper bounds for each parameter are given in Table \ref{tab:Constraints}. 
+ 	
+ 	\begin{table}[h]
+		\adjustbox{max width=\columnwidth}{%
+			\begin{tabular}{ lccccccc }
+				\hline 
+				Parameter		&$k_m$[-] 	& $D_i^R$[$m^2/s$] 	& $D_e^M$[$m^2/s$]	& $\Upsilon$ [m$^3$/kg] & $m_{total}$[g]	& $\tau$[-] 	& $\sigma$[-] \\  \hline
+				Lower bound		&0	  		& 0 	  			& 0 				&	0					& 80 		 		& 0 	   		& 0 \\ 
+				Upper bound		&$+\infty$	& $+\infty$ 		& $+\infty$			&	100					& 150 				& 1 			& $+\infty$ \\ 
+				Initial guess	&1e5 		& 3 	  			& 1 				&	0					& 80 		 		& 0.65 	   		& 0.1 \\  \hline
+		\end{tabular} }
+		\caption{Constraints and initial guess}
+		\label{tab:Constraints}
+	\end{table}
+	
 \end{document}
