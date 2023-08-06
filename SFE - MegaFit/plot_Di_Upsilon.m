@@ -8,7 +8,7 @@ hold off
 legend({'$40[^\circ C] | 200 [bar] | 845[kg/m^3]$', '$50[^\circ C] | 200 [bar] | 795[kg/m^3]$', '$40[^\circ C] | 300 [bar] | 939[kg/m^3]$', '$50[^\circ C] | 300 [bar] | 903[kg/m^3]$'}, 'Location','northwest')
 legend('boxoff')
 xlabel('$c_s [kg/m^3]$')
-ylabel('$D_i^R \gamma [m^2/s] \times 10^{-12}$')
+ylabel('$D_i=(D_i^R \times \gamma) [m^2/s] \times 10^{-12}$')
 fontsize(36,"points")
 set(gcf,'PaperOrientation','landscape'); print(figure(1),['D_i_Uppsilon_results.pdf'],'-dpdf','-bestfit');
 close all;

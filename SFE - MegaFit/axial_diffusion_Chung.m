@@ -64,7 +64,7 @@ oo = sprintf('$R^2 = %g$\n', round(power(corr2(D_L_estimated, p_est),2),2) ) ;
 title( [oo,pp], 'FontSize', 8)
 
 xlabel('$Re~[-]$')
-ylabel('$D^M_e [m^2/s] \times 1e-6$')
+ylabel('$D^M_e [m^2/s] \times 10^{-6}$')
 
 set(gcf,'PaperOrientation','landscape'); print(figure(1),['Trend_Lines_D_e.pdf'],'-dpdf','-bestfit');
 close all;

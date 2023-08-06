@@ -87,7 +87,7 @@
 
 \shortauthors{OS, PO}
 
-\author[1]{Oliwer Sliczniuk*}[orcid=0000-0003-2593-5956]
+\author[1]{Oliwer Sliczniuk}[orcid=0000-0003-2593-5956]
 \ead{oliwer.sliczniuk@aalto.fi}
 \cormark[1]
 \credit{a}
@@ -110,7 +110,7 @@
 %Given a system of partial differential equations, $F(t,x,\dot{x},p,u)=0$, where $x$ represents state variables, $p$ is the parameters, and $u$ are control variables, the process model is simultaneously solved for both $x_i$ and a set of sensitivity functions, $dx_i/dp_j$, overall times $t$.These sensitivity functions measure the influence of the parameter change on the model's output. As an example, the supercritical extraction process is presented. The impact of mass flow rate, pressure, and inlet temperature on the model's output is discussed. The sensitivity analysis results prove that the considered variables can affect the extraction's yield and be used as control variables in optimization problems. Moreover, the local sensitivity analysis results are analyzed from a phenomenological point of view to enhance understanding of the process model.
 %Given a system of partial differential equations, $F(t,x,\dot{x},\Theta,u)=0$, where $x$ represents state variables, $\Theta$ are the parameters, and $u$ are control variables, we describe the supercritical extraction process. The process model describes a partially filled extractor with a fixed bed, which work under constant operating conditions. We assume that the flow is uniform across any cross-section, although the area available for the fluid phase can change along the extractor. We apply the concept of quasi-one-dimensional flow to mimic the modelling of a two-dimensional case.
 %In this work, a distributed-parameter model, based on \citet{Reverchon1996} is used to describe a fluid-solid extraction process of caraway oil from caraway seeds with $CO_2$ as a solvent. The model parameters such as partition factor, internal diffusion coefficient, axial diffusion coefficient \textit{and saturation concentration} are obtained from parameter estimation. The parameters are estimated based on four experiments performed at $40^\circ C$/$200$ bar, $50^\circ C$/$200$ bar, $40^\circ C$/$300$ bar and $50^\circ C$/$300$ bar. Given yield data, the model-based parameter estimation uses the maximum likelihood estimation method under assumption of normal error.
-This study aimed to investigate the supercritical extraction process of the caraway oil from caraway seeds from a partially filled extractor with a fixed bed operated under multiple constant operating conditions. The dataset collected from the experiments consists of four experiments conducted at different operating conditions: $40^\circ C$/$200$ bar, $50^\circ C$/$200$ bar, $40^\circ C$/$300$ bar, and $50^\circ C$/$300$ bar. A distributed-parameter model is used to describe the fluid-solid extraction process with $CO_2$ as a solvent. The concept of quasi-one-dimensional flow is applied to reduce the number of spatial dimensions. The flow is assumed to be uniform across any cross-section, although the area available for the fluid phase can vary along the extractor. This model requires parameters such as partition factor, internal diffusion coefficient, axial diffusion coefficient, saturation concentration, and an initial state estimate. These parameters are estimated from the Peng-Robinson equation of state and by applying the maximum likelihood estimation method on yield data under the normal error assumption. 
+This study aimed to investigate the supercritical extraction process of the caraway oil from caraway seeds. The extraction was performed in a partially filled extractor with a fixed bed operated under multiple constant operating conditions. The dataset collected from four experiments consists of four experiments conducted at different operating conditions: $40^\circ C$/$200$ bar, $50^\circ C$/$200$ bar, $40^\circ C$/$300$ bar, and $50^\circ C$/$300$ bar. A distributed-parameter model is used to describe the fluid-solid extraction process with $CO_2$ as a solvent. The concept of quasi-one-dimensional flow is applied to reduce the number of spatial dimensions. The flow is assumed to be uniform across any cross-section, although the area available for the fluid phase can vary along the extractor. This model requires parameters such as partition factor, internal diffusion coefficient, axial diffusion coefficient, saturation concentration, and an initial state estimate. These parameters are estimated from the Peng-Robinson equation of state and by applying the maximum likelihood estimation method on yield data under the normal error assumption. 
 
 \end{abstract}
 
@@ -159,7 +159,7 @@ The quasi-one-dimensional compressible Navier-Stokes equations in Cartesian coor
 	\end{align}  
 }
 
-where ${\color{orange}\rho_f}$ is the density of the fluid, ${\color{magenta}A_f}(z)$ is the function which describe change of the cross-section, $v$ is the velocity, ${\color{blue}P}$ is the total pressure, $e$ is the internal energy of the fluid, $t$ is time and $z$ is the spacial direction.
+where ${\color{orange}\rho_f}$ is the density of the fluid, ${\color{magenta}A_f}(z)$ is the function which describe change of the cross-section, $v$ is the velocity, ${\color{blue}P}$ is the total pressure, ${\color{blue}e}$ is the internal energy of the fluid, $t$ is time and $z$ is the spacial direction.
 
 Based on governing equations, the small discontinuity (defined as $\delta$) in flow properties, shown in Figure \ref{fig: Discontinuity_slow_flow}, can be analysed. The analysis follows the work of \citet{Schreier1982}.
 
@@ -172,9 +172,9 @@ Based on governing equations, the small discontinuity (defined as $\delta$) in f
 			\draw (4.5,0) -- (4.5,2); 	% Bottom line
 			\node at (4,1.5) {${\color{orange}\rho_f}$};
 			\node at (5.5,1.5) {${\color{orange}\rho_f}+\delta{\color{orange}\rho_f}$};
-			\node at (4,1.0) {$P$};
+			\node at (4,1.0) {${\color{blue}P}$};
 			\node at (5.5,1.0) {${\color{blue}P}+\delta {\color{blue}P}$};
-			\node at (4,0.5) {$T$};
+			\node at (4,0.5) {${\color{blue}T}$};
 			\node at (5.5,0.5) {${\color{blue}T}+\delta {\color{blue}T}$};
 			\node at (1,1.0) {$v \rightarrow$};
 			\node at (8,1.0) {$v + \delta v \rightarrow$};
@@ -229,7 +229,7 @@ Suppose the flow is presumed to be isentropic, $d{\color{blue}P}/d{\color{orange
 
 \section{Conclusions} \label{CH: Conclusion}
 
-This study presented basic aspects regarding the process parameters for obtaining caraway extracts using supercritical $CO_2$ at different operating conditions. A first-principle process model was developed based on governing equations and simplified using the Low-Mach number approximation. The values of unknown parameters in the process model were obtained by parameter estimation. The yield data from the experiments were compared against the yield data generated by the model. The IPOPT solver was used to solve the maximum likelihood estimation. The process model was found to have good agreement with experimental yield curves. Later, the parameters found for each experiment were combined to obtain more general relationships. The correlations for $D_i$, $\Upsilon$ and $D_e^M$ are presented as a function of $\rho$ or $R_e$. It should be noted that obtained correlations have been prepared with a limited amount of data. These correlations can be used to study the impact of different operating conditions on the extraction yield by different methods, such as sensitivity analysis. Moreover, the generalized model could be useful in finding the optimal operating conditions with respect to the process economy.
+This study presented basic aspects regarding the laboratory work for obtaining caraway extracts using supercritical $CO_2$ at different operating conditions. A first-principle process model was developed based on governing equations and simplified using the Low-Mach number approximation. Based on the literature review, the extraction kinetic model was selected. The values of unknown parameters in the process model were obtained by parameter estimation. The yield data from the experiments were compared against the yield data generated by the model. The IPOPT solver was used to solve the maximum likelihood estimation. The process model was found to have good agreement with experimental yield curves. Later, the parameters found for each experiment were combined to obtain more general relationships. The correlations for ${\color{orange}D_i^R}$, ${\color{orange}\Upsilon}$ and ${\color{orange}D_e^M}$ are presented as a function of ${\color{orange}\rho}$ or ${\color{orange}R_e}$. It should be noted that obtained correlations have been prepared with a limited amount of data. These correlations can be used to study qualitatively the impact of different operating conditions on the extraction yield by different methods, such as sensitivity analysis. Moreover, the generalized model could be useful in finding the optimal operating conditions with respect to the process economy.
 
 % ===================================================
 % Bibliography

@@ -25,7 +25,7 @@ for jj=1:2
             pp=sprintf('%s=$(%6.4g) \\rho^2 + (%6.4g) \\rho + (%6.4g)$\n',NAME{ii},trendLine');
         end
 
-        oo = sprintf('$R^2 = %g$\n', round(power(corr2(DATA_K_OUT(ii,:), p_est),2),2) ) ;
+        %oo = sprintf('$R^2 = %g$\n', round(power(corr2(DATA_K_OUT(ii,:), p_est),2),2) ) ;
     
         title( [oo,pp], 'FontSize', 8)
     
