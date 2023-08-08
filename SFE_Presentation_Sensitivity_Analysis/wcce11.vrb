@@ -1,0 +1,9 @@
+\frametitle{Conclusion}
+The forward sensitivity analysis allows to
+		\begin{itemize}
+			\item better understanding of the analysed model
+			\item evaluated an influence of controls and parameters
+			\item identify sensitive and none-sensitive parameters
+			\item spot modelling errors
+		\end{itemize}
+		
