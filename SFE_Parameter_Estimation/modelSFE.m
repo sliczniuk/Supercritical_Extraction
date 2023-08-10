@@ -40,8 +40,7 @@ function xdot = modelSFE(x, p, mask, dt)
     ENTHALPY_RHO  =     x(2*nstages_index+1:3*nstages_index);
     PRESSURE      =     x(3*nstages_index+1);
 
-    TEMP          =     Reconstruct_T_from_enthalpy(ENTHALPY_RHO(1), PRESSURE, parameters);
-    TEMP          =     TEMP*ones(nstages_index,1);
+    TEMP          =     Reconstruct_T_from_enthalpy(ENTHALPY_RHO, PRESSURE, parameters);
       
     %Properties of the fluid in the extractor
     Z             =     Compressibility(TEMP, PRESSURE,    parameters);

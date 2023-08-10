@@ -1,4 +1,4 @@
-function xdot = modelSFE_uniform_U(x, p, mask)
+function xdot = modelSFE(x, p, mask, dt)
     % (t, x, u, parameters)
     % Model with (F)luid, (S)olid, (T)emperature
     % Di is a function of temperature (T), the function works with numbers,
@@ -12,7 +12,7 @@ function xdot = modelSFE_uniform_U(x, p, mask)
 
     parameters    =     p(4:end);
 
-    nstages       =     parameters{1};
+    %nstages       =     parameters{1};
     C0solid       =     parameters{2};     % Extractor initial concentration of extract
     r             =     parameters{3};     % Extractor length (m)
     epsi          =     parameters{4};     % Void bed fraction
@@ -22,9 +22,10 @@ function xdot = modelSFE_uniform_U(x, p, mask)
     km            =     parameters{8};
     mi            =     parameters{9};
 
-    Di            =     parameters{44};      Di = Di * 1e-12;
-    Dx            =     parameters{45};      Dx = Dx * 1e-5;
-    C_SAT         =     parameters{47};
+    %Di            =     parameters{44};      Di = Di * 1e-14;
+    %Dx            =     parameters{45};      Dx = Dx * 1e-6;
+    %SAT           =     parameters{47};
+    %shape         =     parameters{48};
 
     nstages_index =     numel(mask);
     
@@ -36,14 +37,15 @@ function xdot = modelSFE_uniform_U(x, p, mask)
     %% States
     FLUID         =     x(0*nstages_index+1:1*nstages_index);
     SOLID         =     x(1*nstages_index+1:2*nstages_index);
-    TEMP          =     x(2*nstages_index+1:3*nstages_index);
-    PRESSURE      =     P_u;
+    ENTHALPY_RHO  =     x(2*nstages_index+1:3*nstages_index);
+    PRESSURE      =     x(3*nstages_index+1);
+
+    TEMP          =     Reconstruct_T_from_enthalpy(ENTHALPY_RHO, PRESSURE, parameters);
       
     %Properties of the fluid in the extractor
     Z             =     Compressibility(TEMP, PRESSURE,    parameters);
 
-    RHO           =     rhoPB_Comp(     TEMP, PRESSURE, Z, parameters);
-    
+    RHO           =     rhoPB_Comp(     TEMP, PRESSURE, Z, parameters);   
     VELOCITY      =     Velocity(F_u, RHO, parameters);
     
     %% Thermal Properties
@@ -51,62 +53,81 @@ function xdot = modelSFE_uniform_U(x, p, mask)
     CPRHOCP       =     cpRHOcp_Comp(    TEMP, PRESSURE, Z, RHO, CP, epsi.*mask, parameters);
     KRHOCP        =     kRHOcp_Comp(     TEMP, PRESSURE, Z, RHO, CP, epsi.*mask, parameters);
 
+    %% Extraction kientic
+    Di            = Diffusion(RHO) .* 1e-14;
+    shape         = Decay_Function_Coe(RHO);
+    Dx            = axial_diffusion(TEMP, epsi, VELOCITY, RHO) .*1e-6;
+
     %% Saturation
-    Sat_coe       =     Saturation_Concentration(FLUID, C_SAT); % Inverse logistic is used to control saturation. Close to saturation point, the Sat_coe goes to zero.
+    Csolid_percentage_left = 1 - (SOLID./C0solid);
+    Csolid_percentage_left(find(~mask)) = 0;                                              % inserte zeros instead of NAN in pleces where there is no bed
+    Sat_coe       =     Saturation_Concentration(Csolid_percentage_left, shape, Di);      % Inverse logistic is used to control saturation. Close to saturation point, the Sat_coe goes to zero.
 
     %% BC
-    Cf_0          =     if_else(F_u == 0, FLUID(1), 0);
+    %Cf_0          =     if_else(F_u == 0, FLUID(1), 0);
+    Cf_0          =     0;
     Cf_B          =     FLUID(nstages_index);
 
     T_0           =     T_u;
     T_B           =     TEMP(nstages_index);
 
-    Z_0           =     Compressibility(T_u, P_u,     parameters);
-    Z_B           =     Compressibility(T_B, P_u,     parameters);
+    Z_0           =     Compressibility(T_0, PRESSURE,     parameters);
+    %Z_B           =     Compressibility(T_B, PRESSURE,     parameters);
 
-    rho_0         =     rhoPB_Comp(     T_u, P_u, Z_0, parameters);
-    rho_B         =     rhoPB_Comp(     T_B, P_u, Z_B, parameters);
+    rho_0         =     rhoPB_Comp(     T_0, PRESSURE, Z_0, parameters);
+    %rho_B         =     rhoPB_Comp(     T_B, PRESSURE, Z_B, parameters);
 
     u_0           =     Velocity(F_u, rho_0, parameters);
-    u_B           =     Velocity(F_u, rho_B, parameters);
+    %u_B           =     Velocity(F_u, rho_B, parameters);
+
+    H_0           =     SpecificEnthalpy(T_0, PRESSURE, Z_0, rho_0, parameters );         
     
     %% Derivatives
 
     dz            = L/nstages_index;
     
-    dCfdz         = backward_diff_1_order(FLUID,Cf_0    , [],   dz);
+    %dCfdz         = backward_diff_1_order(FLUID,Cf_0    , [],   dz);
     d2Cfdz2       = central_diff_2_order(FLUID, FLUID(1), Cf_B, dz);
     
-    dTdz          = backward_diff_1_order(TEMP,T_0, [] , dz);
+    %dTdz          = backward_diff_1_order(TEMP,T_0, [] , dz);
     d2Tdz2        = central_diff_2_order(TEMP, T_0, T_B, dz);
         
-    dudz          = backward_diff_1_order(VELOCITY, u_0, [], dz);
+    %dudz          = backward_diff_1_order(VELOCITY, u_0, [], dz);
 
-%    d_cons_CF_dz  = central_diff_1_order(VELOCITY .* FLUID, u_0 .* Cf_0, u_B .* FLUID(nstages_index), dz);
+    dHdz          = backward_diff_1_order(VELOCITY .* ENTHALPY_RHO, u_0 .* rho_0 .* H_0, [], dz);
+
     d_cons_CF_dz  = backward_diff_1_order(VELOCITY .* FLUID, u_0 .* Cf_0, [], dz);
+
+    dPdt          = backward_diff_1_order(P_u, PRESSURE, [], dt)*1e2;
    
+    re            = (Sat_coe ./ mi ./ lp2)  .* ( SOLID - FLUID .* rho_s ./ RHO ./ km );
+    
     %%
 
     xdot = [
     
     %--------------------------------------------------------------------
     % Concentration of extract in fluid phase | 0
-   - 1 ./  ( 1 - epsi .* mask )            .* d_cons_CF_dz                                                                     + ...
-    Dx            ./  ( 1 - epsi .* mask ) .* d2Cfdz2                                                                          + ...
-    (epsi.*mask)  ./  ( 1 - epsi .* mask ) .* (1 ./ mi ./ lp2 .* Di)  .* Sat_coe .* ( SOLID - FLUID .* (rho_s ./ km ./ RHO ) ) ;
+   - 1            ./  ( 1 - epsi .* mask ) .* d_cons_CF_dz   + ...
+    Dx            ./  ( 1 - epsi .* mask ) .* d2Cfdz2        + ...
+    (epsi.*mask)  ./  ( 1 - epsi .* mask ) .* re;
     %zeros(nstages_index,1);
 
     %--------------------------------------------------------------------
     % Concentration of extract in solid phase | 1
-    -  mask                                 .* (1 ./ mi ./ lp2 .* Di)  .* Sat_coe .* ( SOLID - FLUID .* (rho_s ./ km ./ RHO ) );
+    - mask                                 .* re;
     %zeros(nstages_index,1);
     
     %--------------------------------------------------------------------
-    % Temperature | 2
-    - VELOCITY      ./ ( 1 - epsi .* mask )  .* CPRHOCP   .*   dTdz  +   0  .* d2Tdz2;
+    % enthalpy | 2
+    - 1      ./ ( 1 - epsi .* mask )  .* dHdz +  dPdt - KRHOCP .* d2Tdz2;
+
+    %--------------------------------------------------------------------
+    % Pressure | 3
+     dPdt;
     
     %--------------------------------------------------------------------
-    % 5*nstage+1 = output equation
+    % output equation
     %VELOCITY(nstages_index) * A * FLUID(nstages_index) * 1e3 ;   %kg/s - > g/s
     F_u ./ RHO(nstages_index) .* FLUID(nstages_index) * 1e3;
     
