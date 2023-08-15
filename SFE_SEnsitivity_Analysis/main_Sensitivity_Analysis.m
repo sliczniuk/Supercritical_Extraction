@@ -159,7 +159,7 @@ for ii = 1:2
         hold on
         yline([L_nstages(nstagesbed(end)) L_nstages(nstagesbed(1))],'w--',{'end of bed','beginning of bed'}, 'Interpreter', 'latex')
         hold off
-        cb.Label.String = ['$\frac{d c_s}{d',name_v{ii},'}$']; cb.Label.Interpreter = 'latex'; cb.Label.FontSize = 14;
+        cb.Label.String = ['$\frac{dc_s}{d',name_v{ii},'}$']; cb.Label.Interpreter = 'latex'; cb.Label.FontSize = 14;
         xlabel('Time [min]'); ylabel('Length [m]'); title(sprintf('$\\rho_f$=%4.2f',rho))
 
         subplot(3,2,2)
@@ -167,7 +167,7 @@ for ii = 1:2
         hold on
         yline([L_nstages(nstagesbed(end)) L_nstages(nstagesbed(1))],'w--',{'end of bed','beginning of bed'}, 'Interpreter', 'latex')
         hold off
-        cb.Label.String = ['$\frac{d h}{d',name_v{ii},'}$']; cb.Label.Interpreter = 'latex'; cb.Label.FontSize = 14;
+        cb.Label.String = ['$\frac{d(h\times\rho)}{d',name_v{ii},'}$']; cb.Label.Interpreter = 'latex'; cb.Label.FontSize = 14;
         xlabel('Time [min]'); ylabel('Length [m]')
 
         subplot(3,2,3)
@@ -175,7 +175,7 @@ for ii = 1:2
         hold on
         yline([L_nstages(nstagesbed(end)) L_nstages(nstagesbed(1))],'w--',{'end of bed','beginning of bed'}, 'Interpreter', 'latex')
         hold off
-        cb.Label.String = ['$\frac{d c_f}{d',name_v{ii},'}$']; cb.Label.Interpreter = 'latex'; cb.Label.FontSize = 14;
+        cb.Label.String = ['$\frac{dc_f}{d',name_v{ii},'}$']; cb.Label.Interpreter = 'latex'; cb.Label.FontSize = 14;
         xlabel('Time [min]'); ylabel('Length [m]')
 
         subplot(3,2,4)

@@ -68,9 +68,11 @@ function xdot = modelSFE(x, p, mask, dt)
     Cf_0          =     0;
     Cf_B          =     FLUID(nstages_index);
 
-    T_0 = if_else(abs(P_u-PRESSURE)<1e-4, TEMP(1), T_u);
-
-    %T_0           =     T_u;
+    if abs(P_u-PRESSURE(1)<
+        T_0 = TEMP(1);
+    else
+        T_0           =     T_u;
+    end
     T_B           =     TEMP(nstages_index);
 
     Z_0           =     Compressibility(T_0, PRESSURE,     parameters);
