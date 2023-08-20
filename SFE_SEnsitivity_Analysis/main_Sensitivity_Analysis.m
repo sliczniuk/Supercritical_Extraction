@@ -21,7 +21,7 @@ bed                     = 0.165;                                            % Pe
 % Set time of the simulation
 PreparationTime         = 0;
 ExtractionTime          = 400;
-timeStep                = 0.5;                                              % Minutes
+timeStep                = 1.0;                                              % Minutes
 SamplingTime            = 5;                                                % Minutes
 
 simulationTime          = PreparationTime + ExtractionTime;
@@ -142,8 +142,11 @@ Parameters_init_time   = [uu repmat(cell2mat(Parameters),1,N_Time)'];
 
 name_v = {'T_{in}', 'P', 'F'};
 
-for ii = 1:2
+My_Font = 12;
 
+for ii = 1:3
+        Parameters{8} = ii;
+        Parameters_init_time   = [uu repmat(cell2mat(Parameters),1,N_Time)'];
         [S,p,Sdot]              = Sensitivity(x, xdot, u, [ii] );
 
         % Initial conditions
@@ -151,46 +154,51 @@ for ii = 1:2
 
         f_SA = @(S, p) Sdot(S, p, bed_mask);
         Results = Integrator_SS(Time*60, x0_SA, S, p, Sdot, Parameters_init_time);
-        Res = Results(Nx+1:end,:) ;
+        Res = Results(Nx+1:end,:);
 
-        figure(ii)
         subplot(3,2,1)
         imagesc(Time, L_nstages, Res(1*nstages+1:2*nstages,:)); cb = colorbar;
+        ax=gca; ax.FontSize = My_Font;
         hold on
         yline([L_nstages(nstagesbed(end)) L_nstages(nstagesbed(1))],'w--',{'end of bed','beginning of bed'}, 'Interpreter', 'latex')
         hold off
-        cb.Label.String = ['$\frac{dc_s}{d',name_v{ii},'}$']; cb.Label.Interpreter = 'latex'; cb.Label.FontSize = 14;
-        xlabel('Time [min]'); ylabel('Length [m]'); title(sprintf('$\\rho_f$=%4.2f',rho))
+        cb.Label.String = ['$\frac{dc_s}{d',name_v{ii},'}$']; cb.Label.Interpreter = 'latex'; cb.Label.FontSize = My_Font;
+        xlabel('Time [min]'); ylabel('Length [m]'); 
+        %title(sprintf('$\\rho_f$=%4.2f',rho))
 
         subplot(3,2,2)
         imagesc(Time, L_nstages, Res(2*nstages+1:3*nstages,:) ); cb = colorbar;
+        ax=gca; ax.FontSize = My_Font;
         hold on
         yline([L_nstages(nstagesbed(end)) L_nstages(nstagesbed(1))],'w--',{'end of bed','beginning of bed'}, 'Interpreter', 'latex')
         hold off
-        cb.Label.String = ['$\frac{d(h\times\rho)}{d',name_v{ii},'}$']; cb.Label.Interpreter = 'latex'; cb.Label.FontSize = 14;
+        cb.Label.String = ['$\frac{d(h\times\rho)}{d',name_v{ii},'}$']; cb.Label.Interpreter = 'latex'; cb.Label.FontSize = My_Font;
         xlabel('Time [min]'); ylabel('Length [m]')
 
         subplot(3,2,3)
         imagesc(Time, L_nstages, Res(0*nstages+1:1*nstages,:)); cb = colorbar;
+        ax=gca; ax.FontSize = My_Font;
         hold on
         yline([L_nstages(nstagesbed(end)) L_nstages(nstagesbed(1))],'w--',{'end of bed','beginning of bed'}, 'Interpreter', 'latex')
         hold off
-        cb.Label.String = ['$\frac{dc_f}{d',name_v{ii},'}$']; cb.Label.Interpreter = 'latex'; cb.Label.FontSize = 14;
+        cb.Label.String = ['$\frac{dc_f}{d',name_v{ii},'}$']; cb.Label.Interpreter = 'latex'; cb.Label.FontSize = My_Font;
         xlabel('Time [min]'); ylabel('Length [m]')
 
         subplot(3,2,4)
-        plot(Time, Res(end-1,:))
+        plot(Time, Res(end-1,:), LineWidth=2); cb = colorbar;
+        ax=gca; ax.FontSize = My_Font;
         xlabel('Time [min]'); ylabel(['$\frac{d P_{t-1}}{d',name_v{ii},'}$'])
 
         subplot(3,2,5)
         hold on
-        plot(Time, Res(end,:)); colorbar;
+        plot(Time, Res(end,:), LineWidth=2); colorbar;
         xlabel('Time [min]'); ylabel(['$\frac{d y}{d',name_v{ii},'}$'])
         hold off
+        ax=gca; ax.FontSize = My_Font;
         colormap jet
 
-        %set(gcf,'PaperOrientation','landscape'); print(figure(1),[name_v,Title{ii},'.pdf'],'-dpdf','-bestfit')
-        %close all;
+        set(gcf,'PaperOrientation','landscape'); print(figure,[name_v{ii},'.pdf'],'-dpdf','-bestfit')
+        close all;
 
         %U = [U; Res(end,:)];
 end

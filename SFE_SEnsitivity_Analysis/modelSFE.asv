@@ -19,7 +19,8 @@ function xdot = modelSFE(x, p, mask, dt)
     dp            =     parameters{5};     % Diameter of the particle (m)
     L             =     parameters{6};     % Length of the extractor (m)
     rho_s         =     parameters{7};     %
-    km            =     parameters{8};
+    mode          =     parameters{8};
+    km            =     1e5;
     mi            =     parameters{9};
 
     %Di            =     parameters{44};      Di = Di * 1e-14;
@@ -68,11 +69,10 @@ function xdot = modelSFE(x, p, mask, dt)
     Cf_0          =     0;
     Cf_B          =     FLUID(nstages_index);
 
-    if abs(P_u-PRESSURE(1)<
-        T_0 = TEMP(1);
-    else
-        T_0           =     T_u;
-    end
+    T_0 = if_else( mode == 2, TEMP(1), T_u );                                             % If the sensitivity is consider, then set the input temp as equal to the temparture insdie of the extractor,
+                                                                                          % otherwise the change in P cause change in T
+    %T_0           =     TEMP(1);
+
     T_B           =     TEMP(nstages_index);
 
     Z_0           =     Compressibility(T_0, PRESSURE,     parameters);
