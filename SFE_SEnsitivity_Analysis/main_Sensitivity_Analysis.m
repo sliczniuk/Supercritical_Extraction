@@ -142,7 +142,7 @@ Parameters_init_time   = [uu repmat(cell2mat(Parameters),1,N_Time)'];
 
 name_v = {'T_{in}', 'P', 'F'};
 
-My_Font = 12;
+My_Font = 24;
 
 for ii = 1:3
         Parameters{8} = ii;
@@ -156,48 +156,68 @@ for ii = 1:3
         Results = Integrator_SS(Time*60, x0_SA, S, p, Sdot, Parameters_init_time);
         Res = Results(Nx+1:end,:);
 
-        subplot(3,2,1)
+        %subplot(3,2,1)
         imagesc(Time, L_nstages, Res(1*nstages+1:2*nstages,:)); cb = colorbar;
         ax=gca; ax.FontSize = My_Font;
         hold on
         yline([L_nstages(nstagesbed(end)) L_nstages(nstagesbed(1))],'w--',{'end of bed','beginning of bed'}, 'Interpreter', 'latex')
         hold off
-        cb.Label.String = ['$\frac{dc_s}{d',name_v{ii},'}$']; cb.Label.Interpreter = 'latex'; cb.Label.FontSize = My_Font;
+        cb.Label.String = ['$\frac{dc_s}{d',name_v{ii},'}$']; cb.Label.Interpreter = 'latex'; cb.Label.FontSize = 1.5*My_Font;
+        cb.Label.Rotation = 0; % to rotate the text
         xlabel('Time [min]'); ylabel('Length [m]'); 
         %title(sprintf('$\\rho_f$=%4.2f',rho))
+        pbaspect([1 1 1])
+        
+        set(gcf,'PaperOrientation','landscape'); print(figure(1),['CS_',name_v{ii},'.pdf'],'-dpdf','-bestfit')
+        close all;
 
-        subplot(3,2,2)
+        %subplot(3,2,2)
         imagesc(Time, L_nstages, Res(2*nstages+1:3*nstages,:) ); cb = colorbar;
         ax=gca; ax.FontSize = My_Font;
         hold on
         yline([L_nstages(nstagesbed(end)) L_nstages(nstagesbed(1))],'w--',{'end of bed','beginning of bed'}, 'Interpreter', 'latex')
         hold off
-        cb.Label.String = ['$\frac{d(h\times\rho)}{d',name_v{ii},'}$']; cb.Label.Interpreter = 'latex'; cb.Label.FontSize = My_Font;
+        cb.Label.String = ['$\frac{d(h\times\rho)}{d',name_v{ii},'}$']; cb.Label.Interpreter = 'latex'; cb.Label.FontSize = 1.5*My_Font;
+        cb.Label.Rotation = 0; % to rotate the text
         xlabel('Time [min]'); ylabel('Length [m]')
+        pbaspect([1 1 1])
 
-        subplot(3,2,3)
+        set(gcf,'PaperOrientation','landscape'); print(figure(1),['H_',name_v{ii},'.pdf'],'-dpdf','-bestfit')
+        close all;
+
+        %subplot(3,2,3)
         imagesc(Time, L_nstages, Res(0*nstages+1:1*nstages,:)); cb = colorbar;
         ax=gca; ax.FontSize = My_Font;
         hold on
         yline([L_nstages(nstagesbed(end)) L_nstages(nstagesbed(1))],'w--',{'end of bed','beginning of bed'}, 'Interpreter', 'latex')
         hold off
-        cb.Label.String = ['$\frac{dc_f}{d',name_v{ii},'}$']; cb.Label.Interpreter = 'latex'; cb.Label.FontSize = My_Font;
+        cb.Label.String = ['$\frac{dc_f}{d',name_v{ii},'}$']; cb.Label.Interpreter = 'latex'; cb.Label.FontSize = 1.5*My_Font;
+        cb.Label.Rotation = 0; % to rotate the text
         xlabel('Time [min]'); ylabel('Length [m]')
+        pbaspect([1 1 1])
 
-        subplot(3,2,4)
+        set(gcf,'PaperOrientation','landscape'); print(figure(1),['CF_',name_v{ii},'.pdf'],'-dpdf','-bestfit')
+        close all;
+
+        %subplot(3,2,4)
         plot(Time, Res(end-1,:), LineWidth=2); cb = colorbar;
         ax=gca; ax.FontSize = My_Font;
         xlabel('Time [min]'); ylabel(['$\frac{d P_{t-1}}{d',name_v{ii},'}$'])
+        pbaspect([1 1 1])
 
-        subplot(3,2,5)
+        set(gcf,'PaperOrientation','landscape'); print(figure(1),['P_',name_v{ii},'.pdf'],'-dpdf','-bestfit')
+        close all;
+
+        %subplot(3,2,5)
         hold on
         plot(Time, Res(end,:), LineWidth=2); colorbar;
         xlabel('Time [min]'); ylabel(['$\frac{d y}{d',name_v{ii},'}$'])
         hold off
         ax=gca; ax.FontSize = My_Font;
         colormap jet
+        pbaspect([1 1 1])
 
-        set(gcf,'PaperOrientation','landscape'); print(figure,[name_v{ii},'.pdf'],'-dpdf','-bestfit')
+        set(gcf,'PaperOrientation','landscape'); print(figure(1),['Y_',name_v{ii},'.pdf'],'-dpdf','-bestfit')
         close all;
 
         %U = [U; Res(end,:)];

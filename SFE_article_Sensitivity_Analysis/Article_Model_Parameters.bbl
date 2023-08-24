@@ -1,0 +1,222 @@
+\begin{thebibliography}{29}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Hromis et~al.(2015)Hromis, Lazic, Markov, Vastag, Popovic, Suput,
+  Dzinic, Velicanski, and Popovic]{Hromis2015}
+Nevena~M. Hromis, Vera~L. Lazic, Sinisa~L. Markov, Zuzana~G. Vastag, Senka~Z.
+  Popovic, Danijela~Z. Suput, Natalija~R. Dzinic, Aleksandra~S. Velicanski, and
+  Ljiljana~M. Popovic.
+\newblock Optimization of chitosan biofilm properties by addition of caraway
+  essential oil and beeswax.
+\newblock \emph{Journal of Food Engineering}, 158:\penalty0 86--93, aug 2015.
+\newblock \doi{10.1016/j.jfoodeng.2015.01.001}.
+
+\bibitem[Reverchon et~al.(1993)Reverchon, Donsi, and Osseo]{Reverchon1993}
+Ernesto Reverchon, Giorgio Donsi, and Libero~Sesti Osseo.
+\newblock Modeling of supercritical fluid extraction from herbaceous matrices.
+\newblock \emph{Industrial {\&} Engineering Chemistry Research}, 32\penalty0
+  (11):\penalty0 2721--2726, nov 1993.
+\newblock \doi{10.1021/ie00023a039}.
+
+\bibitem[Sovova(1994)]{Sovova1994}
+H.~Sovova.
+\newblock Rate of the vegetable oil extraction with supercritical co2.
+  modelling of extraction curves.
+\newblock \emph{Chemical Engineering Science}, 49\penalty0 (3):\penalty0
+  409--414, 1994.
+\newblock \doi{10.1016/0009-2509(94)87012-8}.
+
+\bibitem[Reverchon(1996)]{Reverchon1996}
+E.~Reverchon.
+\newblock Mathematical modeling of supercritical extraction of sage oil.
+\newblock \emph{{AIChE} Journal}, 42\penalty0 (6):\penalty0 1765--1771, jun
+  1996.
+\newblock \doi{10.1002/aic.690420627}.
+
+\bibitem[Elliott(2011)]{Elliott2011}
+J~Elliott.
+\newblock \emph{Introductory chemical engineering thermodynamics}.
+\newblock Prentice Hall, Upper Saddle River, NJ, 2011.
+\newblock ISBN 9780136068549.
+
+\bibitem[Simeoni et~al.(2010)Simeoni, Bryk, Gorelli, Krisch, Ruocco, Santoro,
+  and Scopigno]{Simeoni2010}
+G.~G. Simeoni, T.~Bryk, F.~A. Gorelli, M.~Krisch, G.~Ruocco, M.~Santoro, and
+  T.~Scopigno.
+\newblock The widom line as the crossover between liquid-like and gas-like
+  behaviour in supercritical~fluids.
+\newblock \emph{Nature Physics}, 6\penalty0 (7):\penalty0 503--507, jun 2010.
+\newblock \doi{10.1038/nphys1683}.
+
+\bibitem[Banuti(2019)]{Banuti2019}
+Daniel Banuti.
+\newblock The latent heat of supercritical fluids.
+\newblock \emph{Periodica Polytechnica Chemical Engineering}, 63\penalty0
+  (2):\penalty0 270--275, jan 2019.
+\newblock \doi{10.3311/ppch.12871}.
+
+\bibitem[Sheng et~al.(1989)Sheng, Chen, and Lu]{Sheng1989}
+W.~Sheng, G.~J. Chen, and H.~C. Lu.
+\newblock Prediction of transport properties of dense gases and liquids by the
+  peng-robinson ({PR}) equation of state.
+\newblock \emph{International Journal of Thermophysics}, 10\penalty0
+  (1):\penalty0 133--144, jan 1989.
+\newblock \doi{10.1007/bf00500714}.
+
+\bibitem[Chapman and Cowling(1991)]{Chapman1991}
+Sydney Chapman and T.~G. Cowling.
+\newblock \emph{The Mathematical Theory of Non-uniform Gases}.
+\newblock Cambridge University Press, 1991.
+\newblock ISBN 9780521408448.
+
+\bibitem[Fenghour et~al.(1998)Fenghour, Wakeham, and Vesovic]{Fenghour1998}
+A.~Fenghour, William~A. Wakeham, and V.~Vesovic.
+\newblock The viscosity of carbon dioxide.
+\newblock \emph{Journal of Physical and Chemical Reference Data}, 27\penalty0
+  (1):\penalty0 31--44, jan 1998.
+\newblock \doi{10.1063/1.556013}.
+
+\bibitem[Laesecke and Muzny(2017)]{Laesecke2017}
+Arno Laesecke and Chris~D. Muzny.
+\newblock Reference correlation for the viscosity of carbon dioxide.
+\newblock \emph{Journal of Physical and Chemical Reference Data}, 46\penalty0
+  (1):\penalty0 013107, mar 2017.
+\newblock \doi{10.1063/1.4977429}.
+
+\bibitem[Huber et~al.(2016)Huber, Sykioti, Assael, and Perkins]{Huber2016}
+M.~L. Huber, E.~A. Sykioti, M.~J. Assael, and R.~A. Perkins.
+\newblock Reference correlation of the thermal conductivity of carbon dioxide
+  from the triple point to 1100 k and up to 200 {MPa}.
+\newblock \emph{Journal of Physical and Chemical Reference Data}, 45\penalty0
+  (1):\penalty0 013102, mar 2016.
+\newblock \doi{10.1063/1.4940892}.
+
+\bibitem[Anderson(1995)]{Anderson1995}
+John~D. Anderson.
+\newblock \emph{Computational fluid dynamics the basic with applications}.
+\newblock McGraw-Hill, 1995.
+\newblock ISBN 9780071132107.
+
+\bibitem[Schreier(1982)]{Schreier1982}
+Stefan Schreier.
+\newblock \emph{Compressible flow}.
+\newblock Wiley, 1982.
+\newblock ISBN 047105691X.
+
+\bibitem[Bulley et~al.(1984)Bulley, Fattori, Meisen, and Moyls]{Bulley1984}
+N.~R. Bulley, M.~Fattori, A.~Meisen, and L.~Moyls.
+\newblock Supercritical fluid extraction of vegetable oil seeds.
+\newblock \emph{Journal of the American Oil Chemists{\textquotesingle}
+  Society}, 61\penalty0 (8):\penalty0 1362--1365, aug 1984.
+\newblock \doi{10.1007/bf02542243}.
+
+\bibitem[Spiro and Kandiah(2007)]{Spiro2007}
+M.~Spiro and M.~Kandiah.
+\newblock Extraction of ginger rhizome: partition constants and other
+  equilibrium properties in organic solvents and in supercritical carbon
+  dioxide.
+\newblock \emph{International Journal of Food Science {\&} Technology},
+  25\penalty0 (5):\penalty0 566--575, jun 2007.
+\newblock \doi{10.1111/j.1365-2621.1990.tb01116.x}.
+
+\bibitem[Sovova(2017)]{Sovova2017}
+Helena Sovova.
+\newblock Broken-and-intact cell model for supercritical fluid extraction: Its
+  origin and limits.
+\newblock \emph{The Journal of Supercritical Fluids}, 129:\penalty0 3--8, nov
+  2017.
+\newblock \doi{10.1016/j.supflu.2017.02.014}.
+
+\bibitem[Goto et~al.(1996)Goto, Roy, and Hirose]{Goto1996}
+Motonobu Goto, Bhupesh~C. Roy, and Tsutomu Hirose.
+\newblock Shrinking-core leaching model for supercritical-fluid extraction.
+\newblock \emph{The Journal of Supercritical Fluids}, 9\penalty0 (2):\penalty0
+  128--133, jun 1996.
+\newblock \doi{10.1016/s0896-8446(96)90009-1}.
+
+\bibitem[Gmehling et~al.(2019)Gmehling, Kleiber, Kolbe, and
+  Rarey]{Gmehling2019}
+Jürgen Gmehling, Michael Kleiber, Bärbel Kolbe, and Jürgen Rarey.
+\newblock \emph{Chemical Thermodynamics for Process Simulation}.
+\newblock Wiley, mar 2019.
+\newblock \doi{10.1002/9783527809479}.
+
+\bibitem[Sovova et~al.(1994)Sovova, Komers, Kucuera, and Jezu]{Sovova1994a}
+H.~Sovova, R.~Komers, J.~Kucuera, and J.~Jezu.
+\newblock Supercritical carbon dioxide extraction of caraway essential oil.
+\newblock \emph{Chemical Engineering Science}, 49\penalty0 (15):\penalty0
+  2499--2505, aug 1994.
+\newblock \doi{10.1016/0009-2509(94)e0058-x}.
+
+\bibitem[Dickinson and Gelinas(1976)]{Dickinson1976}
+Robert~P. Dickinson and Robert~J. Gelinas.
+\newblock Sensitivity analysis of ordinary differential equation
+  systems{\textemdash}a direct method.
+\newblock \emph{Journal of Computational Physics}, 21\penalty0 (2):\penalty0
+  123--143, jun 1976.
+\newblock \doi{10.1016/0021-9991(76)90007-3}.
+
+\bibitem[Maly and Petzold(1996)]{Maly1996}
+Timothy Maly and Linda~R. Petzold.
+\newblock Numerical methods and software for sensitivity analysis of
+  differential-algebraic systems.
+\newblock \emph{Applied Numerical Mathematics}, 20\penalty0 (1-2):\penalty0
+  57--79, feb 1996.
+\newblock \doi{10.1016/0168-9274(95)00117-4}.
+
+\bibitem[Shojaie et~al.(2010)Shojaie, A.~Shirazi, Kargari, and
+  Shirazi]{Shojaie2010}
+G~Shojaie, Mohammad~Mahdi A.~Shirazi, Ali Kargari, and M~Shirazi.
+\newblock Solubility prediction of supercritical fluids extraction by equations
+  of state.
+\newblock \emph{Journal of Applied Chemical Research}, 158:\penalty0 41--59,
+  mar 2010.
+
+\bibitem[Reis-Vasco et~al.(2000)Reis-Vasco, Coelho, Palavra, Marrone, and
+  Reverchon]{ReisVasco2000}
+E.M.C Reis-Vasco, J.A.P Coelho, A.M.F Palavra, C~Marrone, and E~Reverchon.
+\newblock Mathematical modelling and simulation of pennyroyal essential oil
+  supercritical extraction.
+\newblock \emph{Chemical Engineering Science}, 55\penalty0 (15):\penalty0
+  2917--2922, aug 2000.
+\newblock \doi{10.1016/s0009-2509(99)00561-8}.
+
+\bibitem[Chung and Wen(1968)]{Chung1968}
+S.~F. Chung and C.~Y. Wen.
+\newblock Longitudinal dispersion of liquid flowing through fixed and fluidized
+  beds.
+\newblock \emph{{AIChE} Journal}, 14\penalty0 (6):\penalty0 857--866, nov 1968.
+\newblock \doi{10.1002/aic.690140608}.
+
+\bibitem[Peng and Robinson(1976)]{Peng1976}
+Ding-Yu Peng and Donald~B. Robinson.
+\newblock A new two-constant equation of state.
+\newblock \emph{Industrial {\&} Engineering Chemistry Fundamentals},
+  15\penalty0 (1):\penalty0 59--64, feb 1976.
+\newblock \doi{10.1021/i160057a011}.
+
+\bibitem[Pratt(2001)]{Pratt2001}
+R.~M. Pratt.
+\newblock Thermodynamic properties involving derivatives: Using the
+  peng-robinson equation of state,.
+\newblock \emph{Chemical Engineering Education}, 35:\penalty0 112--139, 2001.
+\newblock ISSN 0009-2479.
+\newblock URL \url{https://www.tib.eu/de/suchen/id/BLSE%3ARN095457101}.
+
+\bibitem[Lions(2013)]{Lions2013}
+Pierre-Louis Lions.
+\newblock \emph{Mathematical Topics in Fluid Mechanics : Volume 1
+  Incompressible Models}.
+\newblock Oxford University Press, 2013.
+\newblock ISBN 9780199679218.
+
+\bibitem[Himmelblau(1970)]{Himmelblau1970}
+David~Mautner Himmelblau.
+\newblock Process analysis by statistical methods, 1970.
+\newblock [by] David M. Himmelblau., Includes bibliographical references.
+
+\end{thebibliography}

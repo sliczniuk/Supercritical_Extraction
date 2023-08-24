@@ -1,0 +1,162 @@
+\documentclass[../Article_Model_Parameters.tex]{subfiles}
+\graphicspath{{\subfix{../Figures/}}}
+\begin{document}
+	
+	Local derivative-based methods involve taking the partial derivative of the output with respect to an input parameter. This set of derivatives is known as sensitivity equations, and it is solved simultaneously with the process model. The purpose of the sensitivity analysis is to investigate how responsive the solution is for the perturbation of the parameter ${\color{magenta}p}$. According to \citet{Dickinson1976}, the sensitivity analysis can be used to determine the influence of the uncertainty on the solution of the original system. Another purpose is to distinguish sensitive parameters from insensitive ones, which might be helpful for model reduction. Finally, from a control engineering point of view, the sensitivity analysis allows to sort the control variables with respect to the level of effort required to change the model's output.
+	
+	As presented in the work of \citet{Maly1996}, the sensitivity analysis equations(${\color{blue}\dot{Z}}$) are developed by taking the total derivative of the original system ${\color{blue}F}({\color{blue}x}(t);{\color{magenta}p})$ with respect to ${\color{magenta}p}$.
+	
+	{\footnotesize
+		\begin{align}
+			%		\label{SA_def}
+			{\color{orange}Z}({\color{blue}x}(t);{\color{magenta}p}) &= \cfrac{\partial {\color{blue}x}(t)}{\partial {\color{magenta}p}}
+	\end{align} }
+	
+	As the process model depends on time $t$, parameters $p$ and initial conditions, each parameter's sensitivity also depend on time $t$. Therefore, the new system of equations can be obtained by taking derivatives with respect to time $t$ and applying the chain rule.
+	
+	{\footnotesize
+		\begin{equation} \label{SA_dt} 
+			{\color{blue}\dot{Z}}({\color{blue}x}(t);{\color{magenta}p})  = \cfrac{d {\color{orange}Z}(x(t);{\color{magenta}p})}{d t} = \cfrac{\partial }{\partial t} \left( \cfrac{\partial {\color{blue}x}(t)}{\partial {\color{magenta}p}} \right) = \cfrac{\partial }{\partial {\color{magenta}p}} \left( \cfrac{\partial {\color{blue}x}(t)}{\partial t} \right) = \cfrac{d {\color{blue}F}({\color{blue}x}(t);{\color{magenta}p})}{d {\color{magenta}p}} 
+	\end{equation} }
+	
+	By applying the definition of the total derivative to the equation \ref{SA_dt}, the sensitivity equation can be obtained.
+	
+	{\footnotesize
+		\begin{align}		
+			\label{SA_eq_full}\cfrac{d {\color{blue}F}({\color{blue}x}(t);{\color{magenta}p})}{d {\color{magenta}p}} &=  \underbrace{ \cfrac{\partial {\color{blue}F}({\color{blue}x}(t);{\color{magenta}p})}{\partial {\color{blue}x}(t)} }_{{\color{blue}J_x}({\color{blue}x}(t);{\color{magenta}p})} \underbrace{\cfrac{\partial {\color{blue}x}(t)}{\partial {\color{magenta}p}} }_{{\color{blue}S}({\color{blue}x}(t);{\color{magenta}p})} + \underbrace{ \cfrac{\partial {\color{blue}F}({\color{blue}x}(t);{\color{magenta}p})}{\partial {\color{magenta}p}} }_{{\color{blue}J_p}({\color{blue}x}(t);{\color{magenta}p})}
+	\end{align} }
+	
+	The sensitivity equation \ref{SA_eq_full} is solved simultaneously with the original system. This equation is made of three terms: jacobian ${\color{blue}J_x}({\color{blue}x}(t);{\color{magenta}p})$, sensitivity matrix ${\color{blue}S}({\color{blue}x}(t);{\color{magenta}p})$ and jacobian ${\color{blue}J_p}({\color{blue}x}(t);{\color{magenta}p})$. The jacobian ${\color{blue}J_x}({\color{blue}x}(t);{\color{magenta}p})$ represents the matrix of equations of size $N_x \times N_x$, where each equation ${\color{blue}J_x}(n_x,n_x)$ is the derivative of process model equations ${\color{blue}F}_{n_x}({\color{blue}x}(t);{\color{magenta}p})$ with respect to the state variable $x_{n_p}$.
+	
+	{\footnotesize
+		\begin{align}
+			\begingroup % keep the change local
+			\setlength\arraycolsep{2pt}
+			{\color{blue}J_x}({\color{blue}x}(t);{\color{magenta}p})=\begin{pmatrix}
+				\cfrac{\partial {\color{blue}F_{1}}({\color{blue}x}(t);{\color{magenta}p})}{\partial {\color{blue}x_{1}}(t)} & \cfrac{\partial {\color{blue}F_{1}}({\color{blue}x}(t);{\color{magenta}p})}{\partial {\color{blue}x_{2}}(t)} & \cdots & \cfrac{\partial {\color{blue}F_{1}}({\color{blue}x}(t);{\color{magenta}p})}{\partial {\color{blue}x_{N_x}}(t)}\\
+				\cfrac{\partial {\color{blue}F_{2}}({\color{blue}x}(t);{\color{magenta}p})}{\partial {\color{blue}x_{1}}(t)} & \cfrac{\partial {\color{blue}F_{2}}({\color{blue}x}(t);{\color{magenta}p})}{\partial {\color{blue}x_{2}}(t)} & \cdots & \cfrac{\partial {\color{blue}F_{2}}({\color{blue}x}(t);{\color{magenta}p})}{\partial {\color{blue}x_{N_x}}(t)}\\
+				\vdots & \vdots & \ddots & \vdots\\ 
+				\cfrac{\partial {\color{blue}F_{N_x}}({\color{blue}x}(t);{\color{magenta}p})}{\partial {\color{blue}x_{1}}(t)} & \cfrac{\partial {\color{blue}F_{N_x}}({\color{blue}x}(t);{\color{magenta}p})}{\partial {\color{blue}x_{2}}(t)} & \cdots & \cfrac{\partial {\color{blue}F_{N_x}}({\color{blue}x}(t);{\color{magenta}p})}{\partial {\color{blue}x_{N_x}}(t)}\\
+			\end{pmatrix}
+			\endgroup
+	\end{align} }
+	
+	The sensitivity matrix ${\color{blue}S}({\color{blue}x}(t);{\color{magenta}p})$ represents the matrix of equations of size $N_x \times N_p$, where each equation ${\color{blue}S}(n_x,n_p)$ is the derivative of the state variable $x_{n_x}$ with respect to the parameter $p_{n_p}$.
+	
+	{\footnotesize
+		\begin{equation}
+			\begin{split}
+				{\color{blue}S}({\color{blue}x}(t);{\color{magenta}p}) & = 
+				\begingroup % keep the change local
+				\setlength\arraycolsep{2pt}
+				\begin{pmatrix}
+					{\color{blue}s_{({1,1})}} & {\color{blue}s_{({1,2})}} & \cdots & {\color{blue}s_{({1,N_p})}}\\
+					{\color{blue}s_{({2,1})}} & {\color{blue}s_{({2,2})}} & \cdots & {\color{blue}s_{({2,N_p})}}\\
+					\vdots & \vdots & \ddots & \vdots\\
+					{\color{blue}s_{({N_x,1})}} & {\color{blue}s_{({N_x,2})}} & \cdots & {\color{blue}s_{({N_x,N_p})}}\\
+				\end{pmatrix}
+				\endgroup
+				=\\
+				&=
+				\begingroup % keep the change local
+				\setlength\arraycolsep{2pt}
+				\begin{pmatrix}
+					\cfrac{d {\color{blue}x_{1}}(t)}{d {\color{magenta}p_{1}}} 	& \cfrac{d {\color{blue}x_{1}}(t)}{d {\color{magenta}p_{2}}}     & \cdots & \cfrac{d {\color{blue}x_{1}}(t)}{d {\color{magenta}p_{N_p}}}\\
+					\cfrac{d {\color{blue}x_{2}}(t)}{d {\color{magenta}p_{1}}} 	& \cfrac{d {\color{blue}x_{2}}(t)}{d {\color{magenta}p_{2}}}     & \cdots & \cfrac{d {\color{blue}x_{2}}(t)}{d {\color{magenta}p_{N_p}}}\\
+					\vdots					 	    & \vdots 					   	  & \ddots & \vdots\\
+					\cfrac{d {\color{blue}x_{N_x}}(t)}{d {\color{magenta}p_{1}}} 	& \cfrac{d {\color{blue}x_{N_x}}(t)}{d {\color{magenta}p_{2}}}     & \cdots & \cfrac{d {\color{blue}x_{N_x}}(t)}{d {\color{magenta}p_{N_p}}}
+				\end{pmatrix} 
+				\endgroup
+			\end{split}
+	\end{equation} }
+	
+	The jacobian ${\color{blue}J_p}({\color{blue}x}(t);{\color{magenta}p})$ represents the matrix of equations of size $N_x \times N_p$, where each equation ${\color{blue}J_p}(n_x,n_p)$ is the direct derivative of the process model equation $F_{n_x}$ with respect to the parameter $p_{n_p}$.
+	
+	{\footnotesize
+		\begin{align}
+			{\color{blue}J_p}({\color{blue}x}(t);{\color{magenta}p}) & =
+			\begingroup % keep the change local
+			\setlength\arraycolsep{2pt}
+			\begin{pmatrix}
+				\cfrac{\partial {\color{blue}F_{1}}({\color{blue}x}(t);{\color{magenta}p})}{\partial {\color{magenta}p_{1}}} & \cfrac{\partial {\color{blue}F_{1}}({\color{blue}x}(t);{\color{magenta}p})}{\partial {\color{magenta}p_{2}}} & \cdots & \cfrac{\partial {\color{blue}F_{1}}({\color{blue}x}(t);{\color{magenta}p})}{\partial {\color{magenta}p_{N_p}}}\\
+				\cfrac{\partial {\color{blue}F_{2}}({\color{blue}x}(t);{\color{magenta}p})}{\partial {\color{magenta}p_{1}}} & \cfrac{\partial {\color{blue}F_{2}}({\color{blue}x}(t);{\color{magenta}p})}{\partial {\color{magenta}p_{2}}} & \cdots & \cfrac{\partial {\color{blue}F_{2}}({\color{blue}x}(t);{\color{magenta}p})}{\partial {\color{magenta}p_{N_p}}}\\
+				\vdots & \vdots & \ddots & \vdots\\
+				\cfrac{\partial {\color{blue}F_{N_x}}({\color{blue}x}(t);{\color{magenta}p})}{\partial {\color{magenta}p_{1}}} & \cfrac{\partial {\color{blue}F_{N_x}}({\color{blue}x}(t);{\color{magenta}p})}{\partial {\color{magenta}p_{2}}} & \cdots & \cfrac{\partial {\color{blue}F_{N_x}}({\color{blue}x}(t);{\color{magenta}p})}{\partial {\color{magenta}p_{N_p}}}
+			\end{pmatrix}
+			\endgroup
+	\end{align}}
+	
+	The combined system containing the original set of equations ${\color{blue}F}({\color{blue}x}(t);{\color{magenta}p})$ and sensitivity equations can be formulated as ${\color{blue}\textbf{F}}\left({\color{blue}x}(t);{\color{magenta}p}\right)$. The size of ${\color{blue}\textbf{F}}\left({\color{blue}x}(t);{\color{magenta}p}\right)$ is equal to $N_s = N_x(N_p + 1)$.
+	
+	{\footnotesize
+		\begin{align}
+			{\color{blue}\textbf{F}}\left({\color{blue}x}(t);{\color{magenta}p}\right) = 
+			\begin{bmatrix}
+				{\color{blue}F}({\color{blue}x}(t);{\color{magenta}p})\\
+				{\color{blue}J_x}({\color{blue}x}(t);{\color{magenta}p}){\color{blue}S}({\color{blue}x}(t);{\color{magenta}p}) + {\color{blue}J_p}({\color{blue}x}(t);{\color{blue}p})
+			\end{bmatrix}
+	\end{align} }
+	
+	The initial conditions are described as
+	
+	{\footnotesize
+		\begin{align}
+			{\color{blue}\textbf{F}}\left({\color{blue}x}(t_0);{\color{magenta}p}\right)  = 
+			\begin{bmatrix} {\color{blue}x}(t_0),			& 
+				\cfrac{ \text{d}{\color{blue}x}(t_0) }{ d{\color{magenta}p_1} },		& 
+				\cdots,					 	&
+				\cfrac{ d{\color{blue}x}(t_0) }{ d{\color{magenta}p_{N_p}} } 
+			\end{bmatrix}^T
+	\end{align} }
+	
+	In a similar way, the sensitivity analysis of the output function can be performed with respect to parameters ${\color{magenta}p}$. The output function ${\color{blue}g}({\color{blue}x}(t))$ returns ${\color{blue}y}(t)$. By taking a total derivative of ${\color{blue}y}(t)$ with respect to ${\color{magenta}p}$, the new sensitivity equation can be found.
+	
+	{\footnotesize
+		\begin{align}
+			\cfrac{d {\color{blue}y}(t)}{d{\color{magenta}p}} = \cfrac{d {\color{blue}g}({\color{blue}x}(t))}{d{\color{magenta}p}} = \cfrac{\partial {\color{blue}g}({\color{blue}x}(t))}{\partial {\color{blue}x}(t)} \cfrac{\partial {\color{blue}x}(t)}{\partial {\color{magenta}p}} + \cfrac{\partial {\color{blue}g}({\color{blue}x}(t))}{\partial {\color{magenta}p}}
+	\end{align} }
+	
+	The ${\color{blue}g}({\color{blue}x}(t))$ itself is independent of the parameters, but it dependents on ${\color{blue}x}(t)$, which is the function of ${\color{magenta}p}$. In such a case the sensitivity equation for the output becomes
+	
+	{\footnotesize
+		\begin{equation} \label{EQ:Output_sens_full}
+			\cfrac{d {\color{blue}g}({\color{blue}x}(t))}{d {\color{magenta}p}} = \cfrac{\partial {\color{blue}g}({\color{blue}x}(t))}{\partial {\color{blue}x}(t)} \cfrac{\partial {\color{blue}x}(t)}{\partial {\color{magenta}p}} + 0 = \cfrac{\partial {\color{blue}g}({\color{blue}x}(t))}{\partial {\color{blue}x}(t)}  {\color{blue}S}({\color{blue}x}(t);{\color{magenta}p}) = 
+		\end{equation} 
+		
+		\begin{equation} 
+			= \begingroup % keep the change local
+			\setlength\arraycolsep{2pt}
+			\begin{pmatrix}
+				\cfrac{\partial {\color{blue}g_{1}}({\color{blue}x}(t))}{\partial {\color{blue}x_{1}}} & \cfrac{\partial {\color{blue}g_{1}}({\color{blue}x}(t))}{\partial {\color{blue}x_{2}}} & \cdots & \cfrac{\partial {\color{blue}g_{1}}({\color{blue}x}(t))}{\partial {\color{blue}x_{N_x}}}\\
+				\cfrac{\partial {\color{blue}g_{2}}({\color{blue}x}(t))}{\partial {\color{blue}x_{1}}} & \cfrac{\partial {\color{blue}g_{2}}({\color{blue}x}(t))}{\partial {\color{blue}x_{2}}} & \cdots & \cfrac{\partial {\color{blue}g_{2}}({\color{blue}x}(t))}{\partial {\color{blue}x_{N_x}}}\\
+				\vdots & \vdots & \ddots & \vdots\\
+				\cfrac{\partial {\color{blue}g_{N_g}}({\color{blue}x}(t))}{\partial {\color{blue}x_{1}}} & \cfrac{\partial {\color{blue}g_{N_g}}({\color{blue}x}(t))}{\partial {\color{blue}x_{2}}} & \cdots & \cfrac{\partial {\color{blue}g_{N_g}}({\color{blue}}(t))}{\partial {\color{blue}x_{N_x}}}
+			\end{pmatrix}
+			\begin{pmatrix}
+				{\color{blue}s_{({1,1})}} & {\color{blue}s_{({1,2})}} & \cdots & {\color{blue}s_{({1,N_p})}}\\
+				{\color{blue}s_{({2,1})}} & {\color{blue}s_{({2,2})}} & \cdots & {\color{blue}s_{({2,N_p})}}\\
+				\vdots & \vdots & \ddots & \vdots\\
+				{\color{blue}s_{({N_x,1})}} & {\color{blue}s_{({N_x,2})}} & \cdots & {\color{blue}s_{({N_x,N_p})}}\\
+			\end{pmatrix}
+			\endgroup
+	\end{equation} }
+	
+%	Keeping in mind that the output function returns only one value, the sensitivity equation of the output (\ref{EQ:Output_sens_full}) becomes:
+%	
+%	{\footnotesize
+%		\begin{equation} \label{EQ:Output_sens_short}
+%			\begin{split}
+%				& \left( \cfrac{d {\color{blue}y}({\color{blue}x}(t))}{d {\color{magenta}p_{1}}}, \cfrac{d {\color{blue}y}({\color{blue}x}(t))}{d {\color{magenta}p_{2}}}, \cdots, \cfrac{d {\color{blue}y}({\color{blue}x}(t))}{d {\color{magenta}p_{N_p}}} \right)  = \\
+%				& =  \left( \cfrac{\partial {\color{blue}g}({\color{blue}x}(t))}{\partial {\color{blue}x_{1}}}, \cfrac{\partial {\color{blue}g}({\color{blue}x}(t))}{\partial {\color{blue}x_{2}}}, \cdots, \cfrac{\partial {\color{blue}g}({\color{blue}x}(t))}{\partial {\color{blue}x_{N_x}}} \right)
+%				\begingroup % keep the change local
+%				\setlength\arraycolsep{2pt}
+%				\begin{pmatrix}
+%					{\color{blue}s_{({1,1})}} & {\color{blue}s_{({1,2})}} & \cdots & {\color{blue}s_{({1,N_p})}}\\
+%					{\color{blue}s_{({2,1})}} & {\color{blue}s_{({2,2})}} & \cdots & {\color{blue}s_{({2,N_p})}}\\
+%					\vdots & \vdots & \ddots & \vdots\\
+%					{\color{blue}s_{({N_x,1})}} & {\color{blue}s_{({N_x,2})}} & \cdots & {\color{blue}s_{({N_x,N_p})}}\\
+%				\end{pmatrix} \endgroup
+%			\end{split}
+%	\end{equation} }
+	
+\end{document}

@@ -1,0 +1,145 @@
+\documentclass[../Article_Model_Parameters.tex]{subfiles}
+\graphicspath{{\subfix{../Figures/}}}
+\begin{document}
+	
+As discussed by \citet{Himmelblau1970}, the Bayesian approach to estimation makes use of prior information. Such prior knowledge can come from theoretical considerations, from the results of previous experiments, or from assumptions by the experimenter. Typically, a Bayesian approach assumes a prior probability distribution of an unknown parameter $\theta$ in some parameter space $\boldsymbol{\theta}$. The distribution is updated by using Bayes' rule to obtain the posterior probability distribution. 
+
+Consider a set of events or outcomes, $A_1, A_2,..., A_n$, and some other event $B$. Bayes' theorem states that the probability that event $A_i$ will occur, given that event, $B$ has already occurred, which will be denoted by $P\{A_i|B\}$, is equal to the product of the probability that $A_i$ will occur regardless of whether $B$ will take place and the probability that $B$ will occur, given that $A_i$  has already taken place, divided by the probability of the occurrence of $B$:
+
+{\footnotesize
+	\begin{equation}
+		P\{A_i|B\} = \cfrac{P\{B|A_i\}P\{A_i\}}{P\{B\}}
+\end{equation} }
+
+Further, if all events comprising the set $\{A_i\}$ are included in $A_1,A_2,...,A_n$, then
+
+{\footnotesize
+	\begin{equation} \label{EQ: Bayes_discrit}
+		P\{A_i|B\} = \cfrac{P\{B|A_i\}P\{A_i\}}{ \sum_{i=1}^{n} P\{B|A_i\} P\{A_i\} }
+\end{equation} }
+
+We can interpret these symbols as follows:
+
+\begin{enumerate}
+	\item $P\{A_i\}$ is a measure of our degree of belief that event $A_i$ will occur or that hypothesis $A_i$ is true prior to the acquisition of additional evidence that may alter the measure. $P\{A_i\}$ is denoted the \textit{prior probability}.
+	\item $P\{A_i|B\}$ is a measure of our degree of belief that event $A_i$ will occur or that hypothesis $A_i$ is true, given additional evidence $B$ pertinent to the hypothesis. $P\{A_i|B\}$ is termed the \textit{posterior probability}.
+	\item $P\{B|A_i\}$ denotes the likelihood that event $B$ will occur, given that event $A_i$ is true. $P\{B|A_i\}$ is a conditional probability, interpreted in the Bayesian framework as a likelihood, $L(A_i|B)$.
+\end{enumerate}
+
+For a continuous variables, Bayes' theorem can be more conveniently expressed in terms of the probability density function rather than the probabilities themselves. Equation \ref{EQ: Bayes_discrit} can be expressed in terms of a set of observed values of the random variable $X$, the experimental data \textbf{x} and unknown parameter $\theta$ as
+
+{\footnotesize
+	\begin{equation} \label{EQ: Bayes_continous}
+		p\left( \theta|X=\textbf{x} \right) = p\left( \theta|\textbf{x} \right) = \cfrac{L\left( \theta|\textbf{x} \right) p(\theta)}{\int_{-\infty}^{+\infty} L\left( \theta|\textbf{x} \right) p(\theta) d\theta}
+\end{equation} }
+
+where
+
+$p(\theta|\textbf{x}) = ~$the posterior probability density function for $\theta$; it includes knowledge of the possible values of $\theta$ gained from the experimental data \textbf{x}
+
+$p(\theta) = ~$ the prior probability density function for $\theta$ (before the experiment in which \textbf{x} was observed)
+
+$L\left( \theta|\textbf{x} \right) = p\left( \textbf{x}|\theta \right) = ~$ the probability density function termed the likelihood function of $\theta$ given \textbf{x}
+
+The denominator in Equation \ref{EQ: Bayes_continous} is a normalizing factor chosen so that the integration of the posterior distribution is unit, i.e., $\int_{-\infty}^{+\infty} p\left( \theta|\textbf{x} \right) = 1$. By taking into account the law of total probability, the denominator can be written as
+
+{\footnotesize
+	\begin{equation}
+		\int_{-\infty}^{+\infty} p\left( \textbf{x}|\theta \right) p(\theta) d\theta = p(\textbf{x})
+\end{equation} }
+
+If the prior distribution is a uniform distribution, that is the prior distribution is a constant, the Equation \ref{EQ: Bayes_continous} reduces to 
+
+{\footnotesize
+	\begin{equation}
+		p\left( \theta|\textbf{x} \right) = \cfrac{L\left( \theta|\textbf{x} \right)}{\int_{-\infty}^{+\infty} L\left( \theta|\textbf{x}\right) d\theta}
+\end{equation} }
+
+If the prior knowledge concerning a postulated event or hypothesis is poor, the posterior probability is largely or entirely determined by the likelihood function, that is, by the additional accumulated evidence for which the likelihood function acts as a mathematical expression. If prior knowledge outweighs recent evidence, however, then the posterior probability is determined almost solely by the prior probability.
+
+In the application of tests and the design of experiments, certain definitions and rules concerning probability are needed and are listed below.
+
+\begin{enumerate}
+	\item It follows from the frequency theory of probability that: $0 \leq P \leq 1$
+	\item If the probability of occurrence of one event $A$ depends on whether or not event $B$ has occurred, the two events are termed \textit{dependent}; if the probability of occurrence of event $A$ does not depend on the occurrence of $B$ or the reverse, the two events are \textit{independent}.
+	\item \textbf{Addition Rule}
+	If $A_1, A_2,..., A_n$ are mutually exclusive events, i.e., cannot occur at the same time, the probability of occurrence of just one of the events is equal to the sum of the probabilities of each $A_i$:
+	
+	{\footnotesize
+		\begin{equation}
+			P\left( A_1 \text{or~} A_2... \text{or~} A_n \right) = \sum_{i=1}^{n} P\left( A_i \right)
+	\end{equation} }
+	
+	Very often we let
+	
+	{\footnotesize
+		\begin{equation}
+			\sum_{i=1}^{n} P\left( A_i \right) = 1
+	\end{equation} }
+	
+	Also, if each event is equiprobable so that $P(A_i) = q$,
+	
+	{\footnotesize
+		\begin{equation}
+			\sum_{i=1}^{n} q = nq = 1 \qquad \text{or} \qquad  q=\cfrac{1}{n} = P\left( A_i \right)
+	\end{equation} }
+	
+	In set theory, mutually exclusive events have no points in common. The union of the sets which represents the set of all elements that belong to
+	
+	{\footnotesize
+		\begin{equation}
+			P\left( A_1 \cup A_2 \cup ... \cup A_n \right) = P(A_1) + P(A_2) + ... + P(A_n)
+	\end{equation} }
+	
+	\item \textbf{Multiplication Rule}
+	If $A$ and $B$ are \textit{independent} event
+	
+	{\footnotesize
+		\begin{equation}
+			P\left( A \text{~and~} B\right) = P(A)P(B)
+	\end{equation} }
+	
+	In set theory the intersection of $A$ and $B$ is the set of all elements that belong to $A$ and $B$:
+	
+	{\footnotesize
+		\begin{equation} \label{EQ: Probabiltiy_independet_a}
+			P\left( A \cap B  \right) = P(A)P(B)
+	\end{equation} }
+	
+	If the $A$ and $B$ are \textit{dependet} events,
+	
+	{\footnotesize
+		\begin{equation} \label{EQ: Probabiltiy_independet_b}
+			P\left(A|B\right) = \cfrac{P\left( A \cap B \right)}{P(B)}
+	\end{equation} }
+	
+	where the symbol $P(A|B)$ means "probability of $A$ given $B$". As a corollary,
+	
+	{\footnotesize
+		\begin{subequations}
+			\begin{alignat}{2}
+				P\left( A \cap B \right) &= P(B) P(A|B) \label{EQ: Probabiltiy_dependet_a} \\
+				&= P(A)P(B|A) \label{EQ: Probabiltiy_dependet_b}
+			\end{alignat}
+	\end{subequations} }
+	
+	Two kinds of probabilities enter Equation \ref{EQ: Probabiltiy_dependet_a} (or Equation \ref{EQ: Probabiltiy_dependet_b}): the absolute probability of event $B$ (or $A$) irrespective of whether or not $A$ (or $B$) has occurred, and that the conditional probability of event $A$ (or $B$) computed on the assumption that $B$ (or $B$) has occurred. Equation \ref{EQ: Probabiltiy_independet_a} or \ref{EQ: Probabiltiy_independet_b} is special case of Equation \ref{EQ: Probabiltiy_dependet_a} or \ref{EQ: Probabiltiy_dependet_b}, because if the event are independent $P(A|B)=P(A)$.
+	For the case of many event, Equation \ref{EQ: Probabiltiy_independet_a} can be expanded to 
+	
+	{\footnotesize
+		\begin{equation}
+			\begin{split}
+				P(A_1 \text{~and~} A_2 \text{~and~} ... \text{~and~} A_n) &= P(A_1)\cdot P(A_2) \cdot  ...\cdot P(A_n) \\ &= \prod_{i=1}^{n} P(A_i)
+			\end{split}
+	\end{equation} }
+	
+	\item Another useful relationship for events that are not mutually exclusive is 
+	
+	{\footnotesize
+		\begin{equation}
+			P(A) + P(B) - P(A \cap B) = P(A \cup B)
+	\end{equation} }
+	
+\end{enumerate}
+
+\end{document}
