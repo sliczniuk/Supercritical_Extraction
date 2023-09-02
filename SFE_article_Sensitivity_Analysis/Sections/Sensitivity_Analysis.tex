@@ -47,17 +47,17 @@
 		\begin{equation}
 			\begin{split}
 				{\color{blue}S}({\color{blue}x}(t);{\color{magenta}p}) & = 
-				\begingroup % keep the change local
-				\setlength\arraycolsep{2pt}
-				\begin{pmatrix}
-					{\color{blue}s_{({1,1})}} & {\color{blue}s_{({1,2})}} & \cdots & {\color{blue}s_{({1,N_p})}}\\
-					{\color{blue}s_{({2,1})}} & {\color{blue}s_{({2,2})}} & \cdots & {\color{blue}s_{({2,N_p})}}\\
-					\vdots & \vdots & \ddots & \vdots\\
-					{\color{blue}s_{({N_x,1})}} & {\color{blue}s_{({N_x,2})}} & \cdots & {\color{blue}s_{({N_x,N_p})}}\\
-				\end{pmatrix}
-				\endgroup
-				=\\
-				&=
+%				\begingroup % keep the change local
+%				\setlength\arraycolsep{2pt}
+%				\begin{pmatrix}
+%					{\color{blue}s_{({1,1})}} & {\color{blue}s_{({1,2})}} & \cdots & {\color{blue}s_{({1,N_p})}}\\
+%					{\color{blue}s_{({2,1})}} & {\color{blue}s_{({2,2})}} & \cdots & {\color{blue}s_{({2,N_p})}}\\
+%					\vdots & \vdots & \ddots & \vdots\\
+%					{\color{blue}s_{({N_x,1})}} & {\color{blue}s_{({N_x,2})}} & \cdots & {\color{blue}s_{({N_x,N_p})}}\\
+%				\end{pmatrix}
+%				\endgroup
+%				=\\
+%				&=
 				\begingroup % keep the change local
 				\setlength\arraycolsep{2pt}
 				\begin{pmatrix}
@@ -116,30 +116,30 @@
 			\cfrac{d {\color{blue}y}(t)}{d{\color{magenta}p}} = \cfrac{d {\color{blue}g}({\color{blue}x}(t))}{d{\color{magenta}p}} = \cfrac{\partial {\color{blue}g}({\color{blue}x}(t))}{\partial {\color{blue}x}(t)} \cfrac{\partial {\color{blue}x}(t)}{\partial {\color{magenta}p}} + \cfrac{\partial {\color{blue}g}({\color{blue}x}(t))}{\partial {\color{magenta}p}}
 	\end{align} }
 	
-	The ${\color{blue}g}({\color{blue}x}(t))$ itself is independent of the parameters, but it dependents on ${\color{blue}x}(t)$, which is the function of ${\color{magenta}p}$. In such a case the sensitivity equation for the output becomes
-	
-	{\footnotesize
-		\begin{equation} \label{EQ:Output_sens_full}
-			\cfrac{d {\color{blue}g}({\color{blue}x}(t))}{d {\color{magenta}p}} = \cfrac{\partial {\color{blue}g}({\color{blue}x}(t))}{\partial {\color{blue}x}(t)} \cfrac{\partial {\color{blue}x}(t)}{\partial {\color{magenta}p}} + 0 = \cfrac{\partial {\color{blue}g}({\color{blue}x}(t))}{\partial {\color{blue}x}(t)}  {\color{blue}S}({\color{blue}x}(t);{\color{magenta}p}) = 
-		\end{equation} 
-		
-		\begin{equation} 
-			= \begingroup % keep the change local
-			\setlength\arraycolsep{2pt}
-			\begin{pmatrix}
-				\cfrac{\partial {\color{blue}g_{1}}({\color{blue}x}(t))}{\partial {\color{blue}x_{1}}} & \cfrac{\partial {\color{blue}g_{1}}({\color{blue}x}(t))}{\partial {\color{blue}x_{2}}} & \cdots & \cfrac{\partial {\color{blue}g_{1}}({\color{blue}x}(t))}{\partial {\color{blue}x_{N_x}}}\\
-				\cfrac{\partial {\color{blue}g_{2}}({\color{blue}x}(t))}{\partial {\color{blue}x_{1}}} & \cfrac{\partial {\color{blue}g_{2}}({\color{blue}x}(t))}{\partial {\color{blue}x_{2}}} & \cdots & \cfrac{\partial {\color{blue}g_{2}}({\color{blue}x}(t))}{\partial {\color{blue}x_{N_x}}}\\
-				\vdots & \vdots & \ddots & \vdots\\
-				\cfrac{\partial {\color{blue}g_{N_g}}({\color{blue}x}(t))}{\partial {\color{blue}x_{1}}} & \cfrac{\partial {\color{blue}g_{N_g}}({\color{blue}x}(t))}{\partial {\color{blue}x_{2}}} & \cdots & \cfrac{\partial {\color{blue}g_{N_g}}({\color{blue}}(t))}{\partial {\color{blue}x_{N_x}}}
-			\end{pmatrix}
-			\begin{pmatrix}
-				{\color{blue}s_{({1,1})}} & {\color{blue}s_{({1,2})}} & \cdots & {\color{blue}s_{({1,N_p})}}\\
-				{\color{blue}s_{({2,1})}} & {\color{blue}s_{({2,2})}} & \cdots & {\color{blue}s_{({2,N_p})}}\\
-				\vdots & \vdots & \ddots & \vdots\\
-				{\color{blue}s_{({N_x,1})}} & {\color{blue}s_{({N_x,2})}} & \cdots & {\color{blue}s_{({N_x,N_p})}}\\
-			\end{pmatrix}
-			\endgroup
-	\end{equation} }
+%	The ${\color{blue}g}({\color{blue}x}(t))$ itself is independent of the parameters, but it dependents on ${\color{blue}x}(t)$, which is the function of ${\color{magenta}p}$. In such a case the sensitivity equation for the output becomes
+%	
+%	{\footnotesize
+%		\begin{equation} \label{EQ:Output_sens_full}
+%			\cfrac{d {\color{blue}g}({\color{blue}x}(t))}{d {\color{magenta}p}} = \cfrac{\partial {\color{blue}g}({\color{blue}x}(t))}{\partial {\color{blue}x}(t)} \cfrac{\partial {\color{blue}x}(t)}{\partial {\color{magenta}p}} + 0 = \cfrac{\partial {\color{blue}g}({\color{blue}x}(t))}{\partial {\color{blue}x}(t)}  {\color{blue}S}({\color{blue}x}(t);{\color{magenta}p}) = 
+%		\end{equation} 
+%		
+%		\begin{equation} 
+%			= \begingroup % keep the change local
+%			\setlength\arraycolsep{2pt}
+%			\begin{pmatrix}
+%				\cfrac{\partial {\color{blue}g_{1}}({\color{blue}x}(t))}{\partial {\color{blue}x_{1}}} & \cfrac{\partial {\color{blue}g_{1}}({\color{blue}x}(t))}{\partial {\color{blue}x_{2}}} & \cdots & \cfrac{\partial {\color{blue}g_{1}}({\color{blue}x}(t))}{\partial {\color{blue}x_{N_x}}}\\
+%				\cfrac{\partial {\color{blue}g_{2}}({\color{blue}x}(t))}{\partial {\color{blue}x_{1}}} & \cfrac{\partial {\color{blue}g_{2}}({\color{blue}x}(t))}{\partial {\color{blue}x_{2}}} & \cdots & \cfrac{\partial {\color{blue}g_{2}}({\color{blue}x}(t))}{\partial {\color{blue}x_{N_x}}}\\
+%				\vdots & \vdots & \ddots & \vdots\\
+%				\cfrac{\partial {\color{blue}g_{N_g}}({\color{blue}x}(t))}{\partial {\color{blue}x_{1}}} & \cfrac{\partial {\color{blue}g_{N_g}}({\color{blue}x}(t))}{\partial {\color{blue}x_{2}}} & \cdots & \cfrac{\partial {\color{blue}g_{N_g}}({\color{blue}}(t))}{\partial {\color{blue}x_{N_x}}}
+%			\end{pmatrix}
+%			\begin{pmatrix}
+%				{\color{blue}s_{({1,1})}} & {\color{blue}s_{({1,2})}} & \cdots & {\color{blue}s_{({1,N_p})}}\\
+%				{\color{blue}s_{({2,1})}} & {\color{blue}s_{({2,2})}} & \cdots & {\color{blue}s_{({2,N_p})}}\\
+%				\vdots & \vdots & \ddots & \vdots\\
+%				{\color{blue}s_{({N_x,1})}} & {\color{blue}s_{({N_x,2})}} & \cdots & {\color{blue}s_{({N_x,N_p})}}\\
+%			\end{pmatrix}
+%			\endgroup
+%	\end{equation} }
 	
 %	Keeping in mind that the output function returns only one value, the sensitivity equation of the output (\ref{EQ:Output_sens_full}) becomes:
 %	
