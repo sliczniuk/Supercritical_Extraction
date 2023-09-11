@@ -4,7 +4,7 @@
 	
 	\label{CH: Results}
 	
-	The sensitivity equations were solved simultaneously with the original process model. The focus of this work is to investigate the influence of inlet temperature, pressure and mass flow-rate on the state-space as wall as on the extraction yield. 
+	The sensitivity equations were solved simultaneously with the original process model. The focus of this work is to investigate the influence of inlet temperature, pressure and mass flow-rate on the state-space as wall as on the extraction yield. The process model and parameters have been discussed in {\color{red}article 1}. The process model was calibrated on set of experiments obtained at different operating conditions, $40^\circ C$ - $50^\circ C$ and 200 bar - 300 bar. The sensitivity analysis has been performed under assumption that the system operates are $45^\circ C$ and 250 bar.
 	
 	\subsection{Flow-rate}
 	
@@ -55,5 +55,65 @@
     
     \subsection{Pressure}
     
+    As discussed in Chapter \ref{CH:Governing_equations_chapter}, a small pressure wave propagates with the speed of sound relative to the flow. If the flow velocity is relatively low, all pressure changes are hydrodynamic (due to velocity motion) rather than thermodynamic which leads to $\partial {\color{blue}P}/\partial {\color{orange}\rho_f} = \infty$. The Low Mach-number assumption leads to instant pressure propagation along the system. It allows to consider one value of pressure for the whole system as all the changes occur in the machine simultaneously. Figure \ref{fig:Sensitivty_P_P} represents a step function, which indicate the pressure change in the system. 
+    
+    \begin{figure}[h!]
+    	\centering
+    	\includegraphics[trim = 2cm 0cm 0cm 0cm,clip,width=\columnwidth]{/Results_sensitivity/P_P.pdf}
+    	\caption{The effect of $P$ change on $P$ in the system}
+    	\label{fig:Sensitivty_P_P}
+    \end{figure}
+    
+	As a result of the Low Mach-number assumption and the pressure change, the temperature and density changes happen along the system simultaneously. As presented by Equation \ref{EQ:Enthalpy_equation}, the pressure change affect the quantity $h \times \rho_f$ directly through $\frac{\partial ({\color{blue}P}(t) A_f)}{\partial t}$, which leads to a step-change presented in Figure \ref{fig:Sensitivty_P_H}. Depending on the configuration of the system, two cases are possible. As the total energy in the extractor has changed, there might be a difference between the fluid inside the equipment and the inlet temperature(defined as a boundary condition). If the Dirichlet boundary condition is applied, the inlet temperature is kept at the pre-defined value and might differ from the temperature in the extractor. In such a case, the temperature difference will cause the heat front to propagate along the system. Alternatively, the Neumann boundary condition can be applied to ensure that the temperature inside the extractor and at its inlet is the same. In the case of this work, the second approach was chosen to simplify the discussion.
+    
+    \begin{figure}[h!]
+    	\centering
+    	\includegraphics[trim = 2cm 0cm 0cm 0cm,clip,width=\columnwidth]{/Results_sensitivity/H_P.pdf}
+    	\caption{The effect of $P$ change on $(h \times \rho_f)$ in the system}
+    	\label{fig:Sensitivty_P_H}
+    \end{figure}
+
+	The pressure change affects the mass transfer in two ways. As given in Chapter \ref{CH: Continuity}, the velocity is inversely proportional to the density, hence the higher density of the fluid leads to the lower velocity and the residence time. The second way is given by the relationships, which connect the pressure and the extraction kinetic term. As presented in {\color{red}article 1}, the $D_i^R$ increase with the fluid density, which leads to higher extraction rate. The cumulative effect of the pressure change can be observed in Figure \ref{fig:Sensitivty_P_CS}. The 
+
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[trim = 2cm 0cm 0cm 0cm,clip,width=\columnwidth]{/Results_sensitivity/CS_P.pdf}
+		\caption{The effect of $P$ change on $C_s$}
+		\label{fig:Sensitivty_P_CS}
+	\end{figure}
 	
 \end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
