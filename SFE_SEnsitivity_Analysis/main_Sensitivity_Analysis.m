@@ -2,8 +2,8 @@ startup;
 delete(gcp('nocreate'));
 % %p = Pushbullet(pushbullet_api);
 
-addpath('C:\Dev\casadi-3.6.3-windows64-matlab2018b');
-%addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-3.6.3-windows64-matlab2018b');
+%addpath('C:\Dev\casadi-3.6.3-windows64-matlab2018b');
+addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-3.6.3-windows64-matlab2018b');
 import casadi.*
 
 Parameters_table        = readtable('Parameters.csv') ;                     % Table with prameters
@@ -20,8 +20,8 @@ bed                     = 0.165;                                            % Pe
 
 % Set time of the simulation
 PreparationTime         = 0;
-ExtractionTime          = 400;
-timeStep                = 1.0;                                              % Minutes
+ExtractionTime          = 250;
+timeStep                = 0.01;                                             % Minutes
 SamplingTime            = 5;                                                % Minutes
 
 simulationTime          = PreparationTime + ExtractionTime;
@@ -143,11 +143,15 @@ Parameters_init_time   = [uu repmat(cell2mat(Parameters),1,N_Time)'];
 name_v = {'T_{in}', 'P', 'F'};
 
 My_Font = 24;
+My_Font_cont = 8;
+num_levels = 100;
 
 for ii = 1:3
+
+        %% Sensitivities calculations
         Parameters{8} = ii;
         Parameters_init_time   = [uu repmat(cell2mat(Parameters),1,N_Time)'];
-        [S,p,Sdot]              = Sensitivity(x, xdot, u, [ii] );
+        [S,p,Sdot]              = Sensitivity(x, xdot, u, ii );
 
         % Initial conditions
         x0_SA                   = [ x0; zeros(length(S)-length(xdot),1) ];
@@ -156,11 +160,14 @@ for ii = 1:3
         Results = Integrator_SS(Time*60, x0_SA, S, p, Sdot, Parameters_init_time);
         Res = Results(Nx+1:end,:);
 
+        %% Sensitivities plot - normal scale
         %subplot(3,2,1)
         imagesc(Time, L_nstages, Res(1*nstages+1:2*nstages,:)); cb = colorbar;
         ax=gca; ax.FontSize = My_Font;
         hold on
-        yline([L_nstages(nstagesbed(end)) L_nstages(nstagesbed(1))],'w--',{'end of bed','beginning of bed'}, 'Interpreter', 'latex')
+        yline([L_nstages(nstagesbed(end)) L_nstages(nstagesbed(1))],'k--');
+        plot([ExtractionTime-40, ExtractionTime-40], [L_nstages(nstagesbed(end)) L_nstages(nstagesbed(1))], 'k--');
+        text(ExtractionTime-45,[mean([L_nstages(nstagesbed(end)) L_nstages(nstagesbed(1))])],'fixed bed', 'FontSize', My_Font-8, 'Interpreter', 'latex', 'Color', 'black', 'HorizontalAlignment','center','VerticalAlignment','middle', 'Rotation', 90);
         hold off
         cb.Label.String = ['$\frac{dc_s}{d',name_v{ii},'}$']; cb.Label.Interpreter = 'latex'; cb.Label.FontSize = 1.5*My_Font;
         cb.Label.Rotation = 0; % to rotate the text
@@ -175,7 +182,9 @@ for ii = 1:3
         imagesc(Time, L_nstages, Res(2*nstages+1:3*nstages,:) ); cb = colorbar;
         ax=gca; ax.FontSize = My_Font;
         hold on
-        yline([L_nstages(nstagesbed(end)) L_nstages(nstagesbed(1))],'w--',{'end of bed','beginning of bed'}, 'Interpreter', 'latex')
+        yline([L_nstages(nstagesbed(end)) L_nstages(nstagesbed(1))],'k--');
+        plot([ExtractionTime-40, ExtractionTime-40], [L_nstages(nstagesbed(end)) L_nstages(nstagesbed(1))], 'k--');
+        text(ExtractionTime-45,[mean([L_nstages(nstagesbed(end)) L_nstages(nstagesbed(1))])],'fixed bed', 'FontSize', My_Font-8, 'Interpreter', 'latex', 'Color', 'black', 'HorizontalAlignment','center','VerticalAlignment','middle', 'Rotation', 90);
         hold off
         cb.Label.String = ['$\frac{d(h\times\rho)}{d',name_v{ii},'}$']; cb.Label.Interpreter = 'latex'; cb.Label.FontSize = 1.5*My_Font;
         cb.Label.Rotation = 0; % to rotate the text
@@ -189,7 +198,9 @@ for ii = 1:3
         imagesc(Time, L_nstages, Res(0*nstages+1:1*nstages,:)); cb = colorbar;
         ax=gca; ax.FontSize = My_Font;
         hold on
-        yline([L_nstages(nstagesbed(end)) L_nstages(nstagesbed(1))],'w--',{'end of bed','beginning of bed'}, 'Interpreter', 'latex')
+        yline([L_nstages(nstagesbed(end)) L_nstages(nstagesbed(1))],'k--');
+        plot([ExtractionTime-40, ExtractionTime-40], [L_nstages(nstagesbed(end)) L_nstages(nstagesbed(1))], 'k--');
+        text(ExtractionTime-45,[mean([L_nstages(nstagesbed(end)) L_nstages(nstagesbed(1))])],'fixed bed', 'FontSize', My_Font-8, 'Interpreter', 'latex', 'Color', 'black', 'HorizontalAlignment','center','VerticalAlignment','middle', 'Rotation', 90);
         hold off
         cb.Label.String = ['$\frac{dc_f}{d',name_v{ii},'}$']; cb.Label.Interpreter = 'latex'; cb.Label.FontSize = 1.5*My_Font;
         cb.Label.Rotation = 0; % to rotate the text
@@ -198,6 +209,64 @@ for ii = 1:3
 
         set(gcf,'PaperOrientation','landscape'); print(figure(1),['CF_',name_v{ii},'.pdf'],'-dpdf','-bestfit')
         close all;
+
+        %% Sensitivities plot - log scale
+
+        [C,h] = contourf(log10(Time+1), L_nstages, Res(1*nstages+1:2*nstages,:), num_levels, 'EdgeColor', 'none'); view(0,-90); cb = colorbar;
+        clabel(C,h,'FontSize',My_Font_cont)
+        ax=gca; ax.FontSize = My_Font;
+        hold on
+        yline([L_nstages(nstagesbed(end)) L_nstages(nstagesbed(1))],'k--');
+        plot(log10([ExtractionTime-40, ExtractionTime-40]), [L_nstages(nstagesbed(end)) L_nstages(nstagesbed(1))], 'k--');
+        text(log10(ExtractionTime-45),[mean([L_nstages(nstagesbed(end)) L_nstages(nstagesbed(1))])],'fixed bed', 'FontSize', My_Font-8, 'Interpreter', 'latex', 'Color', 'black', 'HorizontalAlignment','center','VerticalAlignment','middle', 'Rotation', 90);
+        hold off
+        cb.Label.String = ['$\frac{dc_s}{d',name_v{ii},'}$']; cb.Label.Interpreter = 'latex'; cb.Label.FontSize = 1.5*My_Font;
+        cb.Label.Rotation = 0; % to rotate the text
+        xlabel('log_{10}(Time) [min]'); ylabel('Length [m]'); 
+        %title(sprintf('$\\rho_f$=%4.2f',rho))
+        pbaspect([1 1 1])
+        axis tight
+        
+        set(gcf,'PaperOrientation','landscape'); print(figure(1),['CS_',name_v{ii},'_log.pdf'],'-dpdf','-bestfit')
+        close all;
+
+        %subplot(3,2,2)
+        [C,h] = contourf(log10(Time+1), L_nstages, Res(2*nstages+1:3*nstages,:), num_levels, 'EdgeColor', 'none'); view(0,-90); cb = colorbar;
+        clabel(C,h,'FontSize',My_Font_cont)
+        ax=gca; ax.FontSize = My_Font;
+        hold on
+        yline([L_nstages(nstagesbed(end)) L_nstages(nstagesbed(1))],'k--');
+        plot(log10([ExtractionTime-40, ExtractionTime-40]), [L_nstages(nstagesbed(end)) L_nstages(nstagesbed(1))], 'k--');
+        text(log10(ExtractionTime-45),[mean([L_nstages(nstagesbed(end)) L_nstages(nstagesbed(1))])],'fixed bed', 'FontSize', My_Font-8, 'Interpreter', 'latex', 'Color', 'black', 'HorizontalAlignment','center','VerticalAlignment','middle', 'Rotation', 90);
+        hold off
+        cb.Label.String = ['$\frac{d(h\times\rho)}{d',name_v{ii},'}$']; cb.Label.Interpreter = 'latex'; cb.Label.FontSize = 1.5*My_Font;
+        cb.Label.Rotation = 0; % to rotate the text
+        xlabel('log_{10}(Time) [min]'); ylabel('Length [m]')
+        pbaspect([1 1 1])
+        axis tight
+
+        set(gcf,'PaperOrientation','landscape'); print(figure(1),['H_',name_v{ii},'_log.pdf'],'-dpdf','-bestfit')
+        close all;
+
+        %subplot(3,2,3)
+        [C,h] = contourf(log10(Time+1), L_nstages, Res(0*nstages+1:1*nstages,:), num_levels, 'EdgeColor', 'none'); view(0,-90); cb = colorbar;
+        clabel(C,h,'FontSize',My_Font_cont);
+        ax=gca; ax.FontSize = My_Font;
+        hold on
+        yline([L_nstages(nstagesbed(end)) L_nstages(nstagesbed(1))],'k--');
+        plot(log10([ExtractionTime-40, ExtractionTime-40]), [L_nstages(nstagesbed(end)) L_nstages(nstagesbed(1))], 'k--');
+        text(log10(ExtractionTime-45),[mean([L_nstages(nstagesbed(end)) L_nstages(nstagesbed(1))])],'fixed bed', 'FontSize', My_Font-8, 'Interpreter', 'latex', 'Color', 'black', 'HorizontalAlignment','center','VerticalAlignment','middle', 'Rotation', 90);
+        hold off
+        cb.Label.String = ['$\frac{dc_f}{d',name_v{ii},'}$']; cb.Label.Interpreter = 'latex'; cb.Label.FontSize = 1.5*My_Font;
+        cb.Label.Rotation = 0; % to rotate the text
+        xlabel('log_{10}(Time) [min]'); ylabel('Length [m]');    
+        pbaspect([1 1 1])
+        axis tight
+
+        set(gcf,'PaperOrientation','landscape'); print(figure(1),['CF_',name_v{ii},'_log.pdf'],'-dpdf','-bestfit')
+        close all;
+
+        %% Sensitivities plot - P and y
 
         %subplot(3,2,4)
         plot(Time, Res(end-1,:), LineWidth=2); cb = colorbar;
@@ -211,6 +280,7 @@ for ii = 1:3
         %subplot(3,2,5)
         hold on
         plot(Time, Res(end,:), LineWidth=2); colorbar;
+        yline(0, LineWidth=2)
         xlabel('Time [min]'); ylabel(['$\frac{d y}{d',name_v{ii},'}$'])
         hold off
         ax=gca; ax.FontSize = My_Font;
