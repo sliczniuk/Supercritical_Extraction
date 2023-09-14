@@ -72,6 +72,7 @@ function xdot = modelSFE(x, p, mask, dt)
     T_0 = if_else( mode == 2, TEMP(1), T_u );                                             % If the sensitivity of P is consider, then set the input T as equal to the T insdie of the extractor
                                                                                           % to avoid different T at the inlet and inside of the extractor
     %T_0           =     TEMP(1);
+    T_0 = if_else( mode == 3, TEMP(1), T_u );
 
     T_B           =     TEMP(nstages_index);
 
@@ -84,7 +85,10 @@ function xdot = modelSFE(x, p, mask, dt)
     u_0           =     Velocity(F_u, rho_0, parameters);
     %u_B           =     Velocity(F_u, rho_B, parameters);
 
-    H_0           =     SpecificEnthalpy(T_0, PRESSURE, Z_0, rho_0, parameters );         
+    H_0           =     SpecificEnthalpy(T_0, PRESSURE, Z_0, rho_0, parameters );   
+
+    %enthalpy_rho_0 = rho_0 .* H_0;
+    enthalpy_rho_0 = if_else( mode == 3, ENTHALPY_RHO(1), rho_0 .* H_0 );
     
     %% Derivatives
 
@@ -98,7 +102,7 @@ function xdot = modelSFE(x, p, mask, dt)
         
     %dudz          = backward_diff_1_order(VELOCITY, u_0, [], dz);
 
-    dHdz          = backward_diff_1_order(VELOCITY .* ENTHALPY_RHO, u_0 .* rho_0 .* H_0, [], dz);
+    dHdz          = backward_diff_1_order(VELOCITY .* ENTHALPY_RHO, u_0 .* enthalpy_rho_0, [], dz);
 
     d_cons_CF_dz  = backward_diff_1_order(VELOCITY .* FLUID, u_0 .* Cf_0, [], dz);
 
