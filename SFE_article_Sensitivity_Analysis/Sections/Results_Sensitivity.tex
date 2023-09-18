@@ -4,51 +4,53 @@
 	
 	\label{CH: Results}
 	
-	The sensitivity equations were solved simultaneously with the original process model. The focus of this work is to investigate the influence of inlet temperature, pressure and mass flow-rate on the state-space as wall as on the extraction yield. The process model and parameters have been discussed in {\color{red}article 1}. The process model was calibrated on set of experiments obtained at different operating conditions, $40^\circ C$ - $50^\circ C$ and 200 bar - 300 bar. The sensitivity analysis has been performed under assumption that the system operates are $45^\circ C$, 250 bar, 0.4 l/min and the simulation was performed with the time step of 0.01 [min].
+	The sensitivity equations were solved simultaneously with the original process model. The focus of this work is to investigate the influence of inlet temperature, pressure and mass flow-rate on the state-space as wall as on the extraction yield. The process model and parameters have been discussed in {\color{red}article 1}. The process model was calibrated on set of experiments obtained at different operating conditions, $40^\circ C$ - $50^\circ C$ and 200 bar - 300 bar. The sensitivity analysis has been performed under assumption that the system operates are $45^\circ C$, 250 bar, 0.4 l/min and the simulation was performed with the time step of 0.01 [min] and 400 equally distributed points in the spatial direction.
 	
 	\subsection{Flow-rate}
 	
-	The increase of the mass-flow rate affects the whole system simultaneously in the spatial direction. The change in mass flow-rate makes the fluid moves faster, but its thermodynamic state is not affected. \todo{Change the description} As the result, Figure \ref{fig:Sensitivty_F_P} show no change in pressure during the simulation. 
+	The increase in the mass-flow rate affects the whole system simultaneously in the spatial direction. The change in mass flow-rate makes the fluid move faster and does not directly affect the thermodynamic state of the fluid. As a result, Figure \ref{fig:Sensitivty_F_P} shows no change in pressure during the simulation. 
     
     \begin{figure}[h!]
     	\centering
-    	\includegraphics[trim = 1.5cm 1cm 0.5cm 1.0cm,clip,width=\columnwidth]{/Results_sensitivity/P_F.pdf}
+    	\includegraphics[trim = 1.5cm 1cm 0.0cm 1.0cm,clip,width=\columnwidth]{/Results_sensitivity/P_F.pdf}
     	\caption{The effect of $F$ change on $P$}
     	\label{fig:Sensitivty_F_P}
     \end{figure}
     
-    Similarly, the energy in the system (defined as $\rho \times h$) is not affected as presented on Figure \ref{fig:Sensitivty_F_H}. As pressure and temperature are not affected by the increase in the mass flow-rate, the fluid density $\rho$ and enthalpy $h$ are insensitive to flow-rate change. \todo{Change the description}
+    A change in flow rate has a direct impact on the kinetic energy of the fluid, as defined by the spatial derivative $\frac{\partial \left( {\color{orange}\rho_f}{\color{blue}h} A_f v \right)}{\partial {\color{blue}z}}$. The consequence of Equation \ref{EQ:Velocity} is the instantaneous change of the velocity field in the system, which means that the spatial derivative equals zero. Because ${\color{blue}h}$ represents an enthalpy but not a total enthalpy, it does not contain the kinetic energy contribution. Consequently, under conditions where the thermodynamic state remains constant, specifically with constant temperature and pressure, Figure \ref{fig:Sensitivty_F_H} demonstrates no significant deviation.
     
+    The flow rate change affects the fluid inside the system, but appropriate boundary conditions must be set. If Dirichlet boundary conditions are used, a numerical mismatch between boundary conditions and the computational domain might occur due to different ways of computing them. The system's enthalpy is computed based on time evolution of governing equations, while the enthalpy at the inlet is computed based on inlet temperature and pressure. A small numerical mismatch between these values would be presented in the system as a difference in enthalpy, which propagates along the spatial domain. To ensure that the fluid at the inlet and the fluid inside of the computational domain are defined in the same way, Neumann boundary conditions are used in this analysis.
+        
     \begin{figure}[h!]
     	\centering
-    	\includegraphics[trim = 1.5cm 1cm 0.5cm 1.0cm,clip,width=\columnwidth]{/Results_sensitivity/H_F.pdf}
+    	\includegraphics[trim = 1.5cm 1cm 0.0cm 1.0cm,clip,width=\columnwidth]{/Results_sensitivity/H_F.pdf}
     	\caption{The effect of $F$ change on $\rho \times h$}
     	\label{fig:Sensitivty_F_H}
     \end{figure}
-    
-    The increase in the mass flow rate affects the concentration gradient and accelerates the extraction kinetics. Negative sensitivities in Figure \ref{fig:Sensitivty_F_CS} present the faster extraction rate. Negative values of $dc_s/dF$ can be interpreted as a 'faster' mass loss from the solid phase, which means the extraction efficiency improves. At the beginning of the extraction process, the change in the flow rate has a minimal effect on the extraction process (represented by close to zero sensitivities), due to the high concentration gradient, which leads the extraction kinetic. Later, the increment of the mass flow rate accelerates the extraction kinetic and sensitivities along the decrease to minimum values. Over time, the amount of solute in the solid phase decreases, and eventually, the extraction kinetic becomes limited by the concentration gradient. This behaviour is represented by sensitivities, which asymptotically go to zero. The asymptotic movement of sensitivities can be explained by the fact that the increase in the flow rate does not affect the extraction if all the solute has been removed from the solid phase.
+   
+   An increase in the mass flow rate impacts the concentration gradient and accelerates the extraction kinetics. Negative sensitivities in Figure \ref{fig:Sensitivty_F_CS} indicate a faster extraction rate. Negative values of $dc_s/dF$ can be interpreted as a 'faster' loss of mass from the solid phase, signifying an improvement in extraction efficiency. At the beginning of the extraction process, changes in the flow rate have a minimal effect on the extraction process, as evidenced by sensitivities that are close to zero. This is due to the dominance of the high concentration gradient, which leads the extraction kinetic. As time progresses, the increase in the mass flow rate accelerates the extraction kinetics, causing the sensitivities to decrease towards their minimum values. Over time, the amount of solute in the solid phase decreases, and eventually, the extraction kinetic becomes limited by the concentration gradient. This behavior is represented in the sensitivities, which asymptotically approach zero. The asymptotic movement of sensitivities can be explained by the fact that an increase in the flow rate does not impact the extraction process when all the solute has been removed from the solid phase.
     
     \begin{figure}[h!]
     	\centering
-    	\includegraphics[trim = 1.5cm 1cm 0.5cm 1.0cm,clip,width=\columnwidth]{/Results_sensitivity/CS_F.pdf}
+    	\includegraphics[trim = 1.5cm 1cm 0.0cm 1.0cm,clip,width=\columnwidth]{/Results_sensitivity/CS_F.pdf}
     	\caption{The effect of $F$ change on $C_s$}
     	\label{fig:Sensitivty_F_CS}
     \end{figure}
     
-    Figure \ref{fig:Sensitivty_F_CF} shows how the concentration of solute in the fluid phase is affected by the flow-rate increment. Initially, sensitivities are close to zero, which indicates very little system response. The flow-rate growth affects the ${\color{blue}C_f}(z,t)$ by increasing the velocity of the solute across the system, which also increases the concentration gradient. As a result, the positive sensitivities appear in the system and form a front, which moves from the inlet to the outlet of the extractor. Because the larger amount of solute moves faster across the system, the total amount of solute in both phases decreases faster, which eventually causes negative sensitivities to appear in the system. The negative sensitivities form the second front, which moves across the extractor. Eventually, the negative sensitivities asymptotically go to zero.
+    Figure \ref{fig:Sensitivty_F_CF} illustrates how the concentration of solute in the fluid phase responds to an increase in the flow rate. Initially, sensitivities are close to zero, indicating a minimal system response. The growth in flow rate affects ${\color{blue}C_f}(z,t)$ by increasing the velocity, consequently elevating the concentration gradient. As a result, positive sensitivities emerge within the system, forming a front that progresses from the inlet to the outlet of the extractor. The positive front indicates that the larger amount of solute moves faster across the system, which leads to faster decrease of the total amount of solute in both phases. This reduced amount of solute in the solid phase restricts the extraction rate due to a diminishment of the concentration gradient. This limitation leads to the formation of a front composed of negative sensitivities, which advances through the extractor. The negative front indicates that the solute concentration in the fluid phase becomes lower than before the flow rate increment. Eventually, the negative sensitivities asymptotically approach zero.
     
     \begin{figure}[h!]
     	\centering
-    	\includegraphics[trim = 1.5cm 1cm 0.5cm 1.0cm,clip,width=\columnwidth]{/Results_sensitivity/CF_F.pdf}
+    	\includegraphics[trim = 1.5cm 1cm 0.0cm 1.0cm,clip,width=\columnwidth]{/Results_sensitivity/CF_F.pdf}
     	\caption{The effect of $F$ change on $C_f$}
     	\label{fig:Sensitivty_F_CF}
     \end{figure}
 
-    Figure \ref{fig:Sensitivty_F_y} shows how the flow-rate increment changes the extraction yield. Initially, the sensitivity curve stays flat, which is caused by the fact that the fixed bed does not occupy the whole volume of the extractor, and the fluid needs some time to flow through the empty part of the extractor to reach its outlet. When the solute in the fluid phase reaches the outlet of the extractor, then system response can be observed. The $dy/dF$ starts to increase, and positive value of sensitivity indicates an improvement in the process efficiency, hence the yield increment. Over time, the sensitivity reaches its maximum and diminishes due to decreasing concentration gradient. The $dy/dF$ asymptotically goes to zero because the amount of solute in the fluid phase becomes a limiting factor of the extraction process, and the flow-rate increment has less effect on the extraction yield. To show how $dy / dF$ converges to zero, the simulation time was expanded.
+    Figure \ref{fig:Sensitivty_F_y} illustrates how the increase in flow rate affects the extraction yield. Initially, the sensitivity curve remains flat. This occurs because the fixed bed doesn't occupy the entire volume of the extractor, requiring some time for the fluid to flow through the empty portion of the extractor to reach its outlet. It's only when the solute in the fluid phase reaches the extractor's outlet that we can measure and observe the system response. At this point, $dy/dF$ begins to increase. The positive sensitivity value indicates an improvement in process efficiency, resulting in an increased yield. As time progresses, the sensitivity reaches its maximum and then diminishes due to a decreasing concentration gradient. Eventually, $dy/dF$ asymptotically approaches zero. This happens because the amount of solute in the fluid phase becomes a limiting factor in the extraction process, and the increase in flow rate has a reduced impact on the extraction yield. The simulation time was extended to demonstrate the convergence of $dy/dF$ toward zero.
     
     \begin{figure}[h!]
     	\centering
-    	\includegraphics[trim = 1.5cm 1cm 0.8cm 1.0cm,clip,width=\columnwidth]{/Results_sensitivity/Y_F.pdf}
+    	\includegraphics[trim = 1.5cm 1cm 0.0cm 1.0cm,clip,width=\columnwidth]{/Results_sensitivity/Y_F.pdf}
     	\caption{The effect of $F$ change on $y(t)$}
     	\label{fig:Sensitivty_F_y}
     \end{figure}
@@ -59,7 +61,7 @@
     
     \begin{figure}[h!]
     	\centering
-    	\includegraphics[trim = 1.5cm 1cm 0.8cm 1.0cm,clip,width=\columnwidth]{/Results_sensitivity/P_P.pdf}
+    	\includegraphics[trim = 1.5cm 1cm 0.0cm 1.0cm,clip,width=\columnwidth]{/Results_sensitivity/P_P.pdf}
     	\caption{The effect of $P$ change on $P$ in the system}
     	\label{fig:Sensitivty_P_P}
     \end{figure}
@@ -68,7 +70,7 @@
     
     \begin{figure}[h!]
     	\centering
-    	\includegraphics[trim = 1.5cm 1cm 0.8cm 1.0cm,clip,width=\columnwidth]{/Results_sensitivity/H_P.pdf}
+    	\includegraphics[trim = 1.5cm 1cm 0.0cm 1.0cm,clip,width=\columnwidth]{/Results_sensitivity/H_P.pdf}
     	\caption{The effect of $P$ change on $(h \times \rho_f)$ in the system}
     	\label{fig:Sensitivty_P_H}
     \end{figure}
@@ -77,7 +79,7 @@
 
 	\begin{figure}[h!]
 		\centering
-		\includegraphics[trim = 1.5cm 1cm 0.8cm 1.0cm,clip,width=\columnwidth]{/Results_sensitivity/CS_P.pdf}
+		\includegraphics[trim = 1.5cm 1cm 0.0cm 1.0cm,clip,width=\columnwidth]{/Results_sensitivity/CS_P.pdf}
 		\caption{The effect of $P$ change on $C_s$}
 		\label{fig:Sensitivty_P_CS}
 	\end{figure}
@@ -86,7 +88,7 @@
 
 	\begin{figure}[h!]
 		\centering
-		\includegraphics[trim = 1.5cm 1cm 0.8cm 1.0cm,clip,width=\columnwidth]{/Results_sensitivity/CF_P.pdf}
+		\includegraphics[trim = 1.5cm 1cm 0.0cm 1.0cm,clip,width=\columnwidth]{/Results_sensitivity/CF_P.pdf}
 		\caption{The effect of $P$ change on $C_f$}
 		\label{fig:Sensitivty_P_CF}
 	\end{figure}
@@ -95,7 +97,7 @@
 
 	\begin{figure}[h!]
 		\centering
-		\includegraphics[trim = 1.5cm 1cm 0.8cm 1.0cm,clip,width=\columnwidth]{/Results_sensitivity/Y_P.pdf}
+		\includegraphics[trim = 1.5cm 1cm 0.0cm 1.0cm,clip,width=\columnwidth]{/Results_sensitivity/Y_P.pdf}
 		\caption{The effect of $P$ change on $y(t)$}
 		\label{fig:Sensitivty_P_y}
 	\end{figure}
@@ -106,7 +108,7 @@
 	
 	\begin{figure}[h!]
 		\centering
-		\includegraphics[trim = 1.5cm 1cm 0.8cm 1.0cm,clip,width=\columnwidth]{/Results_sensitivity/P_T_{in}.pdf}
+		\includegraphics[trim = 1.5cm 1cm 0.0cm 1.0cm,clip,width=\columnwidth]{/Results_sensitivity/P_T_{in}.pdf}
 		\caption{The effect of $T_{in}$ change on $P$ in the system}
 		\label{fig:Sensitivty_P_T}
 	\end{figure}
@@ -115,7 +117,7 @@
 	
 	\begin{figure}[h!]
 		\centering
-		\includegraphics[trim = 1.5cm 1cm 0.8cm 1.0cm,clip,width=\columnwidth]{/Results_sensitivity/H_T_{in}.pdf}
+		\includegraphics[trim = 1.5cm 1cm 0.0cm 1.0cm,clip,width=\columnwidth]{/Results_sensitivity/H_T_{in}.pdf}
 		\caption{The effect of $T_{in}$ change on $(h \times \rho_f)$ in the system}
 		\label{fig:Sensitivty_T_H}
 	\end{figure}
@@ -124,7 +126,7 @@
 
 	\begin{figure}[h!]
 		\centering
-		\includegraphics[trim = 1.5cm 1cm 0.8cm 1.0cm,clip,width=\columnwidth]{/Results_sensitivity/CS_T_{in}.pdf}
+		\includegraphics[trim = 1.5cm 1cm 0.0cm 1.0cm,clip,width=\columnwidth]{/Results_sensitivity/CS_T_{in}.pdf}
 		\caption{The effect of $T_{in}$ change on $C_s$ in the system}
 		\label{fig:Sensitivty_T_CS}
 	\end{figure}
@@ -133,7 +135,7 @@
 	
 	\begin{figure}[h!]
 		\centering
-		\includegraphics[trim = 1.5cm 1cm 0.8cm 1.0cm,clip,width=\columnwidth]{/Results_sensitivity/CF_T_{in}.pdf}
+		\includegraphics[trim = 1.5cm 1cm 0.0cm 1.0cm,clip,width=\columnwidth]{/Results_sensitivity/CF_T_{in}.pdf}
 		\caption{The effect of $T_{in}$ change on $C_f$ in the system}
 		\label{fig:Sensitivty_T_CF}
 	\end{figure}
@@ -142,7 +144,7 @@
 
 	\begin{figure}[h!]
 		\centering
-		\includegraphics[trim = 1.5cm 1cm 0.8cm 1.0cm,clip,width=\columnwidth]{/Results_sensitivity/Y_T_{in}.pdf}
+		\includegraphics[trim = 1.5cm 1cm 0.0cm 1.0cm,clip,width=\columnwidth]{/Results_sensitivity/Y_T_{in}.pdf}
 		\caption{The effect of $T_{in}$ change on $y(t)$ in the system}
 		\label{fig:Sensitivty_T_y}
 	\end{figure}

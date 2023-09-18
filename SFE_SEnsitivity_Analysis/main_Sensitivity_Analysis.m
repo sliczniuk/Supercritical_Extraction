@@ -2,8 +2,8 @@ startup;
 delete(gcp('nocreate'));
 % %p = Pushbullet(pushbullet_api);
 
-addpath('C:\Dev\casadi-3.6.3-windows64-matlab2018b');
-%addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-3.6.3-windows64-matlab2018b');
+%addpath('C:\Dev\casadi-3.6.3-windows64-matlab2018b');
+addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-3.6.3-windows64-matlab2018b');
 import casadi.*
 
 Parameters_table        = readtable('Parameters.csv') ;                     % Table with prameters
