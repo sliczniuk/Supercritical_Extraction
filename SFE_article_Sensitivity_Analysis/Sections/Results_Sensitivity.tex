@@ -4,7 +4,7 @@
 	
 	\label{CH: Results}
 	
-	The sensitivity equations were solved simultaneously with the original process model. The focus of this work is to investigate the influence of inlet temperature, pressure and mass flow-rate on the state-space as wall as on the extraction yield. The process model and parameters have been discussed in {\color{red}article 1}. The process model was calibrated on set of experiments obtained at different operating conditions, $40^\circ C$ - $50^\circ C$ and 200 bar - 300 bar. The sensitivity analysis has been performed under assumption that the system operates are $45^\circ C$, 250 bar, 0.4 l/min and the simulation was performed with the time step of 0.01 [min] and 400 equally distributed points in the spatial direction.
+	The sensitivity equations were solved simultaneously with the original process model. This work investigates the influence of inlet temperature, pressure, and mass flow rate on the state space and the extraction yield. The process model and parameters have been discussed in {\color{red}article 1}. The process model was calibrated on set of experiments obtained at different operating conditions, $40^\circ C$ - $50^\circ C$ and 200 bar - 300 bar. The sensitivity analysis has been performed under the assumption that the system operates are $45^\circ C$, 250 bar, 0.4 l/min. The simulation was performed with the time step of 0.01 [min] and 400 equally distributed points in the spatial direction.
 	
 	\subsection{Flow-rate}
 	
@@ -57,7 +57,7 @@
     
     \subsection{Pressure}
     
-    As discussed in Chapter \ref{CH:Governing_equations_chapter}, a small pressure wave propagates with the speed of sound relative to the flow. If the flow velocity is relatively low, all pressure changes are hydrodynamic (due to velocity motion) rather than thermodynamic which leads to $\partial {\color{blue}P}/\partial {\color{orange}\rho_f} = \infty$. The Low Mach-number assumption leads to instant pressure propagation along the system. It allows to consider one value of pressure for the whole system as all the changes occur in the machine simultaneously. Figure \ref{fig:Sensitivty_P_P} represents a step function, which indicate the pressure change in the system. 
+    As discussed in Chapter \ref{CH:Governing_equations_chapter}, a small pressure wave propagates at the speed of sound relative to the flow. If the flow velocity is relatively low, all pressure changes are hydrodynamic (resulting from velocity motion) rather than thermodynamic. The Low Mach-number assumption enables instant pressure propagation throughout the system. This assumption allows to consider a single pressure value for the entire system, as all changes occur simultaneously within the machine. Figure \ref{fig:Sensitivty_P_P} illustrates a step function representing the pressure change in the system.
     
     \begin{figure}[h!]
     	\centering
@@ -66,7 +66,7 @@
     	\label{fig:Sensitivty_P_P}
     \end{figure}
     
-	As a result of the Low Mach-number assumption and the pressure deviation, the temperature and density change along the system simultaneously. According to Equation \ref{EQ:Enthalpy_equation}, the pressure change affect the quantity $h \times \rho_f$ directly through $\partial ({\color{blue}P}(t) A_f) / \partial t$, which leads to a step-change presented in Figure \ref{fig:Sensitivty_P_H}. Depending on the configuration of the system, two cases are possible. As the total energy in the extractor has changed, there might be a difference between the fluid inside the equipment and the inlet temperature(defined as a boundary condition). If the Dirichlet boundary condition is applied, the inlet temperature is kept at the pre-defined value and might differ from the temperature in the extractor. In such a case, the temperature difference will cause the heat front to propagate through the system. Alternatively, the Neumann boundary condition can be applied to ensure that the temperature inside the extractor and at its inlet is the same. In the case of this work, the second approach was chosen to simplify the discussion.
+	As a result of the Low Mach-number assumption and the pressure deviation, temperature and density change simultaneously along the system. According to Equation \ref{EQ:Enthalpy_equation}, the pressure change directly affects the quantity $h \times \rho_f$ through $\partial ({\color{blue}P}(t) A_f) / \partial t$, leading to the step change presented in Figure \ref{fig:Sensitivty_P_H}. Depending on the configuration of the system, two cases are possible. Since the total energy in the extractor has changed, there may be a difference between the fluid inside the equipment and the inlet temperature, defined as a boundary condition. If Dirichlet boundary conditions are applied, the inlet temperature is maintained at the predefined value and may differ from the temperature in the extractor. In such a case, the temperature difference will cause the heat front to propagate through the system. Alternatively, Neumann boundary conditions can be applied to ensure that the temperature inside the extractor matches that at its inlet. In this work, the second approach was chosen to simplify the discussion.
     
     \begin{figure}[h!]
     	\centering
@@ -84,7 +84,7 @@
 		\label{fig:Sensitivty_P_CS}
 	\end{figure}
 
-	The corresponding response of the pressure change on the solute concentration in the fluid phase is presented in Figure \ref{fig:Sensitivty_P_CF}. As discussed above, the pressure change directly affects the extraction kinetics. Figure \ref{fig:Sensitivty_P_CS} is characterized by negative sensitivities, which suggest a higher extraction rate due to pressure change. It is expected to observe an increase of solute in the fluid phase due to a higher extraction rate. That increase of the solute in the fluid phase is visible in Figure \ref{fig:Sensitivty_P_CF} as positive sensitivities, which forms a front moving along the extractor. As the extraction is faster, more solute goes to the fluid phase, explaining the hot spot in the Figure. Then, the solute flows along the system, where there are no solid particles, and the diffusion effect becomes noticeable. After the positive sensitivities, a small front of negative sensitivities can be observed. Due to higher extraction rate, more solute has been extracted at the beginning of the extraction time, which means that there is less solute to extract later, and that effect is visible in Figure \ref{fig:Sensitivty_P_CF} as a negative sensitivities.
+	The corresponding response of the pressure change on the solute concentration in the fluid phase is presented in Figure \ref{fig:Sensitivty_P_CF}. As discussed earlier, the pressure change directly influences the extraction kinetics. Figure \ref{fig:Sensitivty_P_CS} is characterized by negative sensitivities, suggesting a higher extraction rate due to the pressure change. Consequently, an increase in solute concentration in the fluid phase is expected. This increase in solute concentration in the fluid phase is visible in Figure \ref{fig:Sensitivty_P_CF} as positive sensitivities, forming a front that moves along the extractor. As the extraction process accelerates, more solute enters the fluid phase, explaining the "hot spot" in the Figure. Subsequently, the solute flows through the system where there are no solid particles, and the diffusion effect becomes noticeable. Following the positive sensitivities, a small front of negative sensitivities can be observed. Due to the higher extraction rate, more solute has been extracted at the beginning of the extraction process, resulting in less solute available for extraction later. This effect is reflected in Figure \ref{fig:Sensitivty_P_CF} as negative sensitivities. Eventually, the negative sensitivities approach zero.
 
 	\begin{figure}[h!]
 		\centering
@@ -93,7 +93,7 @@
 		\label{fig:Sensitivty_P_CF}
 	\end{figure}
 
-	The effect of the pressure increase on the extraction yield is presented in Figure \ref{fig:Sensitivty_P_y}. The initial flat curve is related to a delay in the system caused by empty space in the extractor, through which the solvent with solute needs to flow to reach the outlet. Later, the positive sensitivity is present and indicates an increase in yield. The $dy / dP$ reaches a maximum and starts to decrease due to the lower amount of the solute left in the solid phase compared with the case before the pressure increment. The sensitivity decreases to negative values, reaches a minimum, and eventually goes zero. To show how $dy / dP$ converges to zero, the simulation time was expanded.
+	The impact of pressure increase on extraction yield is depicted in Figure \ref{fig:Sensitivty_P_y}. The initial flat curve reflects a system delay, caused by the empty space within the extractor that the solvent with solute must traverse to reach the outlet. Next, a positive sensitivity starts to rise, which indicates an increase in yield. $dy / dP$ reaches its maximum and then declines due to a lower amount of solute remaining in the solid phase compared to the initial pressure conditions. This sensitivity eventually dips into negative values, hits a minimum point, and ultimately converges to zero. The simulation duration was extended to demonstrate the convergence of $dy / dP$ towards zero.
 
 	\begin{figure}[h!]
 		\centering
@@ -104,7 +104,7 @@
 
 	\subsection{Inlet temperature}
 	
-	The influence of the inlet temperature on the supercritical extraction differs from the two presented cases because the disturbance does not affect the whole system instantaneously but propagates through the system. As the fluid with modified temperature flows along the system, it gradually affects the mass transfer. One assumption is that inlet temperature does not affect the pressure, and because of that, a horizontal line is present in Figure \ref{fig:Sensitivty_P_T}.
+	The impact of the inlet temperature on supercritical extraction differs from the two cases presented earlier because the disturbance does not instantaneously affect the entire system; instead, it propagates through the system. As the fluid with the modified temperature flows along the system, it gradually influences the mass transfer parameters. One important assumption is that the inlet temperature does not affect the pressure, and as a result, a horizontal line is present in Figure \ref{fig:Sensitivty_P_T}.
 	
 	\begin{figure}[h!]
 		\centering
@@ -113,7 +113,7 @@
 		\label{fig:Sensitivty_P_T}
 	\end{figure}
 
-	The propagation of the heat front is presented in Figure \ref{fig:Sensitivty_T_H}. The inlet value of $(h\times \rho_f)$ is calculated based on the given value of the inlet temperature( Dirichlet boundary condition) and given pressure. The deviation in $T_{in}$ affects $(h\times \rho_f)$ at the inlet, which propagates according to the governing equations. 
+	The propagation of the heat front is presented in Figure \ref{fig:Sensitivty_T_H}. Initially, the system was uniformly set to the same temperature. The temperatures at the inlet and outlet boundaries are predefined (Dirichlet boundary conditions) and consistent with those inside the system. The inlet value of $(h\times \rho_f)$ is calculated based on the provided inlet temperature and given pressure.  Any deviation in $T_{in}$ affects $(h\times \rho_f)$ at the inlet, which subsequently propagates according to the governing equations.
 	
 	\begin{figure}[h!]
 		\centering
@@ -122,7 +122,7 @@
 		\label{fig:Sensitivty_T_H}
 	\end{figure}
 
-	Figure \ref{fig:Sensitivty_T_CS} shows how the concentration of the solute in the solid phase is affected by the inlet temperature change. Initially, the sensitivities are zero along the fixed bed because the heat front needs time to propagate to the fixed bed. As the propagation is not instantaneous, the non-uniform distribution of sensitivities along the fixed bed is visible. All the sensitivities start to grow and reach maxima. As presented in {\color{red}article 1}, the value of $D_i^R$ diminishes when the density decreases. It is expected to observe positive sensitivities in Figure \ref{fig:Sensitivty_T_CS}, which indicates a slower extraction rate. When the concentration gradient becomes a limiting factor, the sensitivities decrease.
+	Figure \ref{fig:Sensitivty_T_CS} illustrates how the change in inlet temperature affects the concentration of solute in the solid phase. Initially, the sensitivities are zero along the fixed bed because the heat front requires time to propagate to the fixed bed. Since this propagation is not instantaneous, a non-uniform distribution of sensitivities along the fixed bed becomes evident. All the sensitivities gradually increase until they reach their respective maxima. As presented in {\color{red}article 1}, the value of $D_i^R$ decreases as density decreases. Therefore, it is expected to observe positive sensitivities in Figure \ref{fig:Sensitivty_T_CS}, indicating a slower extraction rate. When the concentration gradient becomes the limiting factor, the sensitivities start to decrease to zero.
 
 	\begin{figure}[h!]
 		\centering
@@ -131,7 +131,7 @@
 		\label{fig:Sensitivty_T_CS}
 	\end{figure}
 
-	The influence of the inlet temperature on the solute in the fluid phase is shown in Figure \ref{fig:Sensitivty_T_CF}. At the start, all the sensitivities stay at zero because of idle time. When the fluid at a new temperature reaches the solid particles, it affects the mass transfer, which later affects the amount of the solute in the fluid phase. As a response to the slower extraction rate suggested by positive sensitivities in Figure \ref{fig:Sensitivty_T_CS}, the 'hot spot' with negative sensitivities is visible in Figure \ref{fig:Sensitivty_T_CF}. An effect of the diffusion can be observed in the section without the fixed bed where the front made of sensitivities becomes blurry. After the sensitivities reach minima, they grow and reach positive values. This behavior can be explained by considering that the heat front slowed the mass transfer, and more of the solute stayed in the solid phase. That leads to a higher concentration gradient in the later time of the extraction if compared to the situation without the inlet temperature deviation. The higher concentration gradient causes the increase of the $dc_f/dT_{in}$.
+	The influence of inlet temperature on solute concentration in the fluid phase is depicted in Figure \ref{fig:Sensitivty_T_CF}. Initially, all the sensitivities remain at zero due to an idle period. When the fluid at the new temperature reaches the solid particles, it affects mass transfer, subsequently influencing the amount of solute in the fluid phase. In response to the slower extraction rate indicated by positive sensitivities in Figure \ref{fig:Sensitivty_T_CS}, a 'hot spot' with negative sensitivities becomes visible in Figure \ref{fig:Sensitivty_T_CF}. The effect of diffusion is observable in the section without the fixed bed, where the front composed of sensitivities becomes blurred. After reaching their minima, the sensitivities increase and attain positive values. This behavior can be explained by considering that the heat front slowed mass transfer, causing more solute to remain in the solid phase. This, in turn, leads to a higher concentration gradient in the later stages of extraction compared to the scenario without the inlet temperature deviation. The higher concentration gradient results in an increase in $dc_f/dT_{in}$. 
 	
 	\begin{figure}[h!]
 		\centering
@@ -140,7 +140,7 @@
 		\label{fig:Sensitivty_T_CF}
 	\end{figure}
 
-	Figure \ref{fig:Sensitivty_T_y} shows how the inlet temperature increment changes the extraction yield. Initially, the sensitivity curve stays flat, which is caused by the fact that the fixed bed does not occupy the whole volume of the extractor, and the fluid needs some time to flow through the empty part of the extractor to reach its outlet. When the solute in the fluid phase reaches the outlet of the extractor, then system response can be observed. The $dy/dT_{in}$ starts to decrease, and the negative sensitivity value indicates a worsened process efficiency. Over time, the sensitivity reaches its minimum and increases due to a higher concentration gradient (if compared to the case without the disturbance). The sensitivity reaches a positive maximum and decreases again due to lower reduced extraction kinetic and decreased concentration gradient. The $dy/dT_{in}$ becomes negative again, and eventually the sensitivity curve flattens.
+	Figure \ref{fig:Sensitivty_T_y} depicts how an increase in inlet temperature alters the extraction yield. Initially, the sensitivity curve remains flat. It is because the fixed bed doesn't occupy the entire volume of the extractor and the fluid requires some time to flow through the empty portion of the extractor to reach its outlet. It's only when the solute in the fluid phase reaches the extractor's outlet a system response can be observed. At this point, $dy/dT_{in}$ begins to decrease, and the negative sensitivity value indicates a decrease in process efficiency. Over time, the sensitivity reaches its minimum and then increases due to a higher concentration gradient compared to the case without the disturbance. The sensitivity reaches a positive maximum and then declines again due to reduced extraction kinetics and a decreased concentration gradient. $dy/dT_{in}$ becomes negative once more, eventually resulting in a flattening of the sensitivity curve. The flattening of the yield curve suggest that the mass transfer parameters limits the extraction rate and the residual solute in the solid phase become difficult to obtain.
 
 	\begin{figure}[h!]
 		\centering

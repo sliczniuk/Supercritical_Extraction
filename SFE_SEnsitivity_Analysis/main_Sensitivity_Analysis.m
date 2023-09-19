@@ -20,8 +20,8 @@ bed                     = 0.165;                                            % Pe
 
 % Set time of the simulation
 PreparationTime         = 0;
-ExtractionTime          = 250;
-timeStep                = 0.01;                                             % Minutes
+ExtractionTime          = 2000;
+timeStep                = 0.1;                                              % Minutes
 SamplingTime            = 5;                                                % Minutes
 
 simulationTime          = PreparationTime + ExtractionTime;
@@ -146,7 +146,7 @@ My_Font = 24;
 My_Font_cont = 8;
 num_levels = 100;
 
-for ii = 3
+for ii = 1
 
         %% Sensitivities calculations
         Parameters{8} = ii;

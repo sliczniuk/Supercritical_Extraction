@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.8) (preloaded format=pdflatex 2022.9.27)  18 SEP 2023 19:31
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.8) (preloaded format=pdflatex 2022.9.27)  19 SEP 2023 17:21
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1821,10 +1821,6 @@ File: Figures///Results_sensitivity/Y_P.pdf Graphic file (type pdf)
 Package pdftex.def Info: Figures///Results_sensitivity/Y_P.pdf  used on input l
 ine 100.
 (pdftex.def)             Requested size: 238.25444pt x 176.52269pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
 <Figures///Results_sensitivity/P_T_{in}.pdf, id=547, 794.97pt x 614.295pt>
 File: Figures///Results_sensitivity/P_T_{in}.pdf Graphic file (type pdf)
 <use Figures///Results_sensitivity/P_T_{in}.pdf>
@@ -1837,25 +1833,22 @@ File: Figures///Results_sensitivity/H_T_{in}.pdf Graphic file (type pdf)
 Package pdftex.def Info: Figures///Results_sensitivity/H_T_{in}.pdf  used on in
 put line 120.
 (pdftex.def)             Requested size: 238.25444pt x 176.52269pt.
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[12 <./Figures///Results_sensitivity/CS_P.pdf> <./Figures///Results_sensitivity
-/CF_P.pdf> <./Figures///Results_sensitivity/Y_P.pdf> <./Figures///Results_sensi
-tivity/P_T_{in}.pdf>]
-<Figures///Results_sensitivity/CS_T_{in}.pdf, id=591, 794.97pt x 614.295pt>
+ [12 <./Figures///Results_sensitivity/CS_P.pdf> <./Figures///Results_sensitivit
+y/CF_P.pdf> <./Figures///Results_sensitivity/Y_P.pdf> <./Figures///Results_sens
+itivity/P_T_{in}.pdf>]
+<Figures///Results_sensitivity/CS_T_{in}.pdf, id=590, 794.97pt x 614.295pt>
 File: Figures///Results_sensitivity/CS_T_{in}.pdf Graphic file (type pdf)
 <use Figures///Results_sensitivity/CS_T_{in}.pdf>
 Package pdftex.def Info: Figures///Results_sensitivity/CS_T_{in}.pdf  used on i
 nput line 129.
 (pdftex.def)             Requested size: 238.25444pt x 176.52269pt.
-<Figures///Results_sensitivity/CF_T_{in}.pdf, id=596, 794.97pt x 614.295pt>
+<Figures///Results_sensitivity/CF_T_{in}.pdf, id=595, 794.97pt x 614.295pt>
 File: Figures///Results_sensitivity/CF_T_{in}.pdf Graphic file (type pdf)
 <use Figures///Results_sensitivity/CF_T_{in}.pdf>
 Package pdftex.def Info: Figures///Results_sensitivity/CF_T_{in}.pdf  used on i
 nput line 138.
 (pdftex.def)             Requested size: 238.25444pt x 176.52269pt.
-<Figures///Results_sensitivity/Y_T_{in}.pdf, id=599, 794.97pt x 614.295pt>
+<Figures///Results_sensitivity/Y_T_{in}.pdf, id=598, 794.97pt x 614.295pt>
 File: Figures///Results_sensitivity/Y_T_{in}.pdf Graphic file (type pdf)
 <use Figures///Results_sensitivity/Y_T_{in}.pdf>
 Package pdftex.def Info: Figures///Results_sensitivity/Y_T_{in}.pdf  used on in
@@ -2027,7 +2020,7 @@ File: ts1cmss.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 <Sections/ultraReportT5.pdf, id=917, 597.23125pt x 845.1575pt>
 File: Sections/ultraReportT5.pdf Graphic file (type pdf)
 <use Sections/ultraReportT5.pdf>
-Package pdftex.def Info: Sections/ultraReportT5.pdf  used on input line 268.
+Package pdftex.def Info: Sections/ultraReportT5.pdf  used on input line 270.
 (pdftex.def)             Requested size: 238.25444pt x 376.75818pt.
 
 
@@ -2079,7 +2072,7 @@ iKTeX/fonts/type1/public/stix/stix-mathrm.pfb><C:/Users/sliczno1/AppData/Local/
 Programs/MiKTeX/fonts/type1/public/stix/stix-mathscr.pfb><C:/Users/sliczno1/App
 Data/Local/Programs/MiKTeX/fonts/type1/public/stix/stix-mathsf.pfb><C:/Users/sl
 iczno1/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrb8a.pfb>
-Output written on Article_Model_Parameters.pdf (25 pages, 5014764 bytes).
+Output written on Article_Model_Parameters.pdf (25 pages, 5056500 bytes).
 PDF statistics:
  1077 PDF objects out of 1200 (max. 8388607)
  257 named destinations out of 1000 (max. 500000)
