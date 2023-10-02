@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.5.26)  6 AUG 2023 20:15
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.5.26)  2 OCT 2023 23:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1603,7 +1603,7 @@ Overfull \hbox (123.62721pt too wide) detected at line 124
  []
 
 (Article_Model_Parameters.abs)
-<thumbnails/cas-email.jpeg, id=162, 225.84375pt x 225.84375pt>
+<thumbnails/cas-email.jpeg, id=150, 225.84375pt x 225.84375pt>
 File: thumbnails/cas-email.jpeg Graphic file (type jpg)
 <use thumbnails/cas-email.jpeg>
 Package pdftex.def Info: thumbnails/cas-email.jpeg  used on input line 124.
@@ -1629,7 +1629,7 @@ File: t1cmss.fd 2022/07/10 v2.5l Standard LaTeX font definitions
 
 pdfTeX warning: pdflatex.exe (file ./Figures/PFD.pdf): PDF inclusion: found PDF
  version <1.7>, but at most version <1.5> allowed
-<Figures/PFD.pdf, id=169, 1195.5867pt x 847.24525pt>
+<Figures/PFD.pdf, id=157, 1195.5867pt x 847.24525pt>
 File: Figures/PFD.pdf Graphic file (type pdf)
 <use Figures/PFD.pdf>
 Package pdftex.def Info: Figures/PFD.pdf  used on input line 19.
@@ -1643,64 +1643,61 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 {C:/Users/Omistaja/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/inconsolata/i4
 -t1-0.enc} <./thumbnails/cas-email.jpeg>]) (Sections/Thermo_imp.tex
-<Figures/Compressibility.pdf, id=206, 845.1575pt x 597.23125pt>
+<Figures/Compressibility.pdf, id=194, 845.1575pt x 597.23125pt>
 File: Figures/Compressibility.pdf Graphic file (type pdf)
 <use Figures/Compressibility.pdf>
 Package pdftex.def Info: Figures/Compressibility.pdf  used on input line 22.
 (pdftex.def)             Requested size: 158.24646pt x 134.45325pt.
-<Figures/RHO.pdf, id=208, 845.1575pt x 597.23125pt>
+<Figures/RHO.pdf, id=196, 845.1575pt x 597.23125pt>
 File: Figures/RHO.pdf Graphic file (type pdf)
 <use Figures/RHO.pdf>
 Package pdftex.def Info: Figures/RHO.pdf  used on input line 29.
 (pdftex.def)             Requested size: 158.24646pt x 134.45325pt.
-<Figures/CP.pdf, id=210, 845.1575pt x 597.23125pt>
+<Figures/CP.pdf, id=198, 845.1575pt x 597.23125pt>
 File: Figures/CP.pdf Graphic file (type pdf)
 <use Figures/CP.pdf>
 Package pdftex.def Info: Figures/CP.pdf  used on input line 36.
 (pdftex.def)             Requested size: 158.24646pt x 134.45325pt.
-<Figures/Enthalpy.pdf, id=212, 845.1575pt x 597.23125pt>
+<Figures/Enthalpy.pdf, id=200, 845.1575pt x 597.23125pt>
 File: Figures/Enthalpy.pdf Graphic file (type pdf)
 <use Figures/Enthalpy.pdf>
 Package pdftex.def Info: Figures/Enthalpy.pdf  used on input line 43.
 (pdftex.def)             Requested size: 158.24646pt x 134.45325pt.
-<Figures/MU.pdf, id=214, 845.1575pt x 597.23125pt>
+<Figures/MU.pdf, id=202, 845.1575pt x 597.23125pt>
 File: Figures/MU.pdf Graphic file (type pdf)
 <use Figures/MU.pdf>
 Package pdftex.def Info: Figures/MU.pdf  used on input line 50.
 (pdftex.def)             Requested size: 158.24646pt x 134.45325pt.
-<Figures/KT.pdf, id=216, 845.1575pt x 597.23125pt>
+<Figures/KT.pdf, id=204, 845.1575pt x 597.23125pt>
 File: Figures/KT.pdf Graphic file (type pdf)
 <use Figures/KT.pdf>
 Package pdftex.def Info: Figures/KT.pdf  used on input line 57.
 (pdftex.def)             Requested size: 158.24646pt x 134.45325pt.
  [2 <./Figures/PFD.pdf>])
-Overfull \hbox (2.15552pt too wide) in paragraph at lines 150--151
+Overfull \hbox (2.15552pt too wide) in paragraph at lines 151--152
 []\T1/stix/m/n/10 The quasi-one-dimensional com-press-ible Navier-Stokes
  []
 
 [3 <./Figures/Compressibility.pdf> <./Figures/RHO.pdf> <./Figures/CP.pdf> <./Fi
 gures/Enthalpy.pdf> <./Figures/MU.pdf> <./Figures/KT.pdf>]
-Overfull \hbox (8.18648pt too wide) in paragraph at lines 211--212
+Overfull \hbox (8.18648pt too wide) in paragraph at lines 212--213
 []\T1/stix/m/n/10 Suppose the flow is pre-sumed to be isen-tropic, $\LS1/stix/m
 /it/10 d[][]\LS1/stix/m/n/10 _\LS1/stix/m/it/10 d[][] \LS1/stix/m/n/10 =
  []
 
-
-Underfull \hbox (badness 1436) in paragraph at lines 211--212
-\T1/stix/m/n/10 are hy-dro-dy-namic (due to ve-loc-ity mo-tion) rather than
- []
-
-(Sections/Model.tex [4]
+(Sections/Model.tex
 Overfull \hbox (6.37921pt too wide) detected at line 55
  $[] \LS1/stix/m/n/8 + [][] = [][][].\LS1/stix/m/it/8 t; z\LS1/stix/m/n/8 / + [
 ][] []$  
  []
 
-<Figures/SFE_PFD.drawio.png, id=331, 8222.72pt x 4626.28375pt>
+[4]
+<Figures/SFE_PFD.drawio.png, id=316, 8222.72pt x 4626.28375pt>
 File: Figures/SFE_PFD.drawio.png Graphic file (type png)
 <use Figures/SFE_PFD.drawio.png>
 Package pdftex.def Info: Figures/SFE_PFD.drawio.png  used on input line 83.
 (pdftex.def)             Requested size: 238.25444pt x 184.61038pt.
+
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
@@ -1709,12 +1706,12 @@ Overfull \hbox (8.16127pt too wide) detected at line 119
  $[][]\LS1/stix/m/n/8 .\LS1/stix/m/it/8 t; z\LS1/stix/m/n/8 / = *[] []$  
  []
 
-(Sections/Saturation.tex [5 <./Figures/SFE_PFD.drawio.png>]
+(Sections/Saturation.tex
 Overfull \hbox (2.68062pt too wide) detected at line 60
  $[][]\LS1/stix/m/n/7 .\LS1/stix/m/it/7 t; z\LS1/stix/m/n/7 / = *[] []$  
  []
 
-)
+[5 <./Figures/SFE_PFD.drawio.png>])
 Overfull \hbox (8.70789pt too wide) detected at line 167
  $\LS1/stix/m/it/8 d[][]\LS1/stix/m/n/8 .\LS1/stix/m/it/8 t; z\LS1/stix/m/n/8 /
  = \LS1/stix/m/it/8 C[]d[][] \LS1/stix/m/n/8 * [] \LS1/stix/m/it/8 d[][] []$  
@@ -1733,7 +1730,7 @@ stix/m/it/8 t; z\LS1/stix/m/n/8 /\LS1/stix/m/it/8 ; [][]\LS1/stix/m/n/8 .\LS1/s
 tix/m/it/8 t\LS1/stix/m/n/8 ///$  
  []
 
-[6]
+
 Overfull \hbox (7.52888pt too wide) detected at line 217
  $[][]\LS1/stix/m/n/8 .\LS1/stix/m/it/8 t; z\LS1/stix/m/n/8 / = [][].[][].\LS1/
 stix/m/it/8 t; z\LS1/stix/m/n/8 /\LS1/stix/m/it/8 ; [][]\LS1/stix/m/n/8 .\LS1/s
@@ -1746,18 +1743,18 @@ LS1/stix/m/it/8 ; [][]\LS1/stix/m/n/8 .[][].\LS1/stix/m/it/8 t; z\LS1/stix/m/n/
 /$  
  []
 
-
+[6]
 Overfull \hbox (14.0426pt too wide) detected at line 295
 []
  []
 
-[7]
+
 Underfull \hbox (badness 1237) in paragraph at lines 299--300
 \T1/stix/m/n/10 set of $\LS1/stix/m/it/10 N[]$ \T1/stix/m/n/10 dis-cretized equ
 a-tions de-noted as $[][][]$ to
  []
 
-) (Sections/Parameter_estimation.tex [8]
+[7]) (Sections/Parameter_estimation.tex [8]
 LaTeX Font Info:    Trying to load font information for TS1+stix on input line 
 65.
 
@@ -1766,7 +1763,7 @@ File: ts1stix.fd 2015/04/17 v1.1.2-latex STIX TS1 font definitions
 ))
 (Sections/Experiments.tex) (Sections/Results.tex [9{C:/Users/Omistaja/AppData/L
 ocal/Programs/MiKTeX/fonts/enc/dvips/stix/stix-ts1.enc}]
-<Figures//Results_estimation/Fitting_LUKE_T40_P200.pdf, id=449, 794.97pt x 614.
+<Figures//Results_estimation/Fitting_LUKE_T40_P200.pdf, id=433, 794.97pt x 614.
 295pt>
 File: Figures//Results_estimation/Fitting_LUKE_T40_P200.pdf Graphic file (type 
 pdf)
@@ -1774,7 +1771,7 @@ pdf)
 Package pdftex.def Info: Figures//Results_estimation/Fitting_LUKE_T40_P200.pdf 
  used on input line 14.
 (pdftex.def)             Requested size: 238.25444pt x 92.19109pt.
-<Figures//Results_estimation/Fitting_LUKE_T50_P200.pdf, id=451, 794.97pt x 614.
+<Figures//Results_estimation/Fitting_LUKE_T50_P200.pdf, id=435, 794.97pt x 614.
 295pt>
 File: Figures//Results_estimation/Fitting_LUKE_T50_P200.pdf Graphic file (type 
 pdf)
@@ -1782,7 +1779,7 @@ pdf)
 Package pdftex.def Info: Figures//Results_estimation/Fitting_LUKE_T50_P200.pdf 
  used on input line 19.
 (pdftex.def)             Requested size: 238.25444pt x 92.19109pt.
-<Figures//Results_estimation/Fitting_LUKE_T40_P300_org.pdf, id=453, 794.97pt x 
+<Figures//Results_estimation/Fitting_LUKE_T40_P300_org.pdf, id=437, 794.97pt x 
 614.295pt>
 File: Figures//Results_estimation/Fitting_LUKE_T40_P300_org.pdf Graphic file (t
 ype pdf)
@@ -1790,7 +1787,7 @@ ype pdf)
 Package pdftex.def Info: Figures//Results_estimation/Fitting_LUKE_T40_P300_org.
 pdf  used on input line 25.
 (pdftex.def)             Requested size: 238.25444pt x 92.19109pt.
-<Figures//Results_estimation/Fitting_LUKE_T50_P300_org.pdf, id=455, 794.97pt x 
+<Figures//Results_estimation/Fitting_LUKE_T50_P300_org.pdf, id=439, 794.97pt x 
 614.295pt>
 File: Figures//Results_estimation/Fitting_LUKE_T50_P300_org.pdf Graphic file (t
 ype pdf)
@@ -1798,7 +1795,7 @@ ype pdf)
 Package pdftex.def Info: Figures//Results_estimation/Fitting_LUKE_T50_P300_org.
 pdf  used on input line 30.
 (pdftex.def)             Requested size: 238.25444pt x 92.19109pt.
-<Figures//Results_estimation/Trend_Lines_order_1.pdf, id=466, 845.1575pt x 597.
+<Figures//Results_estimation/Trend_Lines_order_1.pdf, id=450, 845.1575pt x 597.
 23125pt>
 File: Figures//Results_estimation/Trend_Lines_order_1.pdf Graphic file (type pd
 f)
@@ -1812,7 +1809,7 @@ f)
 Package pdftex.def Info: Figures//Results_estimation/Trend_Lines_order_1.pdf  u
 sed on input line 73.
 (pdftex.def)             Requested size: 116.74597pt x 93.1987pt.
-<Figures//Results_estimation/D_i_Uppsilon_results.pdf, id=469, 845.1575pt x 597
+<Figures//Results_estimation/D_i_Uppsilon_results.pdf, id=453, 845.1575pt x 597
 .23125pt>
 File: Figures//Results_estimation/D_i_Uppsilon_results.pdf Graphic file (type p
 df)
@@ -1820,7 +1817,7 @@ df)
 Package pdftex.def Info: Figures//Results_estimation/D_i_Uppsilon_results.pdf  
 used on input line 79.
 (pdftex.def)             Requested size: 116.74597pt x 95.33112pt.
-<Figures//Results_estimation/Trend_Lines_D_e.pdf, id=471, 845.1575pt x 597.2312
+<Figures//Results_estimation/Trend_Lines_D_e.pdf, id=455, 845.1575pt x 597.2312
 5pt>
 File: Figures//Results_estimation/Trend_Lines_D_e.pdf Graphic file (type pdf)
 <use Figures//Results_estimation/Trend_Lines_D_e.pdf>
@@ -1913,7 +1910,7 @@ LaTeX Font Warning: Command \footnotesize invalid in math mode on input line 16
 
 pdfTeX warning: pdflatex.exe (file ./Figures/Forces.pdf): PDF inclusion: found 
 PDF version <1.7>, but at most version <1.5> allowed
-<Figures/Forces.pdf, id=659, 205.72859pt x 191.7564pt>
+<Figures/Forces.pdf, id=643, 205.72859pt x 191.7564pt>
 File: Figures/Forces.pdf Graphic file (type pdf)
 <use Figures/Forces.pdf>
 Package pdftex.def Info: Figures/Forces.pdf  used on input line 219.
@@ -1936,141 +1933,73 @@ Overfull \hbox (5.07681pt too wide) detected at line 361
 []
  []
 
-[16 <./Figures/Forces.pdf>]) (Sections/Low_mach_number_expansion_imp.tex
-Underfull \hbox (badness 1400) in paragraph at lines 5--6
-\T1/stix/m/n/10 of mo-tion (con-ti-nu-ity, mo-men-tum and en-ergy). Such a
- []
-
-
-Underfull \hbox (badness 1107) in paragraph at lines 5--6
-\T1/stix/m/n/10 The per-tur-ba-tion the-ory de-vel-ops an ex-pres-sion for the
- []
-
-
-Overfull \hbox (21.40958pt too wide) detected at line 64
-[]
- []
-
-[17]
-Overfull \hbox (20.4336pt too wide) detected at line 94
-[]
- []
-
-
-Overfull \hbox (25.58595pt too wide) detected at line 124
- $\LS1/stix/m/it/8 ^^ZA[] [] \LS1/stix/m/n/8 + \LS1/stix/m/it/8 e [] \LS1/stix/
-m/n/8 *[] [] + \LS1/stix/m/it/8 P[][] \LS1/stix/m/n/8 = 0$ 
- []
-
-
-Underfull \hbox (badness 1668) in paragraph at lines 160--161
-[]\T1/stix/m/n/10 In one-dimensional case, the Equa-tion [][]91[][] be-come
- []
-
-
-Underfull \hbox (badness 1173) in paragraph at lines 178--179
-[]\T1/stix/m/n/10 Assuming con-stant tem-per-a-ture and pres-sure along
- []
-
-
-Overfull \hbox (8.86765pt too wide) detected at line 183
- $[] \LS1/stix/m/it/8 ^^ZA[] [] \LS1/stix/m/n/8 * [] [] + \LS1/stix/m/it/8 P[][
-] \LS1/stix/m/n/8 = 0 \LS1/stixsf/m/n/8 ™ [] \LS1/stix/m/n/8 = 0$ 
- []
-
-[18]) (Sections/Bayes_Theorem.tex [19]) (Sections/Cardano.tex)
-(Sections/IC_BC.tex [20]
+[16 <./Figures/Forces.pdf>]) (Sections/Cardano.tex) (Sections/IC_BC.tex
 LaTeX Font Info:    Trying to load font information for TS1+cmss on input line 
 18.
 
 (C:\Users\Omistaja\AppData\Local\Programs\MiKTeX\tex/latex/base\ts1cmss.fd
 File: ts1cmss.fd 2022/07/10 v2.5l Standard LaTeX font definitions
-))
-(Sections/Likelihood.tex [21]
-Underfull \hbox (badness 1199) in paragraph at lines 44--45
+)
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[17]) (Sections/Likelihood.tex
+Underfull \hbox (badness 1199) in paragraph at lines 46--47
 \T1/stix/m/n/10 be-cause it's con-stant with re-spect to the max-i-miza-tion.
  []
 
 
-Underfull \hbox (badness 1320) in paragraph at lines 52--53
+Underfull \hbox (badness 1320) in paragraph at lines 54--55
 []\T1/stix/m/n/10 The like-li-hood func-tion $\LS1/stix/m/it/10 L []$ \T1/stix/
 m/n/10 for the pa-ram-e-ters
  []
 
-)
-<Sections/ultraReportT5.pdf, id=833, 597.23125pt x 845.1575pt>
+[18])
+<Sections/ultraReportT5.pdf, id=763, 597.23125pt x 845.1575pt>
 File: Sections/ultraReportT5.pdf Graphic file (type pdf)
 <use Sections/ultraReportT5.pdf>
-Package pdftex.def Info: Sections/ultraReportT5.pdf  used on input line 271.
+Package pdftex.def Info: Sections/ultraReportT5.pdf  used on input line 274.
 (pdftex.def)             Requested size: 238.25444pt x 376.75818pt.
- (Sections/Porosity.tex) [22 <./Sections/ultraReportT5.pdf>]
-(Sections/Profiles.tex
-File: Figures//Results_estimation/Fitting_LUKE_T40_P200.pdf Graphic file (type 
-pdf)
-<use Figures//Results_estimation/Fitting_LUKE_T40_P200.pdf>
-Package pdftex.def Info: Figures//Results_estimation/Fitting_LUKE_T40_P200.pdf 
- used on input line 11.
-(pdftex.def)             Requested size: 238.25444pt x 91.07686pt.
-File: Figures//Results_estimation/Fitting_LUKE_T50_P200.pdf Graphic file (type 
-pdf)
-<use Figures//Results_estimation/Fitting_LUKE_T50_P200.pdf>
-Package pdftex.def Info: Figures//Results_estimation/Fitting_LUKE_T50_P200.pdf 
- used on input line 16.
-(pdftex.def)             Requested size: 238.25444pt x 91.07686pt.
-File: Figures//Results_estimation/Fitting_LUKE_T40_P300_org.pdf Graphic file (t
-ype pdf)
-<use Figures//Results_estimation/Fitting_LUKE_T40_P300_org.pdf>
-Package pdftex.def Info: Figures//Results_estimation/Fitting_LUKE_T40_P300_org.
-pdf  used on input line 21.
-(pdftex.def)             Requested size: 238.25444pt x 91.07686pt.
-File: Figures//Results_estimation/Fitting_LUKE_T50_P300_org.pdf Graphic file (t
-ype pdf)
-<use Figures//Results_estimation/Fitting_LUKE_T50_P300_org.pdf>
-Package pdftex.def Info: Figures//Results_estimation/Fitting_LUKE_T50_P300_org.
-pdf  used on input line 26.
-(pdftex.def)             Requested size: 238.25444pt x 91.07686pt.
-) [23
 
-] (Article_Model_Parameters.aux)
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+(Sections/Porosity.tex) [19 <./Sections/ultraReportT5.pdf>]
+(Article_Model_Parameters.aux)
 Package rerunfilecheck Info: File `Article_Model_Parameters.out' has not change
 d.
-(rerunfilecheck)             Checksum: DFD5F259622DDE8CE2BADDA3D5B400F5;6880.
+(rerunfilecheck)             Checksum: 9605A6F308A9170EEFFB9FCDDC5CF224;6387.
  ) 
 Here is how much of TeX's memory you used:
- 44283 strings out of 476411
- 982540 string characters out of 5787718
- 1904845 words of memory out of 5000000
- 63511 multiletter control sequences out of 15000+600000
- 642733 words of font info for 186 fonts, out of 8000000 for 9000
+ 44207 strings out of 476411
+ 981268 string characters out of 5787718
+ 1902845 words of memory out of 5000000
+ 63480 multiletter control sequences out of 15000+600000
+ 639968 words of font info for 185 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 94i,26n,131p,1668b,955s stack positions out of 10000i,1000n,20000p,200000b,200000s
-
-pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist
-, replaced by a fixed one
-
- <C:\Users\Omistaja\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcs
-s0900.pk> <C:\Users\Omistaja\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/d
-pi600\ecsx0900.pk> <C:\Users\Omistaja\AppData\Local\MiKTeX\fonts/pk/ljfour/jkna
-ppen/ec/dpi600\ecss0900.pk><C:/Users/Omistaja/AppData/Local/Programs/MiKTeX/fon
-ts/type1/public/inconsolata/Inconsolata-zi4r.pfb><C:/Users/Omistaja/AppData/Loc
-al/Programs/MiKTeX/fonts/type1/public/stix/STIXGeneral-Bold.pfb><C:/Users/Omist
-aja/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix/STIXGeneral-BoldItali
-c.pfb><C:/Users/Omistaja/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix/
-STIXGeneral-Italic.pfb><C:/Users/Omistaja/AppData/Local/Programs/MiKTeX/fonts/t
-ype1/public/stix/STIXGeneral-Regular.pfb><C:/Users/Omistaja/AppData/Local/Progr
-ams/MiKTeX/fonts/type1/public/stix/stix-mathbb.pfb><C:/Users/Omistaja/AppData/L
-ocal/Programs/MiKTeX/fonts/type1/public/stix/stix-mathcal.pfb><C:/Users/Omistaj
-a/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix/stix-mathex.pfb><C:/Use
-rs/Omistaja/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix/stix-mathit-b
-old.pfb><C:/Users/Omistaja/AppData/Local/Programs/MiKTeX/fonts/type1/public/sti
-x/stix-mathit.pfb><C:/Users/Omistaja/AppData/Local/Programs/MiKTeX/fonts/type1/
-public/stix/stix-mathrm.pfb><C:/Users/Omistaja/AppData/Local/Programs/MiKTeX/fo
-nts/type1/public/stix/stix-mathscr.pfb><C:/Users/Omistaja/AppData/Local/Program
-s/MiKTeX/fonts/type1/public/stix/stix-mathsf.pfb><C:/Users/Omistaja/AppData/Loc
-al/Programs/MiKTeX/fonts/type1/urw/courier/ucrb8a.pfb>
-Output written on Article_Model_Parameters.pdf (23 pages, 3022737 bytes).
+ 94i,26n,131p,1666b,955s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\Omistaja\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\t
+css0900.pk> <C:\Users\Omistaja\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec
+/dpi600\ecsx0900.pk> <C:\Users\Omistaja\AppData\Local\MiKTeX\fonts/pk/ljfour/jk
+nappen/ec/dpi600\ecss0900.pk><C:/Users/Omistaja/AppData/Local/Programs/MiKTeX/f
+onts/type1/public/inconsolata/Inconsolata-zi4r.pfb><C:/Users/Omistaja/AppData/L
+ocal/Programs/MiKTeX/fonts/type1/public/stix/STIXGeneral-Bold.pfb><C:/Users/Omi
+staja/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix/STIXGeneral-BoldIta
+lic.pfb><C:/Users/Omistaja/AppData/Local/Programs/MiKTeX/fonts/type1/public/sti
+x/STIXGeneral-Italic.pfb><C:/Users/Omistaja/AppData/Local/Programs/MiKTeX/fonts
+/type1/public/stix/STIXGeneral-Regular.pfb><C:/Users/Omistaja/AppData/Local/Pro
+grams/MiKTeX/fonts/type1/public/stix/stix-mathbb.pfb><C:/Users/Omistaja/AppData
+/Local/Programs/MiKTeX/fonts/type1/public/stix/stix-mathcal.pfb><C:/Users/Omist
+aja/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix/stix-mathex.pfb><C:/U
+sers/Omistaja/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix/stix-mathit
+.pfb><C:/Users/Omistaja/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix/s
+tix-mathrm.pfb><C:/Users/Omistaja/AppData/Local/Programs/MiKTeX/fonts/type1/pub
+lic/stix/stix-mathscr.pfb><C:/Users/Omistaja/AppData/Local/Programs/MiKTeX/font
+s/type1/public/stix/stix-mathsf.pfb><C:/Users/Omistaja/AppData/Local/Programs/M
+iKTeX/fonts/type1/urw/courier/ucrb8a.pfb>
+Output written on Article_Model_Parameters.pdf (19 pages, 2971400 bytes).
 PDF statistics:
- 1075 PDF objects out of 1200 (max. 8388607)
- 252 named destinations out of 1000 (max. 500000)
- 541 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 972 PDF objects out of 1000 (max. 8388607)
+ 216 named destinations out of 1000 (max. 500000)
+ 493 words of extra memory for PDF output out of 10000 (max. 10000000)
 

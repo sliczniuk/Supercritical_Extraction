@@ -12,23 +12,23 @@
     	\begin{subfigure}[b]{\columnwidth}
     		\centering
     		\includegraphics[trim = 2cm 10.5cm 2.5cm 2.02cm,clip,width=\textwidth]{/Results_estimation/Fitting_LUKE_T40_P200.pdf}
-    		\caption{Experiment at $40^\circ C$ and $200$ bar}
+    		\caption{Experiment at $40~^\circ C$ and 200 bar}
     	\end{subfigure}
     	\begin{subfigure}[b]{\columnwidth}
     		\centering
     		\includegraphics[trim = 2cm 10.5cm 2.5cm 2.02cm,clip,width=\textwidth]{/Results_estimation/Fitting_LUKE_T50_P200.pdf}
-    		\caption{Experiment at $50^\circ C$ and $200$ bar}
+    		\caption{Experiment at $50~^\circ C$ and 200 bar}
     	\end{subfigure}
     	\hfill
     	\begin{subfigure}[b]{\columnwidth}
     		\centering
     		\includegraphics[trim = 2cm 10.5cm 2.5cm 2.02cm,clip,width=\textwidth]{/Results_estimation/Fitting_LUKE_T40_P300_org.pdf}
-    		\caption{Experiment at $40^\circ C$ and $300$ bar}
+    		\caption{Experiment at $40~^\circ C$ and 300 bar}
     	\end{subfigure}
     	\begin{subfigure}[b]{\columnwidth}
     		\centering
     		\includegraphics[trim = 2cm 10.5cm 2.5cm 2.02cm,clip,width=\textwidth]{/Results_estimation/Fitting_LUKE_T50_P300_org.pdf}
-    		\caption{Experiment at $50^\circ C$ and $300$ bar}
+    		\caption{Experiment at $50~^\circ C$ and 300 bar}
     	\end{subfigure}
     	\caption{Results of parameter estimation}
     	\label{fig: estimation_results}
@@ -39,75 +39,75 @@
 	\begin{table}[!h]
 		\centering
 		\adjustbox{max width=\columnwidth}{%
-			\csvautobooktabular{Figures/Results_estimation/estimation_2.csv} }
-		\caption{Parameter estimation results rounded to fifth decimal place}
+			\csvautobooktabular[separator=comma, table head = \toprule & $40~^\circ C$ & $50~^\circ C$ & $40~^\circ C$ & $50~^\circ C$ \\ & $200~bar$ & $200~bar$ & $300~bar$ & $300~bar$ \\\midrule]{Figures/Results_estimation/estimation_2.csv} }
+		\caption{Parameter estimation results}
 		\label{tab: Estimation_results}
 	\end{table}
 	
-	As shown in the Table \ref{tab: Estimation_results}, the optimizer found optimal values of the partition factors ${\color{orange}k_m}$ at relatively high levels. Such a behaviour suggest that the solvent is far from the saturation, and the model can be simplified. The model reduction can be introduced by considering the limit of the concentration gradient
+	As shown in the Table \ref{tab: Estimation_results}, the optimizer found optimal values of the partition factors ${\color{black}k_m}$ at relatively high levels. Such a behaviour suggest that the solvent is far from the saturation, and the model can be simplified. The model reduction can be introduced by considering the limit of the concentration gradient
 	
 	{\footnotesize
 	\begin{equation*}
 		\begin{split}
-			&\lim_{k_m \rightarrow \infty} \left({\color{blue}{\color{blue} c_s} }(t,z)  - \cfrac{{\color{magenta}\rho_s}}{{\color{orange}k_m}({\color{blue}T}(t,z)){\color{orange}\rho}({\color{blue}T}(t,z),{\color{red}P}(t))}  {\color{blue}c_f}(t,z) \right)  = \\
-			&= \left({\color{blue}{\color{blue} c_s} }(t,z)  - \cfrac{{\color{magenta}\rho_s}}{\infty{\color{orange}\rho}({\color{blue}T}(t,z),{\color{red}P}(t))}  {\color{blue}c_f}(t,z) \right) = \left({\color{blue}{\color{blue} c_s} }(t,z) - 0 \right)
+			&\lim_{k_m \rightarrow \infty} \left({\color{black}{\color{black} c_s} }(t,z)  - \cfrac{{\color{black}\rho_s}}{{\color{black}k_m}({\color{black}T}(t,z)){\color{black}\rho}({\color{black}T}(t,z),{\color{black}P}(t))}  {\color{black}c_f}(t,z) \right)  = \\
+			&= \left({\color{black}{\color{black} c_s} }(t,z)  - \cfrac{{\color{black}\rho_s}}{\infty{\color{black}\rho}({\color{black}T}(t,z),{\color{black}P}(t))}  {\color{black}c_f}(t,z) \right) = \left({\color{black}{\color{black} c_s} }(t,z) - 0 \right)
 		\end{split}
 	\end{equation*} }
 		
-	Values of the reference internal diffusion coefficients are distinguished for each experiment. The order of magnitude of ${\color{orange}D_i^R}$ obtained from the optimization is similar to values found by other researchers. \citet{Reverchon1996} performed the parameter estimation for the extraction process of sage oil from seeds and reported ${\color{magenta}D_i^R} \approx 6\times 10^{-13}[m^2/s]$. Figure \ref{fig: results_DI} represent the ${\color{orange}D_i^R}$ as the function of density. As the reference internal diffusion coefficient describes the diffusion inside of a particle, it is independent of external factors such as a fluid velocity around that particle. The reference internal diffusion depends only on local conditions given by temperature and pressure, which defines the physical properties of a stagnant fluid inside of pores of a particle—considering that the reference internal diffusion can be represented as a function of the density of the fluid, which is uniquely defined at a given temperature and pressure in the one-phase region. The linear trend in Figure \ref{fig: results_DI} suggests that ${\color{orange}D_i^R}$ increases with fluid density.
+	Values of the reference internal diffusion coefficients are distinguished for each experiment. The order of magnitude of ${\color{black}D_i^R}$ obtained from the optimization is similar to values found by other researchers. \citet{Reverchon1996} performed the parameter estimation for the extraction process of sage oil from seeds and reported ${\color{black}D_i^R} \approx 6\cdot 10^{-13}[m^2/s]$. Figure \ref{fig: results_DI} represent the ${\color{black}D_i^R}$ as the function of density. As the reference internal diffusion coefficient describes the diffusion inside of a particle, it is independent of external factors such as a fluid velocity around that particle. The reference internal diffusion depends only on local conditions given by temperature and pressure, which defines the physical properties of a stagnant fluid inside of pores of a particle—considering that the reference internal diffusion can be represented as a function of the density of the fluid, which is uniquely defined at a given temperature and pressure in the one-phase region. The linear trend in Figure \ref{fig: results_DI} suggests that ${\color{black}D_i^R}$ increases with fluid density.
 	
-	Similarly to the internal diffusion coefficient, the obtained values of ${\color{orange}\Upsilon}$ depends only on temperature and pressure, or by uniquely defined physical properties such as density. Figure \ref{fig: results_upsilon} shows that of ${\color{orange}\Upsilon}$ grows with density. This can be explained if the solubility increases as the density grows. \citet{Shojaie2010}, showed that the solubility of carvone (one of the main components of caraway oil) rises together with pressure increase and decreases when temperature increases.
+	Similarly to the internal diffusion coefficient, the obtained values of ${\color{black}\Upsilon}$ depends only on temperature and pressure, or by uniquely defined physical properties such as density. Figure \ref{fig: results_upsilon} shows that of ${\color{black}\Upsilon}$ grows with density. This can be explained if the solubility increases as the density grows. \citet{Shojaie2010}, showed that the solubility of carvone (one of the main components of caraway oil) rises together with pressure increase and decreases when temperature increases.
 	
-	The Figure \ref{fig:Di_upsilon_res} shows how the internal diffusivity ${\color{orange}D_i}$ (Equation \ref{EQ: C_sat_function}) as a function of the solute concentration in the solid phase at different operating conditions. The higher the density, the higher solubility according to \citet{Shojaie2010}, which results in higher values of the internal diffusion coefficient and larger curvature of ${\color{orange}D_i}$ function.
+	The Figure \ref{fig:Di_upsilon_res} shows how the internal diffusivity ${\color{black}D_i}$ (Equation \ref{EQ: C_sat_function}) as a function of the solute concentration in the solid phase at different operating conditions. The higher the density, the higher solubility according to \citet{Shojaie2010}, which results in higher values of the internal diffusion coefficient and larger curvature of ${\color{black}D_i}$ function.
 
 		\begin{figure}[!h]
 		\centering
 		\begin{subfigure}[b]{0.49\columnwidth}
 			\centering
 			\includegraphics[trim = 11.2cm 13.7cm 11cm 1.0cm,clip,width=\columnwidth]{/Results_estimation/Trend_Lines_order_1.pdf}
-			\caption{Dependency of ${\color{orange}D_i}$}
+			\caption{Dependency of ${\color{black}D_i}$}
 			\label{fig: results_DI}
 		\end{subfigure}
 		\begin{subfigure}[b]{0.49\columnwidth}
 			\centering
 			\includegraphics[trim = 3.5cm 7.7cm 18.7cm 7.3cm,clip,width=\columnwidth]{/Results_estimation/Trend_Lines_order_1.pdf}
-			\caption{Dependency of ${\color{orange}\Upsilon}$}
+			\caption{Dependency of ${\color{black}\Upsilon}$}
 			\label{fig: results_upsilon}
 		\end{subfigure}
 		\hfill
 		\begin{subfigure}[b]{0.49\columnwidth}
 			\includegraphics[trim = 1.0cm 0cm 3cm 0cm, clip, width=\columnwidth]{/Results_estimation/D_i_Uppsilon_results.pdf}
-			\caption{Dependency of ${\color{orange}D^R_i}$}
+			\caption{Dependency of ${\color{black}D^R_i}$}
 			\label{fig:Di_upsilon_res}
 		\end{subfigure}
 		\begin{subfigure}[b]{0.49\columnwidth}
 			\centering
 			\includegraphics[trim = 19.0cm 13.8cm 3.5cm 1.0cm,clip,width=\columnwidth]{/Results_estimation/Trend_Lines_D_e.pdf}
-			\caption{Dependency of ${\color{orange}D^M_e}$}
+			\caption{Dependency of ${\color{black}D^M_e}$}
 			\label{fig: results_De}
 		\end{subfigure}
 		\caption{Results of parameter estimation}
 		\label{fig: estimation_results_DI_GAMMA}
 	\end{figure}
 	
-	The axial diffusion coefficient obtained from the optimizer is relatively high compared to the internal diffusion coefficients. The values of ${\color{orange}D_e^M}$ have a similar order of magnitude as reported in the literature (\citet{ReisVasco2000}). %The relatively high values of the axial diffusion coefficients might be justified by taking into account the low values of the flow rate used in all the experiments. 
-	The axial diffusion can be further analyzed by defining the Pecelt number (${\color{orange}P_e} = v \times {\color{magenta}d_p} / {\color{orange}D_e^M} $) and the Reynolds number (${\color{orange}R_e} = v \times {\color{magenta}d_p} / {\color{orange}\mu} $), where ${\color{magenta}d_p}=0.15~[m]$ is the characteristic dimension defined to be the extractor diameter and $\mu$ is the fluid viscosity. %The obtained Pecelt numbers have the order of magnitude of $1 \times 10^{8}$, which suggests that diffusion is negligible and advection dominates mass transport. 
-	The obtained Pecelt numbers are ${\color{orange}P_e} \gg 1$, which suggests that mass diffusion is negligible and advection dominates mass transport. This observation suggests that the process model could be further simplified by neglecting the diffusion term. Nevertheless, such a simplification has not been introduced in this work.
+	The axial diffusion coefficient obtained from the optimizer is relatively high compared to the internal diffusion coefficients. The values of ${\color{black}D_e^M}$ have a similar order of magnitude as reported in the literature (\citet{ReisVasco2000}). %The relatively high values of the axial diffusion coefficients might be justified by taking into account the low values of the flow rate used in all the experiments. 
+	The axial diffusion can be further analyzed by defining the Peclet number $\left( {\color{black}Pe} = \frac{v d_p}{D_e^M} \right)$ and the Reynolds number $\left( {\color{black}Re} = \frac{v d_p}{\mu} \right)$, where ${\color{black}d_p}=0.15~[m]$ is the characteristic dimension defined to be the extractor diameter and $\mu$ is the fluid viscosity. %The obtained Pecelt numbers have the order of magnitude of $1 \times 10^{8}$, which suggests that diffusion is negligible and advection dominates mass transport. 
+	The obtained Pecelt numbers are ${\color{black}Pe} \gg 1$, which suggests that mass diffusion is negligible and advection dominates mass transport. This observation suggests that the process model could be further simplified by neglecting the diffusion term. Nevertheless, such a simplification has not been introduced in this work.
 	\citet{Chung1968} presented an idea for a relationship between the Peclet (indirectly the mass diffusion coefficient) and Reynolds numbers. By modifying the idea of \citet{Chung1968}, a direct relation between the diffusion coefficient and the Reynolds number is used in the work as shown in Figure \ref{fig: results_De}. The obtained values of the mass diffusion coefficient increase almost linearly with the increment of the Reynolds number, which is in agreement with the observation that the advection dominates the diffusion.
 	
 	As the total amount of oil present in the system is unknown, and as such, it has been obtained from the optimizer. Given the dataset and the process model, the optimizer found that the best fit is obtained if the total mass of the oil reaches a lower bound equal to 80 g. The lower bound was estimated by rounding up the biggest value of the collected cumulative amount of the extraction product. As the same raw material was used in all experiments, the same initial amount of solute was assumed for all the cases.
 	
 	The initial state estimation resulted in values of $\tau$ in the range from 0.69 to 0.76. These values are relatively similar to each other. In the equipment used in this experiment, around 30\% of the solute was extracted to the fluid phase during the preparation period. 
 	
-	The noise present in each dataset is quantified by the parameter $\sigma^2$. It can be observed dataset obtained at $40 ^\circ C$ / 200 bar and $30 ^\circ C$ / 300 bar have similar value of $\sigma^2\approx0.07$. The slightly better results were obtained for the experiment at $50 ^\circ C$ / 300 bar when $\sigma^2\approx0.05$. The noisiest dataset corresponds to $50 ^\circ C$ / 200 bar when $\sigma^2\approx0.12$. All values of $\sigma^2$ are relatively low, suggesting the mathematical model can mimic the physical system up to the noise coming from the experiment.
+	The noise present in each dataset is quantified by the parameter $\sigma^2$. It can be observed dataset obtained at $40~^\circ C$ / 200 bar and $30~^\circ C$ / 300 bar have similar value of $\sigma^2\approx0.07$. The slightly better results were obtained for the experiment at $50~^\circ C$ / 300 bar when $\sigma^2\approx0.05$. The noisiest dataset corresponds to $50~^\circ C$ / 200 bar when $\sigma^2\approx0.12$. All values of $\sigma^2$ are relatively low, suggesting the mathematical model can mimic the physical system up to the noise coming from the experiment.
 
-	%The results obtained from the parameter estimation are used to develop a generalized process model. The model generalization is performed by introducing correlations which link the estimated parameters and the operating conditions. Since the experiments were performed under varying temperature and pressure, the influence of these variables is taken into account. To simplify the problem, the correlations are written as functions of fluid density rather than temperature and pressure. Since the optimizer found that ${\color{orange}k_m}$, $m_{total}$ and $C_{lim}$ don't change with the density variations, they are assumed to be constants and not considered further.
+	%The results obtained from the parameter estimation are used to develop a generalized process model. The model generalization is performed by introducing correlations which link the estimated parameters and the operating conditions. Since the experiments were performed under varying temperature and pressure, the influence of these variables is taken into account. To simplify the problem, the correlations are written as functions of fluid density rather than temperature and pressure. Since the optimizer found that ${\color{black}k_m}$, $m_{total}$ and $C_{lim}$ don't change with the density variations, they are assumed to be constants and not considered further.
 		
 	
 %	\begin{figure}[!h]
 %		\centering
 %		\includegraphics[trim = 11.7cm 14cm 2.3cm 1cm,clip,width=\textwidth]{/Results_estimation/Trend_Lines_order_1.pdf}
-%		\caption{Second-order polynomial regression of fitted parameters (${\color{orange}D_i^R}$ and ${\color{orange}D_e^M}$) as a function of fluid density $\rho_f$}
+%		\caption{Second-order polynomial regression of fitted parameters (${\color{black}D_i^R}$ and ${\color{black}D_e^M}$) as a function of fluid density $\rho_f$}
 %		\label{fig:Regression_2}
 %	\end{figure}
 

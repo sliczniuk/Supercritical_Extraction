@@ -60,8 +60,8 @@
 \newlabel{fig: SFE_Properties}{{2}{3}{Properties of $CO_2$ based on the equation of state and correlations\relax }{figure.caption.2}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Governing equations}{3}{subsection.2.2}\protected@file@percent }
 \newlabel{CH:Governing_equations_chapter}{{2.2}{3}{Governing equations}{subsection.2.2}{}}
+\newlabel{EQ: CompressibleEuler_1}{{1}{3}{Governing equations}{equation.2.1}{}}
 \citation{Schreier1982}
-\newlabel{EQ: CompressibleEuler_1}{{1}{4}{Governing equations}{equation.2.1}{}}
 \newlabel{EQ: CompressibleEuler_2}{{2}{4}{Governing equations}{equation.2.2}{}}
 \newlabel{EQ: CompressibleEuler_3}{{3}{4}{Governing equations}{equation.2.3}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Small discontinuity in one-dimensional flow\relax }}{4}{figure.caption.3}\protected@file@percent }
@@ -74,6 +74,7 @@
 \newlabel{EQ: Continuity_differential}{{5}{4}{Continuity equation}{equation.2.5}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.2}Mass balance for the fluid phase}{4}{subsubsection.2.3.2}\protected@file@percent }
 \newlabel{CH: Mass_balance_fluid}{{2.3.2}{4}{Mass balance for the fluid phase}{subsubsection.2.3.2}{}}
+\newlabel{Model_fluid}{{9}{4}{Mass balance for the fluid phase}{equation.2.9}{}}
 \citation{Reverchon1996}
 \citation{Bulley1984}
 \citation{Reverchon1996}
@@ -81,23 +82,23 @@
 \citation{Spiro2007}
 \citation{Reverchon1996}
 \citation{Sovova2017}
-\newlabel{Model_fluid}{{9}{5}{Mass balance for the fluid phase}{equation.2.9}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.3}Mass balance for the solid phase}{5}{subsubsection.2.3.3}\protected@file@percent }
 \newlabel{Mass_balance_solid}{{2.3.3}{5}{Mass balance for the solid phase}{subsubsection.2.3.3}{}}
 \newlabel{Model_solid}{{10}{5}{Mass balance for the solid phase}{equation.2.10}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.4}Kinetic term}{5}{subsubsection.2.3.4}\protected@file@percent }
 \newlabel{CH: Kinetic}{{2.3.4}{5}{Kinetic term}{subsubsection.2.3.4}{}}
+\newlabel{Model_kinetic_basic}{{11}{5}{Kinetic term}{equation.2.11}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces The extraction mechanism\relax }}{5}{figure.caption.4}\protected@file@percent }
 \newlabel{fig: SFE_Mechanism}{{4}{5}{The extraction mechanism\relax }{figure.caption.4}{}}
-\newlabel{Model_kinetic_basic}{{11}{5}{Kinetic term}{equation.2.11}{}}
 \newlabel{Linear_equilibirum}{{12}{5}{Kinetic term}{equation.2.12}{}}
 \newlabel{Model_kinetic_no_sat}{{14}{5}{Kinetic term}{equation.2.14}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.5}Uneven distribution of the solute in the solid phase}{5}{subsubsection.2.3.5}\protected@file@percent }
+\newlabel{EQ: C_sat_function}{{15}{5}{Uneven distribution of the solute in the solid phase}{equation.2.15}{}}
 \citation{Goto1996}
 \citation{Elliott2011}
 \citation{Gmehling2019}
 \citation{Elliott2011}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.5}Uneven distribution of the solute in the solid phase}{6}{subsubsection.2.3.5}\protected@file@percent }
-\newlabel{EQ: C_sat_function}{{15}{6}{Uneven distribution of the solute in the solid phase}{equation.2.15}{}}
+\citation{Gmehling2019}
 \newlabel{Model_kinetic}{{16}{6}{Uneven distribution of the solute in the solid phase}{equation.2.16}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.6}Heat balance}{6}{subsubsection.2.3.6}\protected@file@percent }
 \newlabel{CH: heat_balance}{{2.3.6}{6}{Heat balance}{subsubsection.2.3.6}{}}
@@ -105,10 +106,9 @@
 \newlabel{EQ: internal_energy_def}{{18}{6}{Heat balance}{equation.2.18}{}}
 \newlabel{EQ: internal_energy_PR}{{19}{6}{Heat balance}{equation.2.19}{}}
 \newlabel{EQ:Enthalpy_equation}{{21}{6}{Heat balance}{equation.2.21}{}}
-\citation{Gmehling2019}
+\newlabel{EQ:Enthalpy_root}{{22}{6}{Heat balance}{equation.2.22}{}}
 \citation{Gmehling2019}
 \citation{Sovova1994a}
-\newlabel{EQ:Enthalpy_root}{{22}{7}{Heat balance}{equation.2.22}{}}
 \newlabel{EQ:Enthalpy_PR}{{23}{7}{Heat balance}{equation.2.23}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.7}Pressure term}{7}{subsubsection.2.3.7}\protected@file@percent }
 \newlabel{CH: Pressure}{{2.3.7}{7}{Pressure term}{subsubsection.2.3.7}{}}
@@ -124,11 +124,11 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Parameter estimation}{8}{subsection.2.4}\protected@file@percent }
 \newlabel{CH: Parameter_estimation}{{2.4}{8}{Parameter estimation}{subsection.2.4}{}}
 \newlabel{EQ: Measurment_noise}{{29}{8}{Parameter estimation}{equation.2.29}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Constraints and initial guess\relax }}{9}{table.caption.5}\protected@file@percent }
+\newlabel{tab:Constraints}{{1}{9}{Constraints and initial guess\relax }{table.caption.5}{}}
 \newlabel{EQ: Objective_function}{{30}{9}{Parameter estimation}{equation.2.30}{}}
 \newlabel{EQ: Optimization_formulation_MLE}{{31}{9}{Parameter estimation}{equation.2.31}{}}
 \newlabel{EQ: MLE_Basic_Solution}{{32}{9}{Parameter estimation}{equation.2.32}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Constraints and initial guess\relax }}{9}{table.caption.5}\protected@file@percent }
-\newlabel{tab:Constraints}{{1}{9}{Constraints and initial guess\relax }{table.caption.5}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.5}Experimental work}{9}{subsection.2.5}\protected@file@percent }
 \newlabel{CH: Experiments}{{2.5}{9}{Experimental work}{subsection.2.5}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {3}Results}{9}{section.3}\protected@file@percent }
@@ -141,16 +141,16 @@
 \citation{Chung1968}
 \@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Results of parameter estimation\relax }}{10}{figure.caption.6}\protected@file@percent }
 \newlabel{fig: estimation_results}{{5}{10}{Results of parameter estimation\relax }{figure.caption.6}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Parameter estimation results rounded to fifth decimal place\relax }}{10}{table.caption.7}\protected@file@percent }
-\newlabel{tab: Estimation_results}{{2}{10}{Parameter estimation results rounded to fifth decimal place\relax }{table.caption.7}{}}
-\newlabel{fig: results_DI}{{6a}{11}{Dependency of ${\color {orange}D_i}$\relax }{figure.caption.8}{}}
-\newlabel{sub@fig: results_DI}{{a}{11}{Dependency of ${\color {orange}D_i}$\relax }{figure.caption.8}{}}
-\newlabel{fig: results_upsilon}{{6b}{11}{Dependency of ${\color {orange}\Upsilon }$\relax }{figure.caption.8}{}}
-\newlabel{sub@fig: results_upsilon}{{b}{11}{Dependency of ${\color {orange}\Upsilon }$\relax }{figure.caption.8}{}}
-\newlabel{fig:Di_upsilon_res}{{6c}{11}{Dependency of ${\color {orange}D^R_i}$\relax }{figure.caption.8}{}}
-\newlabel{sub@fig:Di_upsilon_res}{{c}{11}{Dependency of ${\color {orange}D^R_i}$\relax }{figure.caption.8}{}}
-\newlabel{fig: results_De}{{6d}{11}{Dependency of ${\color {orange}D^M_e}$\relax }{figure.caption.8}{}}
-\newlabel{sub@fig: results_De}{{d}{11}{Dependency of ${\color {orange}D^M_e}$\relax }{figure.caption.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Parameter estimation results\relax }}{10}{table.caption.7}\protected@file@percent }
+\newlabel{tab: Estimation_results}{{2}{10}{Parameter estimation results\relax }{table.caption.7}{}}
+\newlabel{fig: results_DI}{{6a}{11}{Dependency of ${\color {black}D_i}$\relax }{figure.caption.8}{}}
+\newlabel{sub@fig: results_DI}{{a}{11}{Dependency of ${\color {black}D_i}$\relax }{figure.caption.8}{}}
+\newlabel{fig: results_upsilon}{{6b}{11}{Dependency of ${\color {black}\Upsilon }$\relax }{figure.caption.8}{}}
+\newlabel{sub@fig: results_upsilon}{{b}{11}{Dependency of ${\color {black}\Upsilon }$\relax }{figure.caption.8}{}}
+\newlabel{fig:Di_upsilon_res}{{6c}{11}{Dependency of ${\color {black}D^R_i}$\relax }{figure.caption.8}{}}
+\newlabel{sub@fig:Di_upsilon_res}{{c}{11}{Dependency of ${\color {black}D^R_i}$\relax }{figure.caption.8}{}}
+\newlabel{fig: results_De}{{6d}{11}{Dependency of ${\color {black}D^M_e}$\relax }{figure.caption.8}{}}
+\newlabel{sub@fig: results_De}{{d}{11}{Dependency of ${\color {black}D^M_e}$\relax }{figure.caption.8}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Results of parameter estimation\relax }}{11}{figure.caption.8}\protected@file@percent }
 \newlabel{fig: estimation_results_DI_GAMMA}{{6}{11}{Results of parameter estimation\relax }{figure.caption.8}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {4}Conclusions}{11}{section.4}\protected@file@percent }
@@ -244,45 +244,27 @@
 \newlabel{EQ: Non-conservative_Momentum_Const_Porosity}{{80}{16}{Momentum conservation}{equation.A.80}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {A.2.4}Energy conservation}{16}{subsubsection.A.2.4}\protected@file@percent }
 \newlabel{EQ: Energy_equation_integral}{{81}{16}{Energy conservation}{equation.A.81}{}}
-\citation{Lions2013}
+\citation{Gmehling2019}
 \newlabel{EQ: Energy_equation_conservative_total}{{85}{17}{Energy conservation}{equation.A.85}{}}
 \newlabel{EQ: Energy_conservative_internal}{{86}{17}{Energy conservation}{equation.A.86}{}}
 \newlabel{EQ: Energy_equation_nonconservative}{{89}{17}{Energy conservation}{equation.A.89}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.3}Low Mach number expansion}{17}{subsection.A.3}\protected@file@percent }
-\newlabel{CH:Low_Mach_chapter}{{A.3}{17}{Low Mach number expansion}{subsection.A.3}{}}
-\citation{Lions2013}
-\citation{Elliott2011}
-\newlabel{EQ: Incompressibility_Condition_Ideal_IsoThermal}{{91}{18}{Low Mach number expansion}{equation.A.91}{}}
-\citation{Himmelblau1970}
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.4}Bayes theorem}{19}{subsection.A.4}\protected@file@percent }
-\newlabel{CH: Bayes}{{A.4}{19}{Bayes theorem}{subsection.A.4}{}}
-\newlabel{EQ: Bayes_discrit}{{93}{19}{Bayes theorem}{equation.A.93}{}}
-\newlabel{EQ: Bayes_continous}{{94}{19}{Bayes theorem}{equation.A.94}{}}
-\citation{Gmehling2019}
-\newlabel{EQ: Probabiltiy_independet_a}{{102}{20}{Bayes theorem}{equation.A.102}{}}
-\newlabel{EQ: Probabiltiy_independet_b}{{103}{20}{Bayes theorem}{equation.A.103}{}}
-\newlabel{EQ: Probabiltiy_dependet_a}{{104a}{20}{Bayes theorem}{equation.A.104a}{}}
-\newlabel{EQ: Probabiltiy_dependet_b}{{104b}{20}{Bayes theorem}{equation.A.104b}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.5}Cardano's Formula}{20}{subsection.A.5}\protected@file@percent }
-\newlabel{CH: Cardano}{{A.5}{20}{Cardano's Formula}{subsection.A.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.6}Initial and boundary conditions}{21}{subsection.A.6}\protected@file@percent }
-\newlabel{CH: IC_BC}{{A.6}{21}{Initial and boundary conditions}{subsection.A.6}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces The linear distribution of the solute concentration in the fluid phase\relax }}{21}{figure.caption.12}\protected@file@percent }
-\newlabel{fig: C_f_linear}{{9}{21}{The linear distribution of the solute concentration in the fluid phase\relax }{figure.caption.12}{}}
-\newlabel{EQ: C_f_linear_int}{{115}{21}{Initial and boundary conditions}{equation.A.115}{}}
-\newlabel{EQ: C_f_linear_after_int}{{116}{21}{Initial and boundary conditions}{equation.A.116}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.7}Maximum Likelihood}{21}{subsection.A.7}\protected@file@percent }
-\newlabel{CH: ML}{{A.7}{21}{Maximum Likelihood}{subsection.A.7}{}}
-\newlabel{EQ: Posterior_distribution}{{119}{22}{Maximum Likelihood}{equation.A.119}{}}
-\newlabel{EQ: MLE_Norm}{{127}{22}{Maximum Likelihood}{equation.A.127}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.8}Solid density measurement}{22}{subsection.A.8}\protected@file@percent }
-\newlabel{CH: Solid_Density_Measurment}{{A.8}{22}{Solid density measurement}{subsection.A.8}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces The result of solid density measurement\relax }}{22}{figure.caption.13}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.9}Porosity Calculations}{22}{subsection.A.9}\protected@file@percent }
-\newlabel{CH: Porosity}{{A.9}{22}{Porosity Calculations}{subsection.A.9}{}}
-\csxdef{lastpage}{23}
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.10}Concentration profiles}{23}{subsection.A.10}\protected@file@percent }
-\newlabel{CH: Profiles}{{A.10}{23}{Concentration profiles}{subsection.A.10}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Concentration profiles after solving the parameter estimation problem\relax }}{23}{figure.caption.14}\protected@file@percent }
-\newlabel{fig: estimation_results_profiles}{{11}{23}{Concentration profiles after solving the parameter estimation problem\relax }{figure.caption.14}{}}
-\gdef \@abspage@last{23}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.3}Cardano's Formula}{17}{subsection.A.3}\protected@file@percent }
+\newlabel{CH: Cardano}{{A.3}{17}{Cardano's Formula}{subsection.A.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.4}Initial and boundary conditions}{17}{subsection.A.4}\protected@file@percent }
+\newlabel{CH: IC_BC}{{A.4}{17}{Initial and boundary conditions}{subsection.A.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces The linear distribution of the solute concentration in the fluid phase\relax }}{18}{figure.caption.12}\protected@file@percent }
+\newlabel{fig: C_f_linear}{{9}{18}{The linear distribution of the solute concentration in the fluid phase\relax }{figure.caption.12}{}}
+\newlabel{EQ: C_f_linear_int}{{98}{18}{Initial and boundary conditions}{equation.A.98}{}}
+\newlabel{EQ: C_f_linear_after_int}{{99}{18}{Initial and boundary conditions}{equation.A.99}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.5}Maximum likelihood}{18}{subsection.A.5}\protected@file@percent }
+\newlabel{CH: ML}{{A.5}{18}{Maximum likelihood}{subsection.A.5}{}}
+\newlabel{EQ: Posterior_distribution}{{102}{18}{Maximum likelihood}{equation.A.102}{}}
+\csxdef{lastpage}{19}
+\newlabel{EQ: MLE_Norm}{{110}{19}{Maximum likelihood}{equation.A.110}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.6}Solid density measurement}{19}{subsection.A.6}\protected@file@percent }
+\newlabel{CH: Solid_Density_Measurment}{{A.6}{19}{Solid density measurement}{subsection.A.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.7}Porosity calculations}{19}{subsection.A.7}\protected@file@percent }
+\newlabel{CH: Porosity}{{A.7}{19}{Porosity calculations}{subsection.A.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces The result of solid density measurement\relax }}{19}{figure.caption.13}\protected@file@percent }
+\newlabel{fig:density_cal}{{10}{19}{The result of solid density measurement\relax }{figure.caption.13}{}}
+\gdef \@abspage@last{19}
