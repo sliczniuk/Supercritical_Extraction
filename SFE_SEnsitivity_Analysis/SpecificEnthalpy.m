@@ -12,7 +12,7 @@ function [h_kg] = SpecificEnthalpy(T, P, Z, RHO, theta)
     CPC = -5.60E-05;
     CPD =  1.72E-08;
 
-    %% Reference state %TODO: Add a function to calulate the properties of the reference state
+    %% Reference state
     TREF = 298.15;   % K
     PREF = 0.101325; % MPa
 

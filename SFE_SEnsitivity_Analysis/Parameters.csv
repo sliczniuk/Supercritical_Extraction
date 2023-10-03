@@ -15,11 +15,11 @@ Numer,Name,Value,Unit,Description
 14,MW,0.044,Kg/mol,Molar mass
 15,EA_Di,0.738266579,[-],
 16,betah_Di,51.24432282,[-],
-17,CP_0,4.18686,,Ideal gas CP for CO2
-18,CP_A,4.728,,
-19,CP_B,0.0175,,
-20,CP_C,-1.34E-05,,
-21,CP_D,4.10E-09,,
+17,CP_0,NAN,,Ideal gas CP for CO2
+18,CP_A,22.26,,
+19,CP_B,5.98E-02,,
+20,CP_C,-3.50E-05,,
+21,CP_D,7.47E-09,,
 22,EA_km,-1.078261986,,
 23,betah_km,3.63E-19,,
 24,cpSolid,1.5,kJ/K/Kg,

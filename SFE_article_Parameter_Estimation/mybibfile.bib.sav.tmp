@@ -331,16 +331,14 @@
 }
 
 @Article{Pratt2001,
-  author    = {Pratt, R. M.},
-  journal   = {CHEMICAL ENGINEERING EDUCATION},
-  title     = {Thermodynamic Properties Involving Derivatives: Using the Peng-Robinson Equation of State, CHEMICAL ENGINEERING EDUCATION},
-  year      = {2001},
-  issn      = {0009-2479},
-  pages     = {112-139},
-  volume    = {35},
-  publisher = {CHEMICAL ENGINEERING EDUCATION;},
-  series    = {CHEMICAL ENGINEERING EDUCATION},
-  url       = {https://www.tib.eu/de/suchen/id/BLSE%3ARN095457101},
+  author  = {Pratt, R. M.},
+  journal = {Chemical Engineering Education},
+  title   = {Thermodynamic Properties Involving Derivatives: Using the Peng-Robinson Equation of State,},
+  year    = {2001},
+  issn    = {0009-2479},
+  pages   = {112-139},
+  volume  = {35},
+  url     = {https://www.tib.eu/de/suchen/id/BLSE%3ARN095457101},
 }
 
 @Article{Razavi2015,
@@ -486,3 +484,6 @@
 }
 
 @Article{Laesecke2017,
+  author    = {Arno Laesecke and Chris D. Muzny},
+  journal   = {Journal of Physical and Chemical Reference Data},
+  title     = {Reference Co

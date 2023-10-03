@@ -1,4 +1,4 @@
-\begin{thebibliography}{28}
+\begin{thebibliography}{27}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -198,16 +198,10 @@ R.~M. Pratt.
 \newblock ISSN 0009-2479.
 \newblock URL \url{https://www.tib.eu/de/suchen/id/BLSE%3ARN095457101}.
 
-\bibitem[Lions(2013)]{Lions2013}
-Pierre-Louis Lions.
-\newblock \emph{Mathematical Topics in Fluid Mechanics : Volume 1
-  Incompressible Models}.
-\newblock Oxford University Press, 2013.
-\newblock ISBN 9780199679218.
-
-\bibitem[Himmelblau(1970)]{Himmelblau1970}
-David~Mautner Himmelblau.
-\newblock Process analysis by statistical methods, 1970.
-\newblock [by] David M. Himmelblau., Includes bibliographical references.
+\bibitem[Kyle(1999)]{Kyle1999}
+B.~G. Kyle.
+\newblock \emph{Chemical and process thermodynamics}.
+\newblock Prentice Hall PTR, 1999.
+\newblock ISBN 0130874116.
 
 \end{thebibliography}

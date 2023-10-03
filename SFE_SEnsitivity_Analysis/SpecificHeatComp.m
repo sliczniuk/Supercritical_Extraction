@@ -12,7 +12,7 @@ function Cp = SpecificHeatComp(T, P, Z, RHO, theta)
     R       = 83.1447;           % Universal gas constant, [m3-bar/K-mol]
     kappa   = 0.2250;
     MW      = theta{14};         % Molar mass [g/mol]       
-    CP_0    = theta{17};     
+    
     CP_A    = theta{18};       
     CP_B    = theta{19};       
     CP_C    = theta{20};       
@@ -67,7 +67,7 @@ function Cp = SpecificHeatComp(T, P, Z, RHO, theta)
     d2adT2 = a*m*(1+m).*sqrt(Tc./T)./(2.*T.*Tc);
 
     %% Heat Capacity - Ideal gas
-    Cp_Ideal = CP_0 * (CP_A + CP_B.*T + CP_C.*T.^2 + CP_D.*T.^3);
+    Cp_Ideal = CP_A + CP_B.*T + CP_C.*T.^2 + CP_D.*T.^3;
     Cv_Ideal = Cp_Ideal - R/10;
 
     %% Heat Capacity - correction for real gasses

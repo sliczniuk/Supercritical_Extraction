@@ -331,16 +331,14 @@
 }
 
 @Article{Pratt2001,
-  author    = {Pratt, R. M.},
-  journal   = {CHEMICAL ENGINEERING EDUCATION},
-  title     = {Thermodynamic Properties Involving Derivatives: Using the Peng-Robinson Equation of State, CHEMICAL ENGINEERING EDUCATION},
-  year      = {2001},
-  issn      = {0009-2479},
-  pages     = {112-139},
-  volume    = {35},
-  publisher = {CHEMICAL ENGINEERING EDUCATION;},
-  series    = {CHEMICAL ENGINEERING EDUCATION},
-  url       = {https://www.tib.eu/de/suchen/id/BLSE%3ARN095457101},
+  author  = {Pratt, R. M.},
+  journal = {Chemical Engineering Education},
+  title   = {Thermodynamic Properties Involving Derivatives: Using the Peng-Robinson Equation of State,},
+  year    = {2001},
+  issn    = {0009-2479},
+  pages   = {112-139},
+  volume  = {35},
+  url     = {https://www.tib.eu/de/suchen/id/BLSE%3ARN095457101},
 }
 
 @Article{Razavi2015,
@@ -588,6 +586,38 @@
   volume    = {158},
   doi       = {10.1016/j.jfoodeng.2015.01.001},
   publisher = {Elsevier {BV}},
+}
+
+@article{Shojaie2010,
+author      = {Shojaie, G and A. Shirazi, Mohammad Mahdi and Kargari, Ali and Shirazi, M},
+journal     = {Journal of Applied Chemical Research},
+year        = {2010},
+month       = {mar},
+pages       = {41-59},
+volume      = {158},
+title       = {Solubility Prediction of Supercritical Fluids Extraction By Equations of State}
+}
+
+@Article{Chung1968,
+  author    = {S. F. Chung and C. Y. Wen},
+  journal   = {{AIChE} Journal},
+  title     = {Longitudinal dispersion of liquid flowing through fixed and fluidized beds},
+  year      = {1968},
+  month     = {nov},
+  number    = {6},
+  pages     = {857--866},
+  volume    = {14},
+  doi       = {10.1002/aic.690140608},
+  publisher = {Wiley},
+}
+
+@Book{Kyle1999,
+  author    = {Kyle, B. G.},
+  publisher = {Prentice Hall PTR},
+  title     = {Chemical and process thermodynamics},
+  year      = {1999},
+  isbn      = {0130874116},
+  pages     = {763},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}
