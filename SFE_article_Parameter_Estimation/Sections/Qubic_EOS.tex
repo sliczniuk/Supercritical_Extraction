@@ -1,0 +1,63 @@
+\documentclass[../Article_Model_Parameters.tex]{subfiles}
+\graphicspath{{\subfix{../Figures/}}}
+\begin{document}
+	
+	%\label{CH: Thermodynamic_details}
+	
+	%subsubsection{Equation of state and properties of the fluid phase} \label{subsubsec: Equation of state}
+	
+	An equation of state (EoS) is an algebraic relation between P, $v_m$, and T. Cubic equations of state are a specific class of thermodynamic models for modeling the pressure of a gas as a function of temperature and density and which can be rewritten as a cubic function of the molar volume. In general, the general cubic equation of state has a number of degrees of freedom equal to 2 + the number of components in the system (total flow rate, temperature, pressure and N-1 mole fractions). In some cases (primarily inlets to units), this is increased by 1 due to the removal of a constraint on the sum of mole fractions.
+	
+	Equations of state are generally applied in the fields of physical chemistry and chemical engineering, particularly in the modeling of vapor–liquid equilibrium and chemical engineering process design. Following the work of \citet{Poling2001}, the general cubic equation of state is represented by the following equations:
+	
+	{\footnotesize
+	\begin{equation} \label{EQ: General_Qubic}
+		P = \frac{RT}{v_m-b} - \frac{\Theta \left( v_m - \eta \right)}{\left( v_m - b \right) \left(v_m^2 + \delta v_m + \epsilon \right) }
+	\end{equation}
+	}
+	
+	where, depending upon the model, the parameters $\Theta,~b,~\delta,~\epsilon$ may be constants, including zero, or they may vary with $T$ and / or composition. Thus, the distinctions among cubic EoS models for pure components are which of the parameters in Equation \ref{EQ: General_Qubic} are nonzero and how they are made to vary with $T$. A common notation for EOS is to use $\Theta(T)=a\alpha(T)$, where $\alpha(T_c) = 1$. Tables \ref{tab:Popular_Cubic_EoS} and \ref{tab:Popular_Cubic_EoS_alpha} give relations among the Equation \ref{EQ: General_Qubic} parameters for several common cubic EoS.
+	
+	\begin{table}[h!]
+		\centering
+		\adjustbox{width=\columnwidth}{%
+			\begin{tabular}{|c| c c c|} 
+				\hline
+				Eos & $\delta$ & $\epsilon$ & $\theta$ \\
+				\hline
+				van der Waals (1890) & 0 & 0 & a \\
+				Redlich and Kwong (1949) & b & 0 & $a / T^{0.5}$ \\
+				Peng and Robinson (1976) \cite{Peng1976} & 2b & $-b^2$ & $a\alpha(T_r) $ \\
+				\hline
+		\end{tabular} }
+		\caption{Parameters for Popular Cubic EoS}
+		\label{tab:Popular_Cubic_EoS}
+	\end{table}
+	
+	\begin{table}[h!]
+		\centering
+		\adjustbox{width=\columnwidth}{%
+			\begin{tabular}{|c| c|} 
+				\hline
+				Eos & $\alpha(T_r)$ \\
+				\hline
+				van der Waals (1890) & 1 \\
+				Redlich and Kwong (1949) & $1/\sqrt{T_r}$ \\
+				Peng and Robinson (1976) \cite{Peng1976} & $[1+(0.37464 + 1.54226 \omega - 0.2699\omega^2)(1-\sqrt{T_r})]^2$ \\
+				\hline
+		\end{tabular} }
+		\caption{Parameters for Popular Cubic EoS}
+		\label{tab:Popular_Cubic_EoS_alpha}
+	\end{table}
+	
+	Equation \ref{EQ: General_Qubic} can be written to obtain the compressibility as given by Equation \ref{EQ:Comp_EOS}.
+	
+	{\footnotesize
+	\begin{equation} \label{EQ:Comp_EOS}
+		Z = \frac{v_m}{v_m-b} - \frac{\left( \Theta /RT \right) v_m \left( v_m - \eta \right) }{\left( v_m - b \right) \left(v_m^2 + \delta v_m + \epsilon \right)}
+	\end{equation}
+	}
+	
+	When it is rewritten as the form to be solved when T and P are specified and Z is to be found analytically, it is
+	
+\end{document}

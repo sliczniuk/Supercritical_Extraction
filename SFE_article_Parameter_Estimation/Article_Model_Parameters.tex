@@ -15,7 +15,9 @@
 % Packages
 % --------------------------------------------------------------------
 % Figure packages
-\usepackage{graphicx,float}
+\usepackage{graphicx}
+\usepackage{float}
+\restylefloat{table}
 \usepackage{adjustbox}
 % Text, input, formatting, and language-related packages
 \usepackage[T1]{fontenc}
@@ -110,7 +112,7 @@
 %Given a system of partial differential equations, $F(t,x,\dot{x},p,u)=0$, where $x$ represents state variables, $p$ is the parameters, and $u$ are control variables, the process model is simultaneously solved for both $x_i$ and a set of sensitivity functions, $dx_i/dp_j$, overall times $t$.These sensitivity functions measure the influence of the parameter change on the model's output. As an example, the supercritical extraction process is presented. The impact of mass flow rate, pressure, and inlet temperature on the model's output is discussed. The sensitivity analysis results prove that the considered variables can affect the extraction's yield and be used as control variables in optimization problems. Moreover, the local sensitivity analysis results are analyzed from a phenomenological point of view to enhance understanding of the process model.
 %Given a system of partial differential equations, $F(t,x,\dot{x},\Theta,u)=0$, where $x$ represents state variables, $\Theta$ are the parameters, and $u$ are control variables, we describe the supercritical extraction process. The process model describes a partially filled extractor with a fixed bed, which work under constant operating conditions. We assume that the flow is uniform across any cross-section, although the area available for the fluid phase can change along the extractor. We apply the concept of quasi-one-dimensional flow to mimic the modelling of a two-dimensional case.
 %In this work, a distributed-parameter model, based on \citet{Reverchon1996} is used to describe a fluid-solid extraction process of caraway oil from caraway seeds with $CO_2$ as a solvent. The model parameters such as partition factor, internal diffusion coefficient, axial diffusion coefficient \textit{and saturation concentration} are obtained from parameter estimation. The parameters are estimated based on four experiments performed at $40^\circ C$/$200$ bar, $50^\circ C$/$200$ bar, $40^\circ C$/$300$ bar and $50^\circ C$/$300$ bar. Given yield data, the model-based parameter estimation uses the maximum likelihood estimation method under assumption of normal error.
-This study aimed to investigate the supercritical extraction process of the caraway oil from caraway seeds. A distributed-parameter model is used to describe the fluid-solid extraction process with carbon dioxide as a solvent. The concept of quasi-one-dimensional flow is applied to reduce the number of spatial dimensions. The flow is assumed to be uniform across any cross-section, although the area available for the fluid phase can vary along the extractor. This model requires parameters such as partition factor, internal diffusion coefficient, axial diffusion coefficient, and an initial state estimate. The physical properties of the solvent are estimated from the Peng-Robinson equation of state. The missing parameters which describe the extraction kinetic are obtained by solving the maximum likelihood estimation on experimental yield data under the normal error assumption. A set of laboratory experiments was performed in a partially filled extractor with a fixed bed operated under multiple constant operating conditions: $40~^\circ C$ / $200$ bar, $50~^\circ C$ / $200$ bar, $40~^\circ C$ / $300$ bar, and $50~^\circ C$ / $300$ bar. 
+This study aimed to investigate the supercritical extraction process of the caraway oil from caraway seeds. A distributed-parameter model is used to describe the fluid-solid extraction process with carbon dioxide as a solvent. The concept of quasi-one-dimensional flow is applied to reduce the number of spatial dimensions. The flow is assumed to be uniform across any cross-section, although the area available for the fluid phase can vary along the extractor. The physical properties of the solvent are estimated from the Peng-Robinson equation of state. This model requires parameters such as partition factor, internal diffusion coefficient, axial diffusion coefficient, and an initial state estimate. The missing model parameters are obtained by solving the maximum likelihood estimation based on experimental yield data under the normal error assumption. A set of laboratory experiments was performed in a partially filled extractor with a fixed bed operated under multiple constant operating conditions: $40~^\circ C$ / $200$ bar, $50~^\circ C$ / $200$ bar, $40~^\circ C$ / $300$ bar, and $50~^\circ C$ / $300$ bar. 
 
 \end{abstract}
 
@@ -244,6 +246,7 @@ This study presented basic aspects regarding the laboratory work for obtaining c
 \clearpage \appendix \label{appendix}
 \section{Appendix} 
 \subsection{Thermodynamic}
+\subfile{Sections/Qubic_EOS}
 \subfile{Sections/Thermodynamic_details}
 
 \subsection{Governing equations}
