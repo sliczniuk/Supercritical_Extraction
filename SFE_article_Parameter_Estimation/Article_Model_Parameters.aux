@@ -2,10 +2,13 @@
 \providecommand\hyper@newdestlabel[2]{}
 \providecommand\HyperFirstAtBeginDocument{\AtBeginDocument}
 \HyperFirstAtBeginDocument{\ifx\hyper@anchor\@undefined
+\global\let\oldcontentsline\contentsline
+\gdef\contentsline#1#2#3#4{\oldcontentsline{#1}{#2}{#3}}
 \global\let\oldnewlabel\newlabel
 \gdef\newlabel#1#2{\newlabelxx{#1}#2}
 \gdef\newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
 \AtEndDocument{\ifx\hyper@anchor\@undefined
+\let\contentsline\oldcontentsline
 \let\newlabel\oldnewlabel
 \fi}
 \fi}
@@ -181,90 +184,91 @@
 \bibcite{Shojaie2010}{{22}{2010}{{Shojaie et~al.}}{{Shojaie, A.~Shirazi, Kargari, and Shirazi}}}
 \bibcite{ReisVasco2000}{{23}{2000}{{Reis-Vasco et~al.}}{{Reis-Vasco, Coelho, Palavra, Marrone, and Reverchon}}}
 \bibcite{Chung1968}{{24}{1968}{{Chung and Wen}}{{}}}
-\bibcite{Poling2001}{{25}{2001}{{Poling}}{{}}}
-\bibcite{Peng1976}{{26}{1976}{{Peng and Robinson}}{{}}}
-\bibcite{Pratt2001}{{27}{2001}{{Pratt}}{{}}}
-\bibcite{Kyle1999}{{28}{1999}{{Kyle}}{{}}}
+\bibcite{Peng1976}{{25}{1976}{{Peng and Robinson}}{{}}}
+\bibcite{Pratt2001}{{26}{2001}{{Pratt}}{{}}}
+\bibcite{Kyle1999}{{27}{1999}{{Kyle}}{{}}}
 \citation{Peng1976}
 \citation{Peng1976}
 \citation{Peng1976}
 \citation{Pratt2001}
+\citation{Kyle1999}
 \newlabel{appendix}{{4}{13}{Conclusions}{section*.7}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {A}Appendix}{13}{appendix.A}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {A.1}Thermodynamic}{13}{subsection.A.1}\protected@file@percent }
 \newlabel{CH: Thermodynamic_details}{{A.1}{13}{Thermodynamic}{subsection.A.1}{}}
-\newlabel{subsubsec: Equation of state}{{A.1}{13}{Thermodynamic}{subsection.A.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {A.1.1}Equation of state and properties of the fluid phase}{13}{subsubsection.A.1.1}\protected@file@percent }
+\newlabel{subsubsec: Equation of state}{{A.1.1}{13}{Equation of state and properties of the fluid phase}{subsubsection.A.1.1}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Parameters for Popular Cubic EoS\relax }}{13}{table.3}\protected@file@percent }
 \newlabel{tab:Popular_Cubic_EoS}{{3}{13}{Parameters for Popular Cubic EoS\relax }{table.3}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Parameters for Popular Cubic EoS\relax }}{13}{table.4}\protected@file@percent }
 \newlabel{tab:Popular_Cubic_EoS_alpha}{{4}{13}{Parameters for Popular Cubic EoS\relax }{table.4}{}}
-\newlabel{EQ:Compressibility_Polynomial}{{34}{13}{Thermodynamic}{equation.A.34}{}}
-\newlabel{EQ:Peng_Robinson_Polynomial}{{35}{13}{Thermodynamic}{equation.A.35}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {A.1.1}Density of the fluid phase}{13}{subsubsection.A.1.1}\protected@file@percent }
-\newlabel{subsubsec: Fluid density}{{A.1.1}{13}{Density of the fluid phase}{subsubsection.A.1.1}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {A.1.2}Heat capacity of the fluid phase}{13}{subsubsection.A.1.2}\protected@file@percent }
-\newlabel{subsubsec: Fluid heat capacity}{{A.1.2}{13}{Heat capacity of the fluid phase}{subsubsection.A.1.2}{}}
-\newlabel{eq: Cv_CO2}{{36a}{13}{Heat capacity of the fluid phase}{equation.A.36a}{}}
-\newlabel{eq: Cp_CO2}{{36b}{13}{Heat capacity of the fluid phase}{equation.A.36b}{}}
+\newlabel{EQ:Compressibility_Polynomial}{{34}{13}{Equation of state and properties of the fluid phase}{equation.A.34}{}}
+\newlabel{EQ:Peng_Robinson_Polynomial}{{35}{13}{Equation of state and properties of the fluid phase}{equation.A.35}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {A.1.2}Density of the fluid phase}{13}{subsubsection.A.1.2}\protected@file@percent }
+\newlabel{subsubsec: Fluid density}{{A.1.2}{13}{Density of the fluid phase}{subsubsection.A.1.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {A.1.3}Heat capacity of the fluid phase}{13}{subsubsection.A.1.3}\protected@file@percent }
+\newlabel{subsubsec: Fluid heat capacity}{{A.1.3}{13}{Heat capacity of the fluid phase}{subsubsection.A.1.3}{}}
 \citation{Kyle1999}
 \citation{Gmehling2019}
 \citation{Elliott2011}
 \citation{Anderson1995}
-\newlabel{eq: Cp_I}{{37}{14}{Heat capacity of the fluid phase}{equation.A.37}{}}
-\newlabel{eq: Cp_R}{{38}{14}{Heat capacity of the fluid phase}{equation.A.38}{}}
-\newlabel{eq: dVdT}{{39}{14}{Heat capacity of the fluid phase}{equation.A.39}{}}
-\newlabel{eq: dZdT}{{40}{14}{Heat capacity of the fluid phase}{equation.A.40}{}}
-\newlabel{eq: dPdT}{{41}{14}{Heat capacity of the fluid phase}{equation.A.41}{}}
-\newlabel{eq: CvR}{{42}{14}{Heat capacity of the fluid phase}{equation.A.42}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {A.1.3}Departure functions for enthalpy calculations}{14}{subsubsection.A.1.3}\protected@file@percent }
-\newlabel{CH:Enthalpy}{{A.1.3}{14}{Departure functions for enthalpy calculations}{subsubsection.A.1.3}{}}
+\newlabel{eq: Cv_CO2}{{38a}{14}{Heat capacity of the fluid phase}{equation.A.38a}{}}
+\newlabel{eq: Cp_CO2}{{38b}{14}{Heat capacity of the fluid phase}{equation.A.38b}{}}
+\newlabel{eq: Cp_I}{{39}{14}{Heat capacity of the fluid phase}{equation.A.39}{}}
+\newlabel{eq: Cp_R}{{40}{14}{Heat capacity of the fluid phase}{equation.A.40}{}}
+\newlabel{eq: dVdT}{{41}{14}{Heat capacity of the fluid phase}{equation.A.41}{}}
+\newlabel{eq: dZdT}{{42}{14}{Heat capacity of the fluid phase}{equation.A.42}{}}
+\newlabel{eq: dPdT}{{43}{14}{Heat capacity of the fluid phase}{equation.A.43}{}}
+\newlabel{eq: CvR}{{44}{14}{Heat capacity of the fluid phase}{equation.A.44}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {A.1.4}Departure functions for enthalpy calculations}{14}{subsubsection.A.1.4}\protected@file@percent }
+\newlabel{CH:Enthalpy}{{A.1.4}{14}{Departure functions for enthalpy calculations}{subsubsection.A.1.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {A.2}Governing equations}{14}{subsection.A.2}\protected@file@percent }
 \newlabel{CH: Gouverning equations}{{A.2}{14}{Governing equations}{subsection.A.2}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {A.2.1}Mass continuity}{14}{subsubsection.A.2.1}\protected@file@percent }
-\newlabel{EQ: Continuity_integral_general}{{45}{14}{Mass continuity}{equation.A.45}{}}
+\newlabel{EQ: Continuity_integral_general}{{47}{15}{Mass continuity}{equation.A.47}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Control volume for deriving the partial differential equation for unsteady, quasi-one-dimensional flow\relax }}{15}{figure.caption.8}\protected@file@percent }
 \newlabel{fig: control_volume}{{7}{15}{Control volume for deriving the partial differential equation for unsteady, quasi-one-dimensional flow\relax }{figure.caption.8}{}}
-\newlabel{EQ: Cont_Simpl_Vol}{{46}{15}{Mass continuity}{equation.A.46}{}}
-\newlabel{EQ: Triple_Prod_Cont_Surf}{{48}{15}{Mass continuity}{equation.A.48}{}}
-\newlabel{EQ: Cont_Simpl_Surf}{{49}{15}{Mass continuity}{equation.A.49}{}}
-\newlabel{EQ: Conservative_continuity}{{50}{15}{Mass continuity}{equation.A.50}{}}
-\newlabel{EQ: Mass_Continuity}{{53}{15}{Mass continuity}{equation.A.53}{}}
+\newlabel{EQ: Cont_Simpl_Vol}{{48}{15}{Mass continuity}{equation.A.48}{}}
+\newlabel{EQ: Triple_Prod_Cont_Surf}{{50}{15}{Mass continuity}{equation.A.50}{}}
+\newlabel{EQ: Cont_Simpl_Surf}{{51}{15}{Mass continuity}{equation.A.51}{}}
+\newlabel{EQ: Conservative_continuity}{{52}{15}{Mass continuity}{equation.A.52}{}}
+\newlabel{EQ: Mass_Continuity}{{55}{15}{Mass continuity}{equation.A.55}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {A.2.2}Transport of a species}{15}{subsubsection.A.2.2}\protected@file@percent }
-\newlabel{EQ: Integral_Mass_Species_general}{{54}{15}{Transport of a species}{equation.A.54}{}}
+\newlabel{EQ: Integral_Mass_Species_general}{{56}{15}{Transport of a species}{equation.A.56}{}}
 \citation{Reverchon1996}
-\newlabel{EQ: Simplified_Species_Conservation}{{62}{16}{Transport of a species}{equation.A.62}{}}
+\newlabel{EQ: Simplified_Species_Conservation}{{64}{16}{Transport of a species}{equation.A.64}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {A.2.3}Momentum conservation}{16}{subsubsection.A.2.3}\protected@file@percent }
-\newlabel{EQ: Momentum_Integral_Form}{{63}{16}{Momentum conservation}{equation.A.63}{}}
-\newlabel{EQ: Force_Continuity_Monenmtum}{{64}{16}{Momentum conservation}{equation.A.64}{}}
+\newlabel{EQ: Momentum_Integral_Form}{{65}{16}{Momentum conservation}{equation.A.65}{}}
+\newlabel{EQ: Force_Continuity_Monenmtum}{{66}{16}{Momentum conservation}{equation.A.66}{}}
+\newlabel{EQ: Force_Integral_Varying_Cross_Section}{{68}{16}{Momentum conservation}{equation.A.68}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces The forces in the $z$ direction acting on the control volume\relax }}{16}{figure.caption.9}\protected@file@percent }
 \newlabel{fig: Forces_Momentum_Control_Volume}{{8}{16}{The forces in the $z$ direction acting on the control volume\relax }{figure.caption.9}{}}
-\newlabel{EQ: Force_Integral_Varying_Cross_Section}{{66}{16}{Momentum conservation}{equation.A.66}{}}
-\newlabel{EQ: Conservative_Momentum}{{69}{16}{Momentum conservation}{equation.A.69}{}}
-\newlabel{EQ: Non-conservative_Momentum}{{75}{16}{Momentum conservation}{equation.A.75}{}}
+\newlabel{EQ: Conservative_Momentum}{{71}{16}{Momentum conservation}{equation.A.71}{}}
 \citation{Gmehling2019}
-\newlabel{EQ: Non-conservative_Momentum_Const_Porosity}{{79}{17}{Momentum conservation}{equation.A.79}{}}
+\newlabel{EQ: Non-conservative_Momentum}{{77}{17}{Momentum conservation}{equation.A.77}{}}
+\newlabel{EQ: Non-conservative_Momentum_Const_Porosity}{{81}{17}{Momentum conservation}{equation.A.81}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {A.2.4}Energy conservation}{17}{subsubsection.A.2.4}\protected@file@percent }
-\newlabel{EQ: Energy_equation_integral}{{80}{17}{Energy conservation}{equation.A.80}{}}
-\newlabel{EQ: Energy_equation_conservative_total}{{84}{17}{Energy conservation}{equation.A.84}{}}
-\newlabel{EQ: Energy_conservative_internal}{{85}{17}{Energy conservation}{equation.A.85}{}}
-\newlabel{EQ: Energy_equation_nonconservative}{{88}{17}{Energy conservation}{equation.A.88}{}}
+\newlabel{EQ: Energy_equation_integral}{{82}{17}{Energy conservation}{equation.A.82}{}}
+\newlabel{EQ: Energy_equation_conservative_total}{{86}{17}{Energy conservation}{equation.A.86}{}}
+\newlabel{EQ: Energy_conservative_internal}{{87}{17}{Energy conservation}{equation.A.87}{}}
+\newlabel{EQ: Energy_equation_nonconservative}{{90}{17}{Energy conservation}{equation.A.90}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {A.3}Cardano's Formula}{17}{subsection.A.3}\protected@file@percent }
 \newlabel{CH: Cardano}{{A.3}{17}{Cardano's Formula}{subsection.A.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {A.4}Initial and boundary conditions}{18}{subsection.A.4}\protected@file@percent }
 \newlabel{CH: IC_BC}{{A.4}{18}{Initial and boundary conditions}{subsection.A.4}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces The linear distribution of the solute concentration in the fluid phase\relax }}{18}{figure.caption.10}\protected@file@percent }
 \newlabel{fig: C_f_linear}{{9}{18}{The linear distribution of the solute concentration in the fluid phase\relax }{figure.caption.10}{}}
-\newlabel{EQ: C_f_linear_int}{{97}{18}{Initial and boundary conditions}{equation.A.97}{}}
-\newlabel{EQ: C_f_linear_after_int}{{98}{18}{Initial and boundary conditions}{equation.A.98}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.5}Maximum likelihood}{18}{subsection.A.5}\protected@file@percent }
-\newlabel{CH: ML}{{A.5}{18}{Maximum likelihood}{subsection.A.5}{}}
-\newlabel{EQ: Posterior_distribution}{{101}{19}{Maximum likelihood}{equation.A.101}{}}
-\newlabel{EQ: MLE_Norm}{{109}{19}{Maximum likelihood}{equation.A.109}{}}
+\newlabel{EQ: C_f_linear_int}{{99}{18}{Initial and boundary conditions}{equation.A.99}{}}
+\newlabel{EQ: C_f_linear_after_int}{{100}{18}{Initial and boundary conditions}{equation.A.100}{}}
+\csxdef{lastpage}{19}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.5}Maximum likelihood}{19}{subsection.A.5}\protected@file@percent }
+\newlabel{CH: ML}{{A.5}{19}{Maximum likelihood}{subsection.A.5}{}}
+\newlabel{EQ: Posterior_distribution}{{103}{19}{Maximum likelihood}{equation.A.103}{}}
+\newlabel{EQ: MLE_Norm}{{111}{19}{Maximum likelihood}{equation.A.111}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {A.6}Solid density measurement}{19}{subsection.A.6}\protected@file@percent }
 \newlabel{CH: Solid_Density_Measurment}{{A.6}{19}{Solid density measurement}{subsection.A.6}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces The result of solid density measurement\relax }}{19}{figure.caption.11}\protected@file@percent }
-\newlabel{fig:density_cal}{{10}{19}{The result of solid density measurement\relax }{figure.caption.11}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {A.7}Porosity calculations}{19}{subsection.A.7}\protected@file@percent }
 \newlabel{CH: Porosity}{{A.7}{19}{Porosity calculations}{subsection.A.7}{}}
-\csxdef{lastpage}{20}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces The result of solid density measurement\relax }}{20}{figure.caption.11}\protected@file@percent }
+\newlabel{fig:density_cal}{{10}{20}{The result of solid density measurement\relax }{figure.caption.11}{}}
 \gdef \@abspage@last{20}

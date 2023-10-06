@@ -4,11 +4,9 @@
 	
 	\label{CH: Thermodynamic_details}
 	
-	subsubsection{Equation of state and properties of the fluid phase} \label{subsubsec: Equation of state}
+	\subsubsection{Equation of state and properties of the fluid phase} \label{subsubsec: Equation of state}
 	
-	A cubic equation of state is a mathematical model used in the field of thermodynamics and fluid dynamics to describe the behavior of real gases and liquids. It is named "cubic" because it is characterized by a third-degree polynomial equation that relates the pressure, volume, and temperature of a substance. These equations are essential tools for understanding the phase behavior, properties, and thermodynamic processes of real substances, making them invaluable in various engineering and scientific applications. The cubic equation of state accounts for the deviations from ideal gas behavior, which is particularly important at high pressures and low temperatures, where real gases show significant departures from ideal behavior.
-	
-	The general cubic equation of state is typically written in the following form:
+	A cubic equation of state serves as a mathematical model utilized in thermodynamics and fluid dynamics to depict the behavior of real gases and liquids. Its name, "cubic," from its characteristic feature—a third-degree polynomial equation that correlates the pressure, volume, and temperature of a substance. These equations constitute tools for comprehending the phase behavior, properties, and thermodynamic processes of actual substances, across various engineering and scientific applications. The cubic equation of state take into account deviations from ideal gas behavior, which are particularly important at high pressures and low temperatures, where real gases do not follow assumption of ideal gas.
 	
 	{\footnotesize
 	\begin{equation}
@@ -16,10 +14,9 @@
 	\end{equation}
 	}
 	
+	In this equation, P denotes the pressure of the substance, $v_m$ represents the molar volume (volume per mole) of the substance, T stands for the absolute temperature of the substance, u and w are integers that vary from one equation to another, R symbolizes the universal gas constant, and a and b serve as substance-specific parameters known as Van der Waals constants. Additionally, $\omega$ denotes an acentric factor.
 	
-	Where P is the pressure of the substance, $v_m$ is the molar volume (volume per mole) of the substance, T is the absolute temperature of the substance., u and w are integers that differ rom an equation to another, R is the universal gas constant, a and b are substance-specific parameters known as the Van der Waals constants and $\omega$ is an acentric factor.
-	
-	The Van der Waals constants, a and b, are empirical values that depend on the specific substance being modeled. These constants account for the molecular interactions (attractive forces represented by a) and the finite size of gas molecules (excluded volume represented by b). For different substances, a and b will have different values based on experimental data. 
+	The Van der Waals constants, a and b, constitute empirical values contingent upon the particular substance being modeled. These constants factor in molecular interactions (represented by 'a') and the finite size of gas molecules (indicated by 'b'). Different substances will possess distinct values for 'a' and 'b' based on experimental data.
 	
 	Several variations of the cubic equation of state exist, including the Van der Waals equation and the Redlich-Kwong equation, each with its own set of parameters and assumptions. Tables \ref{tab:Popular_Cubic_EoS} show parameters for popular cubic EoS.
 	
@@ -57,7 +54,7 @@
 		\label{tab:Popular_Cubic_EoS_alpha}
 	\end{table}
 	
-	The general cubic equation of state can be written in polynomial as presented by Equation \ref{EQ:Compressibility_Polynomial}. In a one-phase region, the fluid is described by one real root corresponding to the gas, liquid or supercritical phase. The gas-liquid mixture is present in the two-phase region, and two roots are found. The biggest root is assigned to the gas phase, and the smallest root corresponds to the liquid phase.
+	The general cubic equation of state can be represented as a polynomial, as indicated in Equation \ref{EQ:Compressibility_Polynomial}. In a one-phase region, the fluid is characterized by a single real root, corresponding to the gas, liquid, or supercritical phase. In the two-phase region, a gas-liquid mixture exists, and two roots are identified. The larger root corresponds to the gas phase, while the smaller root pertains to the liquid phase.
 	
 	{\footnotesize
 		\begin{equation}
@@ -67,7 +64,7 @@
 
 	where $A=\frac{a\alpha P}{R^2T^2}$ and $B=\frac{bP}{RT}$.
 	
-	If the Peng-Robinson equation of state \citet{Peng1976} is used, the polynomial equation becomes
+	If the Peng-Robinson equation of state [\cite{Peng1976}] is used, the polynomial equation becomes
 	
 	{\footnotesize
 	\begin{equation}
@@ -75,7 +72,7 @@
 		Z^3 - (1-B)Z^2+(A-2B-3B^2)Z -(AB-B^2-B^3) = 0
 	\end{equation} }
 	
-	For an ideal gas the compressibility factor is $Z = 1$ per definition. In many real world applications requirements for accuracy demand that deviations from ideal gas behaviour, i.e., real gas behaviour, be taken into account. The value of $Z$ generally increases with pressure and decreases with temperature. At high pressures molecules are colliding more often. This allows repulsive forces between molecules to have a noticeable effect, making the molar volume of the real gas ($v_m$) greater than the molar volume of the corresponding ideal gas $\left( \left(v_m\right)_{ideal~gas} = \frac{RT}{P} \right)$, which causes Z to exceed one. When pressures are lower, the molecules are free to move. In this case attractive forces dominate, making Z < 1. The closer the gas is to its critical point or its boiling point, the more Z deviates from the ideal case. 
+	For an ideal gas, the compressibility factor is defined as $Z = 1$. In many real-world applications, deviations from ideal gas behavior, needs to be taken into account to have a precise model describing a physical phenomena. The value of $Z$ typically increases with pressure and decreases with temperature. At elevated pressures, molecules collide more frequently, allowing repulsive forces between molecules to influence the molar volume of the real gas ($v_m$) to surpass that of the corresponding ideal gas $\left( \left(v_m\right)_{ideal~gas} = \frac{RT}{P} \right)$, resulting in $Z$ exceeding one. Analogously, at lower pressures, molecules move freely, with attractive forces predominating, leading to $Z < 1$.
 	
 	Numerical methods such as Newton-Raphson can be used to solve the polynomial equation to obtain the compressibility ${\color{black}Z}\left({\color{black}T}(t,z), {\color{black}P}(t)\right)$ at given temperature and pressure. Alternatively, the Cardano formula can be used to get the closed form solution of the Equation \ref{EQ:Compressibility_Polynomial}. Further details regarding the Cardano formula can be found in Appendix \ref{CH: Cardano}.
 	
@@ -86,8 +83,21 @@
 	\subsubsection{Heat capacity of the fluid phase} \label{subsubsec: Fluid heat capacity}
 	%	\noindent\textbf{Heat capacity of the fluid phase} \\
 	
-	%The specific heat $C_p^{\text{F}}$ can be calculated from the equation of state, again under the assumption that the fluid phase consists of pure carbon dioxide and that the specific heat of real fluids can be calculated from an ideal contribution plus a residual term \citet{Pratt2001}. The main steps in the derivation of ${\color{black}C_p}\left({\color{black}T}(t,z), {\color{black}P}(t)\right)$ are presented below: 
-	Following the work of \citet{Pratt2001}, it is assumed that the specific heat can be obtained as a sum of ideal gas contribution and a residual correction for non-ideal behaviour, as given by Equations \ref{eq: Cv_CO2} and \ref{eq: Cp_CO2}.
+	The specific heat $C_p^{\text{F}}$ can be calculated from the equation of state,  under the assumption that the fluid phase consists of pure carbon dioxide and that the specific heat of real fluids can be calculated from an ideal contribution plus a residual term \citet{Pratt2001}: 
+	
+	{\footnotesize
+	\begin{align}
+		C_v &= C_v^{id} + C_v^R \\
+		C_p &= C_p^{id} + C_p^R
+	\end{align}}
+		
+	The ideal-gas contribution is found using heat-capacity data applicable to gases at very low pressures, which are available in many thermodynamics textbooks in the polynomial form, such as $C_p^{id}(T) = A + BT + CT^2 + DT^3$.
+	
+	where the coefficients of the expansion are ${\color{black}C_{P0}} = 22.26$, ${\color{black}C_{P1}} = 5.981 \times 10^{-2}$, ${\color{black}C_{P2}} = -3.501 \times 10^{-5}$, and ${\color{black}C_{P3}} = 7.469 \times 10^{-9}$, as given by \citet{Kyle1999}.
+	
+	To calculate the residual contribution, we use the standard equation found in many textbooksr4•6 l for the residual internal energy derived from the Peng-Robinson equation of state 
+	
+	%Following the work of \citet{Pratt2001}, it is assumed that the specific heat can be obtained as a sum of ideal gas contribution and a residual correction for non-ideal behaviour, as given by Equations \ref{eq: Cv_CO2} and \ref{eq: Cp_CO2}.
 	
 	{\footnotesize
 		\begin{subequations}\begin{align}

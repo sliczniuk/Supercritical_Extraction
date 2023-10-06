@@ -1,4 +1,4 @@
-\begin{thebibliography}{28}
+\begin{thebibliography}{27}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -182,12 +182,6 @@ S.~F. Chung and C.~Y. Wen.
   beds.
 \newblock \emph{{AIChE} Journal}, 14\penalty0 (6):\penalty0 857--866, nov 1968.
 \newblock \doi{10.1002/aic.690140608}.
-
-\bibitem[Poling(2001)]{Poling2001}
-Bruce~E. Poling.
-\newblock \emph{The properties of gases and liquids}.
-\newblock McGraw-Hill, 2001.
-\newblock ISBN 0070116822.
 
 \bibitem[Peng and Robinson(1976)]{Peng1976}
 Ding-Yu Peng and Donald~B. Robinson.
