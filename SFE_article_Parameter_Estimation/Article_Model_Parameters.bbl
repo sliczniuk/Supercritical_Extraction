@@ -1,4 +1,4 @@
-\begin{thebibliography}{27}
+\begin{thebibliography}{28}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -203,5 +203,11 @@ B.~G. Kyle.
 \newblock \emph{Chemical and process thermodynamics}.
 \newblock Prentice Hall PTR, 1999.
 \newblock ISBN 0130874116.
+
+\bibitem[Poling(2001)]{Poling2001}
+Bruce~E. Poling.
+\newblock \emph{The properties of gases and liquids}.
+\newblock McGraw-Hill, 2001.
+\newblock ISBN 0070116822.
 
 \end{thebibliography}
