@@ -6,19 +6,19 @@
 	
 	\subsubsection{Equation of state and properties of the fluid phase} \label{subsubsec: Equation of state}
 	
-	A cubic equation of state serves as a mathematical model utilized in thermodynamics and fluid dynamics to depict the behavior of real gases and liquids. Its name, "cubic," from its characteristic feature—a third-degree polynomial equation that correlates the pressure, volume, and temperature of a substance. These equations constitute tools for comprehending the phase behavior, properties, and thermodynamic processes of actual substances, across various engineering and scientific applications. The cubic equation of state take into account deviations from ideal gas behavior, which are particularly important at high pressures and low temperatures, where real gases do not follow assumption of ideal gas.
+	A cubic equation of state serves as a mathematical model to describe the behavior of real gases and liquids through a third-degree polynomial equation that correlates the pressure, volume, and temperature of a substance. These equations constitute tools for comprehending the phase behavior, properties, and thermodynamic processes of actual substances, across various engineering and scientific applications. The cubic equation of state take into account deviations from ideal gas behavior, which are particularly important at high pressures and low temperatures, where real gases do not follow assumption of ideal gas.
 	
 	{\footnotesize
 	\begin{equation}
-		P = \frac{RT}{v_m-b} - \frac{a\alpha}{v_m^2 - ubv_m + wb^2}
+		P = \frac{RT}{v_m-b} - \frac{\Phi}{v_m^2 - ubv_m + wb^2}
 	\end{equation}
 	}
 	
-	In this equation, P denotes the pressure of the substance, $v_m$ represents the molar volume (volume per mole) of the substance, T stands for the absolute temperature of the substance, u and w are integers that vary from one equation to another, R symbolizes the universal gas constant, and a and b serve as substance-specific parameters known as Van der Waals constants. Additionally, $\omega$ denotes an acentric factor.
+	In this equation, P denotes the pressure of the substance, $v_m$ represents the molar volume of the substance, T stands for the absolute temperature of the substance, u and w are integers that vary from one equation to another, R symbolizes the universal gas constant, and a and b serve as substance-specific parameters known as Van der Waals constants. $\omega$ denotes an acentric factor and $\Phi=a\alpha$.
 	
-	The Van der Waals constants, a and b, constitute empirical values contingent upon the particular substance being modeled. These constants factor in molecular interactions (represented by 'a') and the finite size of gas molecules (indicated by 'b'). Different substances will possess distinct values for 'a' and 'b' based on experimental data.
+	The Van der Waals constants, a and b, constitute empirical values contingent upon the particular substance being modeled. These constants factor in molecular interactions (represented by 'a') and the finite size of gas molecules (indicated by 'b'). 
 	
-	Several variations of the cubic equation of state exist, including the Van der Waals equation and the Redlich-Kwong equation, each with its own set of parameters and assumptions. Tables \ref{tab:Popular_Cubic_EoS} show parameters for popular cubic EoS.
+	Several variations of the cubic equation of state exist each with its own set of parameters and assumptions. Tables \ref{tab:Popular_Cubic_EoS} show parameters for popular cubic EoS.
 	
 	\begin{table}[h!]
 		\centering
@@ -62,7 +62,7 @@
 			Z^3 - (1+B-uB)Z^2+(A+wB^2-uB-uB^2)Z - AB - wB^2 - wB^3 = 0
 	\end{equation} }
 
-	where $A=\frac{a\alpha P}{R^2T^2}$ and $B=\frac{bP}{RT}$.
+	where $A=\frac{\Phi P}{R^2T^2}$ and $B=\frac{bP}{RT}$.
 	
 	If the Peng-Robinson equation of state [\cite{Peng1976}] is used, the polynomial equation becomes
 	
@@ -72,9 +72,9 @@
 		Z^3 - (1-B)Z^2+(A-2B-3B^2)Z -(AB-B^2-B^3) = 0
 	\end{equation} }
 	
-	For an ideal gas, the compressibility factor is defined as $Z = 1$. In many real-world applications, deviations from ideal gas behavior, needs to be taken into account to have a precise model describing a physical phenomena. The value of $Z$ typically increases with pressure and decreases with temperature. At elevated pressures, molecules collide more frequently, allowing repulsive forces between molecules to influence the molar volume of the real gas ($v_m$) to surpass that of the corresponding ideal gas $\left( \left(v_m\right)_{ideal~gas} = \frac{RT}{P} \right)$, resulting in $Z$ exceeding one. Analogously, at lower pressures, molecules move freely, with attractive forces predominating, leading to $Z < 1$.
+	For an ideal gas, the compressibility factor is defined as $Z = 1$, but to describe real-life physical phenomena, the deviation of Z needs to be consider. The value of $Z$ typically increases with pressure and decreases with temperature. At elevated pressures, molecules collide more frequently, allowing repulsive forces between molecules to influence the molar volume of the real gas ($v_m$) to surpass that of the corresponding ideal gas $\left( \left(v_m\right)_{ideal~gas} = \frac{RT}{P} \right)$, resulting in $Z$ exceeding one. At lower pressures, molecules move freely, with attractive forces predominating, leading to $Z < 1$.
 	
-	Numerical methods such as Newton-Raphson can be used to solve the polynomial equation to obtain the compressibility ${\color{black}Z}\left({\color{black}T}(t,z), {\color{black}P}(t)\right)$ at given temperature and pressure. Alternatively, the Cardano formula can be used to get the closed form solution of the Equation \ref{EQ:Compressibility_Polynomial}. Further details regarding the Cardano formula can be found in Appendix \ref{CH: Cardano}.
+	Numerical methods such as Newton-Raphson can be used to solve the polynomial equation to obtain the compressibility ${\color{black}Z}\left({\color{black}T}(t,z), {\color{black}P}(t)\right)$ at given temperature and pressure. Alternatively, the closed form solution can by obtained by Cardano formula. Details regarding the Cardano formula can be found in Appendix \ref{CH: Cardano}.
 	
 	\subsubsection{Density of the fluid phase} \label{subsubsec: Fluid density}
 	
@@ -95,69 +95,56 @@
 	
 	where the coefficients of the expansion are ${\color{black}C_{P0}} = 22.26$, ${\color{black}C_{P1}} = 5.981 \times 10^{-2}$, ${\color{black}C_{P2}} = -3.501 \times 10^{-5}$, and ${\color{black}C_{P3}} = 7.469 \times 10^{-9}$, as given by \citet{Kyle1999}.
 	
-	To calculate the residual contribution, we use the standard equation found in many textbooksr4•6 l for the residual internal energy derived from the Peng-Robinson equation of state 
-	
-	%Following the work of \citet{Pratt2001}, it is assumed that the specific heat can be obtained as a sum of ideal gas contribution and a residual correction for non-ideal behaviour, as given by Equations \ref{eq: Cv_CO2} and \ref{eq: Cp_CO2}.
+	The residual component of the specific heat can obtained from general relation between $C_v$ and $C_p$ as given by \citet{Poling2001}.
 	
 	{\footnotesize
-		\begin{subequations}\begin{align}
-				{\color{black}C_v}\left({\color{black}T}(t,z), {\color{black}P}(t)\right) & = {\color{black}C_v^{\text{I}}}\left({\color{black}T}(t,z),P(t)\right) + {\color{black}C_v^{\text{R}}}\left({\color{black}T}(t,z), {\color{black}P}(t)\right) \label{eq: Cv_CO2}; \\ 
-				{\color{black}C_p}\left({\color{black}T}(t,z), {\color{black}P}(t)\right) & = \underbrace{{\color{black}C_p^{\text{I}}}\left({\color{black}T}(t,z),P(t)\right)}_{\text{Eq. } \eqref{eq: Cp_I}} + \underbrace{{\color{black}C_p^{\text{R}}}\left({\color{black}T}(t,z), {\color{black}P}(t)\right)}_{\text{Eq. } \eqref{eq: Cp_R}}  \label{eq: Cp_CO2}.
-	\end{align}\end{subequations} }
+	\begin{equation} \label{EQ:CP_residual}
+		C_p^R = C_v^R + T\left(\frac{\partial P}{\partial T}\right)_{v_m} \left(\frac{\partial v_m}{\partial T}\right)_P - R
+	\end{equation}}
 	
-	${\color{black}C_v}\left({\color{black}T}(t,z), {\color{black}P}(t)\right)$ and ${\color{black}C_p}\left({\color{black}T}(t,z), {\color{black}P}(t)\right)$ are the specific heat of $CO_2$ at constant volume and pressure, respectively. 
+	The effects of pressure and temperature for liquids are not great, but both $C_p$ and $C_v$ diverge at the critical point of a pure fluid. In the neighborhood of the critical, $\left(\frac{\partial P}{\partial v_m}\right)_T$ approaches zero, so $C_p$ increases much faster than $C_v$. At both high and low densities, the differences are small, but for $T_r$ near unity, they increase rapidly as the critical density is approached. At fixed density in this region, $C_p$ actually decreases as T increases.
 	
-	The ideal-gas contribution ${\color{black}C_v^{\text{I}}}\left({\color{black}T}(t,z), {\color{black}P}(t)\right)$ and ${\color{black}C_p^{\text{I}}}\left({\color{black}T}(t,z), {\color{black}P}(t)\right)$, can be obtained based on heat-capacity data applicable to gases at low pressure. For $CO_2$, the ideal gas contribution to the specific heat at constant ${\color{black}P}(t)$, as function of ${\color{black}T}(t,z)$ is given by,
-	
-	{\footnotesize
-		\begin{equation}
-			{\color{black}C_p^{\text{I}}}\left({\color{black}T}(t,z),P(t)\right) = {\color{black}C_{P0}} + {\color{black}C_{P1}}T(t,z) + {\color{black}C_{P2}}{\color{black}T}^2(t,z) + {\color{black}C_{P3}}{\color{black}T}^3(t,z) \label{eq: Cp_I}
-	\end{equation} }
-	
-	where the coefficients of the expansion are ${\color{black}C_{P0}} = 22.26$, ${\color{black}C_{P1}} = 5.981 \times 10^{-2}$, ${\color{black}C_{P2}} = -3.501 \times 10^{-5}$, and ${\color{black}C_{P3}} = 7.469 \times 10^{-9}$, as given by \citet{Kyle1999}. 
-	
-	The correction term ${\color{black}C_p^{\text{R}}}\left({\color{black}T}(t,z){\color{black}P}(t)\right)$ at constant pressure ${\color{black}P}(t)$, can be defined by introducing  ${\color{black}C_p^{\text{I}}}({\color{black}T}(t,z)) - {\color{black}C_v^{\text{I}}}({\color{black}T}(t,z)) = {\color{black}R}$ and using the definition of ${\color{black}C_v^{\text{R}}}\left({\color{black}T}(t,z){\color{black}P}(t)\right)$. The general form of the correction term is given by Equation \ref{eq: Cp_R}
-	
-	{\footnotesize	
-		\begin{align}
-			&{\color{black}C_p^{\text{R}}}\left({\color{black}T}(t,z), {\color{black}P}(t)\right) = \underbrace{{\color{black}C_v^{\text{R}}}\left({\color{black}T}(t,z), {\color{black}P}(t)\right)}_{\text{Eq. }\eqref{eq: CvR}} \nonumber \\
-			&+ {\color{black}T}(t,z) \underbrace{\left(\cfrac{\partial {\color{black}P}(t)}{\partial {\color{black}T}}\right)_{{\color{black}v_m}(t,z)}}_{\text{Eq. } \eqref{eq: dPdT}} \underbrace{\left(\cfrac{\partial {\color{black}v_m}\left({\color{black}T}(t,z),{\color{black}P}(t)\right)}{\partial {\color{black}T}}\right)_{{\color{black}P}(t)}}_{\text{Eq. } \eqref{eq: dVdT}} - {\color{black}R}. \label{eq: Cp_R} 
-	\end{align} }
-	
-	%	The braced terms are obtained from the chosen equation of state and the compressibility definition ${\color{black}P}(t) {\color{black}v_m}({\color{black}T}(t,z),{\color{black}P}(t)) = {\color{black}Z}\left({\color{black}T}(t,z), {\color{black}P}(t)\right){\color{black}R}{\color{black}T}(t,z)$. \\
-	
-	For the partial derivative of the volume with respect to temperature ${\color{black}T}(t,z)$ at constant pressure ${\color{black}P}(t)$, we have
+	The term $\left(\frac{\partial P}{\partial T}\right)_{v_m}$ can be obtain by direct differentiation of P-R EoS
 	
 	{\footnotesize
-		\begin{align}
-			\left( \cfrac{\partial {\color{black}v_m}\left({\color{black}T}(t,z), {\color{black}P}(t)\right)}{\partial {\color{black}T}} \right)_{{\color{black}P}(t)} &= \cfrac{{\color{black}Z}\left({\color{black}T}(t,z), {\color{black}P}(t)\right) {\color{black}R}}{{\color{black}P}(t)} \nonumber \\
-			&+ \cfrac{{\color{black}R}{\color{black}T}(t,z)}{{\color{black}P}(t)} \underbrace{\left( \cfrac{\partial {\color{black}Z}\left({\color{black}T}(t,z), {\color{black}P}(t)\right)}{\partial {\color{black}T}} \right)_{{\color{black}P}(t)}}_{\text{Eq. }\eqref{eq: dZdT}} \label{eq: dVdT}
-	\end{align} }
-	
-	with partial derivative of the compressibility factor with respect to temperature ${\color{black}T}(t,z)$ at constant pressure ${\color{black}P}(t)$
-	
-	{\footnotesize
-		\begin{equation}
-			\left(\cfrac{\partial{\color{black}Z}\left({\color{black}T}(t,z), {\color{black}P}(t)\right)}{\partial {\color{black}T}}\right)_{{\color{black}P}(t)} = \left(\cfrac{\partial \dfrac{{\color{black}P}(t) {\color{black}v_m}\left({\color{black}T}(t,z), {\color{black}P}(t)\right)}{{\color{black}R}{\color{black}T}(t,z)}}{\partial {\color{black}T}}\right)_{{\color{black}P}(t)} \label{eq: dZdT}
-	\end{equation} }
-	
-	Similarly, for the partial derivative of the pressure with respect to temperature at constant volume is :
+	\begin{equation}
+		\left(\frac{\partial P}{\partial T}\right)_{v_m} = \frac{R}{v_m - b} - \frac{\frac{d \Phi}{dT}}{\left[v_m(v_m+b)+b(v_m-b)\right]^2}
+	\end{equation}}
+
+	where $\left(\frac{\partial \Phi}{\partial T}\right)_{v_m} = \frac{-f(\omega)a}{\sqrt{TT_c}(1 + f(\omega)( 1 - \sqrt{T/T_c}))}$
+
+	The term $\left(\frac{\partial v_m}{\partial T}\right)_P = \frac{R}{P} \left(T \left(\frac{\partial Z}{\partial T}\right)_P + Z \right)$
+
+	The term $\left(\frac{\partial Z}{\partial T}\right)_P$ can be defined as below
 	
 	{\footnotesize
-		\begin{equation}
-			\left(\cfrac{\partial {\color{black}P}(t)}{\partial {\color{black}T}}\right)_{{\color{black}v_m}(t,z)} = \left( \cfrac{\partial{\dfrac{{\color{black}Z}{\color{black}R}{\color{black}T}(t,z)}{{\color{black}v_m}\left({\color{black}T}(t,z), {\color{black}P}(t)\right)}}}{\partial{\color{black}T}}\right)_{{\color{black}v_m}(t,z)} \label{eq: dPdT}
-	\end{equation} }
+	\begin{equation}
+		\left(\frac{\partial Z}{\partial T}\right)_P = \frac{ \left(\frac{\partial A}{\partial T}\right)_P (B-Z) + \left( \frac{\partial B}{\partial T} \right)_P \left( 6BZ+2Z-3B^2-2B+A-Z^2 \right)}{3Z^2 + 2(B-1)Z + (A-2B-3B^2)}
+	\end{equation}}
+
+	{\footnotesize
+	\begin{align}
+		\left(\frac{\partial A}{\partial T}\right)_P &= (P/(RT)^2)(\frac{d \Phi}{dT} - 2a/T) \\
+		\left(\frac{\partial B}{\partial T}\right)_P &= -bP/(RT^2)
+	\end{align}}
 	
-	The residual specific heat at constant volume is obtained, by definition, by using the residual internal energy
+	The first component of Equation \ref{EQ:CP_residual} from definition of $C_v = \left(\frac{\partial U^R}{\partial T}\right)_{v_m}$, where $U^R$ represents internal energy. In case of Pen-Robinson $U^R$ equals to
+		
+	{\footnotesize
+	\begin{equation}
+		U^R = \frac{T \frac{d^2 \Phi}{dT^2}}{b \sqrt{8}} \ln \left( \frac{Z+B\left(1+\sqrt{2}\right)}{Z+B\left(1-\sqrt{2}\right)} \right)
+	\end{equation}}
+
+	As given by \citet{Pratt2001}, for Peng-Robinson EoS the term $\frac{d^2 \Phi}{dT^2}$ is defined as follow
 	
 	{\footnotesize
-		\begin{equation}
-			{\color{black}C_v^{\text{R}}}\left({\color{black}T}(t,z),{\color{black}P}(t)\right) = \left(\cfrac{\partial{\color{black}U^{\text{R}}}\left({\color{black}T}(t,z),{\color{black}P}(t)\right)}{\partial {\color{black}T}}\right)_{{\color{black}v_m}(t,z)} \label{eq: CvR}
+	\begin{equation}
+		\frac{d^2\Phi}{dT^2} = \frac{af(\omega)\sqrt{\frac{T_c}{T}} \left( 1+ f\left(\omega\right) \right)}{2TT_c}
 	\end{equation} }
 
 	\subsubsection{Departure functions for enthalpy calculations} \label{CH:Enthalpy}
 	
-	In thermodynamics, a departure function is a concept used to calculate the difference between a real fluid's thermodynamic properties and those of an ideal gas, given a specific temperature and pressure. Common departure functions include those for enthalpy, entropy, and internal energy. These functions are used to calculate extensive properties, which are properties computed as a difference between two states.
+	In thermodynamics, a departure function is a concept used to calculate the difference between a real fluid's thermodynamic properties (enthalpy, entropy, or internal energy) and those of an ideal gas, given a specific temperature and pressure. These functions are used to calculate extensive properties, which are properties computed as a difference between two states.
 	
 	To evaluate the enthalpy change between two points, $h(V_1,T_1)$ and $h(V_2,T_2)$, the enthalpy departure function between the initial volume $V_1$ and infinite volume at temperature $T_1$ is calculated. Then it is added to that the ideal gas enthalpy change due to the temperature change from $T_1$ to $T_2$, and finally subtract the departure function value between the final volume $V_2$ and infinite volume.
 	
@@ -171,9 +158,9 @@
 	
 	Here, $h^{id}$ represents the enthalpy of an ideal gas, $h$ is the enthalpy of a real fluid, $R$ is the universal gas constant, $T$ is temperature, $v_m$ is the molar volume, and $Z$ is the compressibility factor.
 	
-	The integral in the equation is evaluated over the range of molar volumes from $v_m$ to infinity. The integral includes a term that depends on the derivative of the compressibility factor with respect to temperature, evaluated at the molar volume $v_m$. Finally, the term $1-Z$ is added to account for the deviation of the fluid's properties from those of an ideal gas.
+	The integral in the equation is evaluated over the range of molar volumes from $v_m$ to infinity. The integral includes a term that depends on the derivative of the compressibility factor with respect to temperature, evaluated at the molar volume $v_m$. Finally, the term $1-Z$ is added to account for the deviation of the fluid's properties from an ideal state.
 	
-	The Peng–Robinson equation of state relates the three interdependent state properties pressure $P$, temperature $T$, and molar volume $v_m$. From the state properties ($P$, $v_m$, $T$), one may compute the departure function for enthalpy per mole (denoted $h$) as presented by \citet{Gmehling2019} or \citet{Elliott2011}:
+	The Peng–Robinson EoS relates the three interdependent state properties pressure $P$, temperature $T$, and molar volume $v_m$. From the state properties ($P$, $v_m$, $T$), one may compute the departure function for enthalpy per mole (denoted $h$) as presented by \citet{Gmehling2019} or \citet{Elliott2011}:
 	
 	{\footnotesize
 		\begin{equation}

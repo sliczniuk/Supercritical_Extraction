@@ -4,14 +4,14 @@
 		
 	\subsubsection{Continuity equation} \label{CH: Continuity}
 	 %When the cross-sectional area of the channel $A_f$ is specified as a function of the void fraction ${\color{black}\phi}(z)$ (where ${\color{black}\phi}$ is the void fraction of the bed and $A$ is the cross-section of the empty extractor), the continuity equation takes the form: %\todo[]{assign a color of v and u}
-	The obtained above quasi-one-dimensional continuity equation (Equation \ref{EQ: CompressibleEuler_1}) is further modified by specifying a function ${\color{black}A_f}(z) = {\color{black}A_f\phi}(z)$ to take into account the change of the cross-section available for the fluid. The cross-section change is taken into account by void fraction ${\color{black}\phi}(z)$, which depends on the spatial dimension. The Equation \ref{EQ: Continuity_differential} shows the differential form of the continuity equation: 
+	The obtained above quasi-one-dimensional continuity equation (Equation \ref{EQ: CompressibleEuler_1}) is further modified by specifying a function ${\color{black}A_f}(z) = {\color{black}A\phi}(z)$ to take into account the change of the cross-section available for the fluid. The Equation \ref{EQ: Continuity_differential} shows the differential form of the continuity equation: 
 	
 	{\footnotesize
 		\begin{equation} \label{EQ: Continuity_differential}
 			\frac{\partial ({\color{black}\rho_f}({\color{black}T}(t,z),{\color{black}P}(t)) {\color{black}\phi}(z))}{\partial t} + \frac{\partial ({\color{black}\rho_f}({\color{black}T}(t,z),{\color{black}P}(t)) v {\color{black}A\phi}(z))}{\partial {\color{black}z}} = 0
 		\end{equation}
 	}
-	where ${\color{black} A}$ is the total cross-section of the extractor.
+	where ${\color{black} A}$ is the total cross-section of the extractor and ${\color{black}\phi}(z)$ describe porosity along the extractor.
 	
 	%{\color{black}assign a color of v and u}
 	
@@ -43,7 +43,7 @@
 	
 	\subsubsection{Mass balance for the fluid phase} \label{CH: Mass_balance_fluid}
 	
-	The detailed derivation of the mass balance equation for the fluid phase can be found in the Appendix \ref{CH: Gouverning equations}. The movement of the pseudo-homogeneous fluid phase (Equation \ref{Model_fluid}) is considered only in the axial direction, while the properties of the system in the radial direction are assumed to be uniform. Additionally, the boundary layer adjacent to the inner wall of the extractor is neglected, resulting in a constant velocity profile across any cross-section of the extractor perpendicular to the axial direction. Although the particle size distribution and void fraction of the solid phase may change along the extractor, they are assumed to remain constant in time. Furthermore, the thermodynamic pressure is assumed to be constant along the device as presented by Equation \ref{EQ: Pressure_Velocity}. The amount of solute in the solvent is considered negligible, resulting in the fluid phase being described as pseudo-homogeneous, and its properties are assumed to be the same as the solvent. The mass balance equation for the fluid phase includes convection, diffusion, and kinetic terms.
+	The detailed derivation of the mass balance equation for the fluid phase can be found in Appendix \ref{CH: Gouverning equations}. The movement of the pseudo-homogeneous fluid phase (Equation \ref{Model_fluid}) is considered only in the axial direction due to quasi-one-dimensional assumptions, which take into account variation of the void fraction. Furthermore, the thermodynamic pressure is assumed to be constant along the device as presented by Equation \ref{EQ: Pressure_Velocity}. Additionally, the boundary layer adjacent to the inner wall of the extractor is neglected, resulting in a constant velocity profile across any cross-section of the extractor perpendicular to the axial direction. The amount of solute in the solvent is considered negligible, resulting in the fluid phase being described as pseudo-homogeneous, and its properties are assumed to be the same as the solvent. The mass balance equation for the fluid phase includes convection, diffusion, and kinetic terms.
 	
 	{\footnotesize
 		\begin{equation}
@@ -55,7 +55,7 @@
 		\end{equation}
 	}
 	
-	Here, ${\color{black}c_f}(t,z), {\color{black}c_s}(t,z),$ and ${\color{black}T}(t,z)$ represent the concentration of solute in the fluid phase, the concentration of solute in the solid phase, and temperature, respectively. ${\color{black}r_e}(t,z)$ is a mass transfer kinetic term, ${\color{black}F}(t)$ is the mass flow rate and ${\color{black}D^M_e}({\color{black}T}(t,z),{\color{black}P}(t),{\color{black}F}(t))$ is the axial mass diffusion coefficient.
+	${\color{black}c_f}(t,z)$ represents the concentration of solute in the fluid phase, , ${\color{black}r_e}(t,z)$ is a mass transfer kinetic term, and ${\color{black}D^M_e}({\color{black}T}(t,z),{\color{black}P}(t),{\color{black}F}(t))$ is the axial mass diffusion coefficient.
 	
 	\subsubsection{Mass balance for the solid phase} \label{Mass_balance_solid}
 	
@@ -64,7 +64,7 @@
 	{\footnotesize
 		\begin{equation} 
 			\label{Model_solid}
-			%		{\scriptsize\begin{align*}
+			%		{\scriptsize\begin{equation}
 					\cfrac{\partial {\color{black}c_s}(t,z)}{\partial t} = \underbrace{ {\color{black}r_e}(t,z) }_{\text{Kinetics}}
 			\end{equation} }
 			
@@ -130,7 +130,7 @@
 			
 		}
 		
-		\sout{The heat balance equation (equation  \ref{Model_heat}) was developed, assuming the existence of a pseudo-homogeneous phase, which properties are the mean between fluid and solid phases (the amount of solute is considered small enough not to affect the overall heat balance). Equation \ref{Model_heat} contains the convection and the diffusion terms. It is considered that there is no heat loss through the wall, and there is no heat generation in the system. The temperature of the extractor can be changed only by increasing the temperature of the inlet stream. The pseudo-homogenous phase is assumed to flow only in the axial direction. The numerator of the factor in front of the convection term of the heat equation contains only the specific heat of the fluid ${\color{black}C_p}({\color{black}T}(t,z),{\color{black}P}(t))$ because the solid phase is stationary. Therefore, this factor can be understood as the fraction of the fluid's total heat through convection. On the other hand, the axial heat diffusion is calculated based on the definition of thermal diffusivity for the fluid, as explained in the appendix. }
+		\sout{The heat balance equation (equation  \ref{Model_heat}) was developed, assuming the existence of a pseudo-homogeneous phase, which properties are the mean between fluid and solid phases (the amount of solute is considered small enough not to affect the overall heat balance). Equation \ref{Model_heat} contains the convection and the diffusion terms. It is considered that there is no heat loss through the wall, and there is no heat generation in the system. The temperature of the extractor can be changed only by increasing the temperature of the inlet stream. The pseudo-homogenous phase is assumed to flow only in the axial direction. The numerator of the factor in front of the convection term of the heat equation contains only the specific heat of the fluid ${\color{black}C_p}({\color{black}T}(t,z),{\color{black}P}(t))$ because the solid phase is stationary. Therefore, this factor can be understood as the fraction of the fluid's total heat through convection. On the other hand, the axial heat diffusion is calculated based on the definition of thermal diffusivity for the fluid, as explained in Appendix. }
 			
 		{\color{black} The heat balance (Equation \ref{Model_heat}), is based on \citet{Srinivasan2012}, and consists of convective and diffusive terms. It follows the assumption of a pseudo-homogeneous phase, which properties are the mean between fluid and solid phases. It is considered that there is no heat loss through the walls, and there is no heat generation in the system. The temperature of the extractor can be changed only by manipulating the temperature of the inlet stream ${\color{black}T_{Inlet}}(t)$.
 			}
@@ -149,7 +149,7 @@
 %		\todo[inline]{Draft of new heat equation starts here. TODO: \\ Check if the heat cpacity of solid phase needs to be added \\ Elaborate why pressure is know}
 		\fi
 		
-			The heat equation was introduced in the previous chapter through Equation \ref{EQ: CompressibleEuler_3}, in the appendix \ref{CH: Gouverning equations}  as well as through Equation \ref{EQ: Heat_internal}
+			The heat governing equation describe the evolution of the energy in the system and it is given by \ref{EQ: Heat_internal}. The derivation of the heat equation can be found in Appendix \ref{CH: Gouverning equations}.
 			
 			{\footnotesize
 			\begin{align} \label{EQ: Heat_internal}
@@ -158,7 +158,7 @@
 			\end{align}
 			}
 		
-			Following \citet{Elliott2011} or \citet{Gmehling2019}, a real gas internal energy definition can be obtained from the departure functions, defined through Equation \ref{EQ: internal_energy_def}. In thermodynamics, the departure function is a mathematical function that characterizes the deviation of a thermodynamic property of a real substance from that of an ideal gas at the same temperature and pressure. The departure function is typically defined as the difference between the value of a thermodynamic property for a real fluid and the corresponding value for an ideal gas at the same temperature and pressure. Common departure functions include those for enthalpy, entropy, and internal energy. They are typically computed by integrating a function that depends on the equation of state and its derivatives. More information on the departure functions can be found in appendix \ref{CH:Enthalpy}.
+			The departure function is a mathematical function that characterizes the deviation of a thermodynamic property (enthalpy, entropy, and internal energy) of a real substance from that of an ideal gas at the same temperature and pressure. The departure function is typically defined as the difference between the value of a thermodynamic property for a real fluid and the corresponding value for an ideal gas at the same temperature and pressure. They are typically computed by integrating a function that depends on the equation of state and its derivatives. Following \citet{Elliott2011} or \citet{Gmehling2019}, a real gas internal energy definition can be obtained from the departure functions, defined through Equation \ref{EQ: internal_energy_def}. More information on the departure functions can be found in Appendix \ref{CH:Enthalpy}.
 
 			{\footnotesize
 				\begin{equation}
@@ -208,7 +208,7 @@
 				\end{align}
 			}
 		
-			The main advantage of this formulation is the presence of term $\partial {\color{black}P}(t) / \partial t $, which allows it to directly affect the system through the change of thermodynamic pressure (which is a control variable). If an equation of state is known, the temperature can to be recovered from the enthalpy. The enthalpy is related to the pressure and temperature through the following equation:
+			The main advantage of this formulation is the presence of term $\partial {\color{black}P}(t) / \partial t $, which allows it to directly affect the system through the change of thermodynamic pressure (which is a control variable). The enthalpy is related to the pressure and temperature through the following equation:
 			
 			{\footnotesize
 				\begin{equation}
@@ -217,7 +217,7 @@
 				\end{equation}
 			}
 		
-			If the value of enthalpy is known from the time evolution and pressure can be measured, then the Equation \ref{EQ:Enthalpy_root} can be solved for the temperature to recover the temperature profile. By applying the departure functions to Peng-Robinson equation of state, the relation \ref{EQ:Enthalpy_root} can be expressed directly through Equation \ref{EQ:Enthalpy_PR} as presented in \ref{CH:Enthalpy} or given by \citet{Gmehling2019}.
+			If the value of enthalpy is known from the time evolution and pressure can be measured, then the Equation \ref{EQ:Enthalpy_root} can be solved for the temperature to recover the temperature profile. For the Peng-Robinson EoS, the enthalpy can be defined by Equation \ref{EQ:Enthalpy_PR}. More details can be found in Appendix \ref{CH:Enthalpy} or given by \citet{Gmehling2019}.
 			
 			{\scriptsize
 				\begin{equation}
@@ -231,11 +231,11 @@
 		
 			The Equation \ref{EQ:Enthalpy_PR} requires an reference sate, which in this case is assumed to be ${\color{black}T_{ref}}=298.15~[K]$ and ${\color{black}P_{ref}}=1.01325~[bar]$.
 			
-			As discussed by \citet{Gmehling2019}, special attention should be paid to high pressures systems, so the influence of the intermolecular forces on the enthalpy is taken into account. In most cases, these forces are attractive, so additional energy is necessary to move the molecules away from each other, that is, to lower the density. If this energy is not added, the substance cools down when it is expanded.
+			As discussed by \citet{Gmehling2019}, the influence of the intermolecular forces on the enthalpy is needs to taken into account in high pressures systems. In most cases, these forces are attractive, so additional energy is necessary to move the molecules away from each other, that is, to lower the density. If this energy is not added, the substance cools down when it is expanded.
 			
 		\subsubsection{Pressure term} \label{CH: Pressure}
 		
-		The pressure term in the energy equation, given by Equation \ref{EQ:Enthalpy_equation}, describes the change of the thermodynamic pressure with respect to time. As explained in Chapters \ref{CH:Governing_equations_chapter}, at Low-Mach number conditions, the thermodynamic pressure is nearly constant in space due to the small pressure wave propagation that occurs at the speed of sound. Under such conditions, the term $\partial {\color{black}P}/\partial t$ can be approximated by an ordinary differential equation, which describes the instantaneous change of pressure in the system. The pressure in the system is considered a state variable, while the pressure in the new time-step is considered a control variable.
+		The pressure term in the energy equation, given by Equation \ref{EQ:Enthalpy_equation}, describes the change of the thermodynamic pressure with respect to time. As explained in Chapters \ref{CH:Governing_equations_chapter}, at Low-Mach number conditions, the thermodynamic pressure is nearly constant in space due to the small pressure wave propagation that occurs at the speed of sound. Under such conditions, the term $\partial {\color{black}P}/\partial t$ can be approximated by an ordinary differential equation, which describes the instantaneous change of pressure in the system. The pressure (P) in the system is considered a state variable, while the pressure in the new time-step ($P_{in}$) is considered a control variable.
 		
 		{\footnotesize
 			\begin{equation}
@@ -259,17 +259,13 @@
 		\end{align}	}
   
 		\subsubsection{Initial and boundary conditions} 
-		It is assumed that the solvent is free of solute at the entrance of the extractor and that all the solid particles have the same initial solute content ${\color{black}c_{s0}}$. On the other hand, the solute concentration in the fluid phase should not follow the same assumption as the solid phase. Every SFE system needs some time to reach the desired operating conditions but the solute diffuses from solid phase to the fluid phase already at the preparation stage. For instance, a pump introduce more and more fluid to the extractor to increase the pressure, which makes the fluid present already in that vessel to moves internally hence the solute in the fluid phase is non-uniformly distributed. Some conclusions can be drawn from the analysis of the initial part of each yield curve obtained from the laboratory (Figure \ref{fig: estimation_results}). It can be noticed that each curve at the beginning has a curvature, which is not linear. Generally, a quadratic function could approximate the initial part of each extraction curve. A function that, after integration, gives a quadratic-like result is a straight line. Based on that observation, the solute concentration in the fluid phase is assumed to be linearly distributed. The solute concentration is assumed to be zero at the outlet and reach the maximum at the beginning of the fixed bed. The details on the calculation are given in Appendix \ref{CH: IC_BC}. The linear distribution $H(z)$ can be defined if the total mass of solute $m_{total}$ and initial mass ratio between solid and fluid phases $\tau$ are known.
+		It is assumed that the solvent is free of solute at the entrance of the extractor and that all the solid particles have the same initial solute content ${\color{black}c_{s0}}$. Every SFE system needs some time to reach the desired operating conditions but the solute diffuses from solid phase to the fluid phase already at the preparation stage. For instance, a pump introduce more fluid to the extractor to increase the pressure, which makes the fluid present already in that vessel to moves internally hence the solute in the fluid phase is non-uniformly distributed. Some conclusions can be drawn from the analysis of the initial part of each yield curve obtained from the laboratory (Figure \ref{fig: estimation_results}). It can be noticed that each curve at the beginning has a non-linear curvature. A quadratic function could approximate the initial part of each extraction curve. A function that, after integration, gives a quadratic-like result is a straight line. Based on that observation, the solute concentration in the fluid phase is assumed to be linearly distributed. The solute concentration is assumed to be zero at the outlet and reach the maximum at the beginning of the fixed bed. The details on the calculation are given in Appendix \ref{CH: IC_BC}. The linear distribution $H(z)$ can be defined if the total mass of solute $m_{total}$ and initial mass ratio between solid and fluid phases $\tau$ are known.
 		Moreover, it is considered that the initial temperature of the extractor in every place is the same and described by ${\color{black}h_0}$. Therefore, the initial conditions employed in the simulation are:
 			
 		{\footnotesize
-			\begin{subequations}
-				\begin{align*}
-					{\color{black}c_f}(t = 0, z) &= H(z)   \\
-					{\color{black}c_s}(t = 0, z) &= {\color{black}c_{s0}} \\
-					{\color{black}h}(t = 0, z) &= {\color{black}h_0}
-				\end{align*}
-		\end{subequations} }
+				\begin{equation*}
+					{\color{black}c_f}(t = 0, z) = H(z) \quad {\color{black}c_s}(t = 0, z) = {\color{black}c_{s0}} \quad {\color{black}h}(t = 0, z) = {\color{black}h_0}
+				\end{equation*} }
 	
 		\subsubsection{State-space representation} \label{CH: State_space}
 			
@@ -294,9 +290,9 @@
 				\end{bmatrix} = {\color{black}\bar{\phi}} \left( t,z; {\color{black}\Theta} \right) = \cfrac{\partial {\color{black}\chi}(t,z)}{\partial t}
 		\end{align} }
 			
-		where ${\color{black}\Theta}$ is a paramter space consisting of model parameters ${\color{black}\theta}$ and controls ${\color{black}u}$, ${\color{black}\bar{\phi}}$ is a set of functions that correspond to state equations of the model, and ${\color{black}\chi}$ is the state-space model.
+		where ${\color{black}\Theta}$ is a paramter space, ${\color{black}\bar{\phi}}$ is a set of functions that correspond to state equations of the model, and ${\color{black}\chi}$ is the state-space model.
 		
-		Each function ${\color{black}\bar{\phi_i}}$ is transformed to a corresponding set of $N_z$ discretized equations denoted as ${\color{black}G}_{i\times N_z+1}$ to ${\color{black}G}_{(i+1)\times N_z}$, where $i$ corresponds to the process model equation. The state-space model ${\color{black}\chi}(t,z)$ after the discretization is represented by $\dot{{\color{black}x}}(t)$.
+		Function ${\color{black}\bar{\phi}}$ are transformed to a corresponding set of $N_z$ discretized equations denoted as ${\color{black}G}$. The state-space model ${\color{black}\chi}(t,z)$ after the discretization is represented by $\dot{{\color{black}x}}(t)$.
 			
 			{\footnotesize
 				\begin{align*} \label{discretization}

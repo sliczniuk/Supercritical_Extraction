@@ -6,7 +6,7 @@
 	
 	\subsubsection{Mass continuity}
 
-	Following the work of \citet{Anderson1995}, the governing equations for compressible fluid with non-uniform cross-section can be obtained. Let's assume that any properties of the flow are uniform across any given cross-section of an extractor. The variation of the cross-section might result from the partial filling of an extractor or its irregular shape. In reality, such a flow is two-dimensional because the area changes as a function of $z$, and there is a flow-field variation in both directions. The assumption of quasi-one-dimensional flow dictates that the flow properties are a function of $z$ only. The equations described by quasi-one-dimensional assumption hold: (1) mass conservation, (2) Newton's second law, and (3) energy conservation. The modified governing equation can be derived to ensure that these physical principles are satisfied.	Let's start with the integral form of the continuity equation:
+	Following the work of \citet{Anderson1995}, the governing equations for compressible fluid with non-uniform cross-section can be obtained. Let's assume that any properties of the flow are uniform across any given cross-section of an extractor. The variation of the cross-section might result from the partial filling of an extractor or its irregular shape. In reality, such a flow is two-dimensional because the area changes as a function of $z$, and there is a flow-field variation in both directions. The assumption of quasi-one-dimensional flow dictates that the flow properties are a function of $z$ only. The integral form of the continuity equation is:
 	
 	{\footnotesize
 		\begin{equation}
@@ -15,7 +15,7 @@
 		\end{equation}
 	}
 	
-	We apply this equation to the shaded control volume shown in Fig. \ref{fig: control_volume}. 
+	We apply this equation to the shaded control volume shown in Figure \ref{fig: control_volume}. 
 	
 	\begin{figure}[h]
 		\centering
@@ -41,7 +41,7 @@
 		\label{fig: control_volume}
 	\end{figure}
 	
-	This control volume is a slice of an extractor, where the infinitesimal thickness of the slice is $dz$. On the left side of the control volume, consistent with the quasi-one-dimensional assumptions, the density, velocity, pressure, and internal energy denoted by $\rho_f$, $v$, $P$, and $e$, respectively, are uniform over the area $A$. Similarly, on the right side of the control volume, the density, velocity, pressure, and internal energy $\rho_f+d\rho_f$, $v+dv$, $P+dP$, and $e+de$, respectively, are uniform over the area available for fluid phase $A_f+dA_f$. Applied to the control volume in Fig. \ref{fig: control_volume}, the volume integral in Eq. \ref{EQ: Continuity_integral_general} becomes, in the limit as $dz$ becomes very small,
+	 On the left side of the control volume, consistent with the quasi-one-dimensional assumptions, the density, velocity, pressure, and internal energy denoted by $\rho_f$, $v$, $P$, and $e$, respectively, are uniform over the area $A$. Similarly, on the right side of the control volume, the density, velocity, pressure, and internal energy $\rho_f+d\rho_f$, $v+dv$, $P+dP$, and $e+de$, respectively, are uniform over the area available for fluid phase $A_f+dA_f$. Applied to the control volume in Figure \ref{fig: control_volume}, the volume integral in Equation \ref{EQ: Continuity_integral_general} becomes, in the limit as $dz$ becomes very small,
 	
 	{\footnotesize
 		\begin{equation}
@@ -50,7 +50,7 @@
 		\end{equation}
 	}
 
-	where $A~dz$ is the volume of the control volume in the limit of $dz$ becoming vanishingly small. The surface integral in Eq. \ref{EQ: Continuity_integral_general} becomes
+	where $A~dz$ is the volume of the control volume in the limit of $dz$ becoming vanishingly small. The surface integral in Equation \ref{EQ: Continuity_integral_general} becomes
 	
 	{\footnotesize
 		\begin{equation}
@@ -68,7 +68,7 @@
 		\end{align}
 	}
 	
-	In the limit as $dz$ becomes very small, the terms involving products of the differential in Eq. \ref{EQ: Triple_Prod_Cont_Surf}, such as $\rho_f dv dA_f,~d\rho_f dv dA_f$, go to zero much faster than those terms involving only one differential. Hence, all terms involving products of differentials can be dropped, yielding in the limit as $dz$ becomes very small
+	In the limit as $dz$ becomes very small, the terms involving products of the differential in Equation \ref{EQ: Triple_Prod_Cont_Surf}, such as $\rho_f dv dA_f,~d\rho_f dv dA_f$, go to zero much faster than those terms involving only one differential. Hence, all terms involving products of differentials can be dropped, yielding in the limit as $dz$ becomes very small
 	
 	{\footnotesize
 		\begin{equation}
@@ -86,7 +86,7 @@
 		\end{equation}
 	}
 	
-	The above partial differential equation form of the continuity equation is suitable for unsteady, quasi-one-dimensional flow. It ensures that mass is conserved for this mode of flow. The $A_f(z)$ is an arbitrary function that describes a change in the cross-section of an extractor. The function $A_f(z)$ can be defined as $A_f(z) = \textbf{A} \phi(z)$, where $\phi$ is the bed porosity and $\textbf{A}$ is the cross-section of an empty extractor.
+	The above partial differential equation form of the continuity equation is suitable for unsteady, quasi-one-dimensional flow. The $A_f(z)$ is an arbitrary function that describes a change in the extractor's cross-section and can be defined as $A_f(z) = \textbf{A} \phi(z)$, where $\phi$ is the bed porosity and $\textbf{A}$ is the cross-section of an empty extractor.
 	
 	{\footnotesize
 		\begin{equation}
@@ -110,11 +110,9 @@
 		\end{equation}
 	}
 	
-	\hrule
-	
 	\subsubsection{Transport of a species}
 	
-	The transport of a chemical species, in this case, a solute, can be described by an analogous equation to the Eq. \ref{EQ: Continuity_integral_general} with additional terms on the right-hand side. The first term on the right-hand side describes that a substance goes from high-density regions to low-density regions and is based on the Fick's law $\left( J_{diff} = D_e^M\frac{\partial c_f}{\partial z} \right)$. The other term corresponds to the mass transfer between solid and fluid phases, which is treated as a source term.
+	The transport of a solute, can be described by an analogous equation to the Equation \ref{EQ: Continuity_integral_general} with additional terms on the right-hand side. The first term on the right-hand side describes diffusional movement of species and is based on the Fick's law $\left( J_{diff} = D_e^M\frac{\partial c_f}{\partial z} \right)$. The other term corresponds to the mass transfer between solid and fluid phases, which is treated as a source term.
 	
 	{\footnotesize
 		\begin{equation}
@@ -148,7 +146,7 @@
 		\end{equation}
 	}
 	
-	By substituting the equations derived above into Eq. \ref{EQ: Integral_Mass_Species_general} we obtain
+	By substituting the equations derived above into Equation \ref{EQ: Integral_Mass_Species_general} we obtain
 	
 	{\footnotesize
 		\begin{equation}
@@ -181,9 +179,7 @@
 		\end{equation}
 	}
 
-	The Eq. \ref{EQ: Simplified_Species_Conservation} is equivalent to the equation presented by \citet{Reverchon1996}.
-	
-	\hrule
+	The Equation \ref{EQ: Simplified_Species_Conservation} is equivalent to the equation presented by \citet{Reverchon1996}.
 	
 	\subsubsection{Momentum conservation}
 	
@@ -197,7 +193,7 @@
 	}
 	where $V_z$ is the $z$ component of the velocity.
 
-	We the momentum conservation to the shaded control volume in Fig. \ref{fig: control_volume}, the integrals on the left side are evaluated in the same manner as discussed above in the regard to the continuity equation. That is,
+	We the momentum conservation to the shaded control volume in Figure \ref{fig: control_volume}, the integrals on the left side are evaluated in the same manner as discussed above in the regard to the continuity equation. That is,
 	
 	{\footnotesize
 		\begin{equation}
@@ -221,7 +217,7 @@
 		\label{fig: Forces_Momentum_Control_Volume}
 	\end{figure}
 	
-	The evaluation of the pressure force term on the right side of Eq. \ref{EQ: Momentum_Integral_Form} can be understood based on the Fig. \ref{fig: Forces_Momentum_Control_Volume}. Here, the $z$ components of the vector $PdS$ are shown on all four sides of the control volume. Remember that $\textbf{dS}$ is assumed to point away from the control volume; hence  any $z$ component $\left( PdS \right)_z$ that acts toward the left (in the negative $z$ direction) is a negative quantity. Any $z$ component that acts toward the right (in the positive $z$ direction) is a positive quantity. Also note that the $z$ component of $P\textbf{dS}$ acting on the top and the bottom inclined faces of the control volume in Fig. \ref{fig: Forces_Momentum_Control_Volume} can be expressed as the pressure $P$ acting on the component of the inclined is projected perpendicular to the $z$ direction, $dA_f/2$; hence, the contribution of each inclined face (top or bottom) to the pressure integral in Eq. \ref{EQ: Momentum_Integral_Form} is $-P(dA_f/2)$. All together, the right-hand side of Eq. \ref{EQ: Momentum_Integral_Form} is expressed as follows:
+	The evaluation of the pressure force term on the right side of Equation \ref{EQ: Momentum_Integral_Form} can be understood based on the Figure \ref{fig: Forces_Momentum_Control_Volume}. Here, the $z$ components of the vector $PdS$ are shown on all four sides of the control volume. Remember that $\textbf{dS}$ is assumed to point away from the control volume; hence  any $z$ component $\left( PdS \right)_z$ that acts toward the left (in the negative $z$ direction) is a negative quantity. Any $z$ component that acts toward the right (in the positive $z$ direction) is a positive quantity. Also note that the $z$ component of $P\textbf{dS}$ acting on the top and the bottom inclined faces of the control volume in Figure \ref{fig: Forces_Momentum_Control_Volume} can be expressed as the pressure $P$ acting on the component of the inclined is projected perpendicular to the $z$ direction, $dA_f/2$; hence, the contribution of each inclined face (top or bottom) to the pressure integral in Equation \ref{EQ: Momentum_Integral_Form} is $-P(dA_f/2)$. All together, the right-hand side of Equation \ref{EQ: Momentum_Integral_Form} is expressed as follows:
 	
 	{\footnotesize
 		\begin{equation}
@@ -230,7 +226,7 @@
 		\end{equation}
 	}
 	
-	Substituting Eqs. \ref{EQ: Force_Continuity_Monenmtum} to \ref{EQ: Force_Integral_Varying_Cross_Section} into Eq. \ref{EQ: Momentum_Integral_Form}, we have
+	Substituting Eqs. \ref{EQ: Force_Continuity_Monenmtum} to \ref{EQ: Force_Integral_Varying_Cross_Section} into Equation \ref{EQ: Momentum_Integral_Form}, we have
 	
 	{\footnotesize
 		\begin{align}
@@ -256,7 +252,7 @@
 		\end{equation}
 	}
 
-	The Eq. \ref{EQ: Conservative_Momentum} can be expanded further by assuming that $A_f = \textbf{A}\phi$ 
+	The Equation \ref{EQ: Conservative_Momentum} can be expanded further by assuming that $A_f = \textbf{A}\phi$ 
 	
 	{\footnotesize
 		\begin{equation}
@@ -280,7 +276,7 @@
 		\end{equation}
 	}
 
-	Eq. \ref{EQ: Conservative_Momentum} represents the conservative form of the momentum equation for the quasi-one-dimensional flow. The equivalent non-conservative form can be obtained by multiplying the continuity equation by $v$ and subtracting it from Eq. \ref{EQ: Conservative_Momentum}
+	Equation \ref{EQ: Conservative_Momentum} represents the conservative form of the momentum equation for the quasi-one-dimensional flow. The equivalent non-conservative form can be obtained by multiplying the continuity equation by $v$ and subtracting it from Equation \ref{EQ: Conservative_Momentum}
 	
 	{\footnotesize
 		\begin{equation}
@@ -305,7 +301,7 @@
 		\end{equation}
 	}
 
-	The Eq. \ref{EQ: Non-conservative_Momentum} is stylistically the same as the general momentum conservation for one-dimensional flow with no-body forces. The momentum equation can be expressed in terms of superficial velocity $u=v\phi$. 
+	The Equation \ref{EQ: Non-conservative_Momentum} is stylistically the same as the general momentum conservation for one-dimensional flow with no-body forces. The momentum equation can be expressed in terms of superficial velocity $u=v\phi$. 
 	
 	{\footnotesize
 		\begin{equation}
@@ -338,7 +334,7 @@
 		\end{equation}
 	}
 
-	The Eq. \ref{EQ: Non-conservative_Momentum_Const_Porosity} represents the non-conservative form of the momentum equation for quasi-one-dimensional flow with no body forces and constant porosity.
+	The Equation \ref{EQ: Non-conservative_Momentum_Const_Porosity} represents the non-conservative form of the momentum equation for quasi-one-dimensional flow with no body forces and constant porosity.
 	
 	\subsubsection{Energy conservation}
 	
@@ -351,7 +347,7 @@
 		\end{equation}
 	}
 
-	Applied to the shaded control volume in Fig. \ref{fig: control_volume}, and keeping in mind the pressure forces shown in Fig. \ref{fig: Forces_Momentum_Control_Volume}, Eq. \ref{EQ: Energy_equation_integral} becomes
+	Applied to the shaded control volume in Figure \ref{fig: control_volume}, and keeping in mind the pressure forces shown in Figure \ref{fig: Forces_Momentum_Control_Volume}, Equation \ref{EQ: Energy_equation_integral} becomes
 	
 	{\footnotesize
 		\begin{align}
@@ -386,7 +382,7 @@
 		\end{equation}
 	}
 	
-	Equation \ref{EQ: Energy_equation_conservative_total} is the conservation form of the energy expressed in terms of the total energy $e~+~v^2/2$, appropriate for unsteady, quasi-one-dimensional flow. The energy equation can be expressed in terms of internal energy if Eq. \ref{EQ: Conservative_Momentum} is multiplicated by $v$ and then subtracted from Eq. \ref{EQ: Energy_equation_conservative_total}
+	Equation \ref{EQ: Energy_equation_conservative_total} is the conservation form of the energy expressed in terms of the total energy $e~+~v^2/2$, appropriate for unsteady, quasi-one-dimensional flow. The energy equation can be expressed in terms of internal energy if Equation \ref{EQ: Conservative_Momentum} is multiplicated by $v$ and then subtracted from Equation \ref{EQ: Energy_equation_conservative_total}
 	
 	{\footnotesize
 		\begin{equation}
@@ -420,7 +416,7 @@
 		\end{equation}
 	}
 	
-	Equation \ref{EQ: Energy_equation_nonconservative} is the non-conservative form of the energy equation expressed in terms of internal energy, appropriate to unsteady quasi-one-dimensional flow. The reason for obtaining the energy equation in the form of Eq. \ref{EQ: Energy_equation_nonconservative} is that, for a calorically perfect gas, it leads directly to a form of the energy equation in terms of temperature $T$. 
+	Equation \ref{EQ: Energy_equation_nonconservative} is the non-conservative form of the energy equation expressed in terms of internal energy, appropriate to unsteady quasi-one-dimensional flow. The reason for obtaining the energy equation in the form of Equation \ref{EQ: Energy_equation_nonconservative} is that, for a calorically perfect gas, it leads directly to a form of the energy equation in terms of temperature $T$. 
 %	
 %	For calorically perfect gas ${\footnotesize e_f=C_vT}$
 %	
