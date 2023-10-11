@@ -4,14 +4,16 @@
 	
 	Maximum likelihood estimation (MLE) is a statistical method used to estimate the parameters of a probability distribution based on observed data. The MLE works by finding the values of the parameters that maximize the likelihood function, which is the probability of observing the given data for a given set of parameter values. The MLE has desirable properties such as asymptotic efficiency and normality. Although the MLE has often been associated with the normal distribution for mathematical convenience, it can be applied to a wide range of probability distributions.
 	
-	To find the maximum likelihood estimates, we maximize the joint probability density function, or likelihood function, denoted as $p(\theta | y(t_1),y(t_2),...,y(t_n))$, where $\theta$ represents the parameters and $y(t_1),y(t_2),...,y(t_n)$ represent the observed data. The conditions at the maximum can be refined by incorporating prior information. The posterior probability density function $p(\theta|y)$ can be expressed as the ratio of two probability densities (\ref{EQ: Probabiltiy_independet_b}) using the continuous variable analogue of Bayes' theorem (details in Appendix \ref{CH: Bayes}). In such a case the posteriori distribution is given by Equation \ref{EQ: Posterior_distribution}.
+	To find the maximum likelihood estimates, we maximize the joint probability density function, or likelihood function, denoted as $p(\theta | y(t_1),y(t_2),...,y(t_n))$, where $\theta$ represents the parameters and $y(t_1),y(t_2),...,y(t_n)$ represent the observed data. The conditions at the maximum can be refined by incorporating prior information. The posterior probability density function $p(\theta|y)$ can be expressed as the ratio of two probability densities %(\ref{EQ: Probabiltiy_independet_b})
+	 using the continuous variable analogue of Bayes' theorem %(details in Appendix \ref{CH: Bayes})
+	 . In such a case the posteriori distribution is given by Equation \ref{EQ: Posterior_distribution}.
 	
 	{\footnotesize
 		\begin{align} \label{EQ: Posterior_distribution}
 			p\left( \theta| y(t_n),...,y(t_1) \right) = \cfrac{p\left( \theta, y(t_n),...,y(t_1) \right)}{p\left( y(t_n),...,y(t_1) \right)}
 	\end{align} }
 	
-	The numerator of the right-hand side od Equation \ref{EQ: Posterior_distribution} using Equation \ref{EQ: Probabiltiy_dependet_a} becomes 
+	The numerator of the right-hand side od Equation \ref{EQ: Posterior_distribution} becomes %using Equation \ref{EQ: Probabiltiy_dependet_a} becomes 
 	
 	{\footnotesize
 		\begin{equation}
