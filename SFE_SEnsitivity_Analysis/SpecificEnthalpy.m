@@ -41,7 +41,7 @@ function [h_kg] = SpecificEnthalpy(T, P, Z, RHO, theta)
 
     Delta_CP_IG   = R./10.*T.*(Z-1-A./B./2.8284.*(1+m.*sqrt(Tr./alpha)).*log( ( Z+B.*(1+sqrt(2)) )./(Z+B.*(1-sqrt(2))) ));
 
-    h_mol         =   ( Delta_CP_IG + Delta_CP_IG_R + Delta_CP_IG_REF );          % J/mol % minus sign is used to work with positive values
+    h_mol         =   ( Delta_CP_IG + Delta_CP_IG_R - Delta_CP_IG_REF );          % J/mol % minus sign is used to work with positive values
     h_kg          =   h_mol./MW;                                                   % J/mol -> J/kg
     h_kg          =   h_kg .* 1e-3;                                                % J/kg -> KJ/kg
 

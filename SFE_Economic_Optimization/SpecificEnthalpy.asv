@@ -17,7 +17,6 @@ function [h_kg] = SpecificEnthalpy(T, P, Z, RHO, theta)
     PREF = 0.101325; % MPa
 
     Delta_CP_IG_REF = -41.81755442;
-
     
     %% Recalculate the Peng Robinson parameters
     Tr = T ./ Tc;
@@ -38,11 +37,12 @@ function [h_kg] = SpecificEnthalpy(T, P, Z, RHO, theta)
     
     %% Derivatives
     
-    Delta_CP_IG_R = CPA*(T-TREF)+CPB/2*(T^2-TREF^2)+CPC/3*(T^3-TREF^3)+CPD/4*(T^4-TREF^4);
+    Delta_CP_IG_R = CPA.*(T-TREF)+CPB./2.*(T.^2-TREF.^2)+CPC./3.*(T.^3-TREF.^3)+CPD./4.*(T.^4-TREF.^4);
 
-    Delta_CP_IG   = R/10*T*(Z-1-A/B/2.8284*(1+m*sqrt(Tr/alpha))*log( ( Z+B.*(1+sqrt(2)) )./(Z+B.*(1-sqrt(2))) ));
+    Delta_CP_IG   = R./10.*T.*(Z-1-A./B./2.8284.*(1+m.*sqrt(Tr./alpha)).*log( ( Z+B.*(1+sqrt(2)) )./(Z+B.*(1-sqrt(2))) ));
 
-    h_mol         = ( Delta_CP_IG + Delta_CP_IG_R + Delta_CP_IG_REF );          % J/mol
-    h_kg          = h_mol/44;
+    h_mol         =   ( Delta_CP_IG + Delta_CP_IG_R - Delta_CP_IG_REF );          % J/mol % minus sign is used to work with positive values
+    h_kg          =   h_mol./MW;                                                   % J/mol -> J/kg
+    h_kg          =   h_kg .* 1e-3;                                                % J/kg -> KJ/kg
 
-end
+end         
