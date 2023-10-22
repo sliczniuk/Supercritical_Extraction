@@ -4,7 +4,7 @@ function [h_kg] = SpecificEnthalpy(T, P, Z, RHO, theta)
     Tc      = theta{10};         % Critical temperature [K]
     Pc      = theta{11};         % Critical pressure [bar]
     R       = 83.1447;           % Universal gas constant, [m3-bar/K-mol]
-    kappa   = 0.2250;
+    kappa   = 0.2280;
     MW      = theta{14};         % Molar mass [g/mol]       
     
     CPA =  1.98E+01;
@@ -39,7 +39,7 @@ function [h_kg] = SpecificEnthalpy(T, P, Z, RHO, theta)
     
     Delta_CP_IG_R = CPA.*(T-TREF)+CPB./2.*(T.^2-TREF.^2)+CPC./3.*(T.^3-TREF.^3)+CPD./4.*(T.^4-TREF.^4);
 
-    Delta_CP_IG   = R./10.*T.*(Z-1-A./B./2.8284.*(1+m.*sqrt(Tr./alpha)).*log( ( Z+B.*(1+sqrt(2)) )./(Z+B.*(1-sqrt(2))) ));
+    Delta_CP_IG   = (R./10).*T.*(Z-1-A./B./2.8284.*(1+m.*sqrt(Tr./alpha)).*log( ( Z+B.*(1+sqrt(2)) )./(Z+B.*(1-sqrt(2))) ));
 
     h_mol         =   ( Delta_CP_IG + Delta_CP_IG_R - Delta_CP_IG_REF );          % J/mol % minus sign is used to work with positive values
     h_kg          =   h_mol./MW;                                                   % J/mol -> J/kg
