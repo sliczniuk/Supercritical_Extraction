@@ -29,8 +29,8 @@ function [T_out, W, Cost] = Pump_estimation(T_in, P_in, P_out, F, Parameters)
     %% Set optimization problem and find S_in = S_out by adjusting T_out
     cost_function = (S_in - S_out).^2;
 
-    g_compressor = Function('g', {T_out}, {cost_function});
-    G_compressor = rootfinder('G','newton',g_compressor);
+    g_compressor = Function('g_compressor', {T_out}, {cost_function});
+    G_compressor = rootfinder('G_compressor','newton',g_compressor);
     
     %% Evaluate properties of fluid at the outlet to the pump/compressor
     T_out   = G_compressor(T_in);
