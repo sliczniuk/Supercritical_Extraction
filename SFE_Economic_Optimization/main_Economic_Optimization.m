@@ -7,7 +7,7 @@ addpath('C:\Dev\casadi-3.6.3-windows64-matlab2018b');
 import casadi.*
 
 Parameters_table        = readtable('Parameters.csv') ;                     % Table with prameters
-Parameters              = num2cell(Parameters_table{:,3});                  % Parameters within the model + (m_max), m_ratio, sigma
+Parameters              = num2cell(Parameters_table{:,3});                  % Parameters within the model 
 
 %% Load paramters
 m_total                 = 80;
@@ -20,8 +20,8 @@ bed                     = 0.165;                                            % Pe
 
 % Set time of the simulation
 PreparationTime         = 0;
-ExtractionTime          = 2000;
-timeStep                = 0.1;                                              % Minutes
+ExtractionTime          = 150;                                              % Minutes
+timeStep                = 1;                                                % Minutes
 SamplingTime            = 5;                                                % Minutes
 
 simulationTime          = PreparationTime + ExtractionTime;
@@ -81,21 +81,25 @@ L_bed_after_nstages     = L_bed_after_nstages - L_bed_after_nstages(1);
 L_end                   = L_bed_after_nstages(end);
 
 %% symbolic variables
-x                           = MX.sym('x', Nx);
-u                           = MX.sym('u', Nu);
+x                       = MX.sym('x', Nx);
+u                       = MX.sym('u', Nu);
 
 %% Set Integrator
-f                           = @(x, u) modelSFE(x, u, bed_mask, timeStep_in_sec);
-xdot                        = modelSFE(x, u, bed_mask, timeStep_in_sec);
+f                       = @(x, u) modelSFE(x, u, bed_mask, timeStep_in_sec);
+xdot                    = modelSFE(x, u, bed_mask, timeStep_in_sec);
+F                       = buildIntegrator(f, [Nx,Nu] , timeStep_in_sec);
 
-% Integrator
-F                           = buildIntegrator(f, [Nx,Nu] , timeStep_in_sec);
+%% Set operating conditions
+feedPress               = 250;                                              % pressure in the extractor [bar]
 
+%% compressor
+T_out_compressor        = Pump_estimation(10+273, 70, feedPress, 1, Parameters);        % TODO: third parameter is a mass flowrate, which is recovered later. to be fixed
 
-% Set operating conditions
-T0homog                 = 45+273.15;
-feedPress               = 250;
+%% heat exchanger
+[T_w_out, T_c_out]      = Heat_Exchanger_estimation(T_out_compressor, feedPress, Parameters);
+T0homog                 = full(T_w_out);                           
 
+%% Extractor
 Z                       = Compressibility( T0homog, feedPress,         Parameters );
 rho                     = rhoPB_Comp(      T0homog, feedPress, Z,      Parameters );
 
@@ -104,7 +108,6 @@ enthalpy_rho            = rho.*SpecificEnthalpy(T0homog, feedPress, Z, rho, Para
 feedTemp                = T0homog   * ones(1,length(Time_in_sec)) + 0 ;  % Kelvin
 
 feedPress               = feedPress * ones(1,length(Time_in_sec)) + 0 ;  % Bars
-%feedPress(100:200)     = 300;
 
 feedFlow                = V_Flow * rho * 1e-3 / 60 * ones(1,length(Time_in_sec));  % l/min -> kg/s
 

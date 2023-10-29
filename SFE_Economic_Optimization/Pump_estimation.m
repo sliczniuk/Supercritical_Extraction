@@ -13,7 +13,7 @@ function [T_out, W, Cost] = Pump_estimation(T_in, P_in, P_out, F, Parameters)
 
     %% import casadi and set decision variable T_out
     import casadi.*
-    T_out   = MX.sym('T_out',1);
+    T_out   = MX.sym('T_out',numel(T_in));
     
     %% Evaluate properties of fluid at the inlet to the pump/compressor
     Z_in    = Compressibility( T_in, P_in,       Parameters );
@@ -33,7 +33,7 @@ function [T_out, W, Cost] = Pump_estimation(T_in, P_in, P_out, F, Parameters)
     G_compressor = rootfinder('G_compressor','newton',g_compressor);
     
     %% Evaluate properties of fluid at the outlet to the pump/compressor
-    T_out   = G_compressor(T_in);
+    T_out   = G_compressor(T_in+10);
     Z_out   = Compressibility( T_out, P_out,        Parameters );
     rho_out = rhoPB_Comp(      T_out, P_out, Z_out, Parameters );
     S_out   = SpecificEntropy( T_out, P_out, Z_out, rho_out, Parameters); %kJ/kg
@@ -43,6 +43,6 @@ function [T_out, W, Cost] = Pump_estimation(T_in, P_in, P_out, F, Parameters)
     W = F .* (H_out - H_in); % kg/s * kJ/kg = kJ/s = kW
 
     %% Equipment cost 
-    Cost = 10167.5*W^0.46; % $ https://sci-hub.st/10.3390/en13236454
+    Cost = 10167.5 .* W.^0.46; % $ https://sci-hub.st/10.3390/en13236454
 
 end

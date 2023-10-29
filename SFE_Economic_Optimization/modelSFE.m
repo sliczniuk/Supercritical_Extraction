@@ -23,11 +23,6 @@ function xdot = modelSFE(x, p, mask, dt)
     km            =     1e5;
     mi            =     parameters{9};
 
-    %Di            =     parameters{44};      Di = Di * 1e-14;
-    %Dx            =     parameters{45};      Dx = Dx * 1e-6;
-    %SAT           =     parameters{47};
-    %shape         =     parameters{48};
-
     nstages_index =     numel(mask);
     
     %% Properties of the bed
@@ -50,7 +45,7 @@ function xdot = modelSFE(x, p, mask, dt)
     VELOCITY      =     Velocity(F_u, RHO, parameters);
     
     %% Thermal Properties
-    CP            =     SpecificHeatComp(TEMP, PRESSURE, Z, RHO,                 parameters);            % [kJ/kg/K]
+    CP            =     SpecificHeatComp(TEMP, PRESSURE, Z, RHO,                 parameters);            % [J/kg/K]
     CPRHOCP       =     cpRHOcp_Comp(    TEMP, PRESSURE, Z, RHO, CP, epsi.*mask, parameters);
     KRHOCP        =     kRHOcp_Comp(     TEMP, PRESSURE, Z, RHO, CP, epsi.*mask, parameters);
 

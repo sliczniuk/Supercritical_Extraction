@@ -1,4 +1,4 @@
-function [T_out_h, T_out_c, L] = Heat_Exchanger_estimation()
+function [T_w_out, T_c_out] = Heat_Exchanger_estimation(T_out_compressor, feedPress, Parameters)
 
     % epsilon-NTU method is used to determin the outlet temperatures if the
     % heat transfer area, inner daimeter of the inner diamter of tube, 
@@ -7,12 +7,15 @@ function [T_out_h, T_out_c, L] = Heat_Exchanger_estimation()
     % streams (temperature, flow rate and heat capacity). Later the heat
     % exchnager cost is estimated.
 
+    Parameters_table        = readtable('Parameters.csv') ;                     % Table with prameters
+    Parameters              = num2cell(Parameters_table{:,3});                  % Parameters within the model 
+
     %% Heat exchnager properties
     D_i     = 4.094e-2;       % m - inner diamter of tube
     D_io    = 4.830e-2;       % m - outer diamter of tube
     D_o     = 7.500e-2;       % m - inner diamter of shell
 
-    A       = 8.7;
+    A       = 100;
     k       = 60;             % W/m/C - conductivity of the tube
 
     %% geometry of heat exchanger
@@ -26,16 +29,16 @@ function [T_out_h, T_out_c, L] = Heat_Exchanger_estimation()
     % mean hydraulic diamter of annlulus
     Deo     = D_o - D_io;
 
-    %% cold fluid - CO2 - outside
-    F_c     = 5;        % kg/s
+    %% fluid outside - water
+    F_c     = 500;        % kg/s
     
-    T_c_in  = 15;       % C
+    T_c_in  = 45+273;       % C
 
-    CP_c    = 1622;     % J/kg/C - specific heat
-    k_c     = 0.138;    % W/m/C - conductivity
+    CP_c    = 4119;     % J/kg/C - specific heat
+    k_c     = 0.607;    % W/m/C - conductivity
 
-    rho_c   = 1044;    % kg/m3
-    mu_c    = 2.7e-3;  % (N*s)/m^2
+    rho_c   = 997;    % kg/m3
+    mu_c    = 1e-3;  % (N*s)/m^2
     Pr_c    = CP_c * mu_c / k_c ;
 
     V_c     = F_c / (rho_c * S_o);
@@ -47,15 +50,31 @@ function [T_out_h, T_out_c, L] = Heat_Exchanger_estimation()
 
     C_c     = CP_c * F_c;
 
-    %% warm fluid - inside
-    F_w     = 4.83;    % kg/s
-    T_w_in  = 95;      % C
+    %% fluid inside - co2
+    F_w     = 0.6;    % kg/s % TODO: get the F from the simulation
+    T_w_in  = T_out_compressor;      % C
+    feedPress = feedPress;
 
-    CP_w    = 4197;     % J/kg/C
-    k_w     = 0.676;    % W/m/C
+    % properties of co2 at the highest T
+    Z_in     = Compressibility( T_w_in, feedPress,               Parameters );
+    rho_in   = rhoPB_Comp(      T_w_in, feedPress, Z_in,         Parameters );
+    CP_in    = SpecificHeatComp(T_w_in, feedPress, Z_in, rho_in, Parameters );         % [J/kg/K]
+    k_in     = HeatConductivity_Comp(T_w_in, rho_in)*1e-3;                             % [ 10^-3 (W / m * K) ] -> (W / m * K)
+    mu_in    = Viscosity(T_w_in, rho_in);                                              % Pa*s
 
-    rho_w   = 969.0;    % kg/m3
-    mu_w    = 3.11e-4;    % (N*s)/m^2
+    % properties of co2 at the lowest T
+    Z_out    = Compressibility( T_c_in, feedPress,                 Parameters );
+    rho_out  = rhoPB_Comp(      T_c_in, feedPress, Z_out,          Parameters );
+    CP_out   = SpecificHeatComp(T_c_in, feedPress, Z_out, rho_out, Parameters );       % [J/kg/K]
+    k_out    = HeatConductivity_Comp(T_c_in, rho_out)*1e-3;                            % [ 10^-3 (W / m * K) ] -> (W / m * K)
+    mu_out   = Viscosity(T_c_in,rho_out);                                              % Pa*s
+
+    % average properties of co2
+    rho_w    = (rho_in + rho_out) / 2;
+    CP_w     = (CP_in + CP_out) / 2;
+    mu_w     = (mu_in + mu_out) / 2;
+    k_w      = (k_in + k_out) / 2;
+    
     Pr_w    = CP_w * mu_w / k_w;
 
     V_w     = F_w / (rho_w * S_i);
@@ -68,7 +87,6 @@ function [T_out_h, T_out_c, L] = Heat_Exchanger_estimation()
     C_w     = CP_w * F_w;
 
     %% Heat transfer coefficient
-
     U_inv   = 1/h_c + D_io/(2*k)*log(D_io/D_i) + 1/h_w*(D_io/D_i);
     U       = 1/U_inv;
     
@@ -96,8 +114,8 @@ function [T_out_h, T_out_c, L] = Heat_Exchanger_estimation()
     Q       = epsilon .* C_min .* (T_w_in - T_c_in);
 
     %% Outlet temperatures
-    T_w_out = T_w_in - Q./C_w;
-    T_c_out = T_c_in + Q./C_c;
+    T_w_out = T_w_in - Q./C_w;                                                          % CO2
+    T_c_out = T_c_in + Q./C_c;                                                          % water
 
     %% 
     L       = A/(pi * D_io);
