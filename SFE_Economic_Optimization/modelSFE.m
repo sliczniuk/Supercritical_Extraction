@@ -52,7 +52,7 @@ function xdot = modelSFE(x, p, mask, dt)
     %% Extraction kientic
     Di            = Diffusion(RHO) .* 1e-14;
     shape         = Decay_Function_Coe(RHO);
-    Dx            = axial_diffusion(TEMP, epsi, VELOCITY, RHO) .*1e-6;
+    Dx            = axial_diffusion(TEMP, epsi, VELOCITY, RHO, parameters) .*1e-6;
 
     %% Saturation
     Csolid_percentage_left = 1 - (SOLID./C0solid);

@@ -6,6 +6,6 @@ function D_L = axial_diffusion(T, epsi, v, rho)
 
     Re = dp .* v .* rho .* epsi ./ mu;
     
-    D_L = -0.02698 .* Re + 29.71;
+    D_L = 0.06766 .* Re - 13.23;
 
 end

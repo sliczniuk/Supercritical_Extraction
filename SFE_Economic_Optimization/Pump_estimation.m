@@ -43,6 +43,6 @@ function [T_out, W, Cost] = Pump_estimation(T_in, P_in, P_out, F, Parameters)
     W = F .* (H_out - H_in); % kg/s * kJ/kg = kJ/s = kW
 
     %% Equipment cost 
-    Cost = 10167.5 .* W.^0.46; % $ https://sci-hub.st/10.3390/en13236454
+    Cost = 10167.5 .* W.^0.46; % https://sci-hub.st/10.3390/en13236454
 
 end

@@ -15,7 +15,7 @@ function [T_w_out, T_c_out] = Heat_Exchanger_estimation(T_out_compressor, feedPr
     D_io    = 4.830e-2;       % m - outer diamter of tube
     D_o     = 7.500e-2;       % m - inner diamter of shell
 
-    A       = 100;
+    A       = 2;
     k       = 60;             % W/m/C - conductivity of the tube
 
     %% geometry of heat exchanger
@@ -30,9 +30,9 @@ function [T_w_out, T_c_out] = Heat_Exchanger_estimation(T_out_compressor, feedPr
     Deo     = D_o - D_io;
 
     %% fluid outside - water
-    F_c     = 500;        % kg/s
+    F_c     = 0.5;        % kg/s
     
-    T_c_in  = 45+273;       % C
+    T_c_in  = 50+273;       % C
 
     CP_c    = 4119;     % J/kg/C - specific heat
     k_c     = 0.607;    % W/m/C - conductivity
