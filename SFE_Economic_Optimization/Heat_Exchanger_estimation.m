@@ -1,4 +1,4 @@
-function [T_w_out, T_c_out] = Heat_Exchanger_estimation(T_out_compressor, feedPress, Parameters)
+function [T_w_out, T_c_out, Cost] = Heat_Exchanger_estimation(T_out_compressor, feedPress, Parameters)
 
     % epsilon-NTU method is used to determin the outlet temperatures if the
     % heat transfer area, inner daimeter of the inner diamter of tube, 
@@ -119,4 +119,9 @@ function [T_w_out, T_c_out] = Heat_Exchanger_estimation(T_out_compressor, feedPr
 
     %% 
     L       = A/(pi * D_io);
+
+    %% Cost - Product and Process Design Principles : Synthesis, Analysis, and Evaluation; https://sci-hub.ru/10.3390/en13102656
+    %  P is the shell-side pressure in MPa
+    Cost = 2 * (0.8510 + 0.1292( P * 145 / 100 ) + 0.0198( P * 145 / 100 )^2) * exp( 7.1460 + 0.16 log(10.76 * A) );
+
 end

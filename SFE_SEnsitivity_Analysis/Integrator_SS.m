@@ -27,7 +27,7 @@ function Results = Integrator_SS(Time, x0, S, p, Sdot, parameters)
         res = I('x0', Q, 'p', parameters(i,:) );
         Results(:,i+1) = full(res.xf.');
 
-        if(mod(Time(i)/Time(end),0.2)==0)
+        if(mod(Time(i)/Time(end),0.05)==0)
                 fprintf("Finished: %g [%%]\n",[i/length(Time)*100])
         end
 

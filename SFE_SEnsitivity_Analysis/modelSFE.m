@@ -72,6 +72,7 @@ function xdot = modelSFE(x, p, mask, dt)
                                                                                           % to avoid different T at the inlet and inside of the extractor
     %T_0 = if_else( mode == 1, T_u, TEMP(1));
     T_0 = TEMP(1);
+    T_0 = T_u;
     
     T_B           =     TEMP(nstages_index);
 
@@ -90,7 +91,6 @@ function xdot = modelSFE(x, p, mask, dt)
     enthalpy_rho_0 = rho_0 .* H_0;
     
     %% Derivatives
-
     dz            = L/nstages_index;
     
     %dCfdz         = backward_diff_1_order(FLUID,Cf_0    , [],   dz);
@@ -109,8 +109,7 @@ function xdot = modelSFE(x, p, mask, dt)
    
     re            = (Sat_coe ./ mi ./ lp2)  .* ( SOLID - FLUID .* rho_s ./ RHO ./ km );
     
-    %%
-
+    %% model
     xdot = [
     
     %--------------------------------------------------------------------
