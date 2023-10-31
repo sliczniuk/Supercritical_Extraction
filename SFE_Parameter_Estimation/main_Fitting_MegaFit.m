@@ -2,8 +2,8 @@ startup; datetime("now")
 delete(gcp('nocreate'));
 % %p = Pushbullet(pushbullet_api);
 
-addpath('C:\Dev\casadi-3.6.3-windows64-matlab2018b');
-%addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-3.6.3-windows64-matlab2018b');
+%ddpath('C:\Dev\casadi-3.6.3-windows64-matlab2018b');
+addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-3.6.3-windows64-matlab2018b');
 import casadi.*
 
 Parameters_table        = readtable('Parameters.csv') ;        % Table with prameters
@@ -11,13 +11,13 @@ Parameters              = num2cell(Parameters_table{:,3});
 
 %% Create the solver
 Iteration_max               = 1000;                                         % Maximum number of iterations for optimzer
-Time_max                    = 5.0;                                          % Maximum time of optimization in [h]
+Time_max                    = 10.0;                                          % Maximum time of optimization in [h]
 
 nlp_opts                    = struct;
 nlp_opts.ipopt.max_iter     = Iteration_max;
 nlp_opts.ipopt.max_cpu_time = Time_max*3600;
-nlp_opts.ipopt.acceptable_tol  = 1e-4;
-nlp_opts.ipopt.acceptable_iter = 5;
+%nlp_opts.ipopt.acceptable_tol  = 1e-4;
+%nlp_opts.ipopt.acceptable_iter = 5;
 
 which_k                 = [     8, 44,   45,  48            ];              % Select which parameters are used for fitting
 k0                      = [  1000,  3,    1,   0,   1,  0.05];              % Give inital value for each parameter
@@ -42,7 +42,6 @@ bed                     = 0.165;                                            % Pe
 % Set time of the simulation
 PreparationTime         = 0;
 ExtractionTime          = 200;
-ExtractionTime_SA       = 300;
 timeStep                = 0.5;                                              % Minutes
 SamplingTime            = 5;                                                % Minutes
 
@@ -294,7 +293,7 @@ end
 
 %format shortE
 
-NAME = {'$k_m[-]$', '$D_i[m^2/s] \times 10^{-14}$', '$D_e^M[m^2/s] \times 10^{-6}$', '$\Upsilon[-]$', '$\tau[-]$', '$\sigma[-]$'};
+NAME = {'$k_m[-]$', '$D_i[m^2/s] \cdot 10^{-14}$', '$D_e^M[m^2/s] \cdot 10^{-6}$', '$\Upsilon[-]$', '$\tau[-]$', '$\sigma[-]$'};
 name = {'km', 'Di', 'De', 'Upsilon', 'tau', 'sigma'};
 Title = {'T40P200', 'T50P200', 'T40P300', 'T50P300'};
 
@@ -306,7 +305,7 @@ DATA_K_OUT_order_of_mag(3,:) = DATA_K_OUT_order_of_mag(3,:);
 %DATA_K_OUT_order_of_mag(4,:) = DATA_K_OUT_order_of_mag(4,:) * 1e-6;
 
 for i=1:numel(DATA_set)
-    TT.(i+1)=round(DATA_K_OUT_order_of_mag(:,i),3);
+    TT.(i+1)=[ round(DATA_K_OUT_order_of_mag(1,i),0) ; round(DATA_K_OUT_order_of_mag(2:end,i),2) ];
 end
 
 TT.Properties.VariableNames = ["Parameter","$40[C] 200[bar]$","$50[C] 200[bar]$","$40[C] 300[bar]$","$50[C] 300[bar]$"];
@@ -329,7 +328,7 @@ end
 TTT.Properties.VariableNames = ["Time [min]","$40[C] 200[bar]$","$50[C] 200[bar]$","$40[C] 300[bar]$","$50[C] 300[bar]$"];
 writetable(TTT,'Dataset.csv');
 
-%%  Inrease the simulation for sensitivity analysis
+%%  Plot the fitting results and extrapolate the simulation in time 
 simulationTime          = PreparationTime + 200;
 %
 timeStep_in_sec         = timeStep * 60;                                    % Seconds
@@ -338,176 +337,110 @@ Time                    = [0 Time_in_sec/60];                               % Mi
 %
 N_Time                  = length(Time_in_sec);
 
-Name_v = {'F','k_m', 'D_i', 'D_M'};
-XOXO   = [3, 3+8, 3+44, 3+45];
+RHO = [];
+RE      = [];
 
-for xoxo=1:1%numel(XOXO)
+for ii=1:numel(DATA_set)
 
-    name_v                  = Name_v{xoxo};
+    DATA                    = DATA_set{ii};
+    LabResults              = xlsread([DATA,'.xlsx']);
 
-    RHO   = [];
-    U     = [];
-    for ii=1:numel(DATA_set)
+    data_org                = LabResults(:,5)';
+    data                    = diff(data_org);
 
+    KOUT                    = DATA_K_OUT(:,ii);
 
-        DATA                    = DATA_set{ii};
-        LabResults              = xlsread([DATA,'.xlsx']);
+    % Set operating conditions
+    T0homog                 = LabResults(1,1)+273.15;
+    feedPress               = LabResults(1,2);
 
-        data_org                = LabResults(:,5)';
-        data                    = diff(data_org);
+    Z                       = Compressibility( T0homog, feedPress,         Parameters );
+    rho                     = rhoPB_Comp(      T0homog, feedPress, Z,      Parameters );
+    RHO                     = [RHO, rho];
 
-        KOUT                    = DATA_K_OUT(:,ii);
-
-        % Set operating conditions
-        T0homog                 = LabResults(1,1)+273.15;
-        feedPress               = LabResults(1,2);
-
-        Z                       = Compressibility( T0homog, feedPress,         Parameters );
-        rho                     = rhoPB_Comp(      T0homog, feedPress, Z,      Parameters );
-        RHO                     = [RHO, rho];
-
-        enthalpy_rho            = rho.*SpecificEnthalpy(T0homog, feedPress, Z, rho, Parameters );
+    enthalpy_rho            = rho.*SpecificEnthalpy(T0homog, feedPress, Z, rho, Parameters );
 
 
-        feedTemp                = T0homog   * ones(1,length(Time_in_sec)) + 0 ;  % Kelvin
+    feedTemp                = T0homog   * ones(1,length(Time_in_sec)) + 0 ;  % Kelvin
 
-        feedPress               = feedPress * ones(1,length(Time_in_sec)) + 0 ;  % Bars
+    feedPress               = feedPress * ones(1,length(Time_in_sec)) + 0 ;  % Bars
 
-        feedFlow                = V_Flow * rho * 1e-3 / 60 * ones(1,length(Time_in_sec));  % l/min -> kg/s
+    feedFlow                = V_Flow * rho * 1e-3 / 60 * ones(1,length(Time_in_sec));  % l/min -> kg/s
 
-        uu                      = [feedTemp', feedPress', feedFlow'];
+    uu                      = [feedTemp', feedPress', feedFlow'];
 
-        % Solve for the inital guess
-        for i=1:numel(which_k)
-            Parameters{which_k(i)}  = k0(i);
-        end
+    %
+    mu = Viscosity(T0homog,rho);
+    dp = 0.15;
+    VELOCITY      =     Velocity(feedFlow(1), rho, Parameters);
+    Re = dp .* VELOCITY .* rho .* epsi ./ mu;
+    RE = [RE, Re];
 
-        msol_max                = m_total;%k0(numel(which_k)+1);            % g of product in solid and fluid phase
-        mSol_ratio              = k0(numel(which_k)+1);
-
-        mSOL_s                  = msol_max*mSol_ratio;                      % g of product in biomass
-        mSOL_f                  = msol_max*(1-mSol_ratio);                  % g of biomass in fluid
-
-        C0solid                 = mSOL_s * 1e-3 / ( V_bed * epsi)  ;        % Solid phase kg / m^3
-        Parameters{2}           = C0solid;
-
-        G                       =@(x) -(2*mSOL_f / L_end^2) * (x-L_end) ;
-
-        m_fluid                 = G(L_bed_after_nstages)*( L_bed_after_nstages(2) );                 % Lienarly distirubuted mass of solute in fluid phase, which goes is zero at the outlet. mass*dz
-        m_fluid                 = [zeros(1,numel(nstagesbefore)) m_fluid];
-        C0fluid                 = m_fluid * 1e-3 ./ V_fluid';
-
-        % Initial conditions
-        x0                      = [ C0fluid'                        ;
-                                    C0solid  * bed_mask             ;
-                                    enthalpy_rho * ones(nstages,1)  ;
-                                    feedPress(1)                    ;
-                                    0                               ;
-                                    ];
-
-        Parameters_init_time   = [uu repmat(cell2mat(Parameters),1,N_Time)'];
-        [xx_0]                 = simulateSystem(F, [], x0, Parameters_init_time );
-
-
-        % Solve for the optimzed parameters
-        Parameters_opt = Parameters;
-        for i=1:numel(which_k)
-            Parameters_opt{which_k(i)}  = KOUT(i);
-        end
-
-        %
-        msol_max_opt            = m_total;%KOUT(numel(which_k)+1);          % g of product in solid and fluid phase
-        mSol_ratio_opt          = KOUT(numel(which_k)+1);
-        mSOL_s_opt              = msol_max_opt*mSol_ratio_opt;              % g of product in biomass
-        mSOL_f_opt              = msol_max_opt*(1-mSol_ratio_opt);          % g of biomass in fluid
-
-        C0solid_opt             = mSOL_s_opt * 1e-3 / ( V_bed * epsi)  ;    % Solid phase kg / m^3
-        Parameters_opt{2}       = C0solid_opt;
-
-        G                       =@(x) -(2*mSOL_f_opt / L_end^2) * (x-L_end) ;
-
-        m_fluid_opt             = G(L_bed_after_nstages)*( L_bed_after_nstages(2) );                  % Lienarly distirubuted mass of solute in fluid phase, which goes is zero at the outlet. mass*dz
-        m_fluid_opt             = [zeros(1,numel(nstagesbefore)) m_fluid_opt];
-        C0fluid_opt             = m_fluid_opt * 1e-3 ./ V_fluid';
-
-        % Initial conditions
-        x0_opt                  = [ C0fluid_opt'                   ;
-                                    C0solid_opt  * bed_mask        ;
-                                    enthalpy_rho * ones(nstages,1) ;
-                                    feedPress(1);
-                                    0;
-                                    ];
-
-        Parameters_opt_time     = [uu repmat(cell2mat(Parameters_opt),1,N_Time)'];
-        [xx_out]                = simulateSystem(F, [], x0_opt, Parameters_opt_time);
-
-        Plot_Fit
-
-        %{
-
-        [S,p,Sdot]              = Sensitivity(x, xdot, u, [XOXO(xoxo)] );
-
-        % Initial conditions
-        x0_SA                   = [ C0fluid';
-                                    C0solid  * bed_mask        ;
-                                    enthalpy_rho * ones(nstages,1) ;
-                                    feedPress(1);
-                                    0;
-                                    zeros(length(S)-length(xdot),1)
-                                    ];
-
-        f_SA = @(S, p) Sdot(S, p, bed_mask);
-        Results = Integrator_SS(Time*60, x0_SA, S, p, Sdot, Parameters_opt_time );
-        Res = Results(Nx+1:end,:) ;
-
-        subplot(3,2,1)
-        imagesc(Time, L_nstages, Res(1*nstages+1:2*nstages,:)); cb = colorbar;
-        hold on
-        yline([L_nstages(nstagesbed(end)) L_nstages(nstagesbed(1))],'w--',{'end of bed','beginning of bed'}, 'Interpreter', 'latex')
-        hold off
-        cb.Label.String = ['$\frac{d c_s}{d',name_v,'}$']; cb.Label.Interpreter = 'latex'; cb.Label.FontSize = 14;
-        xlabel('Time [min]'); ylabel('Length [m]'); title(sprintf('$\\rho_f$=%4.2f',rho))
-
-        subplot(3,2,2)
-        imagesc(Time, L_nstages, Res(2*nstages+1:3*nstages,:) ); cb = colorbar;
-        hold on
-        yline([L_nstages(nstagesbed(end)) L_nstages(nstagesbed(1))],'w--',{'end of bed','beginning of bed'}, 'Interpreter', 'latex')
-        hold off
-        cb.Label.String = ['$\frac{d h}{d',name_v,'}$']1; cb.Label.Interpreter = 'latex'; cb.Label.FontSize = 14;
-        xlabel('Time [min]'); ylabel('Length [m]')
-
-        subplot(3,2,3)
-        imagesc(Time, L_nstages, Res(0*nstages+1:1*nstages,:)); cb = colorbar;
-        hold on
-        yline([L_nstages(nstagesbed(end)) L_nstages(nstagesbed(1))],'w--',{'end of bed','beginning of bed'}, 'Interpreter', 'latex')
-        hold off
-        cb.Label.String = ['$\frac{d c_f}{d',name_v,'}$']; cb.Label.Interpreter = 'latex'; cb.Label.FontSize = 14;
-        xlabel('Time [min]'); ylabel('Length [m]')
-
-        subplot(3,2,4)
-        plot(Time, Res(end-1,:))
-        xlabel('Time [min]'); ylabel(['$\frac{d P_{t-1}}{d',name{ii},'}$'])
-
-        subplot(3,2,5)
-        hold on
-        plot(Time, Res(end,:)); colorbar;
-        xlabel('Time [min]'); ylabel(['$\frac{d y}{d',name_v,'}$'])
-        hold off
-        colormap jet
-
-        set(gcf,'PaperOrientation','landscape'); print(figure(1),[name_v,Title{ii},'.pdf'],'-dpdf','-bestfit')
-        close all;
-
-        U = [U; Res(end,:)];
-        %}
-
-
+    % Solve for the inital guess
+    for i=1:numel(which_k)
+        Parameters{which_k(i)}  = k0(i);
     end
 
-    % plot(Time, U, 'LineWidth',2);
-    % xlabel('Time [min]'); ylabel(['$\frac{d y}{d',name_v,'}$'])
-    % legend(Title)
-    % set(gcf,'PaperOrientation','landscape'); print(figure(1),[name_v,'_all.pdf'],'-dpdf','-bestfit'); close all
+    msol_max                = m_total;%k0(numel(which_k)+1);            % g of product in solid and fluid phase
+    mSol_ratio              = k0(numel(which_k)+1);
+
+    mSOL_s                  = msol_max*mSol_ratio;                      % g of product in biomass
+    mSOL_f                  = msol_max*(1-mSol_ratio);                  % g of biomass in fluid
+
+    C0solid                 = mSOL_s * 1e-3 / ( V_bed * epsi)  ;        % Solid phase kg / m^3
+    Parameters{2}           = C0solid;
+
+    G                       =@(x) -(2*mSOL_f / L_end^2) * (x-L_end) ;
+
+    m_fluid                 = G(L_bed_after_nstages)*( L_bed_after_nstages(2) );                 % Lienarly distirubuted mass of solute in fluid phase, which goes is zero at the outlet. mass*dz
+    m_fluid                 = [zeros(1,numel(nstagesbefore)) m_fluid];
+    C0fluid                 = m_fluid * 1e-3 ./ V_fluid';
+
+    % Initial conditions
+    x0                      = [ C0fluid'                        ;
+                                C0solid  * bed_mask             ;
+                                enthalpy_rho * ones(nstages,1)  ;
+                                feedPress(1)                    ;
+                                0                               ;
+                                ];
+
+    Parameters_init_time   = [uu repmat(cell2mat(Parameters),1,N_Time)'];
+    [xx_0]                 = simulateSystem(F, [], x0, Parameters_init_time );
+
+
+    % Solve for the optimzed parameters
+    Parameters_opt = Parameters;
+    for i=1:numel(which_k)
+        Parameters_opt{which_k(i)}  = KOUT(i);
+    end
+
+    %
+    msol_max_opt            = m_total;%KOUT(numel(which_k)+1);          % g of product in solid and fluid phase
+    mSol_ratio_opt          = KOUT(numel(which_k)+1);
+    mSOL_s_opt              = msol_max_opt*mSol_ratio_opt;              % g of product in biomass
+    mSOL_f_opt              = msol_max_opt*(1-mSol_ratio_opt);          % g of biomass in fluid
+
+    C0solid_opt             = mSOL_s_opt * 1e-3 / ( V_bed * epsi)  ;    % Solid phase kg / m^3
+    Parameters_opt{2}       = C0solid_opt;
+
+    G                       =@(x) -(2*mSOL_f_opt / L_end^2) * (x-L_end) ;
+
+    m_fluid_opt             = G(L_bed_after_nstages)*( L_bed_after_nstages(2) );                  % Lienarly distirubuted mass of solute in fluid phase, which goes is zero at the outlet. mass*dz
+    m_fluid_opt             = [zeros(1,numel(nstagesbefore)) m_fluid_opt];
+    C0fluid_opt             = m_fluid_opt * 1e-3 ./ V_fluid';
+
+    % Initial conditions
+    x0_opt                  = [ C0fluid_opt'                   ;
+                                C0solid_opt  * bed_mask        ;
+                                enthalpy_rho * ones(nstages,1) ;
+                                feedPress(1);
+                                0;
+                                ];
+
+    Parameters_opt_time     = [uu repmat(cell2mat(Parameters_opt),1,N_Time)'];
+    [xx_out]                = simulateSystem(F, [], x0_opt, Parameters_opt_time);
+
+    Plot_Fit
 
 end
 
@@ -516,13 +449,13 @@ Plot_Trend_Line
 plot_Di_Upsilon
 
 %%
-
-T = [40 50 40 50];
-P = [200 200 300 300];
-for ii=1:Nk
-    km = DATA_K_OUT(ii,:);
-    createSurfFit(T, P, km, NAME{ii}, name{ii});
-end
+% 
+% T = [40 50 40 50];
+% P = [200 200 300 300];
+% for ii=1:Nk
+%     km = DATA_K_OUT(ii,:);
+%     createSurfFit(T, P, km, NAME{ii}, name{ii});
+% end
 
 %%
 save data.mat

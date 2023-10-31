@@ -1,5 +1,5 @@
 function D = Diffusion(rho)
 
-    D = 0.07863 .* rho - 60.47;
+    D = 0.07569 .* rho - 58.19;
     
 end

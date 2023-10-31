@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.8) (preloaded format=pdflatex 2022.9.27)  11 OCT 2023 11:15
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.8) (preloaded format=pdflatex 2022.9.27)  31 OCT 2023 10:44
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1372,67 +1372,88 @@ File: pppdftex.def 2022/05/22 v0.5v Pdfpages driver for pdfTeX (AM)
 \c@AM@survey=\count374
 \AM@templatesizebox=\box86
 )
+(C:\Program Files\MiKTeX\tex/latex/numprint\numprint.sty
+Package: numprint 2012/08/20 v1.39 Print numbers (HH)
+\c@nprt@mantissa@digitsbefore=\count375
+\c@nprt@mantissa@digitsafter=\count376
+\c@nprt@exponent@digitsbefore=\count377
+\c@nprt@exponent@digitsafter=\count378
+\nprt@digitwidth=\skip79
+\nprt@sepwidth=\skip80
+\nprt@decimalwidth=\skip81
+\nprt@blockwidth=\skip82
+\nprt@digittoks=\toks62
+\nprt@pretoks=\toks63
+\nprt@posttoks=\toks64
+\nprt@thisdigit=\count379
+\nprt@curpos=\count380
+\nprt@rndpos=\count381
+\c@nprt@digitsfirstblock=\count382
+\c@nprt@blockcnt=\count383
+\c@nprt@cntprint=\count384
+
+No configuration file `numprint.cfg' found.)
 (C:\Program Files\MiKTeX\tex/latex/enumitem\enumitem.sty
 Package: enumitem 2019/06/20 v3.9 Customized lists
-\labelindent=\skip79
+\labelindent=\skip83
 \enit@outerparindent=\dimen367
-\enit@toks=\toks62
+\enit@toks=\toks65
 \enit@inbox=\box87
-\enit@count@id=\count375
-\enitdp@description=\count376
+\enit@count@id=\count385
+\enitdp@description=\count386
 )
 (Article_Model_Parameters.aux)
 \openout1 = `Article_Model_Parameters.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 81.
-LaTeX Font Info:    ... okay on input line 81.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 81.
-LaTeX Font Info:    ... okay on input line 81.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 81.
-LaTeX Font Info:    ... okay on input line 81.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 81.
-LaTeX Font Info:    ... okay on input line 81.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 81.
-LaTeX Font Info:    ... okay on input line 81.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 81.
-LaTeX Font Info:    ... okay on input line 81.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 81.
-LaTeX Font Info:    ... okay on input line 81.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 81.
-LaTeX Font Info:    ... okay on input line 81.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 81.
-LaTeX Font Info:    ... okay on input line 81.
-LaTeX Font Info:    Checking defaults for LS1/stix/m/n on input line 81.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for LS1/stix/m/n on input line 83.
 LaTeX Font Info:    Trying to load font information for LS1+stix on input line 
-81.
+83.
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls1stix.fd
 File: ls1stix.fd 2015/04/17 v1.1.2-latex STIX LS1 font definitions
 )
-LaTeX Font Info:    ... okay on input line 81.
-LaTeX Font Info:    Checking defaults for LS2/stix/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for LS2/stix/m/n on input line 83.
 LaTeX Font Info:    Trying to load font information for LS2+stix on input line 
-81.
+83.
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls2stix.fd
 File: ls2stix.fd 2015/04/17 v1.1.2-latex STIX LS2 font definitions
 )
-LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    ... okay on input line 83.
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf
 .mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count377
+\scratchcounter=\count387
 \scratchdimen=\dimen368
 \scratchbox=\box88
-\nofMPsegments=\count378
-\nofMParguments=\count379
-\everyMPshowfont=\toks63
-\MPscratchCnt=\count380
+\nofMPsegments=\count388
+\nofMParguments=\count389
+\everyMPshowfont=\toks66
+\MPscratchCnt=\count390
 \MPscratchDim=\dimen369
-\MPnumerator=\count381
-\makeMPintoPDFobject=\count382
-\everyMPtoPDFconversion=\toks64
+\MPnumerator=\count391
+\makeMPintoPDFobject=\count392
+\everyMPtoPDFconversion=\toks67
 )
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopd
 f-base.sty
@@ -1444,7 +1465,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 s.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-Package hyperref Info: Link coloring ON on input line 81.
+Package hyperref Info: Link coloring ON on input line 83.
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
@@ -1457,11 +1478,11 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 titlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count383
+\c@section@level=\count393
 )
-LaTeX Info: Redefining \ref on input line 81.
-LaTeX Info: Redefining \pageref on input line 81.
-LaTeX Info: Redefining \nameref on input line 81.
+LaTeX Info: Redefining \ref on input line 83.
+LaTeX Info: Redefining \pageref on input line 83.
+LaTeX Info: Redefining \nameref on input line 83.
  (Article_Model_Parameters.out) (Article_Model_Parameters.out)
 \@outlinefile=\write5
 \openout5 = `Article_Model_Parameters.out'.
@@ -1510,7 +1531,7 @@ Package caption Info: End \AtBeginDocument code.
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
 ick labels; missing features). Consider writing \pgfplotsset{compat=1.18} into 
 your preamble.
- on input line 81.
+ on input line 83.
 
 (C:\Program Files\MiKTeX\tex/latex/pdflscape\pdflscape.sty
 Package: pdflscape 2019/12/05 v0.12 Display of landscape pages in PDF (HO)
@@ -1524,61 +1545,61 @@ Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 \openout6 = `Article_Model_Parameters.abs'.
 
 LaTeX Font Info:    Trying to load font information for LS1+stixscr on input li
-ne 126.
+ne 128.
  (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls1stixscr.fd
 File: ls1stixscr.fd 2015/04/17 v1.1.2-latex STIX script LS1 font definitions
 )
 LaTeX Font Info:    Trying to load font information for LS2+stixex on input lin
-e 126.
+e 128.
  (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls2stixex.fd
 File: ls2stixex.fd 2015/04/17 v1.1.2-latex STIX extentions LS2 font definitions
 
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 126
+LaTeX Font Info:    Trying to load font information for U+msa on input line 128
 .
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 126
+LaTeX Font Info:    Trying to load font information for U+msb on input line 128
 .
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Trying to load font information for LS1+stixfrak on input l
-ine 126.
+ine 128.
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls1stixfrak.fd
 File: ls1stixfrak.fd 2015/04/17 v1.1.2-latex STIX fraktur LS1 font definitions
 )
 LaTeX Font Info:    Trying to load font information for LS1+stixbb on input lin
-e 126.
+e 128.
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls1stixbb.fd
 File: ls1stixbb.fd 2015/04/17 v1.1.2-latex STIX blackboard LS1 font definitions
 
 )
 LaTeX Font Info:    Trying to load font information for LS2+stixcal on input li
-ne 126.
+ne 128.
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls2stixcal.fd
 File: ls2stixcal.fd 2015/04/17 v1.1.2-latex STIX calligraphic LS2 font definiti
 ons
 )
 LaTeX Font Info:    Trying to load font information for LS1+stixsf on input lin
-e 126.
+e 128.
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls1stixsf.fd
 File: ls1stixsf.fd 2015/04/17 v1.1.2-latex STIX sans-serif LS1 font definitions
 
 )
 LaTeX Font Info:    Trying to load font information for LS2+stixtt on input lin
-e 126.
+e 128.
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ls2stixtt.fd
 File: ls2stixtt.fd 2015/04/17 v1.1.2-latex STIX typewriter LS2 font definitions
 
 )
-Overfull \hbox (123.62721pt too wide) detected at line 126
+Overfull \hbox (123.62721pt too wide) detected at line 128
 []
  []
 
@@ -1586,16 +1607,16 @@ Overfull \hbox (123.62721pt too wide) detected at line 126
 <thumbnails/cas-email.jpeg, id=150, 225.84375pt x 225.84375pt>
 File: thumbnails/cas-email.jpeg Graphic file (type jpg)
 <use thumbnails/cas-email.jpeg>
-Package pdftex.def Info: thumbnails/cas-email.jpeg  used on input line 126.
+Package pdftex.def Info: thumbnails/cas-email.jpeg  used on input line 128.
 (pdftex.def)             Requested size: 7.99838pt x 8.0pt.
 LaTeX Font Info:    Trying to load font information for T1+zi4 on input line 12
-6.
+8.
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/inconsolata\t1zi4.fd
 File: t1zi4.fd 2018/01/14 T1/zi4 (Inconsolata)
 )
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 6.80005pt on input line 126.
+(Font)              scaled to size 6.80005pt on input line 128.
  (Sections/introduction_imp.tex
 Underfull \hbox (badness 1584) in paragraph at lines 7--8
 []\T1/stix/m/n/10 The eco-nomic fea-si-bil-ity of the pro-cess is cru-cial
@@ -1652,13 +1673,13 @@ File: Figures/KT.pdf Graphic file (type pdf)
 Package pdftex.def Info: Figures/KT.pdf  used on input line 59.
 (pdftex.def)             Requested size: 158.24646pt x 134.45325pt.
  [2 <./Figures/PFD.drawio.pdf>])
-Overfull \hbox (2.15552pt too wide) in paragraph at lines 153--154
+Overfull \hbox (2.15552pt too wide) in paragraph at lines 155--156
 []\T1/stix/m/n/10 The quasi-one-dimensional com-press-ible Navier-Stokes
  []
 
 [3 <./Figures/Compressibility.pdf> <./Figures/RHO.pdf> <./Figures/CP.pdf> <./Fi
 gures/Enthalpy.pdf> <./Figures/MU.pdf> <./Figures/KT.pdf>]
-Overfull \hbox (8.18648pt too wide) in paragraph at lines 214--215
+Overfull \hbox (8.18648pt too wide) in paragraph at lines 216--217
 []\T1/stix/m/n/10 Suppose the flow is pre-sumed to be isen-tropic, $\LS1/stix/m
 /it/10 d[][]\LS1/stix/m/n/10 _\LS1/stix/m/it/10 d[][] \LS1/stix/m/n/10 =
  []
@@ -1766,39 +1787,39 @@ Package pdftex.def Info: Figures///Results_estimation/Fitting_LUKE_T50_P300_org
 0.pdf> <./Figures///Results_estimation/Fitting_LUKE_T50_P200.pdf> <./Figures///
 Results_estimation/Fitting_LUKE_T40_P300_org.pdf> <./Figures///Results_estimati
 on/Fitting_LUKE_T50_P300_org.pdf>]
-<Figures///Results_estimation/Trend_Lines_order_1.pdf, id=493, 845.1575pt x 597
-.23125pt>
+<Figures///Results_estimation/Trend_Lines_order_1.pdf, id=493, 794.97pt x 614.2
+95pt>
 File: Figures///Results_estimation/Trend_Lines_order_1.pdf Graphic file (type p
 df)
 <use Figures///Results_estimation/Trend_Lines_order_1.pdf>
 Package pdftex.def Info: Figures///Results_estimation/Trend_Lines_order_1.pdf  
 used on input line 40.
-(pdftex.def)             Requested size: 116.74597pt x 97.86626pt.
+(pdftex.def)             Requested size: 116.74597pt x 103.40771pt.
 File: Figures///Results_estimation/Trend_Lines_order_1.pdf Graphic file (type p
 df)
 <use Figures///Results_estimation/Trend_Lines_order_1.pdf>
 Package pdftex.def Info: Figures///Results_estimation/Trend_Lines_order_1.pdf  
 used on input line 46.
-(pdftex.def)             Requested size: 116.74597pt x 93.1987pt.
-<Figures///Results_estimation/D_i_Uppsilon_results.pdf, id=496, 845.1575pt x 59
-7.23125pt>
+(pdftex.def)             Requested size: 116.74597pt x 96.5909pt.
+<Figures///Results_estimation/D_i_Uppsilon_results.pdf, id=496, 794.97pt x 614.
+295pt>
 File: Figures///Results_estimation/D_i_Uppsilon_results.pdf Graphic file (type 
 pdf)
 <use Figures///Results_estimation/D_i_Uppsilon_results.pdf>
 Package pdftex.def Info: Figures///Results_estimation/D_i_Uppsilon_results.pdf 
  used on input line 52.
-(pdftex.def)             Requested size: 116.74597pt x 95.33112pt.
-<Figures///Results_estimation/Trend_Lines_D_e.pdf, id=498, 845.1575pt x 597.231
-25pt>
-File: Figures///Results_estimation/Trend_Lines_D_e.pdf Graphic file (type pdf)
-<use Figures///Results_estimation/Trend_Lines_D_e.pdf>
-Package pdftex.def Info: Figures///Results_estimation/Trend_Lines_D_e.pdf  used
- on input line 58.
-(pdftex.def)             Requested size: 116.74597pt x 100.31741pt.
+(pdftex.def)             Requested size: 116.74597pt x 101.06372pt.
+<Figures///Results_estimation/Trend_Lines_RE_order_1.pdf, id=498, 794.97pt x 61
+4.295pt>
+File: Figures///Results_estimation/Trend_Lines_RE_order_1.pdf Graphic file (typ
+e pdf)
+<use Figures///Results_estimation/Trend_Lines_RE_order_1.pdf>
+Package pdftex.def Info: Figures///Results_estimation/Trend_Lines_RE_order_1.pd
+f  used on input line 58.
+(pdftex.def)             Requested size: 116.74597pt x 103.40771pt.
  [10 <./Figures///Results_estimation/Trend_Lines_order_1.pdf> <./Figures///Resu
 lts_estimation/D_i_Uppsilon_results.pdf> <./Figures///Results_estimation/Trend_
-Lines_D_e.pdf>])
-[11
+Lines_RE_order_1.pdf>]) [11
 
 ] (Article_Model_Parameters.bbl
 Underfull \hbox (badness 1005) in paragraph at lines 135--140
@@ -1885,7 +1906,7 @@ m/n/10 for the pa-ram-e-ters
 <Sections/ultraReportT5.pdf, id=710, 597.23125pt x 845.1575pt>
 File: Sections/ultraReportT5.pdf Graphic file (type pdf)
 <use Sections/ultraReportT5.pdf>
-Package pdftex.def Info: Sections/ultraReportT5.pdf  used on input line 277.
+Package pdftex.def Info: Sections/ultraReportT5.pdf  used on input line 279.
 (pdftex.def)             Requested size: 238.25444pt x 376.75818pt.
 
 
@@ -1898,10 +1919,10 @@ d.
 (rerunfilecheck)             Checksum: 9605A6F308A9170EEFFB9FCDDC5CF224;6387.
  ) 
 Here is how much of TeX's memory you used:
- 42647 strings out of 478847
- 929462 string characters out of 2848486
+ 42960 strings out of 478847
+ 934747 string characters out of 2848486
  1328212 words of memory out of 3000000
- 59460 multiletter control sequences out of 15000+600000
+ 59769 multiletter control sequences out of 15000+600000
  531125 words of font info for 180 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  94i,26n,131p,1543b,926s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1927,7 +1948,7 @@ ype1/public/stix/stix-mathrm.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKT
 eX/fonts/type1/public/stix/stix-mathscr.pfb><C:/Users/sliczno1/AppData/Local/Pr
 ograms/MiKTeX/fonts/type1/public/stix/stix-mathsf.pfb><C:/Users/sliczno1/AppDat
 a/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrb8a.pfb>
-Output written on Article_Model_Parameters.pdf (19 pages, 2989355 bytes).
+Output written on Article_Model_Parameters.pdf (19 pages, 3289689 bytes).
 PDF statistics:
  848 PDF objects out of 1000 (max. 8388607)
  214 named destinations out of 1000 (max. 500000)

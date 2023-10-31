@@ -9,6 +9,6 @@ legend({'$40[^\circ C] | 200 [bar] | 845[kg/m^3]$', '$50[^\circ C] | 200 [bar] |
 legend('boxoff')
 xlabel('$c_s [kg/m^3]$')
 ylabel('$D_i=(D_i^R \times \gamma) [m^2/s] \times 10^{-12}$')
-fontsize(36,"points")
+fontsize(30,"points")
 set(gcf,'PaperOrientation','landscape'); print(figure(1),['D_i_Uppsilon_results.pdf'],'-dpdf','-bestfit');
 close all;

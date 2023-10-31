@@ -68,12 +68,11 @@ function xdot = modelSFE(x, p, mask, dt)
     %Cf_0          =     if_else(F_u == 0, FLUID(1), 0);
     Cf_0          =     0;
     Cf_B          =     FLUID(nstages_index);
-
-    T_0 = if_else( mode == 2, TEMP(1), T_u );                                             % If the sensitivity of P is consider, then set the input T as equal to the T insdie of the extractor
+                                                                                          % If the sensitivity of P and F is consider, then set the input T as equal to the T insdie of the extractor
                                                                                           % to avoid different T at the inlet and inside of the extractor
-    %T_0           =     TEMP(1);
-    T_0 = if_else( mode == 3, TEMP(1), T_u );
-
+    %T_0 = if_else( mode == 1, T_u, TEMP(1));
+    T_0 = TEMP(1);
+    
     T_B           =     TEMP(nstages_index);
 
     Z_0           =     Compressibility(T_0, PRESSURE,     parameters);
@@ -87,8 +86,8 @@ function xdot = modelSFE(x, p, mask, dt)
 
     H_0           =     SpecificEnthalpy(T_0, PRESSURE, Z_0, rho_0, parameters );   
 
-    %enthalpy_rho_0 = rho_0 .* H_0;
-    enthalpy_rho_0 = if_else( mode == 3, ENTHALPY_RHO(1), rho_0 .* H_0 );
+    %enthalpy_rho_0 = if_else( mode == 1, rho_0 .* H_0, ENTHALPY_RHO(1) );
+    enthalpy_rho_0 = rho_0 .* H_0;
     
     %% Derivatives
 
