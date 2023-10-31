@@ -71,7 +71,6 @@ function xdot = modelSFE(x, p, mask, dt)
                                                                                           % If the sensitivity of P and F is consider, then set the input T as equal to the T insdie of the extractor
                                                                                           % to avoid different T at the inlet and inside of the extractor
     %T_0 = if_else( mode == 1, T_u, TEMP(1));
-    T_0 = TEMP(1);
     T_0 = T_u;
     
     T_B           =     TEMP(nstages_index);
