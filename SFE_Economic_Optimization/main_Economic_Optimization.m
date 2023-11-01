@@ -91,13 +91,13 @@ F                       = buildIntegrator(f, [Nx,Nu] , timeStep_in_sec);
 
 %% Set operating conditions
 feedPress               = 200;                                                          % pressure in the extractor [bar]
-massFlow                = 0.06;                                                         % mass flow rate in kg/s
+massFlow                = 0.02;                                                         % mass flow rate in kg/s
 
 %% compressor
-T_out_compressor        = Pump_estimation(10+273, 70, feedPress, massFlow, Parameters);
+[T_out_compressor, W_com, Comp_cost] = Pump_estimation(10+273, 70, feedPress, massFlow, Parameters);
 
 %% heat exchanger
-[T_w_out, T_c_out]      = Heat_Exchanger_estimation(T_out_compressor, feedPress, Parameters);
+[T_w_out, T_c_out, HX_cost] = Heat_Exchanger_estimation(T_out_compressor, feedPress, Parameters);
 T0homog                 = full(T_w_out);                           
 
 %% Extractor
@@ -114,10 +114,11 @@ feedFlow                = massFlow * ones(1,length(Time_in_sec));               
 
 uu                      = [feedTemp', feedPress', feedFlow'];
 
-%% 260 < Re < 320
+%% Re range: 584(40C, 300bar) < 631(50C, 300bar) < 718(40C 200bar) < 795(50C, 200bar) for empty pipe acc to Aspen
 VELOCITY                = Velocity(massFlow, rho, Parameters);
 mu                      = Viscosity(T0homog, rho);
-Re                      = (2*r) .* rho .* (VELOCITY .* epsi) ./ mu;
+Re                      = (2*r) .* VELOCITY ./ (mu / rho);
+keyboard
 
 %% Set inital state and inital conditions
 msol_max                = m_total;                                                      % g of product in solid and fluid phase

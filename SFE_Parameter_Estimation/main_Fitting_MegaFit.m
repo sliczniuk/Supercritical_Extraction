@@ -371,9 +371,8 @@ for ii=1:numel(DATA_set)
 
     %
     mu = Viscosity(T0homog,rho);
-    dp = 0.15;
     VELOCITY      =     Velocity(feedFlow(1), rho, Parameters);
-    Re = dp .* VELOCITY .* rho .* epsi ./ mu;
+    Re 		  = (2*r) .* VELOCITY ./ (mu / rho);
     RE = [RE, Re];
 
     % Solve for the inital guess

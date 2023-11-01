@@ -1,4 +1,4 @@
-function [T_w_out, T_c_out, Cost] = Heat_Exchanger_estimation(T_out_compressor, feedPress, Parameters)
+function [T_w_out, T_c_out, Cost] = Heat_Exchanger_estimation(T_out_compressor, P, Parameters)
 
     % epsilon-NTU method is used to determin the outlet temperatures if the
     % heat transfer area, inner daimeter of the inner diamter of tube, 
@@ -7,8 +7,8 @@ function [T_w_out, T_c_out, Cost] = Heat_Exchanger_estimation(T_out_compressor, 
     % streams (temperature, flow rate and heat capacity). Later the heat
     % exchnager cost is estimated.
 
-    Parameters_table        = readtable('Parameters.csv') ;                     % Table with prameters
-    Parameters              = num2cell(Parameters_table{:,3});                  % Parameters within the model 
+    Parameters_table        = readtable('Parameters.csv') ;                 % Table with prameters
+    Parameters              = num2cell(Parameters_table{:,3});              % Parameters within the model 
 
     %% Heat exchnager properties
     D_i     = 4.094e-2;       % m - inner diamter of tube
@@ -30,7 +30,7 @@ function [T_w_out, T_c_out, Cost] = Heat_Exchanger_estimation(T_out_compressor, 
     Deo     = D_o - D_io;
 
     %% fluid outside - water
-    F_c     = 0.5;        % kg/s
+    F_c     = 0.75;        % kg/s
     
     T_c_in  = 50+273;       % C
 
@@ -53,21 +53,20 @@ function [T_w_out, T_c_out, Cost] = Heat_Exchanger_estimation(T_out_compressor, 
     %% fluid inside - co2
     F_w     = 0.6;    % kg/s % TODO: get the F from the simulation
     T_w_in  = T_out_compressor;      % C
-    feedPress = feedPress;
-
+    
     % properties of co2 at the highest T
-    Z_in     = Compressibility( T_w_in, feedPress,               Parameters );
-    rho_in   = rhoPB_Comp(      T_w_in, feedPress, Z_in,         Parameters );
-    CP_in    = SpecificHeatComp(T_w_in, feedPress, Z_in, rho_in, Parameters );         % [J/kg/K]
-    k_in     = HeatConductivity_Comp(T_w_in, rho_in)*1e-3;                             % [ 10^-3 (W / m * K) ] -> (W / m * K)
-    mu_in    = Viscosity(T_w_in, rho_in);                                              % Pa*s
+    Z_in     = Compressibility( T_w_in, P,               Parameters );
+    rho_in   = rhoPB_Comp(      T_w_in, P, Z_in,         Parameters );
+    CP_in    = SpecificHeatComp(T_w_in, P, Z_in, rho_in, Parameters );      % [J/kg/K]
+    k_in     = HeatConductivity_Comp(T_w_in, rho_in)*1e-3;                  % [ 10^-3 (W / m * K) ] -> (W / m * K)
+    mu_in    = Viscosity(T_w_in, rho_in);                                   % Pa*s
 
     % properties of co2 at the lowest T
-    Z_out    = Compressibility( T_c_in, feedPress,                 Parameters );
-    rho_out  = rhoPB_Comp(      T_c_in, feedPress, Z_out,          Parameters );
-    CP_out   = SpecificHeatComp(T_c_in, feedPress, Z_out, rho_out, Parameters );       % [J/kg/K]
-    k_out    = HeatConductivity_Comp(T_c_in, rho_out)*1e-3;                            % [ 10^-3 (W / m * K) ] -> (W / m * K)
-    mu_out   = Viscosity(T_c_in,rho_out);                                              % Pa*s
+    Z_out    = Compressibility( T_c_in, P,                 Parameters );
+    rho_out  = rhoPB_Comp(      T_c_in, P, Z_out,          Parameters );
+    CP_out   = SpecificHeatComp(T_c_in, P, Z_out, rho_out, Parameters );    % [J/kg/K]
+    k_out    = HeatConductivity_Comp(T_c_in, rho_out)*1e-3;                 % [ 10^-3 (W / m * K) ] -> (W / m * K)
+    mu_out   = Viscosity(T_c_in,rho_out);                                   % Pa*s
 
     % average properties of co2
     rho_w    = (rho_in + rho_out) / 2;
@@ -114,14 +113,23 @@ function [T_w_out, T_c_out, Cost] = Heat_Exchanger_estimation(T_out_compressor, 
     Q       = epsilon .* C_min .* (T_w_in - T_c_in);
 
     %% Outlet temperatures
-    T_w_out = T_w_in - Q./C_w;                                                          % CO2
-    T_c_out = T_c_in + Q./C_c;                                                          % water
+    T_w_out = T_w_in - Q./C_w;                                              % CO2
+    T_c_out = T_c_in + Q./C_c;                                              % water
 
     %% 
     L       = A/(pi * D_io);
 
     %% Cost - Product and Process Design Principles : Synthesis, Analysis, and Evaluation; https://sci-hub.ru/10.3390/en13102656
     %  P is the shell-side pressure in MPa
-    Cost = 2 * (0.8510 + 0.1292( P * 145 / 100 ) + 0.0198( P * 145 / 100 )^2) * exp( 7.1460 + 0.16 log(10.76 * A) );
+    %P = P/10;
+
+    A_ft = A * 10.764;                                                      % m2 -> ft2
+    P_psi = P * 14.5;
+
+    CB   = exp( 7.2718 + 0.16*log(A_ft) );
+    FP   = 0.851 + 0.1292 * (P_psi/600) + 0.0198*(P_psi/600)^2;             % Pressure factor
+    FM = (600/567);                                                         % a cost index in 2013 (CE = 567) and purchase cost for CE = 600
+
+    Cost = CB * FP;
 
 end

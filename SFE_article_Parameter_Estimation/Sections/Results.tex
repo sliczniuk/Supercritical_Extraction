@@ -55,7 +55,7 @@
 		\end{subfigure}
 		\begin{subfigure}[b]{0.49\columnwidth}
 			\centering
-			\includegraphics[trim = 18.0cm 14.0cm 2.5cm 1.0cm,clip,width=\columnwidth]{/Results_estimation/Trend_Lines_RE_order_1.pdf}
+			\includegraphics[trim = 18.0cm 14.0cm 2.5cm 1.0cm,clip,width=\columnwidth]{/Results_estimation/Trend_Lines_order_1.pdf}
 			\caption{Dependency of ${\color{black}D^M_e}$}
 			\label{fig: results_De}
 		\end{subfigure}
@@ -63,10 +63,11 @@
 		\label{fig: estimation_results_DI_GAMMA}
 	\end{figure}
 	
-	The axial diffusion coefficient obtained from the optimizer is relatively high compared to the internal diffusion coefficients. The values of ${\color{black}D_e^M}$ have a similar order of magnitude as reported in the literature (\citet{ReisVasco2000}). %The relatively high values of the axial diffusion coefficients might be justified by taking into account the low values of the flow rate used in all the experiments. 
-	The axial diffusion can be further analyzed by defining the Peclet number $\left( {\color{black}Pe} = \frac{v d_p}{D_e^M} \right)$ and the Reynolds number $\left( {\color{black}Re} = \frac{v d_p}{\mu} \right)$, where ${\color{black}d_p}=0.15~[m]$ is the characteristic dimension defined to be the extractor diameter and $\mu$ is the fluid viscosity. %The obtained Pecelt numbers have the order of magnitude of $1 \times 10^{8}$, which suggests that diffusion is negligible and advection dominates mass transport. 
-	The obtained Pecelt numbers are ${\color{black}Pe} \gg 1$, which suggests that mass diffusion is negligible and advection dominates mass transport. This observation suggests that the process model could be further simplified by neglecting the diffusion term. 
-	\citet{Chung1968} presented an idea for a relationship between the Peclet (indirectly the mass diffusion coefficient) and Reynolds numbers. By modifying the idea of \citet{Chung1968}, a direct relation between the diffusion coefficient and the Reynolds number is used in the work as shown in Figure \ref{fig: results_De}. The obtained values of the mass diffusion coefficient increase almost linearly with the increment of the Reynolds number, which is in agreement with the observation that the advection dominates the diffusion.
+	The axial diffusion coefficient obtained from the optimizer is relatively high compared to the internal diffusion coefficients. The values of ${\color{black}D_e^M}$ have a similar order of magnitude as reported in the literature (\citet{ReisVasco2000}).
+	The axial diffusion can be further analyzed by defining the Peclet number $\left( {\color{black}Pe} = \frac{v d_p}{D_e^M} \right)$ and the Reynolds number $\left( {\color{black}Re} = \frac{v d_p}{\mu} \right)$, where ${\color{black}d_p}=0.15~[m]$ is the characteristic dimension defined to be the extractor diameter and $\mu$ is the fluid viscosity.
+	The obtained Pecelt numbers are ${\color{black}Pe} \gg 1$, which suggests that mass diffusion is negligible and advection dominates mass transport. The experiment was performed in the laminar region and narrow Reynolds number range. Moreover, the volumetric flow-rate was kept constant during all experiments, so the changes in the Reynolds number are related to changes of $CO_2$ properties at different operating conditions. As the result, the Figure \ref{fig: results_De} shows a simplified relationship of axial diffusion as a function of density only. The plot show a decrease of the axial diffusion coefficient as the density increase. That behaviour can be explained by higher resistance of the mass transfer caused by denser fluids.
+	
+	%\citet{Chung1968} presented an idea for a relationship between the Peclet (indirectly the mass diffusion coefficient) and Reynolds numbers. By modifying the idea of \citet{Chung1968}, a direct relation between the diffusion coefficient and the Reynolds number is used in the work as shown in Figure \ref{fig: results_De}. The obtained values of the mass diffusion coefficient increase almost linearly with the increment of the Reynolds number, which is in agreement with the observation that the advection dominates the diffusion.
 	
 	As the total amount of oil present in the system is unknown, and as such, it has been obtained from the optimizer. Given the dataset and the process model, the optimizer found that the best fit is obtained if the total mass of the oil reaches a lower bound equal to 80 g. The lower bound was estimated by rounding up the biggest value of the collected cumulative amount of the extraction product. As the same raw material was used in all experiments, the same initial amount of solute was assumed for all the cases.
 	

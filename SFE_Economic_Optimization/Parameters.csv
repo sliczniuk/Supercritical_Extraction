@@ -1,10 +1,10 @@
 Numer,Name,Value,Unit,Description
 1,nstages,200,[-],Number of stages
 2,C0solid,141.8181818,kg/m3,Inital concentration in the solid phase
-3,r,0.64,m,Extractor radius
+3,r,0.26,m,Extractor radius
 4,epsi,0.5026,[-],Void fraction
 5,dp,0.0001,m,Particle diameter
-6,L,1,m,Extractor length
+6,L,1.5,m,Extractor length
 7,rho_s,1256.58,kg/m3,Density of solid particles
 8,km,0,[-],Mass partition coefficient
 9,mi,0.5,[-],Particle shape coefficient

@@ -61,17 +61,16 @@ function xdot = modelSFE(x, p, mask, dt)
 
     %% Saturation
     Csolid_percentage_left = 1 - (SOLID./C0solid);
-    Csolid_percentage_left(find(~mask)) = 0;                                              % inserte zeros instead of NAN in pleces where there is no bed
-    Sat_coe       =     Saturation_Concentration(Csolid_percentage_left, shape, Di);      % Inverse logistic is used to control saturation. Close to saturation point, the Sat_coe goes to zero.
+    Csolid_percentage_left(find(~mask)) = 0;                                                % inserte zeros instead of NAN in pleces where there is no bed
+    Sat_coe       =     Saturation_Concentration(Csolid_percentage_left, shape, Di);        % Inverse logistic is used to control saturation. Close to saturation point, the Sat_coe goes to zero.
 
     %% BC
     %Cf_0          =     if_else(F_u == 0, FLUID(1), 0);
     Cf_0          =     0;
     Cf_B          =     FLUID(nstages_index);
-                                                                                          % If the sensitivity of P and F is consider, then set the input T as equal to the T insdie of the extractor
-                                                                                          % to avoid different T at the inlet and inside of the extractor
-    %T_0 = if_else( mode == 1, T_u, TEMP(1));
-    T_0 = T_u;
+                                                                                            % If the sensitivity of P and F is consider, then set the input T as equal to the T inside of the extractor
+                                                                                            % to avoid different small mismatch of T between the inlet and inside of the extractor
+    T_0 = if_else( mode == 1, T_u, TEMP(1));
     
     T_B           =     TEMP(nstages_index);
 
@@ -86,8 +85,8 @@ function xdot = modelSFE(x, p, mask, dt)
 
     H_0           =     SpecificEnthalpy(T_0, PRESSURE, Z_0, rho_0, parameters );   
 
-    %enthalpy_rho_0 = if_else( mode == 1, rho_0 .* H_0, ENTHALPY_RHO(1) );
-    enthalpy_rho_0 = rho_0 .* H_0;
+    enthalpy_rho_0 = if_else( mode == 3, ENTHALPY_RHO(1), rho_0 .* H_0 );                   % If the sensitivity of F is consider, then set the input h*rho as equal to the h*rho inside of the extractor
+                                                                                            % to avoid different small mismatch betweenat the inlet and inside of the extractor
     
     %% Derivatives
     dz            = L/nstages_index;

@@ -1,4 +1,4 @@
-function [T_out, W, Cost] = Pump_estimation(T_in, P_in, P_out, F, Parameters)
+function [T_out, W, CP] = Pump_estimation(T_in, P_in, P_out, F, Parameters)
 
     % Pump_estimation function estimate the outlet temperature after
     % isentropic compression of gas entering a pump at T_in and P_in. As
@@ -40,9 +40,13 @@ function [T_out, W, Cost] = Pump_estimation(T_in, P_in, P_out, F, Parameters)
     H_out   = SpecificEnthalpy(T_out, P_out, Z_out, rho_out, Parameters); %kJ/kg
 
     %% Ideal work calculations
-    W = F .* (H_out - H_in); % kg/s * kJ/kg = kJ/s = kW
+    W       = F .* (H_out - H_in); % kg/s * kJ/kg = kJ/s = kW
+    HP      = W .* 1.341;          % kW -> HP
+    %% Cost - Product and Process Design Principles : Synthesis, Analysis, and Evaluation; compressor
 
-    %% Equipment cost 
-    Cost = 10167.5 .* W.^0.46; % https://sci-hub.st/10.3390/en13236454
-
+    %CP = 10167.5 .* W.^0.46;                                               % https://sci-hub.st/10.3390/en13236454
+    FM = (600/567);                                                         % a cost index in 2013 (CE = 567) and purchase cost for CE = 600
+    CB = exp( 9.1553 + 0.63.* log(HP) );
+    CP = FM * CB;
+    
 end
