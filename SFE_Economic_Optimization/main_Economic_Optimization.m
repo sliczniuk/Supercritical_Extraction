@@ -2,8 +2,8 @@ startup;
 delete(gcp('nocreate'));
 % %p = Pushbullet(pushbullet_api);
 
-%addpath('C:\Dev\casadi-3.6.3-windows64-matlab2018b');
-addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-3.6.3-windows64-matlab2018b');
+addpath('C:\Dev\casadi-3.6.3-windows64-matlab2018b');
+%addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-3.6.3-windows64-matlab2018b');
 import casadi.*
 
 Parameters_table        = readtable('Parameters.csv') ;                                 % Table with prameters
@@ -98,9 +98,12 @@ massFlow                = 0.02;                                                 
 
 %% heat exchanger
 [T_w_out, T_c_out, HX_cost] = Heat_Exchanger_estimation(T_out_compressor, feedPress, Parameters);
-T0homog                 = full(T_w_out);                           
+T0homog                     = full(T_w_out);            
 
 %% Extractor
+[Extractor_cost]        = Extractor_estimation(feedPress,Parameters);
+
+%% Controls
 Z                       = Compressibility( T0homog, feedPress,         Parameters );
 rho                     = rhoPB_Comp(      T0homog, feedPress, Z,      Parameters );
 
