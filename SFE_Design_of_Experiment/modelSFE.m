@@ -20,13 +20,13 @@ function xdot = modelSFE(x, p, mask, dt)
     L             =     parameters{6};     % Length of the extractor (m)
     rho_s         =     parameters{7};     %
     mode          =     parameters{8};
-    km            =     1e5;
+    km            =     1e-1;
     mi            =     parameters{9};
 
-    %Di            =     parameters{44};      Di = Di * 1e-14;
-    %Dx            =     parameters{45};      Dx = Dx * 1e-6;
+    Di            =     parameters{50};      %Di = Di * 1e-14;
+    Dx            =     parameters{51};      %Dx = Dx * 1e-6;
     %SAT           =     parameters{47};
-    %shape         =     parameters{48};
+    shape         =     parameters{52};
 
     nstages_index =     numel(mask);
     
@@ -55,9 +55,9 @@ function xdot = modelSFE(x, p, mask, dt)
     KRHOCP        =     kRHOcp_Comp(     TEMP, PRESSURE, Z, RHO, CP, epsi.*mask, parameters);
 
     %% Extraction kientic
-    Di            = Diffusion(RHO) .* 1e-14;
-    shape         = Decay_Function_Coe(RHO);
-    Dx            = axial_diffusion(TEMP, epsi, VELOCITY, RHO) .*1e-6;
+    %Di            = Diffusion(RHO, parameters) ;
+    %shape         = Decay_Function_Coe(RHO, parameters);
+    %Dx            = axial_diffusion(RHO, parameters) .*1e-6;
 
     %% Saturation
     Csolid_percentage_left = 1 - (SOLID./C0solid);
@@ -134,7 +134,7 @@ function xdot = modelSFE(x, p, mask, dt)
     % output equation
     %VELOCITY(nstages_index) * A * FLUID(nstages_index) * 1e3 ;   %kg/s - > g/s
     F_u ./ RHO(nstages_index) .* FLUID(nstages_index) * 1e3;
-    
+
     ];
 
 end

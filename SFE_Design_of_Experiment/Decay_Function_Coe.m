@@ -1,5 +1,8 @@
-function [Upsilon] = Decay_Function_Coe(rho)
+function [Upsilon] = Decay_Function_Coe(rho, parameters)
 
-    Upsilon  = 0.01138 .* rho - 8.723;
+    a = parameters{46};
+    b = parameters{47};
+
+    Upsilon  = a .* rho + b;
 
 end

@@ -10,8 +10,8 @@ Parameters_table        = readtable('Parameters.csv') ;                     % Ta
 Parameters              = num2cell(Parameters_table{:,3});                  % Parameters within the model + (m_max), m_ratio, sigma
 
 %% Create the solver
-Iteration_max               = 12;                                           % Maximum number of iterations for optimzer
-Time_max                    = 3.0;                                          % Maximum time of optimization in [h]
+Iteration_max               = 100;                                            % Maximum number of iterations for optimzer
+Time_max                    = 10.0;                                           % Maximum time of optimization in [h]
 
 nlp_opts                    = struct;
 nlp_opts.ipopt.max_iter     = Iteration_max;
@@ -34,8 +34,8 @@ bed                     = 0.165;                                            % Pe
 
 % Set time of the simulation
 PreparationTime         = 0;
-ExtractionTime          = 100;
-timeStep                = 20;                                               % Minutes
+ExtractionTime          = 60;
+timeStep                = 1;                                                % Minutes
 SamplingTime            = 5;                                                % Minutes
 
 simulationTime          = PreparationTime + ExtractionTime;
@@ -106,7 +106,7 @@ xdot                    = modelSFE(x, u, bed_mask, timeStep_in_sec);
 F                       = buildIntegrator(f, [Nx,Nu] , timeStep_in_sec);
 
 % Set operating conditions
-T0homog                 = OPT_solver.variable(N_Time)';
+T0homog                 = OPT_solver.variable()';
                           OPT_solver.subject_to( 40+273 <= T0homog <= 50+273 );
 
 feedPress               = 250;
@@ -116,7 +116,7 @@ rho                     = rhoPB_Comp(      T0homog(1), feedPress, Z,      Parame
 
 enthalpy_rho            = rho.*SpecificEnthalpy(T0homog(1), feedPress, Z, rho, Parameters );
 
-feedTemp                = T0homog; %'   * ones(1,length(Time_in_sec)) + 0 ;  % Kelvin
+feedTemp                = T0homog * ones(1,length(Time_in_sec)) + 0 ;  % Kelvin
 
 feedPress               = feedPress * ones(1,length(Time_in_sec)) + 0 ;  % Bars
 
@@ -148,15 +148,73 @@ x0                      = [ C0fluid'                        ;
                             0                               ;
                             ];
 
+%%
+
+choose_param            = [50:52];
+
+% Store symbolic results of the simulation
+Parameters_sym          = MX(cell2mat(Parameters));
+Parameters_sym_t        = MX.sym('Parameters_sym_t',numel(choose_param),1);
+Parameters_sym(choose_param)   = Parameters_sym_t;
+
+X                       = MX(Nx,N_Time+1);
+X(:,1)                  = x0;
+
+% Symbolic integration
+for j=1:N_Time
+    X(:,j+1)=F(X(:,j), [uu(j,:)'; Parameters_sym] );
+end
+
+%% Find the measurment from the simulation
+
+sigma                   = 0.1047;
+
+Yield_estimate          = X(Nx,:);
+data                    = diff(Yield_estimate);
+data_obs                = data  ;%+ (sigma.*randn(numel(data),1))'; 
+
+%{
+%mu                      = mean(data_obs);
+%sigma_squared           = var(data_obs);
+
+% Number of data points
+%n                       = length(data);
+
+% Initialize an array to store log-likelihood of each data point
+%log_likelihoods         = MX(zeros(n, 1));
+
+% Calculate the log-likelihood for each data point
+%for i = 1:n
+    % Probability density function of a normal distribution
+%    pdf_value           = (1 / sqrt(2 * pi * sigma_squared)) * exp(-(( mu - log(data_obs(i)) )^2 / (2 * sigma_squared)));
+    
+    % Compute the log-likelihood
+%    log_likelihoods(i)  = log(pdf_value);
+%end
+
+%log_likelihoods         = sum(log_likelihoods);
+
+%[H,g]                   = hessian(dot(log_likelihoods,log_likelihoods),Parameters_sym_t);
+%norm_factor = [Parameters{choose_param}] .* [Parameters{choose_param}]';
+%FI                      = -H .* abs(norm_factor);
+%}
+S                       = jacobian(data_obs, Parameters_sym_t);
+S                       = S' .* abs([Parameters{choose_param}])' ./ repmat(abs(data_obs),numel(choose_param),1);
+FI                      = S * S';
+
+FI_inv                  = inv(FI);
+D_opt                   = myDet(FI_inv);
+
 %% Run plain simulation
+%Parameters              = num2cell(Parameters_table{:,3});                  % Parameters within the model + (m_max), m_ratio, sigma
 %Parameters_init_time   = [uu repmat(cell2mat(Parameters),1,N_Time)'];
 %[xx_0]                 = simulateSystem(F, [], x0, Parameters_init_time );
-
+%{
 %% Set sensitivity analysis
-ii = 1;
+ii = 3+[44:49];
 
 % Sensitivities calculations
-Parameters{8} = ii;
+Parameters{8} = 1;
 Parameters_init_time   = [uu repmat(cell2mat(Parameters),1,N_Time)'];
 [S,p,Sdot]             = Sensitivity(x, xdot, u, ii );
 
@@ -166,49 +224,41 @@ x0_SA                  = [ x0; zeros(length(S)-length(xdot),1) ];
 f_SA                   = @(S, p) Sdot(S, p, bed_mask);
 Results                = Integrator_SS(Time*60, x0_SA, S, p, Sdot, Parameters_init_time);
 Res_simulation         = Results(1:Nx,:);
-Res_sensitivity        = Results(Nx+1:end,:);
+Res_sensitivity_all    = Results(Nx+1:end,:);
 
-Yield                  = Res_simulation(end,:);
-Yield_sens_T           = Res_sensitivity(end,:);
-Yield_sens_F           = zeros(1,numel(Yield));
+Yield                  = Res_simulation(end,2:end);
+%Yield_sens_T           = Res_sensitivity(end,:);
+%Yield_sens_F           = Res_sensitivity(end,:);
+%S                      = Res_sensitivity_all(Nx:Nx:end,2:end);
 
-%norm_factor            = [feedTemp, feedTemp(end)] ./ Yield;
-norm_factor            = 1;
+%S                      = S .* cell2mat(Parameters([ii]-3)) ./ repmat(Yield,numel(ii));
 
-Yield_sens_norm_T      = Yield_sens_T .*norm_factor; % dy/dT * T /y 
-Yield_sens_norm_F      = Yield_sens_F .*norm_factor; % dy/df * F /y 
-
-
-dydT = mean(Yield_sens_norm_T);
-dydF = mean(Yield_sens_norm_F);
-S    = [dydT, dydF];
-FI   = S' * S;
-%D_opt = det(inv(I));
-%FI                     = Yield_sens_norm_T .* Yield_sens_norm_T' ;
-FI_inv                 = inv(FI) ;
-D_opt = det(FI_inv);
+%FI                     = S * S';
+%D_opt                   = 
+%A_opt                  = -trace(FI);
+%FI_inv                 = inv(FI);
+%A_opt                  = trace(FI_inv);
 
 %[Q, R] = qr(inv(FI_inv));
 %det_FI_inv = det(Q)*det(R);%, which can be calculated cheaply. det(Q)=1 (it's orthogonal) and since R is triangular,  det(R) is just the multiplication of the diagonal elements.
 %This all assumes that A is positive definite etc.
 %D_opt = det_FI_inv;
+%{
+FF = Function('FF', {T0homog}, {FI});
 
-%FF = Function('FF',[T0homog], [FI]);
-
-OPT_solver.minimize(D_opt);
+OPT_solver.minimize(A_opt);
 
 OPT_solver.set_initial(T0homog, 45+273);
 
 try
     sol  = OPT_solver.solve();
-    KOUT = full(sol.value(T0homog));
+    KOUT = full(sol.value(T0homog))
 catch
     KOUT = OPT_solver.debug.value(T0homog);
-end
-        
+end      
 %%
 % Set operating conditions
-T0homog                 = KOUT;
+T0homog                 = (45+273)*ones(1,N_Time);
 
 feedPress               = 250;
 
@@ -253,19 +303,5 @@ x0                      = [ C0fluid'                        ;
 %% Run plain simulation
 Parameters_init_time   = [uu repmat(cell2mat(Parameters),1,N_Time)'];
 [xx_0]                 = simulateSystem(F, [], x0, Parameters_init_time );
-
 %}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+%}

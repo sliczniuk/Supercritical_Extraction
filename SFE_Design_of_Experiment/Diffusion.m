@@ -1,5 +1,8 @@
-function D = Diffusion(rho)
+function D = Diffusion(rho, parameters)
 
-    D = 0.07569 .* rho - 58.19;
+    a = parameters{44};
+    b = parameters{45};
+
+    D =  a.* rho + b;
     
 end
