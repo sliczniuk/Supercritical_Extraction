@@ -20,13 +20,13 @@ function xdot = modelSFE(x, p, mask, dt)
     L             =     parameters{6};     % Length of the extractor (m)
     rho_s         =     parameters{7};     %
     mode          =     parameters{8};
-    km            =     1e-1;
+    km            =     1e5;
     mi            =     parameters{9};
 
-    Di            =     parameters{50};      %Di = Di * 1e-14;
-    Dx            =     parameters{51};      %Dx = Dx * 1e-6;
+    %Di            =     parameters{50};      
+    Dx            =     parameters{51};      
     %SAT           =     parameters{47};
-    shape         =     parameters{52};
+    %shape         =     parameters{52};
 
     nstages_index =     numel(mask);
     
@@ -55,8 +55,8 @@ function xdot = modelSFE(x, p, mask, dt)
     KRHOCP        =     kRHOcp_Comp(     TEMP, PRESSURE, Z, RHO, CP, epsi.*mask, parameters);
 
     %% Extraction kientic
-    %Di            = Diffusion(RHO, parameters) ;
-    %shape         = Decay_Function_Coe(RHO, parameters);
+    Di            = Diffusion(RHO, parameters) ;
+    shape         = Decay_Function_Coe(RHO, parameters);
     %Dx            = axial_diffusion(RHO, parameters) .*1e-6;
 
     %% Saturation
