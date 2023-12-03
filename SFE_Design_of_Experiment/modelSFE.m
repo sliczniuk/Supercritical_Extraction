@@ -24,7 +24,7 @@ function xdot = modelSFE(x, p, mask, dt)
     mi            =     parameters{9};
 
     %Di            =     parameters{50};      
-    Dx            =     parameters{51};      
+    %Dx            =     parameters{51};      
     %SAT           =     parameters{47};
     %shape         =     parameters{52};
 
@@ -55,9 +55,9 @@ function xdot = modelSFE(x, p, mask, dt)
     KRHOCP        =     kRHOcp_Comp(     TEMP, PRESSURE, Z, RHO, CP, epsi.*mask, parameters);
 
     %% Extraction kientic
-    Di            = Diffusion(RHO, parameters) ;
+    Di            = Diffusion(RHO, parameters) .* 1e-14 ;
     shape         = Decay_Function_Coe(RHO, parameters);
-    %Dx            = axial_diffusion(RHO, parameters) .*1e-6;
+    Dx            = axial_diffusion(RHO, parameters) .* 1e-6;
 
     %% Saturation
     Csolid_percentage_left = 1 - (SOLID./C0solid);

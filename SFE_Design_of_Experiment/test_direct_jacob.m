@@ -6,22 +6,28 @@ delete(gcp('nocreate'));
 addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-3.6.3-windows64-matlab2018b');
 import casadi.*
 
-Parameters_table        = readtable('Parameters.csv') ;                     % Table with prameters
-Parameters              = num2cell(Parameters_table{:,3});                  % Parameters within the model + (m_max), m_ratio, sigma
+numeEval = 108;
+
+parfor ii=1:numeEval
+
+Parameters_table                = readtable('Parameters.csv') ;                     % Table with prameters
+Parameters                      = num2cell(Parameters_table{:,3});                  % Parameters within the model + (m_max), m_ratio, sigma
 
 %% Create the solver
-Iteration_max               = 50;                                            % Maximum number of iterations for optimzer
-Time_max                    = 20.0;                                           % Maximum time of optimization in [h]
+Iteration_max                   = 150;                                            % Maximum number of iterations for optimzer
+Time_max                        = 24.0;                                          % Maximum time of optimization in [h]
 
-nlp_opts                    = struct;
-nlp_opts.ipopt.max_iter     = Iteration_max;
-nlp_opts.ipopt.max_cpu_time = Time_max*3600;
-%nlp_opts.ipopt.acceptable_tol  = 1e-4;
+nlp_opts                        = struct;
+nlp_opts.ipopt.max_iter         = Iteration_max;
+nlp_opts.ipopt.max_cpu_time     = Time_max*3600;
+nlp_opts.ipopt.hessian_approximation ='limited-memory';
+nlp_opts.ipopt.tol              = 1e-5;
+nlp_opts.ipopt.acceptable_tol   = 1e-3;
 %nlp_opts.ipopt.acceptable_iter = 5;
 
-OPT_solver                  = casadi.Opti();
-ocp_opts                    = {'nlp_opts', nlp_opts};
-OPT_solver.solver(             'ipopt'   , nlp_opts)
+OPT_solver                      = casadi.Opti();
+ocp_opts                        = {'nlp_opts', nlp_opts};
+OPT_solver.solver(                  'ipopt'   , nlp_opts)
 
 %% Load paramters
 m_total                 = 80;
@@ -34,9 +40,10 @@ bed                     = 0.165;                                            % Pe
 
 % Set time of the simulation
 PreparationTime         = 0;
-ExtractionTime          = 60;
-timeStep                = 1;                                               % Minutes
-SamplingTime            = 10;                                              % Minutes
+ExtractionTime          = 150;
+timeStep                = 2.5;                                              % Minutes
+SamplingTime            = 5;                                                % Minutes
+OP_change_Time          = 5;                                                % Minutes
 
 simulationTime          = PreparationTime + ExtractionTime;
 
@@ -46,6 +53,8 @@ Time                    = [0 Time_in_sec/60];                               % Mi
 
 N_Time                  = length(Time_in_sec);
 SAMPLE                  = SamplingTime:SamplingTime:ExtractionTime;
+OP_change               = OP_change_Time:OP_change_Time:ExtractionTime;
+
 % Check if the number of data points is the same for both the dataset and the simulation
 N_Sample                = [];
 for i = 1:numel(SAMPLE)
@@ -54,7 +63,6 @@ end
 if numel(N_Sample) ~= numel(SAMPLE)
     keyboard
 end
-
 
 %% Specify parameters to estimate
 nstages                 = Parameters{1};
@@ -115,24 +123,41 @@ xdot                    = modelSFE(x, u, bed_mask, timeStep_in_sec);
 % Integrator
 F                       = buildIntegrator(f, [Nx,Nu] , timeStep_in_sec);
 
-% Set operating conditions
-T0homog                 = OPT_solver.variable(numel(N_Sample))';
-OPT_solver.subject_to( 40+273 <= T0homog <= 50+273 );
+%% Set operating conditions
+% bounds for T and F
+T_max                   = 50+273;
+T_min                   = 40+273;
 
+%V_min                   = 0.4 * 0.95;
+%V_max                   = 0.4 * 1.05;
+
+% set P
 feedPress               = 250;
+feedPress               = feedPress * ones(1,length(Time_in_sec)) + 0 ;     % Bars
 
-Z                       = Compressibility( T0homog(1), feedPress,         Parameters );
-rho                     = rhoPB_Comp(      T0homog(1), feedPress, Z,      Parameters );
+% set T
+T0homog                 = OPT_solver.variable(numel(OP_change))';
+                          OPT_solver.subject_to( T_min <= T0homog <= T_max );
 
-enthalpy_rho            = rho.*SpecificEnthalpy(T0homog(1), feedPress, Z, rho, Parameters );
-
-feedTemp                = repmat(T0homog,N_Time/numel(N_Sample),1);
+T_0                     = T0homog(1);                                       % initial temperature insdie of the extractor
+feedTemp                = repmat(T0homog,N_Time/numel(OP_change),1);
 feedTemp                = feedTemp(:)';
 
-feedPress               = feedPress * ones(1,length(Time_in_sec)) + 0 ;  % Bars
+% set h
+Z                       = Compressibility( T_0, feedPress(1),         Parameters );
+rho                     = rhoPB_Comp(      T_0, feedPress(1), Z,      Parameters );
 
-feedFlow                = V_Flow * rho * 1e-3 / 60 * ones(1,length(Time_in_sec));  % l/min -> kg/s
+enthalpy_rho            = rho.*SpecificEnthalpy(T_0, feedPress(1), Z, rho, Parameters );
 
+% set F
+%V_Flow                  = OPT_solver.variable(numel(OP_change))';
+%                          OPT_solver.subject_to( V_min <= V_Flow <= V_max );
+
+%Flow                    = repmat(V_Flow,N_Time/numel(OP_change),1);
+%Flow                    = Flow(:)';                          
+feedFlow                = V_Flow .* rho .* 1e-3 ./ 60 * ones(1,length(Time_in_sec)) ;  % l/min -> kg/s
+
+% set vector of controls
 uu                      = [feedTemp', feedPress', feedFlow'];
 
 %% Set inital state and inital conditions
@@ -160,11 +185,12 @@ x0                      = [ C0fluid'                        ;
                             ];
 
 %%
-choose_param            = [44:47];
+sigma                   = 0.12;
+which_theta             = [44:47];
 % Store symbolic results of the simulation
 Parameters_sym          = MX(cell2mat(Parameters));
-Parameters_sym_t        = OPT_solver.parameter(numel(choose_param));
-Parameters_sym(choose_param)   = Parameters_sym_t;
+Parameters_sym_t        = OPT_solver.parameter(numel(which_theta));
+Parameters_sym(which_theta)   = Parameters_sym_t;
 
 X                       = MX(Nx,N_Time+1);
 X(:,1)                  = x0;
@@ -178,37 +204,91 @@ Yield_estimate          = X(Nx,[1; N_Sample]);
 data_obs                = diff(Yield_estimate);
 
 S                       = jacobian(data_obs, Parameters_sym_t);
-%FF                          = Function('FF', {[T0homog, Parameters_sym_t']}, {S});
-%S                           = FF([cell2mat(Parameters(choose_param))']);
 
-norm_factor             = cell2mat(Parameters(choose_param)) ./ repmat(data_obs,numel(choose_param),1);
-S_norm                  = S .* abs(norm_factor)' ;
+S_norm                  = S' .* abs(cell2mat(Parameters(which_theta))) ./ repmat(data_obs,numel(which_theta) );
+FI                      = (S_norm * S_norm');
+FI                      = FI ./ (sigma^2);  
 
-FI                      = 0;
-
-for ii=1:numel(data_obs)
-    FI                  = FI + (S_norm(ii,:) * S_norm(ii,:)');
+if numel(FI) ~= numel(which_theta)^2
+    keyboard
 end
 
-D_opt = -myDet(FI);
+D_opt = -log(myDet(FI));
 
-OPT_solver.set_value(Parameters_sym_t, cell2mat(Parameters(choose_param)));
+OPT_solver.set_value(Parameters_sym_t, cell2mat(Parameters(which_theta)));
 
 OPT_solver.minimize(D_opt);
 
-OPT_solver.set_initial(T0homog, [linspace(50,40,numel(N_Sample))+273]);
+T0 = (T_max-T_min).*rand(1,numel(OP_change)) + T_min;
+%V0 = (V_max-V_min).*rand(1,numel(OP_change)) + V_min;
+
+OPT_solver.set_initial(T0homog, T0 );
+%OPT_solver.set_initial(V_Flow, V0 );
 
 try
     sol  = OPT_solver.solve();
-    KOUT = full(sol.value(T0homog));
+    KOUT = full(sol.value([T0homog]))
 catch
-    KOUT = OPT_solver.debug.value(T0homog);
+    KOUT = OPT_solver.debug.value([T0homog])
 end
 
+%% save data
+OBJ = OPT_solver.stats.iterations.obj;
 
+writematrix('T0','output.xls','sheet',ii,'Range','A1');
+writematrix('T_opt','output.xls','sheet',ii,'Range','B1');
+writematrix('OBJ','output.xls','sheet',ii,'Range','C1');
+writematrix(OPT_solver.return_status,'output.xls','sheet',ii,'Range','D1');
 
+writematrix([T0; KOUT]','output.xls','sheet',ii,'Range','A2:B200');
+writematrix(OBJ','output.xls','sheet',ii,'Range','C2');
+end
 
+%% read data
+OBJ_data = [];
+OBJ_init = [];
+Group    = {};
 
+TT       = [];
+
+figure(1)
+subplot(2,1,1)
+hold on
+for ii=1:numeEval
+    data = readcell("output.xls",'sheet',ii);
+    OBJ_init = [OBJ_init, data{2,3}];
+    OBJ_data = [OBJ_data, data{end,3}];
+
+    TT = [TT, cell2mat(data(2:31,2))];
+
+    Group = [Group; data{1,4}];
+
+    plot(cell2mat(data(2:end,3)));
+end
+hold off
+
+subplot(2,1,2)
+plot(TT)
+
+figure(2)
+scatterhist(OBJ_init, OBJ_data, 'Kernel','on','Location','SouthEast', 'Direction','out');
+
+figure(3)
+h = scatterhist(OBJ_init, OBJ_data, 'Group', Group, 'Kernel','on','Location','SouthEast', 'Direction','out');
+hold on
+yy = yline(min(OBJ_data),'-');
+hold off
+L = legend;
+L.String(end) = {'Mini(obj)'};
+%delete(h(2));
+
+%% Reconstruct T profile
+%TT=[];
+%for ii=1:N_Time
+%    T = full(Reconstruct_T_from_enthalpy(XX(2*nstages+1:3*nstages,ii),250, Parameters));
+%    TT = [TT, T];
+%end
+%}
 
 
 

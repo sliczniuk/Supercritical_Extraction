@@ -10,12 +10,13 @@ Parameters_table        = readtable('Parameters.csv') ;                     % Ta
 Parameters              = num2cell(Parameters_table{:,3});                  % Parameters within the model + (m_max), m_ratio, sigma
 
 %% Create the solver
-Iteration_max               = 50;                                            % Maximum number of iterations for optimzer
-Time_max                    = 12.0;                                           % Maximum time of optimization in [h]
+Iteration_max               = 100;                                            % Maximum number of iterations for optimzer
+Time_max                    = 24.0;                                           % Maximum time of optimization in [h]
 
 nlp_opts                    = struct;
 nlp_opts.ipopt.max_iter     = Iteration_max;
 nlp_opts.ipopt.max_cpu_time = Time_max*3600;
+nlp_opts.ipopt.hessian_approximation ='limited-memory';
 %nlp_opts.ipopt.acceptable_tol  = 1e-4;
 %nlp_opts.ipopt.acceptable_iter = 5;
 
@@ -34,9 +35,10 @@ bed                     = 0.165;                                            % Pe
 
 % Set time of the simulation
 PreparationTime         = 0;
-ExtractionTime          = 200; 
-timeStep                = 1;                                               % Minutes
-SamplingTime            = 50;                                              % Minutes
+ExtractionTime          = 120;
+timeStep                = 2.5;                                              % Minutes
+SamplingTime            = 5;                                                % Minutes
+OP_change_Time          = 10;                                               % Minutes
 
 simulationTime          = PreparationTime + ExtractionTime;
 
@@ -44,8 +46,18 @@ timeStep_in_sec         = timeStep * 60;                                    % Se
 Time_in_sec             = (timeStep:timeStep:simulationTime)*60;            % Seconds
 Time                    = [0 Time_in_sec/60];                               % Minutes
 
-N_Time                  = length(Time_in_sec);        
-N_Sample                = SamplingTime:SamplingTime:ExtractionTime;
+N_Time                  = length(Time_in_sec);
+SAMPLE                  = SamplingTime:SamplingTime:ExtractionTime;
+OP_change               = OP_change_Time:OP_change_Time:ExtractionTime;
+
+% Check if the number of data points is the same for both the dataset and the simulation
+N_Sample                = [];
+for i = 1:numel(SAMPLE)
+    N_Sample            = [N_Sample ; find(round(Time,3) == round(SAMPLE(i))) ];
+end
+if numel(N_Sample) ~= numel(SAMPLE)
+    keyboard
+end
 
 %% Specify parameters to estimate
 nstages                 = Parameters{1};
@@ -107,7 +119,7 @@ xdot                    = modelSFE(x, u, bed_mask, timeStep_in_sec);
 F                       = buildIntegrator(f, [Nx,Nu] , timeStep_in_sec);
 
 % Set operating conditions
-T0homog                 = OPT_solver.variable(numel(N_Sample))';
+T0homog                 = OPT_solver.variable(numel(OP_change))';
                           OPT_solver.subject_to( 40+273 <= T0homog <= 50+273 );
 
 feedPress               = 250;
@@ -117,7 +129,7 @@ rho                     = rhoPB_Comp(      T0homog(1), feedPress, Z,      Parame
 
 enthalpy_rho            = rho.*SpecificEnthalpy(T0homog(1), feedPress, Z, rho, Parameters );
 
-feedTemp                = repmat(T0homog,N_Time/numel(N_Sample),1);
+feedTemp                = repmat(T0homog,N_Time/numel(OP_change),1);
 feedTemp                = feedTemp(:)';
 
 feedPress               = feedPress * ones(1,length(Time_in_sec)) + 0 ;  % Bars
@@ -151,8 +163,9 @@ x0                      = [ C0fluid'                        ;
                             ];
 
 %% Set sensitivity analysis
-which_theta = 3+[44:47];
-%whosaDET = [];
+which_theta            = 3+[44:47];
+sigma                  = 0.12;
+
 % Sensitivities calculations
 Parameters{8} = 1;
 Parameters_init_time   = [uu repmat(cell2mat(Parameters),1,N_Time)'];
@@ -163,32 +176,40 @@ x0_SA                  = [ x0; zeros(length(S)-length(xdot),1) ];
 
 f_SA                   = @(S, p) Sdot(S, p, bed_mask);
 Results                = Integrator_SS(Time*60, x0_SA, S, p, Sdot, Parameters_init_time);
-Res_simulation         = Results(Nx,2:end);
-Res_sensitivity_all    = Results(Nx+1:end,2:end);
+Res_simulation         = Results(Nx,N_Sample);
+Res_sensitivity_all    = Results(Nx+1:end,N_Sample);
 
-SS                     = Res_sensitivity_all(Nx:Nx:end,:);
+S                      = Res_sensitivity_all(Nx:Nx:end,:);
 norm_factor            = abs(cell2mat(Parameters));
-SS_norm                = SS .* norm_factor(which_theta-3); % ./ repmat(Res_simulation,numel(which_theta));
+S_norm                 = S .* norm_factor(which_theta-3) ./ repmat(Res_simulation,numel(which_theta),1);
 
-FI                     = 0;
-for ii=[N_Time/numel(N_Sample):N_Time/numel(N_Sample):N_Time]
-    FI                 = FI + (SS_norm(:,ii) * SS_norm(:,ii)');
+FI                     = (S_norm * S_norm');
+FI                     = FI ./ (sigma^2);
+
+%FI                     = 0;
+%for ii=[N_Time/numel(N_Sample):N_Time/numel(N_Sample):N_Time]
+%    FI                 = FI + (SS_norm(:,ii) * SS_norm(:,ii)');
     %DET                = [DET, myDet(inv(FI))];
+%end
+
+if numel(FI) ~= numel(which_theta)^2
+    keyboard
 end
 
 D_opt = -myDet(FI);
-%{
+
 OPT_solver.minimize(D_opt);
 
-OPT_solver.set_initial(T0homog, [linspace(40,50,numel(N_Sample))+273]);
+%OPT_solver.set_initial(T0homog, [linspace(50,40,numel(OP_change))+273]);
+OPT_solver.set_initial(T0homog, [313.0000  323.0000  323.0000  323.0000  323.0000  322.1465  321.0662  313.0000  313.0000  313.0000  313.0000  314.6966]);
 
 try
     sol  = OPT_solver.solve();
     KOUT = full(sol.value(T0homog))
 catch
-    KOUT = OPT_solver.debug.value(T0homog);
+    KOUT = OPT_solver.debug.value(T0homog)
 end      
-
+%{
 %%
 % Set operating conditions
 T0homog                 = KOUT;

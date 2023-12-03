@@ -1,4 +1,4 @@
-function [S,p,Sdot] = Sensitivity(x,xdot,theta,which_theta)
+function [S,p,Sdot] = Sensitivity(x, xdot, theta, which_theta)
 
     %addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-windows-matlabR2016a-v3.5.1');
     import casadi.*
