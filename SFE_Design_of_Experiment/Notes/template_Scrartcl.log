@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.8) (preloaded format=pdflatex 2022.9.27)  16 NOV 2023 13:05
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.8) (preloaded format=pdflatex 2022.9.27)  6 DEC 2023 11:57
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -625,7 +625,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 Here is how much of TeX's memory you used:
  15625 strings out of 478847
  326672 string characters out of 2848486
- 728411 words of memory out of 3000000
+ 729411 words of memory out of 3000000
  33284 multiletter control sequences out of 15000+600000
  413134 words of font info for 64 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -640,17 +640,18 @@ liczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb>
 <C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
 /cmr10.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/
 amsfonts/cm/cmr12.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/ty
-pe1/public/amsfonts/cm/cmr8.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTe
-X/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><C:/Users/sliczno1/AppData/Local/
-Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/sliczno1/Ap
-pData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/
-sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb
-><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/s
-ymbols/msbm10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/cm-super/sfrm1095
-.pfb>
-Output written on template_Scrartcl.pdf (6 pages, 178872 bytes).
+pe1/public/amsfonts/cm/cmr6.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTe
+X/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/sliczno1/AppData/Local/Prog
+rams/MiKTeX/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><C:/Users/sliczno1/AppD
+ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/s
+liczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb>
+<C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
+/cmsy8.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/
+amsfonts/symbols/msbm10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/cm-supe
+r/sfrm1095.pfb>
+Output written on template_Scrartcl.pdf (6 pages, 193989 bytes).
 PDF statistics:
- 95 PDF objects out of 1000 (max. 8388607)
+ 100 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -47,7 +47,7 @@ function xdot = modelSFE(x, p, mask, dt)
     Z             =     Compressibility(TEMP, PRESSURE,    parameters);
 
     RHO           =     rhoPB_Comp(     TEMP, PRESSURE, Z, parameters);   
-    VELOCITY      =     Velocity(F_u, RHO, parameters);
+    VELOCITY      =     Velocity(F_u, mean(RHO), parameters) .* ones(nstages_index,1);
     
     %% Thermal Properties
     CP            =     SpecificHeatComp(TEMP, PRESSURE, Z, RHO,                 parameters);            % [kJ/kg/K]
@@ -70,7 +70,7 @@ function xdot = modelSFE(x, p, mask, dt)
     Cf_B          =     FLUID(nstages_index);
                                                                                             % If the sensitivity of P and F is consider, then set the input T as equal to the T inside of the extractor
                                                                                             % to avoid different small mismatch of T between the inlet and inside of the extractor
-    T_0          = T_u;
+    T_0           =      T_u;
     
     T_B           =     TEMP(nstages_index);
 
@@ -85,7 +85,7 @@ function xdot = modelSFE(x, p, mask, dt)
 
     H_0           =     SpecificEnthalpy(T_0, PRESSURE, Z_0, rho_0, parameters );   
 
-    enthalpy_rho_0 = rho_0 .* H_0 ;                   % If the sensitivity of F is consider, then set the input h*rho as equal to the h*rho inside of the extractor
+    enthalpy_rho_0 = rho_0 .* H_0 ;                                                         % If the sensitivity of F is consider, then set the input h*rho as equal to the h*rho inside of the extractor
                                                                                             % to avoid different small mismatch betweenat the inlet and inside of the extractor
     
     %% Derivatives
@@ -124,7 +124,7 @@ function xdot = modelSFE(x, p, mask, dt)
     
     %--------------------------------------------------------------------
     % enthalpy | 2
-    - 1      ./ ( 1 - epsi .* mask )  .* dHdz +  dPdt - KRHOCP .* d2Tdz2;
+    - 1      ./ ( 1 - epsi .* mask )  .* dHdz +  dPdt + KRHOCP .* d2Tdz2;
 
     %--------------------------------------------------------------------
     % Pressure | 3

@@ -1,28 +1,28 @@
 startup;
 delete(gcp('nocreate'));
-% %p = Pushbullet(pushbullet_api);
+%p = Pushbullet(pushbullet_api);
 
 %addpath('C:\Dev\casadi-3.6.3-windows64-matlab2018b');
 addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-3.6.3-windows64-matlab2018b');
 import casadi.*
 
-numeEval = 108;
+numeEval = 6;
 
-parfor ii=1:numeEval
+for ii=1:numeEval
 
-Parameters_table                = readtable('Parameters.csv') ;                     % Table with prameters
-Parameters                      = num2cell(Parameters_table{:,3});                  % Parameters within the model + (m_max), m_ratio, sigma
+Parameters_table                = readtable('Parameters.csv') ;             % Table with prameters
+Parameters                      = num2cell(Parameters_table{:,3});          % Parameters within the model + (m_max), m_ratio, sigma
 
 %% Create the solver
-Iteration_max                   = 150;                                            % Maximum number of iterations for optimzer
-Time_max                        = 24.0;                                          % Maximum time of optimization in [h]
+Iteration_max                   = 200;                                        % Maximum number of iterations for optimzer
+Time_max                        = 24.0;                                     % Maximum time of optimization in [h]
 
 nlp_opts                        = struct;
 nlp_opts.ipopt.max_iter         = Iteration_max;
 nlp_opts.ipopt.max_cpu_time     = Time_max*3600;
 nlp_opts.ipopt.hessian_approximation ='limited-memory';
-nlp_opts.ipopt.tol              = 1e-5;
-nlp_opts.ipopt.acceptable_tol   = 1e-3;
+%nlp_opts.ipopt.tol              = 1e-5;
+%nlp_opts.ipopt.acceptable_tol   = 1e-3;
 %nlp_opts.ipopt.acceptable_iter = 5;
 
 OPT_solver                      = casadi.Opti();
@@ -41,6 +41,7 @@ bed                     = 0.165;                                            % Pe
 % Set time of the simulation
 PreparationTime         = 0;
 ExtractionTime          = 150;
+DeadTime                = 30;
 timeStep                = 2.5;                                              % Minutes
 SamplingTime            = 5;                                                % Minutes
 OP_change_Time          = 5;                                                % Minutes
@@ -53,7 +54,7 @@ Time                    = [0 Time_in_sec/60];                               % Mi
 
 N_Time                  = length(Time_in_sec);
 SAMPLE                  = SamplingTime:SamplingTime:ExtractionTime;
-OP_change               = OP_change_Time:OP_change_Time:ExtractionTime;
+OP_change               = OP_change_Time:OP_change_Time:(ExtractionTime-DeadTime);
 
 % Check if the number of data points is the same for both the dataset and the simulation
 N_Sample                = [];
@@ -136,12 +137,13 @@ feedPress               = 250;
 feedPress               = feedPress * ones(1,length(Time_in_sec)) + 0 ;     % Bars
 
 % set T
-T0homog                 = OPT_solver.variable(numel(OP_change))';
+T0homog                 = OPT_solver.variable(numel(OP_change)+1)';
                           OPT_solver.subject_to( T_min <= T0homog <= T_max );
 
 T_0                     = T0homog(1);                                       % initial temperature insdie of the extractor
-feedTemp                = repmat(T0homog,N_Time/numel(OP_change),1);
+feedTemp                = repmat(T0homog(2:end),OP_change_Time/timeStep,1);
 feedTemp                = feedTemp(:)';
+feedTemp                = [ feedTemp, T0homog(end)*ones(1,N_Time - numel(feedTemp)) ];    
 
 % set h
 Z                       = Compressibility( T_0, feedPress(1),         Parameters );
@@ -170,7 +172,7 @@ mSOL_f                  = msol_max*(1-mSol_ratio);                          % g 
 C0solid                 = mSOL_s * 1e-3 / ( V_bed * epsi)  ;                % Solid phase kg / m^3
 Parameters{2}           = C0solid;
 
-G                       =@(x) -(2*mSOL_f / L_end^2) * (x-L_end) ;
+G                       = @(x) -(2*mSOL_f / L_end^2) * (x-L_end) ;
 
 m_fluid                 = G(L_bed_after_nstages)*( L_bed_after_nstages(2) ); % Lienarly distirubuted mass of solute in fluid phase, which goes is zero at the outlet. mass*dz
 m_fluid                 = [zeros(1,numel(nstagesbefore)) m_fluid];
@@ -219,7 +221,7 @@ OPT_solver.set_value(Parameters_sym_t, cell2mat(Parameters(which_theta)));
 
 OPT_solver.minimize(D_opt);
 
-T0 = (T_max-T_min).*rand(1,numel(OP_change)) + T_min;
+T0 = (T_max-T_min).*rand(1,numel(T0homog)) + T_min;
 %V0 = (V_max-V_min).*rand(1,numel(OP_change)) + V_min;
 
 OPT_solver.set_initial(T0homog, T0 );
@@ -232,16 +234,29 @@ catch
     KOUT = OPT_solver.debug.value([T0homog])
 end
 
-%% save data
-OBJ = OPT_solver.stats.iterations.obj;
+%% Reconstruct T profile
+FF     = Function('FF', {[T0homog, Parameters_sym_t']}, {X});
+XX     = full(FF( [KOUT, cell2mat(Parameters(which_theta))'] ));
 
+TT_rec = full(Reconstruct_T_from_enthalpy(XX(3*nstages,2:end)',250, Parameters))';
+
+FF     = Function('FF', {T0homog}, {feedTemp});
+TT     = full(FF( [KOUT] ));
+TT_0   = full(FF( [T0] ));
+
+%% save data
+
+OBJ = OPT_solver.stats.iterations.obj;
+    
 writematrix('T0','output.xls','sheet',ii,'Range','A1');
 writematrix('T_opt','output.xls','sheet',ii,'Range','B1');
-writematrix('OBJ','output.xls','sheet',ii,'Range','C1');
-writematrix(OPT_solver.return_status,'output.xls','sheet',ii,'Range','D1');
+writematrix('T_out','output.xls','sheet',ii,'Range','C1');
+writematrix('OBJ','output.xls','sheet',ii,'Range','D1');
+writematrix(OPT_solver.return_status,'output.xls','sheet',ii,'Range','E1');
 
-writematrix([T0; KOUT]','output.xls','sheet',ii,'Range','A2:B200');
-writematrix(OBJ','output.xls','sheet',ii,'Range','C2');
+writematrix([TT_0; TT; TT_rec]','output.xls','sheet',ii,'Range','A2:C200');
+writematrix(OBJ','output.xls','sheet',ii,'Range','D2');
+%}
 end
 
 %% read data
@@ -249,26 +264,26 @@ OBJ_data = [];
 OBJ_init = [];
 Group    = {};
 
-TT       = [];
+TT_opt   = [];
 
 figure(1)
-subplot(2,1,1)
-hold on
+%subplot(2,1,1)
+%hold on
 for ii=1:numeEval
     data = readcell("output.xls",'sheet',ii);
-    OBJ_init = [OBJ_init, data{2,3}];
-    OBJ_data = [OBJ_data, data{end,3}];
+    OBJ_init = [OBJ_init, data{2,4}];
+    OBJ_data = [OBJ_data, data{end,4}];
 
-    TT = [TT, cell2mat(data(2:31,2))];
+    TT_opt = [TT_opt, cell2mat(data(2:61,2))];
 
-    Group = [Group; data{1,4}];
+    Group = [Group; data{1,5}];
 
-    plot(cell2mat(data(2:end,3)));
+    %plot(cell2mat(data(2:end,3)));
 end
-hold off
+%hold off
 
-subplot(2,1,2)
-plot(TT)
+%subplot(2,1,2)
+plot(TT_opt)
 
 figure(2)
 scatterhist(OBJ_init, OBJ_data, 'Kernel','on','Location','SouthEast', 'Direction','out');
@@ -282,16 +297,8 @@ L = legend;
 L.String(end) = {'Mini(obj)'};
 %delete(h(2));
 
-%% Reconstruct T profile
-%TT=[];
-%for ii=1:N_Time
-%    T = full(Reconstruct_T_from_enthalpy(XX(2*nstages+1:3*nstages,ii),250, Parameters));
-%    TT = [TT, T];
-%end
+
 %}
-
-
-
 
 
 

@@ -27,7 +27,7 @@ Notes about the optimal design of an experiment
 \end{itemize}
 
 \section{Maximum likelihood}
-Let $y^s$ be the vector of all experimental results (random vector) to be used to estimate $p$ and $y^m(p)$. The vector of the corresponding quantities computed by the model $\dot{x}=f(t,x,p)$. For a parallel model, the parameters of which are to be estimated from measurements of an output vector $\dot{y}=g(x)$. We shall call any optimizer of $j$, i.e., any $\hat{p}$ that corresponds to an optimal value of the cost function $j$, an estimate of $p$ in the sense of $j$.
+Let $y^s$ be the vector of all experimental results (random vector) to be used to estimate parameters $p$ and model output $y^m(p)$. The vector of the corresponding quantities computed by the model $\dot{x}=f(t,x,p)$. For a parallel model, the parameters of which are to be estimated from measurements of an output vector $\dot{y}=g(x)$. We shall call any optimizer of $j$, i.e., any $\hat{p}$ that corresponds to an optimal value of the cost function $j$, an estimate of $p$ in the sense of $j$.
 
 The vector $\hat{p}_{ml}$ will be a maximum-likelihood estimate if it maximizes the cost function:
 
@@ -65,22 +65,22 @@ For the true value of the parameters, it satisfies $e^y(t_i, p^*)=\epsilon_i$. a
 	\pi_y (y^s|p) = \prod_{i=1}^{n_t} \pi_{\epsilon_i}(e^y(t_i,p)) =  \prod_{i=1}^{n_t} \pi_{\epsilon_i}(y(t_i) - y^m(t_i, p))
 \end{equation}
 
-If the noise is assumed to follow the normal distribution:
+If the noise is assumed to follow the normal distribution with the standard deviation $\sigma$, which is known from the parameter estimation:
 
 \begin{equation}
-	\pi_y (y^s|p) = \prod_{i=1}^{n_t} \frac{1}{ \sqrt{2\pi\sigma_{t_i}^2} } \exp \left( -\frac{1}{2} \left( \frac{y(t_i) - y^m(t_i, p)}{\sigma_{t_i}} \right) \right)
+	\pi_y (y^s|p) = \prod_{i=1}^{n_t} \frac{1}{ \sqrt{2\pi\sigma_{t_i}^2} } \exp \left( -\frac{1}{2} \left( \frac{y(t_i) - y^m(t_i, p)}{\sigma_{t_i}} \right)^2 \right)
 \end{equation}
 
 The associated log-likelihood can be written as
 
 \begin{equation}
-	\ln (\pi_y (y^s|p)) = (\text{term independent of p}) - \frac{1}{2} \sum_{i=1}^{n_t}  \left( \frac{y(t_i) - y^m(t_i, p)}{\sigma_{t_i}^2} \right)
+	\ln (\pi_y (y^s|p)) = (\text{term independent of p}) - \frac{1}{2} \sum_{i=1}^{n_t}  \left( \frac{y(t_i) - y^m(t_i, p)}{\sigma_{t_i}} \right)^2
 \end{equation}
 
 Its gradient is thus
 
 \begin{equation}
-	\frac{\partial}{\partial p} \ln (\pi_y (y^s|p)) =  \frac{1}{2} \sum_{i=1}^{n_t}  \left( \frac{y(t_i) - y^m(t_i, p)}{\sigma_{t_i}^2} \frac{\partial y^m(t_i, p)}{\partial p} \right)
+	\frac{\partial}{\partial p} \ln (\pi_y (y^s|p)) =  \sum_{i=1}^{n_t}  \left[ \left( \frac{y(t_i) - y^m(t_i, p)}{\sigma_{t_i}^2} \right) \frac{\partial y^m(t_i, p)}{\partial p} \right]
 \end{equation}
 
 \section{Fisher information}
@@ -92,13 +92,13 @@ The Fisher information is a way of measuring the amount of information that an o
 	&= \mathop{\mathbb{E}}_{y^s|p} \left[ \sum_{k=1}^{n_t} \left( \frac{y(t_k) - y^m(t_k, p)}{\sigma_{t_k}^2} \frac{\partial y^m(t_k, p)}{\partial p} \right) \times  \sum_{i=1}^{n_t} \left( \frac{y(t_i) - y^m(t_i, p)}{\sigma_{t_i}^2} \frac{\partial y^m(t_i, p)}{\partial p^T} \right) \right]
 \end{align}
 
-Since
+Considering the mismatch between the dataset and the model output, the expectation becomes $\mathop{\mathbb{E}}_{y^s|p} \left[ \left( y(t_i) - y^m(t_k, p) \right) \right] = \mathop{\mathbb{E}}_{y^s|p} \left[ \epsilon_i^2 \right]$. For $i=k$, the expectation of $\epsilon_i$ is the variance of the noise $\sigma_{t_i}^2$. Analogously, the expectation becomes 0 if $i \neq k$ because the expectation of the noise $\epsilon_i$ is zero and the measurements are independent at different times.
 
 \begin{equation}
 	\mathop{\mathbb{E}}_{y^s|p} \left[ \left( y(t_i) - y^m(t_k, p) \right) \left( y(t_i) - y^m(t_i, p) \right) \right] = \sigma_{t_i}^2 \delta_{ik}
 \end{equation}
 
-one gets
+where $\delta_{ik}$ represents the Kronecker delta. Given the property of the Kronecker delta, the double summation in the Fisher Information matrix reduces to a single summation:
 
 \begin{equation}
 	F(p) = \sum_{i=1}^{n_t} \left( \frac{1}{\sigma_{t_i}^2} \frac{\partial y^m(t_i, p)}{\partial p} \frac{\partial y^m(t_i, p)}{\partial p^T} \right)
@@ -107,19 +107,22 @@ one gets
 If every experiment at time $t_i$ is independent and characterized by its own $\sigma_{t_i}$, then the Fisher information matrix can be presented in the more compact way:
 
 \begin{equation}
-	F(p) = \frac{\partial y^m(t, p)}{\partial p} \text{diag}\left(\frac{1}{\sigma_{t}^2}\right) \frac{\partial y^m(t, p)}{\partial p^T} 
+	F(p) = \frac{\partial y^m(t, p)}{\partial p} \begin{bmatrix}
+		\frac{1}{\sigma_{t_1}^2} & 0 & 0\\
+		0 & \ddots & 0 \\
+		0 & 0 & \frac{1}{\sigma_{t_{n_t}}^2} 
+	\end{bmatrix}\ \frac{\partial y^m(t, p)}{\partial p^T} 
 \end{equation}
 
 \section{Cramer-Rao inequality}
 
-Let $\hat{p}$ be an (absolutely) unbiased estimator $p^*$, i.e. such that which amounts to saying that if it were possible to replicate the same experiment and
-estimate $\hat{p}$ an infinite number of times, the mean of the estimates would coincide with the true value. Let $P$ be the covariance matrix of this estimator. Since $\hat{p}$ is unbiased, $P$ can be written as
+Let $\hat{p}$ be an (absolutely) unbiased estimator $p^*$, i.e. such that it were possible to replicate the same experiment and estimate $\hat{p}$ an infinite number of times, the mean of the estimates would coincide with the true value. Let $P$ be the covariance matrix of this estimator. Since $\hat{p}$ is unbiased, $P$ can be written as
 
 \begin{equation}
 	P = \mathop{\mathbb{E}}_{y^s|p^*} \left[ \left( \hat{p}(y^s) - p^* \right) \left( \hat{p}(y^s) - p^* \right)^T \right]
 \end{equation}
 
-which quantifies how the estimates are spread around the true value $p^*$. One would like the estimates to be as concentrated as possible around this true value, of course. An estimator $\hat{p}_1$ with covariance matrix $P_1$ is said to be more efficient than an estimator $\hat{p}_2$ with covariance matrix $P_2$ if $P_1 < P_2$, that is if $P_2 - P_1$ is positive-definite (i.e.if all the eigenvalues of $P_2-P_1$ arc strictly positive). Since estimators with high efficiency are desirable, a natural request is to make P as small as possible. The Cramer-Rao inequality provides a lower bound to what can be achieved.
+which quantifies how the estimates are spread around the true value $p^*$. One would like the estimates to be as concentrated as possible around this true value. An estimator $\hat{p}_1$ with covariance matrix $P_1$ is said to be more efficient than an estimator $\hat{p}_2$ with covariance matrix $P_2$ if $P_1 < P_2$, that is if $P_2 - P_1$ is positive-definite (i.e.if all the eigenvalues of $P_2-P_1$ arc strictly positive). Since estimators with high efficiency are desirable, a natural request is to make P as small as possible. The Cramer-Rao inequality provides a lower bound to what can be achieved.
 
 Under the hypotheses that:
 
@@ -213,6 +216,21 @@ A D-optimal experiment minimizes the volume of the asymptotic confidence ellipso
 	\caption{Graphical representation of score functions}
 	\label{fig:score_fun}
 \end{figure}
+
+\section{Problem formulation}
+
+The optimal design of experiment technique is used extend the experiment discussed in ${\color{red}article~1}$, where supercritical extraction from caraway seeds has been discussed. In this work, the extraction has been performed at multiple operating conditions, such that the temperature, pressure and flow-rate were constant during each batch. Later, the results from all the experiments are combined and correlations for extraction kinetic parameters are presented. In this work, the optimal design of experiment is used to design an experiment to validate these correlations. The model parameters and the sampling time are the same as in ${\color{red}article~1}$ to mimic the original system. It is assumed that the flow-rate is constant, because the effect of the flow-rate has not been deeply investigated. The inlet temperature can be controlled by a controller 
+
+\begin{equation}
+	\begin{aligned} 
+		&\hat{{\color{black} \theta}}_{MLE} &= \arg \max_{{\color{black} \sigma}, {\color{black} \theta} \in \Theta} \ln L = \arg \max_{{\color{black} \sigma},{\color{black} \theta} \in \Theta} p({\color{black} \theta}|{\color{black}y}) \\
+		&\text{subject to}
+		& \dot{ {\color{black}x} } = {\color{black}G}({\color{black} x}(t);{\color{black} \theta}) \\
+		&& {\color{black} \dot{\theta}} = 0 \\
+		&& {\color{black}y} = {\color{black}y}(t) \\
+		&& {\color{black} \theta}^{lb} \leq {\color{black} \theta} \leq {\color{black} \theta}^{ub}
+	\end{aligned}
+\end{equation} 
 
 \end{document}
 
