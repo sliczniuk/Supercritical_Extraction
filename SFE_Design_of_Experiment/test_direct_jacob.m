@@ -6,23 +6,24 @@ delete(gcp('nocreate'));
 addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-3.6.3-windows64-matlab2018b');
 import casadi.*
 
-numeEval = 6;
+excel_file = 'output_P250.xls';
+numeEval = 69;
 
-for ii=1:numeEval
+parfor ii=61:numeEval
 
 Parameters_table                = readtable('Parameters.csv') ;             % Table with prameters
 Parameters                      = num2cell(Parameters_table{:,3});          % Parameters within the model + (m_max), m_ratio, sigma
 
 %% Create the solver
-Iteration_max                   = 200;                                        % Maximum number of iterations for optimzer
-Time_max                        = 24.0;                                     % Maximum time of optimization in [h]
+Iteration_max                   = 100;                                       % Maximum number of iterations for optimzer
+Time_max                        = 12.0;                                      % Maximum time of optimization in [h]
 
 nlp_opts                        = struct;
 nlp_opts.ipopt.max_iter         = Iteration_max;
 nlp_opts.ipopt.max_cpu_time     = Time_max*3600;
 nlp_opts.ipopt.hessian_approximation ='limited-memory';
-%nlp_opts.ipopt.tol              = 1e-5;
-%nlp_opts.ipopt.acceptable_tol   = 1e-3;
+nlp_opts.ipopt.tol              = 1e-6;
+nlp_opts.ipopt.acceptable_tol   = 1e-4;
 %nlp_opts.ipopt.acceptable_iter = 5;
 
 OPT_solver                      = casadi.Opti();
@@ -41,8 +42,9 @@ bed                     = 0.165;                                            % Pe
 % Set time of the simulation
 PreparationTime         = 0;
 ExtractionTime          = 150;
-DeadTime                = 30;
-timeStep                = 2.5;                                              % Minutes
+DeadTime                = 25;
+timeStep                = 1;                                                % Minutes
+timeShited              = 0;                                                % Minutes
 SamplingTime            = 5;                                                % Minutes
 OP_change_Time          = 5;                                                % Minutes
 
@@ -54,7 +56,7 @@ Time                    = [0 Time_in_sec/60];                               % Mi
 
 N_Time                  = length(Time_in_sec);
 SAMPLE                  = SamplingTime:SamplingTime:ExtractionTime;
-OP_change               = OP_change_Time:OP_change_Time:(ExtractionTime-DeadTime);
+OP_change               = timeShited:OP_change_Time:(ExtractionTime-DeadTime);
 
 % Check if the number of data points is the same for both the dataset and the simulation
 N_Sample                = [];
@@ -129,19 +131,16 @@ F                       = buildIntegrator(f, [Nx,Nu] , timeStep_in_sec);
 T_max                   = 50+273;
 T_min                   = 40+273;
 
-%V_min                   = 0.4 * 0.95;
-%V_max                   = 0.4 * 1.05;
-
 % set P
 feedPress               = 250;
 feedPress               = feedPress * ones(1,length(Time_in_sec)) + 0 ;     % Bars
 
 % set T
-T0homog                 = OPT_solver.variable(numel(OP_change)+1)';
+T0homog                 = OPT_solver.variable(numel(OP_change))';
                           OPT_solver.subject_to( T_min <= T0homog <= T_max );
 
-T_0                     = T0homog(1);                                       % initial temperature insdie of the extractor
-feedTemp                = repmat(T0homog(2:end),OP_change_Time/timeStep,1);
+T_0                     = T0homog(1);   
+feedTemp                = repmat(T0homog,OP_change_Time/timeStep,1);
 feedTemp                = feedTemp(:)';
 feedTemp                = [ feedTemp, T0homog(end)*ones(1,N_Time - numel(feedTemp)) ];    
 
@@ -151,12 +150,6 @@ rho                     = rhoPB_Comp(      T_0, feedPress(1), Z,      Parameters
 
 enthalpy_rho            = rho.*SpecificEnthalpy(T_0, feedPress(1), Z, rho, Parameters );
 
-% set F
-%V_Flow                  = OPT_solver.variable(numel(OP_change))';
-%                          OPT_solver.subject_to( V_min <= V_Flow <= V_max );
-
-%Flow                    = repmat(V_Flow,N_Time/numel(OP_change),1);
-%Flow                    = Flow(:)';                          
 feedFlow                = V_Flow .* rho .* 1e-3 ./ 60 * ones(1,length(Time_in_sec)) ;  % l/min -> kg/s
 
 % set vector of controls
@@ -189,6 +182,7 @@ x0                      = [ C0fluid'                        ;
 %%
 sigma                   = 0.12;
 which_theta             = [44:47];
+
 % Store symbolic results of the simulation
 Parameters_sym          = MX(cell2mat(Parameters));
 Parameters_sym_t        = OPT_solver.parameter(numel(which_theta));
@@ -222,10 +216,8 @@ OPT_solver.set_value(Parameters_sym_t, cell2mat(Parameters(which_theta)));
 OPT_solver.minimize(D_opt);
 
 T0 = (T_max-T_min).*rand(1,numel(T0homog)) + T_min;
-%V0 = (V_max-V_min).*rand(1,numel(OP_change)) + V_min;
 
 OPT_solver.set_initial(T0homog, T0 );
-%OPT_solver.set_initial(V_Flow, V0 );
 
 try
     sol  = OPT_solver.solve();
@@ -248,14 +240,14 @@ TT_0   = full(FF( [T0] ));
 
 OBJ = OPT_solver.stats.iterations.obj;
     
-writematrix('T0','output.xls','sheet',ii,'Range','A1');
-writematrix('T_opt','output.xls','sheet',ii,'Range','B1');
-writematrix('T_out','output.xls','sheet',ii,'Range','C1');
-writematrix('OBJ','output.xls','sheet',ii,'Range','D1');
-writematrix(OPT_solver.return_status,'output.xls','sheet',ii,'Range','E1');
+writematrix('T0',excel_file,'sheet',ii,'Range','A1');
+writematrix('T_opt',excel_file,'sheet',ii,'Range','B1');
+writematrix('T_out',excel_file,'sheet',ii,'Range','C1');
+writematrix('OBJ',excel_file,'sheet',ii,'Range','D1');
+writematrix(OPT_solver.return_status,excel_file,'sheet',ii,'Range','E1');
 
-writematrix([TT_0; TT; TT_rec]','output.xls','sheet',ii,'Range','A2:C200');
-writematrix(OBJ','output.xls','sheet',ii,'Range','D2');
+writematrix([TT_0; TT; TT_rec]',excel_file,'sheet',ii,'Range','A2:C200');
+writematrix(OBJ',excel_file,'sheet',ii,'Range','D2');
 %}
 end
 
@@ -265,16 +257,18 @@ OBJ_init = [];
 Group    = {};
 
 TT_opt   = [];
+TT_out   = [];
 
 figure(1)
 %subplot(2,1,1)
 %hold on
 for ii=1:numeEval
-    data = readcell("output.xls",'sheet',ii);
+    data = readcell(excel_file,'sheet',ii);
     OBJ_init = [OBJ_init, data{2,4}];
     OBJ_data = [OBJ_data, data{end,4}];
 
-    TT_opt = [TT_opt, cell2mat(data(2:61,2))];
+    TT_opt = [TT_opt, cell2mat(data(2:151,2))];
+    TT_out = [TT_out, cell2mat(data(2:151,3))];
 
     Group = [Group; data{1,5}];
 
@@ -289,14 +283,47 @@ figure(2)
 scatterhist(OBJ_init, OBJ_data, 'Kernel','on','Location','SouthEast', 'Direction','out');
 
 figure(3)
-h = scatterhist(OBJ_init, OBJ_data, 'Group', Group, 'Kernel','on','Location','SouthEast', 'Direction','out');
+h = scatterhist(OBJ_init, OBJ_data, 'Group', Group, 'Kernel','off','Location','SouthEast', 'Direction','out');
 hold on
+for ii = 1:numeEval
+    text(OBJ_init(ii),OBJ_data(ii),num2str(ii))
+end
 yy = yline(min(OBJ_data),'-');
 hold off
 L = legend;
 L.String(end) = {'Mini(obj)'};
+legend boxoff 
 %delete(h(2));
+fontsize(16,"points")
+set(gcf,'PaperOrientation','landscape'); print(figure(3),['Multiple_shot_DOE_P250.pdf'],'-dpdf','-bestfit')
 
+T_in  = TT_opt(:,[16,33,45,57]);
+T_out = TT_out(:,[16,33,45,57]);
+
+figure(4)
+
+plot([0:149],T_in, 'Linewidth', 2);
+
+xlabel('Time[min]')
+ylabel('Temperature [K]')
+
+ylim([35, 55]+273)
+
+fontsize(24,"points")
+set(gcf,'PaperOrientation','landscape'); print(figure(4),['Best_T_in_P250.pdf'],'-dpdf','-bestfit')
+
+figure(5)
+plot([0:149],T_out, 'Linewidth', 2);
+
+xlabel('Time[min]')
+ylabel('Temperature [K]')
+
+ylim([35, 55]+273)
+
+fontsize(24,"points")
+set(gcf,'PaperOrientation','landscape'); print(figure(5),['Best_T_out_P250.pdf'],'-dpdf','-bestfit')
+
+close all
 
 %}
 

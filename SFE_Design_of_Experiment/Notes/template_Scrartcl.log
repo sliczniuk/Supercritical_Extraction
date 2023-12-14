@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.8) (preloaded format=pdflatex 2022.9.27)  6 DEC 2023 11:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.8) (preloaded format=pdflatex 2022.9.27)  14 DEC 2023 16:55
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -544,51 +544,80 @@ File: pgfmodulematrix.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 tikz/libraries\tikzlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 )))
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/caption\subcaption.s
+ty
+Package: subcaption 2020/10/07 v1.3j Sub-captions (AR)
+
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption.sty
+Package: caption 2020/10/26 v3.5g Customizing captions (AR)
+
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption3.sty
+Package: caption3 2020/10/21 v2.2e caption3 kernel (AR)
+\captionmargin=\dimen256
+\captionmargin@=\dimen257
+\captionwidth=\dimen258
+\caption@tempdima=\dimen259
+\caption@indent=\dimen260
+\caption@parindent=\dimen261
+\caption@hangindent=\dimen262
+Package caption Info: KOMA-Script document class detected.
+
+(C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption-koma
+.sto
+File: caption-koma.sto 2020/09/21 v2.0b Adaption of the caption package to the 
+KOMA-Script document classes (AR)
+))
+\c@caption@flags=\count290
+\c@continuedfloat=\count291
+)
+\c@subfigure=\count292
+\c@subtable=\count293
+)
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-
 pdftex.def
 File: l3backend-pdftex.def 2021-10-18 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count290
+\l__color_backend_stack_int=\count294
 \l__pdf_internal_box=\box65
 ) (template_Scrartcl.aux)
 \openout1 = `template_Scrartcl.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-Package scrbase Info: activating english \abstractname on input line 11.
-Package scrbase Info: activating english \partname on input line 11.
-Package scrbase Info: activating english \figurename on input line 11.
-Package scrbase Info: activating english \tablename on input line 11.
-Package scrbase Info: activating english \contentsname on input line 11.
-Package scrbase Info: activating english \listfigurename on input line 11.
-Package scrbase Info: activating english \listtablename on input line 11.
-Package scrbase Info: activating english \refname on input line 11.
-Package scrbase Info: activating english \indexname on input line 11.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+Package scrbase Info: activating english \abstractname on input line 12.
+Package scrbase Info: activating english \partname on input line 12.
+Package scrbase Info: activating english \figurename on input line 12.
+Package scrbase Info: activating english \tablename on input line 12.
+Package scrbase Info: activating english \contentsname on input line 12.
+Package scrbase Info: activating english \listfigurename on input line 12.
+Package scrbase Info: activating english \listtablename on input line 12.
+Package scrbase Info: activating english \refname on input line 12.
+Package scrbase Info: activating english \indexname on input line 12.
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf
 .mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count291
-\scratchdimen=\dimen256
+\scratchcounter=\count295
+\scratchdimen=\dimen263
 \scratchbox=\box66
-\nofMPsegments=\count292
-\nofMParguments=\count293
+\nofMPsegments=\count296
+\nofMParguments=\count297
 \everyMPshowfont=\toks34
-\MPscratchCnt=\count294
-\MPscratchDim=\dimen257
-\MPnumerator=\count295
-\makeMPintoPDFobject=\count296
+\MPscratchCnt=\count298
+\MPscratchDim=\dimen264
+\MPnumerator=\count299
+\makeMPintoPDFobject=\count300
 \everyMPtoPDFconversion=\toks35
 )
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopd
@@ -601,13 +630,15 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 s.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-LaTeX Font Info:    Trying to load font information for U+msa on input line 14.
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 15.
 
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 14.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 15.
 
 
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
@@ -617,41 +648,71 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 
 {C:/Users/sliczno1/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-[2] [3] [4]
+[2]
+Overfull \hbox (1.34834pt too wide) detected at line 97
+[]
+ []
+
+[3] [4] [5] [6]
+<Multiple_shot_DOE_P250.pdf, id=38, 794.97pt x 614.295pt>
+File: Multiple_shot_DOE_P250.pdf Graphic file (type pdf)
+<use Multiple_shot_DOE_P250.pdf>
+Package pdftex.def Info: Multiple_shot_DOE_P250.pdf  used on input line 246.
+(pdftex.def)             Requested size: 334.60571pt x 258.56453pt.
+
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[5] [6] (template_Scrartcl.aux) ) 
+<Best_T_in_P250.pdf, id=40, 794.97pt x 614.295pt>
+File: Best_T_in_P250.pdf Graphic file (type pdf)
+<use Best_T_in_P250.pdf>
+Package pdftex.def Info: Best_T_in_P250.pdf  used on input line 257.
+(pdftex.def)             Requested size: 209.12778pt x 161.59697pt.
+<Best_T_out_P250.pdf, id=42, 794.97pt x 614.295pt>
+File: Best_T_out_P250.pdf Graphic file (type pdf)
+<use Best_T_out_P250.pdf>
+Package pdftex.def Info: Best_T_out_P250.pdf  used on input line 264.
+(pdftex.def)             Requested size: 209.12778pt x 161.59697pt.
+
+Overfull \hbox (4.86667pt too wide) in paragraph at lines 255--268
+ []$[]$  $[]$ 
+ []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[7] [8 <./Multiple_shot_DOE_P250.pdf> <./Best_T_in_P250.pdf> <./Best_T_out_P250
+.pdf>] (template_Scrartcl.aux) ) 
 Here is how much of TeX's memory you used:
- 15625 strings out of 478847
- 326672 string characters out of 2848486
- 729411 words of memory out of 3000000
- 33284 multiletter control sequences out of 15000+600000
+ 16983 strings out of 478847
+ 353548 string characters out of 2848486
+ 759276 words of memory out of 3000000
+ 34626 multiletter control sequences out of 15000+600000
  413134 words of font info for 64 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 108i,11n,108p,10614b,743s stack positions out of 5000i,500n,10000p,200000b,80000s
-{C:/Program Files/MiKTeX/fonts/enc/dvips/cm-su
-per/cm-super-ts1.enc}<C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/typ
-e1/public/amsfonts/cm/cmbx10.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKT
-eX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/sliczno1/AppData/Local/P
-rograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/sliczno1/App
-Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/s
-liczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb>
-<C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
-/cmr10.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/
-amsfonts/cm/cmr12.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/ty
-pe1/public/amsfonts/cm/cmr6.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTe
-X/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/sliczno1/AppData/Local/Prog
-rams/MiKTeX/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><C:/Users/sliczno1/AppD
-ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/s
-liczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb>
-<C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
-/cmsy8.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/
-amsfonts/symbols/msbm10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/cm-supe
-r/sfrm1095.pfb>
-Output written on template_Scrartcl.pdf (6 pages, 193989 bytes).
+ 108i,12n,108p,10614b,777s stack positions out of 5000i,500n,10000p,200000b,80000s
+{C:/Program Files/MiKTeX/fonts/enc/dvips/cm-sup
+er/cm-super-ts1.enc}<C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type
+1/public/amsfonts/cm/cmbx10.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTe
+X/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/sliczno1/AppData/Local/Pr
+ograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/sliczno1/AppD
+ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/sl
+iczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><
+C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
+cmr10.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/a
+msfonts/cm/cmr12.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/typ
+e1/public/amsfonts/cm/cmr6.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX
+/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/sliczno1/AppData/Local/Progr
+ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><C:/Users/sliczno1/AppDa
+ta/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/sl
+iczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><
+C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
+cmsy8.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/a
+msfonts/symbols/msbm10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/cm-super
+/sfrm1095.pfb>
+Output written on template_Scrartcl.pdf (8 pages, 317746 bytes).
 PDF statistics:
- 100 PDF objects out of 1000 (max. 8388607)
+ 123 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 13 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 46 words of extra memory for PDF output out of 10000 (max. 10000000)
 

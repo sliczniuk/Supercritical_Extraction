@@ -3,6 +3,7 @@
 \usepackage{amsmath,amssymb}
 \usepackage{graphicx}
 \usepackage{tikz}
+\usepackage{subcaption}
 
 %opening
 \title{Optimal design of experiment}
@@ -88,11 +89,14 @@ Its gradient is thus
 The Fisher information is a way of measuring the amount of information that an observable random variable carries about an unknown parameter of a distribution that models the random variable. The Fisher information is related to the second derivative (or the curvature) of the log-likelihood function with respect to the parameter. This relationship provides a measure of how "sensitive" the likelihood is to changes in the parameter value. The Fisher information matrix can be calculated as follow.
 
 \begin{align}
-	F(p) &= - \mathop{\mathbb{E}}_{y^s|p} \left[ \frac{\partial^2 \ln (\pi_y (y^s|p))}{\partial p \partial p^T} \right] = \mathop{\mathbb{E}}_{y^s|p} \left[ \frac{\partial \ln (\pi_y (y^s|p))}{\partial p} \frac{\partial \ln (\pi_y (y^s|p))}{\partial p^T} \right] \\
-	&= \mathop{\mathbb{E}}_{y^s|p} \left[ \sum_{k=1}^{n_t} \left( \frac{y(t_k) - y^m(t_k, p)}{\sigma_{t_k}^2} \frac{\partial y^m(t_k, p)}{\partial p} \right) \times  \sum_{i=1}^{n_t} \left( \frac{y(t_i) - y^m(t_i, p)}{\sigma_{t_i}^2} \frac{\partial y^m(t_i, p)}{\partial p^T} \right) \right]
+	F(p) &= - \mathop{\mathbb{E}}_{y^s|p} \left[ \frac{\partial^2 \ln (\pi_y (y^s|p))}{\partial p \partial p^T} \right] = \mathop{\mathbb{E}}_{y^s|p} \left[ \frac{\partial \ln (\pi_y (y^s|p))}{\partial p} \frac{\partial \ln (\pi_y (y^s|p))}{\partial p^T} \right] \nonumber \\
+	&= \mathop{\mathbb{E}}_{y^s|p} \left[ \sum_{k=1}^{n_t} \left( \frac{y(t_k) - y^m(t_k, p)}{\sigma_{t_k}^2} \frac{\partial y^m(t_k, p)}{\partial p} \right) \times  \sum_{i=1}^{n_t} \left( \frac{y(t_i) - y^m(t_i, p)}{\sigma_{t_i}^2} \frac{\partial y^m(t_i, p)}{\partial p^T} \right) \right] \nonumber \\
+	&= \mathop{\mathbb{E}}_{y^s|p} \left[ \sum_{k=1}^{n_t} \sum_{i=1}^{n_t} \left[ \left( \frac{y(t_k) - y^m(t_k, p)}{\sigma_{t_k}^2} \frac{\partial y^m(t_k, p)}{\partial p} \right) \times \left( \frac{y(t_i) - y^m(t_i, p)}{\sigma_{t_i}^2} \frac{\partial y^m(t_i, p)}{\partial p^T} \right) \right] \right] \nonumber \\
+	&= \sum_{k=1}^{n_t} \sum_{i=1}^{n_t} \mathop{\mathbb{E}}_{y^s|p} \left[ \left( \frac{y(t_k) - y^m(t_k, p)}{\sigma_{t_k}^2} \frac{\partial y^m(t_k, p)}{\partial p} \right) \times \left( \frac{y(t_i) - y^m(t_i, p)}{\sigma_{t_i}^2} \frac{\partial y^m(t_i, p)}{\partial p^T} \right) \right] \nonumber \\
+	&= \sum_{k=1}^{n_t} \sum_{i=1}^{n_t} \frac{1}{\sigma_{t_k}^2} \frac{\partial y^m(t_k, p)}{\partial p} \frac{1}{\sigma_{t_i}^2} \frac{\partial y^m(t_i, p)}{\partial p^T} \mathop{\mathbb{E}}_{y^s|p} \left[ \left( y(t_k) - y^m(t_k, p) \right) \times \left( y(t_i) - y^m(t_i, p) \right) \right] 
 \end{align}
 
-Considering the mismatch between the dataset and the model output, the expectation becomes $\mathop{\mathbb{E}}_{y^s|p} \left[ \left( y(t_i) - y^m(t_k, p) \right) \right] = \mathop{\mathbb{E}}_{y^s|p} \left[ \epsilon_i^2 \right]$. For $i=k$, the expectation of $\epsilon_i$ is the variance of the noise $\sigma_{t_i}^2$. Analogously, the expectation becomes 0 if $i \neq k$ because the expectation of the noise $\epsilon_i$ is zero and the measurements are independent at different times.
+Considering the mismatch between the dataset and the model output, the expectation $\mathop{\mathbb{E}}_{y^s|p}$ can be redefined as $\mathop{\mathbb{E}}_{y^s|p} \left[ \left( y(t_i) - y^m(t_i, p) \right) \left( y(t_k) - y^m(t_k, p) \right) \right] = \mathop{\mathbb{E}}_{y^s|p} \left[ \epsilon_i \epsilon_k \right]$. For $i=k$, the expectation of $\epsilon_i$ is the variance of the noise $\sigma_{t_i}^2$. Analogously, the expectation becomes 0 if $i \neq k$ because the measurement noises are independent at different times.
 
 \begin{equation}
 	\mathop{\mathbb{E}}_{y^s|p} \left[ \left( y(t_i) - y^m(t_k, p) \right) \left( y(t_i) - y^m(t_i, p) \right) \right] = \sigma_{t_i}^2 \delta_{ik}
@@ -219,18 +223,55 @@ A D-optimal experiment minimizes the volume of the asymptotic confidence ellipso
 
 \section{Problem formulation}
 
-The optimal design of experiment technique is used extend the experiment discussed in ${\color{red}article~1}$, where supercritical extraction from caraway seeds has been discussed. In this work, the extraction has been performed at multiple operating conditions, such that the temperature, pressure and flow-rate were constant during each batch. Later, the results from all the experiments are combined and correlations for extraction kinetic parameters are presented. In this work, the optimal design of experiment is used to design an experiment to validate these correlations. The model parameters and the sampling time are the same as in ${\color{red}article~1}$ to mimic the original system. It is assumed that the flow-rate is constant, because the effect of the flow-rate has not been deeply investigated. The inlet temperature can be controlled by a controller 
+The optimal design of the experiment technique is used to extend the experiment discussed in $({\color{red}article~1})$, where supercritical extraction from caraway seeds has been discussed. The presented extraction was performed under multiple operating conditions, such that the temperature, pressure, and flow rate were constant during each batch. Later, the experiments' results are combined, and correlations for extraction kinetic parameters are presented. In this work, the optimal design of the experiment is used to design an experiment to validate these correlations. The model parameters, the extraction time (150 minutes), and the sampling time (5 minutes) are the same as in $({\color{red}article~1})$ to mimic the original system. It is assumed that the flow rate is constant because the effect of the flow rate has not been deeply investigated in the previous work of the authors (${\color{red}articl~1}$). The pressure is assumed to be constant during the whole experiment. The initial temperature ($T^0$) of the extractor and the inlet temperature ($T^{in}$) are decision variables in the optimization. It is considered that the initial state is isothermal, so $T^0=T^{in}(t=0)$. The inlet temperature is changed every 5 minutes, and considered to be constant inside of this time period. Considering that the residence time in the extractor is around 20-25 minutes (depending on the operating conditions), it is assumed that there is no change in the inlet temperature in the last 25 minutes of extraction, so the extractor becomes isothermal at the end of the experiment. The lower ($40^\circ C$) and upper ($50^\circ C$) bounds for the temperature are limits of the previous experiments (${\color{red}article~1}$). The general formulation of the optimal design of experiment problem is presented below.
 
 \begin{equation}
 	\begin{aligned} 
-		&\hat{{\color{black} \theta}}_{MLE} &= \arg \max_{{\color{black} \sigma}, {\color{black} \theta} \in \Theta} \ln L = \arg \max_{{\color{black} \sigma},{\color{black} \theta} \in \Theta} p({\color{black} \theta}|{\color{black}y}) \\
+		&\Xi^* &= \arg \min_{ T^0, T^{in} \in \Xi} -j_D(\Xi,y)  \\
 		&\text{subject to}
-		& \dot{ {\color{black}x} } = {\color{black}G}({\color{black} x}(t);{\color{black} \theta}) \\
-		&& {\color{black} \dot{\theta}} = 0 \\
-		&& {\color{black}y} = {\color{black}y}(t) \\
-		&& {\color{black} \theta}^{lb} \leq {\color{black} \theta} \leq {\color{black} \theta}^{ub}
+		& \dot{x} = f(x,t,\theta;\Xi) \\
+		&& \dot{y} = g(x(t)) \\
+		&& 40^\circ C \leq T^{in}(t) \leq 50^\circ C \\
+		&& T^{0} = T^{in}(t=0) \\
 	\end{aligned}
 \end{equation} 
+
+The non-linear optimization problem is solved by applying single-shooting to obtain the trajectory under assumption of piece-wise constant controls. The CasADi framework is used as the interface for the IPOPT solver. Each simulation problem is solved multiple time starting from different initial points and the solution with the best score is consider as the optimal solution.
+
+\section{Results and discussion}
+The D-optimal Design of the Experiment is used to define the way to run the experiment to validate the hypothesis presented in $({\color{red}article~1})$, which are the correlations for $D_i$ and $\Gamma$. It is assumed that the experiment is performed on the same equipment as in the previous work, so all the properties of the machine and the biomass stay the same. The flow rate and the pressure are considered to be constant during the whole experiment. In the previous work, the pressure range was from 200 bar to 300 bar; in this experiment, the pressure is assumed to be 250 bar. The initial and the inlet temperatures are found by solving the optimization problem. The optimization problem was solved 69 times, starting from random initial conditions between $40^\circ C$ and $50^\circ C$. Figure \ref{fig:monet_carlo_P250} summarize solutions to all the optimization problem. The x-axis corresponds to the initial value of the D-optimal score, while the y-axis represents the D-optimal score's final value. As the optimization problem is formulated as the minimization, the lowest negative value is considered the best.
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.80\textwidth, trim = 0cm 0cm 0cm 0cm, clip]{Multiple_shot_DOE_P250.pdf}
+	\caption{Comparison between initial and optimal solutions}
+	\label{fig:monet_carlo_P250}
+\end{figure}
+
+Based on Figure \ref{fig:monet_carlo_P250}, five best results were selected and the the corresponding inlet temperatures are presented on Figure \ref{fig:Best_T_in_P250}. Corresponding outlet temperatures are presented in Figure \ref{fig:Best_T_out_P250}. The inlet and outlet temperature profiles difference from each other due to thermal diffusion. For all five cases, the inlet profiles overlap with each other.
+
+\begin{figure}[!h]
+	\centering
+	\begin{subfigure}[h]{0.5\textwidth}
+		\centering
+		\includegraphics[width=\textwidth,trim = 0cm 0cm 0cm 0cm, clip]{Best_T_in_P250.pdf}
+		\caption{Inlet temperature profile}
+		\label{fig:Best_T_in_P250}
+	\end{subfigure}%
+	~ 
+	\begin{subfigure}[h]{0.5\textwidth}
+		\centering
+		\includegraphics[width=\textwidth,trim = 0cm 0cm 0cm 0cm, clip]{Best_T_out_P250.pdf}
+		\caption{Outlet temperature profile}
+		\label{fig:Best_T_out_P250}
+	\end{subfigure}
+	\caption{Temperature profiles}
+	\label{fig:DOE_results}
+\end{figure}
+
+It can be observed that all the results are very similar to each other and represent the same pattern. The optimizer found that the best score, given the assumptions explained above, can be obtained by the square waves. This pattern is characterized by periods where the temperature remains constant at a particular value, followed by sudden and steep changes to a new constant value. In this graph, the temperature alternates between roughly $313$ K and $323$ K.
+
+At the beginning of the experiment, the temperature rapidly rises to $323$ K and stays flat at this high level for about 20 minutes, indicating that the supercritical $CO_2$ has reached a stable temperature. Following this period, there is a sharp decline to a lower stable temperature of around $313$ K, where it again remains constant for a similar duration. After maintaining the lower temperature, the pattern repeats itself with another sharp increase back to $323$ K, followed by a period of stability and then another drop.
 
 \end{document}
 
