@@ -9,14 +9,14 @@ import casadi.*
 excel_file = 'output_change_In_T_and_P.xls';
 numeEval = 69;
 
-parfor ii=1:numeEval
+for ii=1%:numeEval
 
 Parameters_table                = readtable('Parameters.csv') ;             % Table with prameters
 Parameters                      = num2cell(Parameters_table{:,3});          % Parameters within the model + (m_max), m_ratio, sigma
 
 %% Create the solver
-Iteration_max                   = 200;                                       % Maximum number of iterations for optimzer
-Time_max                        = 24.0;                                      % Maximum time of optimization in [h]
+Iteration_max                   = 0;                                       % Maximum number of iterations for optimzer
+Time_max                        = 12.0;                                      % Maximum time of optimization in [h]
 
 nlp_opts                        = struct;
 nlp_opts.ipopt.max_iter         = Iteration_max;
@@ -47,7 +47,7 @@ timeStep                = 1;                                                % Mi
 timeShited              = 0;                                                % Minutes
 SamplingTime            = 5;                                                % Minutes
 T_change_Time           = 5;                                                % Minutes
-P_change_Time           = 30;                                                % Minutes
+P_change_Time           = 45;                                                % Minutes
 
 simulationTime          = PreparationTime + ExtractionTime;
 
@@ -241,27 +241,24 @@ end
 FF     = Function('FF', {[T0homog, Press, Parameters_sym_t']}, {X});
 XX     = full(FF( [KOUT, cell2mat(Parameters(which_theta))'] ));
 
-PP     = XX(3*nstages+1,2:end);
-
-TT_rec = full(Reconstruct_T_from_enthalpy(XX(3*nstages,2:end)',PP', Parameters))';
+TT_rec = full(Reconstruct_T_from_enthalpy(XX(3*nstages,2:end)',XX(3*nstages+1,2:end), Parameters))';
 
 FF     = Function('FF', {T0homog}, {feedTemp});
-TT     = full(FF( [KOUT(1:numel(T0homog))] ));
+TT     = full(FF( [KOUT] ));
 TT_0   = full(FF( [T0] ));
-
+end
 %% save data
-
+%{
 OBJ = OPT_solver.stats.iterations.obj;
     
 writematrix('T0',excel_file,'sheet',ii,'Range','A1');
 writematrix('T_opt',excel_file,'sheet',ii,'Range','B1');
 writematrix('T_out',excel_file,'sheet',ii,'Range','C1');
-writematrix('P',excel_file,'sheet',ii,'Range','D1');
-writematrix('OBJ',excel_file,'sheet',ii,'Range','E1');
-writematrix(OPT_solver.return_status,excel_file,'sheet',ii,'Range','F1');
+writematrix('OBJ',excel_file,'sheet',ii,'Range','D1');
+writematrix(OPT_solver.return_status,excel_file,'sheet',ii,'Range','E1');
 
-writematrix([TT_0; TT; TT_rec; PP]',excel_file,'sheet',ii,'Range','A2:D200');
-writematrix(OBJ',excel_file,'sheet',ii,'Range','E2');
+writematrix([TT_0; TT; TT_rec]',excel_file,'sheet',ii,'Range','A2:C200');
+writematrix(OBJ',excel_file,'sheet',ii,'Range','D2');
 
 end
 
@@ -272,7 +269,6 @@ Group    = {};
 
 TT_opt   = [];
 TT_out   = [];
-PP_out   = [];
 
 figure(1)
 %subplot(2,1,1)
@@ -284,7 +280,6 @@ for ii=1:numeEval
 
     TT_opt = [TT_opt, cell2mat(data(2:151,2))];
     TT_out = [TT_out, cell2mat(data(2:151,3))];
-    PP_out = [PP_out, cell2mat(data(2:151,4))];
 
     Group = [Group; data{1,5}];
 
@@ -315,7 +310,6 @@ set(gcf,'PaperOrientation','landscape'); print(figure(3),['Multiple_shot_DOE_T_a
 
 T_in  = TT_opt(:,[16,33,45,57]);
 T_out = TT_out(:,[16,33,45,57]);
-P_out = PP_out(:,[16,33,45,57]);
 
 figure(4)
 
