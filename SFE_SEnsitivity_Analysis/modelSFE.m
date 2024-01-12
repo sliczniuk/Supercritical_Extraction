@@ -23,10 +23,10 @@ function xdot = modelSFE(x, p, mask, dt)
     km            =     1e5;
     mi            =     parameters{9};
 
-    %Di            =     parameters{44};      Di = Di * 1e-14;
-    %Dx            =     parameters{45};      Dx = Dx * 1e-6;
+    %Di            =     parameters{50};      
+    %Dx            =     parameters{51};      
     %SAT           =     parameters{47};
-    %shape         =     parameters{48};
+    %shape         =     parameters{52};
 
     nstages_index =     numel(mask);
     
@@ -47,17 +47,17 @@ function xdot = modelSFE(x, p, mask, dt)
     Z             =     Compressibility(TEMP, PRESSURE,    parameters);
 
     RHO           =     rhoPB_Comp(     TEMP, PRESSURE, Z, parameters);   
-    VELOCITY      =     Velocity(F_u, RHO, parameters);
+    VELOCITY      =     Velocity(F_u, mean([RHO(2:19:end)]), parameters) .* ones(nstages_index,1);
     
     %% Thermal Properties
     CP            =     SpecificHeatComp(TEMP, PRESSURE, Z, RHO,                 parameters);            % [kJ/kg/K]
-    CPRHOCP       =     cpRHOcp_Comp(    TEMP, PRESSURE, Z, RHO, CP, epsi.*mask, parameters);
+    %CPRHOCP       =     cpRHOcp_Comp(    TEMP, PRESSURE, Z, RHO, CP, epsi.*mask, parameters);
     KRHOCP        =     kRHOcp_Comp(     TEMP, PRESSURE, Z, RHO, CP, epsi.*mask, parameters);
 
     %% Extraction kientic
-    Di            = Diffusion(RHO) .* 1e-14;
-    shape         = Decay_Function_Coe(RHO);
-    Dx            = axial_diffusion(TEMP, epsi, VELOCITY, RHO) .*1e-6;
+    Di            = Diffusion(RHO, parameters) .* 1e-14 ;
+    shape         = Decay_Function_Coe(RHO, parameters);
+    Dx            = axial_diffusion(RHO, parameters) .* 1e-6;
 
     %% Saturation
     Csolid_percentage_left = 1 - (SOLID./C0solid);
@@ -65,39 +65,33 @@ function xdot = modelSFE(x, p, mask, dt)
     Sat_coe       =     Saturation_Concentration(Csolid_percentage_left, shape, Di);        % Inverse logistic is used to control saturation. Close to saturation point, the Sat_coe goes to zero.
 
     %% BC
-    %Cf_0          =     if_else(F_u == 0, FLUID(1), 0);
+    
     Cf_0          =     0;
     Cf_B          =     FLUID(nstages_index);
                                                                                             % If the sensitivity of P and F is consider, then set the input T as equal to the T inside of the extractor
                                                                                             % to avoid different small mismatch of T between the inlet and inside of the extractor
-    T_0 = if_else( mode == 1, T_u, TEMP(1));
+    T_0           =     T_u;
     
     T_B           =     TEMP(nstages_index);
 
     Z_0           =     Compressibility(T_0, PRESSURE,     parameters);
-    %Z_B           =     Compressibility(T_B, PRESSURE,     parameters);
-
+    
     rho_0         =     rhoPB_Comp(     T_0, P_u, Z_0, parameters);
-    %rho_B         =     rhoPB_Comp(     T_B, PRESSURE, Z_B, parameters);
-
-    u_0           =     Velocity(F_u, rho_0, parameters);
-    %u_B           =     Velocity(F_u, rho_B, parameters);
-
+    
+    u_0           =      VELOCITY(1);
+    
     H_0           =     SpecificEnthalpy(T_0, PRESSURE, Z_0, rho_0, parameters );   
 
-    enthalpy_rho_0 = if_else( mode == 3, ENTHALPY_RHO(1), rho_0 .* H_0 );                   % If the sensitivity of F is consider, then set the input h*rho as equal to the h*rho inside of the extractor
+    enthalpy_rho_0 =  rho_0 .* H_0 ;                  % If the sensitivity of F is consider, then set the input h*rho as equal to the h*rho inside of the extractor
                                                                                             % to avoid different small mismatch betweenat the inlet and inside of the extractor
     
     %% Derivatives
     dz            = L/nstages_index;
     
-    %dCfdz         = backward_diff_1_order(FLUID,Cf_0    , [],   dz);
     d2Cfdz2       = central_diff_2_order(FLUID, FLUID(1), Cf_B, dz);
     
-    %dTdz          = backward_diff_1_order(TEMP,T_0, [] , dz);
     d2Tdz2        = central_diff_2_order(TEMP, T_0, T_B, dz);
         
-    %dudz          = backward_diff_1_order(VELOCITY, u_0, [], dz);
 
     dHdz          = backward_diff_1_order(VELOCITY .* ENTHALPY_RHO, u_0 .* enthalpy_rho_0, [], dz);
 
@@ -124,7 +118,7 @@ function xdot = modelSFE(x, p, mask, dt)
     
     %--------------------------------------------------------------------
     % enthalpy | 2
-    - 1      ./ ( 1 - epsi .* mask )  .* dHdz +  dPdt - KRHOCP .* d2Tdz2;
+    - 1      ./ ( 1 - epsi .* mask )  .* dHdz + dPdt + KRHOCP.* d2Tdz2;
 
     %--------------------------------------------------------------------
     % Pressure | 3
@@ -134,7 +128,7 @@ function xdot = modelSFE(x, p, mask, dt)
     % output equation
     %VELOCITY(nstages_index) * A * FLUID(nstages_index) * 1e3 ;   %kg/s - > g/s
     F_u ./ RHO(nstages_index) .* FLUID(nstages_index) * 1e3;
-    
+
     ];
 
 end

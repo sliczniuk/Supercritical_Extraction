@@ -21,7 +21,7 @@ bed                     = 0.165;                                            % Pe
 % Set time of the simulation
 PreparationTime         = 0;
 ExtractionTime          = 2000;
-timeStep                = 1;                                                % Minutes
+timeStep                = 0.5;                                              % Minutes
 SamplingTime            = 5;                                                % Minutes
 
 simulationTime          = PreparationTime + ExtractionTime;
@@ -81,15 +81,15 @@ L_bed_after_nstages     = L_bed_after_nstages - L_bed_after_nstages(1);
 L_end                   = L_bed_after_nstages(end);
 
 %% symbolic variables
-x                           = MX.sym('x', Nx);
-u                           = MX.sym('u', Nu);
+x                       = MX.sym('x', Nx);
+u                       = MX.sym('u', Nu);
 
 %% Set Integrator
-f                           = @(x, u) modelSFE(x, u, bed_mask, timeStep_in_sec);
-xdot                        = modelSFE(x, u, bed_mask, timeStep_in_sec);
+f                       = @(x, u) modelSFE(x, u, bed_mask, timeStep_in_sec);
+xdot                    = modelSFE(x, u, bed_mask, timeStep_in_sec);
 
 % Integrator
-F                           = buildIntegrator(f, [Nx,Nu] , timeStep_in_sec);
+F                       = buildIntegrator(f, [Nx,Nu] , timeStep_in_sec);
 
 
 % Set operating conditions
@@ -146,7 +146,7 @@ My_Font = 24;
 My_Font_cont = 8;
 num_levels = 100;
 
-for ii = 1:3
+for ii = 1
 
         %% Sensitivities calculations
         Parameters{8} = ii;

@@ -42,8 +42,9 @@ Numer,Name,Value,Unit,Description
 41,A7_visc,0.00000652,,
 42,A8_visc,-0.3567559,,
 43,A9_visc,0.03180473,,
-44,Di,1,m/s,Internal diffusivity
-45,Dx,0.1,m/s,Axial dispersion
-46,Z,0.5,[-],Initial guess of compressibility
-47,C_Sat,5,kg/m3,Saturation Concentration
-48,Shape,100,[-],Shape factor of the limiting function
+44,D_slope,0.07569,,Correlation for internal diffusion coe: slope
+45,D_inter,-58.19,,Correlation for internal diffusion coe: intercept
+46,Decay_slope,0.01138,,Correlation for decay coe: slope
+47,Decay_inter,-8.723,,Correlation for decay coe: intercept
+48,axial_diff_slope,-0.0293,,Correlation for axial diff coe: slope
+49,axial_diff_inter,31.75,,Correlation for axial diff coe: intercept

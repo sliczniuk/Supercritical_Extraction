@@ -1,11 +1,8 @@
-function D_L = axial_diffusion(T, epsi, v, rho)
+function D_L = axial_diffusion(rho, parameters)
 
-    %mu = Viscosity(T,rho);
-
-    %dp = 0.15;
-
-    %Re = dp .* v .* rho .* epsi ./ mu;
+    a = parameters{48};
+    b = parameters{49};
     
-    D_L = -0.02929 .* rho + 31.75;
+    D_L = a .* rho + b;
 
 end
