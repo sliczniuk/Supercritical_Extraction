@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10.12) (preloaded format=pdflatex 2024.1.12)  12 JAN 2024 15:17
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10.12) (preloaded format=pdflatex 2024.1.12)  15 JAN 2024 12:17
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1626,17 +1626,17 @@ Package rerunfilecheck Info: File `Literature_Review.out' has not changed.
 Here is how much of TeX's memory you used:
  41684 strings out of 478848
  906784 string characters out of 2848485
- 1296419 words of memory out of 3000000
+ 1298419 words of memory out of 3000000
  58792 multiletter control sequences out of 15000+600000
  439645 words of font info for 81 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 114i,8n,148p,828b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 114i,8n,148p,963b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
 <C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix/STIX
 General-Bold.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/p
 ublic/stix/STIXGeneral-Italic.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiK
 TeX/fonts/type1/public/stix/STIXGeneral-Regular.pfb><C:/Program Files/MiKTeX/fo
 nts/type1/public/cm-super/sfss0900.pfb>
-Output written on Literature_Review.pdf (1 page, 125986 bytes).
+Output written on Literature_Review.pdf (1 page, 126207 bytes).
 PDF statistics:
  40 PDF objects out of 1000 (max. 8388607)
  2 named destinations out of 1000 (max. 500000)
