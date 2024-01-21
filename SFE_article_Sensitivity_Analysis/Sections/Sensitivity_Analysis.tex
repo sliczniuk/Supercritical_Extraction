@@ -1,10 +1,10 @@
-\documentclass[../Article_Model_Parameters.tex]{subfiles}
+\documentclass[../Article_Sensitivity_Analsysis.tex]{subfiles}
 \graphicspath{{\subfix{../Figures/}}}
 \begin{document}
 	
 	Local derivative-based methods involve taking the partial derivative of the output with respect to an input parameter. This set of derivatives, known as sensitivity equations, is solved simultaneously with the process model. The sensitivity analysis aims to investigate how responsive the solution is for the perturbation of the parameter ${p}$. As discussed by \citet{Dickinson1976}, the sensitivity analysis can be used to determine the influence of the uncertainty on the solution of the original system. A sensitivity analysis can be used to distinguish sensitive parameters from insensitive ones, which might be helpful for model reduction. Finally, from a control engineering point of view, the sensitivity analysis allows sorting the control variables with respect to the level of effort required to change the model's output.
 	
-	As presented in the work of \citet{Maly1996}, the sensitivity analysis equations(${\dot{Z}}$) are developed by taking the total derivative of the state vector $x$ with respect to parameters $p$, where $p$ is a subset of $\theta$.
+	As presented in the work of \citet{Maly1996}, the sensitivity analysis equations(${\dot{Z}}$) are developed by taking the total derivative of the state vector $x$ with respect to parameters $p$, where $p$ is a subset of the parameter space $\theta$.
 	
 	{\footnotesize
 		\begin{align}
@@ -41,7 +41,7 @@
 			\endgroup
 	\end{align} }
 	
-	The sensitivity matrix ${S}({x}(t);{p})$ represents the matrix of equations of size $N_x \times N_p$, where each equation ${S}(n_x,n_p)$ is the derivative of the state variable $x_{n_x}$ with respect to the parameter $p_{n_p}$.
+	The sensitivity matrix ${S}({x}(t);{p})$ represents the matrix of equations of size $N_x \times N_p$, where each subequation ${S}(n_x,n_p)$ is the derivative of the state variable $x_{n_x}$ with respect to the parameter $p_{n_p}$.
 	
 	{\footnotesize
 		\begin{equation}
@@ -70,7 +70,7 @@
 			\end{split}
 	\end{equation} }
 	
-	The jacobian ${J_p}({x}(t);{p})$ represents the matrix of equations of size $N_x \times N_p$, where each equation ${J_p}(n_x,n_p)$ is the partial derivative of the process model equation $F_{n_x}$ with respect to the parameter $p_{n_p}$.
+	The jacobian ${J_p}({x}(t);{p})$ represents the matrix of equations of size $N_x \times N_p$, where each subequation ${J_p}(n_x,n_p)$ is the partial derivative of the process model equation $F_{n_x}$ with respect to the parameter $p_{n_p}$.
 	
 	{\footnotesize
 		\begin{align}
@@ -102,9 +102,9 @@
 	{\footnotesize
 		\begin{align}
 			{\textbf{G}}\left({x}(t_0);{p}\right)  = 
-			\begin{bmatrix} {x}(t_0),			& 
+			\begin{bmatrix} {x}(t_0),						& 
 				\cfrac{ \text{d}{x}(t_0) }{ d{p_1} },		& 
-				\cdots,					 	&
+				\cdots,					 					&
 				\cfrac{ d{x}(t_0) }{ d{p_{N_p}} } 
 			\end{bmatrix}^T
 	\end{align} }

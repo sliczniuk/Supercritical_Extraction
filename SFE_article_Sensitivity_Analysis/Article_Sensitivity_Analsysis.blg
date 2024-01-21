@@ -1,0 +1,48 @@
+This is BibTeX, Version 0.99d
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: Article_Sensitivity_Analsysis.aux
+Reallocating 'name_of_file' (item size: 1) to 9 items.
+The style file: unsrtnat.bst
+Reallocating 'name_of_file' (item size: 1) to 10 items.
+Database file #1: mybibfile.bib
+You've used 26 entries,
+            2481 wiz_defined-function locations,
+            781 strings with 9833 characters,
+and the built_in function-call counts, 10437 in all, are:
+= -- 933
+> -- 490
+< -- 14
++ -- 194
+- -- 142
+* -- 902
+:= -- 1687
+add.period$ -- 108
+call.type$ -- 26
+change.case$ -- 47
+chr.to.int$ -- 26
+cite$ -- 26
+duplicate$ -- 494
+empty$ -- 941
+format.name$ -- 182
+if$ -- 2179
+int.to.chr$ -- 1
+int.to.str$ -- 27
+missing$ -- 31
+newline$ -- 168
+num.names$ -- 78
+pop$ -- 176
+preamble$ -- 1
+purify$ -- 26
+quote$ -- 0
+skip$ -- 256
+stack$ -- 0
+substring$ -- 550
+swap$ -- 73
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 167
+warning$ -- 0
+while$ -- 91
+width$ -- 0
+write$ -- 401

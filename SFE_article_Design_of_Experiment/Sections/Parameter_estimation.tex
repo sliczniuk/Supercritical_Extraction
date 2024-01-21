@@ -1,0 +1,89 @@
+\documentclass[../Article_Design_of_Experiment.tex]{subfiles}
+\graphicspath{{\subfix{../Figures/}}}
+\begin{document}
+
+	Not all the parameters present in a process model can be estimated from the theoretical considerations. The goal of parameter estimation is to obtain the "best" estimate of unknown parameters ${\color{black} \theta}$ (which is a subset of the parameter space ${\color{black}\Theta}$ containing all parameters of a model) based on the continuous observations ${\color{black}Y}(t)$ or the discrete observations ${\color{black}Y}(t_i)$. Conceptually, the unobservable error $\epsilon(t)$ is added to the deterministic model output, ${\color{black}y}(t)$ (Equation \ref{Model_measurment_1}), to give the observable dependent variable ${\color{black}Y}(t)$ (for example results of an experiment). For discrete observations, this can be expressed as:
+	
+	{\footnotesize
+		\begin{equation*}
+			{\color{black}Y}(t_i) = {\color{black}y}({\color{black} \theta}, t_i) + \epsilon(t_i)
+	\end{equation*} }
+	
+	For continuous variables, the equation is:
+	
+	{\footnotesize
+		\begin{equation*}
+			{\color{black}Y}(t) = {\color{black}y}({\color{black} \theta}, t) + \epsilon(t)
+	\end{equation*} }
+	
+	However, obtaining analytical solutions for a deterministic process model can be challenging, so experiments are often conducted where the vector of derivatives $d{\color{black}Y}(t_i)/dt$ is measured instead of ${\color{black}Y}(t_i)$ itself. In such cases, it is assumed that the unobservable error is added to the deterministic derivative $d{\color{black}y}({\color{black} \theta}, t_i)/dt$ as shown below
+	
+	{\footnotesize
+		\begin{equation}  \label{EQ: Measurment_noise}
+			\cfrac{d {\color{black}Y}(t_i)}{dt} = \cfrac{d{\color{black}y}({\color{black} \theta}, t_i)}{dt} + \epsilon(t_i)
+	\end{equation} }
+	
+	In the case where the error in the first observation is denoted as $\epsilon_1$, the error in the second observation $\epsilon_2'$ incorporates $\epsilon_1$ as well as an independent random component, given by $\epsilon_2' = \epsilon_1 + \epsilon_2$. Similarly, the error in the third observation is $\epsilon_3' = \epsilon_1 + \epsilon_2 + \epsilon_3$, and so on. \citet{Mandel1957}  made a distinction between the typically assumed independent measurement error in the dependent variable and a "cumulative" or interval error, in which each new observation encompasses the error of the previous ones. Cumulative errors arise from fluctuations in the process itself due to small variations in operating conditions and are not independent; only the differences in measurement from one period to the next are independent.
+	
+	Maximum likelihood estimation (MLE) is a statistical method used to estimate the parameters of a probability distribution based on observed data. The MLE works by finding the values of the parameters that maximize the likelihood function, which is the probability of observing the given data for a given set of parameter values. The MLE has desirable properties such as asymptotic efficiency and normality. Although the MLE has often been associated with the normal distribution for mathematical convenience, it can be applied to a wide range of probability distributions. The derivation of the likelihood function under the assumption of the Gaussian distribution is presented in Appendix \ref{CH: ML}. The final form of the objective function is presented by Equation \ref{EQ: Objective_function}:
+	
+	{\footnotesize
+		\begin{equation} \label{EQ: Objective_function}
+			\ln L = -\cfrac{n}{2} \left( \ln \sqrt{2 \pi} + \ln {\color{black} \sigma}^2 \right)
+			- \cfrac{ \sum_{i=1}^{n} \left[  \cfrac{d {Y}(t_i)}{dt} - \cfrac{d{\color{black}y}({\color{black} \theta}, t_i)}{dt} \right]^2 }{2 {\color{black} \sigma}^2}
+		\end{equation}
+	}
+	
+	The parameter estimation problem can be formulated as follow:
+	
+	{\footnotesize
+		\begin{equation}
+			\begin{aligned} \label{EQ: Optimization_formulation_MLE}
+				&\hat{{\color{black} \theta}}_{MLE} &= \arg \max_{{\color{black} \sigma}, {\color{black} \theta} \in \Theta} \ln L = \arg \max_{{\color{black} \sigma},{\color{black} \theta} \in \Theta} p({\color{black} \theta}|{\color{black}y}) \\
+				&\text{subject to}
+				& \dot{ {\color{black}x} } = {\color{black}G}({\color{black} x}(t);{\color{black} \theta}) \\
+				&& {\color{black} \dot{\theta}} = 0 \\
+				&& {\color{black}y} = {\color{black}y}(t) \\
+				&& {\color{black} \theta}^{lb} \leq {\color{black} \theta} \leq {\color{black} \theta}^{ub}
+			\end{aligned}
+	\end{equation} } 
+	
+	where $\hat{{\color{black} \theta}}$ is as maximum likelihood estimator, ${\color{black} \theta}^{lb}$ define the minimal value of ${\color{black} \theta}$ and ${\color{black} \theta}^{ub}$ is the maximum value of ${\color{black} \theta}$.
+	
+	Based on the first order optimality condition, the $\ln L$ can be maximized with respect to the vector ${\color{black} \theta}$ and equating to zero the partial derivatives of $\ln L$:
+	
+	{\footnotesize
+		\begin{align}\label{EQ: MLE_Basic_Solution}
+			\cfrac{\partial \ln L}{\partial {\color{black} \theta}} &= \cfrac{\partial \sum_{i=1}^{n} \ln p\left( {\color{black}y}(t_i) | {\color{black} \theta} \right) }{\partial {\color{black} \theta}} = 0 
+	\end{align} }
+	
+	Solution of Equations \ref{EQ: MLE_Basic_Solution} yield the desired estimates $\hat{{\color{black} \theta}}$. For some models, these equations can be explicitly solved for $\hat{{\color{black} \theta}}$ but in general, no closed-form solution to the maximization problem is known or available, and a maximum likelihood estimator can only be found via numerical optimization.
+	
+	As a result of fitting, the following parameters are obtained:
+	
+	\begin{itemize}
+		\item Partition coefficient:\qquad\quad\qquad$k_m$
+		\item Internal diffusion coefficient: \quad$D_i^R$
+		\item Axial diffusion coefficient: \qquad$D_e^M$
+		\item Decay coefficient:\qquad\qquad\qquad$\Upsilon$
+		\item Standard deviation:\qquad\qquad\quad~$\sigma^2$
+		\item Total mass of solute: \qquad\quad\quad$m_{total}$
+		\item Initial mass ratio: \qquad\qquad\qquad$\tau$
+	\end{itemize}
+	
+	To ensure that parameters found by the optimizer do not reach unrealistic values, an additional set of inequality constraints is introduced. The initial guess for each optimization, the lower and upper bounds for each parameter are given in Table \ref{tab:Constraints}. 
+ 	
+ 	\begin{table}[h]
+		\adjustbox{max width=\columnwidth}{%
+			\begin{tabular}{ lccccccc }
+				\hline 
+				Parameter		&$k_m$[-] 	& $D_i^R$[$m^2/s$] 	& $D_e^M$[$m^2/s$]	& $\Upsilon$ [m$^3$/kg] & $m_{total}$[g]	& $\tau$[-] 	& $\sigma$[-] \\  \hline
+				Lower bound		&0	  		& 0 	  			& 0 				&	0					& 80 		 		& 0 	   		& 0 \\ 
+				Upper bound		&$+\infty$	& $+\infty$ 		& $+\infty$			&	100					& 150 				& 1 			& $+\infty$ \\ 
+				Initial guess	&1e5 		& 3 	  			& 1 				&	0					& 80 		 		& 0.65 	   		& 0.1 \\  \hline
+		\end{tabular} }
+		\caption{Constraints and initial guess}
+		\label{tab:Constraints}
+	\end{table}
+	
+\end{document}
