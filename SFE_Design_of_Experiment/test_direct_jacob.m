@@ -6,17 +6,17 @@ delete(gcp('nocreate'));
 addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-3.6.3-windows64-matlab2018b');
 import casadi.*
 
-excel_file = 'output_change_In_T_and_P.xls';
+excel_file = 'output_T45.xls';
 numeEval = 69;
 
-parfor ii=1:numeEval
+parfor ii=7:numeEval
 
 Parameters_table                = readtable('Parameters.csv') ;             % Table with prameters
 Parameters                      = num2cell(Parameters_table{:,3});          % Parameters within the model + (m_max), m_ratio, sigma
 
 %% Create the solver
-Iteration_max                   = 200;                                       % Maximum number of iterations for optimzer
-Time_max                        = 24.0;                                      % Maximum time of optimization in [h]
+Iteration_max                   = 100;                                       % Maximum number of iterations for optimzer
+Time_max                        = 12.0;                                      % Maximum time of optimization in [h]
 
 nlp_opts                        = struct;
 nlp_opts.ipopt.max_iter         = Iteration_max;
@@ -46,8 +46,7 @@ DeadTime                = 25;
 timeStep                = 1;                                                % Minutes
 timeShited              = 0;                                                % Minutes
 SamplingTime            = 5;                                                % Minutes
-T_change_Time           = 5;                                                % Minutes
-P_change_Time           = 30;                                                % Minutes
+OP_change_Time          = 15;                                               % Minutes
 
 simulationTime          = PreparationTime + ExtractionTime;
 
@@ -57,8 +56,7 @@ Time                    = [0 Time_in_sec/60];                               % Mi
 
 N_Time                  = length(Time_in_sec);
 SAMPLE                  = SamplingTime:SamplingTime:ExtractionTime;
-T_change                = timeShited:T_change_Time:(ExtractionTime-DeadTime);
-P_change                = timeShited:P_change_Time:(ExtractionTime-DeadTime);
+OP_change               = timeShited:OP_change_Time:(ExtractionTime-DeadTime);
 
 % Check if the number of data points is the same for both the dataset and the simulation
 N_Sample                = [];
@@ -137,21 +135,16 @@ P_max                   = 300;      P_min                   = 200;
 % set P
 %feedPress               = 250;
 %feedPress               = feedPress * ones(1,length(Time_in_sec)) + 0 ;     % Bars
-Press                   = OPT_solver.variable(numel(P_change))';
+Press                   = OPT_solver.variable(numel(OP_change))';
                           OPT_solver.subject_to( P_min <= Press <= P_max );
 
-feedPress               = repmat(Press,P_change_Time/timeStep,1);
+feedPress               = repmat(Press,OP_change_Time/timeStep,1);
 feedPress               = feedPress(:)';
 feedPress               = [ feedPress, Press(end)*ones(1,N_Time - numel(feedPress)) ];    
 
 % set T
-T0homog                 = OPT_solver.variable(numel(T_change))';
-                          OPT_solver.subject_to( T_min <= T0homog <= T_max );
-
-T_0                     = T0homog(1);   
-feedTemp                = repmat(T0homog,T_change_Time/timeStep,1);
-feedTemp                = feedTemp(:)';
-feedTemp                = [ feedTemp, T0homog(end)*ones(1,N_Time - numel(feedTemp)) ];    
+feedTemp                = (45+273) * ones(1,length(Time_in_sec));     % Bars
+T_0                     = feedTemp(1);   
 
 % set h
 Z                       = Compressibility( T_0, feedPress(1),         Parameters );
@@ -224,43 +217,42 @@ OPT_solver.set_value(Parameters_sym_t, cell2mat(Parameters(which_theta)));
 
 OPT_solver.minimize(D_opt);
 
-T0 = (T_max-T_min).*rand(1,numel(T0homog)) + T_min;
-
 P0 = (P_max-P_min).*rand(1,numel(Press)) + P_min;
 
-OPT_solver.set_initial([T0homog, Press], [T0, P0] );
+OPT_solver.set_initial([Press], [P0] );
 
 try
     sol  = OPT_solver.solve();
-    KOUT = full(sol.value([T0homog, Press]))
+    KOUT = full(sol.value([Press]))
 catch
-    KOUT = OPT_solver.debug.value([T0homog, Press])
+    KOUT = OPT_solver.debug.value([Press])
 end
 
 %% Reconstruct T profile
-FF     = Function('FF', {[T0homog, Press, Parameters_sym_t']}, {X});
+FF     = Function('FF', {[Press, Parameters_sym_t']}, {X});
 XX     = full(FF( [KOUT, cell2mat(Parameters(which_theta))'] ));
 
 PP     = XX(3*nstages+1,2:end);
 
-TT_rec = full(Reconstruct_T_from_enthalpy(XX(3*nstages,2:end)',PP', Parameters))';
+TT_rec_in  = full(Reconstruct_T_from_enthalpy(XX(2*nstages+1,2:end)',PP', Parameters))';
+TT_rec_out = full(Reconstruct_T_from_enthalpy(XX(3*nstages,2:end)',PP', Parameters))';
 
-FF     = Function('FF', {T0homog}, {feedTemp});
-TT     = full(FF( [KOUT(1:numel(T0homog))] ));
-TT_0   = full(FF( [T0] ));
+%FF     = Function('FF', {T0homog}, {Press});
+%TT     = full(FF( [KOUT(1:numel(T0homog))] ));
+%TT_0   = full(FF( [T0] ));
 
 %% save data
 
 OBJ = OPT_solver.stats.iterations.obj;
     
 writematrix('T0',excel_file,'sheet',ii,'Range','A1');
-writematrix('T_opt',excel_file,'sheet',ii,'Range','B1');
+writematrix('T_in',excel_file,'sheet',ii,'Range','B1');
 writematrix('T_out',excel_file,'sheet',ii,'Range','C1');
 writematrix('P',excel_file,'sheet',ii,'Range','D1');
 writematrix('OBJ',excel_file,'sheet',ii,'Range','E1');
 writematrix(OPT_solver.return_status,excel_file,'sheet',ii,'Range','F1');
 
-writematrix([TT_0; TT; TT_rec; PP]',excel_file,'sheet',ii,'Range','A2:D200');
+writematrix([feedTemp; TT_rec_in; TT_rec_out; PP]',excel_file,'sheet',ii,'Range','A2:D200');
 writematrix(OBJ',excel_file,'sheet',ii,'Range','E2');
 
 end
@@ -311,7 +303,7 @@ L.String(end) = {'Mini(obj)'};
 legend boxoff 
 %delete(h(2));
 fontsize(16,"points")
-set(gcf,'PaperOrientation','landscape'); print(figure(3),['Multiple_shot_DOE_T_and_P.pdf'],'-dpdf','-bestfit')
+set(gcf,'PaperOrientation','landscape'); print(figure(3),['Multiple_shot_DOE_T45.pdf'],'-dpdf','-bestfit')
 
 T_in  = TT_opt(:,[16,33,45,57]);
 T_out = TT_out(:,[16,33,45,57]);
@@ -327,7 +319,7 @@ ylabel('Temperature [K]')
 ylim([35, 55]+273)
 
 fontsize(24,"points")
-set(gcf,'PaperOrientation','landscape'); print(figure(4),['Best_T_and_P_1.pdf'],'-dpdf','-bestfit')
+set(gcf,'PaperOrientation','landscape'); print(figure(4),['Best_P_in_T45.pdf'],'-dpdf','-bestfit')
 
 figure(5)
 plot([0:149],T_out, 'Linewidth', 2);
@@ -338,7 +330,7 @@ ylabel('Temperature [K]')
 ylim([35, 55]+273)
 
 fontsize(24,"points")
-set(gcf,'PaperOrientation','landscape'); print(figure(5),['Best_T_and_P_2.pdf'],'-dpdf','-bestfit')
+set(gcf,'PaperOrientation','landscape'); print(figure(5),['Best_P_out_T45.pdf'],'-dpdf','-bestfit')
 
 close all
 
