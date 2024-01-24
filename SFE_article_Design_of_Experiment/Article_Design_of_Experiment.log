@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10.12) (preloaded format=pdflatex 2024.1.12)  22 JAN 2024 15:37
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10.12) (preloaded format=pdflatex 2024.1.12)  23 JAN 2024 15:25
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1631,23 +1631,16 @@ ts/map/pdftex/pdftex.map}{C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts
 {C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/inconsolata/i4
 -t1-0.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/cm-super/cm-super-t1.enc} <.
 /thumbnails/cas-email.jpeg>])
-
-LaTeX Warning: Reference `CH: Sensitivity_Analysis' on page 2 undefined on inpu
-t line 134.
-
-
-LaTeX Warning: Reference `CH: Results' on page 2 undefined on input line 134.
-
 (Sections/Thermo_imp.tex
 
 LaTeX Warning: Reference `subsubsec: Equation of state' on page 2 undefined on 
 input line 9.
 
+[2 <./Figures/PFD.drawio.pdf>]
 
-LaTeX Warning: Reference `subsubsec: Fluid density' on page 2 undefined on inpu
+LaTeX Warning: Reference `subsubsec: Fluid density' on page 3 undefined on inpu
 t line 15.
 
-[2 <./Figures/PFD.drawio.pdf>]
 
 LaTeX Warning: Reference `subsubsec: Fluid heat capacity' on page 3 undefined o
 n input line 17.
@@ -1655,32 +1648,32 @@ n input line 17.
 
 LaTeX Warning: Reference `CH:Enthalpy' on page 3 undefined on input line 19.
 
-<Figures/Compressibility.pdf, id=171, 845.1575pt x 597.23125pt>
+<Figures/Compressibility.pdf, id=175, 845.1575pt x 597.23125pt>
 File: Figures/Compressibility.pdf Graphic file (type pdf)
 <use Figures/Compressibility.pdf>
 Package pdftex.def Info: Figures/Compressibility.pdf  used on input line 24.
 (pdftex.def)             Requested size: 158.24646pt x 134.45325pt.
-<Figures/RHO.pdf, id=173, 845.1575pt x 597.23125pt>
+<Figures/RHO.pdf, id=177, 845.1575pt x 597.23125pt>
 File: Figures/RHO.pdf Graphic file (type pdf)
 <use Figures/RHO.pdf>
 Package pdftex.def Info: Figures/RHO.pdf  used on input line 31.
 (pdftex.def)             Requested size: 158.24646pt x 134.45325pt.
-<Figures/CP.pdf, id=175, 845.1575pt x 597.23125pt>
+<Figures/CP.pdf, id=179, 845.1575pt x 597.23125pt>
 File: Figures/CP.pdf Graphic file (type pdf)
 <use Figures/CP.pdf>
 Package pdftex.def Info: Figures/CP.pdf  used on input line 38.
 (pdftex.def)             Requested size: 158.24646pt x 134.45325pt.
-<Figures/Enthalpy.pdf, id=177, 845.1575pt x 597.23125pt>
+<Figures/Enthalpy.pdf, id=181, 845.1575pt x 597.23125pt>
 File: Figures/Enthalpy.pdf Graphic file (type pdf)
 <use Figures/Enthalpy.pdf>
 Package pdftex.def Info: Figures/Enthalpy.pdf  used on input line 45.
 (pdftex.def)             Requested size: 158.24646pt x 134.45325pt.
-<Figures/MU.pdf, id=179, 845.1575pt x 597.23125pt>
+<Figures/MU.pdf, id=183, 845.1575pt x 597.23125pt>
 File: Figures/MU.pdf Graphic file (type pdf)
 <use Figures/MU.pdf>
 Package pdftex.def Info: Figures/MU.pdf  used on input line 52.
 (pdftex.def)             Requested size: 158.24646pt x 134.45325pt.
-<Figures/KT.pdf, id=181, 845.1575pt x 597.23125pt>
+<Figures/KT.pdf, id=185, 845.1575pt x 597.23125pt>
 File: Figures/KT.pdf Graphic file (type pdf)
 <use Figures/KT.pdf>
 Package pdftex.def Info: Figures/KT.pdf  used on input line 59.
@@ -1718,7 +1711,7 @@ Overfull \hbox (6.37921pt too wide) detected at line 55
 ][] []$  
  []
 
-<Figures/SFE_PFD.drawio.png, id=264, 8222.72pt x 4626.28375pt>
+<Figures/SFE_PFD.drawio.png, id=268, 8222.72pt x 4626.28375pt>
 File: Figures/SFE_PFD.drawio.png Graphic file (type png)
 <use Figures/SFE_PFD.drawio.png>
 Package pdftex.def Info: Figures/SFE_PFD.drawio.png  used on input line 83.
@@ -1821,10 +1814,35 @@ ix-ts1.enc}]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-) [10] [11
+[10]) (Sections/Results_DOE.tex
+<Figures///Results_sensitivity/Multiple_shot_DOE_P250.pdf, id=387, 794.97pt x 6
+14.295pt>
+File: Figures///Results_sensitivity/Multiple_shot_DOE_P250.pdf Graphic file (ty
+pe pdf)
+<use Figures///Results_sensitivity/Multiple_shot_DOE_P250.pdf>
+Package pdftex.def Info: Figures///Results_sensitivity/Multiple_shot_DOE_P250.p
+df  used on input line 13.
+(pdftex.def)             Requested size: 238.25444pt x 181.2243pt.
+<Figures///Results_sensitivity/Best_T_in_P250.pdf, id=391, 794.97pt x 614.295pt
+>
+File: Figures///Results_sensitivity/Best_T_in_P250.pdf Graphic file (type pdf)
+<use Figures///Results_sensitivity/Best_T_in_P250.pdf>
+Package pdftex.def Info: Figures///Results_sensitivity/Best_T_in_P250.pdf  used
+ on input line 26.
+(pdftex.def)             Requested size: 116.74597pt x 88.79619pt.
+<Figures///Results_sensitivity/Best_T_out_P250.pdf, id=393, 794.97pt x 614.295p
+t>
+File: Figures///Results_sensitivity/Best_T_out_P250.pdf Graphic file (type pdf)
 
-] (Article_Design_of_Experiment.bbl
-Underfull \hbox (badness 1005) in paragraph at lines 164--169
+<use Figures///Results_sensitivity/Best_T_out_P250.pdf>
+Package pdftex.def Info: Figures///Results_sensitivity/Best_T_out_P250.pdf  use
+d on input line 33.
+(pdftex.def)             Requested size: 116.74597pt x 88.79619pt.
+) [11 <./Figures///Results_sensitivity/Multiple_shot_DOE_P250.pdf> <./Figures//
+/Results_sensitivity/Best_T_in_P250.pdf> <./Figures///Results_sensitivity/Best_
+T_out_P250.pdf>]
+(Article_Design_of_Experiment.bbl
+Underfull \hbox (badness 1005) in paragraph at lines 172--177
 |   []   |   []   |   []\T1/stix/m/n/8 , 9(2):128--133, jun 1996.  doi: $10 . 1
 016 /
  []
@@ -1840,13 +1858,13 @@ anged.
 (rerunfilecheck)             Checksum: 2BF133ECAA48025FC5EEB2072969641C;4092.
  ) 
 Here is how much of TeX's memory you used:
- 42301 strings out of 478848
- 919897 string characters out of 2848485
- 1323308 words of memory out of 3000000
- 59249 multiletter control sequences out of 15000+600000
+ 42345 strings out of 478848
+ 921702 string characters out of 2848485
+ 1324308 words of memory out of 3000000
+ 59281 multiletter control sequences out of 15000+600000
  524552 words of font info for 176 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 94i,26n,131p,1926b,962s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 94i,26n,131p,1648b,962s stack positions out of 5000i,500n,10000p,200000b,80000s
 <C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/inconsola
 ta/Inconsolata-zi4r.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/
 type1/public/stix/STIXGeneral-Bold.pfb><C:/Users/sliczno1/AppData/Local/Program
@@ -1863,9 +1881,9 @@ e1/public/stix/stix-mathit.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX
 /fonts/type1/public/stix/stix-mathrm.pfb><C:/Users/sliczno1/AppData/Local/Progr
 ams/MiKTeX/fonts/type1/public/stix/stix-mathscr.pfb><C:/Users/sliczno1/AppData/
 Local/Programs/MiKTeX/fonts/type1/public/stix/stix-mathsf.pfb>
-Output written on Article_Design_of_Experiment.pdf (12 pages, 1632541 bytes).
+Output written on Article_Design_of_Experiment.pdf (12 pages, 1757403 bytes).
 PDF statistics:
- 481 PDF objects out of 1000 (max. 8388607)
- 114 named destinations out of 1000 (max. 500000)
- 292 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 507 PDF objects out of 1000 (max. 8388607)
+ 118 named destinations out of 1000 (max. 500000)
+ 325 words of extra memory for PDF output out of 10000 (max. 10000000)
 

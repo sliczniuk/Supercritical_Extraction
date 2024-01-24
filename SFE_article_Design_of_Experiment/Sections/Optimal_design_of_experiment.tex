@@ -74,7 +74,7 @@
 	{\scriptsize
 	\begin{equation}
 		\begin{aligned}
-		&\text{FIM(p)} = - \mathop{\mathbb{E}}_{Y|p} \left[ \frac{\partial^2 \ln (\pi_y (Y|p))}{\partial p \partial p^\top} \right] = \mathop{\mathbb{E}}_{Y|p} \left[ \frac{\partial \ln (\pi_y (Y|p))}{\partial p} \frac{\partial \ln (\pi_y (Y|p))}{\partial p^\top} \right] \nonumber \\
+		&\mathcal{F}(p) = - \mathop{\mathbb{E}}_{Y|p} \left[ \frac{\partial^2 \ln (\pi_y (Y|p))}{\partial p \partial p^\top} \right] = \mathop{\mathbb{E}}_{Y|p} \left[ \frac{\partial \ln (\pi_y (Y|p))}{\partial p} \frac{\partial \ln (\pi_y (Y|p))}{\partial p^\top} \right] \nonumber \\
 		&= \mathop{\mathbb{E}}_{Y|p} \left[ \sum_{k=1}^{n_t} \left( \frac{Y(t_k) - y(t_k, p)}{\sigma_{t_k}^2} \frac{\partial y(t_k, p)}{\partial p} \right) \times  \sum_{i=1}^{n_t} \left( \frac{Y(t_i) - y(t_i, p)}{\sigma_{t_i}^2} \frac{\partial y(t_i, p)}{\partial p^\top} \right) \right] \nonumber \\
 		&= \mathop{\mathbb{E}}_{Y|p} \left[ \sum_{k=1}^{n_t} \sum_{i=1}^{n_t} \left[ \left( \frac{Y(t_k) - y(t_k, p)}{\sigma_{t_k}^2} \frac{\partial y(t_k, p)}{\partial p} \right) \times \left( \frac{Y(t_i) - y(t_i, p)}{\sigma_{t_i}^2} \frac{\partial y(t_i, p)}{\partial p^\top} \right) \right] \right] \nonumber \\
 		&= \sum_{k=1}^{n_t} \sum_{i=1}^{n_t} \mathop{\mathbb{E}}_{Y|p} \left[ \left( \frac{Y(t_k) - y(t_k, p)}{\sigma_{t_k}^2} \frac{\partial y(t_k, p)}{\partial p} \right) \times \left( \frac{Y(t_i) - y(t_i, p)}{\sigma_{t_i}^2} \frac{\partial y(t_i, p)}{\partial p^\top} \right) \right] \nonumber \\
@@ -93,14 +93,14 @@
 	
 	{\footnotesize
 	\begin{equation}
-		\text{FIM(p)} = \sum_{i=1}^{n_t} \left( \frac{1}{\sigma_{t_i}^2} \frac{\partial y(t_i, p)}{\partial p} \frac{\partial y(t_i, p)}{\partial p^\top} \right)
+		\mathcal{F}(p) = \sum_{i=1}^{n_t} \left( \frac{1}{\sigma_{t_i}^2} \frac{\partial y(t_i, p)}{\partial p} \frac{\partial y(t_i, p)}{\partial p^\top} \right)
 	\end{equation} }
 	
 	If every experiment at time $t_i$ is independent and characterized by its own $\sigma_{t_i}$, then the Fisher information matrix can be presented in the more compact way:
 	
 	{\footnotesize
 	\begin{equation}
-		\text{\text{FIM(p)}} = \frac{\partial y(t, p)}{\partial p} \begin{bmatrix}
+		\mathcal{F}(p) = \frac{\partial y(t, p)}{\partial p} \begin{bmatrix}
 			\frac{1}{\sigma_{t_1}^2} & 0 & 0\\
 			0 & \ddots & 0 \\
 			0 & 0 & \frac{1}{\sigma_{t_{n_t}}^2} 
@@ -130,7 +130,7 @@
 	
 	{\footnotesize
 	\begin{equation}
-		\Sigma \geq \text{FIM(p)}^{-1}(p^*)
+		\Sigma \geq \mathcal{F}^{-1}(p^*)
 	\end{equation} }
 	
 	In other words, the precision to which we can estimate $p$ is limited by the Fisher information of the likelihood function. Based on the Cramer-Rao inequality, the Fisher information matrix can used to calculate the covariance matrices associated with maximum-likelihood estimates.
@@ -158,7 +158,7 @@
 	
 	{\footnotesize
 	\begin{equation}
-		j(\Xi) = \kappa\left[ \text{FIM}(p, \Xi) \right]
+		j(\Xi) = \kappa\left[ \mathcal{F}(p, \Xi) \right]
 	\end{equation} }
 	
 	%Under the hypotheses mentioned above, the distribution of the maximum likelihood estimator is asymptotically Gaussian $\mathop{\mathbb{N}} (p^*, F^{-1}([^*, \Xi])) $ when the number of measurements tends to infinity. Minimizing $j(\Xi)$ then amounts to minimizing a scalar measure of the asymptotic covariance matrix of the parameters.
@@ -167,22 +167,22 @@
 	
 	{\footnotesize
 	\begin{align}
-		\kappa_k(\text{FIM(p)}) &= \left[\frac{1}{n_p} \text{trace}\left( Q\text{FIM}()^{-1}Q^\top \right)^k \right]^{1/k} \quad &\text{if} \det \text{FIM} \neq 0 \nonumber \\
-		\kappa_k(\text{FIM(p)}) &= \infty \quad &\text{if} \det \text{FIM} = 0
+		\kappa_k(\mathcal{F}(p)) &= \left[\frac{1}{n_p} \text{trace}\left( Q\mathcal{F}^{-1}(p, \Xi) Q^\top \right)^k \right]^{1/k} \quad &\text{if} \det \mathcal{F} \neq 0 \nonumber \\
+		\kappa_k(\mathcal{F}(p)) &= \infty \quad &\text{if} \det \mathcal{F} = 0
 	\end{align} }
 	
 	where $Q$ is a weighting matrix. The special case $k = 1$ corresponds to the L-optimality cost function,
 	
 	{\footnotesize
 	\begin{equation}
-		j_L(\Xi) = \text{trace} \left[ Q^\top Q\text{FIM}^{-1}(p,\Xi) \right]
+		j_L(\Xi) = \text{trace} \left[ Q^\top Q\mathcal{F}^{-1}(p,\Xi) \right]
 	\end{equation} }
 	
-	and choosing $Q = \textbf{I}_{n_p}$ then corresponds to the A-optimality cost function. An A-optimal experiment minimizes the sum of the squares of the lengths or the axes of asymptotic confidence ellipsoids. Choosing $Q$ diagonal, with $[Q]_{ii} = 1/p_i$ corresponds to C-optimality, which is connected with the relative precision of estimates. Taking Q to be a row vector leads to c-optimality. Taking $Q = \textbf{I}_{n_p}$ and $k = \infty$ corresponds to E-optimality; E-optimal design maximizes the smallest eigenvalues of the Fisher information matrix and thus minimizes the length of the largest axis of the asymptotic confidence ellipsoids. The most widely used optimality criterion has $k = 0$, $Q = \textbf{I}_{n_p}$ , requiring minimization of $\det \text{FIM}^{-1}(p, \Xi)$, or, equivalently, maximization of
+	and choosing $Q = \textbf{I}_{n_p}$ then corresponds to the A-optimality cost function. An A-optimal experiment minimizes the sum of the squares of the lengths or the axes of asymptotic confidence ellipsoids. Choosing $Q$ diagonal, with $[Q]_{ii} = 1/p_i$ corresponds to C-optimality, which is connected with the relative precision of estimates. Taking Q to be a row vector leads to c-optimality. Taking $Q = \textbf{I}_{n_p}$ and $k = \infty$ corresponds to E-optimality; E-optimal design maximizes the smallest eigenvalues of the Fisher information matrix and thus minimizes the length of the largest axis of the asymptotic confidence ellipsoids. The most widely used optimality criterion has $k = 0$, $Q = \textbf{I}_{n_p}$ , requiring minimization of $\det \mathcal{F}^{-1}(p, \Xi)$, or, equivalently, maximization of
 	
 	{\footnotesize
 	\begin{equation}
-		j_D(\Xi) = \det \text{FIM}(p, \Xi)
+		j_D(\Xi) = \det \mathcal{F}(p, \Xi)
 	\end{equation} }
 	
 	A D-optimal experiment minimizes the volume of the asymptotic confidence ellipsoids for the parameters. The graphical representation of the different optimality conditions is shown in Figure \ref{fig:score_fun}.
@@ -219,19 +219,85 @@
 	
 	\subsubsection{Problem formulation}
 	
-	The optimal design of the experiment technique is used to extend the experiment discussed in $({\color{red}article~1})$, where supercritical extraction from caraway seeds has been discussed. The presented extraction was performed under multiple operating conditions, such that the temperature, pressure, and flow rate were constant during each batch. Later, the experiments' results are combined, and correlations for extraction kinetic parameters are presented. In this work, the optimal design of the experiment is used to design an experiment to validate these correlations. The model parameters, the extraction time (150 minutes), and the sampling time (5 minutes) are the same as in $({\color{red}article~1})$ to mimic the original system. It is assumed that the flow rate is constant because the effect of the flow rate has not been deeply investigated in the previous work of the authors (${\color{red}articl~1}$). The pressure is assumed to be constant during the whole experiment. The initial temperature ($T^0$) of the extractor and the inlet temperature ($T^{in}$) are decision variables in the optimization. It is considered that the initial state is isothermal, so $T^0=T^{in}(t=0)$. The inlet temperature is changed every 5 minutes, and considered to be constant inside of this time period. Considering that the residence time in the extractor is around 20-25 minutes (depending on the operating conditions), it is assumed that there is no change in the inlet temperature in the last 25 minutes of extraction, so the extractor becomes isothermal at the end of the experiment. The lower ($40^\circ C$) and upper ($50^\circ C$) bounds for the temperature are limits of the previous experiments (${\color{red}article~1}$). The general formulation of the optimal design of experiment problem is presented below.
+	The optimal design of experiments technique is used to extend the experimental procedure discussed in $({\color{red}article~1})$, where supercritical extraction from caraway seeds has been discussed. The presented extraction was performed under multiple operating conditions, such that the temperature, pressure, and flow rate were constant during each batch. Later, the experiments' results are combined, and correlations for extraction kinetic parameters are presented. In this work, the optimal design of the experiment is used to design an experiment to validate these correlations. The Fisher information is computed with respect to correlations for $D_i$ and $\Upsilon$, which gives in total fours parameters. The model parameters, the extraction time (150 minutes), and the sampling time (5 minutes) are the same as in $({\color{red}article~1})$ to mimic the original system. It is assumed that the flow rate is constant because the effect of the flow rate has not been deeply investigated in the previous work of the authors (${\color{red}articl~1}$). In this work, two cases are considered. 
+	
+	In the first one, the initial temperature ($T^0$) of the extractor and the inlet temperature ($T^{in}$) are decision variables in the optimization. At the same time, the pressure is assumed to be constant during the whole experiment. It is considered that the initial state is isothermal, so $T^0=T^{in}(t=0)$. The inlet temperature is changed every 5 minutes and is considered constant inside this time period (piecewise constant controls). The residence time in the extractor is approximately 20-25 minutes (depending on the operating conditions). It is assumed that there is no change in the inlet temperature in the last 25 minutes of extraction, so the extractor becomes isothermal at the end of the experiment. The lower ($40^\circ C$) and upper ($50^\circ C$) bounds for the temperature are limits of the previous experiments (${\color{red}article~1}$). The general formulation of the optimal design of the experiment problem is presented below.
 	
 	{\footnotesize
 	\begin{equation}
 		\begin{aligned} 
-			&\Xi^* &= \arg \min_{ T^0, T^{in} \in \Xi} -j_D(\Xi,y)  \\
+			&\Xi^* &= \arg \min_{ T^0, T^{in} \in \Xi} \int_{t_0}^{t_f} - \ln j_D(\Xi,y(g(x(t)))) dt  \\
 			&\text{subject to}
-			& \dot{x} = f(x,t,\theta;\Xi) \\
+			& \dot{x} = G(x,t,\theta;\Xi) \\
 			&& \dot{y} = g(x(t)) \\
 			&& 40^\circ C \leq T^{in}(t) \leq 50^\circ C \\
+			&& P(t) = 250 \text{bar} \\
 			&& T^{0} = T^{in}(t=0) \\
+			&& t_0=0~[min] \\
+			&& t_f=150~[min] \\
 		\end{aligned}
 	\end{equation} } 
 	
-	The non-linear optimization problem is solved by applying single-shooting to obtain the trajectory under assumption of piece-wise constant controls. The CasADi framework is used as the interface for the IPOPT solver. Each simulation problem is solved multiple time starting from different initial points and the solution with the best score is consider as the optimal solution.
+	The second experiment strategy uses pressure as the decision variable. Contrary to the previous cases, the pressure change affects the temperature inside the extractor. It is expected to observe the heat front propagation along the system if the inlet temperature is kept at a constant value (for example, using a heat exchanger). Such a configuration leads to a more complex system response than in the first case. In contrary to the real system, the model assumes instantaneous pressure change. Depressurization in experimental systems is a rapid process, and such a simplification is acceptable. The pressure build-up is a slower process than the depressurization and requires more effort from the experimenter. To take it into account, it is assumed that the pressure can be changed less frequently than the inlet temperature in the previous case. The model parameters, the extraction time (150 minutes) and the sampling time (5 minutes), stay the same, but the pressure changes every 15 minutes (compared to 5 minutes in the first case). Initially, the extractor is kept at a constant temperature of $45 ^\circ C$, which is in the middle of the previously investigated domain. The inlet temperature is also kept at $45^\circ C$. The state constraints are included to ensure the pressure manipulation does not move the extractor temperature outside the confidence interval. The pressure can be manipulated in the range from $200$ bar to $300$ bar. The general formulation of the optimal design of the experiment problem is presented below.
+	
+	{\footnotesize
+		\begin{equation}
+			\begin{aligned} 
+				&\Xi^* &= \arg \min_{ P \in \Xi} \int_{t_0}^{t_f} - \ln j_D(\Xi,y(g(x(t)))) dt  \\
+				&\text{subject to}
+				& \dot{x} = G(x,t,\theta;\Xi) \\
+				&& \dot{y} = g(x(t)) \\
+				&& 200 \text{bar} \leq P(t) \leq 300 \text{bar} \\
+				&& 40^\circ C \leq T(t,x) \leq 50^\circ C \\
+				&& T^{in} = 45 ^\circ C \\
+				&& t_0=0~[min] \\
+				&& t_f=150~[min] \\
+			\end{aligned}
+	\end{equation} } 
+		
 \end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
