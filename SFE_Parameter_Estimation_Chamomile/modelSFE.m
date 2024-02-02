@@ -13,34 +13,33 @@ function xdot = modelSFE(x, p, mask, dt)
     parameters    =     p(4:end);
 
     %nstages       =     parameters{1};
-    %C0solid       =     parameters{2};     % Extractor initial concentration of extract
-%    r             =     parameters{3};     % Extractor length (m)
+    C0solid       =     parameters{2};     % Extractor initial concentration of extract
+    r             =     parameters{3};     % Extractor length (m)
     epsi          =     parameters{4};     % Void bed fraction
     dp            =     parameters{5};     % Diameter of the particle (m)
     L             =     parameters{6};     % Length of the extractor (m)
-%    rho_s         =     parameters{7};     %
-%    mode          =     parameters{8};
-%    mi            =     parameters{9};
+    rho_s         =     parameters{7};     %
+    km            =     parameters{8};
+    %km            =     1e5;
+    mi            =     parameters{9};
 
-    K1            =     parameters{44};     
-    K2            =     parameters{45};      
-    Di1           =     parameters{46};
-    Di2           =     parameters{47};
-    Dx            =     parameters{48};
+    Di            =     parameters{44}*1e-14;      
+    Dx            =     parameters{45}*1e-8;      
+    SAT           =     parameters{46};
+    %shape         =     parameters{52};
 
     nstages_index =     numel(mask);
     
     %% Properties of the bed
-%    A             =     pi*r^2 ;       % Cross-section of the extractor (m^2)
-%    rp            =     dp / 2;
-%    lp2           =     (rp / 3)^2;
+    A             =     pi*r^2 ;       % Cross-section of the extractor (m^2)
+    rp            =     dp / 2;
+    lp2           =     (rp / 3)^2;
 
     %% States
     FLUID         =     x(0*nstages_index+1:1*nstages_index);
-    SOLID_B       =     x(1*nstages_index+1:2*nstages_index);
-    SOLID_I       =     x(2*nstages_index+1:3*nstages_index);
-    ENTHALPY_RHO  =     x(3*nstages_index+1:4*nstages_index);
-    PRESSURE      =     x(4*nstages_index+1);
+    SOLID         =     x(1*nstages_index+1:2*nstages_index);
+    ENTHALPY_RHO  =     x(2*nstages_index+1:3*nstages_index);
+    PRESSURE      =     x(3*nstages_index+1);
 
     TEMP          =     Reconstruct_T_from_enthalpy(ENTHALPY_RHO, PRESSURE, parameters);
       
@@ -61,11 +60,12 @@ function xdot = modelSFE(x, p, mask, dt)
     %Dx            = axial_diffusion(RHO, parameters) .* 1e-6;
 
     %% Saturation
-    %Csolid_percentage_left = 1 - (SOLID./C0solid);
-    %Csolid_percentage_left(find(~mask)) = 0;                                                % inserte zeros instead of NAN in pleces where there is no bed
-    %Sat_coe       =     Saturation_Concentration(Csolid_percentage_left, shape, Di);        % Inverse logistic is used to control saturation. Close to saturation point, the Sat_coe goes to zero.
+    Csolid_percentage_left = 1 - (SOLID./C0solid);
+    Csolid_percentage_left(find(~mask)) = 0;                                                % inserte zeros instead of NAN in pleces where there is no bed
+    Sat_coe       =     Saturation_Concentration(Csolid_percentage_left, SAT, Di);        % Inverse logistic is used to control saturation. Close to saturation point, the Sat_coe goes to zero.
 
     %% BC
+    
     Cf_0          =     0;
     Cf_B          =     FLUID(nstages_index);
                                                                                             % If the sensitivity of P and F is consider, then set the input T as equal to the T inside of the extractor
@@ -92,14 +92,14 @@ function xdot = modelSFE(x, p, mask, dt)
     
     d2Tdz2        = central_diff_2_order(TEMP, T_0, T_B, dz);
         
+
     dHdz          = backward_diff_1_order(VELOCITY .* ENTHALPY_RHO, u_0 .* enthalpy_rho_0, [], dz);
 
     d_cons_CF_dz  = backward_diff_1_order(VELOCITY .* FLUID, u_0 .* Cf_0, [], dz);
 
     dPdt          = backward_diff_1_order(P_u, PRESSURE, [], dt)*1e2;
    
-    re1           = Di1   .* ( SOLID_B - FLUID   ./ K1 );
-    re2           = Di2   .* ( SOLID_I - SOLID_B ./ K2 );
+    re            = (Sat_coe ./ mi ./ lp2)  .* ( SOLID - FLUID .* rho_s ./ RHO ./ km );
     
     %% model
     xdot = [
@@ -107,26 +107,21 @@ function xdot = modelSFE(x, p, mask, dt)
     %--------------------------------------------------------------------
     % Concentration of extract in fluid phase | 0
    - 1            ./  ( 1 - epsi .* mask ) .* d_cons_CF_dz   + ...
-    Dxe-6         ./  ( 1 - epsi .* mask ) .* d2Cfdz2        + ...
-    (epsi.*mask)  ./  ( 1 - epsi .* mask ) .* re1;
+    Dx            ./  ( 1 - epsi .* mask ) .* d2Cfdz2        + ...
+    (epsi.*mask)  ./  ( 1 - epsi .* mask ) .* re;
     %zeros(nstages_index,1);
 
     %--------------------------------------------------------------------
     % Concentration of extract in solid phase | 1
-    - mask                                 .* (re1 - re2);
-    %zeros(nstages_index,1);
-
-    %--------------------------------------------------------------------
-    % Concentration of extract in solid phase | 2
-    - mask                                 .* re2;
+    - mask                                 .* re;
     %zeros(nstages_index,1);
     
     %--------------------------------------------------------------------
-    % enthalpy | 3
+    % enthalpy | 2
     - 1      ./ ( 1 - epsi .* mask )  .* dHdz + dPdt + KRHOCP.* d2Tdz2;
 
     %--------------------------------------------------------------------
-    % Pressure | 4
+    % Pressure | 3
      dPdt;
     
     %--------------------------------------------------------------------
