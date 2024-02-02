@@ -6,24 +6,24 @@ delete(gcp('nocreate'));
 addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-3.6.3-windows64-matlab2018b');
 import casadi.*
 
-excel_file = 'output_T45.xls';
+excel_file = 'output_T45_constrained.xls';
 numeEval = 69;
 
-parfor ii=7:numeEval
+parfor ii=1:6%:numeEval
 
 Parameters_table                = readtable('Parameters.csv') ;             % Table with prameters
 Parameters                      = num2cell(Parameters_table{:,3});          % Parameters within the model + (m_max), m_ratio, sigma
 
 %% Create the solver
-Iteration_max                   = 100;                                       % Maximum number of iterations for optimzer
+Iteration_max                   = 250;                                       % Maximum number of iterations for optimzer
 Time_max                        = 12.0;                                      % Maximum time of optimization in [h]
 
 nlp_opts                        = struct;
 nlp_opts.ipopt.max_iter         = Iteration_max;
 nlp_opts.ipopt.max_cpu_time     = Time_max*3600;
 nlp_opts.ipopt.hessian_approximation ='limited-memory';
-nlp_opts.ipopt.tol              = 1e-6;
-nlp_opts.ipopt.acceptable_tol   = 1e-4;
+%nlp_opts.ipopt.tol              = 1e-6;
+%nlp_opts.ipopt.acceptable_tol   = 1e-4;
 %nlp_opts.ipopt.acceptable_iter = 5;
 
 OPT_solver                      = casadi.Opti();
@@ -46,7 +46,7 @@ DeadTime                = 25;
 timeStep                = 1;                                                % Minutes
 timeShited              = 0;                                                % Minutes
 SamplingTime            = 5;                                                % Minutes
-OP_change_Time          = 15;                                               % Minutes
+OP_change_Time          = 10;                                               % Minutes
 
 simulationTime          = PreparationTime + ExtractionTime;
 
@@ -132,6 +132,15 @@ T_max                   = 50+273;   T_min                   = 40+273;
 
 P_max                   = 300;      P_min                   = 200;
 
+% find limiting values of h
+Z                       = Compressibility( T_min, P_min,         Parameters );
+rho                     = rhoPB_Comp(      T_min, P_min, Z,      Parameters );
+enthalpy_rho_min        = rho.*SpecificEnthalpy(T_min, P_min, Z, rho, Parameters );
+
+Z                       = Compressibility( T_max, P_max,         Parameters );
+rho                     = rhoPB_Comp(      T_max, P_max, Z,      Parameters );
+enthalpy_rho_max        = rho.*SpecificEnthalpy(T_max, P_max, Z, rho, Parameters );
+
 % set P
 %feedPress               = 250;
 %feedPress               = feedPress * ones(1,length(Time_in_sec)) + 0 ;     % Bars
@@ -197,6 +206,11 @@ for jj=1:N_Time
     X(:,jj+1)=F(X(:,jj), [uu(jj,:)'; Parameters_sym] );
 end
 
+XX_last_stage = X(3*nstages,15:15:end);
+% Reconstruct T at the last stage.
+
+OPT_solver.subject_to(   enthalpy_rho_max <= XX_last_stage <= enthalpy_rho_min );
+
 %% Find the measurment from the simulation
 Yield_estimate          = X(Nx,[1; N_Sample]);
 data_obs                = diff(Yield_estimate);
@@ -217,7 +231,8 @@ OPT_solver.set_value(Parameters_sym_t, cell2mat(Parameters(which_theta)));
 
 OPT_solver.minimize(D_opt);
 
-P0 = (P_max-P_min).*rand(1,numel(Press)) + P_min;
+P0 = (P_max-P_min) .*rand(1,numel(Press)) + P_min;
+%P0 = [ 260 * ones(1,3), 250 * ones(1,2)] ;
 
 OPT_solver.set_initial([Press], [P0] );
 
@@ -271,8 +286,8 @@ figure(1)
 %hold on
 for ii=1:numeEval
     data = readcell(excel_file,'sheet',ii);
-    OBJ_init = [OBJ_init, data{2,4}];
-    OBJ_data = [OBJ_data, data{end,4}];
+    OBJ_init = [OBJ_init, data{2,5}];
+    OBJ_data = [OBJ_data, data{end,5}];
 
     TT_opt = [TT_opt, cell2mat(data(2:151,2))];
     TT_out = [TT_out, cell2mat(data(2:151,3))];
@@ -285,7 +300,7 @@ end
 %hold off
 
 %subplot(2,1,2)
-plot(TT_opt)
+plot(PP_out)
 
 figure(2)
 scatterhist(OBJ_init, OBJ_data, 'Kernel','on','Location','SouthEast', 'Direction','out');
@@ -304,22 +319,23 @@ legend boxoff
 %delete(h(2));
 fontsize(16,"points")
 set(gcf,'PaperOrientation','landscape'); print(figure(3),['Multiple_shot_DOE_T45.pdf'],'-dpdf','-bestfit')
-
-T_in  = TT_opt(:,[16,33,45,57]);
-T_out = TT_out(:,[16,33,45,57]);
-P_out = PP_out(:,[16,33,45,57]);
+% for T: 16,33,45,57
+% for P: 33
+T_in  = TT_opt(:,[33]);
+T_out = TT_out(:,[33]);
+P_out = PP_out(:,[33]);
 
 figure(4)
 
-plot([0:149],T_in, 'Linewidth', 2);
+plot([0:149],P_out, 'Linewidth', 2);
 
 xlabel('Time[min]')
-ylabel('Temperature [K]')
+ylabel('Pressure [bar]')
 
-ylim([35, 55]+273)
+ylim([200, 300])
 
 fontsize(24,"points")
-set(gcf,'PaperOrientation','landscape'); print(figure(4),['Best_P_in_T45.pdf'],'-dpdf','-bestfit')
+set(gcf,'PaperOrientation','landscape'); print(figure(4),['Best_P_T45.pdf'],'-dpdf','-bestfit')
 
 figure(5)
 plot([0:149],T_out, 'Linewidth', 2);
@@ -327,7 +343,7 @@ plot([0:149],T_out, 'Linewidth', 2);
 xlabel('Time[min]')
 ylabel('Temperature [K]')
 
-ylim([35, 55]+273)
+ylim([30, 55]+273)
 
 fontsize(24,"points")
 set(gcf,'PaperOrientation','landscape'); print(figure(5),['Best_P_out_T45.pdf'],'-dpdf','-bestfit')
