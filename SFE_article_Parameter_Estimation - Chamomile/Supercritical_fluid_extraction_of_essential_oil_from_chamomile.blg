@@ -1,0 +1,48 @@
+This is BibTeX, Version 0.99d
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: Supercritical_fluid_extraction_of_essential_oil_from_chamomile.aux
+Reallocating 'name_of_file' (item size: 1) to 9 items.
+The style file: unsrtnat.bst
+Reallocating 'name_of_file' (item size: 1) to 10 items.
+Database file #1: mybibfile.bib
+You've used 28 entries,
+            2481 wiz_defined-function locations,
+            790 strings with 10024 characters,
+and the built_in function-call counts, 10950 in all, are:
+= -- 962
+> -- 512
+< -- 15
++ -- 206
+- -- 150
+* -- 923
+:= -- 1780
+add.period$ -- 113
+call.type$ -- 28
+change.case$ -- 49
+chr.to.int$ -- 28
+cite$ -- 28
+duplicate$ -- 532
+empty$ -- 1001
+format.name$ -- 186
+if$ -- 2287
+int.to.chr$ -- 1
+int.to.str$ -- 29
+missing$ -- 35
+newline$ -- 177
+num.names$ -- 84
+pop$ -- 201
+preamble$ -- 1
+purify$ -- 28
+quote$ -- 0
+skip$ -- 273
+stack$ -- 0
+substring$ -- 553
+swap$ -- 76
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 175
+warning$ -- 0
+while$ -- 94
+width$ -- 0
+write$ -- 423

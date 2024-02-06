@@ -1,0 +1,66 @@
+\documentclass[../Article_Model_Parameters.tex]{subfiles}
+\graphicspath{{\subfix{../Figures/}}}
+\begin{document}
+	
+	\subsubsection{Uneven distribution of the solute in the solid phase}
+	
+%	To mimic that not all solute might be obtained at specific operating conditions, the coefficient ${\color{black} \gamma}$ is introduced to limit the available oil. The ${\color{black} \gamma}({\color{black} c_s} (t,z))$ describe the reverse logistic function, which is equal to unity above the ${\color{black} c_{lim}}$, the saturation concentration, and equal to zero, below the ${\color{black} c_{lim}}$. The ${\color{black} \gamma}$ parameter multiply the solute concentration term in solid phase in the concentration gradient. As the concentration of solute decrease, it can reach the limiting value ${\color{black} c_{lim}}$ when the ${\color{black} \gamma}$ goes to zero and stop the extraction from the solid.
+%			
+%	{\footnotesize
+%		\begin{equation}
+%			{\color{black} \gamma}({\color{black} c_s} (t,z)) = \cfrac{1}{1+\exp \left( -{\color{black} k_{lim}} \left( {\color{black} c_s} (t,z) - {\color{black} c_{lim}} \right) \right) }
+%			\label{EQ: C_sat_function}
+%			\end{equation}
+%	}
+%			
+%	where ${\color{black} k_{lim}}$ describe the curvature of the $\gamma$ function, and it is defined as ${\color{black} k_{lim}} = 1$. %In the limit when $ {\color{black} k_{lim}}\rightarrow+\infty$ become a step function. If the ${\color{black} k_{lim}}$ is to high, the gradient of the ${\color{black} \gamma}$ function become high, or goes to infinity, which might cause difficulties for a gradient-based optimizer. 
+%	The ${\color{black} \gamma}({\color{black} c_s} (t,z))$ gamma function is visualised on \ref{fig: Gamma_function}.
+%			
+%	\begin{figure}[h!]
+%		\centering
+%			\begin{tikzpicture}
+%					
+%				\begin{axis}[
+%					legend style={draw=none},
+%					xmin = 0, xmax = 100,
+%					ymin = -0.5, ymax = 1.5,
+%					xlabel = {${\color{black} c_s}(t,z)[kg/m^3]$},
+%					ylabel = {${\color{black} \gamma}({\color{black} c_s}(t,z))[-]$}]
+%					\addplot[
+%					domain = 0:100,
+%					samples = 100,
+%					smooth,
+%					thick,
+%					blue,
+%					] { 1 / (1 + exp( 1 * ( 50 - x ) ) ) };
+%					\addplot[thick, samples=50, dashed, domain=0:1.5, black] coordinates {(50,-0.5)(50,1.5)};
+%					
+%					\addlegendentry{${\color{black} \gamma}({\color{black} c_s} (t,z))$}
+%					\addlegendentry{${\color{black} c_{lim}}$}
+%				\end{axis}
+%					
+%			\end{tikzpicture}
+%			\caption{${\color{black} \gamma}({\color{black} c_s} (t,z))$ function under assumption of ${\color{black} c_{lim}}=50~[kg/m^3]$}
+%			\label{fig: Gamma_function}
+%	\end{figure}
+			
+	Following the idea of the Broken-and-Intact Cell (BIC) model presented by \citet{Sovova2017}, the internal diffusion coefficient ${\color{black}D_i}$ is consider to be a product of the reference value of ${\color{black}D_i^R}$ and the exponential decay function ${\color{black} \gamma}$, as given by Equation \ref{EQ: C_sat_function}.
+		
+	{\footnotesize
+		\begin{equation}
+			{\color{black}D_i} = {\color{black}D_i^R} {\color{black} \gamma}({\color{black} c_s} (t,z)) = {\color{black}D_i^R} \exp\left( {\color{black}\Upsilon} \left( 1-\cfrac{{\color{black} c_s} (t,z) }{{\color{black}c_{s0}}} \right) \right) \label{EQ: C_sat_function}
+		\end{equation} }
+	
+	where the ${\color{black}\Upsilon}$ describe the curvature of the decay function. The final form of the extraction kinetic Equation is given by Equation \ref{Model_kinetic}.
+			
+	{\scriptsize
+		\begin{equation}
+			\label{Model_kinetic}
+				{\color{black}r_e}(t,z) = -\cfrac{{\color{black}D_i^R}({\color{black}T}(t,z), {\color{black}P}(t)) {\color{black} \gamma}({\color{black} c_s} (t,z)) }{{\color{black} \mu l^2} } \left({\color{black}{\color{black} c_s} }(t,z)  - \cfrac{{\color{black}\rho_s}}{{\color{black}k_m}({\color{black}T}(t,z)){\color{black}\rho}({\color{black}T}(t,z),{\color{black}P}(t))}  {\color{black}c_f}(t,z) \right)
+		\end{equation} }
+	
+	Such a formulation limits the availability of the solute in the solid phase. Similarly to the BIC model, if solute is assumed to be contained in the cells, a part of which is open because the cell walls were broken by grinding, and the rest remains intact. The diffusion of the solute from a particle's core takes more time compared to the diffusion of the solute located close to the outer surface. Considering that the internal diffusion coefficient decay as the concentration of the solute in the solid decrease. As the value of the ${\color{black}c_s}$ decrease over time, the exponential term approach unity and $\lim_{ {\color{black}c_s} \rightarrow 0} {\color{black}D_i} =  {\color{black}D_i^R}$. ${\color{black}D_i^R}$ can be interpreted as the internal diffusion coefficient at vanishing gradient. 
+		
+	Alternatively, the decay function ${\color{black}\gamma}$ can be consider with respect to the Shrinking Core model presented by \citet{Goto1996}, where the particle radius change as the amount of solute in the solid phase decrease. As the particle size decrease due to dissolution, the diffusion path increase which makes the diffusion slower and reduce the value of a diffusion coefficient. The same analogy can be apply to the Equation \ref{EQ: C_sat_function} to explain the change of the diffusion coefficient.
+		
+\end{document}
