@@ -29,7 +29,7 @@
 	
 	{\footnotesize
 		\begin{equation} \label{EQ: Objective_function}
-			\ln L = -\cfrac{n}{2}  \ln \sqrt{2 \pi \sigma^2} 
+			\ln L = -\cfrac{n}{2}  \ln \left(2 \pi \sigma^2\right) 
 			- \cfrac{ \sum_{i=1}^{n} \left[  \cfrac{d {Y}(t_i)}{dt} - \cfrac{d{\color{black}y}({\color{black} \theta}, t_i)}{dt} \right]^2 }{2 {\color{black} \sigma}^2}
 		\end{equation}
 	}
@@ -48,8 +48,8 @@
 			\end{aligned}
 	\end{equation} } 
 	
-	where $\hat{{\color{black} \theta}}$ is as maximum likelihood estimator, ${\color{black} \theta}^{lb}$ define the minimal value of ${\color{black} \theta}$ and ${\color{black} \theta}^{ub}$ is the maximum value of ${\color{black} \theta}$.
-	
+	where $\hat{{\color{black} \theta}}$ is as maximum likelihood estimator, ${\color{black} \theta}^{lb}$ define the minimal value of ${\color{black} \theta}$, ${\color{black} \theta}^{ub}$ is the maximum value of ${\color{black} \theta}$ and $\sigma$ represents the standard deviation of the residuals (errors) between the observed data points and the model outputs.
+		
 	Based on the first order optimality condition, the $\ln L$ can be maximized with respect to the vector ${\color{black} \theta}$ and equating to zero the partial derivatives of $\ln L$:
 	
 	{\footnotesize
@@ -64,9 +64,9 @@
 	\begin{itemize}
 		\item Partition coefficient:\qquad\quad\qquad$k_m$
 		\item Internal diffusion coefficient: \quad$D_i^R$
-		%\item Axial diffusion coefficient: \qquad$D_e^M$
+		\item Axial diffusion coefficient: \qquad$D_e^M$
 		\item Decay coefficient:\qquad\qquad\qquad$\Upsilon$
-		\item Standard deviation:\qquad\qquad\quad~$\sigma^2$
+		%\item Standard deviation:\qquad\qquad\quad~$\sigma^2$
 	\end{itemize}
 	
 	To ensure that parameters found by the optimizer do not reach unrealistic values, an additional set of inequality constraints is introduced. The initial guess for each optimization, the lower and upper bounds for each parameter are given in Table \ref{tab:Constraints}. 
@@ -75,10 +75,10 @@
 		\adjustbox{max width=\columnwidth}{%
 			\begin{tabular}{ lccccccc }
 				\hline 
-				Parameter		&$k_m$[-] 	& $D_i^R\times10^{-13}$[$m^2/s$] 	& $D_e^M$[$m^2/s$]	& $\Upsilon$ [m$^3$/kg] & $\sigma$[-] \\  \hline
-				Lower bound		&0	  		& 0 	  			& 0 				& 0 	   		& 0 \\ 
-				Upper bound		&$+\infty$	& $+\infty$ 		& $+\infty$			& $+\infty$ 	& $+\infty$\\ 
-				Initial guesses	&0.1-10		& $0.1-10$ 			& 0 		   		& 0.1-10		& 0.01 \\  \hline
+				Parameter		&$k_m$[-] 	& $D_i^R\times10^{-13}$[$m^2/s$] 	& $D_e^M\times10^{-12}$[$m^2/s$]	& $\Upsilon$ [m$^3$/kg] \\  \hline
+				Lower bound		&0	  		& 0 	  			& 0 				& 0 	   		\\ 
+				Upper bound		&$+\infty$	& $+\infty$ 		& $+\infty$			& $+\infty$ 	\\ 
+				Initial guesses	&0.1-10		& $0.1-10$ 			& 0.1-10   			& 0.1-10		\\  \hline
 		\end{tabular} }
 		\caption{Constraints and initial guess}
 		\label{tab:Constraints}

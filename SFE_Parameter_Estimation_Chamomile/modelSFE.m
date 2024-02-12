@@ -19,14 +19,13 @@ function xdot = modelSFE(x, p, mask, dt)
     dp            =     parameters{5};     % Diameter of the particle (m)
     L             =     parameters{6};     % Length of the extractor (m)
     rho_s         =     parameters{7};     %
-    km            =     parameters{8};
-    %km            =     1e5;
     mi            =     parameters{9};
 
-    Di            =     parameters{44}*1e-14;      
-    Dx            =     parameters{45}*1e-8;      
-    SAT           =     parameters{46};
-    %shape         =     parameters{52};
+    %km            =     parameters{8} ;
+    Di            =     parameters{44}* 1e-13;      
+    %Dx            =     parameters{45}* 1e-12;      
+    Dx            =     1e-15;      
+    gamma         =     parameters{46};
 
     nstages_index =     numel(mask);
     
@@ -62,7 +61,7 @@ function xdot = modelSFE(x, p, mask, dt)
     %% Saturation
     Csolid_percentage_left = 1 - (SOLID./C0solid);
     Csolid_percentage_left(find(~mask)) = 0;                                                % inserte zeros instead of NAN in pleces where there is no bed
-    Sat_coe       =     Saturation_Concentration(Csolid_percentage_left, SAT, Di);        % Inverse logistic is used to control saturation. Close to saturation point, the Sat_coe goes to zero.
+    Sat_coe       =     Saturation_Concentration(Csolid_percentage_left, gamma, Di);        % Inverse logistic is used to control saturation. Close to saturation point, the Sat_coe goes to zero.
 
     %% BC
     
@@ -99,7 +98,8 @@ function xdot = modelSFE(x, p, mask, dt)
 
     dPdt          = backward_diff_1_order(P_u, PRESSURE, [], dt)*1e2;
    
-    re            = (Sat_coe ./ mi ./ lp2)  .* ( SOLID - FLUID .* rho_s ./ RHO ./ km );
+    %re            = (Di ./ mi ./ lp2)  .* ( SOLID  );
+    re            = (Sat_coe ./ mi ./ lp2)  .* ( SOLID );
     
     %% model
     xdot = [

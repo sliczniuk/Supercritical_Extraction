@@ -2,44 +2,53 @@ startup;
 delete(gcp('nocreate'));
 % %p = Pushbullet(pushbullet_api);
 
-addpath('C:\Dev\casadi-3.6.3-windows64-matlab2018b');
-%addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-3.6.3-windows64-matlab2018b');
+%addpath('C:\Dev\casadi-3.6.3-windows64-matlab2018b');
+addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-3.6.3-windows64-matlab2018b');
 import casadi.*
 
+excel_file = 'Chamomile_Di_Gamma_org.xls';
+rng(69)
+
+%%
 Parameters_table        = readtable('Parameters.csv') ;                     % Table with prameters
 Parameters              = num2cell(Parameters_table{:,3});                  % Parameters within the model + (m_max), m_ratio, sigma
 
 LabResults              = xlsread('wpd_datasets.xlsx');
 
-Iteration_max           = 30;                                           % Maximum number of iterations for optimzer
-Time_max                = 12;                                             % Maximum time of optimization in [h]
+N_trial                 = 1;
+Iteration_max           = 20;                                              % Maximum number of iterations for optimzer
+Time_max                = 12;                                               % Maximum time of optimization in [h]
 
 nlp_opts                    = struct;
 nlp_opts.ipopt.max_iter     = Iteration_max;
 nlp_opts.ipopt.max_cpu_time = Time_max*3600;
-nlp_opts.ipopt.hessian_approximation ='limited-memory';
+nlp_opts.ipopt.acceptable_tol     = 1e-4;
+nlp_opts.ipopt.tol      = 1e-6;
+%nlp_opts.ipopt.hessian_approximation ='limited-memory';
 
-which_k                 = [     8,   44,   45,   46        ];              % Select which parameters are used for fitting
-k_lu                    = [ [   0;    0;    0;    0;   0   ], ...
-                          [   inf;  inf;  inf;  inf; inf ] ];
-Nk                      = numel(which_k)+1;                                   % Parameters within the model + sigma
-
-N_trial = 10;
+which_k                 = [      44,   46];              % Select which parameters are used for fitting
+k_lu                    = [ [     0;    0], ...
+                            [   inf;  inf] ];
+Nk                      = numel(which_k)+0;                                   % Parameters within the model + sigma
 
 DATA_K_OUT              = nan(Nk,N_trial);                          % Store Parameters obatined from all fits (par num x num exper)
-OBJ_OUT                 = nan(1,N_trial);                          
+OBJ_OUT                 = nan(1,N_trial);
+
+AA = xlsread('Regression.xlsx');
+DI = [0.701472275, 1.331443055, 2.239307889, 2.711813187, 1.32629228, 1.485504345, 1.73827467, 2.59502961, 0.48656241, 1.363499511, 0.72227, 0.756214019];
+GG = [4.274825704, 2.189390368, 2.552240039, 1.365163176, 2.830760407, 2.573487374, 1.642279591, 1.906200052, 4.287215235, 2.723682117, 3.82240, 3.35589348];
 
 %% Load paramters
 m_total                 = 3.5;
 
 % Bed geometry
-before                  = 0.05;                                             % Precentage of length before which is empty
-bed                     = 0.9;                                              % Percentage of length occupied by fixed bed
+before                  = 0.04;                                             % Precentage of length before which is empty
+bed                     = 0.92;                                              % Percentage of length occupied by fixed bed
 
 % Set time of the simulation
 PreparationTime         = 0;
 ExtractionTime          = 600;
-timeStep                = 5;                                                % Minutes
+timeStep                = 10;                                                % Minutes
 
 simulationTime          = PreparationTime + ExtractionTime;
 
@@ -49,7 +58,7 @@ Time                    = [0 Time_in_sec/60];                               % Mi
 
 N_Time                  = length(Time_in_sec);
 
-SAMPLE                  = LabResults(21:end,1);
+SAMPLE                  = LabResults(21:34,1);
 
 % Check if the number of data points is the same for both the dataset and the simulation
 N_Sample                = [];
@@ -59,7 +68,6 @@ end
 if numel(N_Sample) ~= numel(SAMPLE)
     keyboard
 end
-k0 = ones(1,Nk);
 
 %% Specify parameters to estimate
 nstages                 = Parameters{1};
@@ -136,121 +144,191 @@ m_fluid                 = G(L_bed_after_nstages)*( L_bed_after_nstages(2) ); % L
 m_fluid                 = [zeros(1,numel(nstagesbefore)) m_fluid];
 C0fluid                 = m_fluid * 1e-3 ./ V_fluid';
 
-for ii=11:12
+for jj = 9:12
+    which_dataset           = jj;
 
-which_dataset           = ii;
+    data_org                = LabResults(21:34,which_dataset+1)';
+    data_diff               = diff(data_org);
 
-OPT_solver              = casadi.Opti();
-ocp_opts                = {'nlp_opts', nlp_opts};
-OPT_solver.solver(         'ipopt'   , nlp_opts)
+    %% Set operating conditions
+    T0homog                 = LabResults(1,which_dataset+1);                    % K
+    feedPress               = LabResults(2,which_dataset+1) * 10;               % MPa -> bar
+    Flow                    = LabResults(3,which_dataset+1) * 1e-5 ;            % kg/s
 
-% Descision variables
-k                       = OPT_solver.variable(Nk);
+    Z                       = Compressibility( T0homog, feedPress,         Parameters );
+    rho                     = rhoPB_Comp(      T0homog, feedPress, Z,      Parameters );
 
-% Set operating conditions
-T0homog                 = LabResults(1,which_dataset+1);                    % K
-feedPress               = LabResults(2,which_dataset+1) * 10;               % MPa -> bar
-Flow                    = LabResults(3,which_dataset+1) *1e-5 ;             % kg/s
+    enthalpy_rho            = rho.*SpecificEnthalpy(T0homog, feedPress, Z, rho, Parameters );
 
-Z                       = Compressibility( T0homog, feedPress,         Parameters );
-rho                     = rhoPB_Comp(      T0homog, feedPress, Z,      Parameters );
+    feedTemp                = T0homog   * ones(1,length(Time_in_sec)) + 0 ;     % Kelvin
 
-enthalpy_rho            = rho.*SpecificEnthalpy(T0homog, feedPress, Z, rho, Parameters );
+    feedPress               = feedPress * ones(1,length(Time_in_sec)) + 0 ;     % Bars
 
-feedTemp                = T0homog   * ones(1,length(Time_in_sec)) + 0 ;  % Kelvin
+    feedFlow                = Flow * ones(1,length(Time_in_sec));               % kg/s
 
-feedPress               = feedPress * ones(1,length(Time_in_sec)) + 0 ;  % Bars
+    uu                      = [feedTemp', feedPress', feedFlow'];
 
-feedFlow                = Flow * ones(1,length(Time_in_sec));  % kg/s
+    % Initial conditions
+    x0                      = [ C0fluid'                         ;
+                                C0solid         * bed_mask       ;
+                                enthalpy_rho    * ones(nstages,1);
+                                feedPress(1)                     ;
+                                0                                ;
+                                ];
 
-uu                      = [feedTemp', feedPress', feedFlow'];
+    %AA                     = -0.1 + (0.1 + 0.1) .* rand(1,numel(data_diff_norm));
+    %data_diff_norm         = data_diff_norm + AA;
 
-% Initial conditions
-x0                      = [ C0fluid'                         ;
-                            C0solid         * bed_mask       ;
-                            enthalpy_rho    * ones(nstages,1);
-                            feedPress(1)                     ;
-                            0                                ;
-                            ];
+    %Parameters_init_time   = [uu repmat(cell2mat(Parameters),1,N_Time)'];
+    %[xx_0]                 = simulateSystem(F, [], x0, Parameters_init_time );
+    %{\
+    %%
+    for ii=1:N_trial
+        %k0                      = 0.01 + (100-0.01) .* rand(Nk,1);
 
-%%
-% Store symbolic results of the simulation
-Parameters_sym          = MX(cell2mat(Parameters));
-Parameters_sym(which_k) = k(1:numel(which_k));
+        k0                      = ones(Nk,1);
+        %k0                      = [0.21, 2];
 
-X                       = MX(Nx,N_Time+1);
-X(:,1)                  = x0;
+        OPT_solver              = casadi.Opti();
+        ocp_opts                = {'nlp_opts', nlp_opts};
+        OPT_solver.solver(         'ipopt'   , nlp_opts)
 
-% Symbolic integration
-for j=1:N_Time
-    X(:,j+1)=F(X(:,j), [uu(j,:)'; Parameters_sym] );
+        % Descision variables
+        k                       = OPT_solver.variable(Nk);
+
+        % Store symbolic results of the simulation
+        Parameters_sym          = MX(cell2mat(Parameters));
+        Parameters_sym(which_k) = k(1:numel(which_k));
+
+        X                       = MX(Nx,N_Time+1);
+        X(:,1)                  = x0;
+
+        % Symbolic integration
+        for j=1:N_Time
+            X(:,j+1)=F(X(:,j), [uu(j,:)'; Parameters_sym] );
+        end
+
+        %% Find the measurment from the simulation
+        Yield_estimate         = X(Nx,N_Sample);
+        Yield_estimate_diff    = diff(Yield_estimate);
+
+        %% load dataset
+        Yield_estimate_diff_norm = Yield_estimate_diff ./ max(data_diff) ;
+        data_diff_norm           = data_diff           ./ max(data_diff) ;
+        residuals                = (data_diff_norm - Yield_estimate_diff_norm );
+
+        %% Create the cost function
+        %sigma                  = k0(end);
+        J                      = residuals * diag(1) * residuals';
+        sigma                  = J/(numel(residuals) - numel(which_k));
+
+        J_L                    = - (numel(residuals)./2 .* log(2.*pi)) - (numel(residuals)./2 .* log(sigma)) - J./(2.*sigma);  % normal
+        J_L                    = - J_L;
+
+        %% Constraints
+        for nk=1:Nk
+            OPT_solver.subject_to( k_lu(nk,1) <= k(nk,:) <= k_lu(nk,2) );
+        end
+
+        OPT_solver.minimize(J_L);
+
+        OPT_solver.set_initial(k, k0);
+
+        try
+            sol = OPT_solver.solve();
+            KOUT = full(sol.value(k));
+        catch
+            KOUT = OPT_solver.debug.value(k);
+        end
+
+        OBJ = OPT_solver.stats.iterations.obj;
+
+        DATA_K_OUT(:,ii) = KOUT;
+        OBJ_OUT(ii)      = OBJ(end);
+
+    end
+
+    %% Save data
+    %writematrix([OBJ_OUT; DATA_K_OUT],excel_file,'sheet',which_dataset,'Range','A1:Z200');
+    %}
+%% Plots
+%{\
+for ii=1:N_trial
+    %KOUT = DATA_K_OUT(:,ii);
+    %KOUT = [ 0.7, 3.8 ];
+    KOUT = [ DI(jj) , GG(jj) ];
+    Parameters_opt = Parameters;
+    for i=1:numel(which_k)
+        Parameters_opt{which_k(i)}  = KOUT(i);
+    end
+
+    Parameters_init_time   = [uu repmat(cell2mat(Parameters_opt),1,N_Time)'];
+    [xx_0]                 = simulateSystem(F, [], x0, Parameters_init_time );
+
+    %hold on; plot(Time,xx_0(end,:), 'LineWidth',2, 'DisplayName', [num2str(AA(2,jj)),'[K],',num2str(AA(3,jj)),'[MPa]']); plot(SAMPLE, data_org,'ko', 'LineWidth',2, 'HandleVisibility','off' ); hold off
+
+    figure(ii)
+    subplot(2,1,1)
+    subplot(2,1,2)
+    hold on; plot(SAMPLE(2:end),diff(xx_0(end,N_Sample))); plot(SAMPLE(2:end), data_diff,'o'); hold off
+    xlabel('t [min]')
+    ylabel('$\frac{dy}{dt}~\left[ \frac{g}{min} \right]$')
+    set(gcf,'PaperOrientation','landscape'); print(figure(1),['Fit_Di_Gamma_dataset_',num2str(jj),'_org.pdf'],'-dpdf','-bestfit')
+    close all
+    
+end
+%end
+%xlabel('t [min]')
+%ylabel('y [g]')
+
+%legend boxoff 
+%lgd = legend('Location','northoutside', 'Orientation','horizontal');
+%lgd.FontSize = 10;
+%set(gca,'FontSize',12)
+%}
+
+%% plot the parameter space
+%{\
+import casadi.*
+FF = Function('FF',{k},{J_L});
+
+XX = linspace(0.1,2.5,50);
+YY = linspace(0.1,15,60);
+[X,Y] = meshgrid(XX,YY);
+
+Z = nan(numel(XX),numel(YY)); 
+
+for ii=1:numel(XX)
+    ii
+    parfor jj=1:numel(YY)
+        Z(ii,jj) = full(FF([XX(ii),YY(jj)]));
+    end
 end
 
-%% Find the measurment from the simulation
-Yield_estimate         = X(Nx,N_Sample);
-Yield_estimate_diff    = diff(Yield_estimate);
+colormap turbo
+[M,c] = contourf(X,Y,Z',100);
+c.LineColor = 'none';
 
-%% load dataset
-data_org               = LabResults(21:end,which_dataset+1)';
-data                   = diff(data_org);
+xlabel('$D_i^R \times 10^{-13}$')
+ylabel('$\Upsilon$')
 
-%% Create the cost function
-sigma                  = k0(end);
-J                      = (data-Yield_estimate_diff ) * diag(1) * (data-Yield_estimate_diff )';
-J_L                    = -numel(data)./2 .* ( log(2.*pi) + log(sigma) ) - J./(2.*sigma);
-J_L                    = - J_L;
+hold on
+plot(KOUT(1),KOUT(2),'ro')
+hold off
 
-%% Constraints
-for nk=1:Nk
-    OPT_solver.subject_to( k_lu(nk,1) <= k(nk,:) <= k_lu(nk,2) );
-end
+hbar = colorbar;
+ylabel(hbar,'$-Ln(L)$', 'interpreter', 'latex');
+set(gca,'FontSize',12)
 
-OPT_solver.minimize(J_L);
+%yscale log
 
-OPT_solver.set_initial(k, k0);
-
-try
-    sol = OPT_solver.solve();
-    KOUT = full(sol.value(k));
-catch
-    KOUT = OPT_solver.debug.value(k);
-end
-
-OBJ = OPT_solver.stats.iterations.obj;
-
-DATA_K_OUT(:,ii) = KOUT;
-OBJ_OUT(ii)    = OBJ(end);
-
-%% Plot
-Parameters_opt = Parameters;
-for i=1:numel(which_k)
-    Parameters_opt{which_k(i)}  = KOUT(i);
-end
-
-Parameters_init_time   = [uu repmat(cell2mat(Parameters_opt),1,N_Time)'];
-[xx_0]                 = simulateSystem(F, [], x0, Parameters_init_time );
-
-figure(ii)
-subplot(2,1,1)
-hold on; plot(Time,xx_0(end,:)); plot(SAMPLE, data_org,'o'); hold off
-subplot(2,1,2)
-hold on; plot(SAMPLE(2:end),diff(xx_0(end,N_Sample))); plot(SAMPLE(2:end), diff(data_org),'o'); hold off
-
+exportgraphics(figure(1), ['Parameter_space_Di_Gamma_dataset_',num2str(jj),'_org.png'], "Resolution",300);
+%exportgraphics(figure(1), 'output.pdf', 'ContentType', 'vector');
+%set(gcf,'PaperOrientation','landscape'); print(figure(1),['Parameter_space_Linear_dataset_',num2str(jj),'_org.pdf'],'-dpdf','-bestfit')
+%close all
 
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
+%}
 
 
 
