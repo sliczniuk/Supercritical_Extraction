@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10.12) (preloaded format=pdflatex 2024.1.12)  12 FEB 2024 18:32
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10.12) (preloaded format=pdflatex 2024.1.12)  13 FEB 2024 16:25
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1795,14 +1795,14 @@ aset_1.png  used on input line 30.
 py)> <./Figures///Results_estimation/Parameter_Space_Di_Dx_Dataset_1.png (PNG c
 opy)>]
 <Figures///Results_estimation/Parameter_space_Di_Gamma_dataset_1_org.png, id=42
-6, 386.1627pt x 297.9933pt>
+7, 386.1627pt x 297.9933pt>
 File: Figures///Results_estimation/Parameter_space_Di_Gamma_dataset_1_org.png G
 raphic file (type png)
 <use Figures///Results_estimation/Parameter_space_Di_Gamma_dataset_1_org.png>
 Package pdftex.def Info: Figures///Results_estimation/Parameter_space_Di_Gamma_
 dataset_1_org.png  used on input line 41.
 (pdftex.def)             Requested size: 238.25444pt x 183.85817pt.
-<Figures///Results_estimation/Fit_Di_Gamma_1_4.png, id=429, 376.2858pt x 293.89
+<Figures///Results_estimation/Fit_Di_Gamma_1_4.png, id=430, 376.2858pt x 293.89
 8pt>
 File: Figures///Results_estimation/Fit_Di_Gamma_1_4.png Graphic file (type png)
 
@@ -1810,11 +1810,7 @@ File: Figures///Results_estimation/Fit_Di_Gamma_1_4.png Graphic file (type png)
 Package pdftex.def Info: Figures///Results_estimation/Fit_Di_Gamma_1_4.png  use
 d on input line 52.
 (pdftex.def)             Requested size: 238.25444pt x 186.08948pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<Figures///Results_estimation/Fit_Di_Gamma_5_8.png, id=431, 376.2858pt x 293.89
+<Figures///Results_estimation/Fit_Di_Gamma_5_8.png, id=432, 376.2858pt x 293.89
 8pt>
 File: Figures///Results_estimation/Fit_Di_Gamma_5_8.png Graphic file (type png)
 
@@ -1822,10 +1818,7 @@ File: Figures///Results_estimation/Fit_Di_Gamma_5_8.png Graphic file (type png)
 Package pdftex.def Info: Figures///Results_estimation/Fit_Di_Gamma_5_8.png  use
 d on input line 59.
 (pdftex.def)             Requested size: 238.25444pt x 186.08948pt.
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<Figures///Results_estimation/Fit_Di_Gamma_9_12.png, id=433, 419.8887pt x 315.8
+<Figures///Results_estimation/Fit_Di_Gamma_9_12.png, id=434, 419.8887pt x 315.8
 199pt>
 File: Figures///Results_estimation/Fit_Di_Gamma_9_12.png Graphic file (type png
 )
@@ -1834,21 +1827,47 @@ Package pdftex.def Info: Figures///Results_estimation/Fit_Di_Gamma_9_12.png  us
 ed on input line 66.
 (pdftex.def)             Requested size: 238.25444pt x 179.20479pt.
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
+Underfull \hbox (badness 1509) in paragraph at lines 74--75
+\T1/stix/m/n/10 com-bined to ob-tain gen-eral cor-re-la-tions, which can be
+ []
 
+
+Underfull \hbox (badness 1184) in paragraph at lines 74--75
+\T1/stix/m/n/10 chang-ing op-er-at-ing con-di-tions. The tra-di-tional ap-proac
+h
+ []
+
+<Figures///Results_estimation/Correlation_Di_Re.png, id=437, 370.2633pt x 299.4
+387pt>
+File: Figures///Results_estimation/Correlation_Di_Re.png Graphic file (type png
+)
+<use Figures///Results_estimation/Correlation_Di_Re.png>
+Package pdftex.def Info: Figures///Results_estimation/Correlation_Di_Re.png  us
+ed on input line 80.
+(pdftex.def)             Requested size: 238.25444pt x 192.68642pt.
+<Figures///Results_estimation/Correlation_Gamma_Re.png, id=439, 371.2269pt x 29
+9.4387pt>
+File: Figures///Results_estimation/Correlation_Gamma_Re.png Graphic file (type 
+png)
+<use Figures///Results_estimation/Correlation_Gamma_Re.png>
+Package pdftex.def Info: Figures///Results_estimation/Correlation_Gamma_Re.png 
+ used on input line 87.
+(pdftex.def)             Requested size: 238.25444pt x 192.18382pt.
 ) [10 <./Figures///Results_estimation/Parameter_space_Di_Gamma_dataset_1_org.pn
-g (PNG copy)> <./Figures///Results_estimation/Fit_Di_Gamma_1_4.png (PNG copy)> 
-<./Figures///Results_estimation/Fit_Di_Gamma_5_8.png (PNG copy)> <./Figures///R
-esults_estimation/Fit_Di_Gamma_9_12.png (PNG copy)>]
+g (PNG copy)>] [11 <./Figures///Results_estimation/Fit_Di_Gamma_1_4.png (PNG co
+py)> <./Figures///Results_estimation/Fit_Di_Gamma_5_8.png (PNG copy)> <./Figure
+s///Results_estimation/Fit_Di_Gamma_9_12.png (PNG copy)> <./Figures///Results_e
+stimation/Correlation_Di_Re.png (PNG copy)> <./Figures///Results_estimation/Cor
+relation_Gamma_Re.png (PNG copy)>]
 (Supercritical_fluid_extraction_of_essential_oil_from_chamomile.bbl
 Underfull \hbox (badness 1005) in paragraph at lines 135--140
 |   []   |   []   |   []\T1/stix/m/n/8 , 9(2):128--133, jun 1996.  doi: $10 . 1
 016 /
  []
 
-) [11
+) [12
 
-] (Sections/Qubic_EOS.tex [12
+] (Sections/Qubic_EOS.tex [13
 
 ]
 Overfull \hbox (8.52713pt too wide) detected at line 123
@@ -1860,7 +1879,7 @@ Underfull \hbox (badness 1082) in paragraph at lines 151--152
 []\T1/stix/m/n/10 Departure func-tions are com-puted by in-te-grat-ing a
  []
 
-) (Sections/Gouverning_equation_derivation.tex [13]
+) (Sections/Gouverning_equation_derivation.tex [14]
 Underfull \hbox (badness 1789) in paragraph at lines 89--90
 \T1/stix/m/n/10 con-ti-nu-ity equa-tion is suit-able for un-steady, quasi-one-
  []
@@ -1880,7 +1899,7 @@ LaTeX Font Warning: Command \footnotesize invalid in math mode on input line 16
 
 pdfTeX warning: pdflatex (file ./Figures//Forces.pdf): PDF inclusion: found PDF
  version <1.7>, but at most version <1.5> allowed
-<Figures//Forces.pdf, id=514, 205.72859pt x 191.7564pt>
+<Figures//Forces.pdf, id=524, 205.72859pt x 191.7564pt>
 File: Figures//Forces.pdf Graphic file (type pdf)
 <use Figures//Forces.pdf>
 Package pdftex.def Info: Figures//Forces.pdf  used on input line 215.
@@ -1888,7 +1907,7 @@ Package pdftex.def Info: Figures//Forces.pdf  used on input line 215.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[14]
+[15]
 Overfull \hbox (2.48799pt too wide) in paragraph at lines 295--296
 []\T1/stix/m/n/10 Dividing the above equa-tion by $\LS1/stix/m/it/10 A[]$ \T1/s
 tix/m/n/10 the non-conservative
@@ -1898,12 +1917,12 @@ tix/m/n/10 the non-conservative
 LaTeX Font Warning: Command \footnotesize invalid in math mode on input line 32
 0.
 
-[15 <./Figures//Forces.pdf>]
+[16 <./Figures//Forces.pdf>]
 Overfull \hbox (5.07681pt too wide) detected at line 357
 []
  []
 
-) (Sections/Cardano.tex) (Sections/Likelihood.tex [16]
+) (Sections/Cardano.tex) (Sections/Likelihood.tex [17]
 Underfull \hbox (badness 1199) in paragraph at lines 46--47
 \T1/stix/m/n/10 be-cause it's con-stant with re-spect to the max-i-miza-tion.
  []
@@ -1914,7 +1933,7 @@ Underfull \hbox (badness 1320) in paragraph at lines 54--55
 m/n/10 for the pa-ram-e-ters
  []
 
-) [17
+) [18
 
 ] (Supercritical_fluid_extraction_of_essential_oil_from_chamomile.aux)
 Package rerunfilecheck Info: File `Supercritical_fluid_extraction_of_essential_
@@ -1922,10 +1941,10 @@ oil_from_chamomile.out' has not changed.
 (rerunfilecheck)             Checksum: B9D6C4A84B31430EAF673814DED99EC1;5807.
  ) 
 Here is how much of TeX's memory you used:
- 42885 strings out of 478848
- 933716 string characters out of 2848485
- 1329405 words of memory out of 3000000
- 59719 multiletter control sequences out of 15000+600000
+ 42906 strings out of 478848
+ 934698 string characters out of 2848485
+ 1328405 words of memory out of 3000000
+ 59739 multiletter control sequences out of 15000+600000
  530783 words of font info for 179 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  94i,26n,131p,1581b,926s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1946,9 +1965,9 @@ e1/public/stix/stix-mathit.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX
 ams/MiKTeX/fonts/type1/public/stix/stix-mathscr.pfb><C:/Users/sliczno1/AppData/
 Local/Programs/MiKTeX/fonts/type1/public/stix/stix-mathsf.pfb>
 Output written on Supercritical_fluid_extraction_of_essential_oil_from_chamomil
-e.pdf (17 pages, 2480129 bytes).
+e.pdf (18 pages, 2666377 bytes).
 PDF statistics:
- 734 PDF objects out of 1000 (max. 8388607)
- 200 named destinations out of 1000 (max. 500000)
- 435 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 744 PDF objects out of 1000 (max. 8388607)
+ 199 named destinations out of 1000 (max. 500000)
+ 457 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -32,7 +32,7 @@
 		\label{fig: Fit_1_Di_Dx}
 	\end{figure}
 	
-	Similarly to the previous case, the optimal value of $D_i$ exist, but a unique value for the $D_e^M$ cannot be determined. A little influence of the axial diffusion coefficient can be observed on Figure \ref{fig: Fit_1_Di_Dx} in a width range of values. By selecting $D_e^M$ such it has a low value, the axial diffusion term can be reduced and removed from the model without lost of generality.
+	Similarly to the previous case, the optimal value of $D_i$ exist, but a unique value for the $D_e^M$ cannot be determined. A little influence of the axial diffusion coefficient can be observed on Figure \ref{fig: Fit_1_Di_Dx} in a width range of values. By selecting $D_e^M$ such it has a low value, the axial diffusion term can be reduced and removed from the model without lost of generality. The model reduction is in agreement with the work of \citet{Rahimi2011}, who worked with the same dataset and obtained Peclet numbers in the range from 290 to 400. Such a high values if Pe suggest that the advection term dominates the mass transfer and the axial diffusion is negligible.
 	
 	I both cases discussed above, none of the results of the fitting was not sufficient due to high or to low extraction kinetic. Following the idea behind the Broken-and-Intact and Shrinking Core models (presented in Chapter \ref{CH: Gamma_Function}), the gamma function is introduced to account for the decaying extraction kinetic. The proposed correction factor is combined with the reduced linear model, which leads to a two-parameter ($D_i^R$ and $\Upsilon$) defined by Equation \ref{Model_kinetic}. The Figure \ref{fig: Fit_1_Di_Dx} shows the parameter space with and the corresponding values of the cost function.
 	
@@ -43,29 +43,53 @@
 		\label{fig: Fit_1_Di_Gamma}
 	\end{figure}
 	
-	The parameter space of the modified model is characterized by the unique minimum value, which corresponds to the solution of the parameter estimation problem for the experiment 1. The red circle shows the minimum value of the cost function found by the optimizer. 
-	
-	The remaining experiments are fitted to the modified extraction model in the same way. The results of the parameter estimation for experiments at constant flow rate of $6.67\times 10^{-5}$ [kg/s] and constant temperature of 313 [K] are presented in Figure \ref{fig: Fit_1_4_Di_Dx}.
-	
-	\begin{figure}[!h]
+	The parameter space of the modified model is characterized by the unique minimum value, which corresponds to the solution of the parameter estimation problem for the experiment 1. The red circle shows the minimum value of the cost function found by the optimizer. The remaining experiments are fitted to the modified extraction model and results are presented in Figure \ref{fig: Fit_Di_Gamma}. The obtained results show good agreement for almost all the experiments. 
+
+	\begin{figure}
 		\centering
-		\includegraphics[trim = 0.0cm 0.0cm 0.0cm 0.0cm,clip, width=\columnwidth]{/Results_estimation/Fit_Di_Gamma_1_4.png}
-		\caption{Results of parameter estimation for experiments at $6.67\times 10^{-5}$ [kg/s] and constant temperature of 313 [K]}
-		\label{fig: Fit_1_4_Di_Dx}
+		\begin{subfigure}[b]{\columnwidth}
+			\centering
+			\includegraphics[trim = 0.0cm 0.0cm 0.0cm 0.0cm,clip, width=\columnwidth]{/Results_estimation/Fit_Di_Gamma_1_4.png}
+			\caption{Results of parameter estimation for experiments at $6.67\times 10^{-5}$ [kg/s] and temperature of 313 [K]}
+			\label{fig: Fit_1_4_Di_Gamma}
+		\end{subfigure}
+		\hfill
+		\begin{subfigure}[b]{\columnwidth}
+			\centering
+			\includegraphics[trim = 0.0cm 0.0cm 0.0cm 0.0cm,clip, width=\columnwidth]{/Results_estimation/Fit_Di_Gamma_5_8.png}
+			\caption{Results of parameter estimation for experiments at $6.67\times 10^{-5}$ [kg/s] and temperature of 303 [K]}
+			\label{fig: Fit_5_8_Di_Gamma}
+		\end{subfigure}
+		\hfil
+		\begin{subfigure}[b]{\columnwidth}
+			\centering
+			\includegraphics[trim = 0.0cm 0.0cm 0.0cm 0.0cm,clip, width=\columnwidth]{/Results_estimation/Fit_Di_Gamma_9_12.png}
+			\caption{Results of parameter estimation for experiments at $3.33\times 10^{-5}$ [kg/s]}
+			\label{fig: Fit_9_12_Di_Gamma}
+		\end{subfigure}
+		\caption{Parameter estimation results}
+		\label{fig: Fit_Di_Gamma}
 	\end{figure}
+		
+	The results from the parameter estimation are further combined to obtain general correlations, which can be used for modelling of the extraction process at dynamically changing operating conditions. The traditional approach for finding correlations by combining Reynolds, Schmidt and Sherwood numbers is not used here because the axial diffusion rate was considered to be negligible. The proposed correlations shows linear trend between obtained parameters and the Reynolds number $\left(Re = \frac{\rho_f u d_p}{\mu}\right)$, as shown in Figure \ref{fig: Correlations}.
 	
-	\begin{figure}[!h]
+	\begin{figure}
 		\centering
-		\includegraphics[trim = 0.0cm 0.0cm 0.0cm 0.0cm,clip, width=\columnwidth]{/Results_estimation/Fit_Di_Gamma_5_8.png}
-		\caption{Results of parameter estimation for experiments at $6.67\times 10^{-5}$ [kg/s] and constant temperature of 303 [K]}
-		\label{fig: Fit_5_8_Di_Dx}
-	\end{figure}
-	
-	\begin{figure}[!h]
-		\centering
-		\includegraphics[trim = 0.0cm 0.0cm 0.0cm 0.0cm,clip, width=\columnwidth]{/Results_estimation/Fit_Di_Gamma_9_12.png}
-		\caption{Results of parameter estimation for experiments at $3.34\times 10^{-5}$ [kg/s]}
-		\label{fig: Fit_9_12_Di_Dx}
+		\begin{subfigure}[b]{\columnwidth}
+			\centering
+			\includegraphics[trim = 0.0cm 0.0cm 0.0cm 0.0cm,clip, width=\columnwidth]{/Results_estimation/Correlation_Di_Re.png}
+			\caption{Linear regression $D_i^R$}
+			\label{fig: Correlations_Di_Re}
+		\end{subfigure}
+		\hfill
+		\begin{subfigure}[b]{\columnwidth}
+			\centering
+			\includegraphics[trim = 0.0cm 0.0cm 0.0cm 0.0cm,clip, width=\columnwidth]{/Results_estimation/Correlation_Gamma_Re.png}
+			\caption{Linear regression $\Upsilon$}
+			\label{fig: Correlations_Gamma_Re}
+		\end{subfigure}
+		\caption{Parameter estimation results}
+		\label{fig: Correlations}
 	\end{figure}
 	
 \end{document}
