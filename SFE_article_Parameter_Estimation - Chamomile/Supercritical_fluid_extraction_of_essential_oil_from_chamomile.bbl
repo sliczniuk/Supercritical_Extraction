@@ -1,4 +1,4 @@
-\begin{thebibliography}{27}
+\begin{thebibliography}{31}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -176,6 +176,41 @@ E.~Rahimi, J.M. Prado, G.~Zahedi, and M.A.A. Meireles.
   80--88, February 2011.
 \newblock ISSN 0896-8446.
 \newblock \doi{10.1016/j.supflu.2010.11.008}.
+
+\bibitem[Giddings et~al.(1968)Giddings, Myers, McLaren, and
+  Keller]{Giddings1968}
+J.~Calvin Giddings, Marcus~N. Myers, Lilian McLaren, and Roy~A. Keller.
+\newblock High pressure gas chromatography of nonvolatile species: Compressed
+  gas is used to cause migration of intractable solutes.
+\newblock \emph{Science}, 162\penalty0 (3849):\penalty0 67--73, October 1968.
+\newblock ISSN 1095-9203.
+\newblock \doi{10.1126/science.162.3849.67}.
+
+\bibitem[Gurdial et~al.(1989)Gurdial, Wells, Foster, and Chaplin]{Gurdial1989}
+G.S. Gurdial, P.A. Wells, N.R. Foster, and R.P. Chaplin.
+\newblock The role of polarity in correlations of solid-supercritical fluid
+  phase systems.
+\newblock \emph{The Journal of Supercritical Fluids}, 2\penalty0
+  (2–3):\penalty0 85--96, December 1989.
+\newblock ISSN 0896-8446.
+\newblock \doi{10.1016/0896-8446(89)90015-6}.
+
+\bibitem[Machida et~al.(2011)Machida, Takesue, and Smith]{Machida2011}
+Hiroshi Machida, Masafumi Takesue, and Richard~L. Smith.
+\newblock Green chemical processes with supercritical fluids: Properties,
+  materials, separations and energy.
+\newblock \emph{The Journal of Supercritical Fluids}, 60:\penalty0 2--15,
+  December 2011.
+\newblock ISSN 0896-8446.
+\newblock \doi{10.1016/j.supflu.2011.04.016}.
+
+\bibitem[Marcus(2006)]{Marcus2006}
+Yizhak Marcus.
+\newblock Are solubility parameters relevant to supercritical fluids?
+\newblock \emph{The Journal of Supercritical Fluids}, 38\penalty0 (1):\penalty0
+  7--12, August 2006.
+\newblock ISSN 0896-8446.
+\newblock \doi{10.1016/j.supflu.2005.11.008}.
 
 \bibitem[Peng and Robinson(1976)]{Peng1976}
 Ding-Yu Peng and Donald~B. Robinson.
