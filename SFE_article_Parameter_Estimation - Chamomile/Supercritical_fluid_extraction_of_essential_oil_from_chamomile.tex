@@ -86,8 +86,8 @@
 % ===================================================
 % METADATA
 % ===================================================
-\title[mode=title]{Supercritical fluid extraction of essential oil from chamomile seeds: modelling, and parameter estimation}                      
-\shorttitle{Supercritical fluid extraction of essential oil from chamomile seeds: modelling, and parameter estimation}
+\title[mode=title]{Supercritical fluid extraction of essential oil from chamomile flowers: modelling, and parameter estimation}                      
+\shorttitle{Supercritical fluid extraction of essential oil from chamomile flowers: modelling, and parameter estimation}
 
 \shortauthors{OS, PO}
 
@@ -108,7 +108,7 @@
 % ABSTRACT
 % ===================================================
 \begin{abstract}
-This study investigated the supercritical extraction process of chamomile oil from chamomile seeds. A distributed-parameter model describes the fluid-solid extraction process. The concept of quasi-one-dimensional flow is applied to reduce the number of spatial dimensions. The flow is assumed to be uniform across any cross-section, although the area available for the fluid phase can vary along the extractor. The physical properties of the solvent are estimated from the Peng-Robinson equation of state. Key model parameters included partition factor internal and axial diffusion coefficients were determined using maximum likelihood estimation from experimental data, assuming normal error. A set of laboratory experiments was performed in under multiple constant operating conditions: $30 - 40^\circ C$, $100 - 200$ bar, and $3.33-6.67 \times 10^{-5}$ kg/s. 
+This study investigated the supercritical extraction process of chamomile extract from chamomile flowers. A distributed-parameter model describes the fluid-solid extraction process. The concept of quasi-one-dimensional flow is applied to reduce the number of spatial dimensions. The flow is assumed to be uniform across any cross-section, although the area available for the fluid phase can vary along the extractor. The physical properties of the solvent are estimated from the Peng-Robinson equation of state. Model parameters, including the partition factor, internal diffusion coefficient, axial diffusion coefficient, and decaying factor, were determined through maximum likelihood estimation based on experimental data, with the assumption of normally distributed errors. A set of laboratory experiments was performed under multiple constant operating conditions: $30 - 40^\circ C$, $100 - 200$ bar, and $3.33-6.67 \times 10^{-5}$ kg/s. 
 
 \end{abstract}
 
@@ -134,9 +134,9 @@ Supercritical extraction \sep Parameter estimation \sep Mathematical modelling
 \subfile{Sections/Thermo_imp}
 
 \subsection{Governing equations} \label{CH:Governing_equations_chapter}
-	The governing equation for a quasi-one-dimensional compressible flow in Cartesian coordinates can be found in the Appendix \ref{CH: Gouverning equations} and in the work of \citet{Anderson1995}. Quasi-one-dimensional flow is a fluid flow characterized by the assumption that the flow properties remain uniform across any given cross-section of the flow. This assumption is made when there is a variation in the cross-sectional area of the flow channel, such as an irregular shape or partial filling of an extractor. In such cases, the flow is considered to be quasi-one-dimensional because the velocity and other flow properties are assumed to vary only in the direction of flow.
-
-The quasi-one-dimensional compressible Navier-Stokes equations in Cartesian coordinates are given by Equations \ref{EQ: CompressibleEuler_1} to \ref{EQ: CompressibleEuler_3}. The derivation of these Equations are presented in Appendix \ref{CH: Gouverning equations}.
+	The governing equations for quasi-one-dimensional compressible flow in Cartesian coordinates are detailed in Appendix \ref{CH: Gouverning equations} and are based on the foundational work by \citet{Anderson1995}. Quasi-one-dimensional flow refers to a fluid flow scenario where it's assumed that flow properties are uniformly distributed across any given cross-section. This simplification is typically applied in situations where the flow channel's cross-sectional area changes, such as through irregular shapes or partial fillings of an extractor. In these instances, the flow is considered quasi-one-dimensional because it's presumed that velocity and other flow properties change solely along the flow direction.
+	
+	The set of quasi-one-dimensional compressible Navier-Stokes equations in Cartesian coordinates are encapsulated by Equations \ref{EQ: CompressibleEuler_1} through \ref{EQ: CompressibleEuler_3}. The formulation of these equations is elaborated upon in Appendix \ref{CH: Gouverning equations}, providing a mathematical foundation for analyzing flow dynamics under the assumed conditions.
 
 {\footnotesize
 	\begin{align}
@@ -181,7 +181,7 @@ The discontinuity is presumed to be at rest relative, and the balance equations 
 	\end{align*}
 }
 
-These relations are equally valid if the two regions are separated by a region of finite width rather than a discontinuity. 
+These relations are equally valid if both regions are separated by a region of finite width rather than a discontinuity. 
 
 {\footnotesize
 	\begin{equation*}
@@ -199,6 +199,8 @@ By combining the momentum equation with the above equation, we get
 
 Suppose the flow is presumed to be isentropic, $d{\color{black}P}/d{\color{black}\rho_f} = c^2$, so $v^2=c^2$, where $c$ is the speed of sound. This can be interpreted as a small pressure wave propagating with the speed of sound relative to the flow. Moreover, if the flow velocity is relatively low, all pressure changes are hydrodynamic (due to velocity motion) rather than thermodynamic which leads to $\partial {\color{black}\rho_f} / \partial {\color{black}P} \approx 0$. In other words, the small changes in pressure due to flow velocity changes do not change the density. 
 
+The low Mach number condition leads to the incompressible condition: $\nabla \cdot \mathbf {u} =0$, which is valid for constant density (strict incompressible) or varying density flow. The restraint allows for the removal of acoustic waves, but also allows for large perturbations in density and/or temperature. The assumption is that the flow remains within a Mach number limit (normally less than 0.3) for any solution using such a constraint to be valid. In 1-D case the incompressibility condition becomes $\frac{du}{dz} = 0$, so the fluid velocity is constant.
+
 \subsection{Extraction model} \label{CH: Extraction_model}
 \subfile{Sections/Model}
 
@@ -213,7 +215,13 @@ Suppose the flow is presumed to be isentropic, $d{\color{black}P}/d{\color{black
 
 \section{Conclusions} \label{CH: Conclusion}
 
-%This study presented basic aspects regarding the laboratory work for obtaining chamomile extracts using supercritical carbon dioxide at different operating conditions. A first-principle process model was developed based on governing equations. As a result of the literature review, the extraction kinetic model was selected and combined with the general mass balance equations. The values of unknown parameters in the process model were obtained by parameter estimation. The yield data from the experiments were compared against the yield generated by the model. The IPOPT solver was used to solve the maximum likelihood estimation. The process model was found to have good agreement with experimental yield curves. Later, the parameters found for each experiment were combined to obtain more general relationships. The correlations for diffusion and decay coefficients are presented as a function of fluid density or Reynolds number. It should be noted that obtained correlations have been prepared with a limited amount of data. These correlations can be used to study qualitatively the impact of different operating conditions on the extraction yield by different methods, such as sensitivity analysis. Moreover, the generalized model could be useful in finding the optimal operating conditions with respect to the process economy.
+The article presents a comprehensive study on supercritical fluid extraction of essential oil from chamomile flowers, focusing on developing and applying a distributed-parameter model to describe the fluid-solid extraction process. By employing the concept of quasi-one-dimensional flow, the study simplifies the spatial dimensions of the extraction process, ensuring uniform flow across any cross-section while allowing for variations in the area available for the fluid phase. The physical properties of the solvent are estimated using the Peng-Robinson equation of state, and key model parameters are determined through maximum likelihood estimation based on experimental data, considering normally distributed errors.
+
+Laboratory experiments were conducted under various conditions to validate the model's effectiveness. The model parameters, such as partition factor, internal diffusion coefficient, axial diffusion coefficient, and decaying factor, were determined through maximum likelihood estimation based on experimental data. The parameter space exploration revealed that while some parameters could be determined with a high degree of confidence, others, like the axial diffusion coefficient, had a low impact on the model's output.
+
+The Reynolds number and Hildebrand solubility parameter were used to analyse the obtained parameters further. The linear correlations between parameters and the Reynolds numbers are presented. $D_i^R$ coefficient decreases with the Reynolds number due to higher fluids density and the corresponding mass transfer resistance, while $\Upsilon$ increases due to increased Hildebrand parameter. It should be noted that outside of the confidence region, the parameters can become negative, which might reverse the direction of the mass transfer.
+
+The presented model might be used as a first approximation and for generating first estimates of the parameters for data correlation. The presented model can be further used with presented correlations to introduce an extraction model with dynamically changing operating conditions for multiple purposes such as techno-economic analysis, optimal design of experiments, or yield maximisation.
 
 % ===================================================
 % Bibliography

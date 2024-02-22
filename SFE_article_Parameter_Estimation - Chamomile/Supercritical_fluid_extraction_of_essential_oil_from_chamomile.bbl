@@ -1,19 +1,34 @@
-\begin{thebibliography}{31}
+\begin{thebibliography}{34}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
 
-\bibitem[Hromis et~al.(2015)Hromis, Lazic, Markov, Vastag, Popovic, Suput,
-  Dzinic, Velicanski, and Popovic]{Hromis2015}
-Nevena~M. Hromis, Vera~L. Lazic, Sinisa~L. Markov, Zuzana~G. Vastag, Senka~Z.
-  Popovic, Danijela~Z. Suput, Natalija~R. Dzinic, Aleksandra~S. Velicanski, and
-  Ljiljana~M. Popovic.
-\newblock Optimization of chitosan biofilm properties by addition of caraway
-  essential oil and beeswax.
-\newblock \emph{Journal of Food Engineering}, 158:\penalty0 86--93, aug 2015.
-\newblock \doi{10.1016/j.jfoodeng.2015.01.001}.
+\bibitem[Singh et~al.(2011)Singh, Khanam, Misra, and Srivastava]{Singh2011}
+Ompal Singh, Zakia Khanam, Neelam Misra, and ManojKumar Srivastava.
+\newblock Chamomile (matricaria chamomilla l.): An overview.
+\newblock \emph{Pharmacognosy Reviews}, 5\penalty0 (9):\penalty0 82, 2011.
+\newblock ISSN 0973-7847.
+\newblock \doi{10.4103/0973-7847.79103}.
+
+\bibitem[Srivastava(2009)]{Srivastava2009}
+Janmejai Srivastava.
+\newblock Extraction, characterization, stability and biological activity of
+  flavonoids isolated from chamomile flowers.
+\newblock \emph{Molecular and Cellular Pharmacology}, 1\penalty0 (3):\penalty0
+  138--147, August 2009.
+\newblock ISSN 1938-1247.
+\newblock \doi{10.4255/mcpharmacol.09.18}.
+
+\bibitem[Orav et~al.(2010)Orav, Raal, and Arak]{Orav2010}
+Anne Orav, Ain Raal, and Elmar Arak.
+\newblock Content and composition of the essential oil ofchamomilla
+  recutita(l.) rauschert from some european countries.
+\newblock \emph{Natural Product Research}, 24\penalty0 (1):\penalty0 48--55,
+  January 2010.
+\newblock ISSN 1478-6427.
+\newblock \doi{10.1080/14786410802560690}.
 
 \bibitem[Reverchon et~al.(1993)Reverchon, Donsi, and Osseo]{Reverchon1993}
 Ernesto Reverchon, Giorgio Donsi, and Libero~Sesti Osseo.
@@ -167,6 +182,16 @@ Nanci~P. Povh, Marcia~O.M. Marques, and M.Angela~A. Meireles.
   245--256, November 2001.
 \newblock ISSN 0896-8446.
 \newblock \doi{10.1016/s0896-8446(01)00096-1}.
+
+\bibitem[Andersson et~al.(2018)Andersson, Gillis, Horn, Rawlings, and
+  Diehl]{Andersson2018}
+Joel A.~E. Andersson, Joris Gillis, Greg Horn, James~B. Rawlings, and Moritz
+  Diehl.
+\newblock {CasADi}: a software framework for nonlinear optimization and optimal
+  control.
+\newblock \emph{Mathematical Programming Computation}, 11\penalty0
+  (1):\penalty0 1--36, jul 2018.
+\newblock \doi{10.1007/s12532-018-0139-4}.
 
 \bibitem[Rahimi et~al.(2011)Rahimi, Prado, Zahedi, and Meireles]{Rahimi2011}
 E.~Rahimi, J.M. Prado, G.~Zahedi, and M.A.A. Meireles.

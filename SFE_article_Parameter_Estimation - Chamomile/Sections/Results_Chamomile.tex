@@ -4,7 +4,7 @@
 	
 	\label{CH: Results}
 	
-	The parameter estimation problem was solved multiple times for different initial guesses. Each time series was fitted to the model separately. First, the model with linear extraction kinetics was the only one fitted to the dataset. The Figure shows the parameter estimation result for dataset 1, corresponding to the following operating conditions: $40^\circ C$, 100 bar and 6.67$\times 10^{-5}$ kg/s.
+	To solve the parameter estimation problem, the single shooting method was used to transform the boundary-value problem into the initial value problem and to formulate the non-linear programming problem. This non-linear optimization task was tackled using the CasADi framework (\citet{Andersson2018}). Each time series was fitted separately to the model with the linear extraction kinetics (Equation \ref{Model_kinetic_no_sat}). The initial value problem was solved multiple times with varying initial guesses to identify the global minimum. Within the model context characterized by linear kinetics, two parameters remain to be determined: the partition coefficient $k_m$ and the internal diffusion coefficient $D_i$. 
 	
 	\begin{figure}[!h]
 		\centering
@@ -13,17 +13,17 @@
 		\label{fig: Fit_1_linear}
 	\end{figure}
 	
-	In the case of the model with linear kinetic, two parameters are unknown, namely the partition coefficient $k_m$ and the internal diffusion coefficient $D_i$. Figure \ref{fig: Fit_1_linear} shows the cost function's parameter space and corresponding values. As the cost function is to be minimized, the lowest value of $-\ln(L)$ indicate the best fit. A black vertical stripe at $D_i \approx 0.2$ can be observed. That stripe indicates the existence of the optimal value of the $D_i$. In the direction of $k_m$, the cost function is almost flat, which suggests that any value of $k_m$ above 0.1 fits the data equally well. If $k_m$ can be an arbitrary point, then it can grow to infinity, which suggests that the solvent is far from the saturation, and the model can be simplified. The model reduction can be introduced by considering the limit of $k_m$ in the extraction kinetic term: 
+	Figure \ref{fig: Fit_1_linear} shows the parameter space and corresponding values of the cost function for experiment 1 ($40^\circ C$, 100 bar and 6.67$\times 10^{-5}$ kg/s). As the cost function is to be minimized, the lowest value of $-\ln(L)$ indicate the best fit. A black vertical stripe at $D_i \approx 0.2$ can be observed. That stripe indicates the existence of the optimal value of the $D_i$. In the direction of $k_m$, the cost function is almost flat, which suggests that any value of $k_m$ above 0.1 fits the data equally well. If $k_m$ can be an arbitrary point, then it can grow to infinity, which suggests that the solvent is far from the saturation, and the model can be simplified. The model reduction can be introduced by considering the limit of $k_m$ in the extraction kinetic term: 
 	
 	{\footnotesize
 		\begin{equation*}
 			\begin{split}
 				&\lim_{k_m \rightarrow \infty} \left({\color{black}{\color{black} c_s} }(t,z)  - \cfrac{{\color{black}\rho_s}}{{\color{black}k_m}({\color{black}T}(t,z)){\color{black}\rho}({\color{black}T}(t,z),{\color{black}P}(t))}  {\color{black}c_f}(t,z) \right)  = \\
-				&= \left({\color{black}{\color{black} c_s} }(t,z)  - \cfrac{{\color{black}\rho_s}}{\infty{\color{black}\rho}({\color{black}T}(t,z),{\color{black}P}(t))}  {\color{black}c_f}(t,z) \right) = \left({\color{black}{\color{black} c_s} }(t,z) - 0 \right)
+				&= \left({\color{black}{\color{black} c_s} }(t,z)  - \cfrac{\rho_s}{\infty \cdot \rho(T(t,z),P(t))}  {c_f}(t,z) \right) = \left(c_s(t,z) - 0 \right)
 			\end{split}
 	\end{equation*} }
 	
-	The extraction model can be modified to account for the reduced kinetic term and the axial diffusion. In such a configuration, two parameters are unknown: internal diffusion coefficient $D_i$ and axial diffusion coefficient $D_e^M$. Figure \ref{fig: Fit_1_Di_Dx} shows the parameter space and corresponding values of the cost function.
+	The extraction model can be adapted to incorporate adjustments for the reduced kinetic term and axial diffusion. In this revised setup, two parameters remain undetermined: the internal diffusion coefficient $D_i$ and the axial diffusion coefficient $D_e^M$. Figure \ref{fig: Fit_1_Di_Dx} illustrates the parameter space and associated cost function values.
 	
 	\begin{figure}[!h]
 		\centering
@@ -32,18 +32,18 @@
 		\label{fig: Fit_1_Di_Dx}
 	\end{figure}
 	
-	Similarly to the previous case, the optimal value of $D_i$ exists, but a unique value for the $D_e^M$ cannot be determined. A little influence of the axial diffusion coefficient can be observed in Figure \ref{fig: Fit_1_Di_Dx} in a width range of values. By selecting $D_e^M$, which has a low value, the axial diffusion term can be reduced and removed from the model without losing generality. Similar was drawn by \citet{Rahimi2011}, who worked with the same dataset and obtained Peclet numbers from 290 to 400. Such high values of the Peclet number suggest that the advection term dominates the mass transfer, and the axial diffusion is negligible.
+	Similarly to the previous case, the optimal value of $D_i$ exists, but a unique value for the $D_e^M$ cannot be determined. Figure \ref{fig: Fit_1_Di_Dx} illustrates the minimal impact of the axial diffusion coefficient, where a broad range of $D_e^M$ yields identical cost function values. By selecting a low value $D_e^M$, the axial diffusion terms can be reduced or eliminated from the model without compromising its generality. This observation aligns with the findings of \citet{Rahimi2011}, who analysed the same dataset and reported Peclet numbers ranging between 290 and 400. Such high values of the Peclet number suggest that the advection term dominates the mass transfer, and the axial diffusion is negligible.
 	
-	In both cases discussed above, none of the fitting results were satisfactory. Following the idea behind the Broken-and-Intact and Shrinking Core models (presented in Chapter \ref{CH: Gamma_Function}), the gamma function is introduced to account for the decaying extraction kinetic. The proposed correction factor is combined with the reduced linear model, which leads to a new two-parameter ($D_i^R$ and $\Upsilon$) model defined by Equation \ref{Model_kinetic}. Figure \ref{fig: Fit_1_Di_Dx} shows the parameter space with and the corresponding values of the cost function.
+	In both scenarios previously discussed, the fitting outcomes were not deemed satisfactory. Building upon the concepts underlying the Broken-and-Intact and Shrinking Core models (detailed in Chapter \ref{CH: Gamma_Function}), a gamma function is introduced to capture the diminishing extraction kinetics. The correction factor is combined with the simplified linear model, resulting in a two-parameter model ($D_i^R$ and $\Upsilon$) as given by Equation \ref{Model_kinetic}. Figure \ref{fig: Fit_1_Di_Gamma} shows the parameter space and the corresponding cost function values.
 	
 	\begin{figure}[!h]
 		\centering
-		\includegraphics[trim = 0.0cm 0.0cm 0.0cm 0.0cm,clip, width=\columnwidth]{/Results_estimation/Parameter_space_Di_Gamma_dataset_1_org.png}
+		\includegraphics[trim = 0.0cm 0.0cm 0.0cm 0.0cm,clip, width=0.98\columnwidth]{/Results_estimation/Parameter_space_Di_Gamma_dataset_1_org.png}
 		\caption{Parameter space for the modified extraction model and experiment 1}
 		\label{fig: Fit_1_Di_Gamma}
 	\end{figure}
 	
-	The parameter space of the modified model is characterized by the unique minimum value, which corresponds to the solution of the parameter estimation problem for experiment 1. The red circle shows the minimum value of the cost function found by the optimizer. The remaining experiments are fitted to the modified extraction model, and results are presented in Figure \ref{fig: Fit_Di_Gamma}. The obtained results show good agreement with experimental data. 
+	The parameter space for the revised model exhibits a distinct minimum value corresponding to the solution of the parameter estimation problem for experiment 1. The red circle highlights the minimum value of the cost function found by the optimizer. The remaining experiments are fitted to the modified extraction model, and results are presented in Figure \ref{fig: Fit_Di_Gamma}. The obtained results show good agreement with experimental data. 
 
 	\begin{figure}[!h]
 		\centering
@@ -60,7 +60,8 @@
 			\caption{Results of parameter estimation for experiments at $6.67\times 10^{-5}$ [kg/s] and temperature of 30 $[^\circ C]$}
 			\label{fig: Fit_5_8_Di_Gamma}
 		\end{subfigure}
-		\hfil
+			\end{figure}%
+		\begin{figure}[h!]\ContinuedFloat
 		\begin{subfigure}[b]{\columnwidth}
 			\centering
 			\includegraphics[trim = 0.0cm 0.0cm 0.0cm 0.0cm,clip, width=\columnwidth]{/Results_estimation/Fit_Di_Gamma_9_12.png}
@@ -71,7 +72,7 @@
 		\label{fig: Fit_Di_Gamma}
 	\end{figure}
 	
-	The estimated parameters describe the decaying rate of internal diffusion coefficient $D_i$ according to Equation \ref{EQ: C_sat_function}. The internal diffusion coefficient is assumed to decrease as it is more difficult for a solute particle to diffuse from a particle core than the particle of a solute located next to the surface. The obtained decaying patterns are present in Figure \ref{fig: Gamma_function}. It can be noticed from the plot that a higher internal diffusion coefficient characterises the high-pressure fluid. This is in agreement with the work of \citet{Giddings1968}, \citet{Gurdial1989} and \citet{Machida2011} who analysed the solvation power of a solvent and correlated it with physical properties of $CO_2$. The Hildebrand solubility parameter was used to measure the cohesive energy density of a substance. \citet{Giddings1968} proposed a correlation for a solubility parameter $\delta_H[\text{MPa}^{1/2}] = 1.25 P_c^{1/2}\rho_r$, where $P_c$ and $\rho_r$ are critical pressure and reduced density respectively. \citet{Marcus2006} derived a similar correlation from the Van der Waals equation of state: $\delta_H[\text{MPa}^{1/2}] = 2.79 P_c^{1/4}T_r^{1/4}\rho_r$. Figure \ref{fig: Gamma_function} shows that fluid characterised by a higher solubility factor has larger values of internal diffusion coefficient. The relation between $\delta_H$ and $D_i$ should only be treated as an indicator because the system is non-ideal, and external factors such as fluid velocity are not considered.
+	The estimated parameters describe the diminishing trend of the internal diffusion coefficient $D_i$, as delineated by Equation \ref{EQ: C_sat_function}. It is hypothesized that the internal diffusion coefficient decreases because solute particles face greater difficulty diffusing from the core of a particle than from positions closer to the surface. Decay patterns under various operational conditions, depicted in Figure \ref{fig: Gamma_function}, show that the internal diffusion coefficient is notably higher in fluids under high pressure. This observation aligns with the findings of \citet{Giddings1968}, \citet{Gurdial1989}, and \citet{Machida2011}, who explored the solvation capability of solvents and its correlation with the physical properties of $CO_2$ by calculating the Hildebrand solubility parameter $\delta_H$. \citet{Giddings1968} introduced a correlation for the solubility parameter $\delta_H[\text{MPa}^{1/2}] = 1.25 P_c^{1/2}\rho_r$, with $P_c$ and $\rho_r$ representing the critical pressure and reduced density, respectively. Similarly, \citet{Marcus2006} formulated a correlation based on the Van der Waals equation of state: $\delta_H[\text{MPa}^{1/2}] = 2.79 P_c^{1/4}T_r^{1/4}\rho_r$. As Figure \ref{fig: Gamma_function} shows, fluids with higher solubility factors exhibit greater internal diffusion coefficients. However, the relationship between $\delta_H$ and $D_i$ should be considered indicative rather than definitive due to the non-ideal nature of the system and the omission of external factors such as fluid velocity.
 	
 	\begin{figure}[!h]
 		\centering
@@ -80,8 +81,9 @@
 		\label{fig: Gamma_function}
 	\end{figure}
 		
-	The parameter estimation results are combined to analyse the relationship between the obtained parameters and the operating conditions. This work does not apply the traditional approach for finding correlations by combining Reynolds, Schmidt and Sherwood numbers because the axial diffusion was considered negligible. Instead, the Reynolds number $\left(Re = \frac{(2r) \cdot \rho_f \cdot u}{\mu}\right)$ is used solely as an independent variable as shown in Figure \ref{fig: Correlations}. Using the Reynolds number has the advantage of considering the influence of all the control variables (temperature, pressure and flow rate), which means it can be uniquely defined by selecting operating conditions.	
-	Two data clusters can be distinguished in Figures \ref{fig: Correlations_Di_Re} and \ref{fig: Correlations_Gamma_Re}, where each cluster corresponds to a different mass flow rate. Even though a linear trend characterises both correlations, correlations related to $D_i^R$ decrease with Re while the correlations related to $\Upsilon$ increase with Re. Higher fluid density and corresponding mass transfer resistance can explain the decrease of the $D_i^R$ along each line. On the other hand, the increase in $\Upsilon$ correlations can be justified by higher solubility. The Hildebrand solubility factor is mainly a function of fluid density, which is also present in the the Reynolds number hence $\Upsilon$ can be correlated with Re.
+	The parameter estimation results are combined to analyse the relationship between the obtained parameters and the operating conditions. Unlike traditional methods that employ a combination of Reynolds, Schmidt, and Sherwood numbers to find correlations—omitted here due to the insignificance of axial diffusion—the approach in this study leverages the Reynolds number $\left(Re = \frac{(2r) \cdot \rho_f \cdot u}{\mu}\right)$ as the sole independent variable. Using the Reynolds number has the advantage of considering the influence of all the control variables (temperature, pressure and flow rate), which means it can be uniquely defined by selecting operating conditions.	
+	
+	In Figures \ref{fig: Correlations_Di_Re} and \ref{fig: Correlations_Gamma_Re}, two distinct data clusters emerge, each corresponding to a different mass flow rate. Despite the linear trends observed in both sets of correlations, the correlations for $D_i^R$ exhibit a decline with increasing Re, whereas those for $\Upsilon$ show an upward trend with Re. The decrease in $D_i^R$ across each data line can be attributed to higher fluid density and increased mass transfer resistance. Conversely, the rise in $\Upsilon$ correlations may be explained by enhanced solubility. The Hildebrand solubility factor and the Reynolds number are proportional to the fluid density; hence, $\Upsilon$ can be correlated with Re.
 	
 	\begin{figure}[!h]
 		\centering
