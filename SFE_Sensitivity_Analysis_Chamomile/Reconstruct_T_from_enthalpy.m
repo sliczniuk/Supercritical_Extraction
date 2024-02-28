@@ -23,7 +23,7 @@ function [T] = Reconstruct_T_from_enthalpy(h, P, theta)
         G               = rootfinder('G','newton',g);
         
         % Guess value of T and use rootfinder
-        T               = G(40+273);
+        T               = G(30+273);
 
     else
 
@@ -48,7 +48,7 @@ function [T] = Reconstruct_T_from_enthalpy(h, P, theta)
         G               = rootfinder('G','newton',g);
         
         % Guess value of T and use rootfinder
-        T               = G(40+273, P, h, theta);
+        T               = G(30+273, P, h, theta);
         
     end
 end

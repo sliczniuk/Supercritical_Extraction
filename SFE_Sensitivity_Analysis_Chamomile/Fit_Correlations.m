@@ -42,7 +42,7 @@ hold off
 text(0.35, 2.0, sprintf('$~ D_i^R = %.3f \\cdot Re + %.3f$ \n $R^2=%.3f$',[p1, stuff1.rsquare]))
 text(0.15, -1.0, sprintf('$~ D_i^R = %.3f \\cdot Re + %.3f$ \n $R^2=%.3f$',[p2, stuff2.rsquare]))
 
-legend([plt1(1),plt2(1)],'$3.33\times 10^{-5}[kg/s]$','$6.67\times 10^{-5}[kg/s]$','Location','best');
+legend([plt1(1),plt2(1)],'$6.67\times 10^{-5}[kg/s]$','$3.33\times 10^{-5}[kg/s]$','Location','best');
 legend box off
 
 ylabel('$D_i^R \times 10^{-13} [m^2/s]$')
@@ -50,15 +50,15 @@ ylabel('$D_i^R \times 10^{-13} [m^2/s]$')
 xlabel('Re [-]')
 set(gca,'FontSize',12)
 
-exportgraphics(figure(1), ['Correlation_Di_Re.png'], "Resolution",300);
-close all
+%exportgraphics(figure(1), ['Correlation_Di_Re.png'], "Resolution",300);
+%close all
 
 %% gamma function plot
 %{\
 C0 = 1;
 XX = C0:-0.01:0;
 
-%subplot(3,1,3)
+figure()
 for ii=1:12
 
     %RE_temp = sort(RE, 'descend');
@@ -82,3 +82,71 @@ set(gca,'FontSize',42)
 %exportgraphics(figure(1), ['Gamma_function.png'], "Resolution",300);
 %close all
 %}
+
+%% Fit a surface in RE and F space
+
+figure()
+[ml3, sf3] = fit([RHO', FF'],DI','poly11');
+h3 = plot(ml3, [RHO', FF'],DI');
+set(h3,'linestyle','none');
+alpha(.5)
+
+p3 = coeffvalues(ml3);
+text(-0.25, 2.7, 0.1, sprintf('$D_i^R = %.3f %.3f \\cdot Re + %.3f \\cdot F$ \n $R^2 = %.3f $',[p3, sf3.rsquare]))
+xlabel('Re[-]',Position=[0.12, 0.5, 0.7])
+ylabel('$F \times 10^{-5}$[kg/s]',Position=[0, 4.5, -1.7])
+zlabel('$D_i^R \times 10^{-13} [m^2/s]$')
+
+exportgraphics(figure(1), ['Di_Re_F.png'], "Resolution",300);
+close all
+
+figure()
+[ml4, sf4] = fit([RHO', FF'],GG','poly11');
+h4 = plot(ml4, [RHO', FF'],GG');
+set(h4,'linestyle','none');
+alpha(.5)
+
+p4 = coeffvalues(ml4);
+text(-0.18, 3.8, 1, sprintf('$\\Upsilon ~~= %.3f + %.3f \\cdot Re %.3f \\cdot F$ \n $R^2 = %.3f $',[p4, sf4.rsquare]))
+xlabel('Re[-]', Position=[0.3, 3, -0.57])
+ylabel('$F \times 10^{-5}$[kg/s]',Position=[0, 4.5, 0.35])
+zlabel('$\Upsilon[-]$')
+
+exportgraphics(figure(1), ['Gamma_Re_F.png'], "Resolution",300);
+close all
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

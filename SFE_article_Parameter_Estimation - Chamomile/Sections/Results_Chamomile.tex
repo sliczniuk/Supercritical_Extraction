@@ -104,4 +104,26 @@
 		\label{fig: Correlations}
 	\end{figure}
 	
+	A more general relationship can be obtained by applying multiple linear regression instead of linear regression. The clusters in Figure \ref{fig: Correlations} are close to parallel, suggesting that a plane would combine all the data points. The Reynolds number and flow rate act as independent variables for $D_i^R$ and $\Upsilon$ as presented in Figure \ref{fig: Correlations_surface}.
+	
+	\begin{figure}[!h]
+		\centering
+		\begin{subfigure}[b]{\columnwidth}
+			\centering
+			\includegraphics[trim = 0.0cm 0.0cm 0.0cm 0.0cm,clip, width=\columnwidth]{/Results_estimation/Di_Re_F.png}
+			\caption{Multiple linear regression $D_i^R = f(Re, F)$}
+			\label{fig: Correlations_Di_Re_F}
+		\end{subfigure}
+		\hfill
+		\begin{subfigure}[b]{\columnwidth}
+			\centering
+			\includegraphics[trim = 0.0cm 0.0cm 0.0cm 0.0cm,clip, width=\columnwidth]{/Results_estimation/Gamma_Re_F.png}
+			\caption{Multiple linear regression $\Upsilon = f(Re, F)$}
+			\label{fig: Correlations_Gamma_Re_F}
+		\end{subfigure}
+		\caption{Parameter estimation results}
+		\label{fig: Correlations_surface}
+	\end{figure}
+	
+	
 \end{document}

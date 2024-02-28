@@ -1,7 +1,7 @@
 function Results = Integrator_SS(Time, x0, S, p, Sdot, parameters)
     import casadi.*
 
-    Results = MX(length(S),length(Time));
+    Results = zeros(length(S),length(Time));
     Results(:,1) = x0;
     
     timeStep_in_seconds = Time(2)-Time(1);
@@ -28,7 +28,7 @@ function Results = Integrator_SS(Time, x0, S, p, Sdot, parameters)
         Results(:,i+1) = full(res.xf.');
 
         if(mod(Time(i)/Time(end),0.05)==0)
-                fprintf("Finished: %g [%%]\n",[i/length(Time)*100])
+                fprintf("Finished: %2.0f [%%]\n",[i/length(Time)*100])
         end
 
     end

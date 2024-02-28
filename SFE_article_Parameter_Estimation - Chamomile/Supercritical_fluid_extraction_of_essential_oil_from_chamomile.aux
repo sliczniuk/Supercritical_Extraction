@@ -2,10 +2,13 @@
 \providecommand\hyper@newdestlabel[2]{}
 \providecommand\HyperFirstAtBeginDocument{\AtBeginDocument}
 \HyperFirstAtBeginDocument{\ifx\hyper@anchor\@undefined
+\global\let\oldcontentsline\contentsline
+\gdef\contentsline#1#2#3#4{\oldcontentsline{#1}{#2}{#3}}
 \global\let\oldnewlabel\newlabel
 \gdef\newlabel#1#2{\newlabelxx{#1}#2}
 \gdef\newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
 \AtEndDocument{\ifx\hyper@anchor\@undefined
+\let\contentsline\oldcontentsline
 \let\newlabel\oldnewlabel
 \fi}
 \fi}
@@ -165,6 +168,12 @@
 \newlabel{sub@fig: Correlations_Gamma_Re}{{b}{11}{Linear regression $\Upsilon = f(Re)$\relax }{figure.caption.11}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Parameter estimation results\relax }}{11}{figure.caption.11}\protected@file@percent }
 \newlabel{fig: Correlations}{{10}{11}{Parameter estimation results\relax }{figure.caption.11}{}}
+\newlabel{fig: Correlations_Di_Re_F}{{11a}{12}{Multiple linear regression $D_i^R = f(Re, F)$\relax }{figure.caption.12}{}}
+\newlabel{sub@fig: Correlations_Di_Re_F}{{a}{12}{Multiple linear regression $D_i^R = f(Re, F)$\relax }{figure.caption.12}{}}
+\newlabel{fig: Correlations_Gamma_Re_F}{{11b}{12}{Multiple linear regression $\Upsilon = f(Re, F)$\relax }{figure.caption.12}{}}
+\newlabel{sub@fig: Correlations_Gamma_Re_F}{{b}{12}{Multiple linear regression $\Upsilon = f(Re, F)$\relax }{figure.caption.12}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Parameter estimation results\relax }}{12}{figure.caption.12}\protected@file@percent }
+\newlabel{fig: Correlations_surface}{{11}{12}{Parameter estimation results\relax }{figure.caption.12}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {4}Conclusions}{12}{section.4}\protected@file@percent }
 \newlabel{CH: Conclusion}{{4}{12}{Conclusions}{section.4}{}}
 \bibstyle{unsrtnat}
@@ -209,7 +218,7 @@
 \citation{Pratt2001}
 \citation{Kyle1999}
 \citation{Poling2001}
-\newlabel{appendix}{{4}{14}{Conclusions}{section*.12}{}}
+\newlabel{appendix}{{4}{14}{Conclusions}{section*.13}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {A}Appendix}{14}{appendix.A}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {A.1}Thermodynamic}{14}{subsection.A.1}\protected@file@percent }
 \newlabel{CH: Thermodynamic_details}{{A.1}{14}{Thermodynamic}{subsection.A.1}{}}
@@ -236,8 +245,8 @@
 \newlabel{CH: Gouverning equations}{{A.2}{15}{Governing equations}{subsection.A.2}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {A.2.1}Mass continuity}{15}{subsubsection.A.2.1}\protected@file@percent }
 \newlabel{EQ: Continuity_integral_general}{{45}{15}{Mass continuity}{equation.A.45}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Control volume for deriving the partial differential equation for unsteady, quasi-one-dimensional flow\relax }}{15}{figure.caption.13}\protected@file@percent }
-\newlabel{fig: control_volume}{{11}{15}{Control volume for deriving the partial differential equation for unsteady, quasi-one-dimensional flow\relax }{figure.caption.13}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Control volume for deriving the partial differential equation for unsteady, quasi-one-dimensional flow\relax }}{15}{figure.caption.14}\protected@file@percent }
+\newlabel{fig: control_volume}{{12}{15}{Control volume for deriving the partial differential equation for unsteady, quasi-one-dimensional flow\relax }{figure.caption.14}{}}
 \citation{Reverchon1996}
 \newlabel{EQ: Cont_Simpl_Vol}{{46}{16}{Mass continuity}{equation.A.46}{}}
 \newlabel{EQ: Triple_Prod_Cont_Surf}{{48}{16}{Mass continuity}{equation.A.48}{}}
@@ -249,8 +258,8 @@
 \newlabel{EQ: Simplified_Species_Conservation}{{62}{16}{Transport of a species}{equation.A.62}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {A.2.3}Momentum conservation}{16}{subsubsection.A.2.3}\protected@file@percent }
 \newlabel{EQ: Momentum_Integral_Form}{{63}{16}{Momentum conservation}{equation.A.63}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces The forces in the $z$ direction acting on the control volume\relax }}{17}{figure.caption.14}\protected@file@percent }
-\newlabel{fig: Forces_Momentum_Control_Volume}{{12}{17}{The forces in the $z$ direction acting on the control volume\relax }{figure.caption.14}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces The forces in the $z$ direction acting on the control volume\relax }}{17}{figure.caption.15}\protected@file@percent }
+\newlabel{fig: Forces_Momentum_Control_Volume}{{13}{17}{The forces in the $z$ direction acting on the control volume\relax }{figure.caption.15}{}}
 \newlabel{EQ: Force_Continuity_Monenmtum}{{64}{17}{Momentum conservation}{equation.A.64}{}}
 \newlabel{EQ: Force_Integral_Varying_Cross_Section}{{66}{17}{Momentum conservation}{equation.A.66}{}}
 \newlabel{EQ: Conservative_Momentum}{{69}{17}{Momentum conservation}{equation.A.69}{}}
