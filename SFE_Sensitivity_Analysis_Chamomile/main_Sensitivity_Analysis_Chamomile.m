@@ -24,8 +24,8 @@ bed                     = 0.92;                                              % P
 
 % Set time of the simulation
 PreparationTime         = 0;
-ExtractionTime          = 2000;
-timeStep                = 1;                                                % Minutes
+ExtractionTime          = 300;
+timeStep                = 0.1;                                                % Minutes
 
 simulationTime          = PreparationTime + ExtractionTime;
 
