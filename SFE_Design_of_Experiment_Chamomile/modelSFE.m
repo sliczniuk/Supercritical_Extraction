@@ -21,7 +21,7 @@ function xdot = modelSFE(x, p, mask, dt)
     rho_s         =     parameters{7};     %
     mi            =     parameters{9};
 
-    km            =     parameters{8} ;
+    %km            =     parameters{8} ;
     %Di            =     parameters{44}* 1e-13;      
     %Dx            =     parameters{45}* 1e-12;      
     Dx            =     1e-15;      
@@ -73,8 +73,8 @@ function xdot = modelSFE(x, p, mask, dt)
     Cf_B          =     FLUID(nstages_index);
                                                                                             % If the sensitivity of P and F is consider, then set the input T as equal to the T inside of the extractor
                                                                                             % to avoid different small mismatch of T between the inlet and inside of the extractor
-    %T_0           =     T_u;
-    T_0           = if_else( km==2 , TEMP(1) , T_u );
+    T_0           =     T_u;
+    %T_0           = if_else( km==2 , TEMP(1) , T_u );
     
     T_B           =     TEMP(nstages_index);
 
@@ -86,10 +86,10 @@ function xdot = modelSFE(x, p, mask, dt)
     
     H_0           =     SpecificEnthalpy(T_0, PRESSURE, Z_0, rho_0, parameters );   
 
-    %enthalpy_rho_0 =   ENTHALPY_RHO(1);                                                      % If the sensitivity of F is consider, then set the input h*rho as equal to the h*rho inside of the extractor
+    enthalpy_rho_0 =   rho_0 .* H_0 ;                                                      % If the sensitivity of F is consider, then set the input h*rho as equal to the h*rho inside of the extractor
                                                                                             % to avoid different small mismatch betweenat the inlet and inside of the extractor
 
-    enthalpy_rho_0 = if_else( km==3 , ENTHALPY_RHO(1) , rho_0 .* H_0 );
+    %enthalpy_rho_0 = if_else( km==3 , ENTHALPY_RHO(1) , rho_0 .* H_0 );
     
     %% Derivatives
     dz            = L/nstages_index;

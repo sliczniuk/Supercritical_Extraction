@@ -2,9 +2,25 @@ startup;
 delete(gcp('nocreate'));
 % %p = Pushbullet(pushbullet_api);
 
-%addpath('C:\Dev\casadi-3.6.3-windows64-matlab2018b');
-addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-3.6.3-windows64-matlab2018b');
+addpath('C:\Dev\casadi-3.6.3-windows64-matlab2018b');
+%addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-3.6.3-windows64-matlab2018b');
 import casadi.*
+
+%% Create the solver
+Iteration_max               = 1;                                             % Maximum number of iterations for optimzer
+Time_max                    = 0.1;                                           % Maximum time of optimization in [h]
+
+nlp_opts                    = struct;
+nlp_opts.ipopt.max_iter     = Iteration_max;
+nlp_opts.ipopt.max_cpu_time = Time_max*3600;
+nlp_opts.ipopt.hessian_approximation ='limited-memory';
+%nlp_opts.ipopt.acceptable_tol  = 1e-4;
+%nlp_opts.ipopt.acceptable_iter = 5;
+
+OPT_solver                  = casadi.Opti();
+ocp_opts                    = {'nlp_opts', nlp_opts};
+OPT_solver.solver(             'ipopt'   , nlp_opts)
+
 %%
 Parameters_table        = readtable('Parameters.csv') ;                     % Table with prameters
 Parameters              = num2cell(Parameters_table{:,3});                  % Parameters within the model + (m_max), m_ratio, sigma
@@ -24,8 +40,10 @@ bed                     = 0.92;                                              % P
 
 % Set time of the simulation
 PreparationTime         = 0;
-ExtractionTime          = 300;
-timeStep                = 0.1;                                                % Minutes
+ExtractionTime          = 100;
+timeStep                = 5;                                                % Minutes
+SamplingTime            = 10;                                                % Minutes
+OP_change_Time          = 20;                                               % Minutes
 
 simulationTime          = PreparationTime + ExtractionTime;
 
@@ -34,6 +52,17 @@ Time_in_sec             = (timeStep:timeStep:simulationTime)*60;            % Se
 Time                    = [0 Time_in_sec/60];                               % Minutes
 
 N_Time                  = length(Time_in_sec);
+SAMPLE                  = SamplingTime:SamplingTime:ExtractionTime;
+OP_change               = OP_change_Time:OP_change_Time:ExtractionTime;
+
+% Check if the number of data points is the same for both the dataset and the simulation
+N_Sample                = [];
+for i = 1:numel(SAMPLE)
+    N_Sample            = [N_Sample ; find(round(Time,3) == round(SAMPLE(i))) ];
+end
+if numel(N_Sample) ~= numel(SAMPLE)
+    keyboard
+end
 
 %% Specify parameters to estimate
 nstages                 = Parameters{1};
@@ -112,18 +141,26 @@ m_fluid                 = [zeros(1,numel(nstagesbefore)) m_fluid];
 C0fluid                 = m_fluid * 1e-3 ./ V_fluid';
 
 %% Set operating conditions
-T0homog                 = LabResults(1,which_dataset+1);                    % K
+%T0homog                 = LabResults(1,which_dataset+1);                    % K
+
+T0homog                 = OPT_solver.variable(numel(OP_change))';
+                          OPT_solver.subject_to( 30+273 <= T0homog <= 40+273 );
+
 feedPress               = LabResults(2,which_dataset+1) * 10;               % MPa -> bar
 Flow                    = LabResults(3,which_dataset+1) * 1e-5 ;            % kg/s
 
-Z                       = Compressibility( T0homog, feedPress,         Parameters );
-rho                     = rhoPB_Comp(      T0homog, feedPress, Z,      Parameters );
+%feedTemp                = T0homog   * ones(1,length(Time_in_sec)) + 0 ;     % Kelvin
 
-enthalpy_rho            = rho.*SpecificEnthalpy(T0homog, feedPress, Z, rho, Parameters );
-
-feedTemp                = T0homog   * ones(1,length(Time_in_sec)) + 0 ;     % Kelvin
+feedTemp                = repmat(T0homog,OP_change_Time/timeStep,1);
+feedTemp                = feedTemp(:)';
+feedTemp                = [ feedTemp, T0homog(end)*ones(1,N_Time - numel(feedTemp)) ];    
+T_0                     = feedTemp(1);   
 
 feedPress               = feedPress * ones(1,length(Time_in_sec)) + 0 ;     % Bars
+
+Z                       = Compressibility( T_0, feedPress(1),         Parameters );
+rho                     = rhoPB_Comp(      T_0, feedPress(1), Z,      Parameters );
+enthalpy_rho            = rho.*SpecificEnthalpy(T_0, feedPress(1), Z, rho, Parameters ) ;
 
 feedFlow                = Flow * ones(1,length(Time_in_sec));               % kg/s
 
@@ -140,74 +177,55 @@ x0                      = [ C0fluid'                         ;
                             feedPress(1)                     ;
                             0                                ;
                             ];
+%%
+sigma                   = 0.12;
+which_theta             = [44:46];
+
+% Store symbolic results of the simulation
+Parameters_sym          = MX(cell2mat(Parameters));
+Parameters_sym_t        = OPT_solver.parameter(numel(which_theta));
+Parameters_sym(which_theta)   = Parameters_sym_t;
+
+X                       = MX(Nx,N_Time+1);
+X(:,1)                  = x0;
+% Symbolic integration
+for jj=1:N_Time
+    X(:,jj+1)=F(X(:,jj), [uu(jj,:)'; Parameters_sym] );
+end
+
+Yield_estimate          = X(Nx,[1; N_Sample]);
+data_obs                = diff(Yield_estimate);
+
+S                       = jacobian(data_obs, Parameters_sym_t);
+
+S_norm                  = S' .* abs(cell2mat(Parameters(which_theta))) ./ repmat(data_obs,numel(which_theta) );
+FI                      = (S_norm * S_norm');
+FI                      = FI ./ (sigma^2);  
+
+if numel(FI) ~= numel(which_theta)^2
+    keyboard
+end
+
+D_opt = -log(myDet(FI));
+
+T0 = linspace(30,40,5)+273;
+
+OPT_solver.set_value(Parameters_sym_t, cell2mat(Parameters(which_theta)));
+OPT_solver.minimize(D_opt);
+OPT_solver.set_initial([T0homog], [T0] );
+
+try
+    sol  = OPT_solver.solve();
+    KOUT = full(sol.value([T0homog]))
+catch
+    KOUT = OPT_solver.debug.value([T0homog])
+end
+
+%FF                      = Function('FF',{[T0homog, Parameters_sym_t'] },{D_opt});
 
 %% Set the inital simulation and plot it against the corresponding dataset
-Parameters_init_time   = [uu repmat(cell2mat(Parameters),1,N_Time)'];
-[xx_0]                 = simulateSystem(F, [], x0, Parameters_init_time );
-
-%hold on
-%plot(Time,xx_0(end,:))
-%plot(SAMPLE,data_org,'o')
-%hold off
-
-%% Set sensitivity analysis
-
-name_v = {'T_{in}', 'P'   , 'F'                              };
-name_s = {'c_f'   , 'c_s' , '(h\times\rho)' , 'P_{t-1}', 'y' };
-name_p = {'CF'    , 'CS'  , 'H'             , 'P'      , 'Y' };
-
-My_Font = 14;
-num_levels = 100;
-
-for ii = 1:3
-
-        %% Sensitivities calculations
-        Parameters{8} = ii;
-        Parameters_init_time   = [uu repmat(cell2mat(Parameters),1,N_Time)'];
-        [S,p,Sdot]              = Sensitivity(x, xdot, u, ii );
-
-        % Initial conditions
-        x0_SA                   = [ x0; zeros(length(S)-length(xdot),1) ];
-
-        f_SA = @(S, p) Sdot(S, p, bed_mask);
-        Results = Integrator_SS(Time*60, x0_SA, S, p, Sdot, Parameters_init_time);
-        Res = Results(Nx+1:end,:);
-
-        %% Sensitivities plot 
-        for ind=0:2
-            imagesc(Time, L_nstages, Res(ind*nstages+1:(ind+1)*nstages,:)); cb = colorbar; colormap turbo;
-
-            hold on
-            yline([L_nstages(nstagesbed(end)) L_nstages(nstagesbed(1))],'k--');
-            plot([ExtractionTime-40, ExtractionTime-40], [L_nstages(nstagesbed(end)) L_nstages(nstagesbed(1))], 'k--');
-            text(ExtractionTime-55,[mean([L_nstages(nstagesbed(end)) L_nstages(nstagesbed(1))])],'fixed bed', 'Interpreter', 'latex', 'Color', 'black', 'HorizontalAlignment','center','VerticalAlignment','middle', 'Rotation', 90);
-            hold off
-
-            title(cb, ['$\frac{d',name_s{ind+1},'}{d',name_v{ii},'}$'], 'Interpreter', 'latex'); cb.TickLabelInterpreter = 'latex'; 
-            cb.Label.Rotation = 0; % to rotate the text
-            xlabel('Time [min]'); ylabel('Length [m]'); 
-            set(gca,'FontSize',My_Font)
-
-            exportgraphics(figure(1),[name_p{ind+1},'_',name_v{ii},'.png'], "Resolution",300);
-            close all;
-        end
-
-        %% Sensitivities plot - P and y
-        indx = 0;
-        for ind = 4:-1:3
-            hold on
-            plot(Time, Res(end - indx,:), LineWidth=2); 
-            yline(0, LineWidth=2)
-            xlabel('Time [min]'); ylabel(['$\frac{d ',name_s{ind+1},'}{d',name_v{ii},'}$'])
-            hold off
-            set(gca,'FontSize',My_Font)
-            
-            exportgraphics(figure(1),[name_p{ind+1},'_',name_v{ii},'.png'], "Resolution",300);
-            close all;
-            indx = indx + 1;
-        end        
-end
-%}
+%Parameters_init_time   = [uu repmat(cell2mat(Parameters),1,N_Time)'];
+%[xx_0]                 = simulateSystem(F, [], x0, Parameters_init_time );
 
 
 
