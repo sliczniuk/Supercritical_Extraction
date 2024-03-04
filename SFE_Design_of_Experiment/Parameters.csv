@@ -1,12 +1,12 @@
 Numer,Name,Value,Unit,Description
-1,nstages,100,[-],Number of stages
+1,nstages,200,[-],Number of stages
 2,C0solid,141.8181818,kg/m3,Inital concentration in the solid phase
-3,r,0.075,m,Extractor radius
-4,epsi,0.5026,[-],Void fraction
-5,dp,0.0001,m,Particle diameter
-6,L,0.6,m,Extractor length
-7,rho_s,1256.58,kg/m3,Density of solid particles
-8,km,0,[-],Mass partition coefficient
+3,r,1.98E-02,m,Extractor radius
+4,epsi,0.77,[-],Void fraction
+5,dp,3.00E-04,m,Particle diameter
+6,L,0.165,m,Extractor length
+7,rho_s,1364,kg/m3,Density of solid particles
+8,km,1,[-],Mass partition coefficient
 9,mi,0.5,[-],Particle shape coefficient
 10,Tc,304.1,K,Critical temperature
 11,Pc,73.8,bar,Critical pressure
@@ -42,12 +42,7 @@ Numer,Name,Value,Unit,Description
 41,A7_visc,0.00000652,,
 42,A8_visc,-0.3567559,,
 43,A9_visc,0.03180473,,
-44,D_i1,-0.131,,Correlation for internal diffusion coe: slope
-45,D_i2,-8.337,,Correlation for internal diffusion coe: intercept
-46,D_i3,0.687,,Correlation for decay coe: slope
-47,Decay_inter,-8.723,,Correlation for decay coe: intercept
-48,axial_diff_slope,-0.0293,,Correlation for axial diff coe: slope
-49,axial_diff_inter,31.75,,Correlation for axial diff coe: intercept
-50,,1.00E-13,,
-51,,1.00E-07,,
-52,,1,,
+44,Di1,-8.193,,"Internal diffusion, slope"
+45,Di2,4.403,,"Internal diffusion, intercept"
+46,gamma1,10.397,,"gamma, slope"
+47,gamma2,-0.928,,"gamma, intercept"

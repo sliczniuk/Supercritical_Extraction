@@ -40,10 +40,10 @@ bed                     = 0.92;                                              % P
 
 % Set time of the simulation
 PreparationTime         = 0;
-ExtractionTime          = 600;
+ExtractionTime          = 300;
 timeStep                = 5;                                                % Minutes
-%SamplingTime            = 10;                                                % Minutes
-OP_change_Time          = 20;                                               % Minutes
+SamplingTime            = 10;                                                % Minutes
+OP_change_Time          = 15;                                               % Minutes
 
 simulationTime          = PreparationTime + ExtractionTime;
 
@@ -52,7 +52,7 @@ Time_in_sec             = (timeStep:timeStep:simulationTime)*60;            % Se
 Time                    = [0 Time_in_sec/60];                               % Minutes
 
 N_Time                  = length(Time_in_sec);
-%SAMPLE                  = SamplingTime:SamplingTime:ExtractionTime;
+SAMPLE                  = SamplingTime:SamplingTime:ExtractionTime;
 OP_change               = OP_change_Time:OP_change_Time:ExtractionTime;
 
 % Check if the number of data points is the same for both the dataset and the simulation
@@ -150,7 +150,7 @@ T0homog                 = OPT_solver.variable(numel(OP_change))';
 feedPress               = LabResults(2,which_dataset+1) * 10;               % MPa -> bar
 %Flow                    = LabResults(3,which_dataset+1) * 1e-5 ;            % kg/s
 Flow                    = OPT_solver.variable(numel(OP_change))';
-                          OPT_solver.subject_to( 3.33 <= Flow <= 6.67 );
+                          OPT_solver.subject_to( 3.33e-5 <= Flow <= 6.67e-5 );
 
 %feedTemp                = T0homog   * ones(1,length(Time_in_sec)) + 0 ;     % Kelvin
 
@@ -172,6 +172,10 @@ feedFlow                = [ feedFlow, Flow(end)*ones(1,N_Time - numel(feedFlow))
 
 uu                      = [feedTemp', feedPress', feedFlow'];
 
+MU                      =     Viscosity(T0homog,rho);
+VELOCITY                =     Velocity(Flow, rho, Parameters);
+RE                      =     dp .* rho .* VELOCITY ./ MU;
+
 % Initial conditions
 x0                      = [ C0fluid'                         ;
                             C0solid         * bed_mask       ;
@@ -183,7 +187,7 @@ x0                      = [ C0fluid'                         ;
 %%
 %{\
 sigma                   = 0.12;
-which_theta             = [44:49];
+which_theta             = [44:46];
 
 % Store symbolic results of the simulation
 Parameters_sym          = MX(cell2mat(Parameters));
@@ -213,9 +217,9 @@ end
 D_opt = -log(myDet(FI));
 
 %T0 = linspace(30,40,numel(T0homog))+273;
-T0 = ( (40-30).*rand(1,numel(T0homog)) + 30 ) + 273;
+666666444;
 
-F0 = linspace(3.33,6.67,numel(Flow));
+F0 = linspace(3.33e-5,6.67e-5,numel(Flow));
 
 
 OPT_solver.set_value(Parameters_sym_t, cell2mat(Parameters(which_theta)));

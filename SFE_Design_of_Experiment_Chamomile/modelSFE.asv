@@ -8,7 +8,7 @@ function xdot = modelSFE(x, p, mask, dt)
     %% Load Paramters
     T_u           =     p{1};
     P_u           =     p{2};
-    F_u           =     p{3} * 10^(-5);
+    F_u           =     p{3} * 10^;
 
     parameters    =     p(4:end);
 
