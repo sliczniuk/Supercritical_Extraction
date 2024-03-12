@@ -6,17 +6,17 @@ delete(gcp('nocreate'));
 addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-3.6.3-windows64-matlab2018b');
 import casadi.*
 
-excel_file = 'Chamomile_Di_Gamma_org.xls';
+excel_file = 'Chamomile_Di_Gamma_2.xls';
 rng(69)
 
 %%
 Parameters_table        = readtable('Parameters.csv') ;                     % Table with prameters
 Parameters              = num2cell(Parameters_table{:,3});                  % Parameters within the model + (m_max), m_ratio, sigma
 
-LabResults              = xlsread('wpd_datasets.xlsx');
+LabResults              = xlsread('dataset_2.xlsx');
 
 N_trial                 = 1;
-Iteration_max           = 20;                                              % Maximum number of iterations for optimzer
+Iteration_max           = 15;                                              % Maximum number of iterations for optimzer
 Time_max                = 12;                                               % Maximum time of optimization in [h]
 
 nlp_opts                    = struct;
@@ -39,7 +39,7 @@ DI = [0.701472275, 1.331443055, 2.239307889, 2.711813187, 1.32629228, 1.48550434
 GG = [4.274825704, 2.189390368, 2.552240039, 1.365163176, 2.830760407, 2.573487374, 1.642279591, 1.906200052, 4.287215235, 2.723682117, 3.82240, 3.35589348];
 
 %% Load paramters
-m_total                 = 3.5;
+m_total                 = 3.0;
 
 % Bed geometry
 before                  = 0.04;                                             % Precentage of length before which is empty
@@ -58,7 +58,7 @@ Time                    = [0 Time_in_sec/60];                               % Mi
 
 N_Time                  = length(Time_in_sec);
 
-SAMPLE                  = LabResults(21:34,1);
+SAMPLE                  = LabResults(6:19,1);
 
 % Check if the number of data points is the same for both the dataset and the simulation
 N_Sample                = [];
@@ -144,16 +144,19 @@ m_fluid                 = G(L_bed_after_nstages)*( L_bed_after_nstages(2) ); % L
 m_fluid                 = [zeros(1,numel(nstagesbefore)) m_fluid];
 C0fluid                 = m_fluid * 1e-3 ./ V_fluid';
 
-for jj = 9:12
+for jj = 1
     which_dataset           = jj;
 
-    data_org                = LabResults(21:34,which_dataset+1)';
+    data_org                = LabResults(6:19,which_dataset+1)';
     data_diff               = diff(data_org);
 
+    %noise                  = -0.1 + (0.1 + 0.1) .* rand(1,numel(data_diff));
+    %data_diff              = data_diff + noise;
+
     %% Set operating conditions
-    T0homog                 = LabResults(1,which_dataset+1);                    % K
-    feedPress               = LabResults(2,which_dataset+1) * 10;               % MPa -> bar
-    Flow                    = LabResults(3,which_dataset+1) * 1e-5 ;            % kg/s
+    T0homog                 = LabResults(2,which_dataset+1);                    % K
+    feedPress               = LabResults(3,which_dataset+1) * 10;               % MPa -> bar
+    Flow                    = LabResults(4,which_dataset+1) * 1e-5 ;            % kg/s
 
     Z                       = Compressibility( T0homog, feedPress,         Parameters );
     rho                     = rhoPB_Comp(      T0homog, feedPress, Z,      Parameters );
@@ -176,18 +179,15 @@ for jj = 9:12
                                 0                                ;
                                 ];
 
-    %AA                     = -0.1 + (0.1 + 0.1) .* rand(1,numel(data_diff_norm));
-    %data_diff_norm         = data_diff_norm + AA;
-
     %Parameters_init_time   = [uu repmat(cell2mat(Parameters),1,N_Time)'];
     %[xx_0]                 = simulateSystem(F, [], x0, Parameters_init_time );
     %{\
     %%
-    for ii=1:N_trial
+    %for ii=1:N_trial
         %k0                      = 0.01 + (100-0.01) .* rand(Nk,1);
 
-        k0                      = ones(Nk,1);
-        %k0                      = [0.21, 2];
+        %k0                      = ones(Nk,1);
+        k0                      = [0.72, 2.6];
 
         OPT_solver              = casadi.Opti();
         ocp_opts                = {'nlp_opts', nlp_opts};
@@ -232,31 +232,33 @@ for jj = 9:12
 
         OPT_solver.minimize(J_L);
 
-        OPT_solver.set_initial(k, k0);
+        OPT_solver.set_initial(k, k0)
 
         try
             sol = OPT_solver.solve();
             KOUT = full(sol.value(k));
         catch
-            KOUT = OPT_solver.debug.value(k);
+            KOUT = OPT_solver.debug.value(k)
         end
 
         OBJ = OPT_solver.stats.iterations.obj;
 
-        DATA_K_OUT(:,ii) = KOUT;
-        OBJ_OUT(ii)      = OBJ(end);
+        %DATA_K_OUT(:,ii) = KOUT;
+        %OBJ_OUT(ii)      = OBJ(end);
 
-    end
+%    end
 
     %% Save data
-    %writematrix([OBJ_OUT; DATA_K_OUT],excel_file,'sheet',which_dataset,'Range','A1:Z200');
+    %writematrix([OBJ(end); KOUT],excel_file,'sheet',which_dataset,'Range','A1:Z200');
     %}
+%end
 %% Plots
-%{\
+%{
 for ii=1:N_trial
     %KOUT = DATA_K_OUT(:,ii);
-    %KOUT = [ 0.7, 3.8 ];
-    KOUT = [ DI(jj) , GG(jj) ];
+    KOUT = KOUT;
+    %KOUT = [ 0.72, 2.5 ];
+    %KOUT = [ DI(jj) , GG(jj) ];
     Parameters_opt = Parameters;
     for i=1:numel(which_k)
         Parameters_opt{which_k(i)}  = KOUT(i);
@@ -265,19 +267,19 @@ for ii=1:N_trial
     Parameters_init_time   = [uu repmat(cell2mat(Parameters_opt),1,N_Time)'];
     [xx_0]                 = simulateSystem(F, [], x0, Parameters_init_time );
 
-    %hold on; plot(Time,xx_0(end,:), 'LineWidth',2, 'DisplayName', [num2str(AA(2,jj)),'[K],',num2str(AA(3,jj)),'[MPa]']); plot(SAMPLE, data_org,'ko', 'LineWidth',2, 'HandleVisibility','off' ); hold off
-
-    figure(ii)
+    data_org = cumsum([0 data_diff]);
+    figure(jj)
     subplot(2,1,1)
+    hold on; plot(Time,xx_0(end,:), 'LineWidth',2, 'DisplayName', [num2str(AA(2,jj)),'[K],',num2str(AA(3,jj)),'[MPa]']); plot(SAMPLE, data_org,'ko', 'LineWidth',2, 'HandleVisibility','off' ); hold off
     subplot(2,1,2)
     hold on; plot(SAMPLE(2:end),diff(xx_0(end,N_Sample))); plot(SAMPLE(2:end), data_diff,'o'); hold off
     xlabel('t [min]')
     ylabel('$\frac{dy}{dt}~\left[ \frac{g}{min} \right]$')
-    set(gcf,'PaperOrientation','landscape'); print(figure(1),['Fit_Di_Gamma_dataset_',num2str(jj),'_org.pdf'],'-dpdf','-bestfit')
-    close all
+    %set(gcf,'PaperOrientation','landscape'); print(figure(1),['Fit_Di_Gamma_dataset_',num2str(jj),'_org.pdf'],'-dpdf','-bestfit')
+    %close all
     
 end
-%end
+end
 %xlabel('t [min]')
 %ylabel('y [g]')
 

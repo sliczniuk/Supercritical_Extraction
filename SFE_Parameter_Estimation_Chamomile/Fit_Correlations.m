@@ -3,8 +3,8 @@ delete(gcp('nocreate'));
 
 %%
 AA = xlsread('Regression.xlsx');
-DI = [0.701472275, 1.331443055, 2.239307889, 2.711813187, 1.32629228, 1.485504345, 1.73827467, 2.59502961, 0.48656241, 1.363499511, 0.72227, 0.756214019];
-GG = [4.274825704, 2.189390368, 2.552240039, 1.365163176, 2.830760407, 2.573487374, 1.642279591, 1.906200052, 4.287215235, 2.723682117, 3.82240, 3.35589348];
+DI = [0.71383013	1.076801997	2.179470155	2.475532632	1.390707877	1.336111172	1.882954204	2.457886055	0.564935512	1.542106938	0.835725102	0.87349666];
+GG = [4.229739602	3.091520556	2.359538225	1.132795818	2.204975712	2.739220425	1.868538631	1.69935869	3.452308202	1.995905641	3.012676539	2.596460037];
 RE = [0.4632, 0.3783, 0.3029, 0.2619, 0.3579, 0.3140, 0.2635, 0.2323, 0.1787, 0.1160, 0.1889, 0.1512];
 TT = [313, 313, 313, 313, 303, 303, 303, 303, 303, 303, 313, 313];
 Tr = TT ./ 304;
@@ -28,6 +28,7 @@ xtest  = linspace(0.1,0.5);
 ytest1 = polyval(p1,xtest);
 ytest2 = polyval(p2,xtest);
 
+%{\
 hold on
 plt1 = plot(x1,y1,'ko', 'LineWidth',2);
 plt2 = plot(x2,y2,'kd', 'LineWidth',2);
@@ -39,10 +40,10 @@ hold off
 %text(0.3, 4.0, sprintf('~$~\\Upsilon = %.3f \\cdot + Re %.3f$ \n $R^2=%.3f$',[p1, stuff1.rsquare]))
 %text(0.15, 6.0, sprintf('~$~ \\Upsilon = %.3f \\cdot Re + %.3f$ \n $R^2=%.3f$',[p2, stuff2.rsquare]))
 
-text(0.35, 2.0, sprintf('$~ D_i^R = %.3f \\cdot Re + %.3f$ \n $R^2=%.3f$',[p1, stuff1.rsquare]))
-text(0.15, -1.0, sprintf('$~ D_i^R = %.3f \\cdot Re + %.3f$ \n $R^2=%.3f$',[p2, stuff2.rsquare]))
+text(0.35, 2.0, sprintf('$D_i^R = %.3f \\cdot Re + %.3f$ \n $R^2=~~%.3f$',[p1, stuff1.rsquare]))
+text(0.15, -1.0, sprintf('$D_i^R = %.3f \\cdot Re + %.3f$ \n $R^2=~~%.3f$',[p2, stuff2.rsquare]))
 
-legend([plt1(1),plt2(1)],'$3.33\times 10^{-5}[kg/s]$','$6.67\times 10^{-5}[kg/s]$','Location','best');
+legend([plt1(1),plt2(1)],'$6.67\times 10^{-5}[kg/s]$','$3.33\times 10^{-5}[kg/s]$','Location','best');
 legend box off
 
 ylabel('$D_i^R \times 10^{-13} [m^2/s]$')
@@ -50,35 +51,36 @@ ylabel('$D_i^R \times 10^{-13} [m^2/s]$')
 xlabel('Re [-]')
 set(gca,'FontSize',12)
 
-exportgraphics(figure(1), ['Correlation_Di_Re.png'], "Resolution",300);
-close all
-
-%% gamma function plot
-%{\
-C0 = 1;
-XX = C0:-0.01:0;
-
-%subplot(3,1,3)
-for ii=1:12
-
-    %RE_temp = sort(RE, 'descend');
-    %jj = find(RE_temp(ii)==RE);
-
-    f = @(x) (DI(ii) * 1e-13) * exp( -GG(ii) * (1-(x/(C0))) );    
-    hold on
-    %plot(XX, f(XX) ,'LineWidth', 2, 'DisplayName',['Re = ', num2str(round(RE(ii),2)), ', $\rho$ =', num2str(RHO(ii)), '$[kg/m^3]$'])
-    plot(XX, f(XX) ,'LineWidth', 5, 'DisplayName', ['$\delta_H$ = ', num2str(round(delta(ii),2))])
-    hold off
-    text(XX(1)+0.01, f(XX(1)), ['$\delta_H$ = ', num2str(round(delta(ii),2)),'$[MPa^{1/2}]$, Re = ', num2str(round(RE(ii),2)), '[-]'], 'FontSize',28 );
-end
-
-%legend('Location','northwest')
-%legend box off
-
-xlim([0 1.6])
-ylabel('$D_i^R \gamma(\Upsilon, C_s) [m^2/s] $')
-xlabel('Normalized $C_s [kg/m^3]$')
-set(gca,'FontSize',42)
-%exportgraphics(figure(1), ['Gamma_function.png'], "Resolution",300);
+%exportgraphics(figure(1), ['Correlation_Di_Re.png'], "Resolution",300);
+%exportgraphics(figure(1), ['Correlation_Gamma_Re.png'], "Resolution",300);
 %close all
 %}
+
+%% Surface
+
+[sf, ml] = fit([RE', FF'],GG','poly11');
+
+% Create figure
+figure1 = figure;
+% Create axes
+axes1 = axes('Parent',figure1);
+
+plt = plot(sf, [RE', FF'],GG');
+
+% Create zlabel
+%zlabel({'$Di \times 10^{-13} [m/s^2]$'});
+zlabel({'$\Upsilon [-]$'});
+
+% Create ylabel
+ylabel({'$F \times 10^{-5}[kg/s]$'}, 'Position',[-0.1 3.5 2]);
+
+% Create xlabel
+xlabel({'Re[-]'}, 'Position',[0.15 1.0 2]);
+
+%text(-0.1, 5, 8.5, sprintf('$D_i^R = %.3f  %.3f \\cdot Re + %.3f \\cdot F \\times 10^{5} $ \n $R^2=~%.3f$',[coeffvalues(sf), ml.rsquare]))
+text(-0.1, 5, 14.5, sprintf('$~~\\Upsilon = %.3f + %.3f \\cdot Re %.3f \\cdot F \\times 10^{5} $ \n $R^2=%.3f$',[coeffvalues(sf), ml.rsquare]))
+
+%set(gca,'FontSize',12)
+
+set(plt, 'EdgeAlpha',0, 'FaceAlpha',0.5)
+%exportgraphics(figure(1), ['Di_Re_F.png'], "Resolution",300);

@@ -1,14 +1,14 @@
 startup;
 delete(gcp('nocreate'));
 
-addpath('C:\Dev\casadi-3.6.3-windows64-matlab2018b');
-%addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-3.6.3-windows64-matlab2018b');
+%addpath('C:\Dev\casadi-3.6.3-windows64-matlab2018b');
+addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-3.6.3-windows64-matlab2018b');
 import casadi.*
 
 %%
 AA = xlsread('Regression.xlsx');
-DI = [0.701472275, 1.331443055, 2.239307889, 2.711813187, 1.32629228, 1.485504345, 1.73827467, 2.59502961, 0.48656241, 1.363499511, 0.72227, 0.756214019];
-GG = [4.274825704, 2.189390368, 2.552240039, 1.365163176, 2.830760407, 2.573487374, 1.642279591, 1.906200052, 4.287215235, 2.723682117, 3.82240, 3.35589348];
+DI = [0.71383013	1.076801997	2.179470155	2.475532632	1.390707877	1.336111172	1.882954204	2.457886055	0.564935512	1.542106938	0.835725102	0.87349666];
+GG = [4.229739602	3.091520556	2.359538225	1.132795818	2.204975712	2.739220425	1.868538631	1.69935869	3.452308202	1.995905641	3.012676539	2.596460037];
 RE = [0.4632, 0.3783, 0.3029, 0.2619, 0.3579, 0.3140, 0.2635, 0.2323, 0.1787, 0.1160, 0.1889, 0.1512];
 TT = [313, 313, 313, 313, 303, 303, 303, 303, 303, 303, 313, 313];
 Tr = TT ./ 304;
@@ -18,12 +18,12 @@ RHO= [630, 691, 793, 840, 772, 802, 856, 891, 772, 891, 691, 793];
 Parameters_table        = readtable('Parameters.csv') ;                     % Table with prameters
 Parameters              = num2cell(Parameters_table{:,3});                  % Parameters within the model + (m_max), m_ratio, sigma
 
-LabResults              = xlsread('wpd_datasets.xlsx');
+LabResults              = xlsread('dataset_2.xlsx');
 
 which_k                 = [44, 46];
 
 %% Load paramters
-m_total                 = 3.5;
+m_total                 = 3.0;
 
 % Bed geometry
 before                  = 0.04;                                             % Precentage of length before which is empty
@@ -42,7 +42,7 @@ Time                    = [0 Time_in_sec/60];                               % Mi
 
 N_Time                  = length(Time_in_sec);
 
-SAMPLE                  = LabResults(21:34,1);
+SAMPLE                  = LabResults(6:19,1);
 
 % Check if the number of data points is the same for both the dataset and the simulation
 N_Sample                = [];
@@ -131,13 +131,13 @@ C0fluid                 = m_fluid * 1e-3 ./ V_fluid';
 for jj = 9:12
     which_dataset           = jj;
 
-    data_org                = LabResults(21:34,which_dataset+1)';
+    data_org                = LabResults(6:19,which_dataset+1)';
     data_diff               = diff(data_org);
 
     %% Set operating conditions
-    T0homog                 = LabResults(1,which_dataset+1);                    % K
-    feedPress               = LabResults(2,which_dataset+1) * 10;               % MPa -> bar
-    Flow                    = LabResults(3,which_dataset+1) * 1e-5 ;            % kg/s
+    T0homog                 = LabResults(2,which_dataset+1);                    % K
+    feedPress               = LabResults(3,which_dataset+1) * 10;               % MPa -> bar
+    Flow                    = LabResults(4,which_dataset+1) * 1e-5 ;            % kg/s
 
     Z                       = Compressibility( T0homog, feedPress,         Parameters );
     rho                     = rhoPB_Comp(      T0homog, feedPress, Z,      Parameters );
@@ -162,7 +162,10 @@ for jj = 9:12
 
     %KOUT = DATA_K_OUT(:,ii);
     %KOUT = [ 0.7, 3.8 ];
-    KOUT = [ DI(jj) , GG(jj) ];
+    D =  0.190 -  8.188 * RE(jj) + 0.620  * feedFlow(1) * 10^5;
+    G =  3.158 + 11.922 * RE(jj) - 0.6868 * feedFlow(1) * 10^5;
+    %KOUT = [ DI(jj) , GG(jj) ];
+    KOUT = [ D , G ];
     Parameters_opt = Parameters;
     for i=1:numel(which_k)
         Parameters_opt{which_k(i)}  = KOUT(i);
@@ -182,9 +185,14 @@ for jj = 9:12
     set(gca,'FontSize',12)
 end
 
-legend boxoff 
-lgd = legend('Location','northoutside', 'Orientation','horizontal');
-lgd.FontSize = 10;
+ylim([0 3])
 
-%exportgraphics(figure(1), ['Fit_Di_Gamma_9_12.png'], "Resolution",300);
-%close all
+legend1 = legend('show');
+set(legend1,...
+    'box','off',...
+    'Position',[-0.0100674570863917 0.938730158389562 1.01721031422925 0.0476190464837211],...
+    'Orientation','horizontal',...
+    'FontSize',10);
+
+exportgraphics(figure(1), ['Fit_Di_Gamma_9_12_correlation.png'], "Resolution",300);
+close all
