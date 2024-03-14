@@ -263,18 +263,28 @@
 		\end{align}	}
   
 		\subsubsection{Initial and boundary conditions} 
-		It is assumed that the solvent is free of solute at the entrance of the extractor and that all the solid particles have the same initial solute content ${\color{black}c_{s0}}$. As the residence time is much shorter than the sampling time, the initial state estimate for the concentration of the solute in the fluid phase would be not reliable. Considering that it is assumed that the $c_{f0}=0$. Moreover, it is considered that the extractor is isothermal and described by ${\color{black}h_0}$. Therefore, the initial conditions employed in the simulation are:
+		It is assumed that the solvent is free of solute at the entrance of the extractor and that all the solid particles have the same initial solute content ${\color{black}c_{s0}}$. As the residence time is much shorter than the sampling time, the initial state estimate for the concentration of the solute in the fluid phase would be not reliable. Considering that it is assumed that the $c_{f0}=0$. Moreover, it is considered that the extractor is isothermal %and described by ${\color{black}h_0}$. 
+		Therefore, the initial and boundary conditions employed in the simulation are:
 			
+		\begin{comment}
 		{\footnotesize
 				\begin{align*}
 					&{\color{black}c_f}(t = 0, z) = 0 & {\color{black}c_s}(t = 0, z) = {\color{black}c_{s0}} & &{\color{black}h}(t = 0, z) = {\color{black}h_0} \\
 					&\frac{\partial c_f(t,z=L)}{\partial x} = 0 & {\color{black}c_s}(t = 0, z) = {\color{black}c_{s0}} & &\frac{\partial h(t,z=L)}{\partial x} = 0
 				\end{align*} }
+		\end{comment}
+			
+			{\footnotesize
+				\begin{align*}
+					&{\color{black}c_f}(t = 0, z) = 0 & {\color{black}c_s}(t = 0, z) = {\color{black}c_{s0}} &{c_f}(t, z=0) = 0 \\
+					&\frac{\partial c_f(t,z=0,L)}{\partial x} = 0 & c_s(t, z=0,L) = {\color{black}c_{s0}} &y(0) = 0
+			\end{align*} }
 			
 		\subsubsection{Discretization methods}
 		
 		The method of lines is used to transform the process model equations into a set of ODEs denoted as ${\color{black}G}({\color{black}x}(t);{\color{black}\Theta})$. The partial derivatives in $z$-direction are computed using a first-order and second-order finite difference approximation. The backward finite difference is used to approximate the first-order derivative, while the central difference scheme is used to approximate the second-order derivative. The length of the fixed bed is divided into $N_z$ equally distributed points in $z$-direction. The state-space model after the discretization is represented by $\dot{{\color{black}x}}(t)$.
 		
+		\begin{comment}
 		{\footnotesize
 			\begin{align*} \label{discretization}
 				\dot{{\color{black}x}}(t) &= \cfrac{d {\color{black}x}(t)}{d t} = 
@@ -314,8 +324,41 @@
 						{\color{black}G_{3N_z+2}} \left( {\color{black}c_f}(t),{\color{black}c_s}(t),{\color{black}h}(t); {\color{black}\Theta} \right) 
 				\end{bmatrix}}_{{\color{black}G} \left( {\color{black}x}(t); {\color{black}\Theta} \right)} 
 		\end{align*} }
+	\end{comment}
 		
-		where ${\color{black}x} \in \mathbb{R}^{N_x = 3N_z} $ and ${\color{black}\Theta} \in \mathbb{R}^{N_\Theta =  N_{\theta} + N_u } $, $N_{\theta}$ is the number of parameters, $N_{u}$ is the number of control variables.
+		{\footnotesize
+			\begin{align*} \label{discretization}
+				\dot{{\color{black}x}}(t) &= \cfrac{d {\color{black}x}(t)}{d t} = 
+				\begin{bmatrix}
+					\cfrac{d {\color{black}c_{f,1}}(t)}{d t} 	  \\
+					\vdots					  \\
+					\cfrac{d {\color{black}c_{f,N_z}}(t)}{d t} \\
+					\\ \hline \\
+					\cfrac{d {\color{black}c_{s,1}}(t)}{d t} 	  \\
+					\vdots					  \\
+					\cfrac{d {\color{black}c_{s,N_z}}(t)}{d t} \\
+					%\\ \hline \\
+					%\cfrac{d {\color{black}P}(t)}{d t} \\
+					\\ \hline \\
+					\cfrac{d {\color{black}y}(t)}{d t}
+				\end{bmatrix}
+				=
+				\underbrace{\begin{bmatrix}
+						{\color{black}G_1} \left( {\color{black}c_f}(t),{\color{black}c_s}(t); {\color{black}\Theta} \right)\\ 
+						\vdots\\ 
+						{\color{black}G_{N_z}} \left( {\color{black}c_f}(t),{\color{black}c_s}(t); {\color{black}\Theta} \right)\\ 
+						\\ \hline \\ \\
+						{\color{black}G_{N_z+1}} \left( {\color{black}c_f}(t),{\color{black}c_s}(t); {\color{black}\Theta} \right)\\ 
+						\vdots\\
+						{\color{black}G_{2N_z}} \left( {\color{black}c}(t),{\color{black}c_s}(t); {\color{black}\Theta} \right)\\ 
+						%\\ \\ \hline \\ 
+						%{\color{black}G_{2N_z+1}} \left( {\color{black}c_f}(t),{\color{black}c_s}(t); {\color{black}\Theta} \right) \\
+						\\ \\ \hline \\
+						{\color{black}G_{2N_z+2}} \left( {\color{black}c_f}(t),{\color{black}c_s}(t); {\color{black}\Theta} \right) 
+				\end{bmatrix}}_{{\color{black}G} \left( {\color{black}x}(t); {\color{black}\Theta} \right)} 
+		\end{align*} }
+		
+		where ${\color{black}x} \in \mathbb{R}^{N_x = 2N_z+1} $ and ${\color{black}\Theta} \in \mathbb{R}^{N_\Theta =  N_{\theta} + N_u } $, $N_{\theta}$ is the number of parameters, $N_{u}$ is the number of control variables.
 		
 		As presented in Appendix \ref{CH: Gouverning equations}, all the governing can be written in the integral form using the Divergence Theorem. The integral equation states that the change rate of the integral of any quantity over an arbitrary control volume is given by the flux through the boundary of the control volume, with being the outer surface normal through the boundary. That quantity is neither produced nor consumed inside the control volume and is conserved. For a derivative to be conservative, it must form a telescoping series. In other words, after the addition of all terms coming from the discretization over a grid, only the boundary terms should remain, and the artificial interior points should cancel out. To ensure mass conservation, discretization is applied to the conservative form of the process model.
 	
@@ -350,8 +393,8 @@
 		%Function ${\color{black}\bar{\phi}}$ are transformed to a corresponding set of $N_z$ discretized equations denoted as ${\color{black}G}$.
 		%The state-space model ${\color{black}\chi}(t,z)$ after the discretization is represented by $\dot{{\color{black}x}}(t)$.
 			
-		In a state-space sense, the state variables of the system are the local concentrations of solute in the fluid and solid phases (${\color{black}c_f}(t,z)$ and ${\color{black}c_s}(t,z)$, respectively), and the local enthalpy of the pseudo-homogeneous phase (${\color{black}h}(t,z)$). The controllable input variables are the mass flow rate and temperature of the solvent in the feed and the pressure in the extractor. Additionally, the pressure change is augmented with the state-space and denoted as ${\color{black}P}(t)$. 
-		The system state-space is extended by assuming that extraction yield can be modelled as a function of a known initial mass of solute in the solid phase, and it can be measured after the separator (${\color{black}Y}(t)$). The system is controllable by manipulating the flow rate and temperature (enthalpy) of $CO_2$ in the feed and the pressure in the extractor.
+		%In a state-space sense, the state variables of the system are the local concentrations of solute in the fluid and solid phases (${\color{black}c_f}(t,z)$ and ${\color{black}c_s}(t,z)$, respectively), and the local enthalpy of the pseudo-homogeneous phase (${\color{black}h}(t,z)$). The controllable input variables are the mass flow rate and temperature of the solvent in the feed and the pressure in the extractor. Additionally, the pressure change is augmented with the state-space and denoted as ${\color{black}P}(t)$. 
+		%The system state-space is extended by assuming that extraction yield can be modelled as a function of a known initial mass of solute in the solid phase, and it can be measured after the separator (${\color{black}Y}(t)$). The system is controllable by manipulating the flow rate and temperature (enthalpy) of $CO_2$ in the feed and the pressure in the extractor.
 						
 %			To ensure the stability of the convergence while solving the partial differential equations, the Courant–Friedrichs–Lewy condition (given by Equation \ref{EQ:CFL}) was applied. Based on the discretization step and the velocity, the Courant–Friedrichs–Lewy condition can be used to find.
 %			

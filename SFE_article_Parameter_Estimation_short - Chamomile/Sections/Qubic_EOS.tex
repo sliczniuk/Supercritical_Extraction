@@ -47,7 +47,7 @@
 				van der Waals  & - & - \\
 				Redlich and Kwong & $\frac{1}{\sqrt{T_r}}$ & - \\
 				Soave & $\left[ 1 + f(\omega) \left( 1-\sqrt{T_r} \right) \right]^2$ & 0.48+1.574$\omega$-0.176$\omega^2$\\
-				Peng and Robinson \cite{Peng1976} & $\left[ 1 + f(\omega) \left( 1-\sqrt{T_r} \right) \right]^2$ & 0.37464+1.54226$\omega$-0.26992$\omega^2$ \\
+				Peng and Robinson (\citet{Peng1976}) & $\left[ 1 + f(\omega) \left( 1-\sqrt{T_r} \right) \right]^2$ & 0.37464+1.54226$\omega$-0.26992$\omega^2$ \\
 				\hline
 		\end{tabular} }
 		\caption{Parameters for Popular Cubic EoS}
@@ -64,7 +64,7 @@
 
 	where $A=\frac{\Phi P}{R^2T^2}$ and $B=\frac{bP}{RT}$.
 	
-	If the Peng-Robinson equation of state [\cite{Peng1976}] is used, the polynomial equation becomes
+	If the Peng-Robinson equation of state (\citet{Peng1976}) is used, the polynomial equation becomes
 	
 	{\footnotesize
 	\begin{equation}
@@ -80,6 +80,7 @@
 	
 	The density of the fluid can be calculated from the real gas equation $\rho = \frac{P}{RTZ} \frac{1}{m_{CO2}}$. The local temperature can be obtain from the time evolution of governing equations, the pressure is consider to be constant along the system to be a know at any time. The local compressibility factor can be also computed if the local temperature and pressure are know. To obtain the density in terms of mass, molar mass of the solvent is taken into account.
 	
+	\begin{comment}
 	\subsubsection{Heat capacity of the fluid phase} \label{subsubsec: Fluid heat capacity}
 	%	\noindent\textbf{Heat capacity of the fluid phase} \\
 	
@@ -167,5 +168,7 @@
 			h-h^{\mathrm {id} }=RT_c\left[T_{r}(Z-1)-2.078(1+\kappa ){\sqrt {\alpha }}\ln \left({\frac {Z+2.414B}{Z-0.414B}}\right)\right]
 		\end{equation}
 	}
+	
+	\end{comment}
 	
 \end{document}
