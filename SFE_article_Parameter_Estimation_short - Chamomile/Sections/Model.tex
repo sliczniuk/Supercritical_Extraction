@@ -18,15 +18,15 @@
 	
 	%{\color{black}assign a color of v and u}
 	
-	Assuming that the mass flow rate is constant in time, the temporal derivative becomes zero, and the spatial derivative can be integrated along ${\color{black}z}$ as
+	Assuming that the mass flow rate is constant in time, the temporal derivative becomes the mass flux F, and the spatial derivative can be integrated along ${\color{black}z}$ as
 	
 	{\footnotesize
 		\begin{equation}
-			\int \frac{\partial ({\color{black}\rho_f}({\color{black}T}(t,z),{\color{black}P}(t)) v {\color{black}A \phi}(z) )}{\partial {\color{black}z}} dz = 0 \rightarrow {\color{black}F}={\color{black}\rho_f}({\color{black}T}(t,z),{\color{black}P}(t)) v {\color{black}A\phi}(z)
+			\int \frac{\partial ({\color{black}\rho_f}({\color{black}T}(t,z),{\color{black}P}(t)) v {\color{black}A \phi}(z) )}{\partial {\color{black}z}} dz = F \rightarrow {\color{black}F}={\color{black}\rho_f}({\color{black}T}(t,z),{\color{black}P}(t)) v {\color{black}A\phi}(z)
 		\end{equation}
 	}
 	
-	Here, ${\color{black}F}$ is a constant obtained from the integration and is understood as the mass flux per unit area, which is assumed to be constant along ${\color{black}z}$. To simplify the dynamics of the system, it is assumed that ${\color{black}F}={\color{black}F}(t)$ is a control variable and affects the whole system instantaneously. This assumption allows for finding the velocity profile that satisfies mass continuity based on ${\color{black}F}(t)$, ${\color{black}\phi}(z)$, and ${\color{black}\rho_f}({\color{black}T}(t,z),{\color{black}P}(t))$.
+	To simplify the dynamics of the system, it is assumed that ${\color{black}F}={\color{black}F}(t)$ is a control variable and affects the whole system instantaneously. This assumption allows for finding the velocity profile that satisfies mass continuity based on ${\color{black}F}(t)$, ${\color{black}\phi}(z)$, and ${\color{black}\rho_f}({\color{black}T}(t,z),{\color{black}P}(t))$.
 	
 	{\footnotesize
 	\begin{equation}
@@ -34,7 +34,7 @@
 	\end{equation}
 	}
 	
-	The fluid density ${\color{black}\rho_f}({\color{black}T}(t,z),{\color{black}P}(t))$ can be obtained from an equation of state if temperature and the thermodynamic pressure (assumed ${\color{black}P}(t)$ to be constant along ${\color{black}z}$ due to the low-Mach number condition) are known. The variation in density may be caused by the fluid accumulation in the system (equivalent to pressure change), which occurs instantaneously along ${\color{black}z}$ or by a temperature change. 
+	The fluid density ${\color{black}\rho_f}({\color{black}T}(t,z),{\color{black}P}(t))$ can be obtained from an equation of state (Appendix \ref{CH: EOS}) if temperature and the thermodynamic pressure (assumed ${\color{black}P}(t)$ to be constant along ${\color{black}z}$ due to the low-Mach number condition) are known. The variation in density may be caused by the fluid accumulation in the system (equivalent to pressure change), which occurs instantaneously along ${\color{black}z}$ or by a temperature change. 
 	
 	Analogously, the superficial velocity might be introduced to the model and defined as
 	
@@ -46,7 +46,7 @@
 	
 	\subsubsection{Mass balance for the fluid phase} \label{CH: Mass_balance_fluid}
 	
-	The comprehensive derivation of the mass balance equation for the fluid phase is detailed in Appendix \ref{CH: Gouverning equations}. This equation accounts for the movement of the pseudo-homogeneous fluid phase (Equation \ref{Model_fluid}), which is constrained to the axial direction due to the quasi-one-dimensional approach that considers changes in the void fraction. It is also predicated on the assumption that the thermodynamic pressure remains constant throughout the device, as illustrated by Equation \ref{EQ: Pressure_Velocity}. The analysis further simplifies the flow dynamics by disregarding the boundary layer near the extractor's inner wall, leading to a uniform velocity profile across any cross-section perpendicular to the axial direction. Given that the solute concentration in the solvent is negligible, the fluid phase is described as pseudo-homogeneous, with properties identical to the solvent itself. The mass balance equation thus encompasses convection, diffusion, and kinetic terms to accurately represent the fluid phase's behaviour.
+	The comprehensive derivation of the mass balance equation for the fluid phase is detailed in Appendix \ref{CH: Gouverning equations}. This equation accounts for the movement of the pseudo-homogeneous fluid phase (Equation \ref{Model_fluid}), which is constrained to the axial direction due to the quasi-one-dimensional approach that considers changes in the void fraction. It is also predicated on the assumption that the thermodynamic pressure remains constant throughout the device, as illustrated by Equation \ref{EQ: Pressure_Velocity}. The analysis further simplifies the flow dynamics by disregarding the boundary layer near the extractor's inner wall, leading to a uniform velocity profile across any cross-section perpendicular to the axial direction. Given that the solute concentration in the solvent is negligible, the fluid phase is described as pseudo-homogeneous, with properties identical to the solvent itself. Thus, The mass balance equation encompasses convection, diffusion, and kinetic terms to represent the fluid phase's behaviour accurately.
 	
 	{\footnotesize
 		\begin{equation}
@@ -250,7 +250,7 @@
   		
 		\subsubsection{Extraction yield} \label{CH: Yield}
 			
-		The efficiency of the process (the yield) is calculated according to Equation \ref{Model_measurment_1} as presented by \citet{Sovova1994a}. The measurement equation evaluate the mass of solute at the outlet of the extraction unit and sums it. The integral form of the measurement equation (\ref{Model_measurment_1}) can be transformed into the differential form (\ref{Model_measurment_2}) and augmented with the process model.
+		The efficiency of the process (the yield) is calculated according to Equation \ref{Model_measurment_1} as presented by \citet{Sovova1994a}. The measurement equation evaluates the solute's mass at the extraction unit's outlet and sums it up. The integral form of the measurement equation (\ref{Model_measurment_1}) can be transformed into the differential form (\ref{Model_measurment_2}) and augmented with the process model.
 			
 		{\footnotesize
 			\begin{align} 
@@ -263,7 +263,7 @@
 		\end{align}	}
   
 		\subsubsection{Initial and boundary conditions} 
-		It is assumed that the solvent is free of solute at the entrance of the extractor and that all the solid particles have the same initial solute content ${\color{black}c_{s0}}$. As the residence time is much shorter than the sampling time, the initial state estimate for the concentration of the solute in the fluid phase would be not reliable. Considering that it is assumed that the $c_{f0}=0$. Moreover, it is considered that the extractor is isothermal %and described by ${\color{black}h_0}$. 
+		It is assumed that the solvent is free of solute at the entrance of the extractor and that all the solid particles have the same initial solute content ${\color{black}c_{s0}}$. As the residence time is much shorter than the sampling time, the initial state estimate for the concentration of the solute in the fluid phase would be not reliable. Considering that it is assumed that the $c_{f0}=0$. Moreover, it is considered that the extractor is isothermal. %and described by ${\color{black}h_0}$. 
 		Therefore, the initial and boundary conditions employed in the simulation are:
 			
 		\begin{comment}
@@ -276,8 +276,8 @@
 			
 			{\footnotesize
 				\begin{align*}
-					&{\color{black}c_f}(t = 0, z) = 0 & {\color{black}c_s}(t = 0, z) = {\color{black}c_{s0}} &{c_f}(t, z=0) = 0 \\
-					&\frac{\partial c_f(t,z=0,L)}{\partial x} = 0 & c_s(t, z=0,L) = {\color{black}c_{s0}} &y(0) = 0
+					&{\color{black}c_f}(t = 0, z) = 0 && c_s(t = 0, z) = {\color{black}c_{s0}} && {c_f}(t, z=0) = 0 \\
+					&\frac{\partial c_f(t,z=L)}{\partial x} = 0 && c_s(t, z=\{0,L\}) = 0 && y(0) = 0
 			\end{align*} }
 			
 		\subsubsection{Discretization methods}
@@ -360,7 +360,7 @@
 		
 		where ${\color{black}x} \in \mathbb{R}^{N_x = 2N_z+1} $ and ${\color{black}\Theta} \in \mathbb{R}^{N_\Theta =  N_{\theta} + N_u } $, $N_{\theta}$ is the number of parameters, $N_{u}$ is the number of control variables.
 		
-		As presented in Appendix \ref{CH: Gouverning equations}, all the governing can be written in the integral form using the Divergence Theorem. The integral equation states that the change rate of the integral of any quantity over an arbitrary control volume is given by the flux through the boundary of the control volume, with being the outer surface normal through the boundary. That quantity is neither produced nor consumed inside the control volume and is conserved. For a derivative to be conservative, it must form a telescoping series. In other words, after the addition of all terms coming from the discretization over a grid, only the boundary terms should remain, and the artificial interior points should cancel out. To ensure mass conservation, discretization is applied to the conservative form of the process model.
+		As presented in Appendix \ref{CH: Gouverning equations}, all the governing can be written in the integral form using the Divergence Theorem. The integral equation states that the change rate of the integral of any quantity over an arbitrary control volume is given by the flux through the boundary of the control volume, with being the outer surface normal through the boundary. That quantity is conserved and neither produced nor consumed inside the control volume. For a derivative to be conservative, it must form a telescoping series. In other words, after the addition of all terms coming from the discretization over a grid, only the boundary terms should remain, and the artificial interior points should cancel out. Discretization is applied to the conservative form of the process model to ensure mass conservation.
 	
 		\iffalse
 		\subsubsection{State-space representation} \label{CH: State_space}

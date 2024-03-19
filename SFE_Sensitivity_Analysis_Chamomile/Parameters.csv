@@ -42,7 +42,9 @@ Numer,Name,Value,Unit,Description
 41,A7_visc,0.00000652,,
 42,A8_visc,-0.3567559,,
 43,A9_visc,0.03180473,,
-44,Di1,-8.193,,"Internal diffusion, slope"
-45,Di2,4.403,,"Internal diffusion, intercept"
-46,gamma1,10.397,,"gamma, slope"
-47,gamma2,-0.928,,"gamma, intercept"
+44,Di1,0.19,,"Internal diffusion, slope"
+45,Di2,8.188,,"Internal diffusion, intercept"
+46,Di3,0.62,,
+47,gamma1,3.158,,"gamma, slope"
+48,gamma2,11.922,,"gamma, intercept"
+49,gamma3,0.6868,,

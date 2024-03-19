@@ -25,7 +25,7 @@ bed                     = 0.92;                                              % P
 % Set time of the simulation
 PreparationTime         = 0;
 ExtractionTime          = 300;
-timeStep                = 0.1;                                                % Minutes
+timeStep                = 0.5;                                                % Minutes
 
 simulationTime          = PreparationTime + ExtractionTime;
 
@@ -112,9 +112,9 @@ m_fluid                 = [zeros(1,numel(nstagesbefore)) m_fluid];
 C0fluid                 = m_fluid * 1e-3 ./ V_fluid';
 
 %% Set operating conditions
-T0homog                 = LabResults(1,which_dataset+1);                    % K
-feedPress               = LabResults(2,which_dataset+1) * 10;               % MPa -> bar
-Flow                    = LabResults(3,which_dataset+1) * 1e-5 ;            % kg/s
+T0homog                 = 35+273;                    % K
+feedPress               = 150;               % MPa -> bar
+Flow                    = 5 * 1e-5 ;            % kg/s
 
 Z                       = Compressibility( T0homog, feedPress,         Parameters );
 rho                     = rhoPB_Comp(      T0homog, feedPress, Z,      Parameters );
@@ -159,7 +159,7 @@ name_p = {'CF'    , 'CS'  , 'H'             , 'P'      , 'Y' };
 My_Font = 14;
 num_levels = 100;
 
-for ii = 1:3
+for ii = 1:3        
 
         %% Sensitivities calculations
         Parameters{8} = ii;
@@ -175,6 +175,7 @@ for ii = 1:3
 
         %% Sensitivities plot 
         for ind=0:2
+            figure()
             imagesc(Time, L_nstages, Res(ind*nstages+1:(ind+1)*nstages,:)); cb = colorbar; colormap turbo;
 
             hold on
@@ -187,7 +188,7 @@ for ii = 1:3
             cb.Label.Rotation = 0; % to rotate the text
             xlabel('Time [min]'); ylabel('Length [m]'); 
             set(gca,'FontSize',My_Font)
-
+            
             exportgraphics(figure(1),[name_p{ind+1},'_',name_v{ii},'.png'], "Resolution",300);
             close all;
         end
@@ -195,9 +196,10 @@ for ii = 1:3
         %% Sensitivities plot - P and y
         indx = 0;
         for ind = 4:-1:3
+            figure()
             hold on
             plot(Time, Res(end - indx,:), LineWidth=2); 
-            yline(0, LineWidth=2)
+            %yline(0, LineWidth=2)
             xlabel('Time [min]'); ylabel(['$\frac{d ',name_s{ind+1},'}{d',name_v{ii},'}$'])
             hold off
             set(gca,'FontSize',My_Font)
