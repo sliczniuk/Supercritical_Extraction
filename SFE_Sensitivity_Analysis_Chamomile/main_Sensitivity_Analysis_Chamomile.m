@@ -24,8 +24,8 @@ bed                     = 0.92;                                              % P
 
 % Set time of the simulation
 PreparationTime         = 0;
-ExtractionTime          = 300;
-timeStep                = 0.5;                                                % Minutes
+ExtractionTime          = 600;
+timeStep                = 1;                                                % Minutes
 
 simulationTime          = PreparationTime + ExtractionTime;
 
@@ -176,7 +176,10 @@ for ii = 1:3
         %% Sensitivities plot 
         for ind=0:2
             figure()
+            %subplot(2,1,1)
             imagesc(Time, L_nstages, Res(ind*nstages+1:(ind+1)*nstages,:)); cb = colorbar; colormap turbo;
+            %subplot(2,1,2)
+            %contourf(Time, L_nstages, flip(Res(ind*nstages+1:(ind+1)*nstages,:)),'EdgeColor','none','Levels',200); cb = colorbar; colormap turbo;
 
             hold on
             yline([L_nstages(nstagesbed(end)) L_nstages(nstagesbed(1))],'k--');
@@ -188,6 +191,7 @@ for ii = 1:3
             cb.Label.Rotation = 0; % to rotate the text
             xlabel('Time [min]'); ylabel('Length [m]'); 
             set(gca,'FontSize',My_Font)
+            %xscale log
             
             exportgraphics(figure(1),[name_p{ind+1},'_',name_v{ii},'.png'], "Resolution",300);
             close all;
