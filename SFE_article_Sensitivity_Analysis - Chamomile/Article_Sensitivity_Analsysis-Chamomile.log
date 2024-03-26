@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10.12) (preloaded format=pdflatex 2024.1.12)  21 MAR 2024 17:05
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10.12) (preloaded format=pdflatex 2024.1.12)  26 MAR 2024 16:09
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1894,47 +1894,57 @@ File: Figures///Results_sensitivity/Y_P.png Graphic file (type png)
 Package pdftex.def Info: Figures///Results_sensitivity/Y_P.png  used on input l
 ine 158.
 (pdftex.def)             Requested size: 238.25444pt x 188.21725pt.
-<Figures///Results_sensitivity/P_T_{in}.png, id=425, 391.7034pt x 299.9205pt>
+<Figures///Results_sensitivity/P_T_{in}.png, id=426, 391.7034pt x 299.9205pt>
 File: Figures///Results_sensitivity/P_T_{in}.png Graphic file (type png)
 <use Figures///Results_sensitivity/P_T_{in}.png>
 Package pdftex.def Info: Figures///Results_sensitivity/P_T_{in}.png  used on in
-put line 172.
+put line 175.
 (pdftex.def)             Requested size: 238.25444pt x 182.4341pt.
-[13 <./Figures///Results_sensitivity/CF_P.png (PNG copy)> <./Figures///Results_
-sensitivity/Y_P.png (PNG copy)> <./Figures///Results_sensitivity/P_T_{in}.png (
-PNG copy)>]
-<Figures///Results_sensitivity/H_T_{in}.png, id=438, 397.485pt x 317.2653pt>
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<Figures///Results_sensitivity/H_T_{in}.png, id=430, 397.485pt x 317.2653pt>
 File: Figures///Results_sensitivity/H_T_{in}.png Graphic file (type png)
 <use Figures///Results_sensitivity/H_T_{in}.png>
 Package pdftex.def Info: Figures///Results_sensitivity/H_T_{in}.png  used on in
-put line 184.
+put line 189.
 (pdftex.def)             Requested size: 238.25444pt x 190.17668pt.
-<Figures///Results_sensitivity/CS_T_{in}.png, id=441, 394.5942pt x 315.8199pt>
+[13 <./Figures///Results_sensitivity/CF_P.png (PNG copy)> <./Figures///Results_
+sensitivity/Y_P.png (PNG copy)>]
+<Figures///Results_sensitivity/CS_T_{in}.png, id=443, 394.5942pt x 315.8199pt>
 File: Figures///Results_sensitivity/CS_T_{in}.png Graphic file (type png)
 <use Figures///Results_sensitivity/CS_T_{in}.png>
 Package pdftex.def Info: Figures///Results_sensitivity/CS_T_{in}.png  used on i
-nput line 194.
+nput line 204.
 (pdftex.def)             Requested size: 238.25444pt x 190.69333pt.
+<Figures///Results_sensitivity/CF_T_{in}.png, id=446, 398.9304pt x 317.2653pt>
+File: Figures///Results_sensitivity/CF_T_{in}.png Graphic file (type png)
+<use Figures///Results_sensitivity/CF_T_{in}.png>
+Package pdftex.def Info: Figures///Results_sensitivity/CF_T_{in}.png  used on i
+nput line 215.
+(pdftex.def)             Requested size: 238.25444pt x 189.4844pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<Figures///Results_sensitivity/CF_T_{in}.png, id=444, 398.9304pt x 317.2653pt>
-File: Figures///Results_sensitivity/CF_T_{in}.png Graphic file (type png)
-<use Figures///Results_sensitivity/CF_T_{in}.png>
-Package pdftex.def Info: Figures///Results_sensitivity/CF_T_{in}.png  used on i
-nput line 203.
-(pdftex.def)             Requested size: 238.25444pt x 189.4844pt.
-<Figures///Results_sensitivity/Y_T_{in}.png, id=447, 397.9668pt x 299.9205pt>
+[14 <./Figures///Results_sensitivity/P_T_{in}.png (PNG copy)> <./Figures///Resu
+lts_sensitivity/H_T_{in}.png (PNG copy)> <./Figures///Results_sensitivity/CS_T_
+{in}.png (PNG copy)>]
+<Figures///Results_sensitivity/Y_T_{in}.png, id=459, 397.9668pt x 299.9205pt>
 File: Figures///Results_sensitivity/Y_T_{in}.png Graphic file (type png)
 <use Figures///Results_sensitivity/Y_T_{in}.png>
 Package pdftex.def Info: Figures///Results_sensitivity/Y_T_{in}.png  used on in
-put line 212.
+put line 232.
 (pdftex.def)             Requested size: 238.25444pt x 179.5601pt.
-[14 <./Figures///Results_sensitivity/H_T_{in}.png (PNG copy)> <./Figures///Resu
-lts_sensitivity/CS_T_{in}.png (PNG copy)> <./Figures///Results_sensitivity/CF_T
-_{in}.png (PNG copy)>]) [15 <./Figures///Results_sensitivity/Y_T_{in}.png (PNG 
-copy)>] (Article_Sensitivity_Analsysis-Chamomile.bbl
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+) [15 <./Figures///Results_sensitivity/CF_T_{in}.png (PNG copy)> <./Figures///R
+esults_sensitivity/Y_T_{in}.png (PNG copy)>] [16
+
+]
+(Article_Sensitivity_Analsysis-Chamomile.bbl
 Underfull \hbox (badness 1097) in paragraph at lines 16--23
 \T1/stix/m/n/8 o-log-i-cal ac-tiv-ity of flavonoids iso-lated from chamomile fl
 ow-ers.
@@ -1946,7 +1956,7 @@ Underfull \hbox (badness 1005) in paragraph at lines 186--191
 016 /
  []
 
-) [16
+) [17
 
 ] (Article_Sensitivity_Analsysis-Chamomile.aux)
 
@@ -1957,13 +1967,13 @@ Package rerunfilecheck Info: File `Article_Sensitivity_Analsysis-Chamomile.out'
 (rerunfilecheck)             Checksum: E66334A11A31B74E6455E1A5A7B7F3F3;3566.
  ) 
 Here is how much of TeX's memory you used:
- 42415 strings out of 478848
- 924804 string characters out of 2848485
+ 42416 strings out of 478848
+ 924811 string characters out of 2848485
  1329319 words of memory out of 3000000
  59334 multiletter control sequences out of 15000+600000
  530010 words of font info for 178 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 94i,26n,131p,1558b,855s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 94i,26n,131p,1607b,855s stack positions out of 5000i,500n,10000p,200000b,80000s
 <C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/type1/public/inconsola
 ta/Inconsolata-zi4r.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/
 type1/public/stix/STIXGeneral-Bold.pfb><C:/Users/sliczno1/AppData/Local/Program
@@ -1980,10 +1990,10 @@ e1/public/stix/stix-mathit.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX
 /fonts/type1/public/stix/stix-mathrm.pfb><C:/Users/sliczno1/AppData/Local/Progr
 ams/MiKTeX/fonts/type1/public/stix/stix-mathscr.pfb><C:/Users/sliczno1/AppData/
 Local/Programs/MiKTeX/fonts/type1/public/stix/stix-mathsf.pfb>
-Output written on Article_Sensitivity_Analsysis-Chamomile.pdf (16 pages, 277370
-8 bytes).
+Output written on Article_Sensitivity_Analsysis-Chamomile.pdf (17 pages, 276931
+1 bytes).
 PDF statistics:
- 567 PDF objects out of 1000 (max. 8388607)
- 123 named destinations out of 1000 (max. 500000)
+ 573 PDF objects out of 1000 (max. 8388607)
+ 124 named destinations out of 1000 (max. 500000)
  441 words of extra memory for PDF output out of 10000 (max. 10000000)
 
