@@ -108,7 +108,7 @@
 % ABSTRACT
 % ===================================================
 \begin{abstract}
-This study investigated the supercritical extraction process of chamomile extract from chamomile flowers. A distributed-parameter model describes the fluid-solid extraction process. The concept of quasi-one-dimensional flow is applied to reduce the number of spatial dimensions. The flow is assumed to be uniform across any cross-section, although the area available for the fluid phase can vary along the extractor. The physical properties of the solvent are estimated from the Peng-Robinson equation of state. Model parameters, including the partition factor, internal diffusion coefficient, axial diffusion coefficient, and decaying factor, were determined through maximum likelihood estimation based on experimental data, with the assumption of normally distributed errors. A set of laboratory experiments was performed under multiple constant operating conditions: $30 - 40^\circ C$, $100 - 200$ bar, and $3.33-6.67 \times 10^{-5}$ kg/s. 
+This study investigates the supercritical extraction process of essential oil from chamomile flowers.  Essential oils of chamomile are used extensively for medicinal purposes. Many different products of chamomile have been developed, the most popular of which is in the form of herbal tea. A distributed-parameter model describes the fluid-solid extraction process. The concept of quasi-one-dimensional flow is applied to reduce the number of spatial dimensions. The flow is assumed to be uniform across any cross-section, although the area available for the fluid phase can vary along the extractor. The physical properties of the solvent are estimated from the Peng-Robinson equation of state. Model parameters, including the partition factor, internal diffusion coefficient, axial diffusion coefficient, and decaying factor, were determined through maximum likelihood estimation based on experimental data, with the assumption of normally distributed errors. A set of laboratory experiments was performed under multiple constant operating conditions: $30 - 40^\circ C$, $100 - 200$ bar, and $3.33-6.67 \times 10^{-5}$ kg/s. 
 
 \end{abstract}
 
@@ -134,21 +134,21 @@ Supercritical extraction \sep Parameter estimation \sep Mathematical modelling
 %\subfile{Sections/Thermo_imp}
 
 \subsection{Governing equations} \label{CH:Governing_equations_chapter}
-	The governing equations for quasi-one-dimensional compressible flow in Cartesian coordinates are detailed in Appendix \ref{CH: Gouverning equations} and are based on the foundational work by \citet{Anderson1995}. Quasi-one-dimensional flow refers to a fluid flow scenario where it's assumed that flow properties are uniformly distributed across any given cross-section. This simplification is typically applied in situations where the flow channel's cross-sectional area changes, such as through irregular shapes or partial fillings of an extractor. In these instances, the flow is considered quasi-one-dimensional because it's presumed that velocity and other flow properties change solely along the flow direction.
+	The governing equations based on the work of \citet{Anderson1995} for quasi-one-dimensional compressible flow in Cartesian coordinates are presented in Appendix \ref{CH: Gouverning equations}. Quasi-one-dimensional flow refers to a fluid flow scenario assuming that flow properties are uniformly distributed across any given cross-section. This simplification is typically applied in situations where the flow channel's cross-sectional area changes, such as through irregular shapes or partial fillings of an extractor. According to this assumption, velocity and other flow properties change solely in the flow direction.
 	
-	The set of quasi-one-dimensional compressible Navier-Stokes equations in Cartesian coordinates are described by Equations \ref{EQ: CompressibleEuler_1} through \ref{EQ: CompressibleEuler_3}. The formulation of these equations is elaborated upon in Appendix \ref{CH: Gouverning equations}, providing a mathematical foundation for analyzing flow dynamics under the assumed conditions.
+	The set of quasi-one-dimensional compressible Navier-Stokes equations in Cartesian coordinates is described by Equations \ref{EQ: CompressibleEuler_1} - \ref{EQ: CompressibleEuler_3}. The formulation of these equations is elaborated upon in Appendix \ref{CH: Gouverning equations}, providing a mathematical foundation for analyzing flow dynamics under the assumed conditions.
 
 {\footnotesize
 	\begin{align}
 		\label{EQ: CompressibleEuler_1}
-		\cfrac{\partial \left( {\color{black}\rho_f} {\color{black}A_f}(z) \right) }{\partial t} + \cfrac{\partial \left( {\color{black}\rho_f} {\color{black}A_f}(z) v \right)}{\partial z} &= 0 \\
-		\cfrac{\partial \left( {\color{black}\rho_f} v {\color{black}A_f}(z) \right) }{\partial t} + \cfrac{\partial \left( {\color{black}\rho_f} {\color{black}A_f}(z) v^2 \right)}{\partial z} &= -{\color{black}A_f}(z) \cfrac{\partial {\color{black}P}}{\partial z} \label{EQ: CompressibleEuler_2} \\
-		\cfrac{\partial \left( {\color{black}\rho_f} {\color{black}e} {\color{black}A_f}(z) \right) }{\partial t} + \cfrac{\partial \left( {\color{black}\rho_f} {\color{black}A_f}(z) v {\color{black}e}\right)}{\partial z} &= -{\color{black}P}\cfrac{\left( {\color{black}A_f}(z) v \right)}{\partial z} + \cfrac{\partial}{\partial z} \left( k \cfrac{\partial {\color{black}T}}{\partial z} \right)   
+		\cfrac{\partial \left( \rho_f A_f \right) }{\partial t} + \cfrac{\partial \left( \rho_f A_f v \right)}{\partial z} &= 0 \\
+		\cfrac{\partial \left( \rho_f v A_f \right) }{\partial t} + \cfrac{\partial \left( \rho_f A_f v^2 \right)}{\partial z} &= -A_f \cfrac{\partial {\color{black}P}}{\partial z} \label{EQ: CompressibleEuler_2} \\
+		\cfrac{\partial \left( \rho_f e A_f \right) }{\partial t} + \cfrac{\partial \left( \rho_f A_f v e\right)}{\partial z} &= -{\color{black}P}\cfrac{\left( A_f v \right)}{\partial z} + \cfrac{\partial}{\partial z} \left( k \cfrac{\partial T}{\partial z} \right)   
 		\label{EQ: CompressibleEuler_3}
 	\end{align}  
 }
 
-where ${\color{black}\rho_f}$ is the density of the fluid, ${\color{black}A_f}(z)$ is the function which describe change of the cross-section, $v$ is the velocity, ${\color{black}P}$ is the total pressure, ${\color{black}e}$ is the internal energy of the fluid, $t$ is time and $z$ is the spacial direction.
+where $\rho_f$ is the density of the fluid, $A_f$ is the function which describe change of the cross-section, $v$ is the velocity, ${\color{black}P}$ is the total pressure, $e$ is the internal energy of the fluid, $t$ is time and $z$ is the spacial direction.
 
 Based on governing equations, the small discontinuity (defined as $\delta$) in flow properties, shown in Figure \ref{fig: Discontinuity_slow_flow}, can be analysed. The analysis follows the work of \citet{Schreier1982}.
 
@@ -159,12 +159,12 @@ Based on governing equations, the small discontinuity (defined as $\delta$) in f
 			\draw (0,2) -- (9,2);	% Top line
 			\draw (0,0) -- (9,0); 	% Bottom line
 			\draw (4.5,0) -- (4.5,2); 	% Bottom line
-			\node at (4,1.5) {${\color{black}\rho_f}$};
-			\node at (5.5,1.5) {${\color{black}\rho_f}+\delta{\color{black}\rho_f}$};
+			\node at (4,1.5) {$\rho_f$};
+			\node at (5.5,1.5) {$\rho_f+\delta\rho_f$};
 			\node at (4,1.0) {${\color{black}P}$};
 			\node at (5.5,1.0) {${\color{black}P}+\delta {\color{black}P}$};
-			\node at (4,0.5) {${\color{black}T}$};
-			\node at (5.5,0.5) {${\color{black}T}+\delta {\color{black}T}$};
+			\node at (4,0.5) {$T$};
+			\node at (5.5,0.5) {$T+\delta T$};
 			\node at (1,1.0) {$v \rightarrow$};
 			\node at (8,1.0) {$v + \delta v \rightarrow$};
 	\end{tikzpicture} }
@@ -176,8 +176,8 @@ The discontinuity is presumed to be at rest relative, and the balance equations 
 
 {\footnotesize
 	\begin{align*}
-		&{\color{black}\rho_f} \delta v + v \delta {\color{black}\rho_f} + \delta {\color{black}\rho_f} \delta v = 0 \\
-		&\delta {\color{black}P} = \delta v \delta {\color{black}\rho_f}
+		&\rho_f \delta v + v \delta \rho_f + \delta \rho_f \delta v = 0 \\
+		&\delta {\color{black}P} = \delta v \delta \rho_f
 	\end{align*}
 }
 
@@ -185,7 +185,7 @@ These relations are equally valid if both regions are separated by a region of f
 
 {\footnotesize
 	\begin{equation*}
-		\lim_{{\color{black}\rho_f} v \rightarrow 0} {\color{black}\rho_f} \delta v + v \delta {\color{black}\rho_f} + \delta {\color{black}\rho_f} \delta v = 0 / \delta {\color{black}\rho_f} \rightarrow \cfrac{d v}{d {\color{black}\rho_f}} = - \cfrac{v}{{\color{black}\rho_f}}
+		\lim_{\rho_f v \rightarrow 0} \rho_f \delta v + v \delta \rho_f + \delta \rho_f \delta v = 0 / \delta \rho_f \rightarrow \cfrac{d v}{d \rho_f} = - \cfrac{v}{\rho_f}
 	\end{equation*}
 }
 
@@ -193,11 +193,11 @@ By combining the momentum equation with the above equation, we get
 
 {\footnotesize
 	\begin{equation} \label{EQ: Pressure_Velocity}
-		\cfrac{d v}{d {\color{black}\rho_f}} = - \cfrac{d v}{d{\color{black}P}} \cfrac{d {\color{black}P}}{d {\color{black}\rho_f}} = -\cfrac{1}{\rho v} \cfrac{d{\color{black}P}}{d{\color{black}\rho_f}} = -\cfrac{v}{{\color{black}\rho_f}}
+		\cfrac{d v}{d \rho_f} = - \cfrac{d v}{d{\color{black}P}} \cfrac{d {\color{black}P}}{d \rho_f} = -\cfrac{1}{\rho v} \cfrac{d{\color{black}P}}{d\rho_f} = -\cfrac{v}{\rho_f}
 	\end{equation}
 }
 
-Suppose the flow is presumed to be isentropic, $d{\color{black}P}/d{\color{black}\rho_f} = c^2$, so $v^2=c^2$, where $c$ is the speed of sound. This can be interpreted as a small pressure wave propagating with the speed of sound relative to the flow. If the flow velocity is relatively low, all pressure changes are hydrodynamic (due to velocity motion) rather than thermodynamic, which leads to $\partial {\color{black}\rho_f} / \partial {\color{black}P} \approx 0$. The small changes in pressure due to flow velocity changes do not change the density. 
+Suppose the flow is presumed to be isentropic, $d{\color{black}P}/d\rho_f = c^2$, so $v^2=c^2$, where $c$ is the speed of sound. This can be interpreted as a small pressure wave propagating with the speed of sound relative to the flow. If the flow velocity is relatively low, all pressure changes are hydrodynamic (due to velocity motion) rather than thermodynamic, which leads to $\partial \rho_f / \partial {\color{black}P} \approx 0$. The small changes in pressure due to flow velocity changes do not change the density. 
 
 The low Mach number condition leads to the incompressible condition: $\nabla \cdot u =0$, which is valid for constant density (strict incompressible) or varying density flow. The restraint allows for the removal of acoustic waves, but also allows for large perturbations in density and/or temperature. The assumption is that the flow remains within a Mach number limit (usually less than 0.3) for any solution using such a constraint to be valid. In the 1-D case, the incompressibility condition becomes $\frac{du}{dz} = 0$, so the fluid velocity is constant.
 
