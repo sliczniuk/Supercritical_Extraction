@@ -44,23 +44,23 @@
 %			\label{fig: Gamma_function}
 %	\end{figure}
 			
-	Following the idea of the Broken-and-Intact Cell (BIC) model presented by \citet{Sovova2017}, the internal diffusion coefficient ${\color{black}D_i}$ is consider to be a product of the reference value of ${\color{black}D_i^R}$ and the exponential decay function ${\color{black} \gamma}$, as given by Equation \ref{EQ: C_sat_function}.
+	Following the idea of the Broken-and-Intact Cell (BIC) model (\citet{Sovova2017}), the internal diffusion coefficient $D_i$ is consider to be a product of the reference value of $D_i^R$ and the exponential decay function $\gamma$, as given by Equation \ref{EQ: C_sat_function}.
 		
 	{\footnotesize
 		\begin{equation}
-			{\color{black}D_i} = {\color{black}D_i^R} {\color{black} \gamma}({\color{black} c_s} (t,z)) = {\color{black}D_i^R} \exp\left( {\color{black}\Upsilon} \left( 1-\cfrac{{\color{black} c_s} (t,z) }{{\color{black}c_{s0}}} \right) \right) \label{EQ: C_sat_function}
+			D_i = D_i^R \gamma(c_s) = D_i^R \exp \left( \Upsilon \left( 1-\cfrac{ c_s }{c_{s0}} \right) \right) \label{EQ: C_sat_function}
 		\end{equation} }
 	
-	where the ${\color{black}\Upsilon}$ describe the curvature of the decay function. The final form of the extraction kinetic Equation is given by Equation \ref{Model_kinetic}.
+	where the ${\color{black}\Upsilon}$ describe the curvature of the decay function. Equation \ref{Model_kinetic} describes the final form of the kinetic term
 			
-	{\scriptsize
+	{\footnotesize
 		\begin{equation}
 			\label{Model_kinetic}
-				r_e = -\cfrac{{\color{black}D_i^R}(T(t,z), {\color{black}P}(t), F(t)) {\color{black} \gamma}({\color{black} c_s} (t,z)) }{{\color{black} \mu l^2} } \left({\color{black}{\color{black} c_s} }(t,z)  - \cfrac{{\color{black}\rho_s}c_f(t,z)}{{\color{black}k_m}(T(t,z)){\color{black}\rho}(T(t,z),{\color{black}P}(t))}  \right)
+				r_e = -\cfrac{D_i^R \gamma }{ \mu l^2 } \left( c_s  - \cfrac{\rho_s c_f }{ k_m \rho_f }  \right)
 		\end{equation} }
 	
-	Such a formulation limits the availability of the solute in the solid phase. Similarly to the BIC model, if solute is assumed to be contained in the cells, a part of which is open because the cell walls were broken by grinding, and the rest remains intact. The diffusion of the solute from a particle's core takes more time compared to the diffusion of the solute located close to the outer surface. Considering that the internal diffusion coefficient decay as the concentration of the solute in the solid decrease. As the value of the ${\color{black}c_s}$ decrease over time, the exponential term approach unity and $\lim_{ {\color{black}c_s} \rightarrow 0} {\color{black}D_i} =  {\color{black}D_i^R}$. ${\color{black}D_i^R}$ can be interpreted as the internal diffusion coefficient at vanishing gradient. 
+	Such a formulation limits the availability of the solute in the solid phase. Similarly to the BIC model, if solute is assumed to be contained in the cells, a part of which is open because the cell walls were broken by grinding, and the rest remains intact. The diffusion of the solute from a particle's core takes more time compared to the diffusion of the solute located close to the outer surface. Considering that the internal diffusion coefficient decay as the concentration of the solute in the solid decrease. As the value of the $c_s$ decrease over time, the exponential term approach unity and $\lim_{ c_s \rightarrow 0} D_i =  D_i^R$. $D_i^R$ can be interpreted as the internal diffusion coefficient at vanishing gradient. 
 		
-	Alternatively, the decay function ${\color{black}\gamma}$ can be consider with respect to the Shrinking Core model presented by \citet{Goto1996}, where the particle radius change as the amount of solute in the solid phase decrease. As the particle size decrease due to dissolution, the diffusion path increase which makes the diffusion slower and reduce the value of a diffusion coefficient. The same analogy can be apply to the Equation \ref{EQ: C_sat_function} to explain the change of the diffusion coefficient.
+	Alternatively, the decay function $\gamma$ can be consider with respect to the Shrinking Core model presented by \citet{Goto1996}, where the particle radius change as the amount of solute in the solid phase decrease. As the particle size decrease due to dissolution, the diffusion path increase which makes the diffusion slower and reduce the value of a diffusion coefficient. The same analogy can be apply to the Equation \ref{EQ: C_sat_function} to explain the change of the diffusion coefficient.
 		
 \end{document}

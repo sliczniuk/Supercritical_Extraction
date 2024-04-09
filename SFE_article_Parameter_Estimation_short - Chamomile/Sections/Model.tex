@@ -11,10 +11,10 @@
 	
 	{\footnotesize
 		\begin{equation} \label{EQ: Continuity_differential}
-			\frac{\partial (\rho_f \phi)}{\partial t} + \frac{\partial (\rho_f v A\phi)}{\partial {\color{black}z}} = 0
+			\frac{\partial (\rho_f \phi)}{\partial t} + \frac{\partial (\rho_f v A\phi)}{\partial z} = 0
 		\end{equation}
 	}
-	where ${\color{black} A}$ is the total cross-section of the extractor and $\phi$ describe porosity along the extractor.
+	where $A$ is the total cross-section of the extractor and $\phi$ describe porosity along the extractor.
 	
 	%{\color{black}assign a color of v and u}
 	
@@ -22,11 +22,11 @@
 	
 	{\footnotesize
 		\begin{equation}
-			\int \frac{\partial (\rho_f v A \phi )}{\partial {\color{black}z}} dz = F \rightarrow {\color{black}F}=\rho_f v A\phi
+			\int \frac{\partial (\rho_f v A \phi )}{\partial z} dz = F \rightarrow F=\rho_f v A\phi
 		\end{equation}
 	}
 	
-	To simplify the dynamics of the system, it is assumed that ${\color{black}F}=F$ is a control variable and affects the whole system instantaneously. This assumption allows for finding the velocity profile that satisfies mass continuity based on $F$, $\phi$, and $\rho_f$.
+	To simplify the system's dynamics, it is assumed that $F$ is a control variable and affects the whole system instantaneously, which allows finding the velocity profile that satisfies mass continuity based on $F$, $\phi$, and $\rho_f$.
 	
 	{\footnotesize
 	\begin{equation}
@@ -34,16 +34,16 @@
 	\end{equation}
 	}
 	
-	The fluid density $\rho_f$ can be obtained from an equation of state (Appendix \ref{CH: EOS}) if temperature and the thermodynamic pressure (assumed ${\color{black}P}(t)$ to be constant along ${\color{black}z}$ due to the low-Mach number condition) are known. The variation in density may be caused by the fluid accumulation in the system (equivalent to pressure change), which occurs instantaneously along ${\color{black}z}$ or by a temperature change. 
-	
-	Analogously, the superficial velocity might be introduced to the model and defined as
+	Similarly, the superficial velocity might be introduced.
 	
 	{\footnotesize
 		\begin{equation}
-			u = v \phi = \cfrac{F}{\rho_f {\color{black} A} }
+			u = v \phi = \cfrac{F}{\rho_f A }
 		\end{equation}
 	}
 	
+	The fluid density $\rho_f$ can be obtained from an equation of state (Appendix \ref{CH: EOS}) if temperature and thermodynamic pressure are known along $z$. The variation in fluid density may occurs due to pressure or a inlet temperature changes. 
+		
 	\subsubsection{Mass balance for the fluid phase} \label{CH: Mass_balance_fluid}
 	
 	The comprehensive derivation of the mass balance equation for the fluid phase is detailed in Appendix \ref{CH: Gouverning equations}. This equation accounts for the movement of the pseudo-homogeneous fluid phase (Equation \ref{Model_fluid}), which is constrained to the axial direction due to the quasi-one-dimensional approach that considers changes in the void fraction. It is also assumed that the thermodynamic pressure remains constant throughout the device, as illustrated by Equation \ref{EQ: Pressure_Velocity}. The analysis further simplifies the flow dynamics by disregarding the boundary layer near the extractor's inner wall, leading to a uniform velocity profile across any cross-section perpendicular to the axial direction. Given that the solute concentration in the solvent is negligible, the fluid phase is described as pseudo-homogeneous, with properties identical to the solvent itself. Thus, the mass balance equation encompasses convection, diffusion, and kinetic terms to represent the fluid phase behaviour accurately.
@@ -52,17 +52,17 @@
 		\begin{equation}
 			\label{Model_fluid}
 			\frac{\partial c_f}{\partial t}
-			+ \frac{1}{\phi} \frac{\partial \left( c_f u\right)}{\partial {\color{black}z}}
+			+ \frac{1}{\phi} \frac{\partial \left( c_f u\right)}{\partial z}
 			= \frac{1-\phi}{\phi} r_e
-			+ \frac{1}{\phi} \frac{\partial}{\partial {\color{black}z}} \left( {\color{black}D^M_e} \frac{\partial c_f}{\partial {\color{black}z}} \right)
+			+ \frac{1}{\phi} \frac{\partial}{\partial z} \left( D^M_e \frac{\partial c_f}{\partial z} \right)
 		\end{equation}
 	}
 	
-	$c_f$ represents the concentration of solute in the fluid phase, , $r_e$ is a mass transfer kinetic term, and ${\color{black}D^M_e}(T(t,z),{\color{black}P}(t),F)$ is the axial diffusion coefficient.
+	$c_f$ represents the concentration of solute in the fluid phase, $r_e$ is a mass transfer kinetic term, and $D^M_e$ is the axial diffusion coefficient.
 	
 	\subsubsection{Mass balance for the solid phase} \label{Mass_balance_solid}
 	
-	The solid phase is considered to be stationary, without convection and diffusion terms in the mass balance equation (Equation \ref{Model_solid}). Therefore, the only significant term in this equation is the kinetic term (as defined in Equation \ref{Model_kinetic_basic}), which connects the solid and fluid phases. The extract is represented by a single pseudo-component to simplify the analysis. 
+	The solid phase is considered to be stationary, without convection and diffusion terms in the mass balance equation (Equation \ref{Model_solid}). Therefore, the only significant term in this equation is the kinetic term (as defined in Equation \ref{Model_kinetic_basic}), which connects the solid and fluid phases. The extract is represented by a single pseudo-component for simplicity. 
 	
 	{\footnotesize
 		\begin{equation} 
@@ -79,7 +79,7 @@
 	
 %	As the solvent flows through the bed, the CO$_2$ molecules diffuse into the pores and adsorb on the particle surface to form an external fluid film around the solid particles through the solvent–solid matrix interactions. Assuming that the mean free path of the molecule is much smaller than the pore diameter, the effect of Knudsen diffusion is small and can be neglected. The dissolved solute diffuses from the particle's core through the solid-fluid interface, the pore, and the film into the bulk. The graphical representation of the mass transfer mechanism is shown in Figure \ref{fig: SFE_Mechanism}. The mean solute concentration in the solid phase is denoted as ${\color{black}c_s}$. At the solid-fluid interface, the equilibrium concentrations are given as ${\color{black}c_s^*}$ and ${\color{black}c_P^*}$, respectively for solid and fluid phases. The concentration of the solutes in the fluid phase in the centre of the pore is denoted as ${\color{black}c_{P}}$. As the solute diffuses through the pore, its concentration changes and reaches ${\color{black}c_{Pf}}$ at the opening of the pore. The solute diffuses through the film around the particle and reaches a concentration in the bulk ${\color{black}c_f}$. It can be assumed that the two-film theory describes the solid-fluid interface inside the pore. The overall mass transfer coefficient can be introduced if the relation between the solute concentration in one phase and its equilibrium concentration is known.
 	
-	As the solvent flows through the bed, CO$_2$ molecules diffuse into the pores and adsorb on the particle surface to form an external fluid film around the solid particles due to the solvent-solid matrix interactions. The dissolved solute diffuses from the particle's core through the solid-fluid interface, the pore, and the film into the bulk. Figure \ref{fig: SFE_Mechanism} illustrates the mass transfer mechanism, where the mean solute concentration in the solid phase is denoted as ${\color{black}c_s}$ and the equilibrium concentrations at the solid-fluid interface are denoted as ${\color{black}c_s^*}$ and ${\color{black}c_p^*}$, respectively, for solid and fluid phases. The concentration of the solutes in the fluid phase in the center of the pore is denoted as ${\color{black}c_{p}}$. As the solute diffuses through the pore, its concentration changes and reaches ${\color{black}c_{pf}}$ at the opening of the pore. The solute then diffuses through the film around the particle and reaches bulk concentration ${\color{black}c_f}$. The two-film theory describes the solid-fluid interface inside the pore. The overall mass transfer coefficient can be determined if the relationship between the solute concentration in one phase and its equilibrium concentration is known.
+	As the solvent flows through the bed, CO$_2$ molecules diffuse into the pores and adsorb on the particle surface to form an external fluid film around the solid particles due to the solvent-solid matrix interactions. The dissolved solute diffuses from the particle's core through the solid-fluid interface, the pore, and the film into the bulk. Figure \ref{fig: SFE_Mechanism} illustrates the mass transfer mechanism, where the mean solute concentration in the solid phase is denoted as $c_s$ and the equilibrium concentrations at the solid-fluid interface are denoted as $c_s^*$ and $c_p^*$, respectively, for solid and fluid phases. The concentration of the solutes in the fluid phase in the center of the pore is denoted as $c_p$. As the solute diffuses through the pore, its concentration changes and reaches $c_{pf}$ at the opening of the pore. The solute then diffuses through the film around the particle and reaches bulk concentration $c_f$. The two-film theory describes the solid-fluid interface inside the pore. The overall mass transfer coefficient can be determined if the relationship between the solute concentration in one phase and its equilibrium concentration is known.
 			
 		\begin{figure}[h!]
 			\centering
@@ -88,37 +88,38 @@
 			\label{fig: SFE_Mechanism}
 		\end{figure}
 			
-		\citet{Bulley1984} suggests a process where the driving force for extraction is given by the difference between the concentration of the solute in bulk, ${\color{black}c_f}$, and in the center of the pore, ${\color{black}c_p^*}$. The concentration ${\color{black}c_p^*}$ is in equilibrium with ${\color{black}c_s}$ according to an equilibrium relationship. The rate of extraction is thus ${\color{black}r_\text{e}}\left({\color{black}c_f} - {\color{black}c^*_p}({\color{black}c_s})\right)$.  
+		\citet{Bulley1984} suggests a process where the driving force for extraction is given by the difference between the concentration of the solute in bulk, $c_f$, and in the center of the pore, $c_p^*$. The concentration $c_p^*$ is in equilibrium with $c_s$ according to an equilibrium relationship. The rate of extraction is thus $r_e\left(c_f - c^*_p(c_s)\right)$.  
 			
-		On the other hand, \citet{Reverchon1996} proposes a driving force given by the difference between ${\color{black}c_s}$ and ${\color{black}c_p^*}$. ${\color{black}c_p^*}$ is determined by an equilibrium relationship with ${\color{black}c_f}$ and the extraction rate is ${\color{black}r_\text{e}}\left({\color{black}c_s} - {\color{black}c^*_p}({\color{black}c_f})\right)$ or more precisely
+		On the other hand, \citet{Reverchon1996} proposes a driving force given by the difference between $c_s$ and $c_p^*$. $c_p^*$ is determined by an equilibrium relationship with $c_f$ and the extraction rate is $r_e\left(c_s - c^*_p(c_f)\right)$ or more precisely
 			
 			{\footnotesize
 				\begin{equation} \label{Model_kinetic_basic}
-					r_e = \cfrac{{\color{black}D_i}(T(t,z), {\color{black}P}(t), F(t))}{{\color{black} \mu l^2} }\left(c_s - {\color{black}c_P^*}(t,z) \right)
+					r_e = \cfrac{D_i}{\mu l^2 }\left(c_s - c_p^* \right)
 			\end{equation} }
 			
-		where ${\color{black}\mu}$ is sphericity, ${\color{black}l}$ a characteristic dimension of particles and can be defined as ${\color{black}l} = {\color{black}r}/3$, ${\color{black}r}$ is the mean particle radius, ${\color{black}\rho_s}$ is the solid density, ${\color{black}D_i}(T(t,z))$ corresponds to the overall diffusion coefficient and ${\color{black}c_P^*}(t,z)$ is a concentration at the solid-fluid interface (which according to the internal resistance model is supposed to be at equilibrium with the fluid phase). 
+		where $\mu$ is sphericity, $l$ a characteristic dimension of particles and can be defined as $l = r/3$, $r$ is the mean particle radius, $\rho_s$ is the solid density, $D_i$ corresponds to the overall diffusion coefficient and $c_P^*$ is a concentration at the solid-fluid interface (which according to the internal resistance model is supposed to be at equilibrium with the fluid phase). 
 			
-		According to \citet{Bulley1984}, a linear equilibrium relationship (equation  \ref{Linear_equilibirum}) can be used to find an equilibrium concentration of the solute in the fluid phase ${\color{black}c_f^*}(t,z)$ is based on the concentration of the solute in the solid phase $c_s$ 
+		According to \citet{Bulley1984}, a linear equilibrium relationship (Equation  \ref{Linear_equilibirum}) can be used to find an equilibrium concentration of the solute in the fluid phase $c_f^*$ is based on the concentration of the solute in the solid phase $c_s$.
 			
 			{\footnotesize
 				\begin{align} \label{Linear_equilibirum}
-					{\color{black}c}(t,z) &= {\color{black}k_p}(T(t,z),{\color{black}P}(t)) \allowbreak {\color{black}q^*}(t,z)
+					c_f^* &= k_p c_s
 			\end{align} }
 			
-			The volumetric partition coefficient ${\color{black}k_p}(T(t,z),{\color{black}P}(t))$ behaves as an equilibrium constant between the solute concentration in one phase and the corresponding equilibrium concentration at the solid-fluid interphase. According to \citet{Spiro2007}, the term ${\color{black}k_p}(T(t,z),{\color{black}P}(t))$ can be expressed as the function of mass partition factor ${\color{black}k_m}(T(t,z))$.
+			The volumetric partition coefficient $k_p$ acts as an equilibrium constant between the solute concentration in one phase and the corresponding equilibrium concentration at the solid-fluid interphase. According to \citet{Spiro2007}, $k_p$ can be expressed through the mass partition coefficient $k_m$.
 			
 			{\footnotesize
 				\begin{align}
-					{\color{black}k_m}(T(t,z)) = \cfrac{{\color{black}k_p}(T(t,z),{\color{black}P}(t)) {\color{black}\rho_s}}{{\color{black}\rho}(T(t,z),{\color{black}P}(t))}
+					k_m = \cfrac{k_p \rho_s}{\rho_f}
 			\end{align} }
 			
-			Equation \ref{Model_kinetic_no_sat} represents of the kinetic term according to \citet{Reverchon1996}
+			%Equation \ref{Model_kinetic_no_sat} represents of the kinetic term according to \citet{Reverchon1996}
+			According to \citet{Reverchon1996}, the kinetic term becomes
 			
 			{\footnotesize
 				\begin{equation}
 					\label{Model_kinetic_no_sat}
-					r_e = -\cfrac{{\color{black}D_i}(T(t,z), {\color{black}P}(t), F(t))}{{\color{black} \mu l^2} }\left(c_s - \cfrac{{\color{black}\rho_s}c_f(t,z)}{{\color{black}k_m}(T(t,z))\rho_f}   \right)
+					r_e = -\cfrac{D_i}{ \mu l^2 } \left(c_s - \cfrac{\rho_s c_f}{k_m \rho_f} \right)
 			\end{equation} }
 
         \subfile{Saturation}
@@ -133,7 +134,7 @@
 			
 		}
 		
-		\sout{The heat balance equation (equation  \ref{Model_heat}) was developed, assuming the existence of a pseudo-homogeneous phase, which properties are the mean between fluid and solid phases (the amount of solute is considered small enough not to affect the overall heat balance). Equation \ref{Model_heat} contains the convection and the diffusion terms. It is considered that there is no heat loss through the wall, and there is no heat generation in the system. The temperature of the extractor can be changed only by increasing the temperature of the inlet stream. The pseudo-homogenous phase is assumed to flow only in the axial direction. The numerator of the factor in front of the convection term of the heat equation contains only the specific heat of the fluid ${\color{black}C_p}(T(t,z),{\color{black}P}(t))$ because the solid phase is stationary. Therefore, this factor can be understood as the fraction of the fluid's total heat through convection. On the other hand, the axial heat diffusion is calculated based on the definition of thermal diffusivity for the fluid, as explained in Appendix. }
+		\sout{The heat balance equation (equation  \ref{Model_heat}) was developed, assuming the existence of a pseudo-homogeneous phase, which properties are the mean between fluid and solid phases (the amount of solute is considered small enough not to affect the overall heat balance). Equation \ref{Model_heat} contains the convection and the diffusion terms. It is considered that there is no heat loss through the wall, and there is no heat generation in the system. The temperature of the extractor can be changed only by increasing the temperature of the inlet stream. The pseudo-homogenous phase is assumed to flow only in the axial direction. The numerator of the factor in front of the convection term of the heat equation contains only the specific heat of the fluid $C_p$ because the solid phase is stationary. Therefore, this factor can be understood as the fraction of the fluid's total heat through convection. On the other hand, the axial heat diffusion is calculated based on the definition of thermal diffusivity for the fluid, as explained in Appendix. }
 			
 		{\color{black} The heat balance (Equation \ref{Model_heat}), is based on \citet{Srinivasan2012}, and consists of convective and diffusive terms. It follows the assumption of a pseudo-homogeneous phase, which properties are the mean between fluid and solid phases. It is considered that there is no heat loss through the walls, and there is no heat generation in the system. The temperature of the extractor can be changed only by manipulating the temperature of the inlet stream ${\color{black}T_{Inlet}}(t)$.
 			}
@@ -142,7 +143,7 @@
 				\begin{equation} \label{Model_heat}
 					\begin{split}
 						\cfrac{\partial T(t,z)}{\partial t} &= 
-						\underbrace{ -\cfrac{F {\color{black}C_p}(T(t,z),{\color{black}P}(t))}{{\color{black}A} 	[(1-{\color{black}\epsilon})\rho_f {\color{black}C_p} (T(t,z),{\color{black}P}(t)) + {\color{black} \epsilon \rho_s C_{ps} } ]} \cfrac{\partial T(t,z)}{\partial {\color{black}z}}  }_{\text{Convection}} + \\
+						\underbrace{ -\cfrac{F {\color{black}C_p}(T(t,z),{\color{black}P}(t))}{{\color{black}A} 	[(1-{\color{black}\epsilon})\rho_f {\color{black}C_p} (T(t,z),{\color{black}P}(t)) + {\color{black} \epsilon \rho_s C_{ps} } ]} \cfrac{\partial T(t,z)}{\partial z}  }_{\text{Convection}} + \\
 						& + \underbrace{ {\color{black}D^T_e}(T(t,z),{\color{black}P}(t)) \cfrac{\partial^2 T(t,z)}{\partial {\color{black}z^2}} }_{\text{Diffusion}}
 					\end{split}
 			\end{equation} }
@@ -155,8 +156,8 @@
 			
 			{\footnotesize
 			\begin{align} \label{EQ: Heat_internal}
-				&\cfrac{\partial \left( \rho_f e(t,z) A_f \right) }{\partial t} + \cfrac{\partial \left( \rho_f A_f v e(t,z) \right)}{\partial {\color{black}z}} \nonumber \\
-				&= -{\color{black}P}(t)\cfrac{\left( A_f v \right)}{\partial {\color{black}z}} + \cfrac{\partial}{\partial {\color{black}z}} \left( \cfrac{\partial T(t,z)}{\partial {\color{black}z}} \right) 
+				&\cfrac{\partial \left( \rho_f e(t,z) A_f \right) }{\partial t} + \cfrac{\partial \left( \rho_f A_f v e(t,z) \right)}{\partial z} \nonumber \\
+				&= -{\color{black}P}(t)\cfrac{\left( A_f v \right)}{\partial z} + \cfrac{\partial}{\partial z} \left( \cfrac{\partial T(t,z)}{\partial z} \right) 
 			\end{align}
 			}
 		
@@ -199,14 +200,14 @@
 			\end{equation}
 			}
 		
-			If the value of internal energy $e(t,z)$ is known from the time evolution of the energy Equation \ref{EQ: CompressibleEuler_3}, and pressure is known from measurement, then the temperature can be reconstructed. A roootfinder can be used to find a value of temperature, which minimizes the difference between the value of internal energy coming from the time evolution (Equation \ref{EQ: Heat_internal}) and the output from Equation \ref{EQ: internal_energy_PR}. Such a procedure allows to find a local temperature along spatial direction ${\color{black}z}$ and needs to be repeated every time-step.
+			If the value of internal energy $e(t,z)$ is known from the time evolution of the energy Equation \ref{EQ: CompressibleEuler_3}, and pressure is known from measurement, then the temperature can be reconstructed. A roootfinder can be used to find a value of temperature, which minimizes the difference between the value of internal energy coming from the time evolution (Equation \ref{EQ: Heat_internal}) and the output from Equation \ref{EQ: internal_energy_PR}. Such a procedure allows to find a local temperature along spatial direction $z$ and needs to be repeated every time-step.
 		
 			Another way to express the energy equation is to introduce enthalpy ${\color{black}h}(t,z) = e(t,z) + {\color{black}P}(t) / \rho_f$. By introducing the definition of enthalpy, the energy equation becomes
 			
 			{\footnotesize
 				\begin{align} \label{EQ:Enthalpy_equation}
-					\cfrac{\partial \left(\rho_f {\color{black}h}(t,z) A_f\right)}{\partial t} &= - \cfrac{\partial \left( \rho_f {\color{black}h}(t,z) A_f v \right)}{\partial {\color{black}z}}  \nonumber \\
-					& + \cfrac{\partial \left({\color{black}P}(t) A_f\right)}{\partial t} + \cfrac{\partial}{\partial {\color{black}z}} \left( k \cfrac{\partial T(t,z)}{\partial {\color{black}z}} \right)
+					\cfrac{\partial \left(\rho_f {\color{black}h}(t,z) A_f\right)}{\partial t} &= - \cfrac{\partial \left( \rho_f {\color{black}h}(t,z) A_f v \right)}{\partial z}  \nonumber \\
+					& + \cfrac{\partial \left({\color{black}P}(t) A_f\right)}{\partial t} + \cfrac{\partial}{\partial z} \left( k \cfrac{\partial T(t,z)}{\partial z} \right)
 				\end{align}
 			}
 		
@@ -256,14 +257,14 @@
 			\begin{align} 
 				\label{Model_measurment_1}
 %				y(t) \left[ kg \right] &= \int_{t_0}^{t_f} Q(t,z) \left[ \cfrac{m^3}{s} \right] c_f(t,z) \biggr\rvert_{z=L} \left[ \cfrac{kg}{m^3} \right] dt \left[ s \right] \\
-				{\color{black}y}(t) &= \int_{t_0}^{t_f} \cfrac{F}{\rho_f} c_f \biggr\rvert_{z=L} dt \\
+				y &= \int_{t_0}^{t_f} \cfrac{F}{\rho_f} c_f \biggr\rvert_{z=L} dt \\
 %				\cfrac{dy}{dt} \left[ \cfrac{kg}{s} \right] &= Q(t,z) \left[ \cfrac{m^3}{s} \right] c_f(t,z) \biggr\rvert_{z=L} \left[ \cfrac{kg}{m^3} \right]  \\
-				\cfrac{d{\color{black}y}(t)}{dt} &= \qquad \cfrac{F}{\rho_f} c_f \biggr\rvert_{z=L} 
+				\cfrac{dy}{dt} &= \qquad \cfrac{F}{\rho_f} c_f \biggr\rvert_{z=L} 
                 \label{Model_measurment_2}
 		\end{align}	}
   
 		\subsubsection{Initial and boundary conditions} 
-		It is assumed that the solvent is free of solute at the entrance of the extractor and that all the solid particles have the same initial solute content ${\color{black}c_{s0}}$. As the residence time is much shorter than the sampling time, the initial state estimate for the concentration of the solute in the fluid phase would be not reliable. Considering that it is assumed that the $c_{f0}=0$. Moreover, it is considered that the extractor is isothermal. %and described by ${\color{black}h_0}$. 
+		It is assumed that the solvent is free of solute at the entrance of the extractor and that all the solid particles have the same initial solute content $c_{s0}$. As the residence time is much shorter than the sampling time, the initial state estimate for the concentration of the solute in the fluid phase would be not reliable. Considering that it is assumed that the $c_{f0}=0$. Moreover, it is considered that the extractor is isothermal. %and described by ${\color{black}h_0}$. 
 		Therefore, the initial and boundary conditions employed in the simulation are:
 			
 		\begin{comment}
@@ -276,18 +277,18 @@
 			
 			{\footnotesize
 				\begin{align*}
-					&{\color{black}c_f}(t = 0, z) = 0 && c_s(t = 0, z) = {\color{black}c_{s0}} && {c_f}(t, z=0) = 0 \\
+					&c_f(t = 0, z) = 0 && c_s(t = 0, z) = c_{s0} && {c_f}(t, z=0) = 0 \\
 					&\frac{\partial c_f(t,z=L)}{\partial x} = 0 && c_s(t, z=\{0,L\}) = 0 && y(0) = 0
 			\end{align*} }
 			
 		\subsubsection{Discretization methods}
 		
-		The method of lines is used to transform the process model equations into a set of ODEs denoted as ${\color{black}G}({\color{black}x}(t);{\color{black}\Theta})$. The partial derivatives in $z$-direction are computed using a first-order and second-order finite difference approximation. The backward finite difference is used to approximate the first-order derivative, while the central difference scheme is used to approximate the second-order derivative. The length of the fixed bed is divided into $N_z$ equally distributed points in $z$-direction. The state-space model after the discretization is represented by $\dot{{\color{black}x}}(t)$.
+		The method of lines is used to transform the process model equations into a set of ODEs denoted as $G(x;\Theta)$. The backward finite difference is used to approximate the first-order derivative, while the central difference scheme is used to approximate the second-order derivative $z$-direction. The length of the fixed bed is divided into $N_z$ equally distributed points in $z$-direction. The state-space model after the discretization is represented by $x$.
 		
 		\begin{comment}
 		{\footnotesize
 			\begin{align*} \label{discretization}
-				\dot{{\color{black}x}}(t) &= \cfrac{d {\color{black}x}(t)}{d t} = 
+				\dot{{\color{black}x}}(t) &= \cfrac{d x}{d t} = 
 				\begin{bmatrix}
 					\cfrac{d {\color{black}c_{f,1}}(t)}{d t} 	  \\
 					\vdots					  \\
@@ -307,36 +308,36 @@
 				\end{bmatrix}
 				=
 				\underbrace{\begin{bmatrix}
-						{\color{black}G_1} \left( {\color{black}c_f}(t),{\color{black}c_s}(t),{\color{black}h}(t); {\color{black}\Theta} \right)\\ 
+						{\color{black}G_1} \left( c_f,c_s,{\color{black}h}(t); \Theta \right)\\ 
 						\vdots\\ 
-						{\color{black}G_{N_z}} \left( {\color{black}c_f}(t),{\color{black}c_s}(t),{\color{black}h}(t); {\color{black}\Theta} \right)\\ 
+						{\color{black}G_{N_z}} \left( c_f,c_s,{\color{black}h}(t); \Theta \right)\\ 
 						\\ \hline \\ \\
-						{\color{black}G_{N_z+1}} \left( {\color{black}c_f}(t),{\color{black}c_s}(t),{\color{black}h}(t); {\color{black}\Theta} \right)\\ 
+						{\color{black}G_{N_z+1}} \left( c_f,c_s,{\color{black}h}(t); \Theta \right)\\ 
 						\vdots\\
-						{\color{black}G_{2N_z}} \left( {\color{black}c}(t),{\color{black}c_s}(t),{\color{black}h}(t); {\color{black}\Theta} \right)\\ 
+						{\color{black}G_{2N_z}} \left( {\color{black}c}(t),c_s,{\color{black}h}(t); \Theta \right)\\ 
 						\\ \\ \hline \\ 
-						{\color{black}G_{2N_z+1}} \left( {\color{black}c_f}(t),{\color{black}c_s}(t),{\color{black}h}(t); {\color{black}\Theta} \right) \\
+						{\color{black}G_{2N_z+1}} \left( c_f,c_s,{\color{black}h}(t); \Theta \right) \\
 						\vdots\\
-						{\color{black}G_{3N_z}} \left( {\color{black}c_f}(t),{\color{black}c_s}(t),{\color{black}h}(t); {\color{black}\Theta} \right) \\ 
+						{\color{black}G_{3N_z}} \left( c_f,c_s,{\color{black}h}(t); \Theta \right) \\ 
 						\\ \\ \hline \\
-						{\color{black}G_{3N_z+1}} \left( {\color{black}c_f}(t),{\color{black}c_s}(t),{\color{black}h}(t); {\color{black}\Theta} \right) \\
+						{\color{black}G_{3N_z+1}} \left( c_f,c_s,{\color{black}h}(t); \Theta \right) \\
 						\\ \\ \hline \\
-						{\color{black}G_{3N_z+2}} \left( {\color{black}c_f}(t),{\color{black}c_s}(t),{\color{black}h}(t); {\color{black}\Theta} \right) 
-				\end{bmatrix}}_{{\color{black}G} \left( {\color{black}x}(t); {\color{black}\Theta} \right)} 
+						{\color{black}G_{3N_z+2}} \left( c_f,c_s,{\color{black}h}(t); \Theta \right) 
+				\end{bmatrix}}_{{\color{black}G} \left( x; \Theta \right)} 
 		\end{align*} }
 	\end{comment}
 		
 		{\footnotesize
 			\begin{align*} \label{discretization}
-				\dot{{\color{black}x}}(t) &= \cfrac{d {\color{black}x}(t)}{d t} = 
+				\dot{x} &= \cfrac{d x}{d t} = 
 				\begin{bmatrix}
-					\cfrac{d {\color{black}c_{f,1}}(t)}{d t} 	  \\
-					\vdots					  \\
-					\cfrac{d {\color{black}c_{f,N_z}}(t)}{d t} \\
-					\\ \hline \\
-					\cfrac{d {\color{black}c_{s,1}}(t)}{d t} 	  \\
-					\vdots					  \\
-					\cfrac{d {\color{black}c_{s,N_z}}(t)}{d t} \\
+					\cfrac{d c_{f,1}}{d t} 	  \\
+					\vdots		\\	
+					\cfrac{d c_{f,N_z}}{d t} \\
+					\\ \hline  	\\
+					\cfrac{d c_{s,1}}{d t} 	  \\
+					\vdots		\\
+					\cfrac{d c_{s,N_z}}{d t} \\
 					%\\ \hline \\
 					%\cfrac{d {\color{black}P}(t)}{d t} \\
 					\\ \hline \\
@@ -344,21 +345,21 @@
 				\end{bmatrix}
 				=
 				\underbrace{\begin{bmatrix}
-						{\color{black}G_1} \left( {\color{black}c_f}(t),{\color{black}c_s}(t); {\color{black}\Theta} \right)\\ 
+						G_1 \left( c_f,c_s; \Theta \right)\\ 
 						\vdots\\ 
-						{\color{black}G_{N_z}} \left( {\color{black}c_f}(t),{\color{black}c_s}(t); {\color{black}\Theta} \right)\\ 
+						G_{N_z} \left( c_f,c_s; \Theta \right)\\ 
 						\\ \hline \\ \\
-						{\color{black}G_{N_z+1}} \left( {\color{black}c_f}(t),{\color{black}c_s}(t); {\color{black}\Theta} \right)\\ 
+						G_{N_z+1} \left( c_f,c_s; \Theta \right)\\ 
 						\vdots\\
-						{\color{black}G_{2N_z}} \left( {\color{black}c}(t),{\color{black}c_s}(t); {\color{black}\Theta} \right)\\ 
+						G_{2N_z} \left( c_f,c_s; \Theta \right)\\ 
 						%\\ \\ \hline \\ 
-						%{\color{black}G_{2N_z+1}} \left( {\color{black}c_f}(t),{\color{black}c_s}(t); {\color{black}\Theta} \right) \\
+						%{\color{black}G_{2N_z+1}} \left( c_f,c_s; \Theta \right) \\
 						\\ \\ \hline \\
-						{\color{black}G_{2N_z+2}} \left( {\color{black}c_f}(t),{\color{black}c_s}(t); {\color{black}\Theta} \right) 
-				\end{bmatrix}}_{{\color{black}G} \left( {\color{black}x}(t); {\color{black}\Theta} \right)} 
+						G_{2N_z+2} \left( c_f,c_s; \Theta \right) 
+				\end{bmatrix}}_{G \left( x; \Theta \right)} 
 		\end{align*} }
 		
-		where ${\color{black}x} \in \mathbb{R}^{N_x = 2N_z+1} $ and ${\color{black}\Theta} \in \mathbb{R}^{N_\Theta =  N_{\theta} + N_u } $, $N_{\theta}$ is the number of parameters, $N_{u}$ is the number of control variables.
+		where ${\color{black}x} \in \mathbb{R}^{N_x = 2N_z+1} $ and $\Theta \in \mathbb{R}^{N_\Theta =  N_{\theta} + N_u } $, $N_{\theta}$ is the number of parameters, $N_{u}$ is the number of control variables.
 		
 		As presented in Appendix \ref{CH: Gouverning equations}, all the governing can be written in the integral form using the Divergence Theorem. The integral equation states that the change rate of the integral of any quantity over an arbitrary control volume is given by the flux through the boundary of the control volume, with being the outer surface normal through the boundary. That quantity is conserved and neither produced nor consumed inside the control volume. For a derivative to be conservative, it must form a telescoping series. In other words, after the addition of all terms coming from the discretization over a grid, only the boundary terms should remain, and the artificial interior points should cancel out. Discretization is applied to the conservative form of the process model to ensure mass conservation.
 	
@@ -378,15 +379,15 @@
 				\end{bmatrix}
 				& =
 				\begin{bmatrix}
-					{\color{black}\bar{\phi_1}} \left( c_f,c_s,{\color{black}h}(t,z); {\color{black}\Theta} \right)\\
-					{\color{black}\bar{\phi_2}} \left( c_f,c_s,{\color{black}h}(t,z); {\color{black}\Theta} \right)\\
-					{\color{black}\bar{\phi_3}} \left( c_f,c_s,{\color{black}h}(t,z); {\color{black}\Theta} \right) \\
-					{\color{black}\bar{\phi_4}} \left( c_f,c_s,{\color{black}h}(t,z); {\color{black}\Theta} \right)\\
-					{\color{black}\bar{\phi_5}} \left( c_f,c_s,{\color{black}h}(t,z); {\color{black}\Theta} \right)
-				\end{bmatrix} = {\color{black}\bar{\phi}} \left( t,z; {\color{black}\Theta} \right) = \cfrac{\partial {\color{black}\chi}(t,z)}{\partial t}
+					{\color{black}\bar{\phi_1}} \left( c_f,c_s,{\color{black}h}(t,z); \Theta \right)\\
+					{\color{black}\bar{\phi_2}} \left( c_f,c_s,{\color{black}h}(t,z); \Theta \right)\\
+					{\color{black}\bar{\phi_3}} \left( c_f,c_s,{\color{black}h}(t,z); \Theta \right) \\
+					{\color{black}\bar{\phi_4}} \left( c_f,c_s,{\color{black}h}(t,z); \Theta \right)\\
+					{\color{black}\bar{\phi_5}} \left( c_f,c_s,{\color{black}h}(t,z); \Theta \right)
+				\end{bmatrix} = {\color{black}\bar{\phi}} \left( t,z; \Theta \right) = \cfrac{\partial {\color{black}\chi}(t,z)}{\partial t}
 		\end{align} }
 			
-		where ${\color{black}\Theta}$ is a paramter space, ${\color{black}\bar{\phi}}$ is a set of functions that correspond to state equations of the model, and ${\color{black}\chi}$ is the state-space model.
+		where $\Theta$ is a paramter space, ${\color{black}\bar{\phi}}$ is a set of functions that correspond to state equations of the model, and ${\color{black}\chi}$ is the state-space model.
 		
 		\fi
 		

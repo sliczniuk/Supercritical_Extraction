@@ -142,13 +142,13 @@ Supercritical extraction \sep Parameter estimation \sep Mathematical modelling
 	\begin{align}
 		\label{EQ: CompressibleEuler_1}
 		\cfrac{\partial \left( \rho_f A_f \right) }{\partial t} + \cfrac{\partial \left( \rho_f A_f v \right)}{\partial z} &= 0 \\
-		\cfrac{\partial \left( \rho_f v A_f \right) }{\partial t} + \cfrac{\partial \left( \rho_f A_f v^2 \right)}{\partial z} &= -A_f \cfrac{\partial {\color{black}P}}{\partial z} \label{EQ: CompressibleEuler_2} \\
-		\cfrac{\partial \left( \rho_f e A_f \right) }{\partial t} + \cfrac{\partial \left( \rho_f A_f v e\right)}{\partial z} &= -{\color{black}P}\cfrac{\left( A_f v \right)}{\partial z} + \cfrac{\partial}{\partial z} \left( k \cfrac{\partial T}{\partial z} \right)   
+		\cfrac{\partial \left( \rho_f v A_f \right) }{\partial t} + \cfrac{\partial \left( \rho_f A_f v^2 \right)}{\partial z} &= -A_f \cfrac{\partial P}{\partial z} \label{EQ: CompressibleEuler_2} \\
+		\cfrac{\partial \left( \rho_f e A_f \right) }{\partial t} + \cfrac{\partial \left( \rho_f A_f v e\right)}{\partial z} &= -P\cfrac{\left( A_f v \right)}{\partial z} + \cfrac{\partial}{\partial z} \left( k \cfrac{\partial T}{\partial z} \right)   
 		\label{EQ: CompressibleEuler_3}
 	\end{align}  
 }
 
-where $\rho_f$ is the density of the fluid, $A_f$ is the function which describe change of the cross-section, $v$ is the velocity, ${\color{black}P}$ is the total pressure, $e$ is the internal energy of the fluid, $t$ is time and $z$ is the spacial direction.
+where $\rho_f$ is the density of the fluid, $A_f$ is the function which describe change of the cross-section, $v$ is the velocity, $P$ is the total pressure, $e$ is the internal energy of the fluid, $t$ is time and $z$ is the spacial direction.
 
 Based on governing equations, the small discontinuity (defined as $\delta$) in flow properties, shown in Figure \ref{fig: Discontinuity_slow_flow}, can be analysed. The analysis follows the work of \citet{Schreier1982}.
 
@@ -161,8 +161,8 @@ Based on governing equations, the small discontinuity (defined as $\delta$) in f
 			\draw (4.5,0) -- (4.5,2); 	% Bottom line
 			\node at (4,1.5) {$\rho_f$};
 			\node at (5.5,1.5) {$\rho_f+\delta\rho_f$};
-			\node at (4,1.0) {${\color{black}P}$};
-			\node at (5.5,1.0) {${\color{black}P}+\delta {\color{black}P}$};
+			\node at (4,1.0) {$P$};
+			\node at (5.5,1.0) {$P+\delta P$};
 			\node at (4,0.5) {$T$};
 			\node at (5.5,0.5) {$T+\delta T$};
 			\node at (1,1.0) {$v \rightarrow$};
@@ -177,7 +177,7 @@ The discontinuity is presumed to be at rest relative, and the balance equations 
 {\footnotesize
 	\begin{align*}
 		&\rho_f \delta v + v \delta \rho_f + \delta \rho_f \delta v = 0 \\
-		&\delta {\color{black}P} = \delta v \delta \rho_f
+		&\delta P = \delta v \delta \rho_f
 	\end{align*}
 }
 
@@ -193,11 +193,11 @@ By combining the momentum equation with the above equation, we get
 
 {\footnotesize
 	\begin{equation} \label{EQ: Pressure_Velocity}
-		\cfrac{d v}{d \rho_f} = - \cfrac{d v}{d{\color{black}P}} \cfrac{d {\color{black}P}}{d \rho_f} = -\cfrac{1}{\rho v} \cfrac{d{\color{black}P}}{d\rho_f} = -\cfrac{v}{\rho_f}
+		\cfrac{d v}{d \rho_f} = - \cfrac{d v}{dP} \cfrac{d P}{d \rho_f} = -\cfrac{1}{\rho v} \cfrac{dP}{d\rho_f} = -\cfrac{v}{\rho_f}
 	\end{equation}
 }
 
-Suppose the flow is presumed to be isentropic, $d{\color{black}P}/d\rho_f = c^2$, so $v^2=c^2$, where $c$ is the speed of sound. This can be interpreted as a small pressure wave propagating with the speed of sound relative to the flow. If the flow velocity is relatively low, all pressure changes are hydrodynamic (due to velocity motion) rather than thermodynamic, which leads to $\partial \rho_f / \partial {\color{black}P} \approx 0$. The small changes in pressure due to flow velocity changes do not change the density. 
+Suppose the flow is presumed to be isentropic, $dP/d\rho_f = c^2$, so $v^2=c^2$, where $c$ is the speed of sound. This can be interpreted as a small pressure wave propagating with the speed of sound relative to the flow. If the flow velocity is relatively low, all pressure changes are hydrodynamic (due to velocity motion) rather than thermodynamic, which leads to $\partial \rho_f / \partial P \approx 0$. The small changes in pressure due to flow velocity changes do not change the density. 
 
 The low Mach number condition leads to the incompressible condition: $\nabla \cdot u =0$, which is valid for constant density (strict incompressible) or varying density flow. The restraint allows for the removal of acoustic waves, but also allows for large perturbations in density and/or temperature. The assumption is that the flow remains within a Mach number limit (usually less than 0.3) for any solution using such a constraint to be valid. In the 1-D case, the incompressibility condition becomes $\frac{du}{dz} = 0$, so the fluid velocity is constant.
 
@@ -246,14 +246,14 @@ The low Mach number condition leads to the incompressible condition: $\nabla \cd
 	\begin{subfigure}{0.3\textwidth}
 		\centering
 		\includegraphics[trim = 0.0cm 0.0cm 0.0cm 0.0cm,clip, width=\textwidth]{/Results_estimation/Fit_Di_Gamma_1_4_correlation.png}
-		\caption{Results of parameter estimation for experiments at $6.67\times 10^{-5}$ [kg/s]}% and temperature of 40 $[^\circ C]$}
+		\caption{Parameter estimation results at $6.67\times 10^{-5}$ [kg/s] and temperature of 40 $[^\circ C]$}
 		\label{fig: Fit_1_4_Di_Gamma_correlation}
 	\end{subfigure}
 	\hfill
 	\begin{subfigure}{0.3\textwidth}
 		\centering
 		\includegraphics[trim = 0.0cm 0.0cm 0.0cm 0.0cm,clip, width=\textwidth]{/Results_estimation/Fit_Di_Gamma_5_8_correlation.png}
-		\caption{Results of parameter estimation for experiments at $6.67\times 10^{-5}$ [kg/s]}% and temperature of 30 $[^\circ C]$}
+		\caption{Parameter estimation results at $6.67\times 10^{-5}$ [kg/s] and temperature of 30 $[^\circ C]$}
 		\label{fig: Fit_5_8_Di_Gamma_correlation}
 	\end{subfigure}
 	\hfill
@@ -269,7 +269,7 @@ The low Mach number condition leads to the incompressible condition: $\nabla \cd
 
 The article presents a comprehensive study on supercritical fluid extraction of essential oil from chamomile flowers, focusing on developing and applying a distributed-parameter model to describe the fluid-solid extraction process. By employing the concept of quasi-one-dimensional flow, the study simplifies the spatial dimensions of the extraction process, ensuring uniform flow across any cross-section while allowing for variations in the area available for the fluid phase. The physical properties of the solvent are estimated using the Peng-Robinson equation of state, and key model parameters are determined through maximum likelihood estimation based on experimental data, considering normally distributed errors.
 
-Laboratory experiments were conducted under various conditions to validate the model. The model parameters, such as partition factor, internal diffusion coefficient, axial diffusion coefficient, and decaying factor, were determined through maximum likelihood estimation based on experimental data. The parameter space exploration revealed that while some parameters could be determined with a high degree of confidence, others, like the axial diffusion coefficient, had a low impact on the model's output. The identification of the low-impact parameters leads to model reduction
+Laboratory experiments were conducted by \citet{Povh2001} under various conditions to validate the model. The model parameters, such as partition factor, internal diffusion coefficient, axial diffusion coefficient, and decaying factor, were determined through maximum likelihood estimation based on experimental data. The parameter space exploration revealed that while some parameters could be determined with a high degree of confidence, others, like the axial diffusion coefficient, had a low impact on the model's output. The identification of the low-impact parameters leads to model reduction
 
 This work introduced a set of correlations to find a general relationship between parameters and the independent variables, which can be determined by operating conditions. The obtained correlations were introduced into the model and tested against the dataset. The results show good agreement between the simulation results and all the data points.
 
