@@ -108,7 +108,7 @@
 % ABSTRACT
 % ===================================================
 \begin{abstract}
-This study investigates the supercritical extraction process of essential oil from chamomile flowers.  Essential oils of chamomile are used extensively for medicinal purposes. Many different products of chamomile have been developed, the most popular of which is in the form of herbal tea. A distributed-parameter model describes the fluid-solid extraction process. The concept of quasi-one-dimensional flow is applied to reduce the number of spatial dimensions. The flow is assumed to be uniform across any cross-section, although the area available for the fluid phase can vary along the extractor. The physical properties of the solvent are estimated from the Peng-Robinson equation of state. Model parameters, including the partition factor, internal diffusion coefficient, axial diffusion coefficient, and decaying factor, were determined through maximum likelihood estimation based on experimental data, with the assumption of normally distributed errors. A set of laboratory experiments was performed under multiple constant operating conditions: $30 - 40^\circ C$, $100 - 200$ bar, and $3.33-6.67 \times 10^{-5}$ kg/s. 
+This study investigates the supercritical extraction process of essential oil from chamomile flowers.  Essential oils of chamomile are used extensively for medicinal purposes. Many different products of chamomile have been developed, the most popular of which is in the form of herbal tea. A distributed-parameter model describes the fluid-solid extraction process. The concept of quasi-one-dimensional flow is applied to reduce the number of spatial dimensions. The flow is assumed to be uniform across any cross-section, although the area available for the fluid phase can vary along the extractor. The physical properties of the solvent are estimated based on the Peng-Robinson equation of state. Model parameters, including the partition factor, internal diffusion coefficient, axial diffusion coefficient, and decaying factor, were determined through maximum likelihood estimation based on experimental data assuming normally distributed errors. A set of laboratory experiments was performed under multiple constant operating conditions: $30 - 40^\circ C$, $100 - 200$ bar, and $3.33-6.67 \times 10^{-5}$ kg/s. 
 
 \end{abstract}
 
@@ -134,9 +134,14 @@ Supercritical extraction \sep Parameter estimation \sep Mathematical modelling
 %\subfile{Sections/Thermo_imp}
 
 \subsection{Governing equations} \label{CH:Governing_equations_chapter}
-	The governing equations based on the work of \citet{Anderson1995} for quasi-one-dimensional compressible flow in Cartesian coordinates are presented in Appendix \ref{CH: Gouverning equations}. Quasi-one-dimensional flow refers to a fluid flow scenario assuming that flow properties are uniformly distributed across any given cross-section. This simplification is typically applied in situations where the flow channel's cross-sectional area changes, such as through irregular shapes or partial fillings of an extractor. According to this assumption, velocity and other flow properties change solely in the flow direction.
+	Following the work of \citet{Anderson1995}, the governing equations for quasi-one-dimensional were derived. Quasi-one-dimensional flow refers to a fluid flow scenario assuming that flow properties are uniformly distributed across any given cross-section. This simplification is typically applied in situations where the flow channel's cross-sectional area changes, such as through irregular shapes or partial fillings of an extractor. According to this assumption, velocity and other flow properties change solely in the flow direction.
 	
-	The set of quasi-one-dimensional compressible Navier-Stokes equations in Cartesian coordinates is described by Equations \ref{EQ: CompressibleEuler_1} - \ref{EQ: CompressibleEuler_3}. The formulation of these equations is elaborated upon in Appendix \ref{CH: Gouverning equations}, providing a mathematical foundation for analyzing flow dynamics under the assumed conditions.
+	As discussed by \citet{Anderson2023}, all flows are compressible but some of them can be treated as incompressible when the Mach number is smaller than 0.3. This assumption leads to the incompressible condition: $\nabla \cdot u =0$, which is valid for constant density (strict incompressible) or varying density flow. The restraint allows for the removal of acoustic waves, and allows for large perturbations in density and/or temperature. In the 1-D case, the incompressibility condition becomes $\frac{du}{dz} = 0$, so the fluid velocity is constant.
+	
+	
+	%The governing equations based on the work of \citet{Anderson1995} for quasi-one-dimensional compressible flow in Cartesian coordinates are presented in Appendix \ref{CH: Gouverning equations}.
+	
+	The set of quasi-one-dimensional governing equations in Cartesian coordinates is described by Equations \ref{EQ: CompressibleEuler_1} - \ref{EQ: CompressibleEuler_3}. %The formulation of these equations is elaborated upon in Appendix \ref{CH: Gouverning equations}, providing a mathematical foundation for analyzing flow dynamics under the assumed conditions.
 
 {\footnotesize
 	\begin{align}
@@ -150,6 +155,7 @@ Supercritical extraction \sep Parameter estimation \sep Mathematical modelling
 
 where $\rho_f$ is the density of the fluid, $A_f$ is the function which describe change of the cross-section, $v$ is the velocity, $P$ is the total pressure, $e$ is the internal energy of the fluid, $t$ is time and $z$ is the spacial direction.
 
+\begin{comment}
 Based on governing equations, the small discontinuity (defined as $\delta$) in flow properties, shown in Figure \ref{fig: Discontinuity_slow_flow}, can be analysed. The analysis follows the work of \citet{Schreier1982}.
 
 \begin{figure}[!h]
@@ -201,37 +207,13 @@ Suppose the flow is presumed to be isentropic, $dP/d\rho_f = c^2$, so $v^2=c^2$,
 
 The low Mach number condition leads to the incompressible condition: $\nabla \cdot u =0$, which is valid for constant density (strict incompressible) or varying density flow. The restraint allows for the removal of acoustic waves, but also allows for large perturbations in density and/or temperature. The assumption is that the flow remains within a Mach number limit (usually less than 0.3) for any solution using such a constraint to be valid. In the 1-D case, the incompressibility condition becomes $\frac{du}{dz} = 0$, so the fluid velocity is constant.
 
+\end{comment}
+
 \subsection{Extraction model} \label{CH: Extraction_model}
 \subfile{Sections/Model}
 
 \subsection{Parameter estimation} \label{CH: Parameter_estimation}
 \subfile{Sections/Parameter_estimation}
-
-\begin{figure*}[!b]
-	\centering
-	\begin{subfigure}{0.3\textwidth}
-		\centering
-		\includegraphics[trim = 0.0cm 0.0cm 0.0cm 0.0cm,clip, width=\textwidth]{/Results_estimation/Parameter_Space_Linear_Dataset_1.png}
-		\caption{Parameter space: the linear kinetic model}
-		\label{fig: Fit_1_linear}
-	\end{subfigure}
-	\hfill
-	\begin{subfigure}{0.3\textwidth}
-		\centering
-		\includegraphics[trim = 0.0cm 0.0cm 0.0cm 0.0cm,clip, width=\textwidth]{/Results_estimation/Parameter_Space_Di_Dx_Dataset_1.png}
-		\caption{Parameter space: the reduced linear kinetic model with axial diffusion}
-		\label{fig: Fit_1_Di_Dx}
-	\end{subfigure}
-	\hfill
-	\begin{subfigure}{0.3\textwidth}
-		\centering
-		\includegraphics[trim = 0.0cm 0.0cm 0.0cm 0.0cm,clip, width=\textwidth]{/Results_estimation/Parameter_space_Di_Gamma_dataset_1_org.png}
-		\caption{Parameter space: the modified model}
-		\label{fig: Fit_1_Di_Gamma}
-	\end{subfigure}
-	\caption{Parameter estimation results for experiment 1}
-	%\label{fig: Fit_Di_Gamma}
-\end{figure*}
 
 \subsection{Experimental work}
 \subfile{Sections/Experiments}
@@ -240,32 +222,6 @@ The low Mach number condition leads to the incompressible condition: $\nabla \cd
 \subfile{Sections/Results_Chamomile}
 
 \section{Conclusions} \label{CH: Conclusion}
-
-\begin{figure*}[!h]
-	\centering
-	\begin{subfigure}{0.3\textwidth}
-		\centering
-		\includegraphics[trim = 0.0cm 0.0cm 0.0cm 0.0cm,clip, width=\textwidth]{/Results_estimation/Fit_Di_Gamma_1_4_correlation.png}
-		\caption{Parameter estimation results at $6.67\times 10^{-5}$ [kg/s] and temperature of 40 $[^\circ C]$}
-		\label{fig: Fit_1_4_Di_Gamma_correlation}
-	\end{subfigure}
-	\hfill
-	\begin{subfigure}{0.3\textwidth}
-		\centering
-		\includegraphics[trim = 0.0cm 0.0cm 0.0cm 0.0cm,clip, width=\textwidth]{/Results_estimation/Fit_Di_Gamma_5_8_correlation.png}
-		\caption{Parameter estimation results at $6.67\times 10^{-5}$ [kg/s] and temperature of 30 $[^\circ C]$}
-		\label{fig: Fit_5_8_Di_Gamma_correlation}
-	\end{subfigure}
-	\hfill
-	\begin{subfigure}{0.3\textwidth}
-		\centering
-		\includegraphics[trim = 0.0cm 0.0cm 0.0cm 0.0cm,clip, width=\textwidth]{/Results_estimation/Fit_Di_Gamma_9_12_correlation.png}
-		\caption{Results of parameter estimation for experiments at $3.33\times 10^{-5}$ [kg/s]}
-		\label{fig: Fit_9_12_Di_Gamma_correlation}
-	\end{subfigure}
-	\caption{Parameter estimation results}
-	\label{fig: Fit_Di_Gamma_correlation}
-\end{figure*}
 
 The article presents a comprehensive study on supercritical fluid extraction of essential oil from chamomile flowers, focusing on developing and applying a distributed-parameter model to describe the fluid-solid extraction process. By employing the concept of quasi-one-dimensional flow, the study simplifies the spatial dimensions of the extraction process, ensuring uniform flow across any cross-section while allowing for variations in the area available for the fluid phase. The physical properties of the solvent are estimated using the Peng-Robinson equation of state, and key model parameters are determined through maximum likelihood estimation based on experimental data, considering normally distributed errors.
 
@@ -279,7 +235,7 @@ The presented model can be further used with the presented correlations to intro
 % Bibliography
 % ===================================================
 %% Loading bibliography style file
-%\clearpage
+\clearpage
 %\bibliographystyle{model1-num-names}
 \bibliographystyle{unsrtnat}
 \bibliography{mybibfile}
@@ -287,12 +243,11 @@ The presented model can be further used with the presented correlations to intro
 \clearpage \appendix \label{appendix}
 \section{Appendix} 
 
-\subsection{Governing equations}
-\subfile{Sections/Gouverning_equation_derivation}
+%\subsection{Governing equations}
+%\subfile{Sections/Gouverning_equation_derivation}
 
 \subsection{Thermodynamic}
 \subfile{Sections/Qubic_EOS} \label{CH: EOS}
-
 
 \subsection{Cardano's Formula} \label{CH: Cardano}
 \subfile{Sections/Cardano}
@@ -300,8 +255,8 @@ The presented model can be further used with the presented correlations to intro
 %\subsection{Initial and boundary conditions} \label{CH: IC_BC}
 %\subfile{Sections/IC_BC}
 
-\subsection{Maximum likelihood} \label{CH: ML}
-\subfile{Sections/Likelihood}
+%\subsection{Maximum likelihood} \label{CH: ML}
+%\subfile{Sections/Likelihood}
 
 %\subsection{Solid density measurement} \label{CH: Solid_Density_Measurment}
 

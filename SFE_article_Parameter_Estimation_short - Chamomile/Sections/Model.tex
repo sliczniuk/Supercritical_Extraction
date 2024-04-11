@@ -46,7 +46,8 @@
 		
 	\subsubsection{Mass balance for the fluid phase} \label{CH: Mass_balance_fluid}
 	
-	The comprehensive derivation of the mass balance equation for the fluid phase is detailed in Appendix \ref{CH: Gouverning equations}. This equation accounts for the movement of the pseudo-homogeneous fluid phase (Equation \ref{Model_fluid}), which is constrained to the axial direction due to the quasi-one-dimensional approach that considers changes in the void fraction. It is also assumed that the thermodynamic pressure remains constant throughout the device, as illustrated by Equation \ref{EQ: Pressure_Velocity}. The analysis further simplifies the flow dynamics by disregarding the boundary layer near the extractor's inner wall, leading to a uniform velocity profile across any cross-section perpendicular to the axial direction. Given that the solute concentration in the solvent is negligible, the fluid phase is described as pseudo-homogeneous, with properties identical to the solvent itself. Thus, the mass balance equation encompasses convection, diffusion, and kinetic terms to represent the fluid phase behaviour accurately.
+	%The comprehensive derivation of the mass balance equation for the fluid phase is detailed in Appendix \ref{CH: Gouverning equations}. 
+	This equation accounts for the movement of the pseudo-homogeneous fluid phase (Equation \ref{Model_fluid}), which is constrained to the axial direction due to the quasi-one-dimensional approach that considers changes in the void fraction. It is also assumed that the thermodynamic pressure remains constant throughout the device. The analysis further simplifies the flow dynamics by disregarding the boundary layer near the extractor's inner wall, leading to a uniform velocity profile across any cross-section perpendicular to the axial direction. Given that the solute concentration in the solvent is negligible, the fluid phase is described as pseudo-homogeneous, with properties identical to the solvent itself. Thus, the mass balance equation include convection, diffusion, and kinetic terms to represent the fluid phase behaviour.
 	
 	{\footnotesize
 		\begin{equation}
@@ -75,22 +76,22 @@
 	
 	%The kinetic term is based on two-film theory and follow work of \citet{Reverchon1996}. The mass transfer kinetic (Equation \ref{Model_kinetic_basic}) consists of the overall diffusion coefficient and the concentration gradient, which acts as a driving force for the process.
 	
-	The kinetic term in this study is based on the two-film theory proposed by \citet{Reverchon1996}, and the mass transfer kinetic is given by Equation \ref{Model_kinetic_basic}. This equation takes into account the overall diffusion coefficient and the concentration gradient, which acts as the driving force for the process.
+	%In this study, the kinetic term is based on the two-film theory proposed by \citet{Reverchon1996}, and the mass transfer kinetic is given by Equation \ref{Model_kinetic_basic}. This equation takes into account the overall diffusion coefficient and the concentration gradient, which acts as the driving force for the process.
 	
 %	As the solvent flows through the bed, the CO$_2$ molecules diffuse into the pores and adsorb on the particle surface to form an external fluid film around the solid particles through the solvent–solid matrix interactions. Assuming that the mean free path of the molecule is much smaller than the pore diameter, the effect of Knudsen diffusion is small and can be neglected. The dissolved solute diffuses from the particle's core through the solid-fluid interface, the pore, and the film into the bulk. The graphical representation of the mass transfer mechanism is shown in Figure \ref{fig: SFE_Mechanism}. The mean solute concentration in the solid phase is denoted as ${\color{black}c_s}$. At the solid-fluid interface, the equilibrium concentrations are given as ${\color{black}c_s^*}$ and ${\color{black}c_P^*}$, respectively for solid and fluid phases. The concentration of the solutes in the fluid phase in the centre of the pore is denoted as ${\color{black}c_{P}}$. As the solute diffuses through the pore, its concentration changes and reaches ${\color{black}c_{Pf}}$ at the opening of the pore. The solute diffuses through the film around the particle and reaches a concentration in the bulk ${\color{black}c_f}$. It can be assumed that the two-film theory describes the solid-fluid interface inside the pore. The overall mass transfer coefficient can be introduced if the relation between the solute concentration in one phase and its equilibrium concentration is known.
 	
-	As the solvent flows through the bed, CO$_2$ molecules diffuse into the pores and adsorb on the particle surface to form an external fluid film around the solid particles due to the solvent-solid matrix interactions. The dissolved solute diffuses from the particle's core through the solid-fluid interface, the pore, and the film into the bulk. Figure \ref{fig: SFE_Mechanism} illustrates the mass transfer mechanism, where the mean solute concentration in the solid phase is denoted as $c_s$ and the equilibrium concentrations at the solid-fluid interface are denoted as $c_s^*$ and $c_p^*$, respectively, for solid and fluid phases. The concentration of the solutes in the fluid phase in the center of the pore is denoted as $c_p$. As the solute diffuses through the pore, its concentration changes and reaches $c_{pf}$ at the opening of the pore. The solute then diffuses through the film around the particle and reaches bulk concentration $c_f$. The two-film theory describes the solid-fluid interface inside the pore. The overall mass transfer coefficient can be determined if the relationship between the solute concentration in one phase and its equilibrium concentration is known.
+	As the solvent flows through the bed, CO$_2$ molecules diffuse into the pores and adsorb on the particle surface to form an external fluid film around the solid particles due to the solvent-solid matrix interactions. The dissolved solute diffuses from the particle's core through the solid-fluid interface, the pore, and the film into the bulk. Figure \ref{fig: SFE_Mechanism} shows the mass transfer mechanism, where the mean solute concentration in the solid phase is denoted as $c_s$ and the equilibrium concentrations at the solid-fluid interface are denoted as $c_s^*$ and $c_p^*$, respectively, for solid and fluid phases. The concentration of the solutes in the fluid phase in the center of the pore is denoted as $c_p$. As the solute diffuses through the pore, its concentration changes and reaches $c_{pf}$ at the opening of the pore. Then the solute diffuses through the film around the particle and reaches bulk concentration $c_f$. The two-film theory describes the solid-fluid interface inside the pore. The overall mass transfer coefficient can be determined from the relationship between the solute concentration in one phase and its equilibrium concentration.
 			
 		\begin{figure}[h!]
 			\centering
-			\includegraphics[trim = 45cm 0cm 60cm 20cm,clip,width=\columnwidth]{Figures/SFE_PFD.drawio.png}	
-			\caption{The extraction mechanism}
+			\includegraphics[trim = 45cm 0cm 60cm 20cm,clip,width=0.85\columnwidth]{Figures/SFE_PFD.drawio.png}	
+			\caption{The mass transfer mechanism}
 			\label{fig: SFE_Mechanism}
 		\end{figure}
 			
 		\citet{Bulley1984} suggests a process where the driving force for extraction is given by the difference between the concentration of the solute in bulk, $c_f$, and in the center of the pore, $c_p^*$. The concentration $c_p^*$ is in equilibrium with $c_s$ according to an equilibrium relationship. The rate of extraction is thus $r_e\left(c_f - c^*_p(c_s)\right)$.  
 			
-		On the other hand, \citet{Reverchon1996} proposes a driving force given by the difference between $c_s$ and $c_p^*$. $c_p^*$ is determined by an equilibrium relationship with $c_f$ and the extraction rate is $r_e\left(c_s - c^*_p(c_f)\right)$ or more precisely
+		On the other hand, \citet{Reverchon1996} proposes a driving force given by the difference between $c_s$ and $c_p^*$. $c_p^*$ is determined by an equilibrium relationship with $c_f$ and the extraction rate given by Equation \ref{Model_kinetic_basic}
 			
 			{\footnotesize
 				\begin{equation} \label{Model_kinetic_basic}
@@ -251,7 +252,7 @@
   		
 		\subsubsection{Extraction yield} \label{CH: Yield}
 			
-		The efficiency of the process (the yield) is calculated according to Equation \ref{Model_measurment_1} as presented by \citet{Sovova1994a}. The measurement equation evaluates the solute's mass at the extraction unit's outlet and sums it up. The integral form of the measurement equation (\ref{Model_measurment_1}) can be transformed into the differential form (\ref{Model_measurment_2}) and augmented with the process model.
+		The process yield is calculated according to Equation \ref{Model_measurment_1} as presented by \citet{Sovova1994a}. The measurement equation evaluates the solute's mass at the extraction unit's outlet and sums it up. The integral form of the measurement (Equation \ref{Model_measurment_1}) can be transformed into the differential form (Equation \ref{Model_measurment_2}) and augmented with the process model.
 			
 		{\footnotesize
 			\begin{align} 
@@ -264,8 +265,8 @@
 		\end{align}	}
   
 		\subsubsection{Initial and boundary conditions} 
-		It is assumed that the solvent is free of solute at the entrance of the extractor and that all the solid particles have the same initial solute content $c_{s0}$. As the residence time is much shorter than the sampling time, the initial state estimate for the concentration of the solute in the fluid phase would be not reliable. Considering that it is assumed that the $c_{f0}=0$. Moreover, it is considered that the extractor is isothermal. %and described by ${\color{black}h_0}$. 
-		Therefore, the initial and boundary conditions employed in the simulation are:
+		It is assumed that the solvent is free of solute at the entrance of the extractor and that all the solid particles have the same initial solute content $c_{s0}$. As the residence time is much shorter than the sampling time, the initial state estimate for the concentration of the solute in the fluid phase would be not reliable. Considering that it is assumed that the $c_{f0}=0$ and that the system is isothermal. %and described by ${\color{black}h_0}$. 
+		Therefore, the initial and boundary conditions are define as follow:
 			
 		\begin{comment}
 		{\footnotesize
@@ -361,7 +362,8 @@
 		
 		where ${\color{black}x} \in \mathbb{R}^{N_x = 2N_z+1} $ and $\Theta \in \mathbb{R}^{N_\Theta =  N_{\theta} + N_u } $, $N_{\theta}$ is the number of parameters, $N_{u}$ is the number of control variables.
 		
-		As presented in Appendix \ref{CH: Gouverning equations}, all the governing can be written in the integral form using the Divergence Theorem. The integral equation states that the change rate of the integral of any quantity over an arbitrary control volume is given by the flux through the boundary of the control volume, with being the outer surface normal through the boundary. That quantity is conserved and neither produced nor consumed inside the control volume. For a derivative to be conservative, it must form a telescoping series. In other words, after the addition of all terms coming from the discretization over a grid, only the boundary terms should remain, and the artificial interior points should cancel out. Discretization is applied to the conservative form of the process model to ensure mass conservation.
+		%As presented in Appendix \ref{CH: Gouverning equations}, all the governing can be written in the integral form using the Divergence Theorem. The integral equation states that the change rate of the integral of any quantity over an arbitrary control volume is given by the flux through the boundary of the control volume, with being the outer surface normal through the boundary. That quantity is conserved and neither produced nor consumed inside the control volume. 
+		For a derivative to be conservative, it must form a telescoping series. In other words, after the addition of all terms coming from the discretization over a grid, only the boundary terms should remain, and the artificial interior points should cancel out. The discretization is applied to the conservative form of the model to ensure mass conservation.
 	
 		\iffalse
 		\subsubsection{State-space representation} \label{CH: State_space}

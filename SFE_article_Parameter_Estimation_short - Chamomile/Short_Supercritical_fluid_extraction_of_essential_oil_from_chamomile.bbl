@@ -1,4 +1,4 @@
-\begin{thebibliography}{19}
+\begin{thebibliography}{20}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -58,11 +58,11 @@ John~D. Anderson.
 \newblock McGraw-Hill, 1995.
 \newblock ISBN 9780071132107.
 
-\bibitem[Schreier(1982)]{Schreier1982}
-Stefan Schreier.
-\newblock \emph{Compressible flow}.
-\newblock Wiley, 1982.
-\newblock ISBN 047105691X.
+\bibitem[Anderson and Cadou(2023)]{Anderson2023}
+Jr. Anderson, John~D. and Chris Cadou.
+\newblock \emph{Fundamentals of Aerodynamics}.
+\newblock McGraw-Hill Education, 2023.
+\newblock ISBN 9781264151929.
 
 \bibitem[Bulley et~al.(1984)Bulley, Fattori, Meisen, and Moyls]{Bulley1984}
 N.~R. Bulley, M.~Fattori, A.~Meisen, and L.~Moyls.
@@ -108,6 +108,11 @@ John Mandel.
 \newblock \emph{Journal of the American Statistical Association}, 52\penalty0
   (280):\penalty0 552--566, dec 1957.
 \newblock \doi{10.1080/01621459.1957.10501413}.
+
+\bibitem[Himmelblau(1970)]{Himmelblau1970}
+David~Mautner Himmelblau.
+\newblock Process analysis by statistical methods, 1970.
+\newblock [by] David M. Himmelblau., Includes bibliographical references.
 
 \bibitem[Povh et~al.(2001)Povh, Marques, and Meireles]{Povh2001}
 Nanci~P. Povh, Marcia~O.M. Marques, and M.Angela~A. Meireles.
