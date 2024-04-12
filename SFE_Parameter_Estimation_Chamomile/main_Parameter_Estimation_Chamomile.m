@@ -26,12 +26,12 @@ nlp_opts.ipopt.acceptable_tol     = 1e-4;
 nlp_opts.ipopt.tol      = 1e-6;
 %nlp_opts.ipopt.hessian_approximation ='limited-memory';
 
-which_k                 = [      44,   46];              % Select which parameters are used for fitting
+which_k                 = [      44,   46];                                 % Select which parameters are used for fitting
 k_lu                    = [ [     0;    0], ...
                             [   inf;  inf] ];
-Nk                      = numel(which_k)+0;                                   % Parameters within the model + sigma
+Nk                      = numel(which_k)+0;                                 % Parameters within the model + sigma
 
-DATA_K_OUT              = nan(Nk,N_trial);                          % Store Parameters obatined from all fits (par num x num exper)
+DATA_K_OUT              = nan(Nk,N_trial);                                  % Store Parameters obatined from all fits (par num x num exper)
 OBJ_OUT                 = nan(1,N_trial);
 
 AA = xlsread('Regression.xlsx');
@@ -186,8 +186,8 @@ for jj = 1
     %for ii=1:N_trial
         %k0                      = 0.01 + (100-0.01) .* rand(Nk,1);
 
-        %k0                      = ones(Nk,1);
-        k0                      = [0.72, 2.6];
+        k0                      = ones(Nk,1);
+        %k0                      = [0.72, 2.6];
 
         OPT_solver              = casadi.Opti();
         ocp_opts                = {'nlp_opts', nlp_opts};
@@ -253,7 +253,7 @@ for jj = 1
     %}
 %end
 %% Plots
-%{
+%{\
 for ii=1:N_trial
     %KOUT = DATA_K_OUT(:,ii);
     KOUT = KOUT;
@@ -290,7 +290,7 @@ end
 %}
 
 %% plot the parameter space
-%{\
+%{
 import casadi.*
 FF = Function('FF',{k},{J_L});
 

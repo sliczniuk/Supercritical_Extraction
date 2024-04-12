@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10.12) (preloaded format=pdflatex 2024.1.12)  11 APR 2024 16:40
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10.12) (preloaded format=pdflatex 2024.1.12)  12 APR 2024 17:27
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1681,62 +1681,58 @@ Package pdftex.def Info: Figures/SFE_PFD.drawio.png  used on input line 87.
 (Sections/Saturation.tex) [3 <./Figures/SFE_PFD.drawio.png>])
 (Sections/Parameter_estimation.tex [4]) (Sections/Experiments.tex)
 (Sections/Results_Chamomile.tex
-<Figures///Results_estimation/Parameter_Space_Linear_Dataset_1.png, id=230, 388
+<Figures///Results_estimation/Parameter_Space_Linear_Dataset_1.png, id=229, 388
 .3308pt x 298.2342pt>
 File: Figures///Results_estimation/Parameter_Space_Linear_Dataset_1.png Graphic
  file (type png)
 <use Figures///Results_estimation/Parameter_Space_Linear_Dataset_1.png>
 Package pdftex.def Info: Figures///Results_estimation/Parameter_Space_Linear_Da
-taset_1.png  used on input line 25.
+taset_1.png  used on input line 15.
 (pdftex.def)             Requested size: 114.3611pt x 87.82816pt.
-<Figures///Results_estimation/Parameter_Space_Di_Dx_Dataset_1.png, id=232, 391.
+<Figures///Results_estimation/Parameter_Space_Di_Dx_Dataset_1.png, id=231, 391.
 9443pt x 300.4023pt>
 File: Figures///Results_estimation/Parameter_Space_Di_Dx_Dataset_1.png Graphic 
 file (type png)
 <use Figures///Results_estimation/Parameter_Space_Di_Dx_Dataset_1.png>
 Package pdftex.def Info: Figures///Results_estimation/Parameter_Space_Di_Dx_Dat
-aset_1.png  used on input line 32.
+aset_1.png  used on input line 22.
 (pdftex.def)             Requested size: 114.3611pt x 87.65073pt.
 <Figures///Results_estimation/Parameter_space_Di_Gamma_dataset_1_org.png, id=23
-4, 389.7762pt x 295.1025pt>
+3, 389.7762pt x 295.1025pt>
 File: Figures///Results_estimation/Parameter_space_Di_Gamma_dataset_1_org.png G
 raphic file (type png)
 <use Figures///Results_estimation/Parameter_space_Di_Gamma_dataset_1_org.png>
 Package pdftex.def Info: Figures///Results_estimation/Parameter_space_Di_Gamma_
-dataset_1_org.png  used on input line 39.
+dataset_1_org.png  used on input line 29.
 (pdftex.def)             Requested size: 114.3611pt x 86.58167pt.
  [5 <./Figures///Results_estimation/Parameter_Space_Linear_Dataset_1.png (PNG c
 opy)> <./Figures///Results_estimation/Parameter_Space_Di_Dx_Dataset_1.png (PNG 
 copy)> <./Figures///Results_estimation/Parameter_space_Di_Gamma_dataset_1_org.p
 ng (PNG copy)>]
-<Figures///Results_estimation/Fit_Di_Gamma_1_4.png, id=255, 423.5022pt x 311.24
+<Figures///Results_estimation/Fit_Di_Gamma_1_4.png, id=254, 423.5022pt x 311.24
 28pt>
 File: Figures///Results_estimation/Fit_Di_Gamma_1_4.png Graphic file (type png)
 
 <use Figures///Results_estimation/Fit_Di_Gamma_1_4.png>
 Package pdftex.def Info: Figures///Results_estimation/Fit_Di_Gamma_1_4.png  use
-d on input line 57.
+d on input line 55.
 (pdftex.def)             Requested size: 157.2488pt x 115.56645pt.
-<Figures///Results_estimation/Fit_Di_Gamma_5_8.png, id=257, 423.5022pt x 311.24
+<Figures///Results_estimation/Fit_Di_Gamma_5_8.png, id=256, 423.5022pt x 311.24
 28pt>
 File: Figures///Results_estimation/Fit_Di_Gamma_5_8.png Graphic file (type png)
 
 <use Figures///Results_estimation/Fit_Di_Gamma_5_8.png>
 Package pdftex.def Info: Figures///Results_estimation/Fit_Di_Gamma_5_8.png  use
-d on input line 64.
+d on input line 62.
 (pdftex.def)             Requested size: 157.2488pt x 115.56645pt.
-<Figures///Results_estimation/Fit_Di_Gamma_9_12.png, id=259, 423.5022pt x 311.2
+<Figures///Results_estimation/Fit_Di_Gamma_9_12.png, id=258, 423.5022pt x 311.2
 428pt>
 File: Figures///Results_estimation/Fit_Di_Gamma_9_12.png Graphic file (type png
 )
 <use Figures///Results_estimation/Fit_Di_Gamma_9_12.png>
 Package pdftex.def Info: Figures///Results_estimation/Fit_Di_Gamma_9_12.png  us
-ed on input line 71.
+ed on input line 69.
 (pdftex.def)             Requested size: 157.2488pt x 115.56645pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
 <Figures///Results_estimation/Correlation_Di_Re.png, id=261, 370.2633pt x 299.4
 387pt>
 File: Figures///Results_estimation/Correlation_Di_Re.png Graphic file (type png
@@ -1786,9 +1782,6 @@ Underfull \hbox (badness 1635) in paragraph at lines 119--119
 []\T1/stix/m/n/9 (d) |Mul-ti-ple lin-ear re-gres-sion
  []
 
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
 <Figures///Results_estimation/Fit_Di_Gamma_1_4_correlation.png, id=275, 423.502
 2pt x 311.2428pt>
 File: Figures///Results_estimation/Fit_Di_Gamma_1_4_correlation.png Graphic fil
@@ -1818,48 +1811,57 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [6 <./Figures///Results_estimation/Fit_Di_Gamma_1_4.png (PNG copy)> <./Figures/
 //Results_estimation/Fit_Di_Gamma_5_8.png (PNG copy)> <./Figures///Results_esti
-mation/Fit_Di_Gamma_9_12.png (PNG copy)>]) [7 <./Figures///Results_estimation/C
-orrelation_Di_Re.png (PNG copy)> <./Figures///Results_estimation/Correlation_Ga
-mma_Re.png (PNG copy)> <./Figures///Results_estimation/Di_Re_F.png (PNG copy)> 
-<./Figures///Results_estimation/Gamma_Re_F.png (PNG copy)> <./Figures///Results
+mation/Fit_Di_Gamma_9_12.png (PNG copy)> <./Figures///Results_estimation/Correl
+ation_Di_Re.png (PNG copy)> <./Figures///Results_estimation/Correlation_Gamma_R
+e.png (PNG copy)> <./Figures///Results_estimation/Di_Re_F.png (PNG copy)> <./Fi
+gures///Results_estimation/Gamma_Re_F.png (PNG copy)>]) [7 <./Figures///Results
 _estimation/Fit_Di_Gamma_1_4_correlation.png (PNG copy)> <./Figures///Results_e
 stimation/Fit_Di_Gamma_5_8_correlation.png (PNG copy)> <./Figures///Results_est
 imation/Fit_Di_Gamma_9_12_correlation.png (PNG copy)>]
 (Short_Supercritical_fluid_extraction_of_essential_oil_from_chamomile.bbl
-Underfull \hbox (badness 1226) in paragraph at lines 9--14
-[]\T1/stix/m/n/8 Ompal Singh, Za-kia Khanam, Nee-lam Misra, and Mano-jKu-mar
+Underfull \hbox (badness 1014) in paragraph at lines 34--39
+[]\T1/stix/m/n/8 E. Rever-chon, G. Donsi, and L.S. Os-seo.  Mod-el-ing of su-pe
+r-
  []
 
 
-Underfull \hbox (badness 1097) in paragraph at lines 16--23
-\T1/stix/m/n/8 o-log-i-cal ac-tiv-ity of flavonoids iso-lated from chamomile fl
-ow-ers.
+Underfull \hbox (badness 4168) in paragraph at lines 55--59
+[]\T1/stix/m/n/8 J. An-der-son.  |   []   |   []   |   []   |   []   |   []   |
+   []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 62--66
-[]\T1/stix/m/n/8 Jr. An-der-son, John D. and Chris Cadou.  |   []
- []
-
-
-Underfull \hbox (badness 5563) in paragraph at lines 62--66
-|   []   |   []\T1/stix/m/n/8 .  McGraw-Hill Ed-u-ca-tion, 2023.  ISBN
+Underfull \hbox (badness 1371) in paragraph at lines 61--65
+[]\T1/stix/m/n/8 J. An-der-son and Ch. Cadou.  |   []   |   []   |   [].
  []
 
 LaTeX Font Info:    Trying to load font information for TS1+stix on input line 
-71.
+70.
 (C:\Users\sliczno1\AppData\Local\Programs\MiKTeX\tex/latex/stix\ts1stix.fd
 File: ts1stix.fd 2015/04/17 v1.1.2-latex STIX TS1 font definitions
 )
-Underfull \hbox (badness 1005) in paragraph at lines 92--97
-|   []   |   []   |   []\T1/stix/m/n/8 , 9(2):128--133, jun 1996.  doi: $10 . 1
-016 /
+Underfull \hbox (badness 1990) in paragraph at lines 67--72
+|   []   |   []   |   []\T1/stix/m/n/8 , 61(8):1362--1365, 1984.  doi: $10 . 10
+07 /
+ []
+
+
+Underfull \hbox (badness 1237) in paragraph at lines 97--102
+|   []\T1/stix/m/n/8 , 49(15):2499--2505, 1994.  doi: $10 . 1016 / 0009-[]2509(
+94 )
+ []
+
+
+Underfull \hbox (badness 1859) in paragraph at lines 151--155
+[]\T1/stix/m/n/8 J. Gmehling, M. Kleiber, B. Kolbe, and J. Rarey.  |   []
  []
 
 ) [8
 
 {C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/stix/stix-ts1.
-enc}] (Sections/Qubic_EOS.tex
+enc}
+
+] (Sections/Qubic_EOS.tex
 Underfull \hbox (badness 1558) in paragraph at lines 67--68
 []\T1/stix/m/n/10 If the Peng-Robinson equa-tion of state (Peng and
  []
@@ -1897,7 +1899,7 @@ e1/public/stix/stix-mathit.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX
 ams/MiKTeX/fonts/type1/public/stix/stix-mathscr.pfb><C:/Users/sliczno1/AppData/
 Local/Programs/MiKTeX/fonts/type1/public/stix/stix-mathsf.pfb>
 Output written on Short_Supercritical_fluid_extraction_of_essential_oil_from_ch
-amomile.pdf (9 pages, 2554285 bytes).
+amomile.pdf (9 pages, 2553331 bytes).
 PDF statistics:
  433 PDF objects out of 1000 (max. 8388607)
  90 named destinations out of 1000 (max. 500000)
