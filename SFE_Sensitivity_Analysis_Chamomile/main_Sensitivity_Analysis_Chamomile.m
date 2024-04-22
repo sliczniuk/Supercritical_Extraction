@@ -16,7 +16,7 @@ SAMPLE                  = LabResults(21:34,1);
 data_org                = LabResults(21:34,which_dataset+1)';
 
 %% Load paramters
-m_total                 = 3.5;
+m_total                 = 3.0;
 
 % Bed geometry
 before                  = 0.04;                                             % Precentage of length before which is empty
@@ -25,7 +25,7 @@ bed                     = 0.92;                                              % P
 % Set time of the simulation
 PreparationTime         = 0;
 ExtractionTime          = 5000;
-timeStep                = 2;                                                % Minutes
+timeStep                = 1;                                                % Minutes
 
 simulationTime          = PreparationTime + ExtractionTime;
 

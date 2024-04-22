@@ -26,7 +26,7 @@
 		\end{equation}
 	}
 	
-	To simplify the system's dynamics, it is assumed that $F$ is a control variable and affects the whole system instantaneously, which allows finding the velocity profile that satisfies mass continuity based on $F$, $\phi$, and $\rho_f$.
+	To simplify the system's dynamics, it is assumed that $F$ is a control variable and affects the whole system instantaneously (due to $\nabla \cdot u = 0$), which allows finding the velocity profile that satisfies mass continuity based on $F$, $\phi$, and $\rho_f$.
 	
 	{\footnotesize
 	\begin{equation}
@@ -59,7 +59,7 @@
 		\end{equation}
 	}
 	
-	$c_f$ represents the concentration of solute in the fluid phase, $r_e$ is a mass transfer kinetic term, and $D^M_e$ is the axial diffusion coefficient.
+	$c_f$ represents the solute's concentration in the fluid phase, $r_e$ is a mass transfer kinetic term, and $D^M_e$ is the axial diffusion coefficient.
 	
 	\subsubsection{Mass balance for the solid phase} \label{Mass_balance_solid}
 	
@@ -284,7 +284,7 @@
 			
 		\subsubsection{Discretization methods}
 		
-		The method of lines is used to transform the process model equations into a set of ODEs denoted as $G(x;\Theta)$. The backward finite difference is used to approximate the first-order derivative, while the central difference scheme is used to approximate the second-order derivative $z$-direction. The length of the fixed bed is divided into $N_z$ equally distributed points in $z$-direction. The state-space model after the discretization is represented by $x$.
+		The method of lines is used to transform the process model equations into a set of ODEs denoted as $G(x;\Theta)$. The backward finite difference is used to approximate the first-order derivative, while the central difference scheme is used to approximate the second-order derivative $z$-direction. The length of the fixed bed is divided into $N_z$ equally distributed points in $z$-direction. The state-space model after the discretization is denoted as $x$ and defines as follow:
 		
 		\begin{comment}
 		{\footnotesize

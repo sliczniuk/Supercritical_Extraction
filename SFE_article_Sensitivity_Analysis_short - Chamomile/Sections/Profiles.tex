@@ -1,0 +1,33 @@
+\documentclass[../Article_Sensitivity_Analsysis.tex]{subfiles}
+\graphicspath{{\subfix{../Figures/}}}
+\begin{document}
+	
+	The time evolution of concentration profiles along the extractor for each dataset is presented on Figure \ref{fig: estimation_results_profiles}. The concentration profiles use the parameters obtained from the parameter estimation. The plots on the left hand-side show the fluid phase concentration, while the plots on the right-hand side present the concentration in the solid phase.
+	
+	\begin{figure}[!h]
+		\centering
+		\begin{subfigure}[b]{\columnwidth}
+			\centering
+			\includegraphics[trim = 2cm 1.4cm 1.9cm 11cm,clip,width=\textwidth]{/Results_estimation/Fitting_LUKE_T40_P200.pdf}
+			\caption{Experiment at $40^\circ C$ and $200$ bar}
+		\end{subfigure}
+		\begin{subfigure}[b]{\columnwidth}
+			\centering
+			\includegraphics[trim = 2cm 1.4cm 1.9cm 11cm,clip,width=\textwidth]{/Results_estimation/Fitting_LUKE_T50_P200.pdf}
+			\caption{Experiment at $50^\circ C$ and $200$ bar}
+		\end{subfigure}
+		\begin{subfigure}[b]{\columnwidth}
+			\centering
+			\includegraphics[trim = 2cm 1.4cm 1.9cm 11cm,clip,width=\textwidth]{/Results_estimation/Fitting_LUKE_T40_P300_org.pdf}
+			\caption{Experiment at $40^\circ C$ and $300$ bar}
+		\end{subfigure}
+		\begin{subfigure}[b]{\columnwidth}
+			\centering
+			\includegraphics[trim = 2cm 1.4cm 1.9cm 11cm,clip,width=\textwidth]{/Results_estimation/Fitting_LUKE_T50_P300_org.pdf}
+			\caption{Experiment at $50^\circ C$ and $300$ bar}
+		\end{subfigure}
+		\caption{Concentration profiles after solving the parameter estimation problem}
+		\label{fig: estimation_results_profiles}
+	\end{figure}
+	
+\end{document}
