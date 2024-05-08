@@ -145,14 +145,12 @@ Supercritical extraction \sep Sensitivity analysis \sep Mathematical modelling
 %\subfile{Sections/Gouverning_equation}
 
 \subsection{Governing equations} \label{CH:Governing_equations_chapter}
+
 Following the work of \citet{Anderson1995}, the governing equations for quasi-one-dimensional were derived. Quasi-one-dimensional flow refers to a fluid flow scenario assuming that flow properties are uniformly distributed across any given cross-section. This simplification is typically applied in situations where the flow channel's cross-sectional area changes, such as through irregular shapes or partial fillings of an extractor. According to this assumption, velocity and other flow properties change solely in the flow direction.
 
 As discussed by \citet{Anderson2023}, all flows are compressible but some of them can be treated as incompressible when the Mach number is smaller than 0.3. This assumption leads to the incompressible condition: $\nabla \cdot u =0$, which is valid for constant density (strict incompressible) or varying density flow. The restraint allows for the removal of acoustic waves, and allows for large perturbations in density and/or temperature. In the 1-D case, the incompressibility condition becomes $\frac{du}{dz} = 0$, so the fluid velocity is constant.
 
-
-%The governing equations based on the work of \citet{Anderson1995} for quasi-one-dimensional compressible flow in Cartesian coordinates are presented in Appendix \ref{CH: Gouverning equations}.
-
-The set of quasi-one-dimensional governing equations in Cartesian coordinates is described by Equations \ref{EQ: CompressibleEuler_1} - \ref{EQ: CompressibleEuler_3}. %The formulation of these equations is elaborated upon in Appendix \ref{CH: Gouverning equations}, providing a mathematical foundation for analyzing flow dynamics under the assumed conditions.
+The set of quasi-one-dimensional governing equations in Cartesian coordinates is described by Equations \ref{EQ: CompressibleEuler_1} - \ref{EQ: CompressibleEuler_3}.
 
 {\footnotesize
 	\begin{align}
@@ -251,7 +249,7 @@ This information can be utilized to identify which control variables influence t
 % Bibliography
 % ===================================================
 %% Loading bibliography style file
-\clearpage
+%\clearpage
 %\bibliographystyle{model1-num-names}
 \bibliographystyle{unsrtnat}
 \bibliography{mybibfile}

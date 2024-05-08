@@ -25,7 +25,7 @@
 		%\label{fig: Fit_Di_Gamma}
 	\end{figure}
 	
-	Figure \ref{fig: Fit_1_linear} shows the parameter space and corresponding values of the cost function for experiment 1 ($40^\circ C$, 100 bar and 6.67$\times 10^{-5}$ kg/s). As the cost function is to be minimized, the lowest value of $-\ln(L)$ indicate the best fit. A black vertical stripe at $D_i \approx 0.2$ can be observed. That stripe indicates the existence of the optimal value of the $D_i$. In the direction of $k_m$, the cost function is almost flat, which suggests that any value of $k_m$ above 0.1 fits the data equally well. If $k_m$ can be an arbitrary point, then it can grow to infinity, which suggests that the solvent is far from the saturation, and the model can be simplified. The model reduction can be introduced by considering the limit of $k_m$:
+	Figure \ref{fig: Fit_1_linear} shows the parameter space and corresponding values of the cost function for experiment 1 ($40^\circ C$, 100 bar and 6.67$\times 10^{-5}$ kg/s). A black-coloured section, in the shape of a vertical stripe at $D_i \approx 0.2$, indicates the minimum values of the cost function $-\ln(L)$. In the direction of $k_m$, the cost function is almost flat, which suggests that any value of $k_m$ above 0.1 fits the data equally well. If $k_m$ can be an arbitrary point, then it can grow to infinity, which suggests that the solvent is far from the saturation, and the model can be simplified. The model reduction can be introduced by considering the limit of $k_m$:
 		
 	{\footnotesize
 		\begin{equation*}
@@ -65,7 +65,7 @@
 	
 	The parameter space for the modified model exhibits a distinct minimum value corresponding to the solution of the parameter estimation problem for experiment 1. The red circle highlights the minimum value of the cost function found by the optimizer. The remaining experiments are fitted to the modified extraction model, and results, presented in Figure \ref{fig: Fit_Di_Gamma}, show good agreement with experimental data. 
 		
-	The parameter estimation results are combined to analyse the relationship between the obtained parameters and the operating conditions. Unlike traditional methods that employ a combination of Reynolds, Schmidt, and Sherwood numbers to find correlations—omitted here due to the insignificance of axial diffusion—the approach in this study leverages the Reynolds number $\left(Re = \frac{(2r) \cdot \rho_f \cdot u}{\mu}\right)$ as the sole independent variable. Using the Reynolds number has the advantage of considering the influence of all the control variables (temperature, pressure and flow rate), which means it can be uniquely defined by selecting operating conditions.	
+	The parameter estimation results are combined to analyse the relationship between the obtained parameters and the operating conditions. Unlike traditional methods that employ a combination of Reynolds, Schmidt, and Sherwood numbers to find correlation, the approach in this study leverages the Reynolds number $\left(Re = \frac{(2r) \cdot \rho_f \cdot u}{\mu}\right)$ as the sole independent variable. Using the Reynolds number has the advantage of considering the influence of all the control variables (temperature, pressure and flow rate), which means it can be uniquely defined by selecting operating conditions.	
 	
 	\begin{figure}[!h]
 		\centering
@@ -85,7 +85,6 @@
 		\caption{Linear correlations between parameters}
 		%\label{fig: Correlations_surface}
 	\end{figure}
-	
 	
 	In Figures \ref{fig: Correlations_Di_Re} and \ref{fig: Correlations_Gamma_Re}, two distinct data clusters emerge, each corresponding to a different mass flow rate. Despite the linear trends observed in both sets of correlations, the correlations for $D_i^R$ exhibit a decline with increasing $Re$, whereas those for $\Upsilon$ show an upward trend with $Re$. The decrease in $D_i^R$ across each data line can be attributed to higher fluid density and increased mass transfer resistance.
 	
@@ -108,7 +107,7 @@
 		%\label{fig: Correlations_surface}
 	\end{figure}
 	
-	A more general relationship can be obtained by applying multiple linear regression instead of linear regression. The data clusters in Figure \ref{fig: Correlations_Di_Re} and \ref{fig: Correlations_Gamma_Re} are close to parallel, suggesting that a plane would combine all the data points. The Reynolds number and mass flow rate act as independent variables for $D_i^R$ and $\Upsilon$ as presented in Figures \ref{fig: Correlations_Di_Re_F} and \ref{fig: Correlations_Gamma_Re_F}. The presented correlations are valid in the whole range of investigated operating conditions. The correlations are later tested against the original dataset to show that the correlations can reproduce the results with satisfactory accuracy. Figure \ref{fig: Fit_Di_Gamma_correlation} shows the results of the simulations with incorporated correlations. A good agreement between simulation results and the dataset can be observed. If Figures \ref{fig: Fit_Di_Gamma} and \ref{fig: Fit_Di_Gamma_correlation} are compared, a decrease in the accuracy of simulations can be observed. Such a behaviour is expected due to the bias-variance trade-off, which describes the relationship between a model's complexity and the accuracy of its predictions.
+	A more general relationship can be obtained by applying multiple linear regression instead of linear regression. The data clusters in Figure \ref{fig: Correlations_Di_Re} and \ref{fig: Correlations_Gamma_Re} are close to parallel, suggesting that a plane would combine all the data points. The Reynolds number and mass flow rate act as independent variables for $D_i^R$ and $\Upsilon$ as presented in Figures \ref{fig: Correlations_Di_Re_F} and \ref{fig: Correlations_Gamma_Re_F}. The presented correlations are valid in the whole range of investigated operating conditions. The correlations are later tested against the original dataset to show that the correlations can reproduce the results with satisfactory accuracy. Figure \ref{fig: Fit_Di_Gamma_correlation} shows the results of the simulations with incorporated correlations. A good agreement between simulation results and the dataset can be observed. If Figures \ref{fig: Fit_Di_Gamma} and \ref{fig: Fit_Di_Gamma_correlation} are compared, a decrease in the accuracy of simulations can be observed. Such behaviour is expected due to the bias-variance trade-off, which describes the relationship between a model's complexity and the accuracy of its predictions.
 	
 	\begin{figure}[!h]
 		\centering

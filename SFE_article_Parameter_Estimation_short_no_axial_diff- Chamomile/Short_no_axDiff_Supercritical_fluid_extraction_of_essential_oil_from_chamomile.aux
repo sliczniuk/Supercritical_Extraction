@@ -2,10 +2,13 @@
 \providecommand\hyper@newdestlabel[2]{}
 \providecommand\HyperFirstAtBeginDocument{\AtBeginDocument}
 \HyperFirstAtBeginDocument{\ifx\hyper@anchor\@undefined
+\global\let\oldcontentsline\contentsline
+\gdef\contentsline#1#2#3#4{\oldcontentsline{#1}{#2}{#3}}
 \global\let\oldnewlabel\newlabel
 \gdef\newlabel#1#2{\newlabelxx{#1}#2}
 \gdef\newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
 \AtEndDocument{\ifx\hyper@anchor\@undefined
+\let\contentsline\oldcontentsline
 \let\newlabel\oldnewlabel
 \fi}
 \fi}
@@ -122,6 +125,7 @@
 \citation{Rahimi2011}
 \citation{Rahimi2011}
 \citation{Rahimi2011}
+\citation{Povh2001}
 \newlabel{fig: Correlations_Di_Re_F}{{6a}{7}{Multiple linear regression $D_i^R = f(Re, F)$\relax }{figure.caption.6}{}}
 \newlabel{sub@fig: Correlations_Di_Re_F}{{a}{7}{Multiple linear regression $D_i^R = f(Re, F)$\relax }{figure.caption.6}{}}
 \newlabel{fig: Correlations_Gamma_Re_F}{{6b}{7}{Multiple linear regression $\Upsilon = f(Re, F)$\relax }{figure.caption.6}{}}
@@ -135,7 +139,6 @@
 \newlabel{sub@fig: Fit_9_12_Di_Gamma_correlation}{{c}{7}{Simulation results obtained at $3.33\times 10^{-5}$ [kg/s]\relax }{figure.caption.7}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Simulation results from the modified model and correlations\relax }}{7}{figure.caption.7}\protected@file@percent }
 \newlabel{fig: Fit_Di_Gamma_correlation}{{7}{7}{Simulation results from the modified model and correlations\relax }{figure.caption.7}{}}
-\citation{Povh2001}
 \citation{Rahimi2011}
 \citation{Povh2001}
 \bibstyle{unsrtnat}
