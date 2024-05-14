@@ -41,7 +41,7 @@
 			\begin{aligned} \label{EQ: Optimization_formulation_MLE}
 				&\hat{\theta}_{MLE} &= \arg \max_{\sigma, \theta \in \Theta} \ln L = \arg \max_{\sigma,\theta \in \Theta} p(\theta|y) \\
 				&\text{subject to}
-				& \dot{ x } = G({\color{black} x}(t);\theta) \\
+				& \dot{ x } = G({\color{black} x};\Theta(\theta)) \\
 				&& \dot{\theta} = 0 \\
 				&& y = y(t) \\
 				&& \theta^{lb} \leq \theta \leq \theta^{ub}
@@ -58,7 +58,7 @@
 			%\small{
 			\begin{tabular}{ lccccccc }
 				\hline 
-				Parameter		&$k_m$[-] 	& $D_i^R\times10^{-13}$[$m^2/s$] 	& $\Upsilon$ [-] & $\sigma$		\\  \hline
+				Parameter		&$k_m$[-] 	& $D_i^R\cdot10^{-13}$[$m^2/s$] 	& $\Upsilon$ [-] & $\sigma$		\\  \hline
 				Lower bound		&0	  		& 0 	  							& 0 		  	 & 0			\\ 
 				Upper bound		&$+\infty$	& $+\infty$ 						& $+\infty$		 & $+\infty$ 	\\ 
 				Initial guesses	&0.1-10		& $0.1-10$ 							& 0.1-10    	 & 0.1-10		\\  \hline

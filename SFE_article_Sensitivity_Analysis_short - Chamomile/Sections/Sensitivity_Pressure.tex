@@ -4,7 +4,7 @@
 	
 	\subsection{Pressure}
 	
-	As discussed in Chapter \ref{CH:Governing_equations_chapter}, a small pressure wave propagates at the speed of sound relative to the flow. If the flow velocity is relatively low, all pressure changes are hydrodynamic (resulting from velocity motion) rather than thermodynamic. The Low Mach-number assumption leads to instant propagation of the thermodynamic pressure throughout the system. This assumption allows considering a single pressure value for the entire system, as all changes occur simultaneously within the machine. Figure \ref{fig:Sensitivty_P_P} illustrates a step function representing the pressure change.
+	As discussed in Chapter \ref{CH:Governing_equations_chapter}, a small pressure wave propagates at the speed of sound relative to the flow. If the flow velocity is relatively low, all pressure changes are hydrodynamic (resulting from velocity motion) rather than thermodynamic. The Low Mach-number assumption leads to instant propagation of the thermodynamic pressure throughout the system. A single pressure value can be considered for the entire system, as all changes occur simultaneously throughout the machine. Figure \ref{fig:Sensitivty_P_P} illustrates a step function representing the pressure change.
 	
 	\begin{figure}[h!]
 		\centering
@@ -15,7 +15,7 @@
 	
 	According to Equation \ref{EQ:Enthalpy_equation}, the pressure change directly affects the quantity $h \times \rho$ through $\frac{\partial (P(t) A_f)}{\partial t}$, leading to the step change along the whole system, as presented in Figure \ref{fig:Sensitivty_P_H}. The uniform response across the entire extraction column length and time, represented by the homogeneously dark red colour, indicates that the entire system experiences an immediate and uniform change in enthalpy density in response to pressure changes. 
 	
-	The pressure change influences the temperature of the fluid in the middle of the computational domain, but the values on boundaries can be defined in multiple ways. Applying the Dirichlet boundary conditions assumes a fixed temperature value at the inlet, which leads to a possible thermal gradient propagating along the system. In contrast, Neumann boundary conditions would dictate that the heat flux at the boundaries be held constant. In this work, the Neumann boundary conditions have been applied, which leads to a uniform response and ensures the temperatures at the inlet and in the middle of the extractor are the same.
+	The pressure change influences the temperature of the fluid in the middle of the computational domain, but the values on boundaries can be defined in multiple ways. Applying the Dirichlet boundary conditions assumes a fixed temperature value at the inlet, which leads to a possible thermal gradient propagating along the system. In contrast, Neumann boundary conditions would dictate that the heat flux at the boundaries be held constant. In this work, the Neumann boundary conditions have been applied, which leads to a uniform response and ensures that the temperatures at the inlet and in the middle of the extractor are the same.
 	
 	\begin{figure}[h!]
 		\centering
