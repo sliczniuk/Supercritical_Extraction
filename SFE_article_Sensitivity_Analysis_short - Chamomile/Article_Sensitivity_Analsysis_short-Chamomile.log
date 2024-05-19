@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10.12) (preloaded format=pdflatex 2024.1.12)  15 MAY 2024 16:34
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10.12) (preloaded format=pdflatex 2024.1.12)  17 MAY 2024 15:02
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1589,7 +1589,7 @@ Overfull \hbox (123.62721pt too wide) detected at line 121
  []
 
 (Article_Sensitivity_Analsysis_short-Chamomile.abs)
-<thumbnails/cas-email.jpeg, id=94, 225.84375pt x 225.84375pt>
+<thumbnails/cas-email.jpeg, id=98, 225.84375pt x 225.84375pt>
 File: thumbnails/cas-email.jpeg Graphic file (type jpg)
 <use thumbnails/cas-email.jpeg>
 Package pdftex.def Info: thumbnails/cas-email.jpeg  used on input line 121.
@@ -1632,7 +1632,7 @@ File: t1cmss.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 
 pdfTeX warning: pdflatex (file ./Figures/PFD.drawio.pdf): PDF inclusion: found 
 PDF version <1.7>, but at most version <1.5> allowed
-<Figures/PFD.drawio.pdf, id=103, 871.33525pt x 336.29637pt>
+<Figures/PFD.drawio.pdf, id=107, 871.33525pt x 336.29637pt>
 File: Figures/PFD.drawio.pdf Graphic file (type pdf)
 <use Figures/PFD.drawio.pdf>
 Package pdftex.def Info: Figures/PFD.drawio.pdf  used on input line 35.
@@ -1656,7 +1656,7 @@ File: ts1stix.fd 2015/04/17 v1.1.2-latex STIX TS1 font definitions
 ))
 (Sections/Model.tex [2{C:/Users/sliczno1/AppData/Local/Programs/MiKTeX/fonts/en
 c/dvips/stix/stix-ts1.enc} <./Figures/PFD.drawio.pdf>]
-<Figures/SFE_PFD.drawio.png, id=181, 8222.72pt x 4626.28375pt>
+<Figures/SFE_PFD.drawio.png, id=185, 8222.72pt x 4626.28375pt>
 File: Figures/SFE_PFD.drawio.png Graphic file (type png)
 <use Figures/SFE_PFD.drawio.png>
 Package pdftex.def Info: Figures/SFE_PFD.drawio.png  used on input line 81.
@@ -1664,39 +1664,43 @@ Package pdftex.def Info: Figures/SFE_PFD.drawio.png  used on input line 81.
  (Sections/Saturation.tex [3 <./Figures/SFE_PFD.drawio.png>]) [4]) (Sections/Se
 nsitivity_Analysis.tex
 [5]) (Sections/Results_Sensitivity.tex (Sections/Sensitivity_Pressure.tex
-<Figures///Results_sensitivity/P_P.png, id=255, 385.6809pt x 299.9205pt>
+<Figures///Results_sensitivity/P_P.png, id=260, 385.6809pt x 299.9205pt>
 File: Figures///Results_sensitivity/P_P.png Graphic file (type png)
 <use Figures///Results_sensitivity/P_P.png>
 Package pdftex.def Info: Figures///Results_sensitivity/P_P.png  used on input l
 ine 11.
 (pdftex.def)             Requested size: 214.42754pt x 166.74615pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
 Package hyperref Info: bookmark level for unknown todo defaults to 0 on input l
 ine 16.
-<Figures///Results_sensitivity/H_P.png, id=259, 388.3308pt x 316.0608pt>
+<Figures///Results_sensitivity/H_P.png, id=264, 388.3308pt x 316.0608pt>
 File: Figures///Results_sensitivity/H_P.png Graphic file (type png)
 <use Figures///Results_sensitivity/H_P.png>
 Package pdftex.def Info: Figures///Results_sensitivity/H_P.png  used on input l
 ine 24.
 (pdftex.def)             Requested size: 214.42754pt x 174.5188pt.
-<Figures///Results_sensitivity/CS_P.png, id=263, 405.1938pt x 314.8563pt>
+[6 <./Figures///Results_sensitivity/P_P.png (PNG copy)> <./Figures///Results_se
+nsitivity/H_P.png (PNG copy)>]
+<Figures///Results_sensitivity/CS_P.png, id=282, 405.1938pt x 314.8563pt>
 File: Figures///Results_sensitivity/CS_P.png Graphic file (type png)
 <use Figures///Results_sensitivity/CS_P.png>
 Package pdftex.def Info: Figures///Results_sensitivity/CS_P.png  used on input 
 line 33.
 (pdftex.def)             Requested size: 214.42754pt x 166.6232pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[6 <./Figures///Results_sensitivity/P_P.png (PNG copy)> <./Figures///Results_se
-nsitivity/H_P.png (PNG copy)>]
-<Figures///Results_sensitivity/CF_P.png, id=278, 401.3394pt x 316.0608pt>
+<Figures///Results_sensitivity/CF_P.png, id=285, 401.3394pt x 316.0608pt>
 File: Figures///Results_sensitivity/CF_P.png Graphic file (type png)
 <use Figures///Results_sensitivity/CF_P.png>
 Package pdftex.def Info: Figures///Results_sensitivity/CF_P.png  used on input 
 line 42.
 (pdftex.def)             Requested size: 214.42754pt x 168.8666pt.
-<Figures///Results_sensitivity/Y_P.png, id=281, 384.9582pt x 310.761pt>
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<Figures///Results_sensitivity/Y_P.png, id=288, 384.9582pt x 310.761pt>
 File: Figures///Results_sensitivity/Y_P.png Graphic file (type png)
 <use Figures///Results_sensitivity/Y_P.png>
 Package pdftex.def Info: Figures///Results_sensitivity/Y_P.png  used on input l
@@ -1704,8 +1708,7 @@ ine 51.
 (pdftex.def)             Requested size: 214.42754pt x 173.10031pt.
 )) [7 <./Figures///Results_sensitivity/CS_P.png (PNG copy)> <./Figures///Result
 s_sensitivity/CF_P.png (PNG copy)> <./Figures///Results_sensitivity/Y_P.png (PN
-G copy)>]
-(Article_Sensitivity_Analsysis_short-Chamomile.bbl
+G copy)>] (Article_Sensitivity_Analsysis_short-Chamomile.bbl
 Underfull \hbox (badness 1097) in paragraph at lines 16--23
 \T1/stix/m/n/8 o-log-i-cal ac-tiv-ity of flavonoids iso-lated from chamomile fl
 ow-ers.
@@ -1727,13 +1730,13 @@ Underfull \hbox (badness 1558) in paragraph at lines 67--68
 ] (Article_Sensitivity_Analsysis_short-Chamomile.aux)
 Package rerunfilecheck Info: File `Article_Sensitivity_Analsysis_short-Chamomil
 e.out' has not changed.
-(rerunfilecheck)             Checksum: 963328C6C9A2FD872DFB4E19CCE2EE48;3508.
+(rerunfilecheck)             Checksum: B5ED4757269E031804AC23C09AC69402;3645.
  ) 
 Here is how much of TeX's memory you used:
- 42301 strings out of 478848
- 921405 string characters out of 2848485
- 1340325 words of memory out of 3000000
- 59254 multiletter control sequences out of 15000+600000
+ 42305 strings out of 478848
+ 921474 string characters out of 2848485
+ 1337325 words of memory out of 3000000
+ 59256 multiletter control sequences out of 15000+600000
  530010 words of font info for 178 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  94i,26n,131p,1625b,1116s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1754,9 +1757,9 @@ e1/public/stix/stix-mathit.pfb><C:/Users/sliczno1/AppData/Local/Programs/MiKTeX
 ams/MiKTeX/fonts/type1/public/stix/stix-mathscr.pfb><C:/Users/sliczno1/AppData/
 Local/Programs/MiKTeX/fonts/type1/public/stix/stix-mathsf.pfb>
 Output written on Article_Sensitivity_Analsysis_short-Chamomile.pdf (9 pages, 1
-388289 bytes).
+391612 bytes).
 PDF statistics:
- 409 PDF objects out of 1000 (max. 8388607)
- 102 named destinations out of 1000 (max. 500000)
- 265 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 417 PDF objects out of 1000 (max. 8388607)
+ 104 named destinations out of 1000 (max. 500000)
+ 273 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -118,7 +118,7 @@
 			\subfile{Saturation}
 			
 			%\iffalse	
-			\subsubsection{Heat balance} \label{CH: heat_balance}
+			
 			
 			\begin{comment}
 			
@@ -230,19 +230,21 @@
 			The Equation \ref{EQ:Enthalpy_PR} requires an reference sate, which in this case is assumed to be ${\color{black}T_{ref}}=298.15~[K]$ and ${\color{black}P_{ref}}=1.01325~[bar]$.
 			
 			As discussed by \citet{Gmehling2019}, the influence of the intermolecular forces on the enthalpy is needs to taken into account in high pressures systems. In most cases, these forces are attractive, so additional energy is necessary to move the molecules away from each other, that is, to lower the density. If this energy is not added, the substance cools down when it is expanded.
-			
+			\end{comment}
+		
 			\subsubsection{Pressure term} \label{CH: Pressure}
 			
-			The pressure term in the energy equation, given by Equation \ref{EQ:Enthalpy_equation}, describes the change of the thermodynamic pressure with respect to time. As explained in Chapters \ref{CH:Governing_equations_chapter}, at Low-Mach number conditions, the thermodynamic pressure is nearly constant in space due to the small pressure wave propagation that occurs at the speed of sound. Under such conditions, the term $\partial {\color{black}P}/\partial t$ can be approximated by an ordinary differential equation, which describes the instantaneous change of pressure in the system. The pressure (P) in the system is considered a state variable, while the pressure in the new time-step ($P_{in}$) is considered a control variable.
+			The pressure term in the energy equation, given by Equation \ref{EQ:Enthalpy_equation}, describes the change of the thermodynamic pressure with respect to time. As explained in Chapters \ref{CH:Governing_equations_chapter}, at Low-Mach number conditions, the thermodynamic pressure is nearly constant in space due to the small pressure wave propagation that occurs at the speed of sound. Under such conditions, the term $\partial P/\partial t$ can be approximated by an difference equation, which describes the change of pressure in the whole system. The pressure ($P$) in the system is considered a state variable, while the pressure in the new time-step ($P_{in}$) is considered a control variable.
 			
 			{\footnotesize
 				\begin{equation}
-					\frac{\partial {\color{black}P}(t)}{\partial t} \approx \frac{{\color{black}P}(t) - {\color{black}P_{in}}(t) }{\Delta t}
+					\frac{\partial {\color{black}P}(t)}{\partial t} \approx \frac{{\color{black}P_{in}}(t) - {\color{black}P}(t) }{\Delta t}
 			\end{equation}}
 			
 			Such a simplified equation takes into account the pressure change in the energy balance, but the dynamics are simplified and do not consider the effects of pressure losses. In a real system, the dynamics of pressure change would depend on a pump used in an extraction system, as well as a back-pressure regulator used to control an outlet valve.
+						
+			\subsubsection{Heat balance} \label{CH: heat_balance}
 			
-			\end{comment}
 			The heat balance equation describe the evolution of the internal energy in the system and it is given by Equation \ref{EQ:Enthalpy_equation}
 			
 			{\footnotesize
