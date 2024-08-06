@@ -20,11 +20,11 @@ m_total                 = 3.0;
 
 % Bed geometry
 before                  = 0.04;                                             % Precentage of length before which is empty
-bed                     = 0.92;                                              % Percentage of length occupied by fixed bed
+bed                     = 0.92;                                             % Percentage of length occupied by fixed bed
 
 % Set time of the simulation
 PreparationTime         = 0;
-ExtractionTime          = 5000;
+ExtractionTime          = 15000;
 timeStep                = 1;                                                % Minutes
 
 simulationTime          = PreparationTime + ExtractionTime;
@@ -111,108 +111,126 @@ m_fluid                 = G(L_bed_after_nstages)*( L_bed_after_nstages(2) ); % L
 m_fluid                 = [zeros(1,numel(nstagesbefore)) m_fluid];
 C0fluid                 = m_fluid * 1e-3 ./ V_fluid';
 
-%% Set operating conditions
-T0homog                 = 35+273;                    % K
-feedPress               = 150;               % MPa -> bar
-Flow                    = 5 * 1e-5 ;            % kg/s
+RES                     = [];
 
-Z                       = Compressibility( T0homog, feedPress,         Parameters );
-rho                     = rhoPB_Comp(      T0homog, feedPress, Z,      Parameters );
+for PP = [100,125,150,175,200]
+    %% Set operating conditions
+    T0homog                 = 35+273;                    % K
+    feedPress               = PP;                        % bar
+    Flow                    = 5 * 1e-5 ;                 % kg/s
+    
+    Z                       = Compressibility( T0homog, feedPress,         Parameters );
+    rho                     = rhoPB_Comp(      T0homog, feedPress, Z,      Parameters );
+    
+    enthalpy_rho            = rho.*SpecificEnthalpy(T0homog, feedPress, Z, rho, Parameters );
+    
+    feedTemp                = T0homog   * ones(1,length(Time_in_sec)) + 0 ;     % Kelvin
+    
+    feedPress               = feedPress * ones(1,length(Time_in_sec)) + 0 ;     % Bars
+    
+    feedFlow                = Flow * ones(1,length(Time_in_sec));               % kg/s
+    
+    uu                      = [feedTemp', feedPress', feedFlow'];
+    
+    MU                      =     Viscosity(T0homog,rho);
+    VELOCITY                =     Velocity(Flow, rho, Parameters);
+    RE                      =     dp .* rho .* VELOCITY ./ MU;
+    
+    % Initial conditions
+    x0                      = [ C0fluid'                         ;
+                                C0solid         * bed_mask       ;
+                                enthalpy_rho    * ones(nstages,1);
+                                feedPress(1)                     ;
+                                0                                ;
+                                ];
+    
+    %% Set the inital simulation and plot it against the corresponding dataset
+    %Parameters_init_time   = [uu repmat(cell2mat(Parameters),1,N_Time)'];
+    %[xx_0]                 = simulateSystem(F, [], x0, Parameters_init_time );
+    
+    %hold on
+    %plot(Time,xx_0(end,:))
+    %plot(SAMPLE,data_org,'o')
+    %hold off
+    
+    %% Set sensitivity analysis
+    
+    name_v = {'T_{in}', 'P_{in}', 'F'                                   };
+    name_s = {'c_f'   , 'c_s'   , '(h\times\rho)' , 'P_{t-1}'     , 'y' };
+    name_p = {'CF'    , 'CS'    , 'H'             , 'P_{in}'      , 'Y' };
+    
+    My_Font = 14;
+    num_levels = 100;
+    
+    for ii = 2     
+    
+            %% Sensitivities calculations
+            Parameters{8} = ii;
+            Parameters_init_time   = [uu repmat(cell2mat(Parameters),1,N_Time)'];
+            [S,p,Sdot]              = Sensitivity(x, xdot, u, ii );
+    
+            % Initial conditions
+            x0_SA                   = [ x0; zeros(length(S)-length(xdot),1) ];
+    
+            f_SA = @(S, p) Sdot(S, p, bed_mask);
+            Results = Integrator_SS(Time*60, x0_SA, S, p, Sdot, Parameters_init_time);
+            Res = Results(Nx+1:end,:);
 
-enthalpy_rho            = rho.*SpecificEnthalpy(T0homog, feedPress, Z, rho, Parameters );
-
-feedTemp                = T0homog   * ones(1,length(Time_in_sec)) + 0 ;     % Kelvin
-
-feedPress               = feedPress * ones(1,length(Time_in_sec)) + 0 ;     % Bars
-
-feedFlow                = Flow * ones(1,length(Time_in_sec));               % kg/s
-
-uu                      = [feedTemp', feedPress', feedFlow'];
-
-MU                      =     Viscosity(T0homog,rho);
-VELOCITY                =     Velocity(Flow, rho, Parameters);
-RE                      =     dp .* rho .* VELOCITY ./ MU;
-
-% Initial conditions
-x0                      = [ C0fluid'                         ;
-                            C0solid         * bed_mask       ;
-                            enthalpy_rho    * ones(nstages,1);
-                            feedPress(1)                     ;
-                            0                                ;
-                            ];
-
-%% Set the inital simulation and plot it against the corresponding dataset
-Parameters_init_time   = [uu repmat(cell2mat(Parameters),1,N_Time)'];
-[xx_0]                 = simulateSystem(F, [], x0, Parameters_init_time );
-
-%hold on
-%plot(Time,xx_0(end,:))
-%plot(SAMPLE,data_org,'o')
-%hold off
-
-%% Set sensitivity analysis
-
-name_v = {'T_{in}', 'P'   , 'F'                              };
-name_s = {'c_f'   , 'c_s' , '(h\times\rho)' , 'P_{t-1}', 'y' };
-name_p = {'CF'    , 'CS'  , 'H'             , 'P'      , 'Y' };
-
-My_Font = 14;
-num_levels = 100;
-
-for ii = 1:3        
-
-        %% Sensitivities calculations
-        Parameters{8} = ii;
-        Parameters_init_time   = [uu repmat(cell2mat(Parameters),1,N_Time)'];
-        [S,p,Sdot]              = Sensitivity(x, xdot, u, ii );
-
-        % Initial conditions
-        x0_SA                   = [ x0; zeros(length(S)-length(xdot),1) ];
-
-        f_SA = @(S, p) Sdot(S, p, bed_mask);
-        Results = Integrator_SS(Time*60, x0_SA, S, p, Sdot, Parameters_init_time);
-        Res = Results(Nx+1:end,:);
-
-        %% Sensitivities plot 
-        for ind=0:2
-            figure()
-            %subplot(2,1,1)
-            imagesc(Time, L_nstages, Res(ind*nstages+1:(ind+1)*nstages,:)); cb = colorbar; colormap turbo;
-            %subplot(2,1,2)
-            %contourf(Time, L_nstages, flip(Res(ind*nstages+1:(ind+1)*nstages,:)),'EdgeColor','none','Levels',200); cb = colorbar; colormap turbo;
-
-            hold on
-            yline([L_nstages(nstagesbed(end)) L_nstages(nstagesbed(1))],'k--');
-            plot([ExtractionTime-40, ExtractionTime-40], [L_nstages(nstagesbed(end)) L_nstages(nstagesbed(1))], 'k--');
-            text(ExtractionTime-55,[mean([L_nstages(nstagesbed(end)) L_nstages(nstagesbed(1))])],'fixed bed', 'Interpreter', 'latex', 'Color', 'black', 'HorizontalAlignment','center','VerticalAlignment','middle', 'Rotation', 90);
-            hold off
-
-            title(cb, ['$\frac{d',name_s{ind+1},'}{d',name_v{ii},'}$'], 'Interpreter', 'latex'); cb.TickLabelInterpreter = 'latex'; 
-            cb.Label.Rotation = 0; % to rotate the text
-            xlabel('Time [min]'); ylabel('Length [m]'); 
-            set(gca,'FontSize',My_Font)
-            %xscale log
-            
-            exportgraphics(figure(1),[name_p{ind+1},'_',name_v{ii},'.png'], "Resolution",300);
-            close all;
-        end
-
-        %% Sensitivities plot - P and y
-        indx = 0;
-        for ind = 4:-1:3
-            figure()
-            hold on
-            plot(Time, Res(end - indx,:), LineWidth=2); 
-            %yline(0, LineWidth=2)
-            xlabel('Time [min]'); ylabel(['$\frac{d ',name_s{ind+1},'}{d',name_v{ii},'}$'])
-            hold off
-            set(gca,'FontSize',My_Font)
-            
-            exportgraphics(figure(1),[name_p{ind+1},'_',name_v{ii},'.png'], "Resolution",300);
-            close all;
-            indx = indx + 1;
-        end        
+            RES = [RES; Res(end,:)];
+    
+            %% Sensitivities plot 
+            %{
+            for ind=0:2
+                figure()
+                %subplot(2,1,1)
+                imagesc(Time, L_nstages, Res(ind*nstages+1:(ind+1)*nstages,:)); cb = colorbar; colormap turbo;
+                %subplot(2,1,2)
+                %contourf(Time, L_nstages, flip(Res(ind*nstages+1:(ind+1)*nstages,:)),'EdgeColor','none','Levels',200); cb = colorbar; colormap turbo;
+    
+                hold on
+                yline([L_nstages(nstagesbed(end)) L_nstages(nstagesbed(1))],'k--');
+                plot([ExtractionTime-40, ExtractionTime-40], [L_nstages(nstagesbed(end)) L_nstages(nstagesbed(1))], 'k--');
+                text(ExtractionTime-55,[mean([L_nstages(nstagesbed(end)) L_nstages(nstagesbed(1))])],'fixed bed', 'Interpreter', 'latex', 'Color', 'black', 'HorizontalAlignment','center','VerticalAlignment','middle', 'Rotation', 90);
+                hold off
+    
+                title(cb, ['$\frac{d',name_s{ind+1},'}{d',name_v{ii},'}$'], 'Interpreter', 'latex'); cb.TickLabelInterpreter = 'latex'; 
+                cb.Label.Rotation = 0; % to rotate the text
+                xlabel('Time [min]'); ylabel('Length [m]'); 
+                set(gca,'FontSize',My_Font)
+                %xscale log
+                
+                %exportgraphics(figure(1),[name_p{ind+1},'_',name_v{ii},'.png'], "Resolution",300);
+                %close all;
+            end
+    
+            %% Sensitivities plot - P and y
+            indx = 0;
+            for ind = 4:-1:3
+                figure()
+                hold on
+                plot(Time, Res(end - indx,:), LineWidth=2); 
+                %yline(0, LineWidth=2)
+                xlabel('Time [min]'); ylabel(['$\frac{d ',name_s{ind+1},'}{d',name_v{ii},'}$'])
+                hold off
+                set(gca,'FontSize',My_Font)
+                
+                %exportgraphics(figure(1),[name_p{ind+1},'_',name_v{ii},'.png'], "Resolution",300);
+                %close all;
+                indx = indx + 1;
+            end     
+            %}   
+    end
 end
+%%
+plot(Time, RES','LineWidth',2)
+legend('100 bar', '125 bar', '150 bar', '175 bar', '200 bar', 'Location','best')
+legend box off
+xlabel('Time [min]'); 
+ylabel(['$\frac{d ',name_s{5},'}{d',name_v{2},'}$'])
+set(gca,'FontSize',My_Font)
+%exportgraphics(figure(1),['Yield_multiple.png'], "Resolution",300);
+%close all;
+
 %}
 
 

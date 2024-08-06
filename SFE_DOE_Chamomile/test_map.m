@@ -7,13 +7,14 @@ addpath('\\home.org.aalto.fi\sliczno1\data\Documents\casadi-3.6.3-windows64-matl
 import casadi.*
 
 %% Create the solver
-Iteration_max               = 150;                                             % Maximum number of iterations for optimzer
-Time_max                    = 12;                                           % Maximum time of optimization in [h]
+tic
+Iteration_max               = 5;                                           % Maximum number of iterations for optimzer
+Time_max                    = 1;                                           % Maximum time of optimization in [h]
 
 nlp_opts                    = struct;
 nlp_opts.ipopt.max_iter     = Iteration_max;
 nlp_opts.ipopt.max_cpu_time = Time_max*3600;
-nlp_opts.ipopt.hessian_approximation ='limited-memory';
+%nlp_opts.ipopt.hessian_approximation ='limited-memory';
 %nlp_opts.ipopt.acceptable_tol  = 1e-4;
 %nlp_opts.ipopt.acceptable_iter = 5;
 
@@ -28,21 +29,22 @@ Parameters              = num2cell(Parameters_table{:,3});                  % Pa
 LabResults              = xlsread('wpd_datasets.xlsx');
 which_dataset           = 4;
 
-%SAMPLE                  = LabResults(21:34,1);
+SAMPLE                  = LabResults(21:34,1);
 data_org                = LabResults(21:34,which_dataset+1)';
 
 %% Load paramters
-m_total                 = 3.0;
+m_total                 = 3.5;
 
 % Bed geometry
 before                  = 0.04;                                             % Precentage of length before which is empty
-bed                     = 0.92;                                             % Percentage of length occupied by fixed bed
+bed                     = 0.92;                                              % Percentage of length occupied by fixed bed
 
 % Set time of the simulation
 PreparationTime         = 0;
-ExtractionTime          = 600;
-timeStep                = 5;                                               % Minutes
-OP_change_Time          = 20;                                               % Minutes
+ExtractionTime          = 300;
+timeStep                = 10;                                                % Minutes
+SamplingTime            = 20;                                                % Minutes
+OP_change_Time          = 30;                                                % Minutes
 
 simulationTime          = PreparationTime + ExtractionTime;
 
@@ -51,11 +53,10 @@ Time_in_sec             = (timeStep:timeStep:simulationTime)*60;            % Se
 Time                    = [0 Time_in_sec/60];                               % Minutes
 
 N_Time                  = length(Time_in_sec);
+SAMPLE                  = SamplingTime:SamplingTime:ExtractionTime;
 OP_change               = OP_change_Time:OP_change_Time:ExtractionTime;
 
 % Check if the number of data points is the same for both the dataset and the simulation
-%%{
-SAMPLE = OP_change;
 N_Sample                = [];
 for i = 1:numel(SAMPLE)
     N_Sample            = [N_Sample ; find(round(Time,3) == round(SAMPLE(i))) ];
@@ -63,7 +64,6 @@ end
 if numel(N_Sample) ~= numel(SAMPLE)
     keyboard
 end
-%}
 
 %% Specify parameters to estimate
 nstages                 = Parameters{1};
@@ -142,26 +142,36 @@ m_fluid                 = [zeros(1,numel(nstagesbefore)) m_fluid];
 C0fluid                 = m_fluid * 1e-3 ./ V_fluid';
 
 %% Set operating conditions
-T0homog                 = 35+273;                                           % K
-feedPress               = 150;                                              % MPa -> bar
-Flow                    = 5;                                                % kg/s
+%T0homog                 = LabResults(1,which_dataset+1) * ones(1,numel(OP_change));                    % K
 
-Z                       = Compressibility( T0homog, feedPress,         Parameters );
-rho                     = rhoPB_Comp(      T0homog, feedPress, Z,      Parameters );
+T0homog                 = OPT_solver.variable(numel(OP_change))';
+                          OPT_solver.subject_to( 30+273 <= T0homog <= 40+273 );
+%T0homog                 = linspace(30,40,numel(OP_change))+273;
 
-enthalpy_rho            = rho.*SpecificEnthalpy(T0homog, feedPress, Z, rho, Parameters );
+feedPress               = LabResults(2,which_dataset+1) * 10;               % MPa -> bar
+%Flow                    = LabResults(3,which_dataset+1) * 1e-5 ;            % kg/s
+Flow                    = OPT_solver.variable(numel(OP_change))';
+                          OPT_solver.subject_to( 3.33 <= Flow <= 6.67 );
 
-feedTemp                = T0homog   * ones(1,length(Time_in_sec)) + 0 ;     % Kelvin
+%feedTemp                = T0homog   * ones(1,length(Time_in_sec)) + 0 ;     % Kelvin
+
+feedTemp                = repmat(T0homog,OP_change_Time/timeStep,1);
+feedTemp                = feedTemp(:)';
+feedTemp                = [ feedTemp, T0homog(end)*ones(1,N_Time - numel(feedTemp)) ];    
+T_0                     = feedTemp(1);   
 
 feedPress               = feedPress * ones(1,length(Time_in_sec)) + 0 ;     % Bars
 
-feedFlow                = Flow * ones(1,length(Time_in_sec)) * 1e-5;        % kg/s
+Z                       = Compressibility( T_0, feedPress(1),         Parameters );
+rho                     = rhoPB_Comp(      T_0, feedPress(1), Z,      Parameters );
+enthalpy_rho            = rho.*SpecificEnthalpy(T_0, feedPress(1), Z, rho, Parameters ) ;
+
+%feedFlow                = Flow * ones(1,length(Time_in_sec));               % kg/s
+feedFlow                = repmat(Flow,OP_change_Time/timeStep,1);
+feedFlow                = feedFlow(:)';
+feedFlow                = [ feedFlow, Flow(end)*ones(1,N_Time - numel(feedFlow)) ];    
 
 uu                      = [feedTemp', feedPress', feedFlow'];
-
-MU                      =  Viscosity(T0homog,rho);
-VELOCITY                =  Velocity(Flow, rho, Parameters);
-RE                      =  dp .* rho .* VELOCITY ./ MU;
 
 % Initial conditions
 x0                      = [ C0fluid'                         ;
@@ -171,51 +181,10 @@ x0                      = [ C0fluid'                         ;
                             0                                ;
                             ];
 
-%% Set the inital simulation and plot it against the corresponding dataset
-Parameters_init_time   = [uu repmat(cell2mat(Parameters),1,N_Time)'];
-[xx_0]                 = simulateSystem(F, [], x0, Parameters_init_time );
-
-%% Solve the optimization problem with inital guess
-%hold on
-%plot(Time,xx_0(end,:))
-%plot(SAMPLE,data_org,'o')
-%hold off
-
-%% Define decision variables
-T0homog                 = OPT_solver.variable(numel(OP_change))';
-                          OPT_solver.subject_to( 30+273 <= T0homog <= 40+273 );
-
-Flow                    = OPT_solver.variable(numel(OP_change))';
-                          OPT_solver.subject_to( 3.33 <= Flow <= 6.67 );
-
-feedTemp                = repmat(T0homog,OP_change_Time/timeStep,1);
-feedTemp                = feedTemp(:)';
-feedTemp                = [ feedTemp, T0homog(end)*ones(1,N_Time - numel(feedTemp)) ];    
-T_0                     = feedTemp(1);   
-
-%feedPress               = feedPress * ones(1,length(Time_in_sec)) + 0 ;     % Bars
-
-Z                       = Compressibility( T_0, feedPress(1),         Parameters );
-rho                     = rhoPB_Comp(      T_0, feedPress(1), Z,      Parameters );
-enthalpy_rho            = rho.*SpecificEnthalpy(T_0, feedPress(1), Z, rho, Parameters ) ;
-
-%feedFlow                = Flow * ones(1,length(Time_in_sec));               % kg/s
-feedFlow                = repmat(Flow,OP_change_Time/timeStep,1) * 1e-5;
-feedFlow                = feedFlow(:)';
-feedFlow                = [ feedFlow, Flow(end)*ones(1,N_Time - numel(feedFlow)) ];    
-
-uu                      = [feedTemp', feedPress', feedFlow'];
-
-%% Initial conditions
-x0                      = [ C0fluid'                         ;
-                            C0solid         * bed_mask       ;
-                            enthalpy_rho    * ones(nstages,1);
-                            feedPress(1)                     ;
-                            0                                ;
-                            ];
-
+%%
+%{\
 sigma                   = 0.12;
-which_theta             = [44:46];
+which_theta             = [44:49];
 
 % Store symbolic results of the simulation
 Parameters_sym          = MX(cell2mat(Parameters));
@@ -224,17 +193,14 @@ Parameters_sym(which_theta)   = Parameters_sym_t;
 
 X                       = MX(Nx,N_Time+1);
 X(:,1)                  = x0;
-
-%% Symbolic integration
+% Symbolic integration
 for jj=1:N_Time
     X(:,jj+1)=F(X(:,jj), [uu(jj,:)'; Parameters_sym] );
 end
 
-%% Obtain symbolic yield
 Yield_estimate          = X(Nx,[1; N_Sample]);
 data_obs                = diff(Yield_estimate);
 
-%% Finad jacobian abd FI matrix
 S                       = jacobian(data_obs, Parameters_sym_t);
 
 S_norm                  = S' .* abs(cell2mat(Parameters(which_theta))) ./ repmat(data_obs,numel(which_theta) );
@@ -247,118 +213,76 @@ end
 
 D_opt = -log(myDet(FI));
 
-%% Defin intial guesses
 T0 = linspace(30,40,numel(T0homog))+273;
 %T0 = ( (40-30).*rand(1,numel(T0homog)) + 30 ) + 273;
-F0 = linspace(3.33,6.67,numel(Flow));
-%F0 = ( (6.67-3.33).*rand(1,numel(Flow)) + 3.33 ) ;
 
-%% Solve the optimization problem
+F0 = linspace(3.33,6.67,numel(Flow));
+%F0 = ( (6.67-3.33).*rand(1,numel(Flow)) + 3.33 );
+
 OPT_solver.set_value(Parameters_sym_t, cell2mat(Parameters(which_theta)));
 OPT_solver.minimize(D_opt);
 OPT_solver.set_initial([T0homog, Flow], [T0, F0] );
-
+toc 
 %%
+%{
+tic 
 try
     sol  = OPT_solver.solve();
     KOUT = full(sol.value([T0homog, Flow])) 
 catch
     KOUT = OPT_solver.debug.value([T0homog, Flow])
 end
+toc 
+%}
+%%
+tic
+H = OPT_solver.to_function('H',{T0homog,Flow},{T0homog,Flow})
+toc
+%%
+tic
+%HH = H(T0,F0)
+toc
+%%
+%parpool()
 
-%% Set operating conditions
-T0homog                 = T0;
-Flow                    = F0;
+tic 
+H_map = H.map(3,'thread',3);
+toc
 
-feedTemp                = repmat(T0homog,OP_change_Time/timeStep,1);
-feedTemp                = feedTemp(:)';
-%feedTemp                = [ feedTemp, T0homog(end)*ones(1,N_Time - numel(feedTemp)) ];    
+%%
+parpool()
+tic
+HH_map = H_map(repmat(T0,1,3),repmat(F0,1,3))
+toc
 
-T_0                     = feedTemp(1);   
+datetime
 
-Z                       = Compressibility( T_0, feedPress(1),         Parameters );
-rho                     = rhoPB_Comp(      T_0, feedPress(1), Z,      Parameters );
-enthalpy_rho            = rho.*SpecificEnthalpy(T_0, feedPress(1), Z, rho, Parameters ) ;
 
-%feedPress               = feedPress * ones(1,length(Time_in_sec)) + 0 ;     % Bars
 
-feedFlow                = repmat(Flow,OP_change_Time/timeStep,1);
-feedFlow                = feedFlow(:)';
-%feedFlow                = [ feedFlow, Flow(end)*ones(1,N_Time - numel(feedFlow)) ];  
-feedFlow                = feedFlow * 1e-5;        % kg/s
 
-uu                      = [feedTemp', feedPress', feedFlow'];
 
-% Initial conditions
-x0                      = [ C0fluid'                         ;
-                            C0solid         * bed_mask       ;
-                            enthalpy_rho    * ones(nstages,1);
-                            feedPress(1)                     ;
-                            0                                ;
-                            ];
 
-%% Set the inital simulation and plot it against the corresponding dataset
-Parameters_opt_0       = [uu repmat(cell2mat(Parameters),1,N_Time)'];
-[xoxo_0]               = simulateSystem(F, [], x0, Parameters_opt_0 );
 
-%% Set operating conditions
-T0homog                 = KOUT(1:numel(T0));
-Flow                    = KOUT(numel(F0)+1:end);
 
-feedTemp                = repmat(T0homog,OP_change_Time/timeStep,1);
-feedTemp                = feedTemp(:)';
-%feedTemp                = [ feedTemp, T0homog(end)*ones(1,N_Time - numel(feedTemp)) ];    
 
-T_0                     = feedTemp(1);   
 
-Z                       = Compressibility( T_0, feedPress(1),         Parameters );
-rho                     = rhoPB_Comp(      T_0, feedPress(1), Z,      Parameters );
-enthalpy_rho            = rho.*SpecificEnthalpy(T_0, feedPress(1), Z, rho, Parameters ) ;
 
-%feedPress               = feedPress * ones(1,length(Time_in_sec)) + 0 ;     % Bars
 
-feedFlow                = repmat(Flow,OP_change_Time/timeStep,1);
-feedFlow                = feedFlow(:)';
-%feedFlow                = [ feedFlow, Flow(end)*ones(1,N_Time - numel(feedFlow)) ];  
-feedFlow                = feedFlow * 1e-5;        % kg/s
 
-uu                      = [feedTemp', feedPress', feedFlow'];
 
-% Initial conditions
-x0                      = [ C0fluid'                         ;
-                            C0solid         * bed_mask       ;
-                            enthalpy_rho    * ones(nstages,1);
-                            feedPress(1)                     ;
-                            0                                ;
-                            ];
 
-%% Set the inital simulation and plot it against the corresponding dataset
-Parameters_opt         = [uu repmat(cell2mat(Parameters),1,N_Time)'];
-[xoxo]                 = simulateSystem(F, [], x0, Parameters_opt );
 
-%% Plot Yield curves for inital and opt system
-figure(1)
-hold on
-plot(full(xoxo(end,:)))
-plot(full(xoxo_0(end,:)))
-hold off
 
-subplot(2,1,1)
-hold on
-stairs([0 SAMPLE],[KOUT(1:30) KOUT(30)], 'LineWidth', 2)
-stairs([0 SAMPLE],[T0 T0(end)], 'LineWidth', 2)
-hold off
-legend('Optimized solution','Inital guess')
-ylabel('Temp K')
-xlabel('Time min')
 
-subplot(2,1,2)
-hold on
-stairs([0 SAMPLE],[KOUT(31:end) KOUT(end)], 'LineWidth', 2)
-stairs([0 SAMPLE],[F0 F0(end)], 'LineWidth', 2)
-hold off
-ylabel('Mass flow rate kg/s $\times 10^{-5}$')
-xlabel('Time min')
+
+
+
+
+
+
+
+
+
 
 
 
